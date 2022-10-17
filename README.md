@@ -33,6 +33,9 @@ cd {fargate_app_directory}
 fargate_package $ARTIFACT_BUCKET $CONTAINER_IMAGE
 upload_to_s3 $ARTIFACT_BUCKET
 ```
+npm install -g @commitlint/cli
+pre-commit (brew install pre-commit && pre-commit install && pre-commit install -tprepare-commit-msg -tcommit-msg)
+
 
 [1]: https://govukverify.atlassian.net/wiki/spaces/PLAT/pages/3107258369/How+to+deploy+a+container+to+Fargate+with+secure+pipelines
 [2]: /scripts/deployment_helper.sh
