@@ -1,0 +1,97 @@
+{% extends "common/layout/base.njk" %} 
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% set pageTitleName = 'accessibilityStatement.header' | translate %} 
+{% set showBack = false %}
+
+{% block content %}
+   <a href="#" id="back-button" class="govuk-back-link govuk-!-margin-top-1">{{'general.buttons.back' | translate}}</a>
+   <h1 class="govuk-heading-xl"> {{ "accessibilityStatement.header" | translate }} </h1>
+   <p class="govuk-body">{{'accessibilityStatement.intro.paragraph1' | translate}}</p>
+   <p class="govuk-body">{{'accessibilityStatement.intro.text1' | translate}}</p>
+   <ul class="govuk-list govuk-list--bullet">
+      <li>{{'accessibilityStatement.intro.bullet1' | translate}}</li>
+      <li>{{'accessibilityStatement.intro.bullet2' | translate}}</li>
+      <li>{{'accessibilityStatement.intro.bullet3' | translate}}</li>
+      <li>{{'accessibilityStatement.intro.bullet4' | translate}}</li>
+      <li>{{'accessibilityStatement.intro.bullet5' | translate}}</li>
+   </ul>
+   <p class="govuk-body">{{'accessibilityStatement.intro.text2' | translate}}
+      <a href="{{'accessibilityStatement.intro.abilityLink' | translate}}" class="govuk-link" target="blank"> {{'accessibilityStatement.intro.abilityLinkText' | translate}} </a> {{'accessibilityStatement.intro.text3' | translate}}
+   </p>
+   <h2 class="govuk-heading-l"> {{ "accessibilityStatement.howAccessible.title" | translate }} </h2>
+   <p class="govuk-body">{{'accessibilityStatement.howAccessible.text' | translate}}</p>
+   <h2 class="govuk-heading-l"> {{ "accessibilityStatement.feedback.title" | translate }} </h2>
+   <p class="govuk-body">{{ "accessibilityStatement.feedback.text1" | translate}} <strong> </br>
+      {{ "idSupportContact" | translate }} </strong>
+   </p>
+   <p class="govuk-body">{{ "accessibilityStatement.feedback.text2" | translate}} <strong> </br> 
+      {{ "idSupportContact" | translate }} </strong>
+   </p>
+   <p class="govuk-body">{{'accessibilityStatement.feedback.text3' | translate}}</p>
+   <h2 class="govuk-heading-l"> {{ "accessibilityStatement.reporting.title" | translate }} </h2>
+   <p class="govuk-body">{{'accessibilityStatement.reporting.text1' | translate}}<strong> </br> 
+      {{ "idSupportContact" | translate }} </strong>
+   </p>
+   <p class="govuk-body">{{'accessibilityStatement.reporting.text2' | translate}}</p>
+   <h2 class="govuk-heading-l"> {{ "accessibilityStatement.enforcement.title" | translate }} </h2>
+   <p class="govuk-body">{{'accessibilityStatement.enforcement.text1' | translate}} 
+      <a href="{{'accessibilityStatement.enforcement.contactLink' | translate}}" class="govuk-link" target="blank"> {{'accessibilityStatement.enforcement.contactLinkText' | translate}}</a>, {{'accessibilityStatement.enforcement.text2' | translate}}
+   </p>
+   <h2 class="govuk-heading-l">{{'accessibilityStatement.contactingUs.title' | translate}}</h2>
+   <p class="govuk-body"> {{ "accessibilityStatement.contactingUs.text1" | translate }} </p>
+   <p class="govuk-body"> {{ "accessibilityStatement.contactingUs.text2" | translate }} </p>
+   <p class="govuk-body"> {{ "accessibilityStatement.contactingUs.text3" | translate }} </br> <strong>
+      {{ "idSupportContact" | translate }} </strong>
+   </p>
+  <h2 class="govuk-heading-l"> {{ "accessibilityStatement.technicalInfo.title" | translate }} </h2>
+  <p>{{ "accessibilityStatement.technicalInfo.weAreCommitted" | translate }}</p>
+  <p>
+    {{ "accessibilityStatement.technicalInfo.partiallyCompliant" | translate }}
+      <a 
+      class="govuk-link"
+      target="_blank"
+      href="{{'accessibilityStatement.technicalInfo.wcagLink' | translate}}">
+      {{ "accessibilityStatement.technicalInfo.wcagLinkText" | translate }}
+      </a>
+    {{ "accessibilityStatement.technicalInfo.nonCompliance" | translate }}
+  </p>
+  <h2 class="govuk-heading-l"> {{ "accessibilityStatement.compliance.title" | translate }} </h2>
+  <p>
+    {{ "accessibilityStatement.compliance.partiallyCompliant" | translate }}
+      <a 
+      class="govuk-link"
+      target="_blank"
+      href="{{'accessibilityStatement.technicalInfo.wcagLink' | translate}}">
+      {{ "accessibilityStatement.technicalInfo.wcagLinkText" | translate }}.
+      </a>
+  </p>
+  <h2 class="govuk-heading-l"> {{ "accessibilityStatement.nonAccessible.title" | translate }} </h2>
+  <p>{{ "accessibilityStatement.nonAccessible.content" | translate }}</p>
+  <h2 class="govuk-heading-l"> {{ "accessibilityStatement.nonCompliance.title" | translate }} </h2>
+  <ul class="govuk-list govuk-list--bullet"> 
+    <li>{{ "accessibilityStatement.nonCompliance.reasons.focus" | translate }}</li>
+    <li>{{ "accessibilityStatement.nonCompliance.reasons.voiceOver" | translate }}</li>
+    <li>{{ "accessibilityStatement.nonCompliance.reasons.keyboardOnly" | translate }}</li>
+    <li>{{ "accessibilityStatement.nonCompliance.reasons.colour" | translate }}</li>
+    <li>{{ "accessibilityStatement.nonCompliance.reasons.landscape" | translate }}</li>
+  </ul>
+  <p>{{ "accessibilityStatement.nonCompliance.findAnIssue" | translate }}</p>
+  <h2 class="govuk-heading-l"> {{ "accessibilityStatement.disproportionate.title" | translate }} </h2>
+  <p>{{ "accessibilityStatement.disproportionate.noClaims" | translate }}</p>
+  <h2 class="govuk-heading-l"> {{ "accessibilityStatement.outOfScope.title" | translate }} </h2>
+  <p>{{ "accessibilityStatement.outOfScope.noContent" | translate }}</p>
+  <h2 class="govuk-heading-l"> {{ "accessibilityStatement.preparation.title" | translate }} </h2>
+  <p>{{ "accessibilityStatement.preparation.preparedDate" | translate }}</p>
+  <p>{{ "accessibilityStatement.preparation.lastTestedOn" | translate }}</p>
+  <p>{{ "accessibilityStatement.preparation.testedBasedOn" | translate }}</p>
+
+{% endblock %}
+
+{% block bodyEnd %}
+  <script type="text/javascript" src="/public/scripts/application.js"></script>
+  <script type="text/javascript" nonce='{{scriptNonce}}'>window.GOVUKFrontend.appInit('{{gtmId}}', '{{frontEndUrl}}')</script>
+  <script type="text/javascript" nonce='{{scriptNonce}}'>document.getElementById('back-button').addEventListener('click', (e) => { e.preventDefault(); window.history.back() })</script>
+{% endblock %}

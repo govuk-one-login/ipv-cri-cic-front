@@ -1,7 +1,9 @@
 import { PathNames } from '../../../app.constants'
 
 export const PATH_NAMES: PathNames = {
- CRI_LANDING_PAGE: "/criLandingPage"
+ LANDING_PAGE: "/landingPage",
+ PRIVACY_STATEMENT: "/privacystatement",
+ ACCESSIBILITY_STATEMENT: "/accessibilitystatement"
 }
 
 export const EVENTS = {

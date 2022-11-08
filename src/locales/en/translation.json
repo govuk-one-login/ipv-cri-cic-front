@@ -12,346 +12,8 @@
     },
     "common": {
       "confirmIdentityAnotherWay": {
-        "havingProblems": "Prefer to not use an app? You can ",
-        "confirmIdentity": "confirm your identity another way",
-        "additionalHelp": "For additional help, contact the ID Check support team at: ",
-        "idSupportContact": "IDCheckSupport@digital.cabinet-office.gov.uk"
+        "confirmIdentity": "I want to prove my identity another way"
       }
-    },
-    "introApp": {
-      "title": "Using the ID Check App",
-      "body": "We will guide you to download and use a GOV.UK app to confirm your identity.",
-      "pageTitle": "Using the ID Check App",
-      "instructions": {
-        "summaryText": "You will use the app to:",
-        "steps": {
-          "one": "take a photo of your UK driving licence",
-          "two": "take a scan of your face"
-        }
-      },
-      "dataInfo": {
-        "title": "How we use your data",
-        "body": "We collect your data securely and delete it when no longer needed. Read our full ",
-        "privacyNoticeLink": "privacy notice."
-      },
-      "accessibiltyInfo": {
-        "title": "Accessibility",
-        "body": "Read our",
-        "statement": "accessibility statement"
-      }
-    },
-    "flashingColours": {
-      "header": "The app uses flashing colours. Are you OK to continue?",
-      "pageTitle": "The app uses flashing colours. Are you OK to continue?",
-      "body": "A unique pattern of flashing colours is used during the face scan to confirm your identity.",
-      "options": {
-        "yes": "Yes",
-        "no": "No"
-      },
-      "details": {
-        "summaryText": "What if I am sensitive to flashing colours?",
-        "detailsText": "The technology we use is tested to make sure it meets the regulations on safe flash rates for photosensitive epilepsy."
-      },
-      "errors": {
-        "validationError": "Select yes if you are OK to continue"
-      }
-    },
-    "selectDevice": {
-      "header": "Are you on a computer or a tablet right now?",
-      "pageTitle": "Are you on a computer or a tablet right now?",
-      "body": "Some ways of confirming your identity are only available on specific devices. Let us know what device you are using right now.",
-      "options": {
-        "computerOrTablet": "Yes, I am on a computer or tablet",
-        "other": "No, I am on another device"
-      },
-      "errors": {
-        "validationError": "Select if you are using a computer, tablet or another device"
-      }
-    },
-    "selectSmartphoneDesktop": {
-      "header": "Do you have a smartphone you can use?",
-      "pageTitle": "Do you have a smartphone you can use?",
-      "bodyRequireSmartphone": "Some ways of confirming your identity require a smartphone.",
-      "bodyGuideToSwitch": "If you can use your smartphone to confirm your identity, we will guide you to switch devices later.",
-      "options": {
-        "iphone": "Yes, I have an iPhone",
-        "android": "Yes, I have an Android phone (for example, Samsung, Google Pixel, OPPO)",
-        "other": "I don't have either of these"
-      },
-      "errors": {
-        "validationError": "Select if you have an iPhone, Android phone or neither of these"
-      }
-    },
-    "selectSmartphoneMobile": {
-      "header": "Are you on a smartphone right now?",
-      "pageTitle": "Are you on a smartphone right now?",
-      "bodyWhatDevice": "You have said you are not on a computer or tablet. Let us know what device you are using right now.",
-      "options": {
-        "iphone": "Yes, I am on an iPhone",
-        "android": "Yes, I am on an Android phone (for example, Samsung, Google Pixel, OPPO)",
-        "other": "I am not on either of these phones"
-      },
-      "errors": {
-        "validationError": "Select if you are on an iPhone, Android phone or neither of these phones"
-      }
-    },
-    "androidSelectSmartphoneMobile": {
-      "header": "Are you on a smartphone right now?",
-      "pageTitle": "Are you on a smartphone right now?",
-      "bodyWhatDevice": "You have said you are not on a computer or tablet. Let us know what device you are using right now.\n\n\n",
-      "options": {
-        "iphone": "Yes, I am on an iPhone",
-        "androidChromeBrowser": "Yes, I am on an Android phone and using the Chrome browser",
-        "androidOtherBrowser": "Yes, I am on an Android phone and using a browser other than Chrome",
-        "other": "I am not on either of these phones"
-      },
-      "detailsPhone": {
-        "summaryText": "How do I know if I am on an Android phone?",
-        "detailsText": "Popular Android phone models include Samsung, Google Pixel and OPPO. "
-      },
-      "detailsBrowser": {
-        "summaryText": "How do I know what browser I am using?",
-        "detailsText1": "Each browser has a different icon on your smartphone, which you tap to view websites on the Internet.",
-        "detailsText2": "The Chrome browser app icon looks like the illustration below.",
-        "alt": "App icon for the Chrome web browser"
-      },
-      "errors": {
-        "validationError": "Select if you are on an iPhone, Android phone or neither of these"
-      }
-    },
-    "simpleDevice": {
-      "header": "Are you on an iPhone and using the Safari web browser?",
-      "pageTitle": "Are you on an iPhone and using the Safari web browser?",
-      "body": "Some ways of confirming your identity are only available for iPhone users on Safari. \n\n\n",
-      "options": {
-        "yes": "Yes",
-        "no": "No"
-      },
-      "notUsingSafari": {
-        "details": {
-          "summaryText": "What if I am not using Safari?",
-          "detailsText": "If you are using a different browser like Chrome, we will show you other ways to confirm your identity."
-        }
-      },
-      "knowYourBrowser": {
-        "details": {
-          "summaryText": "How do I know what browser I am using?",
-          "detailsText": "Each browser has a different icon on your smartphone, which you tap to view websites on the Internet.\n\n The Safari app icon looks like the illustration below."
-        }
-      },
-      "errors": {
-        "validationError": "Select a device to continue"
-      }
-    },
-    "validDrivingLicence": {
-      "pageTitle": "Do you have a valid UK photocard driving licence?",
-      "header": "Do you have a valid UK photocard driving licence?",
-      "body": "You can also use a valid provisional driving licence.",
-      "questions": {
-        "yes": "Yes",
-        "no": "No"
-      },
-      "details": {
-        "summaryText": "How do I know my driving licence is valid?",
-        "detailsText": "Your licence is valid until the expiry date printed in section 4b on your licence card."
-      },
-      "errors": {
-        "validationError": "Select yes if you have a valid UK photocard driving licence"
-      }
-    },
-    "workingCamera": {
-      "pageTitle": "Does your phone have a working camera?",
-      "header": "Does your phone have a working camera?",
-      "body": "You will be asked to take a photo and to scan your face.",
-      "options": {
-        "yes": "Yes",
-        "no": "No"
-      },
-      "errors": {
-        "validationError": "Select yes if your phone has a working camera"
-      }
-    },
-    "readyToBegin": {
-      "pageTitle": "Are you ready to begin?",
-      "header": "Are you ready to begin?",
-      "body": "Have your driving licence to hand. You will need to complete the identity check once you begin.",
-      "options": {
-        "yes": "Yes",
-        "no": "No"
-      },
-      "errors": {
-        "validationError": "Select yes if you are ready to begin"
-      }
-    },
-    "downloadApp": {
-      "header": "Using the GOV.UK ID Check app",
-      "pageTitle": "Using the GOV.UK ID Check app",
-      "browserWindow": {
-        "doNotClose": "1. Do not close this browser window",
-        "warningText": "You will lose your progress if you close this window. Keep it open while using the app.",
-        "warningIconFallBack": "Warning."
-      },
-      "appStore": {
-        "tapAppStore": "2. Download and open the app",
-        "description": "Tap the App Store button to download and open the GOV.UK ID Check app.",
-        "alt": "Download on the App store",
-        "details": {
-          "summaryText": "Help with downloading the app",
-          "steps": {
-            "one": "Tap the 'App Store' button to open the App Store.",
-            "two": "In the App Store, tap the 'Get' button next to the GOV.UK ID Check app icon.",
-            "three": "The app will automatically start downloading to your phone.",
-            "four": "When the app has been downloaded, tap 'Open' to use the app."
-          }
-        }
-      },
-      "insetText": {
-        "havingProblems": "Prefer, to not use an app?",
-        "confirmIdentity": "You can confirm your identity another way.",
-        "additionalHelp": "Or for additional help, contact the ID Check support team at",
-        "idSupportContact": "IDCheckSupport@digital.cabinet-office.gov.uk"
-      }
-    },
-    "downloadAppDesktop": {
-      "pageTitle": "Scan the QR code to continue confirming your identity on your phone",
-      "header": "Scan the QR code to continue confirming your identity on your phone",
-      "warningText": "Keep this window open. You will come back here after using the GOV.UK ID Check app.",
-      "scanQrCode": "Scan the QR code to download the GOV.UK ID Check app",
-      "secondQrCode": "You may need to use a second QR code to link the app",
-      "qrBelow": "If the app asks you to do this, scan the QR code below.",
-      "downloadQrCodeAlt": "QR code to download app",
-      "linkQrCodeAlt": "QR code to link the app",
-      "scanQRCode": {
-        "details": {
-          "summaryText": "How to scan a QR code",
-          "steps": {
-            "one": "Open the camera app on your phone.",
-            "two": "Position your camera so the QR code is visible on your screen.",
-            "three": "Wait until the QR code is recognised by your camera and a link appears on your screen.",
-            "four": "Tap the link to go to the App Store.",
-            "five": "Download the GOV.UK ID Check app."
-          }
-        }
-      },
-      "noQRCode": {
-        "details": {
-          "summaryText": "How to download the app without a QR code",
-          "steps": {
-            "one": "Keep this browser window open.",
-            "two": "Open the App Store on your phone.",
-            "three": "Search for the 'GOV.UK ID Check' app.",
-            "four": "Tap the 'Get' button to download the app.",
-            "five": "When the app has been downloaded, tap 'Open' to use it."
-          }
-        }
-      }
-    },
-    "downloadAppMobile": {
-      "header": "Download the GOV.UK ID Check app",
-      "pageTitle": "Download the GOV.UK ID Check app",
-      "appStore": {
-        "cta": "Download GOV.UK ID Check",
-        "details": {
-          "summaryText": "Help with downloading the app",
-          "steps": {
-            "one": "Tap the 'App Store' button to open the App Store.",
-            "two": "In the App Store, tap the 'Get' button next to the GOV.UK ID Check app icon.",
-            "three": "The app will automatically start downloading to your phone.",
-            "four": "When the app has been downloaded, tap 'Open' to use the app."
-          }
-        }
-      },
-      "link": {
-        "title": "Link GOV.UK ID Check",
-        "tapTheButton": "Tap the button below if the app has asked you to come back to this window to create a link.",
-        "autoLink": "This will automatically link and reopen the app.",
-        "cta": "Link GOV.UK ID Check"
-      }
-    },
-    
-    "iphoneModel": {
-      "header": "Which iPhone model do you have?",
-      "pageTitle": "Which iPhone model do you have?",
-      "body": "The iPhone 7 was released in 2016. If you purchased your smartphone after 2016, you likely have an iPhone 7 or newer.",
-      "options": {
-        "iphone7OrNewer": "iPhone 7 or newer",
-        "iphone6sOrOlder": "iPhone 6s or older"
-      },
-      "whichIphone": {
-        "summaryText": "How do I know which iPhone I have?",
-        "detailsText": "You can easily find the iPhone model you have by going to Settings > General > About and looking at the ‘Model Name’."
-      },
-      "haveIphoneSE": {
-        "summaryText":"What if I have an iPhone SE?",
-        "detailsText": "If you have an iPhone SE from 2022 (3rd generation) or from 2020 (2nd generation), select ‘iPhone 7 or newer’.",
-        "detailsText2": "If you have an iPhone SE from 2016 (1st generation), select ‘iPhone 6s or older’."
-      }  ,
-      "error": "Select what iPhone model you have"
-    },
-
-    "validPassport": {
-      "header": "Do you have a valid passport?",
-      "pageTitle": "Do you have a valid passport?",
-      "body": "If you have a passport, you can use it to prove your identity. \n\n\n",
-      "options": {
-        "yes": "Yes",
-        "no": "No"
-      },
-      "errors": {
-        "validationError": "Select if you have a valid passport"
-      }
-    },
-    "biometricChip": {
-      "header": "Does your passport have a biometric chip?",
-      "pageTitle": "Does your passport have a biometric chip?",
-      "body1": "You should be able to see the biometric chip icon on the front cover of your passport.",
-      "body2": "If you’re not sure what the biometric chip icon looks like, check the illustration below.",
-      "options": {
-        "yes": "Yes",
-        "no": "No"
-      },
-      "errors": {
-        "validationError": "Select if your passport has a biometric chip"
-      }
-    },
-    "timeout": {
-      "pageTitle": "The content on this page has expired. Refresh the page using the button below.",
-      "header": "The content on this page has expired. Refresh the page using the button below.",
-      "description": "You will not lose your progress when you refresh the page."
-    },
-    "passportAppGuidance": {
-      "title": "Use your passport and a GOV.UK app to confirm your identity",
-      "body": "Next, we will guide you to download and use the app. ",
-      "pageTitle": "Use your passport and a GOV.UK app to confirm your identity",
-      "instructions": {
-        "summaryText": "You will use the app to:",
-        "steps": {
-          "one": "take a photo of your passport photo page", 
-          "two": "scan the biometric chip on your passport",
-          "three": "scan your face with your selfie camera"
-        }
-      },
-      "insetText": {
-        "text": "Prefer to not use an app? You can ",
-        "link": "confirm your identity another way."
-      },
-      "dataInfo": {
-        "title": "How we use your data",
-        "body": "We collect your data securely and delete it when no longer needed. Read our full ",
-        "privacyNoticeLink": "privacy notice."
-      },
-      "accessibiltyInfo": {
-        "title": "Accessibility",
-        "body": "Read our",
-        "statement": "accessibility statement."
-      }
-    },
-    "continueHandoffPage": {
-      "title": "Link this app to GOV.UK",
-      "body": "This creates a connection between this app and the GOV.UK website, so we know the same person is using it.",
-      "ctaText": "Link app to continue",
-      "havingProblems": "Prefer to not use an app? You can ",
-      "confirmIdentity": "confirm your identity another way"
     },
     "serviceNameTitle": "GOV.UK",
     "links": {
@@ -387,34 +49,32 @@
       "tag": "beta",
       "content": "This is a new service – your <a  href=\"https://signin.account.gov.uk/contact-us?supportType=PUBLIC\" class=\"govuk-link\">feedback</a> will help us to improve it."
     },
-    "android": {
-      "downloadAppMobileAndroid": {
-        "header": "Download the GOV.UK ID Check app",
-        "pageTitle": "Download the GOV.UK ID Check app",
-        "appStore": {
-          "cta": "Download GOV.UK ID Check",
-          "details": {
-            "summaryText": "Help downloading the app",
-            "steps": {
-              "one": "Tap the 'Download GOV.UK ID Check' button to open the Play Store. ",
-              "two": "In the Play Store, tap the 'Install' button next to the GOV.UK ID Check icon.",
-              "three": "When the app has been downloaded, tap 'Open' to use the app."
-            }
-          }
-        },
-        "link": {
-          "title": "Link GOV.UK ID Check",
-          "tapTheButton": "Tap the button below if the app has asked you to come back to this window to create a link.",
-          "autoLink": "This will automatically link and reopen the app.",
-          "cta": "Link GOV.UK ID Check"
+    "errors": {
+      "pageNotFound": "Page not found",
+      "error": "Something went wrong",
+      "unauthorized": "Unauthorized"
+    },
+    "timeout": {
+      "pageTitle": "The content on this page has expired. Refresh the page using the button below.",
+      "header": "The content on this page has expired. Refresh the page using the button below.",
+      "description": "You will not lose your progress when you refresh the page."
+    },
+    "landingPage": {
+      "pageTitle": "Prove your identity/subheadings with steps",
+      "title": "Proving your identity in person",
+      "body": "What you need to do",
+      "instructions": {
+        "steps": {
+          "one": "Complete an online form to provide your basic personal details and select a \nphoto ID you can take to the Post Office.  \n",
+          "two": "Once the form is completed, you will recieve a confirmation email. \nYou must take the confirmation and your photo ID to a Post Office.",
+          "three": "At the Post Office, a member of staff will process your photo ID and \ntake a photo of your face to verify your identity."
         }
+      },
+      "dataInfo": {
+        "title": "What happens after the Post Office",
+        "body": "Once your identity has been proven, you must return online to your GOV.UK account to access the service you need."
       }
     }
-  },
-  "errors": {
-    "pageNotFound": "Page not found",
-    "error": "Something went wrong",
-    "unauthorized": "Unauthorized"
   },
   "privacyStatement": {
     "title": "GOV.UK ID Check app privacy notice",
@@ -584,13 +244,13 @@
       "p2": "If these changes affect how your personal information is processed, GDS will let you know.",
       "updated": "Last updated: 8 July 2022"
     },
-  "android": { 
-    "collection": {
-      "body": {
-        "item4": "information on how you use the app and problems you may experience when you use it such as the app crashing; where you provide consent, we collect and process this data using technologies similar to cookies and third party tools such as Google Analytics and Firebase Crashlytics"
+    "android": {
+      "collection": {
+        "body": {
+          "item4": "information on how you use the app and problems you may experience when you use it such as the app crashing; where you provide consent, we collect and process this data using technologies similar to cookies and third party tools such as Google Analytics and Firebase Crashlytics"
+        }
       }
     }
-   }
   },
   "accessibilityStatement": {
     "header": "Accessibility statement for 'GOV.UK ID Check' mobile application",
@@ -676,6 +336,5 @@
       "lastTestedOn": "This mobile application was last tested on 27 June 2022. Testing was carried out by the Digital Accessibility Centre.",
       "testedBasedOn": "We tested the service based on a user's ability to complete key journeys. All parts of the chosen journeys were tested, including documents."
     }
-  },
-  "idSupportContact": "IDChecksupport@digital.cabinet-office.gov.uk"
+  }
 }
