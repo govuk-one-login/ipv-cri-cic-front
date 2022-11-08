@@ -1,0 +1,83 @@
+{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+
+{% set html %}
+<p class="govuk-body">{{ 'general.cookieBanner.body1' | translate }}</p>
+<p class="govuk-body">{{ 'general.cookieBanner.body2' | translate }}</p>
+{% endset %}
+
+
+{% set acceptHtml %}
+  <p class="govuk-body">{{  'general.cookieBanner.cookieBannerAccept.body1' | translate }} <a class="govuk-link" href="{{ 'general.cookieBanner.viewCookiesLink' | translate }}">{{ 'general.cookieBanner.changeCookiePreferencesLink' | translate }}</a> {{ 'general.cookieBanner.cookieBannerAccept.body2' | translate }}</p>
+{% endset %}
+
+{% set rejectedHtml %}
+  <p class="govuk-body">{{  'general.cookieBanner.cookieBannerReject.body1' | translate }} <a class="govuk-link" href="{{ 'general.cookieBanner.viewCookiesLink' | translate }}">{{ 'general.cookieBanner.changeCookiePreferencesLink' | translate }}</a> {{ 'general.cookieBanner.cookieBannerAccept.body2' | translate }}</p>
+{% endset %}
+
+{{ govukCookieBanner({
+  ariaLabel:  'general.cookieBanner.ariaLabel' | translate,
+  name: "gov-uk-cookie-banner",
+  messages: [
+    {
+      headingText: "general.cookieBanner.headingText" | translate,
+      html: html,
+      attributes: {
+            "id": "cookies-banner-main"
+          },
+      actions: [
+        {
+          text: "general.cookieBanner.acceptAdditionalCookies" | translate,
+          type: "button",
+          name: "cookiesAccept",
+          value: "accept"
+        },
+        {
+          text: "general.cookieBanner.rejectAdditionalCookies" | translate,
+          type: "button",
+          name: "cookiesReject",
+          value: "reject"
+        },
+        {
+          text: "View cookies",
+          href: "general.cookieBanner.viewCookiesLink" | translate
+        }
+      ]
+    },
+    {
+      html: acceptHtml,
+      attributes: {
+        "id": "cookies-accepted"
+      },
+      actions: [
+        {
+          text: 'general.cookieBanner.hideCookieMessage' | translate,
+          href: "#",
+          type: "button",
+          classes:"cookie-hide-button",
+          attributes: {
+            "aria-label": 'general.cookieBanner.hideCookieMessage' | translate
+          }
+        }
+      ],
+      hidden: true
+    },
+    {
+      html: rejectedHtml,
+      attributes: {
+        "id": "cookies-rejected"
+      },
+      actions: [
+        {
+          text: 'general.cookieBanner.hideCookieMessage' | translate,
+          href: "#",
+          type: "button",
+          classes:"cookie-hide-button",
+          attributes: {
+            "aria-label": 'general.cookieBanner.hideCookieMessage' | translate
+          }
+        }
+      ],
+      hidden: true
+    }
+  ],  hidden: true
+}) }}

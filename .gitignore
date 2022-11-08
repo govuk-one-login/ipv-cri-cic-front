@@ -1,0 +1,36 @@
+# Dependency directories
+node_modules/
+
+# Build output
+dist
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Additional ignores
+.idea
+.vscode
+public
+.DS_Store
+dump.rdb
+build
+test/coverage
+functional-output
+output
+_output
+.huskyrc
+logs.json
+logs*.json
+*.csv
+*.xlsx
+*.iml
+cf-output.txt
+docker_vars.env
+deploy/.aws-sam/
+deploy/samconfig.toml
+wafv2/

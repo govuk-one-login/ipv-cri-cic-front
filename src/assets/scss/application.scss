@@ -1,0 +1,52 @@
+$govuk-assets-path: "/public/";
+
+$blue-font: #245ea0;
+
+@import "../../../node_modules/govuk-frontend/govuk/all";
+@import "../../../node_modules/hmpo-components/all";
+
+.white-text {
+  color: govuk-colour("white");
+}
+
+.blue-background {
+  background-color: $govuk-brand-colour;
+}
+
+#gov-uk-logo {
+  border: 2px solid govuk-colour('white');
+  border-radius: 13px;
+}
+
+.app-button--inverted .govuk-button {
+  background-color: govuk-colour("white");
+  color: $blue-font;
+}
+
+.app-button--inverted:active .govuk-button {
+  color: govuk-colour("black");
+  background-color: govuk-colour("yellow");
+}
+
+.app-button--inverted:focus .govuk-button {
+  border-color: govuk-colour("yellow");
+  color: $govuk-brand-colour;
+  background-color: #e8f1f8;
+  -webkit-box-shadow: inset 0 0 0 2px govuk-colour("yellow");
+  box-shadow: inset 0 0 0 2px govuk-colour("yellow");
+}
+
+.app-warning-text--long .govuk-warning-text__icon {
+  top: 20%;
+}
+
+h1:focus-visible {
+  outline: transparent;
+}
+main:focus-visible {
+  outline: transparent;
+}
+
+address {
+  font-style: inherit;
+}

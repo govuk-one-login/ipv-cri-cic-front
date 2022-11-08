@@ -1,0 +1,10 @@
+{% extends "common/layout/base.njk" %}
+
+  {% block content %}
+  <h1 class="govuk-heading-xl govuk-!-margin-top-4">{{ 'errors.unauthorized' | translate }}</h1>
+  {% endblock %}
+
+{% block bodyEnd %}
+  <script type="text/javascript" src="/public/scripts/application.js"></script>
+  <script type="text/javascript" nonce='{{scriptNonce}}'>window.GOVUKFrontend.appInit('{{gtmId}}', '{{analyticsCookieDomain}}')</script>
+{% endblock %}

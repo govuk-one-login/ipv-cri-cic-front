@@ -1,0 +1,19 @@
+{
+  "general": {
+    "selectDevice": {
+      "header": "Ydych chi ar gyfrifiadur neu lechen ar hyn o bryd?",
+      "pageTitle": "Ydych chi ar gyfrifiadur neu lechen ar hyn o bryd?",
+      "body": "Dim ond ar ddyfeisiau penodol y mae rhai ffyrdd o gadarnhau pwy ydych ar gael. Rhowch wybod i ni pa ddyfais rydych chi'n ei defnyddio ar hyn o bryd.",
+      "options": {
+        "computerOrTablet": "Ydw, rydw i ar gyfrifiadur neu lechen",
+        "other": "Na, rydw i ar ddyfais arall"
+      },
+      "errors": {
+        "validationError": "Dewiswch a ydych yn defnyddio cyfrifiadur, llechen neu ddyfais arall"
+      }
+    },
+    "buttons": {
+      "continue": "Parhau"
+    }
+  }
+}
