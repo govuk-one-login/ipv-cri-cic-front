@@ -14,7 +14,7 @@ import { i18nextConfigurationOptions } from "./config/i18next"
 import { serverErrorHandler } from "./handlers/error-handler"
 import { bindRoutes } from "./config/public"
 import { setLocalVarsMiddleware } from './middleware/setLocalVars'
-import { oauthRouter } from "./f2f/oauth2";
+import { oauthRouter } from "./cic/oauth2";
 
 import { flaggedRouter } from "./components/journeys/flaggedRouter"
 
@@ -28,7 +28,7 @@ async function createApp(): Promise<express.Application> {
 
   const APP_VIEWS = [
     path.join(__dirname, "../src/views"),
-    path.join(__dirname, "../src/views/journeys/f2f"),
+    path.join(__dirname, "../src/views/journeys/cic"),
     path.resolve("node_modules/govuk-frontend/")
   ]
 
@@ -53,12 +53,12 @@ async function createApp(): Promise<express.Application> {
   bindRoutes(app)
 
   app.use("/stub", require("./stub"))
-  app.use(require("./f2f/healthcheck"))
+  app.use(require("./cic/healthcheck"))
 
   if (isOauthEnabled()) {
 
       app.use(oauthRouter)
-      app.use("/.well-known", require("./f2f/well-known"))
+      app.use("/.well-known", require("./cic/well-known"))
       app.use(flaggedRouter)
   }
   

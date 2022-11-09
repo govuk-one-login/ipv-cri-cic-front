@@ -11,8 +11,8 @@ export const HTTP_STATUS_CODES = {
 }
 
 export type Path = `/${string}`
-export const AUTH_ROOT: Path = "/f2f/oauth2"
-export const APP_ROOT: Path = "/f2f/app"
+export const AUTH_ROOT: Path = "/cic/oauth2"
+export const APP_ROOT: Path = "/cic/app"
 export type PathNames = { [key: string]: `/${string}` }
 
 export const PATH_NAMES : PathNames = {

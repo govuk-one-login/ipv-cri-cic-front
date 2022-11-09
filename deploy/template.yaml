@@ -446,7 +446,7 @@ Resources:
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, CLIENTSTUBENABLED ]
             - Name: MOBILE_STUB_ENABLED
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, MOBILESTUBENABLED ]
-            - Name: X_GOVUK_SIGNIN_F2F_FEATURE_FLAG_20221108_CRI
+            - Name: X_GOVUK_SIGNIN_CIC_FEATURE_FLAG_20221108_CRI
               Value: !FindInMap [ EnvironmentVariables, !Ref Environment, DESKTOPJOURNEYENABLED ]
             - Name: X_GOVUK_SIGNIN_DCA_FEATURE_FLAG_20220929_IPV_CORE
               Value: !FindInMap [ EnvironmentVariables, !Ref Environment, IPVCOREINTEGRATIONENABLED ]

@@ -1,5 +1,5 @@
 export enum Features{
-  F2F = "X_GOVUK_SIGNIN_F2F_FEATURE_FLAG_20221108_CRI"
+  CIC = "X_GOVUK_SIGNIN_CIC_FEATURE_FLAG_20221108_CRI"
 }
 
 function getOrThrow(variableName: string): string {
@@ -12,9 +12,9 @@ function getOrThrow(variableName: string): string {
 }
 
 export function getCurrentJourney(cookies: any): Features {
-  if (cookies.X_GOVUK_SIGNIN_F2F_FEATURE_FLAG_20221108_CRI == 'true') return Features.F2F
+  if (cookies.X_GOVUK_SIGNIN_CIC_FEATURE_FLAG_20221108_CRI == 'true') return Features.CIC
 
-  return Features.F2F
+  return Features.CIC
 }
 
 export function isOauthEnabled(): boolean {
