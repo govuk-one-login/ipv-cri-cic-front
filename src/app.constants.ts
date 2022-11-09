@@ -17,10 +17,5 @@ export type PathNames = { [key: string]: `/${string}` }
 
 export const PATH_NAMES : PathNames = {
     HEALTHCHECK: "/auth/health",
-    AUTHORIZE: "/authorize",
-    CALLBACK: "/callback",
-    REDIRECT: "/redirect",
-    STUB_CALLBACK: "/finishBiometricCheck",
-    ABORT_SESSION: "/abort",
-    FEATURE_FLAG_COOKIE: "/cookies"
+    AUTHORIZE: "/authorize"
 }

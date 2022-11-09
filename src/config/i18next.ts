@@ -6,8 +6,8 @@ export function i18nextConfigurationOptions(
   return {
     debug: false,
     fallbackLng: LOCALE.EN,
-    preload: [LOCALE.EN, LOCALE.CY],
-    supportedLngs: [LOCALE.EN, LOCALE.CY],
+    preload: [LOCALE.EN],
+    supportedLngs: [LOCALE.EN],
     backend: {
       loadPath: path,
       allowMultiLoading: true,

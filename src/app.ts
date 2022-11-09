@@ -52,13 +52,11 @@ async function createApp(): Promise<express.Application> {
 
   bindRoutes(app)
 
-  app.use("/stub", require("./stub"))
   app.use(require("./cic/healthcheck"))
 
   if (isOauthEnabled()) {
 
       app.use(oauthRouter)
-      app.use("/.well-known", require("./cic/well-known"))
       app.use(flaggedRouter)
   }
   
