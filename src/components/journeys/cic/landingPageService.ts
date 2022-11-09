@@ -6,6 +6,6 @@ const TEMPLATE = "landingPage.njk"
 
 export async function landingPage (req: Request, res: Response): Promise<void> {
   res.render(TEMPLATE, {
-    continue: `${AUTH_ROOT}${PATH_NAMES.WORKING_CAMERA}`
+    continue: `${AUTH_ROOT}${PATH_NAMES.PHOTO_ID_SELECTION}`
   })
 }

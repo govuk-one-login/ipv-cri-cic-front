@@ -74,6 +74,23 @@
         "title": "What happens after the Post Office",
         "body": "Once your identity has been proven, you must return online to your GOV.UK account to access the service you need."
       }
+    },
+    "selectPhotoId": {
+      "pageTitle": "Document selection screen",
+      "header": "Select one photo ID you can take to a Post Office",
+      "body": "Your photo ID must be an orginal, you cannot use a photocopy. Both UK and non-UK passports must be chipped.",
+      "options": {
+        "ukPassport": {
+          "radioTitle": "UK passport",
+          "radioDescription": "If your passport has expired, you can still use it to prove your identity up until 18 months after the expiry date."
+        },
+        "brp": "Biometric residence permit(BRP)",
+        "ukPhotocardDL": "UK photocard driving licence",
+        "otherPassport": "Other passport"
+      },
+      "errors": {
+        "validationError": "Select anyone photo ID you can take to a Post Office."
+      }
     }
   },
   "privacyStatement": {

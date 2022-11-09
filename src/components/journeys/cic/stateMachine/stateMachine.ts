@@ -8,8 +8,8 @@ interface IState {
 
 function buildStateMachine () : IState {
     return {
-        [EVENTS.HAS_DRIVING_LICENSE]: {
-            next: `${PATH_NAMES.ID_CHECK_APP}`,
+        [EVENTS.SELECTED_UK_PASSPORT]: {
+            next: `${PATH_NAMES.PASSPORT_DETAILS}`,
         }
     }
 }

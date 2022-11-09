@@ -10,13 +10,4 @@ describe("State machine", () => {
     })
   })
 
-  describe("HAS_DRIVING_LICENSE", () => {
-    it("User is redirected to /idCheckApp", () => {
-      const redirect = getNext(EVENTS.HAS_DRIVING_LICENSE)
-      expect(redirect).to.equal("/idCheckApp")
-    })
-  })
-
-
-
 })
