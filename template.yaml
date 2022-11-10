@@ -50,6 +50,7 @@ Conditions:
 
 Mappings:
   # see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
+  # To be added later
 #  PlatformConfiguration:
 #    dev:
 #      CSLSEGRESS: "This should not ever be set; the dev account is not configured to egress logs."
