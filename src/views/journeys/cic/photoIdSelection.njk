@@ -1,0 +1,57 @@
+{% extends "common/layout/base.njk" %} 
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% set pageTitleName = 'general.selectPhotoId.pageTitle' | translate %}
+{% set hrefBack = back %} 
+{% set showBack = true %}
+{% set showError = isInvalid %}
+
+{% block content %}
+
+<h1 class="govuk-heading-l"> {{ "general.selectPhotoId.header" | translate }} </h1>
+
+<form id="form-tracking" action="/cic/oauth2/selectPhotoId" method="post">
+  
+{{ govukRadios({
+  idPrefix: "photo-id-choice",
+  name: "photo-id-choice",
+  fieldset: {
+    legend: {
+      text:  "general.selectPhotoId.body" | translate
+    }
+  },
+  items: [
+    {
+      value: "ukPassport",
+      text:  "general.selectPhotoId.options.ukPassport.radioTitle" | translate,
+      hint: {
+        text: "general.selectPhotoId.options.ukPassport.radioDescription" | translate
+      }
+    },
+    {
+       value: "brp",
+       text:  "general.selectPhotoId.options.brp" | translate
+    },
+    {
+       value: "ukPhotocardDL",
+       text:  "general.selectPhotoId.options.ukPhotocardDL" | translate
+    },
+    {
+       value: "otherPassport",
+       text:  "general.selectPhotoId.options.otherPassport" | translate
+    }
+  ],
+  errorMessage: {
+    text: "general.selectPhotoId.errors.validationError" | translate
+  } if showError
+}) }}
+
+{{ govukButton({
+  text: "general.buttons.continue" | translate,
+  type: "submit"
+}) }}
+
+</form>
+
+{% endblock %}

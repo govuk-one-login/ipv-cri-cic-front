@@ -1,0 +1,653 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Transform:
+  - AWS::Serverless-2016-10-31
+Description: >-
+  This creates the necessary components to deploy the Claimed Identity CRI(CIC) FE onto ECS
+  Fargate within an existing VPC and private subnets (imported parameters).
+  Claimed Identity Front can be invoked via the public API Gateway on the url in the
+  CICFrontURL output.
+
+  The ingress route in summary is: API Gateway -> VPC link -> Private ALB ->
+  CIC Front ECS Service
+
+  CIC Front egress to CIC API's API Gateway is via a NAT Gateway which
+  should have a route in the provided private subnets' route table.
+
+Parameters:
+  Environment:
+    Description: "The environment type"
+    Type: "String"
+    Default: dev
+    AllowedValues:
+      - "dev"
+      - "build"
+      - "staging"
+      - "integration"
+      - "production"
+  VpcStackName:
+    Description: >
+      The name of the stack that defines the VPC in which this container will
+      run.
+    Type: String
+  PermissionsBoundary:
+    Description: "The ARN of the permissions boundary to apply when creating IAM roles"
+    Type: String
+    Default: "none"
+
+Conditions:
+  IsNotDevelopment: !Or
+    - !Equals [ !Ref Environment, build ]
+    - !Equals [ !Ref Environment, staging ]
+    - !Equals [ !Ref Environment, integration ]
+    - !Equals [ !Ref Environment, production ]
+  IsProduction: !Equals [ !Ref Environment, production ]
+  UsePermissionsBoundary:
+    Fn::Not:
+      - Fn::Equals:
+          - !Ref PermissionsBoundary
+          - "none"
+
+Mappings:
+  # see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
+  PlatformConfiguration:
+    # which account ids??
+    dev:
+      CSLSEGRESS: "This should not ever be set; the dev account is not configured to egress logs."
+    build:
+      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
+    staging:
+      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
+    integration:
+      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
+    production:
+      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
+
+  # see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
+  ElasticLoadBalancerAccountIds:
+    eu-west-2:
+      # Prod account id??
+      AccountId: 652711504416
+  EnvironmentVariables:
+    ### These environment variables are referenced further down the file.
+    ### Please ensure that any variables defined for an environment are defined for _all_ environments.
+    dev:
+      OAUTHENABLED: true
+      FEURL: "www.review-c.dev.account.gov.uk"
+      APPURL: "app.review-c.dev.account.gov.uk"
+      GTMCONTAINERID: "TK92W68"
+      ANALYTICSCOOKIEDOMAIN: ".account.gov.uk"
+      SERVICECOOKIEDOMAIN: ".account.gov.uk"
+      ISSESSIONFINISHEDPOLLINGDURATION: "1800000" # 30 minutes in milliseconds
+      ISSESSIONFINISHEDINTERVAL: "3000" # Time between API calls. 3 seconds in milliseconds
+    build:
+      OAUTHENABLED: true
+      FEURL: "www.review-c.build.account.gov.uk"
+      APPURL: "app.review-c.build.account.gov.uk"
+      GTMCONTAINERID: "TK92W68"
+      ANALYTICSCOOKIEDOMAIN: ".account.gov.uk"
+      SERVICECOOKIEDOMAIN: ".account.gov.uk"
+      ISSESSIONFINISHEDPOLLINGDURATION: "1800000" # 30 minutes in milliseconds
+      ISSESSIONFINISHEDINTERVAL: "3000" # Time between API calls. 3 seconds in milliseconds
+    staging:
+      OAUTHENABLED: true
+      APPSTOREURL: "https://beta.itunes.apple.com/v1/app/1633452907"
+      FEURL: "www.review-c.staging.account.gov.uk"
+      APPURL: "app.review-c.staging.account.gov.uk"
+      GTMCONTAINERID: "TK92W68"
+      ANALYTICSCOOKIEDOMAIN: ".account.gov.uk"
+      SERVICECOOKIEDOMAIN: ".account.gov.uk"
+      ISSESSIONFINISHEDPOLLINGDURATION: "1800000" # 30 minutes in milliseconds
+      ISSESSIONFINISHEDINTERVAL: "3000" # Time between API calls. 3 seconds in milliseconds
+    integration:
+      OAUTHENABLED: true
+      FEURL: "www.review-c.integration.account.gov.uk"
+      APPURL: "app.review-c.integration.account.gov.uk"
+      GTMCONTAINERID: "TK92W68"
+      ANALYTICSCOOKIEDOMAIN: ".account.gov.uk"
+      SERVICECOOKIEDOMAIN: ".account.gov.uk"
+      ISSESSIONFINISHEDPOLLINGDURATION: "1800000" # 30 minutes in milliseconds
+      ISSESSIONFINISHEDINTERVAL: "3000" # Time between API calls. 3 seconds in milliseconds
+    production:
+      OAUTHENABLED: true
+      FEURL: "www.review-c.account.gov.uk"
+      APPURL: "app.review-c.account.gov.uk"
+      GTMCONTAINERID: "TT5HDKV"
+      ANALYTICSCOOKIEDOMAIN: ".account.gov.uk"
+      SERVICECOOKIEDOMAIN: ".account.gov.uk"
+      ISSESSIONFINISHEDPOLLINGDURATION: "1800000" # 30 minutes in milliseconds
+      ISSESSIONFINISHEDINTERVAL: "3000" # Time between API calls. 3 seconds in milliseconds
+
+Resources:
+  # Security Groups for the ECS service and load balancer
+  LoadBalancerSG:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: >-
+        CI Front LoadBalancer Security Group
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow from anyone on port 80
+          FromPort: 80
+          IpProtocol: tcp
+          ToPort: 80
+      VpcId:
+        Fn::ImportValue:
+          !Sub "${VpcStackName}-VpcId"
+
+  LoadBalancerSGEgressToECSSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroupEgress'
+    Properties:
+      GroupId: !GetAtt LoadBalancerSG.GroupId
+      IpProtocol: tcp
+      Description: >-
+        Egress between the CI Front load balancer and
+        the CI Front ECS security group
+      DestinationSecurityGroupId: !GetAtt ECSSecurityGroup.GroupId
+      FromPort: 8000
+      ToPort: 8000
+
+  ECSSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: >-
+        CI Front ECS Security Group permitting outbound
+        to anywhere.
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: '-1'
+      VpcId:
+        Fn::ImportValue:
+          !Sub "${VpcStackName}-VpcId"
+
+  ECSSecurityGroupIngressFromLoadBalancer:
+    Type: 'AWS::EC2::SecurityGroupIngress'
+    Properties:
+      IpProtocol: tcp
+      Description: >-
+        CIC Front ECS permits inbound from the CIC Front
+        load balancer.
+      FromPort: 8000
+      ToPort: 8000
+      GroupId: !GetAtt ECSSecurityGroup.GroupId
+      SourceSecurityGroupId: !GetAtt LoadBalancerSG.GroupId
+
+  AccessLogsBucket:
+    Condition: IsNotDevelopment
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub cic-cri-front-${Environment}-access-logs
+      VersioningConfiguration:
+        Status: "Enabled"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+
+  CICFrontAccessLogsBucketPolicy:
+    Condition: IsNotDevelopment
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref AccessLogsBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS: !Sub
+                - "arn:aws:iam::${ElbAccountId}:root"
+                - ElbAccountId: !FindInMap [ ElasticLoadBalancerAccountIds, !Ref AWS::Region, AccountId ]
+            Action:
+              - s3:PutObject
+            Resource:
+              - !Sub arn:aws:s3:::${AccessLogsBucket}/cic-front-${Environment}/AWSLogs/${AWS::AccountId}/*
+
+  # Private Application Load Balancer
+  LoadBalancer:
+    Type: 'AWS::ElasticLoadBalancingV2::LoadBalancer'
+    Properties:
+      Scheme: internal
+      SecurityGroups:
+        - !GetAtt LoadBalancerSG.GroupId
+      Subnets:
+        - Fn::ImportValue:
+            !Sub "${VpcStackName}-PrivateSubnetIdA"
+        - Fn::ImportValue:
+            !Sub "${VpcStackName}-PrivateSubnetIdB"
+      Type: application
+      LoadBalancerAttributes: !If
+        - IsNotDevelopment
+        - - Key: access_logs.s3.enabled
+            Value: true
+          - Key: access_logs.s3.bucket
+            Value: !Ref AccessLogsBucket
+          - Key: access_logs.s3.prefix
+            Value: !Sub dca-front-${Environment}
+        - !Ref AWS::NoValue
+
+  LoadBalancerListenerTargetGroupECS:
+    Type: 'AWS::ElasticLoadBalancingV2::TargetGroup'
+    Properties:
+      HealthCheckEnabled: TRUE
+      HealthCheckProtocol: HTTP
+      Matcher:
+        HttpCode: 200-499
+      Port: 80
+      Protocol: HTTP
+      TargetType: ip
+      VpcId:
+        Fn::ImportValue:
+          !Sub "${VpcStackName}-VpcId"
+      TargetGroupAttributes:
+        - Key: deregistration_delay.timeout_seconds
+          Value: 60
+
+  LoadBalancerListener:
+    Type: 'AWS::ElasticLoadBalancingV2::Listener'
+    Properties:
+      DefaultActions:
+        - TargetGroupArn: !Ref LoadBalancerListenerTargetGroupECS
+          Type: forward
+      LoadBalancerArn: !Ref LoadBalancer
+      Port: 80
+      Protocol: HTTP
+
+  # ECS cluster, service
+  CICFrontEcsCluster:
+    Type: 'AWS::ECS::Cluster'
+    Properties:
+      ClusterSettings:
+        - Name: containerInsights
+          Value: enabled
+      Tags:
+        - Key: Name
+          Value: !Sub "${AWS::StackName}-ECSCluster"
+        - Key: Product
+          Value: "GOV.UK sign in"
+        - Key: System
+          Value: "CI CRI"
+        - Key: Environment
+          Value: !Sub "${Environment}"
+
+  CICFrontEcsService:
+    Type: 'AWS::ECS::Service'
+    Properties:
+      Cluster: !Ref CICFrontEcsCluster
+      #      DeploymentConfiguration:
+      #        MaximumPercent: 200
+      #        MinimumHealthyPercent: 50
+      #        DeploymentCircuitBreaker:
+      #          Enable: TRUE
+      #          Rollback: TRUE
+      DesiredCount: 1
+      EnableECSManagedTags: false
+      HealthCheckGracePeriodSeconds: 60
+      LaunchType: FARGATE
+      LoadBalancers:
+        - ContainerName: app
+          ContainerPort: 8000
+          TargetGroupArn: !Ref LoadBalancerListenerTargetGroupECS
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: DISABLED
+          SecurityGroups:
+            - !GetAtt ECSSecurityGroup.GroupId
+          Subnets:
+            - Fn::ImportValue:
+                !Sub "${VpcStackName}-PrivateSubnetIdA"
+            - Fn::ImportValue:
+                !Sub "${VpcStackName}-PrivateSubnetIdB"
+      TaskDefinition: !Ref ECSServiceTaskDefinition
+      Tags:
+        - Key: Name
+          Value: !Sub "${AWS::StackName}-ECS"
+        - Key: Product
+          Value: "GOV.UK sign in"
+        - Key: System
+          Value: "CI CRI"
+        - Key: Environment
+          Value: !Sub "${Environment}"
+    DependsOn:
+      - LoadBalancerListener
+
+  ECSAccessLogsGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/ecs/${AWS::StackName}-CICFront-ECS
+      RetentionInDays: 14
+
+  CSLSECSAccessSubscriptionFilter:
+    Type: AWS::Logs::SubscriptionFilter
+    Condition: IsNotDevelopment
+    Properties:
+      DestinationArn:
+        !FindInMap [PlatformConfiguration, !Ref Environment, CSLSEGRESS]
+      FilterPattern: ""
+      LogGroupName: !Ref ECSAccessLogsGroup
+
+  #
+  # Fargate tasks
+  #
+  ECSServiceTaskDefinition:
+    Type: 'AWS::ECS::TaskDefinition'
+    Properties:
+      ContainerDefinitions:
+        - Essential: true
+          #Image: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/di-cic-front
+          Image: "CONTAINER-IMAGE-PLACEHOLDER"
+          Name: app
+          Environment:
+            # No backend api url available
+            #            - Name: API_BASE_URL # This is the same as API_URL
+            #              Value: !Sub
+            #                - "https://${Url}"
+            #                - Url: !ImportValue backend-api-apigateway-url
+            - Name: EXTERNAL_WEBSITE_HOST
+              Value: !GetAtt ApiGwHttpEndpoint.ApiEndpoint
+            - Name: OAUTH_ENABLED
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, OAUTHENABLED ]
+            - Name: ENVIRONMENT
+              Value: !Sub "${Environment}"
+            - Name: PORT
+              Value: 8000
+            - Name: FRONT_END_URL
+              Value: !Sub
+                - "https://${Url}"
+                - Url: !FindInMap [EnvironmentVariables, !Ref Environment, FEURL ]
+            - Name: FRONT_END_URL_ALTERNATE_SUBDOMAIN
+              Value: !Sub
+                - "https://${Url}"
+                - Url: !FindInMap [EnvironmentVariables, !Ref Environment, APPURL ]
+            #No backend api url available ????
+            #            - Name: API_URL
+            #              Value: !Sub
+            #                - "https://${Url}"
+            #                - Url: !ImportValue backend-api-apigateway-url
+            - Name: GTM_CONTAINER_ID
+              Value: !Sub
+                - "GTM-${ContainerId}"
+                - ContainerId: !FindInMap [EnvironmentVariables, !Ref Environment, GTMCONTAINERID ]
+            - Name: ANALYTICS_COOKIE_DOMAIN
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, ANALYTICSCOOKIEDOMAIN ]
+            - Name: SERVICE_COOKIE_DOMAIN
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, SERVICECOOKIEDOMAIN ]
+            - Name: IS_SESSION_FINISHED_POLLING_DURATION
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, ISSESSIONFINISHEDPOLLINGDURATION]
+            - Name: IS_SESSION_FINISHED_INTERVAL
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, ISSESSIONFINISHEDINTERVAL ]
+          PortMappings:
+            - ContainerPort: 8000
+              Protocol: tcp
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group : !Ref ECSAccessLogsGroup
+              awslogs-region : !Sub ${AWS::Region}
+              awslogs-stream-prefix : !Sub cic-front-${Environment}
+      Cpu: '256'
+      ExecutionRoleArn: !GetAtt ECSTaskExecutionRole.Arn
+      Memory: '512'
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      TaskRoleArn: !GetAtt ECSTaskRole.Arn
+      Tags:
+        - Key: Name
+          Value: !Sub "${AWS::StackName}-TaskDefinition"
+        - Key: Product
+          Value: "GOV.UK sign in"
+        - Key: System
+          Value: "CI CRI"
+        - Key: Environment
+          Value: !Sub "${Environment}"
+
+  ECSTaskExecutionRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: 'sts:AssumeRole'
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+        Version: 2012-10-17
+      Policies:
+        - PolicyName: PullCICFrontImage
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "ecr:BatchGetImage"
+                  - "ecr:GetDownloadUrlForLayer"
+                  - "ecr:GetAuthorizationToken"
+                Resource:
+                  - '*'
+              - Effect: Allow
+                Action:
+                  - "logs:CreateLogStream"
+                  - "logs:PutLogEvents"
+                Resource:
+                  - !GetAtt "ECSAccessLogsGroup.Arn"
+                  - !Sub "${ECSAccessLogsGroup.Arn}:*"
+      PermissionsBoundary: !If
+        - UsePermissionsBoundary
+        - !Ref PermissionsBoundary
+        - !Ref AWS::NoValue
+
+  ECSTaskRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: 'sts:AssumeRole'
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+        Version: 2012-10-17
+      PermissionsBoundary: !If
+        - UsePermissionsBoundary
+        - !Ref PermissionsBoundary
+        - !Ref AWS::NoValue
+
+  #
+  # API Gateway
+  #
+  #
+
+  ApiGwHttpEndpoint:
+    Type: 'AWS::ApiGatewayV2::Api'
+    Properties:
+      Name: !Sub cic-front-${Environment}
+      ProtocolType: HTTP
+
+  ApiGwHttpEndpointIntegration:
+    Type: 'AWS::ApiGatewayV2::Integration'
+    Properties:
+      ApiId: !Ref ApiGwHttpEndpoint
+      IntegrationType: HTTP_PROXY
+      ConnectionId:
+        Fn::ImportValue:
+          !Sub "${VpcStackName}-VpcLinkId"
+      ConnectionType: VPC_LINK
+      IntegrationMethod: ANY
+      IntegrationUri: !Ref LoadBalancerListener
+      PayloadFormatVersion: '1.0'
+
+  APIGWRoute:
+    Type: 'AWS::ApiGatewayV2::Route'
+    Properties:
+      ApiId: !Ref ApiGwHttpEndpoint
+      RouteKey: 'ANY /{proxy+}'
+      Target: !Join
+        - /
+        - - integrations
+          - !Ref ApiGwHttpEndpointIntegration
+
+  APIStageDefault:
+    Type: 'AWS::ApiGatewayV2::Stage'
+    Properties:
+      ApiId: !Ref ApiGwHttpEndpoint
+      StageName: $default
+      AutoDeploy: true
+      DefaultRouteSettings:
+        DataTraceEnabled: false
+        DetailedMetricsEnabled: true
+        ThrottlingBurstLimit: 400
+        ThrottlingRateLimit: 200
+      AccessLogSettings:
+        DestinationArn: !GetAtt APIGWAccessLogsGroup.Arn
+        Format: >-
+          {
+          "requestId":"$context.requestId",
+          "ip": "$context.identity.sourceIp",
+          "requestTime":"$context.requestTime",
+          "httpMethod":"$context.httpMethod",
+          "path": "$context.path",
+          "routeKey":"$context.routeKey",
+          "status":"$context.status",
+          "protocol":"$context.protocol",
+          "responseLength":"$context.responseLength"
+          }
+
+  WAFv2ACLAssociation:
+    Type: AWS::WAFv2::WebACLAssociation
+    Properties:
+      ResourceArn: !Sub
+        - "arn:aws:elasticloadbalancing:${AWS::Region}:${AWS::AccountId}:loadbalancer/${LoadBalancerFullName}"
+        - LoadBalancerFullName: !GetAtt LoadBalancer.LoadBalancerFullName
+      WebACLArn: !ImportValue 'di-cic-front-waf-Arn'
+
+  APIGWAccessLogsGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/apigateway/${AWS::StackName}-CICFront-API-GW-AccessLogs
+
+  CSLSAPIGWAccessSubscriptionFilter:
+    Type: AWS::Logs::SubscriptionFilter
+    Condition: IsNotDevelopment
+    Properties:
+      DestinationArn:
+        !FindInMap [PlatformConfiguration, !Ref Environment, CSLSEGRESS]
+      FilterPattern: ""
+      LogGroupName: !Ref APIGWAccessLogsGroup
+
+
+  # Autoscaling
+  # The number of pods will increase when the configured CPU utilization is breached for more than 3 minutes.
+  # Scaling down will occur after 15 minutes of 90% utilization of the configured CPU utilization.
+
+  ECSAutoScalingTarget:
+    Condition: IsProduction
+    Type: AWS::ApplicationAutoScaling::ScalableTarget
+    Properties:
+      MaxCapacity: 3
+      MinCapacity: 1
+      ResourceId: !Join
+        - '/'
+        - - "service"
+          - !Ref   CICFrontEcsCluster
+          - !GetAtt CICFrontEcsService.Name
+      RoleARN: !Sub "arn:aws:iam::${AWS::AccountId}:role/aws-service-role/ecs.application-autoscaling.amazonaws.com/AWSServiceRoleForApplicationAutoScaling_ECSService"
+      ScalableDimension: ecs:service:DesiredCount
+      ServiceNamespace: ecs
+
+  ECSAutoScalingPolicy:
+    Condition: IsProduction
+    DependsOn: ECSAutoScalingTarget
+    Type: AWS::ApplicationAutoScaling::ScalingPolicy
+    Properties:
+      PolicyName: ECSAutoScalingPolicy
+      PolicyType: TargetTrackingScaling
+      ResourceId: !Join
+        - '/'
+        - - "service"
+          - !Ref   CICFrontEcsCluster
+          - !GetAtt CICFrontEcsService.Name
+      ScalableDimension: ecs:service:DesiredCount
+      ServiceNamespace: ecs
+      TargetTrackingScalingPolicyConfiguration:
+        PredefinedMetricSpecification:
+          PredefinedMetricType: ECSServiceAverageCPUUtilization
+        TargetValue: 70.0
+
+  ### www domain
+
+#  FrontCustomDomain:
+#    Type: AWS::ApiGatewayV2::DomainName
+#    Properties:
+#      DomainName: !FindInMap [ EnvironmentVariables, !Ref Environment, FEURL ]
+#      DomainNameConfigurations:
+#        - CertificateArn: !Sub "{{resolve:ssm:/${Environment}/Platform/ACM/PrimaryZoneWildcardCertificateARN}}"
+#          EndpointType: REGIONAL
+#          SecurityPolicy: TLS_1_2
+#
+#  FrontApiRecord:
+#    Type: AWS::Route53::RecordSet
+#    Properties:
+#      Name: !FindInMap [EnvironmentVariables, !Ref Environment, FEURL ]
+#      Type: A
+#      HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
+#      AliasTarget:
+#        DNSName: !GetAtt FrontCustomDomain.RegionalDomainName
+#        HostedZoneId: !GetAtt FrontCustomDomain.RegionalHostedZoneId
+#        EvaluateTargetHealth: false
+#
+#  FrontApiMapping:
+#    Type: AWS::ApiGatewayV2::ApiMapping
+#    Properties:
+#      DomainName: !FindInMap [EnvironmentVariables, !Ref Environment, FEURL ]
+#      ApiId: !Ref ApiGwHttpEndpoint
+#      Stage: "$default"
+#    DependsOn:
+#      - FrontCustomDomain
+#
+#
+#  # app domain
+#  AppFrontCustomDomain:
+#    Type: AWS::ApiGatewayV2::DomainName
+#    Properties:
+#      DomainName: !FindInMap [EnvironmentVariables, !Ref Environment, APPURL ]
+#      DomainNameConfigurations:
+#        - CertificateArn: !Sub "{{resolve:ssm:/${Environment}/Platform/ACM/PrimaryZoneWildcardCertificateARN}}"
+#          EndpointType: REGIONAL
+#          SecurityPolicy: TLS_1_2
+#
+#  AppFrontApiRecord:
+#    Type: AWS::Route53::RecordSet
+#    Properties:
+#      Name: !FindInMap [EnvironmentVariables, !Ref Environment, APPURL ]
+#      Type: A
+#      HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
+#      AliasTarget:
+#        DNSName: !GetAtt AppFrontCustomDomain.RegionalDomainName
+#        HostedZoneId: !GetAtt AppFrontCustomDomain.RegionalHostedZoneId
+#        EvaluateTargetHealth: false
+#
+#  AppFrontApiMapping:
+#    Type: AWS::ApiGatewayV2::ApiMapping
+#    Properties:
+#      DomainName: !FindInMap [EnvironmentVariables, !Ref Environment, APPURL ]
+#      ApiId: !Ref ApiGwHttpEndpoint
+#      Stage: "$default"
+#    DependsOn:
+#      - AppFrontCustomDomain
+
+
+
+Outputs:
+  CICFrontUrl:
+    Description: >-
+      The API Gateway URL which CIC Front can be invoked on.
+    Value: !GetAtt  ApiGwHttpEndpoint.ApiEndpoint
+  CICFrontGatewayId:
+    Description: CIC Front API Gateway ID
+    Export:
+      Name: !Sub "${AWS::StackName}-CICFrontGatewayId"
+    Value: !Ref ApiGwHttpEndpoint

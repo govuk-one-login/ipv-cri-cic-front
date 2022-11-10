@@ -1,0 +1,64 @@
+
+{% extends "common/layout/base.njk" %}
+
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+
+{% set pageTitleName = 'general.landingPage.pageTitle' | translate %}
+
+
+{% block content %}
+
+<h1 class="govuk-heading-l">{{ "general.landingPage.title" | translate }}</h1>
+
+<h2 class="govuk-heading-m">{{ "general.landingPage.body" | translate }}</h2>
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "1"
+      },
+      value: {
+        text: "general.landingPage.instructions.steps.one" | translate
+      }
+    },
+    {
+      key: {
+        text: "2"
+      },
+      value: {
+        text: "general.landingPage.instructions.steps.two" | translate
+      }
+    },
+    {
+      key: {
+        text: "3"
+      },
+      value: {
+        text: "general.landingPage.instructions.steps.three" | translate
+      }
+    }
+  ]
+}) }}
+
+
+<h2 class="govuk-heading-m">{{ "general.landingPage.dataInfo.title" | translate }}</h2>
+<p>{{ "general.landingPage.dataInfo.body" | translate }}</p>
+
+{{ govukButton({
+    text: "general.buttons.continue" | translate,
+    type: "submit"
+  }) }}
+
+{% include "common/confirmIdentityAnotherWay.njk" %}
+
+{% endblock %}
+
+{% block bodyEnd %}
+  <script type="text/javascript" src="/public/scripts/application.js"></script>
+  <script type="text/javascript" nonce='{{scriptNonce}}'>window.GOVUKFrontend.appInit('{{gtmId}}', '{{analyticsCookieDomain}}')</script>
+{% endblock %}
