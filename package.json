@@ -34,7 +34,7 @@
     "exit": true
   },
   "engines": {
-    "node": "16.14.2"
+    "node": "18.10.0"
   },
   "nodemonConfig": {
     "ext": "ts,js,json,html"
