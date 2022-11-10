@@ -50,18 +50,17 @@ Conditions:
 
 Mappings:
   # see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
-  PlatformConfiguration:
-    # which account ids??
-    dev:
-      CSLSEGRESS: "This should not ever be set; the dev account is not configured to egress logs."
-    build:
-      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
-    staging:
-      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
-    integration:
-      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
-    production:
-      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
+#  PlatformConfiguration:
+#    dev:
+#      CSLSEGRESS: "This should not ever be set; the dev account is not configured to egress logs."
+#    build:
+#      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
+#    staging:
+#      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
+#    integration:
+#      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
+#    production:
+#      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
 
   # see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
   ElasticLoadBalancerAccountIds:
@@ -322,14 +321,14 @@ Resources:
       LogGroupName: !Sub /aws/ecs/${AWS::StackName}-CICFront-ECS
       RetentionInDays: 14
 
-  CSLSECSAccessSubscriptionFilter:
-    Type: AWS::Logs::SubscriptionFilter
-    Condition: IsNotDevelopment
-    Properties:
-      DestinationArn:
-        !FindInMap [PlatformConfiguration, !Ref Environment, CSLSEGRESS]
-      FilterPattern: ""
-      LogGroupName: !Ref ECSAccessLogsGroup
+#  CSLSECSAccessSubscriptionFilter:
+#    Type: AWS::Logs::SubscriptionFilter
+#    Condition: IsNotDevelopment
+#    Properties:
+#      DestinationArn:
+#        !FindInMap [PlatformConfiguration, !Ref Environment, CSLSEGRESS]
+#      FilterPattern: ""
+#      LogGroupName: !Ref ECSAccessLogsGroup
 
   #
   # Fargate tasks
@@ -529,14 +528,14 @@ Resources:
     Properties:
       LogGroupName: !Sub /aws/apigateway/${AWS::StackName}-CICFront-API-GW-AccessLogs
 
-  CSLSAPIGWAccessSubscriptionFilter:
-    Type: AWS::Logs::SubscriptionFilter
-    Condition: IsNotDevelopment
-    Properties:
-      DestinationArn:
-        !FindInMap [PlatformConfiguration, !Ref Environment, CSLSEGRESS]
-      FilterPattern: ""
-      LogGroupName: !Ref APIGWAccessLogsGroup
+#  CSLSAPIGWAccessSubscriptionFilter:
+#    Type: AWS::Logs::SubscriptionFilter
+#    Condition: IsNotDevelopment
+#    Properties:
+#      DestinationArn:
+#        !FindInMap [PlatformConfiguration, !Ref Environment, CSLSEGRESS]
+#      FilterPattern: ""
+#      LogGroupName: !Ref APIGWAccessLogsGroup
 
 
   # Autoscaling
