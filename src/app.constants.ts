@@ -1,6 +1,5 @@
 export enum LOCALE {
-    EN = "en",
-    CY = "cy"
+    EN = "en"
 }
 
 export const HTTP_STATUS_CODES = {
