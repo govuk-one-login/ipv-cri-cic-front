@@ -516,13 +516,13 @@ Resources:
           "responseLength":"$context.responseLength"
           }
 
-#  WAFv2ACLAssociation:
-#    Type: AWS::WAFv2::WebACLAssociation
-#    Properties:
-#      ResourceArn: !Sub
-#        - "arn:aws:elasticloadbalancing:${AWS::Region}:${AWS::AccountId}:loadbalancer/${LoadBalancerFullName}"
-#        - LoadBalancerFullName: !GetAtt LoadBalancer.LoadBalancerFullName
-#      WebACLArn: !ImportValue 'di-cic-front-waf-Arn'
+  WAFv2ACLAssociation:
+    Type: AWS::WAFv2::WebACLAssociation
+    Properties:
+      ResourceArn: !Sub
+        - "arn:aws:elasticloadbalancing:${AWS::Region}:${AWS::AccountId}:loadbalancer/${LoadBalancerFullName}"
+        - LoadBalancerFullName: !GetAtt LoadBalancer.LoadBalancerFullName
+      WebACLArn: !ImportValue 'di-cic-front-waf-Arn'
 
   APIGWAccessLogsGroup:
     Type: AWS::Logs::LogGroup
