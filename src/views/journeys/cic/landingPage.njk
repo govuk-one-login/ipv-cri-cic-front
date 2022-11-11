@@ -49,10 +49,12 @@
 <h2 class="govuk-heading-m">{{ "general.landingPage.dataInfo.title" | translate }}</h2>
 <p>{{ "general.landingPage.dataInfo.body" | translate }}</p>
 
-{{ govukButton({
-    text: "general.buttons.continue" | translate,
-    type: "submit"
-  }) }}
+<form id="form-tracking" action="{{continue}}" method="get">
+    <button class="govuk-button" data-module="govuk-button">
+    {{"general.buttons.continue" | translate }}
+     </button>
+</form>
+
 
 {% include "common/confirmIdentityAnotherWay.njk" %}
 
