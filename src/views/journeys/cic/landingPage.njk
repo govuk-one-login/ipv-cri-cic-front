@@ -16,34 +16,18 @@
 
 <h2 class="govuk-heading-m">{{ "general.landingPage.body" | translate }}</h2>
 
-{{ govukSummaryList({
-  rows: [
-    {
-      key: {
-        text: "1"
-      },
-      value: {
-        text: "general.landingPage.instructions.steps.one" | translate
-      }
-    },
-    {
-      key: {
-        text: "2"
-      },
-      value: {
-        text: "general.landingPage.instructions.steps.two" | translate
-      }
-    },
-    {
-      key: {
-        text: "3"
-      },
-      value: {
-        text: "general.landingPage.instructions.steps.three" | translate
-      }
-    }
-  ]
-}) }}
+<ol class="govuk-list govuk-list--number">
+  <li>{{ "general.landingPage.instructions.steps.one" | translate }}</li>
+  <li>{{ "general.landingPage.instructions.steps.two" | translate }}</li>
+  <li>{{ "general.landingPage.instructions.steps.three" | translate }}</li>
+</ol>
+
+<div>
+  <p>
+    {{ "general.common.postoffice.service" | translate }}
+    <a href={{pathToPoBranchSearch}} class="govuk-link">{{ "general.common.postoffice.postofficeLink" | translate }}</a>.
+  </p>
+</div>
 
 
 <h2 class="govuk-heading-m">{{ "general.landingPage.dataInfo.title" | translate }}</h2>
