@@ -13,6 +13,10 @@
     "common": {
       "confirmIdentityAnotherWay": {
         "confirmIdentity": "I want to prove my identity another way"
+      },
+      "postoffice": {
+        "service": "Not all Post Offices offer this service. You can ",
+        "postofficeLink": "find your nearest Post Office that offers in branch verification here."
       }
     },
     "serviceNameTitle": "GOV.UK",
@@ -86,11 +90,12 @@
         },
         "brp": "Biometric residence permit(BRP)",
         "ukPhotocardDL": "UK photocard driving licence",
-        "otherPassport": "Other passport"
+        "otherPassport": "Non-UK passport"
       },
       "errors": {
         "validationError": "Select anyone photo ID you can take to a Post Office."
-      }
+      },
+      "noDocuments": "I do not have any of these documents"
     }
   },
   "privacyStatement": {
