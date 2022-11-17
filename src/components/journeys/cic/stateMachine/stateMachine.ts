@@ -19,6 +19,9 @@ function buildStateMachine () : IState {
         },
         [EVENTS.SELECTED_UK_PHOTOCARD_DL]: {
             next: `${PATH_NAMES.PHOTOCARD_DL_DETAILS}`,
+        },
+        [EVENTS.SELECTED_OTHER_PASSPORT]: {
+            next: `${PATH_NAMES.OTHER_PASSPORT_DETAILS}`
         }
     }
 }

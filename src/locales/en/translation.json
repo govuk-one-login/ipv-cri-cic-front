@@ -117,6 +117,13 @@
       "body": "We need this information to check that your photo ID is valid. ",
       "dateOfExpiry": "Date of expiry",
       "example": "For example, 31 3 2025"
+    },
+    "nonUkPassportExpiry": {
+      "pageTitle": "Non-UK passport details",
+      "header": "When does your non-UK passport expire?",
+      "body": "We need this information to check that your photo ID is valid. ",
+      "dateOfExpiry": "Date of expiry",
+      "example": "For example, 31 3 2025"
     }
   },
   "privacyStatement": {
