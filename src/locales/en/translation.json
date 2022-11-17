@@ -96,6 +96,27 @@
         "validationError": "Select anyone photo ID you can take to a Post Office."
       },
       "noDocuments": "I do not have any of these documents"
+    },
+    "passportExpiry": {
+      "pageTitle": "Passport details",
+      "header": "When does your passport expire?",
+      "body": "We need this information to check that your photo ID is valid. ",
+      "dateOfExpiry": "Date of expiry",
+      "example": "For example, 31 3 2025"
+    },
+    "brpExpiry": {
+      "pageTitle": "BRP details",
+      "header": "When does your biometric residence permit (BRP) expire?",
+      "body": "We need this information to check that your photo ID is valid. ",
+      "dateOfExpiry": "Date of expiry",
+      "example": "For example, 31 3 2025"
+    },
+    "drivingLicenceExpiry": {
+      "pageTitle": "Driving Licence details",
+      "header": "Enter your UK photocard driving licence details",
+      "body": "We need this information to check that your photo ID is valid. ",
+      "dateOfExpiry": "Date of expiry",
+      "example": "For example, 31 3 2025"
     }
   },
   "privacyStatement": {

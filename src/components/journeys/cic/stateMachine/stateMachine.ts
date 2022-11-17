@@ -10,6 +10,15 @@ function buildStateMachine () : IState {
     return {
         [EVENTS.SELECTED_UK_PASSPORT]: {
             next: `${PATH_NAMES.PASSPORT_DETAILS}`,
+        },
+        [EVENTS.SELECTED_OTHER_PASSPORT]: {
+            next: `${PATH_NAMES.PASSPORT_DETAILS}`,
+        },
+        [EVENTS.SELECTED_BRP]: {
+            next: `${PATH_NAMES.BRP_DETAILS}`,
+        },
+        [EVENTS.SELECTED_UK_PHOTOCARD_DL]: {
+            next: `${PATH_NAMES.PHOTOCARD_DL_DETAILS}`,
         }
     }
 }
