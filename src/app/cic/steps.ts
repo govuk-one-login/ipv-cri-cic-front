@@ -1,5 +1,5 @@
-import {LandingPageController} from "./controllers/landingPage";
 import {RootController} from "./controllers/root";
+import {PhotoIdSelectionController} from "./controllers/photoIdSelection";
 export const JOURNEYS= {
 
   "/": {
@@ -14,9 +14,9 @@ export const JOURNEYS= {
     next: "photoIdSelection",
   },
   "/photoIdSelection": {
-    controller: LandingPageController,
+    controller: PhotoIdSelectionController,
     fields: ['photoIdChoice'],
-    next: LandingPageController.prototype.next
+    next: PhotoIdSelectionController.prototype.next
   },
 
   "/passportDetails": {
