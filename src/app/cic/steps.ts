@@ -10,8 +10,7 @@ export const JOURNEYS= {
     next: "landingPage",
   },
   "/landingPage": {
-    resetJourney: true,
-    entryPoint: true,
+
     next: "photoIdSelection",
   },
   "/photoIdSelection": {
