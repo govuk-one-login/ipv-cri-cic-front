@@ -1,68 +1,73 @@
-import express from "express"
-import dotenv from "dotenv"
+import dotenv from "dotenv";
+import express from "express";
 
-import {isOauthEnabled } from "./config"
-import * as path from "path"
-import cookieParser from "cookie-parser"
-import { configureNunjucks } from "./config/nunjucks"
-import helmet from "helmet"
-import { helmetConfiguration } from "./config/helmet"
-import i18next from "i18next"
-import i18nextMiddleware from "i18next-http-middleware";
-import Backend from "i18next-fs-backend"
-import { i18nextConfigurationOptions } from "./config/i18next"
-import { serverErrorHandler } from "./handlers/error-handler"
-import { bindRoutes } from "./config/public"
-import { setLocalVarsMiddleware } from './middleware/setLocalVars'
-import { oauthRouter } from "./cic/oauth2";
+//require("express-async-errors");
+const session = require("express-session");
+import AWS from "aws-sdk";
+import dynamodb from "connect-dynamodb"
+import { CONFIG } from "./lib/config";
+import { getGTM } from "./lib/locals"
+const DynamoDBStore = dynamodb(session);
+const { setup } = require("hmpo-app");
 
-import { flaggedRouter } from "./components/journeys/flaggedRouter"
+var sessionStore;
 
-dotenv.config()
+dotenv.config();
 
-async function createApp(): Promise<express.Application> {
-  const app: express.Application = express()
+if (process.env.NODE_ENV !== "local") {
+  AWS.config.update({
+    region: "eu-west-2",
+  });
+  const dynamodb = new AWS.DynamoDB();
 
-  app.use(cookieParser())
-  app.use(express.urlencoded({ extended: true }))
-
-  const APP_VIEWS = [
-    path.join(__dirname, "../src/views"),
-    path.join(__dirname, "../src/views/journeys/cic"),
-    path.resolve("node_modules/govuk-frontend/")
-  ]
-
-  i18next
-    .use(Backend)
-    .use(i18nextMiddleware.LanguageDetector)
-    .init(
-      i18nextConfigurationOptions(
-        path.join(__dirname, "locales/{{lng}}/{{ns}}.json")
-      )
-    )
-
-  app.use(i18nextMiddleware.handle(i18next));
-
-  app.use(express.static(path.join(__dirname, "public")))
-  app.use("/public", express.static(path.join(__dirname, "public")))
-  app.set("view engine", configureNunjucks(app, APP_VIEWS))
-  app.use(setLocalVarsMiddleware);
-
-  app.use(helmet(helmetConfiguration))
-
-  bindRoutes(app)
-
-  app.use(require("./cic/healthcheck"))
-
-  if (isOauthEnabled()) {
-
-      app.use(oauthRouter)
-      app.use(flaggedRouter)
-  }
-  
-  app.use(serverErrorHandler)
-
-  return app
+  sessionStore = new DynamoDBStore({
+    client: dynamodb,
+    table: CONFIG.SESSION_TABLE_NAME,
+  });
 }
 
-export { createApp }
+const loggerConfig = {
+  console: true,
+  consoleJSON: true,
+  app: false,
+  requestMeta: {
+    cicSessionId: "session.cicSessionId",
+  },
+  meta: {
+    cicSessionId: "session.cicSessionId",
+  },
+};
+
+const sessionConfig = {
+  cookieName: "cic_service_session",
+  secret: CONFIG.SESSION_SECRET,
+  sessionStore: sessionStore,
+};
+
+const { router } = setup({
+  config: { APP_ROOT: __dirname },
+  port: CONFIG.PORT,
+  logs: loggerConfig,
+  session: sessionConfig,
+  redis: !sessionStore,
+  urls: {
+    public: "/public",
+  },
+  publicDirs: ["../dist/public"],
+  translation: {
+    allowedLangs: ["en"],
+    fallbackLang: ["en"],
+    cookie: { name: "lng" },
+  },
+  dev: true,
+  middlewareSetupFn: (app: any) => {
+    app.use(function (req: any, res: any, next: any) {
+      req.headers["x-forwarded-proto"] = "https";
+      next();
+    });
+  },
+});
+
+router.use(getGTM);
+router.use("/oauth2", require("./app/oauth2/router"));
+router.use("/cic", require("./app/cic/router"));

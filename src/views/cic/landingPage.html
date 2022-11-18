@@ -1,0 +1,56 @@
+{% extends "shared/ipv-template.html" %}
+
+{# the content for this page is controlled by locales/en/default.yml #}
+{% set hmpoPageKey = "landingPage" %}
+
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+
+{% set pageTitleName = 'landingPage.pageTitle' | translate %}
+
+{% block content %}
+
+<h1 class="govuk-heading-l">{{ "landingPage.title" | translate }}</h1>
+
+<h2 class="govuk-heading-m">{{ "landingPage.body" | translate }}</h2>
+
+<ol class="govuk-list govuk-list--number">
+  <li>{{ "landingPage.instructions.steps.one" | translate }}</li>
+  <li>{{ "landingPage.instructions.steps.two" | translate }}</li>
+  <li>{{ "landingPage.instructions.steps.three" | translate }}</li>
+</ol>
+
+<div>
+  <p>
+    {{ "common.postoffice.service" | translate }}
+    <a href={{pathToPoBranchSearch}} class="govuk-link">{{ "common.postoffice.postofficeLink" | translate }}</a>.
+  </p>
+</div>
+
+
+<h2 class="govuk-heading-m">{{ "landingPage.dataInfo.title" | translate }}</h2>
+<p>{{ "landingPage.dataInfo.body" | translate }}</p>
+
+{% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
+
+{{ hmpoSubmit(ctx, {id: 'submitButton'}) }}
+{% endcall %}
+
+<!--<form id="form-tracking" action="/cic/photoIdSelection" method="get">-->
+<!--    <button class="govuk-button" data-module="govuk-button">-->
+<!--    {{"buttons.continue" | translate }}-->
+<!--     </button>-->
+<!--</form>-->
+
+
+{% include "common/confirmIdentityAnotherWay.html" %}
+
+{% endblock %}
+
+{% block bodyEnd %}
+  <script type="text/javascript" src="/public/scripts/application.js"></script>
+  <script type="text/javascript" nonce='{{scriptNonce}}'>window.GOVUKFrontend.appInit('{{gtmId}}', '{{analyticsCookieDomain}}')</script>
+{% endblock %}

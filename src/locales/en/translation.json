@@ -10,15 +10,7 @@
         "accessibility": "Accessibility statement"
       }
     },
-    "common": {
-      "confirmIdentityAnotherWay": {
-        "confirmIdentity": "I want to prove my identity another way"
-      },
-      "postoffice": {
-        "service": "Not all Post Offices offer this service. You can ",
-        "postofficeLink": "find your nearest Post Office that offers in branch verification here."
-      }
-    },
+
     "serviceNameTitle": "GOV.UK",
     "links": {
       "confirmIdentityURL": "https://www.gov.uk/sign-in"
@@ -62,40 +54,6 @@
       "pageTitle": "The content on this page has expired. Refresh the page using the button below.",
       "header": "The content on this page has expired. Refresh the page using the button below.",
       "description": "You will not lose your progress when you refresh the page."
-    },
-    "landingPage": {
-      "pageTitle": "Prove your identity/subheadings with steps",
-      "title": "Proving your identity in person",
-      "body": "What you need to do",
-      "instructions": {
-        "steps": {
-          "one": "Complete an online form to provide your basic personal details and select a \nphoto ID you can take to the Post Office.  \n",
-          "two": "Once the form is completed, you will recieve a confirmation email. \nYou must take the confirmation and your photo ID to a Post Office.",
-          "three": "At the Post Office, a member of staff will process your photo ID and \ntake a photo of your face to verify your identity."
-        }
-      },
-      "dataInfo": {
-        "title": "What happens after the Post Office",
-        "body": "Once your identity has been proven, you must return online to your GOV.UK account to access the service you need."
-      }
-    },
-    "selectPhotoId": {
-      "pageTitle": "Document selection screen",
-      "header": "Select one photo ID you can take to a Post Office",
-      "body": "Your photo ID must be an orginal, you cannot use a photocopy. Both UK and non-UK passports must be chipped.",
-      "options": {
-        "ukPassport": {
-          "radioTitle": "UK passport",
-          "radioDescription": "If your passport has expired, you can still use it to prove your identity up until 18 months after the expiry date."
-        },
-        "brp": "Biometric residence permit(BRP)",
-        "ukPhotocardDL": "UK photocard driving licence",
-        "otherPassport": "Non-UK passport"
-      },
-      "errors": {
-        "validationError": "Select anyone photo ID you can take to a Post Office."
-      },
-      "noDocuments": "I do not have any of these documents"
     }
   },
   "privacyStatement": {

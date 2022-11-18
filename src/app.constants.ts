@@ -16,5 +16,18 @@ export type PathNames = { [key: string]: `/${string}` }
 
 export const PATH_NAMES : PathNames = {
     HEALTHCHECK: "/auth/health",
-    AUTHORIZE: "/authorize"
+    AUTHORIZE: "/authorize",
+    LANDING_PAGE: "/landingPage",
+    PHOTO_ID_SELECTION: "/selectPhotoId",
+    PASSPORT_DETAILS: "/passportDetails",
+    PRIVACY_STATEMENT: "/privacystatement",
+    ACCESSIBILITY_STATEMENT: "/accessibilitystatement"
+}
+
+export const EVENTS = {
+    ABORTED_JOURNEY: "ABORTED_JOURNEY",
+    SELECTED_UK_PASSPORT: "SELECTED_UK_PASSPORT",
+    SELECTED_BRP: "SELECTED_BRP",
+    SELECTED_UK_PHOTOCARD_DL: "SELECTED_UK_PHOTOCARD_DL",
+    SELECTED_OTHER_PASSPORT: "SELECTED_OTHER_PASSPORT"
 }

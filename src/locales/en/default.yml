@@ -1,0 +1,92 @@
+buttons:
+  authorizeAndReturn: Authorize And Return
+  continue: Continue
+  next: Continue
+  cancel: Cancel
+govuk:
+  phaseBanner:
+    tag: beta
+    content: This is a new service – your <a href="https://signin.account.gov.uk/contact-us" class="govuk-link" rel="noopener" target="_blank">feedback (opens in new tab)</a> will help us to improve it.
+  serviceName: " "
+  backLink: Back
+  errorSummaryTitle: There is a problem
+  error: Error
+  warning: Warning
+  skipLink: Skip to main content
+  betaBannerRequired: true
+  betaBannerContent:
+    betaBannerContentLabel: beta
+    betaBannerContentHTML: 'This is a new service – your <a class="govuk-link" rel="noopener" target="_blank" href="https://signin.account.gov.uk/contact-us">feedback (opens in new tab)</a>  will help us to improve it.'
+  cookie:
+    cookieBanner:
+      title: Cookies on GOV.UK account
+      heading: Cookies on GOV.UK account
+      paragraph1: We use some essential cookies to make this service work.
+      paragraph2: We’d like to set additional cookies so we can remember your settings, understand how people use the service and make improvements.
+      changeCookiePreferencesLink: change your cookie settings
+      cookieBannerAccept:
+        paragraph1: "You’ve accepted additional cookies. You can "
+        paragraph2: " at any time."
+      cookieBannerReject:
+        paragraph1: "You’ve rejected additional cookies. You can "
+        paragraph2: " at any time."
+      buttonAcceptText: Accept analytics cookies
+      buttonRejectText: Reject analytics cookies
+      linkViewCookies: View cookies
+      cookieBannerHideLink: Hide this message
+  footerNavItems:
+    meta:
+      items:
+        - href: "https://signin.account.gov.uk/accessibility-statement"
+          text: "Accessibility statement"
+        - href: "https://signin.account.gov.uk/cookies"
+          text: "Cookies"
+        - href: "https://signin.account.gov.uk/terms-and-conditions"
+          text: "Terms and conditions"
+        - href: "https://signin.account.gov.uk/privacy-notice"
+          text: "Privacy notice"
+        - href: "https://signin.account.gov.uk/contact-us"
+          text: "Support"
+
+landingPage:
+    pageTitle: "Prove your identity/subheadings with steps"
+    title: "Proving your identity in person"
+    body: "What you need to do"
+    instructions:
+      steps:
+        one: "Complete an online form to provide your basic personal details and select a \nphoto ID you can take to the Post Office.  \n"
+        two: "Once the form is completed, you will recieve a confirmation email. \nYou must take the confirmation and your photo ID to a Post Office."
+        three: "At the Post Office, a member of staff will process your photo ID and \ntake a photo of your face to verify your identity."
+    dataInfo:
+      title: "What happens after the Post Office"
+      body: "Once your identity has been proven, you must return online to your GOV.UK account to access the service you need."
+
+passport:
+  title: "When does your passport expire?"
+  passportInformationContext: "We need this information to check that your photo ID is valid. "
+
+selectPhotoId123:
+      title: "Select one photo ID you can take to a Post Office"
+      body: "Your photo ID must be an orginal, you cannot use a photocopy. Both UK and non-UK passports must be chipped.11111"
+      options:
+        ukPassport:
+          radioTitle: "UK passport"
+          radioDescription: "If your passport has expired, you can still use it to prove your identity up until 18 months after the expiry date."
+        brp: "Biometric residence permit(BRP)"
+        ukPhotocardDL: "UK photocard driving licence"
+        otherPassport: "Non-UK passport"
+
+      errors:
+        validationError: "Select anyone photo ID you can take to a Post Office."
+      noDocuments: "I do not have any of these documents"
+
+common:
+    confirmIdentityAnotherWay:
+      confirmIdentity: "I want to prove my identity another way"
+    postoffice:
+      service: "Not all Post Offices offer this service. You can "
+      postofficeLink: "find your nearest Post Office that offers in branch verification here."
+
+licence-issuer:
+  title: Who was your UK driving licence issued by?
+  content: You can find this in section 4c of your driving licence. It will either say DVLA (Driving and vehicle Licensing Agency) or DVA (Driver and Vehicle Agency).

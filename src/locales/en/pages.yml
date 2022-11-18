@@ -1,0 +1,16 @@
+# title is managed in default.yml
+prove-another-way:
+  title: Prove your identity another way
+  content:
+    - You must have a UK driving licence to prove your identity with a GOV.UK account. If you do not have one or you cannot remember your details, you can prove your identity another way.
+    - This might take you longer than 10 minutes.
+
+licence-issuer:
+  title: Who was your UK driving licence issued by?
+  content:
+    - You can find this in section 4c of your driving licence. It will either say DVLA (Driving and vehicle Licensing Agency) or DVA (Driver and Vehicle Agency).
+
+selectPhotoId:
+  title: Select one photo ID you can take to a Post Office
+  content:
+    - Your photo ID must be an orginal, you cannot use a photocopy. Both UK and non-UK passports must be chipped 3333.

@@ -51,17 +51,17 @@ Conditions:
 Mappings:
   # see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
   # To be added later
-#  PlatformConfiguration:
-#    dev:
-#      CSLSEGRESS: "This should not ever be set; the dev account is not configured to egress logs."
-#    build:
-#      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
-#    staging:
-#      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
-#    integration:
-#      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
-#    production:
-#      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
+  #  PlatformConfiguration:
+  #    dev:
+  #      CSLSEGRESS: "This should not ever be set; the dev account is not configured to egress logs."
+  #    build:
+  #      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
+  #    staging:
+  #      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
+  #    integration:
+  #      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
+  #    production:
+  #      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
 
   # see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
   ElasticLoadBalancerAccountIds:
@@ -321,14 +321,14 @@ Resources:
       LogGroupName: !Sub /aws/ecs/${AWS::StackName}-CICFront-ECS
       RetentionInDays: 14
 
-#  CSLSECSAccessSubscriptionFilter:
-#    Type: AWS::Logs::SubscriptionFilter
-#    Condition: IsNotDevelopment
-#    Properties:
-#      DestinationArn:
-#        !FindInMap [PlatformConfiguration, !Ref Environment, CSLSEGRESS]
-#      FilterPattern: ""
-#      LogGroupName: !Ref ECSAccessLogsGroup
+  #  CSLSECSAccessSubscriptionFilter:
+  #    Type: AWS::Logs::SubscriptionFilter
+  #    Condition: IsNotDevelopment
+  #    Properties:
+  #      DestinationArn:
+  #        !FindInMap [PlatformConfiguration, !Ref Environment, CSLSEGRESS]
+  #      FilterPattern: ""
+  #      LogGroupName: !Ref ECSAccessLogsGroup
 
   #
   # Fargate tasks
@@ -338,8 +338,8 @@ Resources:
     Properties:
       ContainerDefinitions:
         - Essential: true
-          #Image: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/di-cic-front
-          Image: "CONTAINER-IMAGE-PLACEHOLDER"
+          Image: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/di-cic-front
+          #Image: "CONTAINER-IMAGE-PLACEHOLDER"
           Name: app
           Environment:
             # No backend api url available
@@ -441,15 +441,33 @@ Resources:
         - !Ref AWS::NoValue
 
   ECSTaskRole:
-    Type: 'AWS::IAM::Role'
+    Type: "AWS::IAM::Role"
     Properties:
       AssumeRolePolicyDocument:
         Statement:
-          - Action: 'sts:AssumeRole'
+          - Action: "sts:AssumeRole"
             Effect: Allow
             Principal:
               Service: ecs-tasks.amazonaws.com
         Version: 2012-10-17
+      Policies:
+        - PolicyName: CicFrontDynamoDBSessionAccess
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "dynamodb:BatchGetItem"
+                  - "dynamodb:DescribeTable"
+                  - "dynamodb:GetItem"
+                  - "dynamodb:Query"
+                  - "dynamodb:Scan"
+                  - "dynamodb:BatchWriteItem"
+                  - "dynamodb:DeleteItem"
+                  - "dynamodb:UpdateItem"
+                  - "dynamodb:PutItem"
+                Resource:
+                  - !GetAtt CicFrontSessionsTable.Arn
       PermissionsBoundary: !If
         - UsePermissionsBoundary
         - !Ref PermissionsBoundary
@@ -515,27 +533,27 @@ Resources:
           "responseLength":"$context.responseLength"
           }
 
-#  WAFv2ACLAssociation:
-#    Type: AWS::WAFv2::WebACLAssociation
-#    Properties:
-#      ResourceArn: !Sub
-#        - "arn:aws:elasticloadbalancing:${AWS::Region}:${AWS::AccountId}:loadbalancer/${LoadBalancerFullName}"
-#        - LoadBalancerFullName: !GetAtt LoadBalancer.LoadBalancerFullName
-#      WebACLArn: !ImportValue 'di-cic-front-waf-Arn'
+  #  WAFv2ACLAssociation:
+  #    Type: AWS::WAFv2::WebACLAssociation
+  #    Properties:
+  #      ResourceArn: !Sub
+  #        - "arn:aws:elasticloadbalancing:${AWS::Region}:${AWS::AccountId}:loadbalancer/${LoadBalancerFullName}"
+  #        - LoadBalancerFullName: !GetAtt LoadBalancer.LoadBalancerFullName
+  #      WebACLArn: !ImportValue 'di-cic-front-waf-Arn'
 
   APIGWAccessLogsGroup:
     Type: AWS::Logs::LogGroup
     Properties:
       LogGroupName: !Sub /aws/apigateway/${AWS::StackName}-CICFront-API-GW-AccessLogs
 
-#  CSLSAPIGWAccessSubscriptionFilter:
-#    Type: AWS::Logs::SubscriptionFilter
-#    Condition: IsNotDevelopment
-#    Properties:
-#      DestinationArn:
-#        !FindInMap [PlatformConfiguration, !Ref Environment, CSLSEGRESS]
-#      FilterPattern: ""
-#      LogGroupName: !Ref APIGWAccessLogsGroup
+  #  CSLSAPIGWAccessSubscriptionFilter:
+  #    Type: AWS::Logs::SubscriptionFilter
+  #    Condition: IsNotDevelopment
+  #    Properties:
+  #      DestinationArn:
+  #        !FindInMap [PlatformConfiguration, !Ref Environment, CSLSEGRESS]
+  #      FilterPattern: ""
+  #      LogGroupName: !Ref APIGWAccessLogsGroup
 
 
   # Autoscaling
@@ -578,67 +596,85 @@ Resources:
 
   ### www domain
 
-#  FrontCustomDomain:
-#    Type: AWS::ApiGatewayV2::DomainName
-#    Properties:
-#      DomainName: !FindInMap [ EnvironmentVariables, !Ref Environment, FEURL ]
-#      DomainNameConfigurations:
-#        - CertificateArn: !Sub "{{resolve:ssm:/${Environment}/Platform/ACM/PrimaryZoneWildcardCertificateARN}}"
-#          EndpointType: REGIONAL
-#          SecurityPolicy: TLS_1_2
-#
-#  FrontApiRecord:
-#    Type: AWS::Route53::RecordSet
-#    Properties:
-#      Name: !FindInMap [EnvironmentVariables, !Ref Environment, FEURL ]
-#      Type: A
-#      HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
-#      AliasTarget:
-#        DNSName: !GetAtt FrontCustomDomain.RegionalDomainName
-#        HostedZoneId: !GetAtt FrontCustomDomain.RegionalHostedZoneId
-#        EvaluateTargetHealth: false
-#
-#  FrontApiMapping:
-#    Type: AWS::ApiGatewayV2::ApiMapping
-#    Properties:
-#      DomainName: !FindInMap [EnvironmentVariables, !Ref Environment, FEURL ]
-#      ApiId: !Ref ApiGwHttpEndpoint
-#      Stage: "$default"
-#    DependsOn:
-#      - FrontCustomDomain
-#
-#
-#  # app domain
-#  AppFrontCustomDomain:
-#    Type: AWS::ApiGatewayV2::DomainName
-#    Properties:
-#      DomainName: !FindInMap [EnvironmentVariables, !Ref Environment, APPURL ]
-#      DomainNameConfigurations:
-#        - CertificateArn: !Sub "{{resolve:ssm:/${Environment}/Platform/ACM/PrimaryZoneWildcardCertificateARN}}"
-#          EndpointType: REGIONAL
-#          SecurityPolicy: TLS_1_2
-#
-#  AppFrontApiRecord:
-#    Type: AWS::Route53::RecordSet
-#    Properties:
-#      Name: !FindInMap [EnvironmentVariables, !Ref Environment, APPURL ]
-#      Type: A
-#      HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
-#      AliasTarget:
-#        DNSName: !GetAtt AppFrontCustomDomain.RegionalDomainName
-#        HostedZoneId: !GetAtt AppFrontCustomDomain.RegionalHostedZoneId
-#        EvaluateTargetHealth: false
-#
-#  AppFrontApiMapping:
-#    Type: AWS::ApiGatewayV2::ApiMapping
-#    Properties:
-#      DomainName: !FindInMap [EnvironmentVariables, !Ref Environment, APPURL ]
-#      ApiId: !Ref ApiGwHttpEndpoint
-#      Stage: "$default"
-#    DependsOn:
-#      - AppFrontCustomDomain
+  #  FrontCustomDomain:
+  #    Type: AWS::ApiGatewayV2::DomainName
+  #    Properties:
+  #      DomainName: !FindInMap [ EnvironmentVariables, !Ref Environment, FEURL ]
+  #      DomainNameConfigurations:
+  #        - CertificateArn: !Sub "{{resolve:ssm:/${Environment}/Platform/ACM/PrimaryZoneWildcardCertificateARN}}"
+  #          EndpointType: REGIONAL
+  #          SecurityPolicy: TLS_1_2
+  #
+  #  FrontApiRecord:
+  #    Type: AWS::Route53::RecordSet
+  #    Properties:
+  #      Name: !FindInMap [EnvironmentVariables, !Ref Environment, FEURL ]
+  #      Type: A
+  #      HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
+  #      AliasTarget:
+  #        DNSName: !GetAtt FrontCustomDomain.RegionalDomainName
+  #        HostedZoneId: !GetAtt FrontCustomDomain.RegionalHostedZoneId
+  #        EvaluateTargetHealth: false
+  #
+  #  FrontApiMapping:
+  #    Type: AWS::ApiGatewayV2::ApiMapping
+  #    Properties:
+  #      DomainName: !FindInMap [EnvironmentVariables, !Ref Environment, FEURL ]
+  #      ApiId: !Ref ApiGwHttpEndpoint
+  #      Stage: "$default"
+  #    DependsOn:
+  #      - FrontCustomDomain
+  #
+  #
+  #  # app domain
+  #  AppFrontCustomDomain:
+  #    Type: AWS::ApiGatewayV2::DomainName
+  #    Properties:
+  #      DomainName: !FindInMap [EnvironmentVariables, !Ref Environment, APPURL ]
+  #      DomainNameConfigurations:
+  #        - CertificateArn: !Sub "{{resolve:ssm:/${Environment}/Platform/ACM/PrimaryZoneWildcardCertificateARN}}"
+  #          EndpointType: REGIONAL
+  #          SecurityPolicy: TLS_1_2
+  #
+  #  AppFrontApiRecord:
+  #    Type: AWS::Route53::RecordSet
+  #    Properties:
+  #      Name: !FindInMap [EnvironmentVariables, !Ref Environment, APPURL ]
+  #      Type: A
+  #      HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
+  #      AliasTarget:
+  #        DNSName: !GetAtt AppFrontCustomDomain.RegionalDomainName
+  #        HostedZoneId: !GetAtt AppFrontCustomDomain.RegionalHostedZoneId
+  #        EvaluateTargetHealth: false
+  #
+  #  AppFrontApiMapping:
+  #    Type: AWS::ApiGatewayV2::ApiMapping
+  #    Properties:
+  #      DomainName: !FindInMap [EnvironmentVariables, !Ref Environment, APPURL ]
+  #      ApiId: !Ref ApiGwHttpEndpoint
+  #      Stage: "$default"
+  #    DependsOn:
+  #      - AppFrontCustomDomain
 
-
+  CicFrontSessionsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      # checkov:skip=CKV_AWS_28: Point in time recovery is not necessary for this table.
+      TableName: !Sub "cic-front-sessions-${Environment}"
+      BillingMode: "PAY_PER_REQUEST"
+      AttributeDefinitions:
+        - AttributeName: "id"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: "id"
+          KeyType: "HASH"
+      TimeToLiveSpecification:
+        AttributeName: "expires"
+        Enabled: true
+      SSESpecification:
+        # checkov:skip=CKV_AWS_119: Implement Customer Managed Keys in PYIC-1391
+        SSEEnabled: true
+        SSEType: KMS
 
 Outputs:
   CICFrontUrl:

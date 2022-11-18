@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { AUTH_ROOT } from '../../../app.constants';
 import { PATH_NAMES } from './app.constants';
 
-const TEMPLATE = "landingPage.njk"
+const TEMPLATE = "landingPage.html"
 
 export async function landingPage (req: Request, res: Response): Promise<void> {
   res.render(TEMPLATE, {

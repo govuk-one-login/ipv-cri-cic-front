@@ -5,12 +5,12 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "node dist/app.js",
     "start:watch": "nodemon dist/server.js",
     "build": "npx tsc && yarn build-sass && yarn build-js && yarn minfiy-build-js && yarn copy-assets",
     "build-sass": "rm -rf dist/public/style.css && sass --no-source-map src/assets/scss/application.scss dist/public/stylesheets/application.css --style compressed",
     "build-js": "mkdir -p dist/public/scripts; uglifyjs node_modules/govuk-frontend/govuk/all.js node_modules/hmpo-components/all.js src/assets/javascript/*.js -o dist/public/scripts/application.js",
-    "copy-assets": "mkdir -p dist && copyfiles -u 1 src/**/*.njk dist/ src/locales/**/** dist/ && copyfiles -u 3 src/assets/javascript/*.js dist/public/scripts  -e **/all.js && cp node_modules/govuk-frontend/govuk/all.js dist/public/scripts && copyfiles -u 3 src/assets/images/*.svg  dist/public/images",
+    "copy-assets": "mkdir -p dist && copyfiles -u 1 src/app/**/**  dist/ src/**/*.html dist/ && copyfiles -u 1 src/**/*.njk dist/ src/locales/**/** dist/ && copyfiles -u 3 src/assets/javascript/*.js dist/public/scripts  -e **/all.js && cp node_modules/govuk-frontend/govuk/all.js dist/public/scripts && copyfiles -u 3 src/assets/images/*.svg  dist/public/images",
     "build:watch": "npx tsc --watch",
     "lint": "eslint .",
     "minfiy-build-js": "uglifyjs src/assets/javascript/app.js -c -m",
@@ -73,6 +73,10 @@
     "wait-on": "6.0.1"
   },
   "dependencies": {
+    "aws-sdk": "^2.1216.0",
+    "express-session": "^1.17.3",
+    "connect-dynamodb": "^2.0.5",
+    "cfenv": "1.2.4",
     "axios": "^0.27.2",
     "cookie-parser": "^1.4.5",
     "copyfiles": "2.4.1",
@@ -84,6 +88,7 @@
     "hmpo-config": "2.2.0",
     "hmpo-i18n": "5.0.1",
     "hmpo-logger": "6.0.0",
+    "hmpo-form-wizard": "12.0.6",
     "i18next": "^21.6.5",
     "i18next-fs-backend": "^1.1.1",
     "i18next-http-middleware": "^3.2.1",
