@@ -1,22 +1,16 @@
 
-export const FIELDS = {
+module.exports = {
   photoIdChoice: {
     type: "radios",
     items: ["ukPassport", "brp", "ukPhotocardDL", "otherPassport"],
     validate: ["required"]
   },
-  dateOfBirth: {
-    type: "date",
-    journeyKey: "dateOfBirth",
-    validate: ["required"]
-  },
   expiryDate: {
     type: "date",
-    journeyKey: "expiryDate",
     validate: ["required"]
   },
-  passportNumber: {
+  surname: {
     type: "text",
-    validate: 'required'
+    validate: ["required"]
   }
 };

@@ -1,8 +1,9 @@
-{% extends "shared/ipv-template.html" %}
-{% set hmpoPageKey = "selectPhotoId" %}
-{% set hmpoH1Class = "govuk-heading-l" %}
 
+{% extends "base-form.njk" %}
+{% set hmpoPageKey = "photoIdSelection" %}
+{% set isPageHeading = true %}
 
 {% block submitButton %}
-    {{ hmpoSubmit(ctx, {id: 'submitButton'}) }}
+  {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
 {% endblock %}
+

@@ -1,11 +1,18 @@
+photoIdSelection:
+  h1: "Select one photo ID you can take to a Post Office"
+  content: "Your photo ID must be an orginal, you cannot use a photocopy. Both UK and non-UK passports must be chipped.11111"
+
 photoIdChoice:
+  legend: ""
+  hint: ""
+  label: ""
   validation:
     required: You must choose an option to continue
+  content: ""
   items:
     ukPassport:
       label: UK passport
       hint: If your passport has expired, you can still use it to prove your identity up until 18 months after the expiry date.
-      value: continue
     brp:
       label: Biometric residence permit(BRP)
 
@@ -21,8 +28,7 @@ expiryDate:
   hint: "For example, 27 5 2029"
   validation:
     required: "Enter the expiry date as it appears on your passport"
-    default: "Enter the expiry date as it appears on your passport"
-    after: "Your passport must not have expired more than 18 months ago"
+
 
 
 drivingLicenceNumber:

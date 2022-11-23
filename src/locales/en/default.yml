@@ -48,6 +48,16 @@ govuk:
         - href: "https://signin.account.gov.uk/contact-us"
           text: "Support"
 
+error:
+  unrecoverable:
+    title: Sorry, there is a problem with the service
+    subTitle: We cannot prove your identity right now.
+    subHeading: What can you do
+    description: Go back to the service you were trying to use and start again. You can look for the service using your search engine or find it from the GOV.UK homepage.
+    contactMeLink: Contact the GOV.UK account team (opens in a new tab)
+    buttonText: Go to the GOV.UK homepage
+    buttonLink: https://www.gov.uk/
+
 landingPage:
     pageTitle: "Prove your identity/subheadings with steps"
     title: "Proving your identity in person"
@@ -64,6 +74,15 @@ landingPage:
 passport:
   title: "When does your passport expire?"
   passportInformationContext: "We need this information to check that your photo ID is valid. "
+
+"date-day":
+  label: Day
+
+"date-month":
+  label: Month
+
+"date-year":
+  label: Year
 
 selectPhotoId123:
       title: "Select one photo ID you can take to a Post Office"

@@ -1,14 +1,8 @@
 const BaseController = require("hmpo-form-wizard").Controller;
 const logger = require("hmpo-logger").get();
 
-export class PhotoIdSelectionController extends BaseController {
-  // async render(req: any, res: any, next: any) {
-  //   console.log("came here")
-  //   res.render(TEMPLATE, {
-  //     continue: `${AUTH_ROOT}${PATH_NAMES.PHOTO_ID_SELECTION}`
-  //   })
-  // }
-  async saveValues(req: any, res: any, next: any) {
+class PhotoIdSelectionController extends BaseController {
+  async saveValues(req, res, next) {
     console.log("RICHAAAAA")
     try {
       logger.info("user submitting photo Id choice", { req, res });
@@ -54,7 +48,7 @@ export class PhotoIdSelectionController extends BaseController {
     }
   }
 
-  next(req: any) {
+  next(req) {
     console.log("HERRRRRRR");
     if (req.sessionModel.get("ukPassport")) {
       console.log("UK passportttt")
@@ -64,6 +58,9 @@ export class PhotoIdSelectionController extends BaseController {
     }
   }
 }
+
+module.exports = PhotoIdSelectionController;
+
 
 
 

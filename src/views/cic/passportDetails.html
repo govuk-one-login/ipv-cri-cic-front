@@ -1,11 +1,6 @@
-{% extends "shared/ipv-template.html" %}
+{% extends "base-form.njk" %}
 {# the content for this page is controlled by locales/en/default.yml #}
 {% set hmpoPageKey = "passport" %}
-
-{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
-{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
-{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
-{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
 {% from "hmpo-text/macro.njk" import hmpoText %}
 {% from "hmpo-form/macro.njk" import hmpoForm %}
