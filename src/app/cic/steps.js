@@ -23,7 +23,6 @@ module.exports = {
 
   "/passportDetails": {
     fields: ["expiryDate"],
-    controller: details,
     next: "done"
   },
   '/done': {
