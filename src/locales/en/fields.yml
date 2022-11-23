@@ -1,10 +1,6 @@
-photoIdSelection:
-  h1: "Select one photo ID you can take to a Post Office"
-  content: "Your photo ID must be an orginal, you cannot use a photocopy. Both UK and non-UK passports must be chipped.11111"
-
 photoIdChoice:
   legend: ""
-  hint: ""
+  hint: If your passport has expired, you can still use it to prove your identity up until 18 months after the expiry date
   label: ""
   validation:
     required: You must choose an option to continue

@@ -14,7 +14,17 @@ module.exports = {
   APP: {
     BASE_URL: process.env.EXTERNAL_WEBSITE_HOST || "http://localhost:8000",
     PATHS: {
-      KBV: "/kbv",
+      CIC: "/cic",
+      PASSPORT_DETAILS: "/passportDetails",
+      BRP_DETAILS: "/brpDetails",
+      PHOTOCARD_DL_DETAILS: "/photocardDlDetails",
+      OTHER_PASSPORT_DETAILS: "/otherPassportDetails"
+    },
+    PHOTO_ID_OPTIONS:{
+      UK_PASSPORT:"ukPassport",
+      BRP: "brp",
+      UK_PHOTOCARD_DL: "ukPhotocardDL",
+      OTHER_PASSPORT: "otherPassport"
     },
     ANALYTICS: {
       ID: process.env.GTM_ID,

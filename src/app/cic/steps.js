@@ -25,6 +25,18 @@ module.exports = {
     fields: ["expiryDate"],
     next: "done"
   },
+  "/brpDetails": {
+    fields: ["expiryDate"],
+    next: "done"
+  },
+  "/photocardDlDetails": {
+    fields: ["expiryDate"],
+    next: "done"
+  },
+  "/otherPassport": {
+    fields: ["expiryDate"],
+    next: "done"
+  },
   '/done': {
 
   }
