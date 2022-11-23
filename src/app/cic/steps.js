@@ -24,14 +24,9 @@ module.exports = {
   "/passportDetails": {
     fields: ["expiryDate"],
     controller: details,
-    next: "validate"
+    next: "done"
   },
-  "/validate": {
-   controller: validate
-  },
-
   '/done': {
-    backLink: null,
-    noPost: true
+
   }
 };
