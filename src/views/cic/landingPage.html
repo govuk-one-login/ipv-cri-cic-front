@@ -1,15 +1,9 @@
 {% extends "base-form.njk" %}
 
 {# the content for this page is controlled by locales/en/default.yml #}
+{% set hmpoTitle = landingPage.pageTitle %}
 {% set hmpoPageKey = "landingPage" %}
-
-{% from "govuk/components/details/macro.njk" import govukDetails %}
-{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
-{% from "govuk/components/button/macro.njk" import govukButton %}
-{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-
-
-{% set pageTitleName = 'landingPage.pageTitle' | translate %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
 {% block content %}
 
@@ -23,34 +17,27 @@
   <li>{{ "landingPage.instructions.steps.three" | translate }}</li>
 </ol>
 
+
+{% set insetBody %}
 <div>
-  <p>
-    {{ "common.postoffice.service" | translate }}
-    <a href={{pathToPoBranchSearch}} class="govuk-link">{{ "common.postoffice.postofficeLink" | translate }}</a>.
-  </p>
+   <p>
+     {{ "common.postoffice.service" | translate }}
+     <a href={{ "common.postoffice.pathToPoBranchSearch" | translate }}> {{ "common.postoffice.postofficeLink" | translate }}</a>
+   </p>
 </div>
+{% endset %}
+
+{{ govukInsetText({ html: insetBody }) }}
 
 
 <h2 class="govuk-heading-m">{{ "landingPage.dataInfo.title" | translate }}</h2>
 <p>{{ "landingPage.dataInfo.body" | translate }}</p>
 
-{% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
-
-{{ hmpoSubmit(ctx, {id: 'submitButton'}) }}
-{% endcall %}
-
-<!--<form id="form-tracking" action="/cic/photoIdSelection" method="get">-->
-<!--    <button class="govuk-button" data-module="govuk-button">-->
-<!--    {{"buttons.continue" | translate }}-->
-<!--     </button>-->
-<!--</form>-->
+{% block submitButton %}
+  {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
+{% endblock %}
 
 
 {% include "common/confirmIdentityAnotherWay.html" %}
 
-{% endblock %}
-
-{% block bodyEnd %}
-  <script type="text/javascript" src="/public/scripts/application.js"></script>
-  <script type="text/javascript" nonce='{{scriptNonce}}'>window.GOVUKFrontend.appInit('{{gtmId}}', '{{analyticsCookieDomain}}')</script>
 {% endblock %}

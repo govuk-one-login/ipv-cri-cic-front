@@ -18,93 +18,6 @@ photoIdChoice:
     otherPassport:
       label: Non-UK passport
 
-
-expiryDate:
-  legend: Expiry date
-  hint: "For example, 27 5 2029"
-  validation:
-    required: "Enter the expiry date as it appears on your passport"
-
-
-
-drivingLicenceNumber:
-  label: Licence number
-  hint: "This is the long number in section 5 on your licence for example HARRI559146MJ931"
-  validation:
-    default: "Enter the number as it appears on your driving licence"
-    exactlength: "Your licence number should be 16 characters long"
-    numeric: "Your licence number should not include any symbols or spaces"
-    limit: "Driving licence numbers do not start with 16 – enter the number as it appears on your driving licence"
-    dvlaChecker: "Enter the number exactly as it appears on your driving licence"
-    regexSpecialCharacters: "Your licence number should not include any symbols or spaces"
-dvaLicenceNumber:
-  label: Licence number
-  hint: "This is the long number in section 5 on your licence"
-  validation:
-    default: "Enter the number as it appears on your driving licence"
-    exactlength: "Your licence number should be 8 characters long"
-    numeric: "Your licence number should not include any symbols or spaces"
-issueNumber:
-  label: Issue number
-  hint: "This is the 2 digit number after the space in section 5 of your licence"
-  validation:
-    default: "Enter the issue number as it appears on your driving licence"
-    exactlength: "Your issue number should be 2 numbers long"
-    regexIssueNumber: "Your issue number should not include any symbols or spaces"
-
-surname:
-  label: Last name
-  validation:
-    default: "Enter your last name as it appears on your driving licence"
-    maxlength: "Enter your last name as it appears on your driving licence"
-    regexSurname: "Enter your last name as it appears on your driving licence"
-
-firstName:
-  label: First name
-  hint: "This is in section 2 of your licence. You do not need to include your title."
-  validation:
-    default: "Enter your first name as it appears on your driving licence"
-    maxlength: "Enter your first name as it appears on your driving licence"
-    regexFirstName: "Enter your first name as it appears on your driving licence"
-    firstNameMiddleNameLength: "Enter your first and middle names as they appear on your driving licence"
-
-middleNames:
-  label: Middle names
-  hint: "Leave this blank if you do not have any middle names"
-  validation:
-    maxlength: "Enter any middle names as they appear on your driving licence"
-    regexMiddleNames: "Enter any middle names as they appear on your driving licence"
-    firstNameMiddleNameLength: "Enter any middle names as they appear on your driving licence"
-
-dateOfBirth:
-  legend: Date of birth
-  hint: "For example, 5 9 1973"
-  validation:
-    default: "Enter your date of birth as it appears on your driving licence"
-    before: "Your date of birth must be in the past"
-    dvlaChecker: "Check you have entered your date of birth correctly"
-dvaDateOfBirth:
-  legend: Date of birth
-  hint: "For example, 5 9 1973"
-  validation:
-    default: "Enter your date of birth as it appears on your driving licence"
-    before: "Your date of birth must be in the past"
-    dvlaChecker: "Enter your date of birth as it appears on your driving licence"
-
-issueDate:
-  legend: Issue date
-  hint: "This is the date in section 4a of your licence, for example 27 5 2019"
-  validation:
-    default: "Enter the date as it appears on your driving licence"
-    before: "The issue date must be in the past"
-
-dateOfIssue:
-  legend: Issue date
-  hint: "This is the date in section 4a of your licence, for example 27 5 2019"
-  validation:
-    default: "Enter the date as it appears on your driving licence"
-    before: "The issue date must be in the past"
-
 "date-day":
   label: Day
 
@@ -114,39 +27,10 @@ dateOfIssue:
 "date-year":
   label: Year
 
-postcode:
-  label: Postcode
-  hint: "Enter the postcode in the address in section 8 of your licence"
+expiryDate:
+  legend: Expiry date
+  hint: "For example, 27 5 2029"
   validation:
-    default: "Enter the postcode as it appears on your driving licence"
-    maxlength: "Your postcode should be between 5 and 7 characters"
-    minlength: "Your postcode should be between 5 and 7 characters"
-    regexPostcode: "Your postcode should only include numbers and letters"
-
-proveAnotherWayRadio:
-  label: What would you like to do?
-  validation:
-    required: You must choose an option to continue
-  items:
-    proveAnotherWay:
-      label: Prove your identity another way
-      value: continue
-    retry:
-      label: Try to enter your driving licence details and prove your identity with a GOV.UK account
-      value: retry
-
-licenceIssuerRadio:
-  validation:
-    required: You must choose an option to continue
-  items:
-    DVLA:
-      label: DVLA
-      value: DVLA
-    DVA:
-      label: DVA
-      value: DVA
-    noLicence:
-      label: I do not have a UK driving licence
-      value: noLicence
-
+    default: "Enter the expiry date as it appears on your passport"
+    after: "Your passport must not have expired more than 18 months ago"
 

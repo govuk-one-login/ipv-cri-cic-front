@@ -1,5 +1,4 @@
 const photoIdSelect = require("./controllers/photoIdSelection");
-const validate = require("./controllers/validate");
 const details = require("./controllers/details");
 
 module.exports = {
@@ -23,6 +22,7 @@ module.exports = {
 
   "/passportDetails": {
     fields: ["expiryDate"],
+    controller: details,
     next: "done"
   },
   "/brpDetails": {

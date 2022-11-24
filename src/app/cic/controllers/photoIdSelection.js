@@ -57,16 +57,16 @@ class PhotoIdSelectionController extends BaseController {
     console.log("HERRRRRRR");
     if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.UK_PASSPORT)) {
       console.log("UK passportttt")
-      return APP.PATHS.CIC + APP.PATHS.PASSPORT_DETAILS
+      return APP.PATHS.PASSPORT_DETAILS
     } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.BRP)) {
       console.log("UK BRP")
-      return APP.PATHS.CIC + APP.PATHS.BRP_DETAILS
+      return APP.PATHS.BRP_DETAILS
     } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL)) {
       console.log("UK DL")
-      return APP.PATHS.CIC + APP.PATHS.PHOTOCARD_DL_DETAILS
+      return APP.PATHS.PHOTOCARD_DL_DETAILS
     } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT)) {
       console.log("other passport")
-      return APP.PATHS.CIC + APP.PATHS.OTHER_PASSPORT_DETAILS
+      return APP.PATHS.OTHER_PASSPORT_DETAILS
     } else {
       return "/done";
     }

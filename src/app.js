@@ -5,6 +5,7 @@ const path = require("path");
 const session = require("express-session");
 const AWS = require("aws-sdk");
 const DynamoDBStore = require("connect-dynamodb")(session);
+const wizard = require('hmpo-form-wizard');
 
 const commonExpress = require("di-ipv-cri-common-express");
 
@@ -16,6 +17,8 @@ const { setAPIConfig, setOAuthPaths } = require("./lib/settings");
 const { setGTM } = require("di-ipv-cri-common-express/src/lib/settings");
 const { getGTM } = require("di-ipv-cri-common-express/src/lib/locals");
 const { setI18n } = require("di-ipv-cri-common-express/src/lib/i18next");
+const steps = require("./app/cic/steps");
+const fields = require("./app/cic/fields");
 
 const {
   API,
@@ -119,10 +122,12 @@ router.use(setAxiosDefaults);
 
 router.use("/oauth2", commonExpress.routes.oauth2);
 
-router.use("/cic", require("./app/cic"));
+const wizardOptions = {
+  name: "cri-cic-front",
+  journeyName: "cic",
+  templatePath: "cic",
+};
 
-router.use("^/$", (req, res) => {
-  res.render("index");
-});
+router.use(wizard(steps, fields, wizardOptions));
 
 router.use(commonExpress.lib.errorHandling.redirectAsErrorToCallback);

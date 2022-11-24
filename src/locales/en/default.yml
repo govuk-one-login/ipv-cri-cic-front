@@ -61,28 +61,10 @@ passport:
   label: Year
 
 
-selectPhotoId123:
-      title: "Select one photo ID you can take to a Post Office"
-      body: "Your photo ID must be an orginal, you cannot use a photocopy. Both UK and non-UK passports must be chipped.11111"
-      options:
-        ukPassport:
-          radioTitle: "UK passport"
-          radioDescription: "If your passport has expired, you can still use it to prove your identity up until 18 months after the expiry date."
-        brp: "Biometric residence permit(BRP)"
-        ukPhotocardDL: "UK photocard driving licence"
-        otherPassport: "Non-UK passport"
-
-      errors:
-        validationError: "Select anyone photo ID you can take to a Post Office."
-      noDocuments: "I do not have any of these documents"
-
 common:
     confirmIdentityAnotherWay:
       confirmIdentity: "I want to prove my identity another way"
     postoffice:
       service: "Not all Post Offices offer this service. You can "
       postofficeLink: "find your nearest Post Office that offers in branch verification here."
-
-licence-issuer:
-  title: Who was your UK driving licence issued by?
-  content: You can find this in section 4c of your driving licence. It will either say DVLA (Driving and vehicle Licensing Agency) or DVA (Driver and Vehicle Agency).
+      pathToPoBranchSearch: "https://www.postoffice.co.uk/branch-finder"
