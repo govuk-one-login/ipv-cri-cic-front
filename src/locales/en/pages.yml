@@ -5,9 +5,9 @@ passport:
   passportInformationContext: "We need this information to check that your photo ID is valid. "
 
 photoIdSelection:
-  label: "Select one photo ID you can take to a Post Office"
-  h1: "Select one photo ID you can take to a Post Office"
-  content: "Your photo ID must be an orginal, you cannot use a photocopy. Both UK and non-UK passports must be chipped.11111"
+  label: "Select a photo ID you can take to a Post Office"
+  h1: "Select a photo ID you can take to a Post Office"
+  content: "Your photo ID must be an orginal, you cannot use a photocopy."
 
 landingPage:
   pageTitle: "Prove your identity in person"

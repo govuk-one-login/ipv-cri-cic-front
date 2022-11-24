@@ -33,9 +33,11 @@
 <h2 class="govuk-heading-m">{{ "landingPage.dataInfo.title" | translate }}</h2>
 <p>{{ "landingPage.dataInfo.body" | translate }}</p>
 
+{% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
 {% block submitButton %}
   {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
 {% endblock %}
+{% endcall %}
 
 
 {% include "common/confirmIdentityAnotherWay.html" %}

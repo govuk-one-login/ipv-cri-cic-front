@@ -1,55 +1,65 @@
 buttons:
-  authorizeAndReturn: Authorize And Return
-  continue: Continue
   next: Continue
   cancel: Cancel
+  continue: Continue
+
 govuk:
-  phaseBanner:
-    tag: beta
-    content: This is a new service – your <a href="https://signin.account.gov.uk/contact-us" class="govuk-link" rel="noopener" target="_blank">feedback (opens in new tab)</a> will help us to improve it.
-  serviceName: " "
+  serviceName: Prove your identity
   backLink: Back
-  errorSummaryTitle: There is a problem
+  errorSummaryTitle: There’s a problem
   error: Error
   warning: Warning
   skipLink: Skip to main content
-  betaBannerRequired: true
-  betaBannerContent:
-    betaBannerContentLabel: beta
-    betaBannerContentHTML: 'This is a new service – your <a class="govuk-link" rel="noopener" target="_blank" href="https://signin.account.gov.uk/contact-us">feedback (opens in new tab)</a>  will help us to improve it.'
   cookie:
     cookieBanner:
-      title: Cookies on GOV.UK account
-      heading: Cookies on GOV.UK account
-      paragraph1: We use some essential cookies to make this service work.
-      paragraph2: We’d like to set additional cookies so we can remember your settings, understand how people use the service and make improvements.
-      changeCookiePreferencesLink: change your cookie settings
-      cookieBannerAccept:
+      title: "Cookies on GOV.UK account"
+      heading: "Cookies on GOV.UK account"
+      paragraph1: "We use some essential cookies to make this service work."
+      paragraph2: "We’d also like to use analytics cookies so we can understand how you use the service and make improvements."
+      buttonAcceptText: "Accept analytics cookies"
+      buttonRejectText: "Reject analytics cookies"
+      linkViewCookiesText: "View cookies"
+      cookieBannerHideLink: "Hide this message"
+      cookeBannerAccept:
         paragraph1: "You’ve accepted additional cookies. You can "
         paragraph2: " at any time."
-      cookieBannerReject:
+      cookeBannerReject:
         paragraph1: "You’ve rejected additional cookies. You can "
         paragraph2: " at any time."
-      buttonAcceptText: Accept analytics cookies
-      buttonRejectText: Reject analytics cookies
-      linkViewCookies: View cookies
-      cookieBannerHideLink: Hide this message
+      changeCookiePreferencesLink: "change your cookie settings"
+    cookieText: "GOV.UK uses cookies to make the site simpler."
+    cookieLink: "#"
+    cookieLinkText: "Find out more about cookies"
+  phaseBanner:
+    tag: beta
+    content: This is a new service – your <a href="https://signin.account.gov.uk/contact-us" class="govuk-link" rel="noopener" target="_blank">feedback (opens in new tab)</a> will help us to improve it.
   footerNavItems:
     meta:
       items:
-        - href: "https://signin.account.gov.uk/accessibility-statement"
-          text: "Accessibility statement"
-        - href: "https://signin.account.gov.uk/cookies"
-          text: "Cookies"
-        - href: "https://signin.account.gov.uk/terms-and-conditions"
-          text: "Terms and conditions"
-        - href: "https://signin.account.gov.uk/privacy-notice"
-          text: "Privacy notice"
-        - href: "https://signin.account.gov.uk/contact-us"
-          text: "Support"
-passport:
-  title: "When does your passport expire?"
-  passportInformationContext: "We need this information to check that your photo ID is valid. "
+        - href: https://signin.account.gov.uk/accessibility-statement
+          text: Accessibility statement
+        - href: https://signin.account.gov.uk/cookies
+          text: Cookies
+        - href: https://signin.account.gov.uk/terms-and-conditions
+          text: Terms and conditions
+        - href: https://signin.account.gov.uk/privacy-notice
+          text: Privacy notice
+        - href: https://signin.account.gov.uk/contact-us
+          text: Support
+  copyright:
+    text: "© Crown copyright"
+  contentLicence:
+    html: "All content is available under the <a class=\"govuk-footer__link\" href=\"https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/\" rel=\"licence\">Open Government Licence v3.0</a>, except where otherwise stated"
+
+error:
+  unrecoverable:
+    title: Sorry, there is a problem with the service
+    subTitle: We cannot prove your identity right now.
+    subHeading: What can you do
+    description: Go back to the service you were trying to use and start again. You can look for the service using your search engine or find it from the GOV.UK homepage.
+    contactMeLink: Contact the GOV.UK account team (opens in a new tab)
+    buttonText: Go to the GOV.UK homepage
+    buttonLink: https://www.gov.uk/
 
 "date-day":
   label: Day
@@ -59,7 +69,6 @@ passport:
 
 "date-year":
   label: Year
-
 
 common:
     confirmIdentityAnotherWay:
