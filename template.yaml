@@ -3,7 +3,7 @@ AWSTemplateFormatVersion: "2010-09-09"
 Transform:
   - AWS::Serverless-2016-10-31
 Description: >-
-  This creates the necessary components to deploy the Claimed Identity CRI(CIC) FE onto ECS
+  This creates the necessary components to deploy the Claimed Identity (CIC) FE onto ECS
   Fargate within an existing VPC and private subnets (imported parameters).
   Claimed Identity Front can be invoked via the public API Gateway on the url in the
   CICFrontURL output.
@@ -67,55 +67,40 @@ Mappings:
   ElasticLoadBalancerAccountIds:
     eu-west-2:
       AccountId: 652711504416
+
   EnvironmentVariables:
     ### These environment variables are referenced further down the file.
     ### Please ensure that any variables defined for an environment are defined for _all_ environments.
     dev:
-      OAUTHENABLED: true
-      FEURL: "www.review-c.dev.account.gov.uk"
-      APPURL: "app.review-c.dev.account.gov.uk"
-      GTMCONTAINERID: "TK92W68"
-      ANALYTICSCOOKIEDOMAIN: ".account.gov.uk"
-      SERVICECOOKIEDOMAIN: ".account.gov.uk"
-      ISSESSIONFINISHEDPOLLINGDURATION: "1800000" # 30 minutes in milliseconds
-      ISSESSIONFINISHEDINTERVAL: "3000" # Time between API calls. 3 seconds in milliseconds
+      EXTERNALWEBSITEHOST: "www.review-c.dev.account.gov.uk"
+      APIBASEURL: "app.review-c.dev.account.gov.uk"
+      SESSIONTABLENAME: "cic-front-sessions-dev"
+      GTMID: "TK92W68"
+      ANALYTICSDOMAIN: "dev.account.gov.uk"
     build:
-      OAUTHENABLED: true
-      FEURL: "www.review-c.build.account.gov.uk"
-      APPURL: "app.review-c.build.account.gov.uk"
-      GTMCONTAINERID: "TK92W68"
-      ANALYTICSCOOKIEDOMAIN: ".account.gov.uk"
-      SERVICECOOKIEDOMAIN: ".account.gov.uk"
-      ISSESSIONFINISHEDPOLLINGDURATION: "1800000" # 30 minutes in milliseconds
-      ISSESSIONFINISHEDINTERVAL: "3000" # Time between API calls. 3 seconds in milliseconds
+      EXTERNALWEBSITEHOST: "www.review-c.build.account.gov.uk"
+      APIBASEURL: "app.review-c.build.account.gov.uk"
+      SESSIONTABLENAME: "cic-front-sessions-build"
+      GTMID: "TK92W68"
+      ANALYTICSDOMAIN: "build.account.gov.uk"
     staging:
-      OAUTHENABLED: true
-      APPSTOREURL: "https://beta.itunes.apple.com/v1/app/1633452907"
-      FEURL: "www.review-c.staging.account.gov.uk"
-      APPURL: "app.review-c.staging.account.gov.uk"
-      GTMCONTAINERID: "TK92W68"
-      ANALYTICSCOOKIEDOMAIN: ".account.gov.uk"
-      SERVICECOOKIEDOMAIN: ".account.gov.uk"
-      ISSESSIONFINISHEDPOLLINGDURATION: "1800000" # 30 minutes in milliseconds
-      ISSESSIONFINISHEDINTERVAL: "3000" # Time between API calls. 3 seconds in milliseconds
+      EXTERNALWEBSITEHOST: "www.review-c.staging.account.gov.uk"
+      APIBASEURL: "app.review-c.staging.account.gov.uk"
+      SESSIONTABLENAME: "cic-front-sessions-staging"
+      GTMID: "TK92W68"
+      ANALYTICSDOMAIN: "staging.account.gov.uk"
     integration:
-      OAUTHENABLED: true
-      FEURL: "www.review-c.integration.account.gov.uk"
-      APPURL: "app.review-c.integration.account.gov.uk"
-      GTMCONTAINERID: "TK92W68"
-      ANALYTICSCOOKIEDOMAIN: ".account.gov.uk"
-      SERVICECOOKIEDOMAIN: ".account.gov.uk"
-      ISSESSIONFINISHEDPOLLINGDURATION: "1800000" # 30 minutes in milliseconds
-      ISSESSIONFINISHEDINTERVAL: "3000" # Time between API calls. 3 seconds in milliseconds
+      EXTERNALWEBSITEHOST: "www.review-c.integration.account.gov.uk"
+      APIBASEURL: "app.review-c.integration.account.gov.uk"
+      SESSIONTABLENAME: "cic-front-sessions-integration"
+      GTMID: "TK92W68"
+      ANALYTICSDOMAIN: "integration.account.gov.uk"
     production:
-      OAUTHENABLED: true
-      FEURL: "www.review-c.account.gov.uk"
-      APPURL: "app.review-c.account.gov.uk"
-      GTMCONTAINERID: "TT5HDKV"
-      ANALYTICSCOOKIEDOMAIN: ".account.gov.uk"
-      SERVICECOOKIEDOMAIN: ".account.gov.uk"
-      ISSESSIONFINISHEDPOLLINGDURATION: "1800000" # 30 minutes in milliseconds
-      ISSESSIONFINISHEDINTERVAL: "3000" # Time between API calls. 3 seconds in milliseconds
+      EXTERNALWEBSITEHOST: "www.review-c.account.gov.uk"
+      APIBASEURL: "app.review-c.account.gov.uk"
+      SESSIONTABLENAME: "cic-front-sessions-production"
+      GTMID: "TT5HDKV"
+      ANALYTICSDOMAIN: "account.gov.uk"
 
 Resources:
   # Security Groups for the ECS service and load balancer
@@ -123,7 +108,7 @@ Resources:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
       GroupDescription: >-
-        CI Front LoadBalancer Security Group
+        CIC Front LoadBalancer Security Group
       SecurityGroupIngress:
         - CidrIp: 0.0.0.0/0
           Description: Allow from anyone on port 80
@@ -140,17 +125,17 @@ Resources:
       GroupId: !GetAtt LoadBalancerSG.GroupId
       IpProtocol: tcp
       Description: >-
-        Egress between the CI Front load balancer and
-        the CI Front ECS security group
+        Egress between the CIC Front load balancer and
+        the CIC Front ECS security group
       DestinationSecurityGroupId: !GetAtt ECSSecurityGroup.GroupId
-      FromPort: 8000
-      ToPort: 8000
+      FromPort: 8080
+      ToPort: 8080
 
   ECSSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
       GroupDescription: >-
-        CI Front ECS Security Group permitting outbound
+        CIC Front ECS Security Group permitting outbound
         to anywhere.
       SecurityGroupEgress:
         - CidrIp: 0.0.0.0/0
@@ -167,8 +152,8 @@ Resources:
       Description: >-
         CIC Front ECS permits inbound from the CIC Front
         load balancer.
-      FromPort: 8000
-      ToPort: 8000
+      FromPort: 8080
+      ToPort: 8080
       GroupId: !GetAtt ECSSecurityGroup.GroupId
       SourceSecurityGroupId: !GetAtt LoadBalancerSG.GroupId
 
@@ -176,7 +161,7 @@ Resources:
     Condition: IsNotDevelopment
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub cic-cri-front-${Environment}-access-logs
+      BucketName: !Sub cic-front-${Environment}-access-logs
       VersioningConfiguration:
         Status: "Enabled"
       PublicAccessBlockConfiguration:
@@ -270,7 +255,7 @@ Resources:
         - Key: Product
           Value: "GOV.UK sign in"
         - Key: System
-          Value: "CI CRI"
+          Value: "CIC"
         - Key: Environment
           Value: !Sub "${Environment}"
 
@@ -290,7 +275,7 @@ Resources:
       LaunchType: FARGATE
       LoadBalancers:
         - ContainerName: app
-          ContainerPort: 8000
+          ContainerPort: 8080
           TargetGroupArn: !Ref LoadBalancerListenerTargetGroupECS
       NetworkConfiguration:
         AwsvpcConfiguration:
@@ -309,7 +294,7 @@ Resources:
         - Key: Product
           Value: "GOV.UK sign in"
         - Key: System
-          Value: "CI CRI"
+          Value: "CIC"
         - Key: Environment
           Value: !Sub "${Environment}"
     DependsOn:
@@ -349,39 +334,27 @@ Resources:
             #                - Url: !ImportValue backend-api-apigateway-url
             - Name: EXTERNAL_WEBSITE_HOST
               Value: !GetAtt ApiGwHttpEndpoint.ApiEndpoint
-            - Name: OAUTH_ENABLED
-              Value: !FindInMap [EnvironmentVariables, !Ref Environment, OAUTHENABLED ]
-            - Name: ENVIRONMENT
-              Value: !Sub "${Environment}"
-            - Name: PORT
-              Value: 8000
-            - Name: FRONT_END_URL
-              Value: !Sub
-                - "https://${Url}"
-                - Url: !FindInMap [EnvironmentVariables, !Ref Environment, FEURL ]
-            - Name: FRONT_END_URL_ALTERNATE_SUBDOMAIN
-              Value: !Sub
-                - "https://${Url}"
-                - Url: !FindInMap [EnvironmentVariables, !Ref Environment, APPURL ]
+            - Name: SESSION_TABLE_NAME
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, SESSIONTABLENAME ]
+#            - Name: FRONT_END_URL
+#              Value: !Sub
+#                - "https://${Url}"
+#                - Url: !FindInMap [EnvironmentVariables, !Ref Environment, FEURL ]
+
             #No backend api url available ????
             #            - Name: API_URL
             #              Value: !Sub
             #                - "https://${Url}"
             #                - Url: !ImportValue backend-api-apigateway-url
-            - Name: GTM_CONTAINER_ID
+            - Name: GTM_ID
               Value: !Sub
                 - "GTM-${ContainerId}"
-                - ContainerId: !FindInMap [EnvironmentVariables, !Ref Environment, GTMCONTAINERID ]
-            - Name: ANALYTICS_COOKIE_DOMAIN
-              Value: !FindInMap [EnvironmentVariables, !Ref Environment, ANALYTICSCOOKIEDOMAIN ]
-            - Name: SERVICE_COOKIE_DOMAIN
-              Value: !FindInMap [EnvironmentVariables, !Ref Environment, SERVICECOOKIEDOMAIN ]
-            - Name: IS_SESSION_FINISHED_POLLING_DURATION
-              Value: !FindInMap [EnvironmentVariables, !Ref Environment, ISSESSIONFINISHEDPOLLINGDURATION]
-            - Name: IS_SESSION_FINISHED_INTERVAL
-              Value: !FindInMap [EnvironmentVariables, !Ref Environment, ISSESSIONFINISHEDINTERVAL ]
+                - ContainerId: !FindInMap [EnvironmentVariables, !Ref Environment, GTMID ]
+            - Name: ANALYTICS_DOMAIN
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, ANALYTICSDOMAIN ]
+
           PortMappings:
-            - ContainerPort: 8000
+            - ContainerPort: 8080
               Protocol: tcp
           LogConfiguration:
             LogDriver: awslogs
@@ -402,7 +375,7 @@ Resources:
         - Key: Product
           Value: "GOV.UK sign in"
         - Key: System
-          Value: "CI CRI"
+          Value: "CIC"
         - Key: Environment
           Value: !Sub "${Environment}"
 
@@ -441,11 +414,11 @@ Resources:
         - !Ref AWS::NoValue
 
   ECSTaskRole:
-    Type: "AWS::IAM::Role"
+    Type: 'AWS::IAM::Role'
     Properties:
       AssumeRolePolicyDocument:
         Statement:
-          - Action: "sts:AssumeRole"
+          - Action: 'sts:AssumeRole'
             Effect: Allow
             Principal:
               Service: ecs-tasks.amazonaws.com
@@ -533,13 +506,11 @@ Resources:
           "responseLength":"$context.responseLength"
           }
 
-  #  WAFv2ACLAssociation:
-  #    Type: AWS::WAFv2::WebACLAssociation
-  #    Properties:
-  #      ResourceArn: !Sub
-  #        - "arn:aws:elasticloadbalancing:${AWS::Region}:${AWS::AccountId}:loadbalancer/${LoadBalancerFullName}"
-  #        - LoadBalancerFullName: !GetAtt LoadBalancer.LoadBalancerFullName
-  #      WebACLArn: !ImportValue 'di-cic-front-waf-Arn'
+  WAFv2ACLAssociation:
+    Type: AWS::WAFv2::WebACLAssociation
+    Properties:
+      ResourceArn: !Ref LoadBalancer
+      WebACLArn: !Sub "{{resolve:ssm:/${Environment}/Platform/Security/WafArn}}"
 
   APIGWAccessLogsGroup:
     Type: AWS::Logs::LogGroup

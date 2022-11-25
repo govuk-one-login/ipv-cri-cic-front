@@ -1,14 +1,10 @@
 photoIdChoice:
-  legend: ""
-  hint: If your passport has expired, you can still use it to prove your identity up until 18 months after the expiry date
-  label: ""
   validation:
     required: You must choose an option to continue
   content: ""
   items:
     ukPassport:
       label: UK passport
-      hint: If your passport has expired, you can still use it to prove your identity up until 18 months after the expiry date.
     brp:
       label: Biometric residence permit(BRP)
 

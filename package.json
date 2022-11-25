@@ -10,6 +10,7 @@
   "scripts": {
     "start": "node src/app.js",
     "start:ci": "API_BASE_URL=http://localhost:8090 REDIS_SESSION_URL= NODE_ENV=development node src/app.js",
+    "start:debug": "DEBUG=* node src/app.js",
     "dev": "nodemon src/app.js",
     "build": "yarn build-sass && yarn build-js && yarn copy-assets",
     "build-sass": "rm -rf dist/public/style.css && sass --no-source-map src/assets/scss/application.scss dist/public/stylesheets/application.css --style compressed",

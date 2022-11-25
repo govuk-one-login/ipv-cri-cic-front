@@ -5,7 +5,7 @@ passport:
   passportInformationContext: "We need this information to check that your photo ID is valid. "
 
 photoIdSelection:
-  label: "Select a photo ID you can take to a Post Office"
+  title: "Select a photo ID you can take to a Post Office"
   h1: "Select a photo ID you can take to a Post Office"
   content: "Your photo ID must be an orginal, you cannot use a photocopy."
 
