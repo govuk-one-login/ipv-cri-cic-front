@@ -1,6 +1,6 @@
 photoIdChoice:
   validation:
-    required: You must choose an option to continue
+    required: Select a photo ID you can take to a Post Office
   content: ""
   items:
     ukPassport:
@@ -23,10 +23,17 @@ photoIdChoice:
 "date-year":
   label: Year
 
-expiryDate:
-  legend: Expiry date
+passportExpiryDate:
+  legend: Date of expiry
   hint: "For example, 27 5 2029"
   validation:
     default: "Enter the expiry date as it appears on your passport"
     after: "Your passport must not have expired more than 18 months ago"
+
+brpExpiryDate:
+  legend: Date of expiry
+  hint: "For example, 27 5 2029"
+  validation:
+    default: "Enter the expiry date as it appears on your BRP"
+    after: "The expiry date must be in the future"
 

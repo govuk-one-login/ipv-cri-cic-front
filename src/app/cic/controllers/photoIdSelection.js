@@ -8,6 +8,10 @@ class PhotoIdSelectionController extends BaseController {
     try {
       logger.info("user submitting photo Id choice", { req, res });
       req.sessionModel.set("redirect_url", undefined);
+      req.sessionModel.set(APP.PHOTO_ID_OPTIONS.UK_PASSPORT, undefined);
+      req.sessionModel.set(APP.PHOTO_ID_OPTIONS.BRP, undefined);
+      req.sessionModel.set(APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL, undefined);
+      req.sessionModel.set(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT, undefined);
 
       const action = req.form.values.photoIdChoice;
       req.sessionModel.set("photoIdChoice", action);
@@ -46,7 +50,7 @@ class PhotoIdSelectionController extends BaseController {
           return next();
         }
       }
-      console.log("RICHAAAAAAAA")
+      logger.info("photo-id-selection: Invalid action " + action);
       return next(new Error("photo-id-selection: Invalid action " + action));
     } catch (err) {
       return next(err);
@@ -54,21 +58,15 @@ class PhotoIdSelectionController extends BaseController {
   }
 
   next(req) {
-    console.log("HERRRRRRR");
+
     if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.UK_PASSPORT)) {
-      console.log("UK passportttt")
       return APP.PATHS.PASSPORT_DETAILS
     } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.BRP)) {
-      console.log("UK BRP")
       return APP.PATHS.BRP_DETAILS
     } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL)) {
-      console.log("UK DL")
       return APP.PATHS.PHOTOCARD_DL_DETAILS
     } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT)) {
-      console.log("other passport")
       return APP.PATHS.OTHER_PASSPORT_DETAILS
-    } else {
-      return "/done";
     }
   }
 }

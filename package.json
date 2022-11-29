@@ -86,6 +86,7 @@
     "hmpo-i18n": "5.0.2",
     "hmpo-logger": "6.1.1",
     "jsonwebtoken": "8.5.1",
-    "nunjucks": "3.2.3"
+    "nunjucks": "3.2.3",
+    "moment": "^2.29.3"
   }
 }

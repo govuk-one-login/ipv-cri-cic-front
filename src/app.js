@@ -33,6 +33,7 @@ const { setup } = require("hmpo-app");
 
 const loggerConfig = {
   console: true,
+  consoleLevel: 'debug',
   consoleJSON: true,
   app: false,
 };

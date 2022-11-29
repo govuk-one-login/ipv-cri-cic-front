@@ -2,6 +2,10 @@
 
 passport:
   title: "When does your passport expire?"
+  passportInformationContext: "We need this information to check that your photo ID is valid."
+
+brp:
+  title: "When does your biometric residence permit (BRP) expire?"
   passportInformationContext: "We need this information to check that your photo ID is valid. "
 
 photoIdSelection:
@@ -22,3 +26,9 @@ landingPage:
     title: "What happens after the Post Office"
     body: "Once your identity has been proven, you must return online to your GOV.UK account to access the service you need."
 
+
+photoIdExpiry:
+  pageTitle: "Your photo ID has expired"
+  title: "Your photo ID has expired"
+  one: "We can only accept photo IDs that are currently in date."
+  two: "To select another photo ID click Continue"

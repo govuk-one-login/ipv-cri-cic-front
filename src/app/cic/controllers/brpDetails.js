@@ -3,7 +3,8 @@ const DateControllerMixin = require("hmpo-components").mixins.Date;
 
 const DateController = DateControllerMixin(BaseController);
 
-class PassportDetailsController extends DateController {
+class BrpDetailsController extends DateController {
+
 
 }
-module.exports = PassportDetailsController;
+module.exports = BrpDetailsController;

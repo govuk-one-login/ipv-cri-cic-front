@@ -1,5 +1,7 @@
 const photoIdSelect = require("./controllers/photoIdSelection");
-const details = require("./controllers/details");
+const passportDetails = require("./controllers/passportDetails");
+const brpDetails = require("./controllers/brpDetails");
+const root = require("./controllers/root");
 
 module.exports = {
 
@@ -8,6 +10,7 @@ module.exports = {
     reset: true,
     entryPoint: true,
     skip: true,
+    controller: root,
     next: "landingPage",
   },
   "/landingPage": {
@@ -21,12 +24,13 @@ module.exports = {
   },
 
   "/passportDetails": {
-    fields: ["expiryDate"],
-    controller: details,
-    next: "done"
+    fields: ["passportExpiryDate"],
+    controller: passportDetails,
+    next: passportDetails.prototype.next
   },
   "/brpDetails": {
-    fields: ["expiryDate"],
+    fields: ["brpExpiryDate"],
+    controller: brpDetails,
     next: "done"
   },
   "/photocardDlDetails": {
@@ -37,7 +41,12 @@ module.exports = {
     fields: ["expiryDate"],
     next: "done"
   },
+  '/photoIdExpiry': {
+
+    next: "/photoIdSelection"
+  },
   '/done': {
 
-  }
+  },
+
 };
