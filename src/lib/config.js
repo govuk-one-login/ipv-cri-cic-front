@@ -14,7 +14,7 @@ module.exports = {
   APP: {
     BASE_URL: process.env.EXTERNAL_WEBSITE_HOST || "http://localhost:8000",
     PATHS: {
-      CIC: "/cic",
+      CIC: "/",
       PASSPORT_DETAILS: "/passportDetails",
       BRP_DETAILS: "/brpDetails",
       PHOTOCARD_DL_DETAILS: "/photocardDlDetails",
