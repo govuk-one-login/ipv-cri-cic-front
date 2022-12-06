@@ -24,7 +24,8 @@ photoIdChoice:
   label: Year
 
 passportExpiryDate:
-  legend: Date of expiry
+  legend: ""
+  label: ""
   hint: "For example, 27 5 2029"
   validation:
     default: "Enter the expiry date as it appears on your passport"
