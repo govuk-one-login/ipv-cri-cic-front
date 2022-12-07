@@ -1,0 +1,68 @@
+photoIdChoice:
+  validation:
+    required: Select a photo ID you can take to a Post Office
+  content: ""
+  items:
+    ukPassport:
+      label: UK passport
+    brp:
+      label: Biometric residence permit(BRP)
+
+    ukPhotocardDL:
+      label: UK photocard photo ID
+
+    otherPassport:
+      label: Non-UK passport
+
+"date-day":
+  label: Day
+
+"date-month":
+  label: Month
+
+"date-year":
+  label: Year
+
+passportExpiryDate:
+  legend: ""
+  label: ""
+  hint: "For example, 27 5 2029"
+  validation:
+    default: "Enter the expiry date as it appears on your passport"
+    after: "Your passport must not have expired more than 18 months ago"
+
+brpExpiryDate:
+  legend: Date of expiry
+  hint: "For example, 27 5 2029"
+  validation:
+    default: "Enter the expiry date as it appears on your BRP"
+    after: "The expiry date must be in the future"
+
+surname:
+  label: Surname
+  hint:
+  validation:
+    default: "Enter your last name as it appears on your photo ID"
+    maxlength: "Enter your last name as it appears on your photo ID"
+    regexSurname: "Enter your last name as it appears on your photo ID"
+
+firstName:
+  label: First name
+  hint:
+  validation:
+    default: "Enter your first name as it appears on your photo ID"
+    maxlength: "Enter your first name as it appears on your photo ID"
+    regexFirstname: "Enter your first name as it appears on your photo ID"
+
+middleName:
+  label: Middle names
+  hint: Leave this blank if you do not have any middle names
+
+dateOfBirth:
+  label: ""
+  legend: ""
+  hint: For example, 31 3 1980
+  validation:
+    default: "Enter your date of birth as it appears on your photo ID"
+    maxlength: "Enter your date of birth as it appears on your photo ID"
+    regexSurname: "Enter your date of birth as it appears on your photo ID"

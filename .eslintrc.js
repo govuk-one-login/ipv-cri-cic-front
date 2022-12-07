@@ -1,29 +1,22 @@
 module.exports = {
     env: {
         node: true,
+        es6: true,
+        es2020: true,
+        mocha: true,
+    },
+    globals: {
+        sinon: true,
+        expect: true,
+        setupDefaultMocks: "readonly",
     },
     root: true,
-    parser: "@typescript-eslint/parser",
-    plugins: ["@typescript-eslint"],
-    extends: [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "prettier"
-    ],
+    extends: ["eslint:recommended", "prettier"],
     rules: {
-        "@typescript-eslint/no-var-requires": 0,
-        "@typescript-eslint/no-explicit-any": "off",
         "no-console": 2,
-        "@typescript-eslint/explicit-module-boundary-types": [
-            "warn",
-            {
-                allowArgumentsExplicitlyTypedAsAny: true,
-            },
-        ],
-        "@typescript-eslint/no-unused-vars": ["error"],
         "padding-line-between-statements": [
             "error",
-            {blankLine: "any", prev: "*", next: "*"},
+            { blankLine: "any", prev: "*", next: "*" },
         ],
     },
-}
+};

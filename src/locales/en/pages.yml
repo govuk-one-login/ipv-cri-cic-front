@@ -1,0 +1,47 @@
+# title is managed in default.yml
+
+passport:
+  title: "When does your passport expire?"
+  passportInformationContext: "We need this information to check that your photo ID is valid."
+
+brp:
+  title: "When does your biometric residence permit (BRP) expire?"
+  passportInformationContext: "We need this information to check that your photo ID is valid. "
+
+photoIdSelection:
+  title: "Select a photo ID you can take to a Post Office"
+  h1: "Select a photo ID you can take to a Post Office"
+  content: "Your photo ID must be an orginal, you cannot use a photocopy."
+
+landingPage:
+  pageTitle: "Prove your identity in person"
+  title: "Proving your identity in person"
+  body: "What you need to do"
+  instructions:
+    steps:
+      one: "Complete an online form to provide your basic personal details and select a photo ID you can take to the Post Office. We will then send you a confirmation email."
+      two: "Take the confirmation email and your photo ID to a Post Office."
+      three: "A member of Post Office staff will process your photo ID and take a photo of your face to verify your identity."
+  dataInfo:
+    title: "What happens after the Post Office"
+    body: "Once your identity has been proven, you must return online to your GOV.UK account to access the service you need."
+
+
+photoIdExpiry:
+  pageTitle: "Your photo ID has expired"
+  title: "Your photo ID has expired"
+  one: "We can only accept photo IDs that are currently in date."
+  two: "To select another photo ID click Continue"
+
+nameEntry:
+  title: "What is your name?"
+  nameEntryContext: "Enter your full name as it appears on your photo ID."
+  surname: "Surname"
+  givenNames: "Given names"
+  firstName: "First name"
+  middleName: "Middle names"
+  middleNameHint: "Leave this blank if you do not have middle names"
+
+dateOfBirth:
+  title: "What is your date of birth?"
+  dobInformationContext: "We need this information to check your identity."
