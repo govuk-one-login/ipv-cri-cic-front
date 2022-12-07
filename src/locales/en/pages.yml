@@ -4,6 +4,10 @@ passport:
   title: "When does your passport expire?"
   passportInformationContext: "We need this information to check that your photo ID is valid."
 
+nonUKPassport:
+  title: "When does your non-UK biometric passport expire?"
+  passportInformationContext: "We need this information to check that your photo ID is valid."
+
 brp:
   title: "When does your biometric residence permit (BRP) expire?"
   passportInformationContext: "We need this information to check that your photo ID is valid. "

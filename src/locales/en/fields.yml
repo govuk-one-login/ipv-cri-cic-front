@@ -31,6 +31,14 @@ passportExpiryDate:
     default: "Enter the expiry date as it appears on your passport"
     after: "Your passport must not have expired more than 18 months ago"
 
+nonUKPassportExpiryDate:
+  legend: ""
+  label: ""
+  hint: "For example, 31 3 2025"
+  validation:
+    default: "Enter the expiry date as it appears on your passport"
+    after: "Your passport must not have expired more than 18 months ago"
+
 brpExpiryDate:
   legend: Date of expiry
   hint: "For example, 27 5 2029"

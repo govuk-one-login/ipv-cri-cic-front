@@ -39,7 +39,7 @@ module.exports = {
     fields: ["expiryDate"],
     next: "done"
   },
-  "/otherPassport": {
+  "/nonUKPassportDetails": {
     fields: ["expiryDate"],
     next: "done"
   },
