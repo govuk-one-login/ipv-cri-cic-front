@@ -40,8 +40,9 @@ module.exports = {
     next: "done"
   },
   "/nonUKPassportDetails": {
-    fields: ["expiryDate"],
-    next: "done"
+    fields: ["passportExpiryDate"],
+    controller: passportDetails,
+    next: passportDetails.prototype.next
   },
   '/photoIdExpiry': {
 
