@@ -18,7 +18,7 @@ module.exports = {
       PASSPORT_DETAILS: "/passportDetails",
       BRP_DETAILS: "/brpDetails",
       PHOTOCARD_DL_DETAILS: "/photocardDlDetails",
-      OTHER_PASSPORT_DETAILS: "/otherPassportDetails",
+      NON_UK_PASSPORT_DETAILS: "/nonUKPassportDetails",
       NAME_ENTRY: "/nameEntry",
       DATE_OF_BIRTH: "/dateOfBirth",
     },
