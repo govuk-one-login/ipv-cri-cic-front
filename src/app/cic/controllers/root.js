@@ -8,6 +8,7 @@ class RootController extends BaseController {
 
       if (sharedClaims?.passport?.length > 0) {
         req.sessionModel.set("passportExpiryDate", sharedClaims.passport[0].expiryDate);
+        req.sessionModel.set("nonUKPassportExpiryDate", sharedClaims.passport[0].expiryDate);
       }
       if (sharedClaims?.name?.length > 0) {
         req.sessionModel.set("firstName", sharedClaims.name[0].nameParts[0].value);
