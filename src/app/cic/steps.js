@@ -1,6 +1,8 @@
 const photoIdSelect = require("./controllers/photoIdSelection");
 const passportDetails = require("./controllers/passportDetails");
 const brpDetails = require("./controllers/brpDetails");
+const nameEntry = require("./controllers/nameEntry");
+const dobEntry = require("./controllers/dateOfBirth");
 const root = require("./controllers/root");
 
 module.exports = {
@@ -45,9 +47,15 @@ module.exports = {
 
     next: "/photoIdSelection"
   },
-  '/checkYourAnswers': {
-
-    next: "/done"
+  "/nameEntry": {
+    fields: ["surname", "firstName", "middleName"],
+    controller: nameEntry,
+    next: nameEntry.prototype.next
+  },
+  "/dateOfBirth": {
+    fields: ["dateOfBirth"],
+    controller: dobEntry,
+    next: dobEntry.prototype.next
   },
   '/done': {
 

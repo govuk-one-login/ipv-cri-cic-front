@@ -15,11 +15,42 @@ module.exports = {
   passportExpiryDate: {
     type: "date",
     journeyKey: "passportExpiryDate",
-    validate: ["required", "date"]
+    validate: ["required", "date"],
   },
   brpExpiryDate: {
     type: "date",
     journeyKey: "brpExpiryDate",
     validate: ["required", "date"]
+  },
+  surname: {
+    type: "text",
+    journeyKey: "surname",
+    validate: [
+      "required",
+      {type: "regexSurname", fn: (value) => value.match(/^[a-zA-Z .'-]*$/)}
+    ]
+  },
+  firstName: {
+    type: "text",
+    journeyKey: "firstName",
+    validate: [
+      "required",
+      {type: "regexSurname", fn: (value) => value.match(/^[a-zA-Z .'-]*$/)}
+    ]
+  },
+  middleName: {
+    type: "text",
+    journeyKey: "middleName",
+    validate: [
+      {type: "regexSurname", fn: (value) => value.match(/^[a-zA-Z .'-]*$/)}
+    ]
+  },
+  dateOfBirth: {
+    type: "date",
+    journeyKey: "dateOfBirth",
+    validate: [
+      "required", "date",
+      {type: "before", arguments: [new Date().toISOString().split("T")[0]]},
+    ]
   }
 };

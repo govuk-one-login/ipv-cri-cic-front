@@ -1,0 +1,34 @@
+{% extends "base-form.njk" %}
+{# the content for this page is controlled by locales/en/default.yml #}
+{% set hmpoPageKey = "dateOfBirth" %}
+{% set gtmJourney = "cic - dateOfBirth" %}
+
+{% from "hmpo-text/macro.njk" import hmpoText %}
+{% from "hmpo-form/macro.njk" import hmpoForm %}
+{% from "hmpo-date/macro.njk" import hmpoDate %}
+
+
+{% block mainContent %}
+<h1 id="header" data-page="{{hmpoPageKey}}" class="govuk-heading-l">
+        {{ translate("dateOfBirth.title") }}
+    </h1>
+    <p> {{ translate("dateOfBirth.dobInformationContext") }} </p>
+
+    {% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
+
+    {{ hmpoDate(ctx, {
+        id: "dateOfBirth"
+    }) }}
+
+     {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
+
+    {% endcall %}
+
+{% endblock %}
+
+{# generate the specific footer items required for the PYI flows #}
+{% set footerNavItems = translate("govuk.footerNavItems") %}
+
+{% block footer %}
+    {{ govukFooter( footerNavItems ) }}
+{% endblock %}
