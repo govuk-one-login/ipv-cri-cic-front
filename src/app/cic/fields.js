@@ -26,6 +26,21 @@ module.exports = {
     journeyKey: "nonUKPassportExpiryDate",
     validate: ["required", "date"],
   },
+  drivingLicenceExpiryDate: {
+    type: "date",
+    journeyKey: "drivingLicenceExpiryDate",
+    validate: ["required", "date", 
+      { type: "after", arguments: [
+        new Date(
+          new Date().getFullYear(),
+          new Date().getMonth(),
+          new Date().getDate()
+        )
+          .toISOString()
+          .split("T")[0],
+      ] }
+    ] 
+  },
   brpExpiryDate: {
     type: "date",
     journeyKey: "brpExpiryDate",
