@@ -20,12 +20,12 @@ class NonUKPassportDetailsController extends DateController {
 
   async saveValues(req, res, next) {
     try {
-      const passportExpiryDate = req.form.values.nonUKPassportExpiryDate;
-      const inputDate = moment(passportExpiryDate, 'YYYY-MM-DD');
+      const nonUKPassportExpiryDate = req.form.values.nonUKPassportExpiryDate;
+      const inputDate = moment(nonUKPassportExpiryDate, 'YYYY-MM-DD');
 
       const isOutsideExpireWindow = inputDate.isAfter(  new Date(
         new Date().getFullYear(),
-        new Date().getMonth() - 18,
+        new Date().getMonth(),
         new Date().getDate()
       )
         .toISOString()
