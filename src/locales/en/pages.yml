@@ -1,7 +1,7 @@
 # title is managed in default.yml
 
 passport:
-  title: "When does your passport expire?"
+  title: "When does your UK passport expire?"
   passportInformationContext: "We need this information to check that your photo ID is valid."
 
 nonUKPassport:
@@ -15,7 +15,7 @@ brp:
 photoIdSelection:
   title: "Select a photo ID you can take to a Post Office"
   h1: "Select a photo ID you can take to a Post Office"
-  content: "Your photo ID must be an orginal, you cannot use a photocopy."
+  content: "Your photo ID must be an original, you cannot use a photocopies"
 
 landingPage:
   pageTitle: "Prove your identity in person"
