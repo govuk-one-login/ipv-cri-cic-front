@@ -323,10 +323,13 @@ Resources:
     Properties:
       ContainerDefinitions:
         - Essential: true
-          Image: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/di-cic-front
+          #Image: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/di-cic-front
+          Image: 322814139578.dkr.ecr.eu-west-2.amazonaws.com/di-cic-front
           #Image: "CONTAINER-IMAGE-PLACEHOLDER"
           Name: app
           Environment:
+            - Name: API_BASE_URL
+              Value: "https://1b88bbgfel.execute-api.eu-west-2.amazonaws.com/dev"
             # No backend api url available
             #            - Name: API_BASE_URL # This is the same as API_URL
             #              Value: !Sub
@@ -506,11 +509,11 @@ Resources:
           "responseLength":"$context.responseLength"
           }
 
-  WAFv2ACLAssociation:
-    Type: AWS::WAFv2::WebACLAssociation
-    Properties:
-      ResourceArn: !Ref LoadBalancer
-      WebACLArn: !Sub "{{resolve:ssm:/${Environment}/Platform/Security/WafArn}}"
+  # WAFv2ACLAssociation:
+  #   Type: AWS::WAFv2::WebACLAssociation
+  #   Properties:
+  #     ResourceArn: !Ref LoadBalancer
+  #     WebACLArn: !Sub "{{resolve:ssm:/${Environment}/Platform/Security/WafArn}}"
 
   APIGWAccessLogsGroup:
     Type: AWS::Logs::LogGroup

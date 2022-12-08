@@ -29,6 +29,7 @@ module.exports = {
       OTHER_PASSPORT: "otherPassport"
     },
     UK_PASSPORT_HINT: "If your passport has expired, you can still use it to prove your identity up until 18 months after the expiry date.",
+    NON_UK_PASSPORT_HINT: "Biometric passports or e-Passports have a small rectangular camera icon on the front cover",
     ANALYTICS: {
       ID: process.env.GTM_ID,
       DOMAIN: process.env.ANALYTICS_DOMAIN || "localhost",

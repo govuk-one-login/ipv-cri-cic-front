@@ -5,12 +5,10 @@ photoIdChoice:
   items:
     ukPassport:
       label: UK passport
+    ukPhotocardDL:
+      label: UK photocard driving licence
     brp:
       label: Biometric residence permit(BRP)
-
-    ukPhotocardDL:
-      label: UK photocard photo ID
-
     otherPassport:
       label: Non-UK passport
 
@@ -26,7 +24,7 @@ photoIdChoice:
 passportExpiryDate:
   legend: ""
   label: ""
-  hint: "For example, 27 5 2029"
+  hint: "For example, 31 3 2025"
   validation:
     default: "Enter the expiry date as it appears on your passport"
     after: "Your passport must not have expired more than 18 months ago"
@@ -40,8 +38,9 @@ nonUKPassportExpiryDate:
     after: "Your passport must not have expired more than 18 months ago"
 
 brpExpiryDate:
-  legend: Date of expiry
-  hint: "For example, 27 5 2029"
+  legend: ""
+  label: ""
+  hint: "For example, 31 3 2025"
   validation:
     default: "Enter the expiry date as it appears on your BRP"
     after: "The expiry date must be in the future"
