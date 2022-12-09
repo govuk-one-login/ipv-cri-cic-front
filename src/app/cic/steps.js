@@ -36,8 +36,8 @@ module.exports = {
     controller: brpDetails,
     next: brpDetails.prototype.next
   },
-  "/drivingLicenceDetails": {
-    fields: ["drivingLicenceExpiryDate"],
+  "/photocardDlDetails": {
+    fields: ["photocardDlExpiryDate"],
     next: "done"
   },
   "/nonUKPassportDetails": {

@@ -1,7 +1,7 @@
 {% extends "base-form.njk" %}
 {# the content for this page is controlled by locales/en/default.yml #}
-{% set hmpoPageKey = "drivingLicence" %}
-{% set gtmJourney = "cic - drivingLicenceDetails" %}
+{% set hmpoPageKey = "photocardDl" %}
+{% set gtmJourney = "cic - photocardDlDetails" %}
 
 {% from "hmpo-text/macro.njk" import hmpoText %}
 {% from "hmpo-form/macro.njk" import hmpoForm %}
@@ -10,14 +10,14 @@
 
 {% block mainContent %}
 <h1 id="header" data-page="{{hmpoPageKey}}" class="govuk-heading-l">
-        {{ translate("drivingLicence.title") }}
+        {{ translate("photocardDl.title") }}
     </h1>
-    <p> {{ translate("drivingLicence.drivingLicenceInformationContext") }} </p>
+    <p> {{ translate("photocardDl.photocardDlInformationContext") }} </p>
 
     {% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
 
     {{ hmpoDate(ctx, {
-        id: "drivingLicenceExpiryDate",
+        id: "photocardDlExpiryDate",
         legend: {
             classes: "govuk-label"
         }
