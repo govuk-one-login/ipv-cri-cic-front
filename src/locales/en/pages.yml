@@ -19,7 +19,7 @@ photocardDl:
 photoIdSelection:
   title: "Select a photo ID you can take to a Post Office"
   h1: "Select a photo ID you can take to a Post Office"
-  content: "Your photo ID must be an original, you cannot use a photocopies"
+  content: "Your photo ID must be an original, you cannot use photocopies."
 
 landingPage:
   pageTitle: "Prove your identity in person"
@@ -52,4 +52,4 @@ nameEntry:
 
 dateOfBirth:
   title: "What is your date of birth?"
-  dobInformationContext: "We need this information to check your identity."
+  dobInformationContext: "Enter your date of birth as it appears on your photo ID."
