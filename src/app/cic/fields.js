@@ -26,9 +26,9 @@ module.exports = {
     journeyKey: "nonUKPassportExpiryDate",
     validate: ["required", "date"],
   },
-  drivingLicenceExpiryDate: {
+  photocardDlExpiryDate: {
     type: "date",
-    journeyKey: "drivingLicenceExpiryDate",
+    journeyKey: "photocardDlExpiryDate",
     validate: ["required", "date", 
       { type: "after", arguments: [
         new Date(
