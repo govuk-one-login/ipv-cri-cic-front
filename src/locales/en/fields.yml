@@ -8,9 +8,9 @@ photoIdChoice:
     ukPhotocardDL:
       label: UK photocard driving licence
     brp:
-      label: Biometric residence permit(BRP)
+      label: Biometric residence permit (BRP)
     otherPassport:
-      label: Non-UK passport
+      label: Non-UK biometric passport
 
 "date-day":
   label: Day
