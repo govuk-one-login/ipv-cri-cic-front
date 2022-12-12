@@ -323,7 +323,7 @@ Resources:
     Properties:
       ContainerDefinitions:
         - Essential: true
-          Image: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/di-cic-front
+          Image: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/di-cic-front:1
           #Image: "CONTAINER-IMAGE-PLACEHOLDER"
           Name: app
           Environment:
