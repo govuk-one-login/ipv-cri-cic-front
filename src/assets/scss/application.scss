@@ -4,5 +4,5 @@ $govuk-assets-path: "/public/";
 @import "../../../node_modules/hmpo-components/all";
 
 .govuk-radios__item {
-  margin-bottom: 30px;
+  @include govuk-responsive-margin(6, $direction: "bottom", $important: false, $adjustment: false);
 }
