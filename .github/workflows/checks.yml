@@ -25,8 +25,8 @@ jobs:
         run: yarn install
       - name: Run lint
         run: yarn lint
-      - name: Run test and write coverage
-        run: yarn test:coverage
+      # - name: Run test and write coverage
+      #   run: yarn test:coverage
       - name: Run browser tests
         run: npm run test:browser:ci
       # - name: Run sonarcloud scan
