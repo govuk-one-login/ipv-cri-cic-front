@@ -3,6 +3,7 @@ $govuk-assets-path: "/public/";
 @import "../../../node_modules/govuk-frontend/govuk/all";
 @import "../../../node_modules/hmpo-components/all";
 
+// Adding a new rule in case adjusting the component CSS directly is bad practice
 .govuk-radios__item {
   @include govuk-responsive-margin(6, $direction: "bottom", $important: false, $adjustment: false);
 }

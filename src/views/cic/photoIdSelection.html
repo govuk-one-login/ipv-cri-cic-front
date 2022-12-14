@@ -1,12 +1,19 @@
-
 {% extends "base-form.njk" %}
 {% set gtmJourney = "cic - photoIdSelection" %}
-
+{% from "govuk/components/header/macro.njk" import govukHeader %}
 {% set hmpoTitle = photoIdSelection.label %}
 {% set hmpoPageKey = "photoIdSelection" %}
 {% set isPageHeading = true %}
 
+{% block header %}
+  {{ govukHeader ({
+    serviceName: translate("govuk.serviceName")
+  }) }}
+{% endblock %}
 
+<h1 id="header" data-page="{{hmpoPageKey}}" class="govuk-heading-l">
+  {{ translate("photocardDl.title") }}
+</h1>
 
 {% block submitButton %}
   {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
