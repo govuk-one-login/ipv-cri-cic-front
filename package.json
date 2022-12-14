@@ -21,6 +21,7 @@
     "prepare": "husky install",
     "test": "mocha",
     "test:coverage": "nyc --reporter=lcov --reporter=text-summary yarn test",
+    "test:check-coverage": false,
     "test:watch": "mocha --watch",
     "mocks": "yarn run wiremock --port 8030 --root-dir test/mocks",
     "test:browser": "wait-on tcp:8030 tcp:5030 && cucumber-js --config test/browser/cucumber.js",
