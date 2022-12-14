@@ -41,7 +41,7 @@
     "exit": true
   },
   "engines": {
-    "node": "18.10.0",
+    "node": "16.x",
     "yarn": "1.22.x"
   },
   "nodemonConfig": {
