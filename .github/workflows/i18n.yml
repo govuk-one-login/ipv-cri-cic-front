@@ -22,5 +22,4 @@ jobs:
           cache: 'yarn'
       - name: Install dependencies
         run: yarn install
-      - name: Run translation checks
-        run: yarn run check-translation
+

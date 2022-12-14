@@ -19,7 +19,6 @@
     "test:integration": "cucumber-js test/browser/features/**/*.feature test/browser/**/*.feature --require test/browser/support/setup.js --require test/browser/step_definitions/**/*.js",
     "test:integration:local": "yarn build && npm-run-all -p -r start test:integration",
     "prepare": "husky install",
-    "check-translation": "node node_modules/di-ipv-cri-common-express/scripts/checkTranslations.js",
     "test": "mocha",
     "test:coverage": "nyc --reporter=lcov --reporter=text-summary yarn test",
     "test:watch": "mocha --watch",
