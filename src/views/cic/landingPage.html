@@ -4,6 +4,13 @@
 {% set hmpoTitle = landingPage.pageTitle %}
 {% set hmpoPageKey = "landingPage" %}
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+
+{% block header %}
+  {{ govukHeader ({
+    serviceName: translate("govuk.serviceName")
+  }) }}
+{% endblock %}
 
 {% block content %}
 

@@ -46,6 +46,13 @@
 
 {# generate the specific footer items required for the PYI flows #}
 {% set footerNavItems = translate("govuk.footerNavItems") %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+
+{% block header %}
+  {{ govukHeader ({
+    serviceName: translate("govuk.serviceName")
+  }) }}
+{% endblock %}
 
 {% block footer %}
     {{ govukFooter( footerNavItems ) }}
