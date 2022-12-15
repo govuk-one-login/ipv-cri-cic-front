@@ -9,7 +9,7 @@
     "start:watch": "nodemon dist/server.js",
     "build": "npx tsc && yarn build-sass && yarn build-js && yarn minfiy-build-js && yarn copy-assets",
     "build-sass": "rm -rf dist/public/style.css && sass --no-source-map src/assets/scss/application.scss dist/public/stylesheets/application.css --style compressed",
-    "build-js": "mkdir -p dist/public/scripts; uglifyjs node_modules/govuk-frontend/govuk/all.js node_modules/hmpo-components/all.js src/assets/javascript/*.js -o dist/public/scripts/application.js",
+    "build-js": "yarn build-js:application && yarn build-js:cookies && yarn build-js:all",
     "copy-assets": "mkdir -p dist && copyfiles -u 1 src/**/*.njk dist/ src/locales/**/** dist/ && copyfiles -u 3 src/assets/javascript/*.js dist/public/scripts  -e **/all.js && cp node_modules/govuk-frontend/govuk/all.js dist/public/scripts && copyfiles -u 3 src/assets/images/*.svg  dist/public/images",
     "build:watch": "npx tsc --watch",
     "lint": "eslint .",
@@ -34,11 +34,13 @@
     "exit": true
   },
   "engines": {
-    "node": "18.10.0"
+    "node": "16.x",
+    "yarn": "1.22.x"
   },
   "nodemonConfig": {
     "ext": "ts,js,json,html"
   },
+  "packageManager": "yarn@2.4.3",
   "devDependencies": {
     "@cucumber/cucumber": "^8.2.0",
     "@types/chai": "^4.3.0",
@@ -62,6 +64,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "helmet": "^5.0.2",
     "husky": "^8.0.1",
+    "mocha-multi-reporters": "1.5.1",
     "npm-run-all": "4.1.5",
     "sass": "1.49.9",
     "sinon": "^13.0.1",
@@ -76,6 +79,7 @@
     "axios": "^0.27.2",
     "cookie-parser": "^1.4.5",
     "copyfiles": "2.4.1",
+    "di-ipv-cri-common-express": "alphagov/di-ipv-cri-common-express.git#v0.0.36",
     "dotenv": "^16.0.1",
     "express": "4.17.3",
     "govuk-frontend": "^4.0.1",

@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { EVENTS } from "../../app.constants";
+// import { EVENTS } from "../../app.constants";
 import { getNext } from "../stateMachine";
 
 describe("State machine", () => {

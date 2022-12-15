@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express"
 import dotenv from "dotenv"
-import { AUTH_ROOT, PATH_NAMES } from "../../app.constants"
-import {Features, getCurrentJourney} from "../../config";
+// import { AUTH_ROOT, PATH_NAMES } from "../../app.constants"
+// import {Features, getCurrentJourney} from "../../config";
 import axios, { AxiosError, AxiosRequestConfig, AxiosRequestHeaders } from "axios"
 import {IncomingHttpHeaders} from "http";
 import {setCookie} from "../../cookies/setCookie";

@@ -1,0 +1,34 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: daily
+      time: "03:00"
+    target-branch: main
+    labels:
+    - dependabot
+    ignore:
+      - dependency-name: "node"
+        versions: ["14.x","15.x","16.x","17.x","18.x"]
+    commit-message:
+      prefix: BAU
+  - package-ecosystem: docker
+    directory: "/"
+    schedule:
+      interval: daily
+      time: "03:00"
+    target-branch: main
+    labels:
+    - dependabot
+    commit-message:
+      prefix: BAU
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: daily
+    target-branch: main
+    labels:
+    - dependabot
+    commit-message:
+      prefix: BAU
