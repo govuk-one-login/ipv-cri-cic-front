@@ -93,7 +93,6 @@
     "i18next": "^21.6.5",
     "i18next-fs-backend": "^1.1.1",
     "i18next-http-middleware": "^3.2.1",
-    "node": "^16.17.0",
     "nunjucks": "^3.2.3"
   }
 }
