@@ -21,7 +21,7 @@ module.exports = {
       NON_UK_PASSPORT_DETAILS: "/nonUKPassportDetails",
       NAME_ENTRY: "/nameEntry",
       DATE_OF_BIRTH: "/dateOfBirth",
-      CHECK_DETAILS: "/checkDetails",
+      CHECK_DETAILS: "/checkDetails"
     },
     PHOTO_ID_OPTIONS:{
       UK_PASSPORT:"ukPassport",
