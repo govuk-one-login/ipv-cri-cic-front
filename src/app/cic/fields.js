@@ -29,17 +29,7 @@ module.exports = {
   photocardDlExpiryDate: {
     type: "date",
     journeyKey: "photocardDlExpiryDate",
-    validate: ["required", "date", 
-      { type: "after", arguments: [
-        new Date(
-          new Date().getFullYear(),
-          new Date().getMonth(),
-          new Date().getDate()
-        )
-          .toISOString()
-          .split("T")[0],
-      ] }
-    ] 
+    validate: ["required", "date"]
   },
   brpExpiryDate: {
     type: "date",

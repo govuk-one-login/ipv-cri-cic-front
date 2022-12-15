@@ -17,10 +17,10 @@ module.exports = {
       CIC: "/",
       PASSPORT_DETAILS: "/passportDetails",
       BRP_DETAILS: "/brpDetails",
+      PHOTOCARD_DL_DETAILS: "/photocardDlDetails",
       NON_UK_PASSPORT_DETAILS: "/nonUKPassportDetails",
       NAME_ENTRY: "/nameEntry",
       DATE_OF_BIRTH: "/dateOfBirth",
-      PHOTOCARD_DL_DETAILS: "/photocardDlDetails",
       CHECK_DETAILS: "/checkDetails",
     },
     PHOTO_ID_OPTIONS:{
