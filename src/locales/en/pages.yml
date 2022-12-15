@@ -38,8 +38,9 @@ landingPage:
 photoIdExpiry:
   pageTitle: "Your photo ID has expired"
   title: "Your photo ID has expired"
-  one: "We can only accept photo IDs that are currently in date."
-  two: "To select another photo ID click Continue"
+  one: "We can only accept photo IDs that are currently in date. Expired UK passports are acceptable up until 18 months after the expiry date."
+  two: "If you entered the wrong expiry date, go back to enter the correct date."
+  three: "To select another photo ID, click Continue."
 
 nameEntry:
   title: "What is your name?"
