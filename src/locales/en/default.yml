@@ -75,7 +75,7 @@ common:
       confirmIdentity: "I want to prove my identity another way"
     postoffice:
       service: "Not all Post Offices offer this service. You can "
-      postofficeLink: "find your nearest Post Office that offers in branch verification here."
+      postofficeLink: "find your nearest Post Office that offers in branch verification here (opens in new tab)."
       pathToPoBranchSearch: "https://www.postoffice.co.uk/branch-finder"
     photoIdSelection:
       noPhotoId: "I do not have any of these documents"
