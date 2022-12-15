@@ -49,12 +49,12 @@ repos:
         args: ['--verbose']
         verbose: true  # print warnings
   - repo: https://github.com/aws-cloudformation/cfn-python-lint
-    rev: v0.72.2
+    rev: v0.72.3
     hooks:
       - id: cfn-python-lint
         files: ^(?!\..*).*/template\.(json|yml|yaml)$
   - repo: https://github.com/bridgecrewio/checkov.git
-    rev: '2.2.157'
+    rev: '2.2.168'
     hooks:
       - id: checkov
         verbose: true
