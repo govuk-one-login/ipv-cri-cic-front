@@ -21,6 +21,7 @@ module.exports = {
       NAME_ENTRY: "/nameEntry",
       DATE_OF_BIRTH: "/dateOfBirth",
       PHOTOCARD_DL_DETAILS: "/photocardDlDetails",
+      CHECK_DETAILS: "/checkDetails",
     },
     PHOTO_ID_OPTIONS:{
       UK_PASSPORT:"ukPassport",

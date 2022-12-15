@@ -54,3 +54,11 @@ nameEntry:
 dateOfBirth:
   title: "What is your date of birth?"
   dobInformationContext: "Enter your date of birth as it appears on your photo ID."
+
+checkDetails:
+  title: ""
+  selectedId: "Selected photo ID"
+  expiryDate: "Expiry date"
+  name: "Name"
+  dateOfBirth: "Date of Birth"
+  changeLink: "Change"
