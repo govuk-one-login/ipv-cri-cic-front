@@ -7,7 +7,7 @@ COPY package.json yarn.lock ./
 COPY /src ./src
 
 RUN yarn install
-RUN yarn build
+RUN yarn run build
 
 # 'yarn install --production' does not prune test packages which are necessary
 # to build the app. So delete nod_modules and reinstall only production packages.
