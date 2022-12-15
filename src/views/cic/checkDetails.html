@@ -1,8 +1,8 @@
+{% extends "base-form.njk" %}
 {# the content for this page is controlled by locales/en/default.yml #}
-{% set hmpoPageKey = "checkYourDetails" %}
-{% set gtmJourney = "cic - checkYourDetails" %}
+{% set hmpoPageKey = "checkDetails" %}
+{% set gtmJourney = "cic - checkDetails" %}
 
-{% from "hmpo-form/macro.njk" import hmpoForm %}
 {% from "govuk/components/header/macro.njk" import govukHeader %}
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
@@ -12,14 +12,14 @@
   }) }}
 {% endblock %}
 
-{% block mainContent %}
+<!-- {% block mainContent %}
   <h1 id="header" data-page="{{hmpoPageKey}}" class="govuk-heading-l">
     {{ translate("checkDetails.title") }}
-  </h1>
+  </h1> -->
 
-  {% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
 
-  {{ govukSummaryList({
+
+  <!-- {{ govukSummaryList({
     rows: [
       {
         key: {
@@ -33,6 +33,23 @@
             {
               href: "/photoIdSelection",
               text: "Change",
+              visuallyHiddenText: "photoId"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Name"
+        },
+        value: {
+          text: "Bilbo Baggins"
+        },
+        actions: {
+          items: [
+            {
+              href: "/nameEntry",
+              text: "Change",
               visuallyHiddenText: "name"
             }
           ]
@@ -40,61 +57,26 @@
       },
       {
         key: {
-          text: "Date of birth"
+          text: "Date of Birth"
         },
         value: {
-          text: "5 January 1978"
+          html: "31 3 1987"
         },
         actions: {
           items: [
             {
-              href: "#",
+              href: "/dateOfBirth",
               text: "Change",
-              visuallyHiddenText: "date of birth"
+              visuallyHiddenText: "dateOfBirth"
             }
           ]
         }
       },
-      {
-        key: {
-          text: "Address"
-        },
-        value: {
-          html: "72 Guild Street<br>London<br>SE23 6FH"
-        },
-        actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "address"
-            }
-          ]
-        }
-      },
-      {
-        key: {
-          text: "Contact details"
-        },
-        value: {
-          html: '<p class="govuk-body">07700 900457</p><p class="govuk-body">sarah.phillips@example.com</p>'
-        },
-        actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "contact details"
-            }
-          ]
-        }
-      }
     ]
   }) }}
-  {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
+  {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }} --> -->
 
-  {% endcall %}
-{% endblock %}
+<!-- {% endblock %} -->
 
 {# generate the specific footer items required for the PYI flows #}
 {% set footerNavItems = translate("govuk.footerNavItems") %}
