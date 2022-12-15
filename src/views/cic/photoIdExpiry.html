@@ -13,10 +13,12 @@
 
 {% block content %}
 
-<h1 class="govuk-heading-l">{{ "photoIdExpiry.title" | translate }}</h1>
+<h1 id="header" class="govuk-heading-l">{{ "photoIdExpiry.title" | translate }}</h1>
 
 <p>{{ "photoIdExpiry.one" | translate }}</p>
-<p>{{ "photoIdExpiry.two" | translate }}</p>
+<p>{{ "photoIdExpiry.two" | translate }}
+  <br>{{ "photoIdExpiry.three" | translate }}
+</p>
 
 {% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
 {% block submitButton %}
