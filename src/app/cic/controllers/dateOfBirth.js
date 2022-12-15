@@ -20,7 +20,7 @@ class DateOfBirthController extends DateController {
   }
 
     next(req) {
-      return "/done"
+      return "/checkDetails"
     } 
 }
 module.exports = DateOfBirthController; 

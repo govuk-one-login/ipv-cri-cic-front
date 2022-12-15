@@ -4,9 +4,15 @@
 {% set gtmJourney = "cic - nameEntry" %}
 
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
 {% from "hmpo-text/macro.njk" import hmpoText %}
 {% from "hmpo-form/macro.njk" import hmpoForm %}
 
+{% block header %}
+  {{ govukHeader ({
+    serviceName: translate("govuk.serviceName")
+  }) }}
+{% endblock %}
 
 {% block mainContent %}
 <h1 id="header" data-page="{{hmpoPageKey}}" class="govuk-heading-l">
@@ -46,13 +52,6 @@
 
 {# generate the specific footer items required for the PYI flows #}
 {% set footerNavItems = translate("govuk.footerNavItems") %}
-{% from "govuk/components/header/macro.njk" import govukHeader %}
-
-{% block header %}
-  {{ govukHeader ({
-    serviceName: translate("govuk.serviceName")
-  }) }}
-{% endblock %}
 
 {% block footer %}
     {{ govukFooter( footerNavItems ) }}

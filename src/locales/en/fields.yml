@@ -81,3 +81,9 @@ dateOfBirth:
     default: "Enter your date of birth as it appears on your photo ID"
     maxlength: "Enter your date of birth as it appears on your photo ID"
     regexSurname: "Enter your date of birth as it appears on your photo ID"
+
+checkDetails: 
+  label: ""
+  legend: ""
+  validation:
+    default: "Make sure your details are correct before you continue. You will not be able to change them later"

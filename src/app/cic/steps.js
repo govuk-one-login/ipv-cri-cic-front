@@ -59,6 +59,10 @@ module.exports = {
     controller: dobEntry,
     next: dobEntry.prototype.next
   },
+  "/checkDetails": {
+    
+    next: "done"
+  },
   '/done': {
 
   },
