@@ -26,7 +26,7 @@
               text: translate("checkDetails.selectedId")
             },
             value: {
-              text: "Sarah Philips"
+              text: "UK photocard driving licence"
             },
             actions: {
               items: [
@@ -96,6 +96,8 @@
         text: translate("checkDetails.validation.default"),
         iconFallbackText: "Warning"
       }) }}
+
+      {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
     </div>
   </div>
 
