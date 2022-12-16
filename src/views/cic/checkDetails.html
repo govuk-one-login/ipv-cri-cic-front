@@ -13,81 +13,85 @@
 {% endblock %}
 
 {% block content %}
-  <h1 class="govuk-heading-l">{{ translate("checkDetails.title") }}</h1>
-
-    {{ govukSummaryList({
-      classes: 'govuk-!-margin-bottom-9',
-      rows: [
-        {
-          key: {
-            text: translate("checkDetails.selectedId")
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <h1 class="govuk-heading-l">{{ translate("checkDetails.title") }}</h1>
+    <h2 class="govuk-heading-m"></h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: translate("checkDetails.selectedId")
+            },
+            value: {
+              text: "Sarah Philips"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
           },
-          value: {
-            text: "Sarah Philips"
+          {
+            key: {
+              text: translate("checkDetails.expiryDate")
+            },
+            value: {
+              text: "5 January 1978"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
           },
-          actions: {
-            items: [
-              {
-                href: "#",
-                text: "Change",
-                visuallyHiddenText: "name"
-              }
-            ]
+          {
+            key: {
+              text: translate("checkDetails.name")
+            },
+            value: {
+              html: "72 Guild Street<br>London<br>SE23 6FH"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: translate("checkDetails.dateOfBirth")
+            },
+            value: {
+              html: '<p class="govuk-body">07700 900457</p><p class="govuk-body">sarah.phillips@example.com</p>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
           }
-        },
-        {
-          key: {
-            text: translate("checkDetails.expiryDate")
-          },
-          value: {
-            text: "5 January 1978"
-          },
-          actions: {
-            items: [
-              {
-                href: "#",
-                text: "Change",
-                visuallyHiddenText: "date of birth"
-              }
-            ]
-          }
-        },
-        {
-          key: {
-            text: translate("checkDetails.name")
-          },
-          value: {
-            html: "72 Guild Street<br>London<br>SE23 6FH"
-          },
-          actions: {
-            items: [
-              {
-                href: "#",
-                text: "Change",
-                visuallyHiddenText: "address"
-              }
-            ]
-          }
-        },
-        {
-          key: {
-            text: translate("checkDetails.dateOfBirth")
-          },
-          value: {
-            html: '<p class="govuk-body">07700 900457</p><p class="govuk-body">sarah.phillips@example.com</p>'
-          },
-          actions: {
-            items: [
-              {
-                href: "#",
-                text: "Change",
-                visuallyHiddenText: "contact details"
-              }
-            ]
-          }
-        }
-      ]
-    }) }}
+        ]
+      }) }}
+    </div>
+  </div>
 {% endblock %}
 
 {# generate the specific footer items required for the PYI flows #}
