@@ -91,13 +91,15 @@
           }
         ]
       }) }}
+
+      {{ govukWarningText({
+        text: translate("checkDetails.validation.default"),
+        iconFallbackText: "Warning"
+      }) }}
     </div>
   </div>
 
-  {{ govukWarningText({
-    text: "Make sure your details are correct",
-    iconFallbackText: "Warning"
-  }) }}
+
 {% endblock %}
 
 {# generate the specific footer items required for the PYI flows #}
