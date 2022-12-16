@@ -56,7 +56,7 @@ dateOfBirth:
   dobInformationContext: "Enter your date of birth as it appears on your photo ID."
 
 checkDetails:
-  title: ""
+  title: "Check your answers"
   selectedId: "Selected photo ID"
   expiryDate: "Expiry date"
   name: "Name"
