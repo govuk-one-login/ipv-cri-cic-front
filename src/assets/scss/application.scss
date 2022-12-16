@@ -32,3 +32,7 @@ $govuk-assets-path: "/public/";
   color: black;
   font-weight: bold;
 }
+
+.govuk-link:link, main a:link {
+  font-size: 19px;
+}

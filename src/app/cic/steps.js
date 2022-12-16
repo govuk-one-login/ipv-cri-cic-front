@@ -63,7 +63,7 @@ module.exports = {
   },
   "/checkDetails": {
     
-    next: "/photoIdSelection",
+    next: "/done",
   },
   '/done': {
 
