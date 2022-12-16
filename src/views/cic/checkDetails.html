@@ -19,7 +19,7 @@
     <h1 class="govuk-heading-l">{{ translate("checkDetails.title") }}</h1>
     <h2 class="govuk-heading-m"></h2>
       {{ govukSummaryList({
-        classes: 'govuk-!-margin-bottom-9',
+        classes: 'govuk-!-margin-bottom-6',
         rows: [
           {
             key: {
@@ -33,7 +33,7 @@
                 {
                   href: "/photoIdSelection",
                   text: "Change",
-                  visuallyHiddenText: "name"
+                  visuallyHiddenText: "ID Selection"
                 }
               ]
             }
@@ -60,7 +60,7 @@
               text: translate("checkDetails.name")
             },
             value: {
-              html: "Bilbo Baggins"
+              html: req.sessionModel.firstName
             },
             actions: {
               items: [
