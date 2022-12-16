@@ -13,12 +13,14 @@
 {% endblock %}
 
 {% block content %}
+  <h1 class="govuk-heading-l">{{ translate("checkDetails.title") }}</h1>
+
     {{ govukSummaryList({
       classes: 'govuk-!-margin-bottom-9',
       rows: [
         {
           key: {
-            text: "Name"
+            text: translate("checkDetails.selectedId")
           },
           value: {
             text: "Sarah Philips"
@@ -35,7 +37,7 @@
         },
         {
           key: {
-            text: "Date of birth"
+            text: translate("checkDetails.expiryDate")
           },
           value: {
             text: "5 January 1978"
@@ -52,7 +54,7 @@
         },
         {
           key: {
-            text: "Address"
+            text: translate("checkDetails.name")
           },
           value: {
             html: "72 Guild Street<br>London<br>SE23 6FH"
@@ -69,7 +71,7 @@
         },
         {
           key: {
-            text: "Contact details"
+            text: translate("checkDetails.dateOfBirth")
           },
           value: {
             html: '<p class="govuk-body">07700 900457</p><p class="govuk-body">sarah.phillips@example.com</p>'
