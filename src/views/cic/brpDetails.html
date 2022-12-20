@@ -22,12 +22,14 @@
 
     {% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
 
+    <div class="hint-with-margin">
     {{ hmpoDate(ctx, {
         id: "brpExpiryDate",
         legend: {
             classes: "govuk-label"
         }
     }) }}
+  </div>
 
      {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
 
