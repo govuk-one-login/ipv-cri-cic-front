@@ -26,6 +26,7 @@ $govuk-assets-path: "/public/";
 
 .govuk-button {
   margin-bottom: 30px;
+  margin-top: 30px;
 }
 
 .govuk-summary-list .govuk-summary-list__key {
@@ -35,4 +36,8 @@ $govuk-assets-path: "/public/";
 
 .govuk-link:link, main a:link {
   font-size: 19px;
+}
+
+.govuk-body, main p, .govuk-body-m {
+  margin-bottom: 3px;
 }
