@@ -27,7 +27,7 @@ landingPage:
   body: "What you need to do"
   instructions:
     steps:
-      one: "Complete an online form to provide your basic personal details and select a photo ID you can take to the Post Office. We will then send you a confirmation email."
+      one: "Complete an online form to provide your basic personal details and select a photo ID you can take to a Post Office. We will then send you a confirmation email."
       two: "Take the confirmation email and your photo ID to a Post Office."
       three: "A member of Post Office staff will process your photo ID and take a photo of your face to verify your identity."
   dataInfo:
