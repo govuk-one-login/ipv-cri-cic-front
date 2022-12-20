@@ -22,9 +22,11 @@
 
     {% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
 
+    <div class="hint-with-margin">
     {{ hmpoDate(ctx, {
         id: "dateOfBirth"
     }) }}
+    </div>
 
      {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
 
