@@ -76,7 +76,7 @@ common:
     postoffice:
       service: "Not all Post Offices offer this service. You can "
       postofficeLink: "find your nearest Post Office that offers in branch verification here (opens in new tab)."
-      pathToPoBranchSearch: "https://www.postoffice.co.uk/branch-finder"
+      pathToPoBranchSearch: "https://www.postoffice.co.uk/identity/in-branch-verification-service"
     photoIdSelection:
       noPhotoId: "I do not have any of these documents"
       linkToNoPhotoId: "https://signin.account.gov.uk/no-photo-id "
