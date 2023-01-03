@@ -40,7 +40,7 @@ class PassportDetailsController extends DateController {
   }
 
   next(req) {
-    console.log(req.sessionModel.get("isOutsideExpireWindow"));
+    // console.log(req.sessionModel.get("isOutsideExpireWindow"));
     if (req.sessionModel.get("isOutsideExpireWindow")) {
 
       return "/done"
