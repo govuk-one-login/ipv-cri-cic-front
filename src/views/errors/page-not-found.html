@@ -1,0 +1,12 @@
+{% extends "base-page.njk" %}
+{% set hmpoPageKey = "pageNotFound" %}
+
+{% block mainContent %}
+<h1 id="header" data-page="{{hmpoPageKey}}" class="govuk-heading-l">
+{{ translate(hmpoPageKey+'.title', { default: [] }) | safe }}
+</h1>
+
+{% from "hmpo-html/macro.njk" import hmpoHtml %}
+    {{ hmpoHtml(translate(hmpoPageKey + ".content", { default: [] })) }}
+
+{% endblock %}

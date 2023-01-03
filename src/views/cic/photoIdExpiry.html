@@ -1,0 +1,21 @@
+{% extends "base-form.njk" %}
+
+{# the content for this page is controlled by locales/en/default.yml #}
+{% set hmpoTitle = photoIdExpiry.pageTitle %}
+{% set hmpoPageKey = "photoIdExpiry" %}
+
+{% block content %}
+
+<h1 class="govuk-heading-l">{{ "photoIdExpiry.title" | translate }}</h1>
+
+<p>{{ "photoIdExpiry.one" | translate }}</p>
+<p>{{ "photoIdExpiry.two" | translate }}</p>
+
+{% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
+{% block submitButton %}
+  {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
+{% endblock %}
+{% endcall %}
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+photoIdChoice:
+  validation:
+    required: Select a photo ID you can take to a Post Office
+  content: ""
+  items:
+    ukPassport:
+      label: UK passport
+    brp:
+      label: Biometric residence permit(BRP)
+
+    ukPhotocardDL:
+      label: UK photocard driving licence
+
+    otherPassport:
+      label: Non-UK passport
+
+"date-day":
+  label: Day
+
+"date-month":
+  label: Month
+
+"date-year":
+  label: Year
+
+passportExpiryDate:
+  legend: ""
+  label: ""
+  hint: "For example, 27 5 2029"
+  validation:
+    default: "Enter the expiry date as it appears on your passport"
+    after: "Your passport must not have expired more than 18 months ago"
+
+brpExpiryDate:
+  legend: Date of expiry
+  hint: "For example, 27 5 2029"
+  validation:
+    default: "Enter the expiry date as it appears on your BRP"
+    after: "The expiry date must be in the future"
+

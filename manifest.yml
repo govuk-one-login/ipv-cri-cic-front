@@ -1,0 +1,11 @@
+---
+applications:
+  - name: ((environment))-di-ipv-cri-cic-front
+    services:
+      - session-cache
+    memory: 128M
+    buildpack: nodejs_buildpack
+    command: yarn start
+    env:
+      API_BASE_URL: ((api-gateway-url))
+      DEBUG: "hmpo*"

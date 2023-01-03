@@ -3,7 +3,7 @@ AWSTemplateFormatVersion: "2010-09-09"
 Transform:
   - AWS::Serverless-2016-10-31
 Description: >-
-  This creates the necessary components to deploy the Claimed Identity CRI(CIC) FE onto ECS
+  This creates the necessary components to deploy the Claimed Identity (CIC) FE onto ECS
   Fargate within an existing VPC and private subnets (imported parameters).
   Claimed Identity Front can be invoked via the public API Gateway on the url in the
   CICFrontURL output.
@@ -51,71 +51,56 @@ Conditions:
 Mappings:
   # see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
   # To be added later
-#  PlatformConfiguration:
-#    dev:
-#      CSLSEGRESS: "This should not ever be set; the dev account is not configured to egress logs."
-#    build:
-#      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
-#    staging:
-#      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
-#    integration:
-#      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
-#    production:
-#      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
+  #  PlatformConfiguration:
+  #    dev:
+  #      CSLSEGRESS: "This should not ever be set; the dev account is not configured to egress logs."
+  #    build:
+  #      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
+  #    staging:
+  #      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
+  #    integration:
+  #      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
+  #    production:
+  #      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
 
   # see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
   ElasticLoadBalancerAccountIds:
     eu-west-2:
       AccountId: 652711504416
+
   EnvironmentVariables:
     ### These environment variables are referenced further down the file.
     ### Please ensure that any variables defined for an environment are defined for _all_ environments.
     dev:
-      OAUTHENABLED: true
-      FEURL: "www.review-c.dev.account.gov.uk"
-      APPURL: "app.review-c.dev.account.gov.uk"
-      GTMCONTAINERID: "TK92W68"
-      ANALYTICSCOOKIEDOMAIN: ".account.gov.uk"
-      SERVICECOOKIEDOMAIN: ".account.gov.uk"
-      ISSESSIONFINISHEDPOLLINGDURATION: "1800000" # 30 minutes in milliseconds
-      ISSESSIONFINISHEDINTERVAL: "3000" # Time between API calls. 3 seconds in milliseconds
+      EXTERNALWEBSITEHOST: "www.review-c.dev.account.gov.uk"
+      APIBASEURL: "app.review-c.dev.account.gov.uk"
+      SESSIONTABLENAME: "cic-front-sessions-dev"
+      GTMID: "TK92W68"
+      ANALYTICSDOMAIN: "dev.account.gov.uk"
     build:
-      OAUTHENABLED: true
-      FEURL: "www.review-c.build.account.gov.uk"
-      APPURL: "app.review-c.build.account.gov.uk"
-      GTMCONTAINERID: "TK92W68"
-      ANALYTICSCOOKIEDOMAIN: ".account.gov.uk"
-      SERVICECOOKIEDOMAIN: ".account.gov.uk"
-      ISSESSIONFINISHEDPOLLINGDURATION: "1800000" # 30 minutes in milliseconds
-      ISSESSIONFINISHEDINTERVAL: "3000" # Time between API calls. 3 seconds in milliseconds
+      EXTERNALWEBSITEHOST: "www.review-c.build.account.gov.uk"
+      APIBASEURL: "app.review-c.build.account.gov.uk"
+      SESSIONTABLENAME: "cic-front-sessions-build"
+      GTMID: "TK92W68"
+      ANALYTICSDOMAIN: "build.account.gov.uk"
     staging:
-      OAUTHENABLED: true
-      APPSTOREURL: "https://beta.itunes.apple.com/v1/app/1633452907"
-      FEURL: "www.review-c.staging.account.gov.uk"
-      APPURL: "app.review-c.staging.account.gov.uk"
-      GTMCONTAINERID: "TK92W68"
-      ANALYTICSCOOKIEDOMAIN: ".account.gov.uk"
-      SERVICECOOKIEDOMAIN: ".account.gov.uk"
-      ISSESSIONFINISHEDPOLLINGDURATION: "1800000" # 30 minutes in milliseconds
-      ISSESSIONFINISHEDINTERVAL: "3000" # Time between API calls. 3 seconds in milliseconds
+      EXTERNALWEBSITEHOST: "www.review-c.staging.account.gov.uk"
+      APIBASEURL: "app.review-c.staging.account.gov.uk"
+      SESSIONTABLENAME: "cic-front-sessions-staging"
+      GTMID: "TK92W68"
+      ANALYTICSDOMAIN: "staging.account.gov.uk"
     integration:
-      OAUTHENABLED: true
-      FEURL: "www.review-c.integration.account.gov.uk"
-      APPURL: "app.review-c.integration.account.gov.uk"
-      GTMCONTAINERID: "TK92W68"
-      ANALYTICSCOOKIEDOMAIN: ".account.gov.uk"
-      SERVICECOOKIEDOMAIN: ".account.gov.uk"
-      ISSESSIONFINISHEDPOLLINGDURATION: "1800000" # 30 minutes in milliseconds
-      ISSESSIONFINISHEDINTERVAL: "3000" # Time between API calls. 3 seconds in milliseconds
+      EXTERNALWEBSITEHOST: "www.review-c.integration.account.gov.uk"
+      APIBASEURL: "app.review-c.integration.account.gov.uk"
+      SESSIONTABLENAME: "cic-front-sessions-integration"
+      GTMID: "TK92W68"
+      ANALYTICSDOMAIN: "integration.account.gov.uk"
     production:
-      OAUTHENABLED: true
-      FEURL: "www.review-c.account.gov.uk"
-      APPURL: "app.review-c.account.gov.uk"
-      GTMCONTAINERID: "TT5HDKV"
-      ANALYTICSCOOKIEDOMAIN: ".account.gov.uk"
-      SERVICECOOKIEDOMAIN: ".account.gov.uk"
-      ISSESSIONFINISHEDPOLLINGDURATION: "1800000" # 30 minutes in milliseconds
-      ISSESSIONFINISHEDINTERVAL: "3000" # Time between API calls. 3 seconds in milliseconds
+      EXTERNALWEBSITEHOST: "www.review-c.account.gov.uk"
+      APIBASEURL: "app.review-c.account.gov.uk"
+      SESSIONTABLENAME: "cic-front-sessions-production"
+      GTMID: "TT5HDKV"
+      ANALYTICSDOMAIN: "account.gov.uk"
 
 Resources:
   # Security Groups for the ECS service and load balancer
@@ -123,7 +108,7 @@ Resources:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
       GroupDescription: >-
-        CI Front LoadBalancer Security Group
+        CIC Front LoadBalancer Security Group
       SecurityGroupIngress:
         - CidrIp: 0.0.0.0/0
           Description: Allow from anyone on port 80
@@ -140,17 +125,17 @@ Resources:
       GroupId: !GetAtt LoadBalancerSG.GroupId
       IpProtocol: tcp
       Description: >-
-        Egress between the CI Front load balancer and
-        the CI Front ECS security group
+        Egress between the CIC Front load balancer and
+        the CIC Front ECS security group
       DestinationSecurityGroupId: !GetAtt ECSSecurityGroup.GroupId
-      FromPort: 8000
-      ToPort: 8000
+      FromPort: 8080
+      ToPort: 8080
 
   ECSSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
       GroupDescription: >-
-        CI Front ECS Security Group permitting outbound
+        CIC Front ECS Security Group permitting outbound
         to anywhere.
       SecurityGroupEgress:
         - CidrIp: 0.0.0.0/0
@@ -167,8 +152,8 @@ Resources:
       Description: >-
         CIC Front ECS permits inbound from the CIC Front
         load balancer.
-      FromPort: 8000
-      ToPort: 8000
+      FromPort: 8080
+      ToPort: 8080
       GroupId: !GetAtt ECSSecurityGroup.GroupId
       SourceSecurityGroupId: !GetAtt LoadBalancerSG.GroupId
 
@@ -176,7 +161,7 @@ Resources:
     Condition: IsNotDevelopment
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub cic-cri-front-${Environment}-access-logs
+      BucketName: !Sub cic-front-${Environment}-access-logs
       VersioningConfiguration:
         Status: "Enabled"
       PublicAccessBlockConfiguration:
@@ -270,7 +255,7 @@ Resources:
         - Key: Product
           Value: "GOV.UK sign in"
         - Key: System
-          Value: "CI CRI"
+          Value: "CIC"
         - Key: Environment
           Value: !Sub "${Environment}"
 
@@ -290,7 +275,7 @@ Resources:
       LaunchType: FARGATE
       LoadBalancers:
         - ContainerName: app
-          ContainerPort: 8000
+          ContainerPort: 8080
           TargetGroupArn: !Ref LoadBalancerListenerTargetGroupECS
       NetworkConfiguration:
         AwsvpcConfiguration:
@@ -309,7 +294,7 @@ Resources:
         - Key: Product
           Value: "GOV.UK sign in"
         - Key: System
-          Value: "CI CRI"
+          Value: "CIC"
         - Key: Environment
           Value: !Sub "${Environment}"
     DependsOn:
@@ -321,14 +306,14 @@ Resources:
       LogGroupName: !Sub /aws/ecs/${AWS::StackName}-CICFront-ECS
       RetentionInDays: 14
 
-#  CSLSECSAccessSubscriptionFilter:
-#    Type: AWS::Logs::SubscriptionFilter
-#    Condition: IsNotDevelopment
-#    Properties:
-#      DestinationArn:
-#        !FindInMap [PlatformConfiguration, !Ref Environment, CSLSEGRESS]
-#      FilterPattern: ""
-#      LogGroupName: !Ref ECSAccessLogsGroup
+  #  CSLSECSAccessSubscriptionFilter:
+  #    Type: AWS::Logs::SubscriptionFilter
+  #    Condition: IsNotDevelopment
+  #    Properties:
+  #      DestinationArn:
+  #        !FindInMap [PlatformConfiguration, !Ref Environment, CSLSEGRESS]
+  #      FilterPattern: ""
+  #      LogGroupName: !Ref ECSAccessLogsGroup
 
   #
   # Fargate tasks
@@ -338,50 +323,39 @@ Resources:
     Properties:
       ContainerDefinitions:
         - Essential: true
-          #Image: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/di-cic-front
-          Image: "CONTAINER-IMAGE-PLACEHOLDER"
+          Image: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/di-cic-front:2
+          #Image: "CONTAINER-IMAGE-PLACEHOLDER"
           Name: app
           Environment:
-            # No backend api url available
-            #            - Name: API_BASE_URL # This is the same as API_URL
-            #              Value: !Sub
-            #                - "https://${Url}"
-            #                - Url: !ImportValue backend-api-apigateway-url
+            - Name: API_BASE_URL
+              Value: !Sub
+                - "https://${APIGatewayId}.execute-api.eu-west-2.amazonaws.com/${Environment}"
+                - APIGatewayId:
+                    Fn::ImportValue: di-ipv-cri-cic-bhavana-PrivateCICApiGatewayId #Hardcoded, needs to be updated to use a parameter for BE stack name
+                  Environment: !Ref Environment
             - Name: EXTERNAL_WEBSITE_HOST
               Value: !GetAtt ApiGwHttpEndpoint.ApiEndpoint
-            - Name: OAUTH_ENABLED
-              Value: !FindInMap [EnvironmentVariables, !Ref Environment, OAUTHENABLED ]
-            - Name: ENVIRONMENT
-              Value: !Sub "${Environment}"
-            - Name: PORT
-              Value: 8000
-            - Name: FRONT_END_URL
-              Value: !Sub
-                - "https://${Url}"
-                - Url: !FindInMap [EnvironmentVariables, !Ref Environment, FEURL ]
-            - Name: FRONT_END_URL_ALTERNATE_SUBDOMAIN
-              Value: !Sub
-                - "https://${Url}"
-                - Url: !FindInMap [EnvironmentVariables, !Ref Environment, APPURL ]
+            - Name: SESSION_TABLE_NAME
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, SESSIONTABLENAME ]
+#            - Name: FRONT_END_URL
+#              Value: !Sub
+#                - "https://${Url}"
+#                - Url: !FindInMap [EnvironmentVariables, !Ref Environment, FEURL ]
+
             #No backend api url available ????
             #            - Name: API_URL
             #              Value: !Sub
             #                - "https://${Url}"
             #                - Url: !ImportValue backend-api-apigateway-url
-            - Name: GTM_CONTAINER_ID
+            - Name: GTM_ID
               Value: !Sub
                 - "GTM-${ContainerId}"
-                - ContainerId: !FindInMap [EnvironmentVariables, !Ref Environment, GTMCONTAINERID ]
-            - Name: ANALYTICS_COOKIE_DOMAIN
-              Value: !FindInMap [EnvironmentVariables, !Ref Environment, ANALYTICSCOOKIEDOMAIN ]
-            - Name: SERVICE_COOKIE_DOMAIN
-              Value: !FindInMap [EnvironmentVariables, !Ref Environment, SERVICECOOKIEDOMAIN ]
-            - Name: IS_SESSION_FINISHED_POLLING_DURATION
-              Value: !FindInMap [EnvironmentVariables, !Ref Environment, ISSESSIONFINISHEDPOLLINGDURATION]
-            - Name: IS_SESSION_FINISHED_INTERVAL
-              Value: !FindInMap [EnvironmentVariables, !Ref Environment, ISSESSIONFINISHEDINTERVAL ]
+                - ContainerId: !FindInMap [EnvironmentVariables, !Ref Environment, GTMID ]
+            - Name: ANALYTICS_DOMAIN
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, ANALYTICSDOMAIN ]
+
           PortMappings:
-            - ContainerPort: 8000
+            - ContainerPort: 8080
               Protocol: tcp
           LogConfiguration:
             LogDriver: awslogs
@@ -402,7 +376,7 @@ Resources:
         - Key: Product
           Value: "GOV.UK sign in"
         - Key: System
-          Value: "CI CRI"
+          Value: "CIC"
         - Key: Environment
           Value: !Sub "${Environment}"
 
@@ -450,6 +424,24 @@ Resources:
             Principal:
               Service: ecs-tasks.amazonaws.com
         Version: 2012-10-17
+      Policies:
+        - PolicyName: CicFrontDynamoDBSessionAccess
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "dynamodb:BatchGetItem"
+                  - "dynamodb:DescribeTable"
+                  - "dynamodb:GetItem"
+                  - "dynamodb:Query"
+                  - "dynamodb:Scan"
+                  - "dynamodb:BatchWriteItem"
+                  - "dynamodb:DeleteItem"
+                  - "dynamodb:UpdateItem"
+                  - "dynamodb:PutItem"
+                Resource:
+                  - !GetAtt CicFrontSessionsTable.Arn
       PermissionsBoundary: !If
         - UsePermissionsBoundary
         - !Ref PermissionsBoundary
@@ -526,14 +518,14 @@ Resources:
     Properties:
       LogGroupName: !Sub /aws/apigateway/${AWS::StackName}-CICFront-API-GW-AccessLogs
 
-#  CSLSAPIGWAccessSubscriptionFilter:
-#    Type: AWS::Logs::SubscriptionFilter
-#    Condition: IsNotDevelopment
-#    Properties:
-#      DestinationArn:
-#        !FindInMap [PlatformConfiguration, !Ref Environment, CSLSEGRESS]
-#      FilterPattern: ""
-#      LogGroupName: !Ref APIGWAccessLogsGroup
+  #  CSLSAPIGWAccessSubscriptionFilter:
+  #    Type: AWS::Logs::SubscriptionFilter
+  #    Condition: IsNotDevelopment
+  #    Properties:
+  #      DestinationArn:
+  #        !FindInMap [PlatformConfiguration, !Ref Environment, CSLSEGRESS]
+  #      FilterPattern: ""
+  #      LogGroupName: !Ref APIGWAccessLogsGroup
 
 
   # Autoscaling
@@ -576,67 +568,85 @@ Resources:
 
   ### www domain
 
-#  FrontCustomDomain:
-#    Type: AWS::ApiGatewayV2::DomainName
-#    Properties:
-#      DomainName: !FindInMap [ EnvironmentVariables, !Ref Environment, FEURL ]
-#      DomainNameConfigurations:
-#        - CertificateArn: !Sub "{{resolve:ssm:/${Environment}/Platform/ACM/PrimaryZoneWildcardCertificateARN}}"
-#          EndpointType: REGIONAL
-#          SecurityPolicy: TLS_1_2
-#
-#  FrontApiRecord:
-#    Type: AWS::Route53::RecordSet
-#    Properties:
-#      Name: !FindInMap [EnvironmentVariables, !Ref Environment, FEURL ]
-#      Type: A
-#      HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
-#      AliasTarget:
-#        DNSName: !GetAtt FrontCustomDomain.RegionalDomainName
-#        HostedZoneId: !GetAtt FrontCustomDomain.RegionalHostedZoneId
-#        EvaluateTargetHealth: false
-#
-#  FrontApiMapping:
-#    Type: AWS::ApiGatewayV2::ApiMapping
-#    Properties:
-#      DomainName: !FindInMap [EnvironmentVariables, !Ref Environment, FEURL ]
-#      ApiId: !Ref ApiGwHttpEndpoint
-#      Stage: "$default"
-#    DependsOn:
-#      - FrontCustomDomain
-#
-#
-#  # app domain
-#  AppFrontCustomDomain:
-#    Type: AWS::ApiGatewayV2::DomainName
-#    Properties:
-#      DomainName: !FindInMap [EnvironmentVariables, !Ref Environment, APPURL ]
-#      DomainNameConfigurations:
-#        - CertificateArn: !Sub "{{resolve:ssm:/${Environment}/Platform/ACM/PrimaryZoneWildcardCertificateARN}}"
-#          EndpointType: REGIONAL
-#          SecurityPolicy: TLS_1_2
-#
-#  AppFrontApiRecord:
-#    Type: AWS::Route53::RecordSet
-#    Properties:
-#      Name: !FindInMap [EnvironmentVariables, !Ref Environment, APPURL ]
-#      Type: A
-#      HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
-#      AliasTarget:
-#        DNSName: !GetAtt AppFrontCustomDomain.RegionalDomainName
-#        HostedZoneId: !GetAtt AppFrontCustomDomain.RegionalHostedZoneId
-#        EvaluateTargetHealth: false
-#
-#  AppFrontApiMapping:
-#    Type: AWS::ApiGatewayV2::ApiMapping
-#    Properties:
-#      DomainName: !FindInMap [EnvironmentVariables, !Ref Environment, APPURL ]
-#      ApiId: !Ref ApiGwHttpEndpoint
-#      Stage: "$default"
-#    DependsOn:
-#      - AppFrontCustomDomain
+  #  FrontCustomDomain:
+  #    Type: AWS::ApiGatewayV2::DomainName
+  #    Properties:
+  #      DomainName: !FindInMap [ EnvironmentVariables, !Ref Environment, FEURL ]
+  #      DomainNameConfigurations:
+  #        - CertificateArn: !Sub "{{resolve:ssm:/${Environment}/Platform/ACM/PrimaryZoneWildcardCertificateARN}}"
+  #          EndpointType: REGIONAL
+  #          SecurityPolicy: TLS_1_2
+  #
+  #  FrontApiRecord:
+  #    Type: AWS::Route53::RecordSet
+  #    Properties:
+  #      Name: !FindInMap [EnvironmentVariables, !Ref Environment, FEURL ]
+  #      Type: A
+  #      HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
+  #      AliasTarget:
+  #        DNSName: !GetAtt FrontCustomDomain.RegionalDomainName
+  #        HostedZoneId: !GetAtt FrontCustomDomain.RegionalHostedZoneId
+  #        EvaluateTargetHealth: false
+  #
+  #  FrontApiMapping:
+  #    Type: AWS::ApiGatewayV2::ApiMapping
+  #    Properties:
+  #      DomainName: !FindInMap [EnvironmentVariables, !Ref Environment, FEURL ]
+  #      ApiId: !Ref ApiGwHttpEndpoint
+  #      Stage: "$default"
+  #    DependsOn:
+  #      - FrontCustomDomain
+  #
+  #
+  #  # app domain
+  #  AppFrontCustomDomain:
+  #    Type: AWS::ApiGatewayV2::DomainName
+  #    Properties:
+  #      DomainName: !FindInMap [EnvironmentVariables, !Ref Environment, APPURL ]
+  #      DomainNameConfigurations:
+  #        - CertificateArn: !Sub "{{resolve:ssm:/${Environment}/Platform/ACM/PrimaryZoneWildcardCertificateARN}}"
+  #          EndpointType: REGIONAL
+  #          SecurityPolicy: TLS_1_2
+  #
+  #  AppFrontApiRecord:
+  #    Type: AWS::Route53::RecordSet
+  #    Properties:
+  #      Name: !FindInMap [EnvironmentVariables, !Ref Environment, APPURL ]
+  #      Type: A
+  #      HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
+  #      AliasTarget:
+  #        DNSName: !GetAtt AppFrontCustomDomain.RegionalDomainName
+  #        HostedZoneId: !GetAtt AppFrontCustomDomain.RegionalHostedZoneId
+  #        EvaluateTargetHealth: false
+  #
+  #  AppFrontApiMapping:
+  #    Type: AWS::ApiGatewayV2::ApiMapping
+  #    Properties:
+  #      DomainName: !FindInMap [EnvironmentVariables, !Ref Environment, APPURL ]
+  #      ApiId: !Ref ApiGwHttpEndpoint
+  #      Stage: "$default"
+  #    DependsOn:
+  #      - AppFrontCustomDomain
 
-
+  CicFrontSessionsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      # checkov:skip=CKV_AWS_28: Point in time recovery is not necessary for this table.
+      TableName: !Sub "cic-front-sessions-${Environment}"
+      BillingMode: "PAY_PER_REQUEST"
+      AttributeDefinitions:
+        - AttributeName: "id"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: "id"
+          KeyType: "HASH"
+      TimeToLiveSpecification:
+        AttributeName: "expires"
+        Enabled: true
+      SSESpecification:
+        # checkov:skip=CKV_AWS_119: Implement Customer Managed Keys in PYIC-1391
+        SSEEnabled: true
+        SSEType: KMS
 
 Outputs:
   CICFrontUrl:
