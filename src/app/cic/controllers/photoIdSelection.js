@@ -4,7 +4,6 @@ const logger = require("hmpo-logger").get();
 
 class PhotoIdSelectionController extends BaseController {
   async saveValues(req, res, next) {
-    // console.log("RICHAAAAA")
     try {
       logger.info("user submitting photo Id choice", { req, res });
       req.sessionModel.set("redirect_url", undefined);
