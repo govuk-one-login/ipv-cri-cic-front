@@ -5,8 +5,8 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "start": "node dist/server.js",
-    "start:watch": "nodemon dist/server.js",
+    "start": "node src/app.js",
+    "start:watch": "nodemon src/app.js",
     "build": "yarn build-sass && yarn build-js && yarn copy-assets",
     "build-sass": "rm -rf dist/public/style.css && sass --no-source-map src/assets/scss/application.scss dist/public/stylesheets/application.css --style compressed",
     "build-js": "yarn build-js:application && yarn build-js:cookies && yarn build-js:all",
