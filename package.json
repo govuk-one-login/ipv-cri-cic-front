@@ -78,6 +78,9 @@
     "wait-on": "6.0.1"
   },
   "dependencies": {
+    "aws-sdk": "^2.1217.0",
+    "cfenv": "1.2.4",
+    "connect-dynamodb": "^2.0.4",
     "axios": "^0.27.2",
     "cookie-parser": "^1.4.5",
     "copyfiles": "2.4.1",
