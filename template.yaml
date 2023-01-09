@@ -54,7 +54,7 @@ Conditions:
           - "none"
 
 Mappings:
-  # see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
+  # See https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
   # To be added later
   #  PlatformConfiguration:
   #    dev:
@@ -342,6 +342,16 @@ Resources:
             #     - APIGatewayId:
             #         Fn::ImportValue: cic-cri-front-CICFrontGatewayId  #Hardcoded , needs to be updated to use a parameter for BE stack name
             #       Environment: !Ref Environment
+            # - Name: EXTERNAL_WEBSITE_HOST
+            #   Value: !GetAtt ApiGwHttpEndpoint.ApiEndpoint
+            # - Name: SESSION_TABLE_NAME
+            #   Value: !FindInMap [EnvironmentVariables, !Ref Environment, SESSIONTABLENAME ]
+            - Name: FRONT_END_URL
+              Value: !Sub
+                - "https://${APIGatewayId}.execute-api.eu-west-2.amazonaws.com/${Environment}"
+                - APIGatewayId:
+                    Fn::ImportValue: di-ipv-cri-cic-CICApiGatewayId  #Hardcoded , needs to be updated to use a parameter for BE stack name
+                  Environment: !Ref Environment
             # - Name: EXTERNAL_WEBSITE_HOST
             #   Value: !GetAtt ApiGwHttpEndpoint.ApiEndpoint
             # - Name: SESSION_TABLE_NAME
