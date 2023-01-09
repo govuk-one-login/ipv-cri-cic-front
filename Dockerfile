@@ -2,7 +2,6 @@ FROM node:16.17.0-alpine3.15@sha256:a60b681e1c28f60ea63f8394dea5384c69bdc464b965
 
 WORKDIR /app
 
-COPY .yarn ./.yarn
 COPY package.json yarn.lock ./
 COPY /src ./src
 
