@@ -84,6 +84,8 @@
     "di-ipv-cri-common-express": "alphagov/di-ipv-cri-common-express.git#v0.0.36",
     "dotenv": "^16.0.1",
     "express": "4.17.3",
+    "express-async-errors": "3.1.1",
+    "express-session": "^1.17.3",
     "govuk-frontend": "^4.0.1",
     "hmpo-app": "2.0.0",
     "hmpo-components": "5.3.1",
