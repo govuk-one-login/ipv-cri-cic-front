@@ -54,7 +54,7 @@ Conditions:
           - "none"
 
 Mappings:
-  # see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
+  # See https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
   # To be added later
   #  PlatformConfiguration:
   #    dev:
