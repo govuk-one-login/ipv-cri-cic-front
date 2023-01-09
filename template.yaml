@@ -30,6 +30,11 @@ Parameters:
       The name of the stack that defines the VPC in which this container will
       run.
     Type: String
+  DevFrontendContainer:
+    Description: >
+      The ECR container for overriding in development, if you want to target a specific version/tag
+    Type: String
+    Default: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/di-cic-front:2
   PermissionsBoundary:
     Description: "The ARN of the permissions boundary to apply when creating IAM roles"
     Type: String
@@ -49,7 +54,7 @@ Conditions:
           - "none"
 
 Mappings:
-  # see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
+  # See https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
   # To be added later
   #  PlatformConfiguration:
   #    dev:
@@ -263,12 +268,12 @@ Resources:
     Type: 'AWS::ECS::Service'
     Properties:
       Cluster: !Ref CICFrontEcsCluster
-      #      DeploymentConfiguration:
-      #        MaximumPercent: 200
-      #        MinimumHealthyPercent: 50
-      #        DeploymentCircuitBreaker:
-      #          Enable: TRUE
-      #          Rollback: TRUE
+      DeploymentConfiguration:
+        MaximumPercent: 200
+        MinimumHealthyPercent: 50
+        DeploymentCircuitBreaker:
+          Enable: TRUE
+          Rollback: TRUE
       DesiredCount: 1
       EnableECSManagedTags: false
       HealthCheckGracePeriodSeconds: 60
@@ -323,24 +328,28 @@ Resources:
     Properties:
       ContainerDefinitions:
         - Essential: true
-          Image: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/di-cic-front:2
-          #Image: "CONTAINER-IMAGE-PLACEHOLDER"
+          # Image: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/di-cic-front:2
+          Image: !If 
+            - IsNotDevelopment
+            - CONTAINER-IMAGE-PLACEHOLDER
+            - !Ref DevFrontendContainer
+
           Name: app
           Environment:
             - Name: API_BASE_URL
               Value: !Sub
                 - "https://${APIGatewayId}.execute-api.eu-west-2.amazonaws.com/${Environment}"
                 - APIGatewayId:
-                    Fn::ImportValue: cic-cri-front-CICFrontGatewayId #Hardcoded, needs to be updated to use a parameter for BE stack name
+                    Fn::ImportValue: di-ipv-cri-cic-CICApiGatewayId  #Hardcoded , needs to be updated to use a parameter for BE stack name
                   Environment: !Ref Environment
-            - Name: EXTERNAL_WEBSITE_HOST
-              Value: !GetAtt ApiGwHttpEndpoint.ApiEndpoint
-            - Name: SESSION_TABLE_NAME
-              Value: !FindInMap [EnvironmentVariables, !Ref Environment, SESSIONTABLENAME ]
-#            - Name: FRONT_END_URL
-#              Value: !Sub
-#                - "https://${Url}"
-#                - Url: !FindInMap [EnvironmentVariables, !Ref Environment, FEURL ]
+            # - Name: EXTERNAL_WEBSITE_HOST
+            #   Value: !GetAtt ApiGwHttpEndpoint.ApiEndpoint
+            # - Name: SESSION_TABLE_NAME
+            #   Value: !FindInMap [EnvironmentVariables, !Ref Environment, SESSIONTABLENAME ]
+            - Name: FRONT_END_URL
+              Value: !Sub
+                - "https://${Url}"
+                - Url: !FindInMap [EnvironmentVariables, !Ref Environment, EXTERNALWEBSITEHOST ]
 
             #No backend api url available ????
             #            - Name: API_URL
@@ -649,6 +658,9 @@ Resources:
         SSEType: KMS
 
 Outputs:
+  StackName:
+    Description: "CloudFormation stack name"
+    Value: !Sub "${AWS::StackName}"
   CICFrontUrl:
     Description: >-
       The API Gateway URL which CIC Front can be invoked on.
