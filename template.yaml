@@ -329,10 +329,11 @@ Resources:
       ContainerDefinitions:
         - Essential: true
           # Image: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/di-cic-front:2
-          Image: !If 
-            - IsNotDevelopment
-            - CONTAINER-IMAGE-PLACEHOLDER
-            - !Ref DevFrontendContainer
+          Image: CONTAINER-IMAGE-PLACEHOLDER
+          # Image: !If 
+          #   - IsNotDevelopment
+          #   - CONTAINER-IMAGE-PLACEHOLDER
+          #   - !Ref DevFrontendContainer
 
           Name: app
           Environment:
