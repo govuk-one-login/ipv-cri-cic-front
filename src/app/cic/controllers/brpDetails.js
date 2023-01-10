@@ -24,7 +24,7 @@ class BrpDetailsController extends DateController {
     console.log(req.sessionModel.get("isOutsideExpireWindow"));
     if (req.sessionModel.get("isOutsideExpireWindow")) {
 
-      return "/done"
+      return "/nameEntry"
     } else{
       return "/photoIdExpiry"
     }
