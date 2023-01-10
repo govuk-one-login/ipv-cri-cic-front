@@ -65,14 +65,9 @@ class PhotoIdSelectionController extends BaseController {
     } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL)) {
       return APP.PATHS.PHOTOCARD_DL_DETAILS
     } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT)) {
-      return APP.PATHS.OTHER_PASSPORT_DETAILS
+      return APP.PATHS.NON_UK_PASSPORT_DETAILS
     }
   }
 }
 
 module.exports = PhotoIdSelectionController;
-
-
-
-
-

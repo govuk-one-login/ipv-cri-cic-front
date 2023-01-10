@@ -5,14 +5,12 @@ photoIdChoice:
   items:
     ukPassport:
       label: UK passport
-    brp:
-      label: Biometric residence permit(BRP)
-
     ukPhotocardDL:
       label: UK photocard driving licence
-
+    brp:
+      label: Biometric residence permit (BRP)
     otherPassport:
-      label: Non-UK passport
+      label: Non-UK biometric passport
 
 "date-day":
   label: Day
@@ -26,15 +24,66 @@ photoIdChoice:
 passportExpiryDate:
   legend: ""
   label: ""
-  hint: "For example, 27 5 2029"
+  hint: "For example, 31 3 2025"
+  validation:
+    default: "Enter the expiry date as it appears on your passport"
+    after: "Your passport must not have expired more than 18 months ago"
+
+nonUKPassportExpiryDate:
+  legend: ""
+  label: ""
+  hint: "For example, 31 3 2025"
   validation:
     default: "Enter the expiry date as it appears on your passport"
     after: "Your passport must not have expired more than 18 months ago"
 
 brpExpiryDate:
-  legend: Date of expiry
-  hint: "For example, 27 5 2029"
+  legend: ""
+  label: ""
+  hint: "For example, 31 3 2025"
   validation:
     default: "Enter the expiry date as it appears on your BRP"
     after: "The expiry date must be in the future"
 
+photocardDlExpiryDate:
+  legend: ""
+  label: ""
+  hint: "For example, 31 3 2025"
+  validation:
+    default: "Enter the expiry date as it appears on your driving licence"
+    after: "The expiry date must be in the future"
+
+surname:
+  label: Surname
+  hint:
+  validation:
+    default: "Enter your last name as it appears on your photo ID"
+    maxlength: "Enter your last name as it appears on your photo ID"
+    regexSurname: "Enter your last name as it appears on your photo ID"
+
+firstName:
+  label: First name
+  hint:
+  validation:
+    default: "Enter your first name as it appears on your photo ID"
+    maxlength: "Enter your first name as it appears on your photo ID"
+    regexFirstname: "Enter your first name as it appears on your photo ID"
+
+middleName:
+  label: Middle names
+  hint: Leave this blank if you do not have any middle names
+
+dateOfBirth:
+  label: ""
+  legend: ""
+  hint: For example, 31 3 1980
+  validation:
+    default: "Enter your date of birth as it appears on your photo ID"
+    maxlength: "Enter your date of birth as it appears on your photo ID"
+    regexSurname: "Enter your date of birth as it appears on your photo ID"
+
+checkDetails: 
+  label: ""
+  legend: ""
+  validation:
+    default: "Make sure your details are correct before you continue. You will not be able to change them later"

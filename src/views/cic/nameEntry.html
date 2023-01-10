@@ -1,0 +1,58 @@
+{% extends "base-form.njk" %}
+{# the content for this page is controlled by locales/en/default.yml #}
+{% set hmpoPageKey = "nameEntry" %}
+{% set gtmJourney = "cic - nameEntry" %}
+
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "hmpo-text/macro.njk" import hmpoText %}
+{% from "hmpo-form/macro.njk" import hmpoForm %}
+
+{% block header %}
+  {{ govukHeader ({
+    serviceName: translate("govuk.serviceName")
+  }) }}
+{% endblock %}
+
+{% block mainContent %}
+<h1 id="header" data-page="{{hmpoPageKey}}" class="govuk-heading-l">
+        {{ translate("nameEntry.title") }}
+    </h1>
+    <p> {{ translate("nameEntry.nameEntryContext") }} </p><br>
+    
+    {% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
+
+    {{ hmpoText(ctx, {
+        id: "surname",
+        classes: "govuk-!-width-full"
+    })}}
+
+    <p> {{ translate("nameEntry.givenNames") }}</p>
+
+    <div class="govuk-inset-text govuk-!-margin-top-2 govuk-!-padding-top-1">
+
+        {{ hmpoText(ctx, {
+            id: "firstName",
+            classes: "govuk-!-width-three-quarters"
+        })}}
+
+
+        {{ hmpoText(ctx, {
+            id: "middleName",
+            classes: "govuk-!-width-three-quarters"
+        })}}
+
+    </div>
+
+    {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
+
+    {% endcall %}
+
+{% endblock %}
+
+{# generate the specific footer items required for the PYI flows #}
+{% set footerNavItems = translate("govuk.footerNavItems") %}
+
+{% block footer %}
+    {{ govukFooter( footerNavItems ) }}
+{% endblock %}

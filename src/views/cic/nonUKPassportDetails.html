@@ -1,7 +1,7 @@
 {% extends "base-form.njk" %}
 {# the content for this page is controlled by locales/en/default.yml #}
-{% set hmpoPageKey = "brp" %}
-{% set gtmJourney = "cic - brpDetails" %}
+{% set hmpoPageKey = "nonUKPassport" %}
+{% set gtmJourney = "cic - nonUKPassportDetails" %}
 
 {% from "hmpo-text/macro.njk" import hmpoText %}
 {% from "hmpo-form/macro.njk" import hmpoForm %}
@@ -16,15 +16,15 @@
 
 {% block mainContent %}
 <h1 id="header" data-page="{{hmpoPageKey}}" class="govuk-heading-l">
-        {{ translate("brp.title") }}
+        {{ translate("nonUKPassport.title") }}
     </h1>
-    <p> {{ translate("brp.passportInformationContext") }} </p>
+    <p> {{ translate("nonUKPassport.passportInformationContext") }} </p>
 
     {% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
 
     <div class="hint-with-margin">
     {{ hmpoDate(ctx, {
-        id: "brpExpiryDate",
+        id: "nonUKPassportExpiryDate",
         legend: {
             classes: "govuk-label"
         }

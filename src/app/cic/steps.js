@@ -1,6 +1,10 @@
 const photoIdSelect = require("./controllers/photoIdSelection");
 const passportDetails = require("./controllers/passportDetails");
 const brpDetails = require("./controllers/brpDetails");
+const nameEntry = require("./controllers/nameEntry");
+const photocardDlDetails = require('./controllers/photocardDl');
+const dobEntry = require("./controllers/dateOfBirth");
+const nonUKPassportDetails = require('./controllers/nonUKPassportDetails')
 const root = require("./controllers/root");
 
 module.exports = {
@@ -34,20 +38,32 @@ module.exports = {
     next: brpDetails.prototype.next
   },
   "/photocardDlDetails": {
-    fields: ["expiryDate"],
-    next: "done"
+    fields: ["photocardDlExpiryDate"],
+    controller: photocardDlDetails,
+    next: photocardDlDetails.prototype.next
   },
-  "/otherPassport": {
-    fields: ["expiryDate"],
-    next: "done"
+  "/nonUKPassportDetails": {
+    fields: ["nonUKPassportExpiryDate"],
+    controller: nonUKPassportDetails,
+    next: passportDetails.prototype.next
   },
   '/photoIdExpiry': {
 
     next: "/photoIdSelection"
   },
-  '/checkYourAnswers': {
-
-    next: "/done"
+  "/nameEntry": {
+    fields: ["surname", "firstName", "middleName"],
+    controller: nameEntry,
+    next: nameEntry.prototype.next
+  },
+  "/dateOfBirth": {
+    fields: ["dateOfBirth"],
+    controller: dobEntry,
+    next: dobEntry.prototype.next
+  },
+  "/checkDetails": {
+    
+    next: "/done",
   },
   '/done': {
 

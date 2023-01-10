@@ -1,0 +1,112 @@
+{% extends "base-form.njk" %}
+{# the content for this page is controlled by locales/en/default.yml #}
+{% set hmpoPageKey = "checkDetails" %}
+{% set gtmJourney = "cic - checkYourDetails" %}
+
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{% block header %}
+  {{ govukHeader ({
+    serviceName: translate("govuk.serviceName")
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <h1 class="govuk-heading-l">{{ translate("checkDetails.title") }}</h1>
+    <h2 class="govuk-heading-m"></h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-6',
+        rows: [
+          {
+            key: {
+              text: translate("checkDetails.selectedId")
+            },
+            value: {
+              text: "UK photocard driving licence"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/photoIdSelection",
+                  text: "Change",
+                  visuallyHiddenText: "ID Selection"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: translate("checkDetails.expiryDate")
+            },
+            value: {
+              text: "3 3 2025"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "expiryDate"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: translate("checkDetails.name")
+            },
+            value: {
+              html: req.sessionModel.firstName
+            },
+            actions: {
+              items: [
+                {
+                  href: "/nameEntry",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: translate("checkDetails.dateOfBirth")
+            },
+            value: {
+              html: '16 1 1989'
+            },
+            actions: {
+              items: [
+                {
+                  href: "/dateOfBirth",
+                  text: "Change",
+                  visuallyHiddenText: "dateOfBirth"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukWarningText({
+        text: translate("checkDetails.validation.default"),
+        iconFallbackText: "Warning"
+      }) }}
+
+      {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
+    </div>
+  </div>
+
+
+{% endblock %}
+
+{# generate the specific footer items required for the PYI flows #}
+{% set footerNavItems = translate("govuk.footerNavItems") %}
+
+{% block footer %}
+    {{ govukFooter( footerNavItems ) }}
+{% endblock %}

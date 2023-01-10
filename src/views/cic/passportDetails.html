@@ -6,6 +6,13 @@
 {% from "hmpo-text/macro.njk" import hmpoText %}
 {% from "hmpo-form/macro.njk" import hmpoForm %}
 {% from "hmpo-date/macro.njk" import hmpoDate %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+
+{% block header %}
+  {{ govukHeader ({
+    serviceName: translate("govuk.serviceName")
+  }) }}
+{% endblock %}
 
 
 {% block mainContent %}
@@ -16,12 +23,14 @@
 
     {% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
 
+    <div class="hint-with-margin">
     {{ hmpoDate(ctx, {
         id: "passportExpiryDate",
         legend: {
             classes: "govuk-label"
         }
     }) }}
+  </div>
 
      {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
 

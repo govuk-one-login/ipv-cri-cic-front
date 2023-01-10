@@ -4,7 +4,7 @@ const DateControllerMixin = require("hmpo-components").mixins.Date;
 
 const DateController = DateControllerMixin(BaseController);
 
-class PassportDetailsController extends DateController {
+class NonUKPassportDetailsController extends DateController {
 
   locals(req, res, callback) {
     super.locals(req, res, (err, locals) => {
@@ -12,7 +12,7 @@ class PassportDetailsController extends DateController {
         return callback(err, locals);
       }
 
-      locals.passportExpiryDate = req.sessionModel.get("passportExpiryDate");
+      locals.nonUKPassportExpiryDate = req.sessionModel.get("nonUKPassportExpiryDate");
 
       callback(err, locals);
     });
@@ -20,19 +20,18 @@ class PassportDetailsController extends DateController {
 
   async saveValues(req, res, next) {
     try {
-      const passportExpiryDate = req.form.values.passportExpiryDate;
-      const inputDate = moment(passportExpiryDate, 'YYYY-MM-DD');
+      const nonUKPassportExpiryDate = req.form.values.nonUKPassportExpiryDate;
+      const inputDate = moment(nonUKPassportExpiryDate, 'YYYY-MM-DD');
 
       const isOutsideExpireWindow = inputDate.isAfter(  new Date(
         new Date().getFullYear(),
-        new Date().getMonth() - 18,
+        new Date().getMonth(),
         new Date().getDate()
       )
         .toISOString()
         .split("T")[0],'months')
 
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
-      req.sessionModel.set("passportExpiryDate", passportExpiryDate);
 
       return next();
     } catch (err) {
@@ -49,4 +48,4 @@ class PassportDetailsController extends DateController {
   }
 
 }
-module.exports = PassportDetailsController;
+module.exports = NonUKPassportDetailsController;
