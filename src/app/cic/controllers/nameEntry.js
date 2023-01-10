@@ -1,5 +1,4 @@
 const BaseController = require("hmpo-form-wizard").Controller;
-const logger = require("hmpo-logger").get();
 
 class NameEntryController extends BaseController {
 
@@ -16,7 +15,7 @@ class NameEntryController extends BaseController {
     });
   }
 
-    next(req) {
+    next() {
       return "/dateOfBirth"
     } 
 }

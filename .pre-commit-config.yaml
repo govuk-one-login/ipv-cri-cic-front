@@ -59,5 +59,3 @@ repos:
       - id: checkov
         verbose: true
         args: [--soft-fail]
-        verbose: true
-        args: [--soft-fail]

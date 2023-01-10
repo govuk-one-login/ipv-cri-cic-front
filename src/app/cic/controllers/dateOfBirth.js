@@ -1,6 +1,4 @@
 const BaseController = require("hmpo-form-wizard").Controller;
-const moment = require('moment');
-// const logger = require("hmpo-logger").get();
 const DateControllerMixin = require("hmpo-components").mixins.Date;
 
 const DateController = DateControllerMixin(BaseController);
@@ -19,7 +17,7 @@ class DateOfBirthController extends DateController {
     });
   }
 
-    next(req) {
+    next() {
       return "/checkDetails"
     } 
 }
