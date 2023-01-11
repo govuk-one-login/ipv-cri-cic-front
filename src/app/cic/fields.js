@@ -36,6 +36,12 @@ module.exports = {
     journeyKey: "brpExpiryDate",
     validate: ["required", "date"]
   },
+  eeaPrCardExpiryDate: {
+    type: "date",
+    journeyKey: "eeaPrCardExpiryDate",
+    validate: [
+      "required", "date"],
+  },
   surname: {
     type: "text",
     journeyKey: "surname",

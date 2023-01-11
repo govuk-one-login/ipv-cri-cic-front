@@ -53,6 +53,14 @@ photocardDlExpiryDate:
     default: "Enter the expiry date as it appears on your driving licence"
     after: "The expiry date must be in the future"
 
+eeaPrCardExpiryDate: 
+  label: "" 
+  legend: "" 
+  hint: "For example, 31 3 2025"
+  validation: 
+    default: "Enter the expiry date as it appears on your EEA permanent residency card"
+    after: "The expiry date must be in the future"
+
 surname:
   label: Surname
   hint:
