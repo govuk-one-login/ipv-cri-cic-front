@@ -11,7 +11,8 @@ class PhotoIdSelectionController extends BaseController {
       req.sessionModel.set(APP.PHOTO_ID_OPTIONS.BRP, undefined);
       req.sessionModel.set(APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL, undefined);
       req.sessionModel.set(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT, undefined);
-
+      req.sessionModel.set(APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD, undefined);
+      
       const action = req.form.values.photoIdChoice;
       req.sessionModel.set("photoIdChoice", action);
 
@@ -48,6 +49,14 @@ class PhotoIdSelectionController extends BaseController {
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT, true);
           return next();
         }
+        case APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD: {
+          logger.info(
+              "photo-id-selection: user has selected Young Scot NEC - redirecting to NEC details page",
+              { req, res }
+          );
+          req.sessionModel.set(APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD, true);
+          return next();
+        }
       }
       logger.info("photo-id-selection: Invalid action " + action);
       return next(new Error("photo-id-selection: Invalid action " + action));
@@ -66,6 +75,8 @@ class PhotoIdSelectionController extends BaseController {
       return APP.PATHS.PHOTOCARD_DL_DETAILS
     } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT)) {
       return APP.PATHS.NON_UK_PASSPORT_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD)) {
+      return APP.PATHS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD_DETAILS
     }
   }
 }
