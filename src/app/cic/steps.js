@@ -50,8 +50,8 @@ module.exports = {
   },
   "/euIdentityCardDetails": {
     fields: ["euIdCardExpiryDate"],
-    controller: euIdentityCard,
-    next: euIdentityCard.prototype.next
+    controller: euIdentityCardDetails,
+    next: euIdentityCardDetails.prototype.next
   },
   '/photoIdExpiry': {
 
