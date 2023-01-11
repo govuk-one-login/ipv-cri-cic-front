@@ -31,7 +31,6 @@ class EeaPermanentResidencyCardController extends DateController {
     }
   }
   next(req) {
-    console.log(req.sessionModel.get("isOutsideExpireWindow"));
     if (req.sessionModel.get("isOutsideExpireWindow")) {
       return "/nameEntry"
     } else{
