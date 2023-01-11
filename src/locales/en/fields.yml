@@ -11,6 +11,8 @@ photoIdChoice:
       label: Biometric residence permit (BRP)
     otherPassport:
       label: Non-UK biometric passport
+    youngScotNationalEntitlementCard:
+      label: Young Scot National Entitlement Card (NEC)
 
 "date-day":
   label: Day
