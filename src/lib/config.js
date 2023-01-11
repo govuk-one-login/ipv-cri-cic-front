@@ -19,6 +19,7 @@ module.exports = {
       BRP_DETAILS: "/brpDetails",
       PHOTOCARD_DL_DETAILS: "/photocardDlDetails",
       NON_UK_PASSPORT_DETAILS: "/nonUKPassportDetails",
+      CITIZEN_CARD: "/citizenCardDetails",
       NAME_ENTRY: "/nameEntry",
       DATE_OF_BIRTH: "/dateOfBirth",
       CHECK_DETAILS: "/checkDetails",
