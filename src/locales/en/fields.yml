@@ -11,6 +11,8 @@ photoIdChoice:
       label: Biometric residence permit (BRP)
     otherPassport:
       label: Non-UK biometric passport
+    euIdentityCard:
+      label: EU Identity Card
 
 "date-day":
   label: Day

@@ -48,6 +48,14 @@ class PhotoIdSelectionController extends BaseController {
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT, true);
           return next();
         }
+        case APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD: {
+          logger.info(
+              "photo-id-selection: user has selected EU ID Card - redirecting to other passport details page",
+              { req, res }
+          );
+          req.sessionModel.set(APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD, true);
+          return next();
+        }
       }
       logger.info("photo-id-selection: Invalid action " + action);
       return next(new Error("photo-id-selection: Invalid action " + action));
@@ -66,6 +74,8 @@ class PhotoIdSelectionController extends BaseController {
       return APP.PATHS.PHOTOCARD_DL_DETAILS
     } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT)) {
       return APP.PATHS.NON_UK_PASSPORT_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD)) {
+      return APP.PATHS.EU_IDENTITY_CARD_DETAILS
     }
   }
 }
