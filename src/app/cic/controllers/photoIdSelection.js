@@ -11,6 +11,7 @@ class PhotoIdSelectionController extends BaseController {
       req.sessionModel.set(APP.PHOTO_ID_OPTIONS.BRP, undefined);
       req.sessionModel.set(APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL, undefined);
       req.sessionModel.set(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT, undefined);
+      req.sessionModel.set(APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL, undefined);
 
       const action = req.form.values.photoIdChoice;
       req.sessionModel.set("photoIdChoice", action);
@@ -48,6 +49,14 @@ class PhotoIdSelectionController extends BaseController {
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT, true);
           return next();
         }
+        case APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL: {
+          logger.info(
+              "photo-id-selection: user has selected EU photocard driving licence - redirecting to driving license details page",
+              { req, res }
+          );
+          req.sessionModel.set(APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL, true);
+          return next();
+        }
       }
       logger.info("photo-id-selection: Invalid action " + action);
       return next(new Error("photo-id-selection: Invalid action " + action));
@@ -66,6 +75,8 @@ class PhotoIdSelectionController extends BaseController {
       return APP.PATHS.PHOTOCARD_DL_DETAILS
     } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT)) {
       return APP.PATHS.NON_UK_PASSPORT_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL)) {
+      return APP.PATHS.EU_PHOTOCARD_DL_DETAILS
     }
   }
 }

@@ -13,7 +13,9 @@ module.exports = {
     {
       value: APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT,
       hint: {text: APP.NON_UK_PASSPORT_HINT}
-    }],
+    },
+      APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL,
+    ],
     validate: ["required"]
   },
   passportExpiryDate: {
@@ -34,6 +36,11 @@ module.exports = {
   brpExpiryDate: {
     type: "date",
     journeyKey: "brpExpiryDate",
+    validate: ["required", "date"]
+  },
+  euPhotocardDlExpiryDate: {
+    type: "date",
+    journeyKey: "euPhotocardDlDate",
     validate: ["required", "date"]
   },
   surname: {

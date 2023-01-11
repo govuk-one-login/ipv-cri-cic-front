@@ -19,6 +19,7 @@ module.exports = {
       BRP_DETAILS: "/brpDetails",
       PHOTOCARD_DL_DETAILS: "/photocardDlDetails",
       NON_UK_PASSPORT_DETAILS: "/nonUKPassportDetails",
+      EU_PHOTOCARD_DL_DETAILS: "/euPhotocardDlDetails",
       NAME_ENTRY: "/nameEntry",
       DATE_OF_BIRTH: "/dateOfBirth",
       CHECK_DETAILS: "/checkDetails",
@@ -27,7 +28,8 @@ module.exports = {
       UK_PASSPORT:"ukPassport",
       BRP: "brp",
       UK_PHOTOCARD_DL: "ukPhotocardDL",
-      OTHER_PASSPORT: "otherPassport"
+      OTHER_PASSPORT: "otherPassport",
+      EU_PHOTOCARD_DL: "euPhotocardDl"
     },
     UK_PASSPORT_HINT: "If your UK passport has expired, you can still use it to prove your identity up until 18 months after the expiry date",
     NON_UK_PASSPORT_HINT: "Biometric passports or e-Passports have a small rectangular camera icon on the front cover",

@@ -11,6 +11,8 @@ photoIdChoice:
       label: Biometric residence permit (BRP)
     otherPassport:
       label: Non-UK biometric passport
+    euPhotocardDl: 
+      label: EU photocard driving licence
 
 "date-day":
   label: Day
@@ -46,6 +48,14 @@ brpExpiryDate:
     after: "The expiry date must be in the future"
 
 photocardDlExpiryDate:
+  legend: ""
+  label: ""
+  hint: "For example, 31 3 2025"
+  validation:
+    default: "Enter the expiry date as it appears on your driving licence"
+    after: "The expiry date must be in the future"
+
+euPhotocardDlExpiryDate:
   legend: ""
   label: ""
   hint: "For example, 31 3 2025"
