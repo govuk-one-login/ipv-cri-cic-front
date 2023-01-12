@@ -30,11 +30,11 @@ Parameters:
       The name of the stack that defines the VPC in which this container will
       run.
     Type: String
-  DevFrontendContainer:
-    Description: >
-      The ECR container for overriding in development, if you want to target a specific version/tag
-    Type: String
-    Default: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/di-cic-front:2
+  # DevFrontendContainer:
+  #   Description: >
+  #     The ECR container for overriding in development, if you want to target a specific version/tag
+  #   Type: String
+  #   Default: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/di-cic-front:2
   PermissionsBoundary:
     Description: "The ARN of the permissions boundary to apply when creating IAM roles"
     Type: String
@@ -343,10 +343,10 @@ Resources:
                 - APIGatewayId:
                     Fn::ImportValue: di-ipv-cri-cic-PrivateCICApiGatewayId  #Hardcoded , needs to be updated to use a parameter for BE stack name
                   Environment: !Ref Environment
-            # - Name: EXTERNAL_WEBSITE_HOST
-            #   Value: !GetAtt ApiGwHttpEndpoint.ApiEndpoint
-            # - Name: SESSION_TABLE_NAME
-            #   Value: !FindInMap [EnvironmentVariables, !Ref Environment, SESSIONTABLENAME ]
+            - Name: EXTERNAL_WEBSITE_HOST
+              Value: !GetAtt ApiGwHttpEndpoint.ApiEndpoint
+            - Name: SESSION_TABLE_NAME
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, SESSIONTABLENAME ]
             - Name: FRONT_END_URL
               Value: !Sub
                 - "https://${Url}"
