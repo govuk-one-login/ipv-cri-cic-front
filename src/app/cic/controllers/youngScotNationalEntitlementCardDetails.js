@@ -42,12 +42,10 @@ class YoungScotNationalEntitlementCardDetailsController extends DateController {
 
   next(req) {
     if (req.sessionModel.get("isOutsideExpireWindow")) {
-
       return "/nameEntry"
     } else{
       return "/photoIdExpiry"
     }
   }
-
 }
 module.exports = YoungScotNationalEntitlementCardDetailsController;
