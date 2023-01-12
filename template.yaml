@@ -30,11 +30,6 @@ Parameters:
       The name of the stack that defines the VPC in which this container will
       run.
     Type: String
-  # DevFrontendContainer:
-  #   Description: >
-  #     The ECR container for overriding in development, if you want to target a specific version/tag
-  #   Type: String
-  #   Default: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/di-cic-front:2
   PermissionsBoundary:
     Description: "The ARN of the permissions boundary to apply when creating IAM roles"
     Type: String
@@ -271,9 +266,9 @@ Resources:
       DeploymentConfiguration:
         MaximumPercent: 200
         MinimumHealthyPercent: 50
-        DeploymentCircuitBreaker:
-          Enable: TRUE
-          Rollback: TRUE
+        # DeploymentCircuitBreaker:
+        #   Enable: TRUE
+        #   Rollback: TRUE
       DesiredCount: 1
       EnableECSManagedTags: false
       HealthCheckGracePeriodSeconds: 60
@@ -328,13 +323,8 @@ Resources:
     Properties:
       ContainerDefinitions:
         - Essential: true
-          # Image: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/di-cic-front:2
+          # Image: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/cic-cri-front-ecr-containerrepository-j4lecqllu2gt:57705626bb9db561cbb6a229b7e8a5b46cb23f12
           Image: CONTAINER-IMAGE-PLACEHOLDER
-          # Image: !If 
-          #   - IsNotDevelopment
-          #   - CONTAINER-IMAGE-PLACEHOLDER
-          #   - !Ref DevFrontendContainer
-
           Name: app
           Environment:
             - Name: API_BASE_URL
