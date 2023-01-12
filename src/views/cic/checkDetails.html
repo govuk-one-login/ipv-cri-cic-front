@@ -26,7 +26,7 @@
               text: translate("checkDetails.selectedId")
             },
             value: {
-              text: "UK photocard driving licence"
+              html: sessionModel.get(("isOutsideExpireWindow")
             },
             actions: {
               items: [
@@ -43,7 +43,7 @@
               text: translate("checkDetails.expiryDate")
             },
             value: {
-              text: "3 3 2025"
+              html: values.passportExpiryDate
             },
             actions: {
               items: [
@@ -60,7 +60,7 @@
               text: translate("checkDetails.name")
             },
             value: {
-              html: req.sessionModel.firstName
+              html: values.firstName + " " + values.surname
             },
             actions: {
               items: [
@@ -77,7 +77,7 @@
               text: translate("checkDetails.dateOfBirth")
             },
             value: {
-              html: '16 1 1989'
+              html: values.dateOfBirth
             },
             actions: {
               items: [
