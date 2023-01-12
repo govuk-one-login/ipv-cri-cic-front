@@ -1,0 +1,81 @@
+{
+  "mappings": [
+    {
+      "scenarioName": "f2f-cic-success",
+      "newScenarioState": "Started",
+      "request": {
+        "method": "GET",
+        "url": "/__reset/f2f-cic-success"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "scenarioName": "f2f-cic-success",
+      "requiredScenarioState": "Started",
+      "newScenarioState": "FraudCheck",
+      "request": {
+        "method": "POST",
+        "urlPath": "/session",
+        "headers": {
+          "x-scenario-id": {
+            "equalTo": "f2f-cic-success"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "session_id": "ABADCAFE",
+          "state": "sT@t3",
+          "redirect_uri": "http://example.net/return"
+        }
+      }
+    },
+    {
+      "scenarioName": "f2f-cic-success",
+      "requiredScenarioState": "FraudCheck",
+      "newScenarioState": "AuthCode",
+      "request": {
+        "method": "POST",
+        "urlPath": "/identity-check",
+        "headers": {
+          "x-scenario-id": {
+            "equalTo": "f2f-cic-success"
+          },
+          "session_id": {
+            "equalTo": "ABADCAFE"
+          }
+        }
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "scenarioName": "f2f-cic-success",
+      "requiredScenarioState": "AuthCode",
+      "request": {
+        "method": "GET",
+        "urlPath": "/authorization",
+        "headers": {
+          "x-scenario-id": {
+            "equalTo": "f2f-cic-success"
+          },
+          "session-id": {
+            "equalTo": "ABADCAFE"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "authorizationCode": {
+            "value": "FACEFEED"
+          }
+        }
+      }
+    }
+  ]
+}

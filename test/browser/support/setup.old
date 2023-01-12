@@ -1,0 +1,114 @@
+import { Before, After, AfterAll, BeforeAll } from "@cucumber/cucumber";
+import { Browser, chromium, Page } from "playwright";
+//import { OurWorld } from "./types";
+
+/* 05/01/23
+// let page: Page;
+// let browser: Browser;
+
+
+Before(async function () {
+try{
+  // Browsers are expensive in Playwright so only create 1
+    browser = await chromium.launch({
+    // Not headless so we can watch test runs
+    headless: false,
+    // Slow so we can see things happening
+    slowMo: 50,
+  });
+  const context = await browser.newContext();
+  page = await context.newPage();
+}
+catch(error){
+  console.log('>> Chrome navigation to demo site faile due to ${error}');
+  throw new Error('>> Chrome navigation to demo site faile due to ${error}')
+}
+return page;
+});
+
+After(async function () {
+  await browser.close();
+});
+
+export {page, browser};
+*/
+
+
+BeforeAll(async function () {
+
+  global.browser = await chromium.launch({
+
+    // Not headless so we can watch test runs
+
+    headless: true,
+
+    // Slow so we can see things happening
+
+    // slowMo: 500
+
+  })
+
+})
+
+
+
+// Create a new test context and page per scenario
+
+Before(async function () {
+
+  this.context = await global.browser.newContext({})
+
+  this.page = await this.context.newPage()
+
+  this.context.addCookies([{
+
+    name: "X_GOVUK_SIGNIN_DCA_FEATURE_FLAG_20221213_OAUTH_ENABLED",
+
+    value: "true",
+
+    path: '/',
+
+    domain: process.env.SERVICE_COOKIE_DOMAIN
+
+  }])
+
+})
+
+
+
+AfterAll(async function () {
+
+  await global.browser.close()
+
+})
+
+
+
+// Cleanup after each scenario
+
+After(async function () {
+
+  await this.page.close()
+
+  await this.context.close()
+
+})
+
+
+
+// Create a new test context and page per scenario
+/*Before(async function (this: OurWorld) {
+  const pixel2 = devices["Pixel 2"];
+  this.context = await global.browser.newContext({
+    viewport: pixel2.viewport,
+    userAgent: pixel2.userAgent,
+  });
+  this.page = await this.context.newPage();
+});
+
+// Cleanup after each scenario
+After(async function (this: OurWorld) {
+  await this.page.close();
+  await this.context.close();
+});
+*/

@@ -1,0 +1,82 @@
+{
+  "mappings": [
+    {
+      "scenarioName": "fraud-success-slow",
+      "newScenarioState": "Started",
+      "request": {
+        "method": "GET",
+        "url": "/__reset/fraud-success-slow"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "scenarioName": "fraud-success-slow",
+      "requiredScenarioState": "Started",
+      "newScenarioState": "FraudCheck",
+      "request": {
+        "method": "POST",
+        "urlPath": "/session",
+        "headers": {
+          "x-scenario-id": {
+            "equalTo": "fraud-success-slow"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "session_id": "ABADCAFE",
+          "state": "sT@t3",
+          "redirect_uri": "http://example.net/return"
+        }
+      }
+    },
+    {
+      "scenarioName": "fraud-success-slow",
+      "requiredScenarioState": "FraudCheck",
+      "newScenarioState": "AuthCode",
+      "request": {
+        "method": "POST",
+        "urlPath": "/identity-check",
+        "headers": {
+          "x-scenario-id": {
+            "equalTo": "fraud-success-slow"
+          },
+          "session_id": {
+            "equalTo": "ABADCAFE"
+          }
+        }
+      },
+      "response": {
+        "fixedDelayMilliseconds": "5000",
+        "status": 200
+      }
+    },
+    {
+      "scenarioName": "fraud-success-slow",
+      "requiredScenarioState": "AuthCode",
+      "request": {
+        "method": "GET",
+        "urlPath": "/authorization",
+        "headers": {
+          "x-scenario-id": {
+            "equalTo": "fraud-success-slow"
+          },
+          "session-id": {
+            "equalTo": "ABADCAFE"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "authorizationCode": {
+            "value": "FACEFEED"
+          }
+        }
+      }
+    }
+  ]
+}

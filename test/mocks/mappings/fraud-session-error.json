@@ -1,0 +1,32 @@
+{
+  "mappings": [
+    {
+      "scenarioName": "fraud-session-error",
+      "newScenarioState": "Started",
+      "request": {
+        "method": "GET",
+        "url": "/__reset/fraud-session-error"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "scenarioName": "fraud-session-error",
+      "requiredScenarioState": "Started",
+      "newScenarioState": "FraudCheck",
+      "request": {
+        "method": "POST",
+        "urlPath": "/session",
+        "headers": {
+          "x-scenario-id": {
+            "equalTo": "fraud-session-error"
+          }
+        }
+      },
+      "response": {
+        "status": 500
+      }
+    }
+  ]
+}
