@@ -58,6 +58,7 @@ class PhotoIdSelectionController extends BaseController {
               { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL, true);
+          return next();
         }
         case APP.PHOTO_ID_OPTIONS.CITIZEN_CARD: {
           logger.info(
