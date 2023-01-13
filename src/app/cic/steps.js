@@ -3,6 +3,7 @@ const passportDetails = require("./controllers/passportDetails");
 const nonUKPassportDetails = require('./controllers/nonUKPassportDetails')
 const brpDetails = require("./controllers/brpDetails");
 const photocardDlDetails = require('./controllers/photocardDl');
+const citizenCardDetails = require("./controllers/citizenCardDetails");
 const euIdentityCardDetails = require("./controllers/euIdentityCardDetails");
 const nameEntry = require("./controllers/nameEntry");
 const dobEntry = require("./controllers/dateOfBirth");
@@ -58,6 +59,11 @@ module.exports = {
     fields: ["youngScotNationalEntitlementCardExpiryDate"],
     controller: youngScotNationalEntitlementCardDetails,
     next: youngScotNationalEntitlementCardDetails.prototype.next
+  },
+  "/citizenCardDetails": {
+    fields: ["citizenCardExpiryDate"],
+    controller: citizenCardDetails,
+    next: citizenCardDetails.prototype.next
   },
   '/photoIdExpiry': {
 

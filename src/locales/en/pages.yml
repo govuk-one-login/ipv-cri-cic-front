@@ -16,6 +16,10 @@ photocardDl:
   title: "When does your UK photocard driving licence expire?"
   photocardDlInformationContext: "We need this information to check that your photo ID is valid. "
 
+citizenCard: 
+  title: "When does your CitizenCard expire?" 
+  content: "We need this information to check that your photo ID is valid." 
+
 youngScotNationalEntitlementCard:
   title: "When does your Young Scot National Entitlement Card (NEC) expire?"
   youngScotNationalEntitlementCardInformationContext: "We need this information to check that your photo ID is valid."
