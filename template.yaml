@@ -266,9 +266,9 @@ Resources:
       DeploymentConfiguration:
         MaximumPercent: 200
         MinimumHealthyPercent: 50
-        # DeploymentCircuitBreaker:
-        #   Enable: TRUE
-        #   Rollback: TRUE
+        DeploymentCircuitBreaker:
+          Enable: TRUE
+          Rollback: TRUE
       DesiredCount: 1
       EnableECSManagedTags: false
       HealthCheckGracePeriodSeconds: 60
