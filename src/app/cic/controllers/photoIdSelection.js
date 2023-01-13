@@ -51,7 +51,7 @@ class PhotoIdSelectionController extends BaseController {
         }
         case APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD: {
           logger.info(
-              "photo-id-selection: user has selected EU ID Card - redirecting to other passport details page",
+              "photo-id-selection: user has selected EU ID Card - redirecting to EU ID Card details page",
               { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD, true);
