@@ -8,8 +8,8 @@ module.exports = class PlaywrightDevPage {
 
   
   async goto() {
-    console.log(">>In relying-party.js");
-    console.log(">>In goto function");
+    // console.log(">>In relying-party.js");
+    // console.log(">>In goto function");
     this.startingUrl =
       "http://localhost:5020/oauth2/authorize?request=lorem&client_id=standalone";
 
@@ -17,7 +17,7 @@ module.exports = class PlaywrightDevPage {
   }
 
   async isRedirectPage() {
-    console.log(">> In isRedirectPage function");
+    // console.log(">> In isRedirectPage function");
     const url = this.page.url();
 
     const isCorrectPage =
@@ -28,7 +28,7 @@ module.exports = class PlaywrightDevPage {
   }
 
   isRelyingPartyServer() {
-    console.log(">>In isRelyingPartyServer function");
+    // console.log(">>In isRelyingPartyServer function");
     return new URL(this.page.url()).origin === "http://example.net";
   }
 

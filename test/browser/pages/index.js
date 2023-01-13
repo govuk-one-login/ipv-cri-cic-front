@@ -1,4 +1,4 @@
-console.log(">>In index.js");
+//console.log(">>In index.js");
 module.exports = {
   LandingPage: require("./landingPage"),
   PhotoIdSelectionPage: require("./photoIdSelectionPage"),

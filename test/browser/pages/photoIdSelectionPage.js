@@ -8,15 +8,15 @@ module.exports = class PlaywrightDevPage {
   }
 
   isCurrentPage() {
-    console.log(">>In photoIdSelectionPage.js");
-    console.log(">>In isCurrentPage function");
+    // console.log(">>In photoIdSelectionPage.js");
+    // console.log(">>In isCurrentPage function");
 
     return this.page.url() === this.url;
   }
 
   async continue() {
-    console.log(">>In photoIdSelectionPage.js");
-    console.log(">>In continue");
+    // console.log(">>In photoIdSelectionPage.js");
+    // console.log(">>In continue");
     await this.page.click("#continue");
   }
 };
