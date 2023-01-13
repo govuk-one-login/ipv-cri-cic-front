@@ -1,11 +1,14 @@
 const photoIdSelect = require("./controllers/photoIdSelection");
 const passportDetails = require("./controllers/passportDetails");
+const nonUKPassportDetails = require('./controllers/nonUKPassportDetails')
 const brpDetails = require("./controllers/brpDetails");
-const nameEntry = require("./controllers/nameEntry");
 const photocardDlDetails = require('./controllers/photocardDl');
 const euPhotocardDlDetails = require('./controllers/euPhotocardDlDetails')
+const citizenCardDetails = require("./controllers/citizenCardDetails");
+const euIdentityCardDetails = require("./controllers/euIdentityCardDetails");
+const nameEntry = require("./controllers/nameEntry");
 const dobEntry = require("./controllers/dateOfBirth");
-const nonUKPassportDetails = require('./controllers/nonUKPassportDetails')
+const youngScotNationalEntitlementCardDetails = require('./controllers/youngScotNationalEntitlementCardDetails')
 const root = require("./controllers/root");
 
 module.exports = {
@@ -33,20 +36,35 @@ module.exports = {
     controller: passportDetails,
     next: passportDetails.prototype.next
   },
-  "/brpDetails": {
-    fields: ["brpExpiryDate"],
-    controller: brpDetails,
-    next: brpDetails.prototype.next
+  "/nonUKPassportDetails": {
+    fields: ["nonUKPassportExpiryDate"],
+    controller: nonUKPassportDetails,
+    next: passportDetails.prototype.next
   },
   "/photocardDlDetails": {
     fields: ["photocardDlExpiryDate"],
     controller: photocardDlDetails,
     next: photocardDlDetails.prototype.next
   },
-  "/nonUKPassportDetails": {
-    fields: ["nonUKPassportExpiryDate"],
-    controller: nonUKPassportDetails,
-    next: passportDetails.prototype.next
+  "/brpDetails": {
+    fields: ["brpExpiryDate"],
+    controller: brpDetails,
+    next: brpDetails.prototype.next
+  },
+  "/euIdentityCardDetails": {
+    fields: ["euIdCardExpiryDate"],
+    controller: euIdentityCardDetails,
+    next: euIdentityCardDetails.prototype.next
+  },
+  "/youngScotNecDetails": {
+    fields: ["youngScotNationalEntitlementCardExpiryDate"],
+    controller: youngScotNationalEntitlementCardDetails,
+    next: youngScotNationalEntitlementCardDetails.prototype.next
+  },
+  "/citizenCardDetails": {
+    fields: ["citizenCardExpiryDate"],
+    controller: citizenCardDetails,
+    next: citizenCardDetails.prototype.next
   },
   "/euPhotocardDlDetails": {
     fields: ["euPhotocardDlExpiryDate"],

@@ -9,13 +9,19 @@ module.exports = {
     items: [{
       value: APP.PHOTO_ID_OPTIONS.UK_PASSPORT,
       hint: {text: APP.UK_PASSPORT_HINT}
-    }, APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL, APP.PHOTO_ID_OPTIONS.BRP,
+    },
     {
       value: APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT,
       hint: {text: APP.NON_UK_PASSPORT_HINT}
     },
-      APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL,
-    ],
+    APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL,
+    APP.PHOTO_ID_OPTIONS.BRP,
+    APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL,
+    APP.PHOTO_ID_OPTIONS.EEA_PERMANENT_RESIDENCY_CARD,
+    APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD,
+    APP.PHOTO_ID_OPTIONS.CITIZEN_CARD,
+    APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD
+  ],
     validate: ["required"]
   },
   passportExpiryDate: {
@@ -42,6 +48,22 @@ module.exports = {
     type: "date",
     journeyKey: "euPhotocardDlDate",
     validate: ["required", "date"]
+  },
+  citizenCardExpiryDate: {
+    type: "date",
+    journeyKey: "citizenCardExpiryDate",
+    validate: ["required", "date"],
+  },
+  youngScotNationalEntitlementCardExpiryDate: {
+    type: "date",
+    journeyKey: "youngScotNationalEntitlementCardExpiryDate",
+    validate: ["required", "date"]
+  },
+  euIdCardExpiryDate: {
+    type: "date",
+    journeyKey: "euIdCardExpiryDate",
+    validate: [
+      "required", "date"],
   },
   surname: {
     type: "text",
