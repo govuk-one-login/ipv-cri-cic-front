@@ -16,7 +16,11 @@ module.exports = {
     },
     APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL,
     APP.PHOTO_ID_OPTIONS.BRP,
+    APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL,
+    APP.PHOTO_ID_OPTIONS.EEA_PERMANENT_RESIDENCY_CARD,
+    APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD,
     APP.PHOTO_ID_OPTIONS.CITIZEN_CARD,
+    APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD
   ], 
     validate: ["required"]
   },
@@ -43,6 +47,16 @@ module.exports = {
   citizenCardExpiryDate: {
     type: "date",
     journeyKey: "citizenCardExpiryDate",
+    validate: ["required", "date"],
+  },
+  youngScotNationalEntitlementCardExpiryDate: {
+    type: "date",
+    journeyKey: "youngScotNationalEntitlementCardExpiryDate",
+    validate: ["required", "date"]
+  },
+  euIdCardExpiryDate: {
+    type: "date",
+    journeyKey: "euIdCardExpiryDate",
     validate: [
       "required", "date"],
   },

@@ -18,6 +18,14 @@ photocardDl:
 
 citizenCard: 
   title: "When does your CitizenCard expire?" 
+  content: "We need this information to check that your photo ID is valid." 
+
+youngScotNationalEntitlementCard:
+  title: "When does your Young Scot National Entitlement Card (NEC) expire?"
+  youngScotNationalEntitlementCardInformationContext: "We need this information to check that your photo ID is valid."
+  
+euIdentityCard: 
+  title: "When does your EU identity card expire?" 
   content: "We need this information to check that your photo ID is valid."
 
 photoIdSelection:
