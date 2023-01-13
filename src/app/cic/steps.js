@@ -43,11 +43,6 @@ module.exports = {
     controller: photocardDlDetails,
     next: photocardDlDetails.prototype.next
   },
-  "/nonUKPassportDetails": {
-    fields: ["nonUKPassportExpiryDate"],
-    controller: nonUKPassportDetails,
-    next: passportDetails.prototype.next
-  },
   "/brpDetails": {
     fields: ["brpExpiryDate"],
     controller: brpDetails,
