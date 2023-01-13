@@ -21,8 +21,7 @@ photoIdChoice:
       label: CitizenCard
     youngScotNationalEntitlementCard:
       label: Young Scot National Entitlement Card (NEC)
-    
-
+   
 "date-day":
   label: Day
 
@@ -62,6 +61,14 @@ photocardDlExpiryDate:
   hint: "For example, 31 3 2025"
   validation:
     default: "Enter the expiry date as it appears on your driving licence"
+    after: "The expiry date must be in the future"
+
+youngScotNationalEntitlementCardExpiryDate:
+  legend: ""
+  label: ""
+  hint: "For example, 31 3 2025"
+  validation:
+    default: "Enter the expiry date as it appears on your NEC"
     after: "The expiry date must be in the future"
 
 euIdCardExpiryDate: 

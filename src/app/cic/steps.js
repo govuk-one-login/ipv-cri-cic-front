@@ -6,6 +6,7 @@ const photocardDlDetails = require('./controllers/photocardDl');
 const euIdentityCardDetails = require("./controllers/euIdentityCardDetails");
 const nameEntry = require("./controllers/nameEntry");
 const dobEntry = require("./controllers/dateOfBirth");
+const youngScotNationalEntitlementCardDetails = require('./controllers/youngScotNationalEntitlementCardDetails')
 const root = require("./controllers/root");
 
 module.exports = {
@@ -52,6 +53,11 @@ module.exports = {
     fields: ["euIdCardExpiryDate"],
     controller: euIdentityCardDetails,
     next: euIdentityCardDetails.prototype.next
+  },
+  "/youngScotNecDetails": {
+    fields: ["youngScotNationalEntitlementCardExpiryDate"],
+    controller: youngScotNationalEntitlementCardDetails,
+    next: youngScotNationalEntitlementCardDetails.prototype.next
   },
   '/photoIdExpiry': {
 
