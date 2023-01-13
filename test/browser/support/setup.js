@@ -34,7 +34,7 @@ Before(async function ({ pickle } = {}) {
 
   this.SCENARIO_ID_HEADER = header;
 
-  const url = `http://localhost:8030/__reset/${header}`;
+  const url = `http://localhost:8090/__reset/${header}`;
 
   try {
     await axios.get(url);
