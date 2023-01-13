@@ -51,7 +51,7 @@ class PhotoIdSelectionController extends BaseController {
         }
         case APP.PHOTO_ID_OPTIONS.CITIZEN_CARD: {
           logger.info(
-              "photo-id-selection: user has selected CitizenCard - redirecting to other passport details page",
+              "photo-id-selection: user has selected CitizenCard - redirecting to CitizenCard details page",
               { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.CITIZEN_CARD, true);
