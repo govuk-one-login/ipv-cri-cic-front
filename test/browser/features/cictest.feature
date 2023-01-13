@@ -1,7 +1,7 @@
 @mock-api:f2f-cic-success @success
 Feature: Happy path
 
-  Viewing the Knowledge Based Verification questions successfully
+ E2E journey for Face-to-Face path Landing Page start
 
   Background:
     Given Authenticatable Anita is using the system
@@ -9,10 +9,8 @@ Feature: Happy path
 
   @mock-api:f2f-cic-success
   Scenario: Run CiC check
-    Given they have started the CiC journey
-    And they can see the landing page
-    When they continue on landing page
-   # Then they should be redirected as a success
-    Then they should be redirected to photoID page
+    Given the user wants to progress to the next step of the journey
+    When the user clicks the continue button
+    Then the user is routed to the next screen in the journey
 
  

@@ -4,9 +4,8 @@ const { expect } = require("chai");
 
 const { LandingPage, PhotoIdSelectionPage } = require("../pages");
 
-When(/^they (?:have )?start(?:ed)? the CiC journey$/, async function () {});
 
-Given(/they (?:can )?see? the landing page$/, async function () {
+  Given(/^the user wants to progress to the next step of the journey$/, async function () {
   console.log(">>In CIC step defintion");
   console.log(">>using the landing pages function");
   const landingPage = new LandingPage(this.page);
@@ -14,7 +13,7 @@ Given(/they (?:can )?see? the landing page$/, async function () {
   expect(landingPage.isCurrentPage()).to.be.true;
 });
 
-Given(/^they (?:have )?continue(?:d)? on landing page$/, async function () {
+When(/^the user clicks the continue button$/, async function () {
   console.log(">>In cic step defintion");
   console.log(">>continue on photoId page");
   const landingPage = new LandingPage(this.page);
@@ -25,7 +24,7 @@ Given(/^they (?:have )?continue(?:d)? on landing page$/, async function () {
 });
 
 
-Then("they should be redirected to photoID page", function () {
+Then("the user is routed to the next screen in the journey", function () {
   const photoIdPage = new PhotoIdSelectionPage(this.page);
 
   expect(photoIdPage.isCurrentPage()).to.be.true;
