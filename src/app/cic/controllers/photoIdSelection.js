@@ -51,7 +51,7 @@ class PhotoIdSelectionController extends BaseController {
         }
         case APP.PHOTO_ID_OPTIONS.EEA_PERMANENT_RESIDENCY_CARD: {
           logger.info(
-              "photo-id-selection: user has selected EEA PR Card - redirecting to other passport details page",
+              "photo-id-selection: user has selected EEA PR Card - redirecting to EEA PR card details page",
               { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.EEA_PERMANENT_RESIDENCY_CARD, true);
