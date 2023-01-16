@@ -4,6 +4,7 @@ const DateControllerMixin = require("hmpo-components").mixins.Date;
 const DateController = DateControllerMixin(BaseController);
 
 class CheckDetailsController extends DateController {
+
   locals(req, res, callback) {
     super.locals(req, res, (err, locals) => {
       if (err) {

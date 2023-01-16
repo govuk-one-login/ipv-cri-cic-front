@@ -17,7 +17,7 @@ class DateOfBirthController extends DateController {
     });
   }
 
-    next(req) {
+    next() {
       return "/checkDetails"
     } 
 }
