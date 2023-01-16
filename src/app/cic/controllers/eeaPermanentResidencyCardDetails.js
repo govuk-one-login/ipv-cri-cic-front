@@ -24,7 +24,10 @@ class EeaPermanentResidencyCardController extends DateController {
       )
         .toISOString()
         .split("T")[0],'months')
+        
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
+      req.sessionModel.set("eeaPrCardExpiryDate", eeaPrCardExpiryDate); 
+
       return next();
     } catch (err) {
       return next(err);
