@@ -5,13 +5,23 @@ photoIdChoice:
   items:
     ukPassport:
       label: UK passport
-    ukPhotocardDL:
+    ukPhotocardDl:
       label: UK photocard driving licence
     brp:
       label: Biometric residence permit (BRP)
     otherPassport:
       label: Non-UK biometric passport
-
+    euPhotocardDl:
+      label: EU photocard driving licence
+    eeaPermanentResidencyCard:
+      label: EEA Permanent Residency Card
+    euIdentityCard:
+      label: EU Identity Card
+    citizenCard:
+      label: CitizenCard
+    youngScotNationalEntitlementCard:
+      label: Young Scot National Entitlement Card (NEC)
+   
 "date-day":
   label: Day
 
@@ -51,6 +61,38 @@ photocardDlExpiryDate:
   hint: "For example, 31 3 2025"
   validation:
     default: "Enter the expiry date as it appears on your driving licence"
+    after: "The expiry date must be in the future"
+
+euPhotocardDlExpiryDate:
+  legend: ""
+  label: ""
+  hint: "For example, 31 3 2025"
+  validation:
+    default: "Enter the expiry date as it appears on your driving licence"
+    after: "The expiry date must be in the future"
+
+citizenCardExpiryDate: 
+  label: "" 
+  legend: "" 
+  hint: "For example, 31 3 2025"
+  validation: 
+    default: "Enter the expiry date as it appears on your CitizenCard"
+    after: "The expiry date must be in the future"
+
+youngScotNationalEntitlementCardExpiryDate:
+  legend: ""
+  label: ""
+  hint: "For example, 31 3 2025"
+  validation:
+    default: "Enter the expiry date as it appears on your NEC"
+    after: "The expiry date must be in the future"
+
+euIdCardExpiryDate: 
+  label: "" 
+  legend: "" 
+  hint: "For example, 31 3 2025"
+  validation: 
+    default: "Enter the expiry date as it appears on your EU identity card"
     after: "The expiry date must be in the future"
 
 surname:

@@ -323,7 +323,6 @@ Resources:
     Properties:
       ContainerDefinitions:
         - Essential: true
-          # Image: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/cic-cri-front-ecr-containerrepository-j4lecqllu2gt:57705626bb9db561cbb6a229b7e8a5b46cb23f12
           Image: CONTAINER-IMAGE-PLACEHOLDER
           Name: app
           Environment:
@@ -331,7 +330,7 @@ Resources:
               Value: !Sub
                 - "https://${APIGatewayId}.execute-api.eu-west-2.amazonaws.com/${Environment}"
                 - APIGatewayId:
-                    Fn::ImportValue: di-ipv-cri-cic-PrivateCICApiGatewayId  #Hardcoded , needs to be updated to use a parameter for BE stack name
+                    Fn::ImportValue: cic-cri-api-v1-PrivateCICApiGatewayId  #Hardcoded , needs to be updated to use a parameter for BE stack name
                   Environment: !Ref Environment
             - Name: EXTERNAL_WEBSITE_HOST
               Value: !GetAtt ApiGwHttpEndpoint.ApiEndpoint
