@@ -1,0 +1,38 @@
+{
+  "mappings": [
+    {
+      "scenarioName": "cic-session-error",
+      "request": {
+        "method": "GET",
+        "url": "/__reset/cic-session-error"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "scenarioName": "cic-session-error",
+      "request": {
+        "method": "POST",
+        "url": "/session",
+        "headers": {
+          "x-scenario-id": {
+            "equalTo": "cic-session-error"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "equalToJson": {
+              "request": "${json-unit.any-string}",
+              "client_id": "${json-unit.any-string}"
+            },
+            "ignoreArrayOrder": true
+          }
+        ]
+      },
+      "response": {
+        "status": 500
+      }
+    }
+  ]
+}

@@ -6,7 +6,7 @@ buttons:
 govuk:
   serviceName: Prove your identity
   backLink: Back
-  errorSummaryTitle: There’s a problem
+  errorSummaryTitle: There is a problem
   error: Error
   warning: Warning
   skipLink: Skip to main content
