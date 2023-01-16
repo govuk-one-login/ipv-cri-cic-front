@@ -12,6 +12,7 @@ class PhotoIdSelectionController extends BaseController {
       req.sessionModel.set(APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL, undefined);
       req.sessionModel.set(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT, undefined);
       req.sessionModel.set(APP.PHOTO_ID_OPTIONS.EEA_PERMANENT_RESIDENCY_CARD, undefined);
+      req.sessionModel.set(APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL, undefined);
       req.sessionModel.set(APP.PHOTO_ID_OPTIONS.CITIZEN_CARD, undefined);
       req.sessionModel.set(APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD, undefined);
       req.sessionModel.set(APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD, undefined);
@@ -52,12 +53,21 @@ class PhotoIdSelectionController extends BaseController {
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT, true);
           return next();
         }
+
         case APP.PHOTO_ID_OPTIONS.EEA_PERMANENT_RESIDENCY_CARD: {
           logger.info(
               "photo-id-selection: user has selected EEA PR Card - redirecting to EEA PR card details page",
               { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.EEA_PERMANENT_RESIDENCY_CARD, true);
+          return next();
+        }
+        case APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL: {
+          logger.info(
+              "photo-id-selection: user has selected EU photocard driving licence - redirecting to driving license details page",
+              { req, res }
+          );
+          req.sessionModel.set(APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL, true);
           return next();
         }
         case APP.PHOTO_ID_OPTIONS.CITIZEN_CARD: {
@@ -104,6 +114,8 @@ class PhotoIdSelectionController extends BaseController {
       return APP.PATHS.NON_UK_PASSPORT_DETAILS
     } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.EEA_PERMANENT_RESIDENCY_CARD)) {
       return APP.PATHS.EEA_PERMANENT_RESIDENCY_CARD_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL)) {
+      return APP.PATHS.EU_PHOTOCARD_DL_DETAILS
     } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.CITIZEN_CARD)) {
       return APP.PATHS.CITIZEN_CARD_DETAILS
     } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD)) {

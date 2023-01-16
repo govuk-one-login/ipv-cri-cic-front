@@ -16,6 +16,10 @@ photocardDl:
   title: "When does your UK photocard driving licence expire?"
   photocardDlInformationContext: "We need this information to check that your photo ID is valid. "
 
+euPhotocardDl:
+  title: "When does your EU photocard driving licence expire?"
+  euPhotocardDlInformationContext: "We need this information to check that your photo ID is valid."
+
 citizenCard: 
   title: "When does your CitizenCard expire?" 
   content: "We need this information to check that your photo ID is valid." 

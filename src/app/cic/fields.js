@@ -21,7 +21,7 @@ module.exports = {
     APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD,
     APP.PHOTO_ID_OPTIONS.CITIZEN_CARD,
     APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD
-  ], 
+  ],
     validate: ["required"]
   },
   passportExpiryDate: {
@@ -47,6 +47,11 @@ module.exports = {
   eeaPrCardExpiryDate: {
     type: "date",
     journeyKey: "eeaPrCardExpiryDate",
+    validate: ["required", "date"]
+  },
+  euPhotocardDlExpiryDate: {
+    type: "date",
+    journeyKey: "euPhotocardDlDate",
     validate: ["required", "date"]
   },
   citizenCardExpiryDate: {
