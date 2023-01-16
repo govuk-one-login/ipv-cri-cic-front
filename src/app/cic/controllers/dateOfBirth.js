@@ -17,51 +17,8 @@ class DateOfBirthController extends DateController {
     });
   }
 
-    next() {
+    next(req) {
       return "/checkDetails"
     } 
 }
 module.exports = DateOfBirthController; 
-
-// {
-//   'registered-models': [ 'hmpo-wizard-cri-cic-front' ],
-//   history: [
-//     {
-//       path: '/',
-//       next: '/landingPage',
-//       wizard: 'cri-cic-front',
-//       skip: true
-//     },
-//     {
-//       path: '/landingPage',
-//       next: '/photoIdSelection',
-//       wizard: 'cri-cic-front'
-//     },
-//     {
-//       path: '/photoIdSelection',
-//       next: '/passportDetails',
-//       fields: [Array],
-//       formFields: [Array],
-//       wizard: 'cri-cic-front'
-//     },
-//     {
-//       path: '/passportDetails',
-//       next: '/nameEntry',
-//       fields: [Array],
-//       formFields: [Array],
-//       wizard: 'cri-cic-front'
-//     },
-//     {
-//       path: '/nameEntry',
-//       next: '/dateOfBirth',
-//       fields: [Array],
-//       formFields: [Array],
-//       wizard: 'cri-cic-front'
-//     }
-//   ],
-//   lastVisited: '/nameEntry',
-//   passportExpiryDate: '2025-03-31',
-//   surname: 'F',
-//   firstName: 'G',
-//   middleName: ''
-// }

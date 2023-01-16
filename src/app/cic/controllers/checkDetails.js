@@ -19,7 +19,6 @@ class CheckDetailsController extends DateController {
   }
 
   next(req) {
-    console.log(req.sessionModel)
     return '/done'
   }
 }
