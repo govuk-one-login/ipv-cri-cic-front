@@ -4,4 +4,5 @@ module.exports = {
   PhotoIdSelectionPage: require("./photoIdSelectionPage"),
   RelyingPartyPage: require("./relying-party.js"),
   ErrorPage: require("./error.js"),
+  PassportDetailsPage: require("./passportDetailsPage")
 };
