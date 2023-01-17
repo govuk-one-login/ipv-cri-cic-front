@@ -23,7 +23,7 @@ module.exports = {
       EEA_PERMANENT_RESIDENCY_CARD_DETAILS: "/eeaPermanentResidencyCardDetails",
       EU_IDENTITY_CARD_DETAILS: "/euIdentityCardDetails",
       CITIZEN_CARD_DETAILS: "/citizenCardDetails",
-      YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD_DETAILS: "/youngScotNECDetails",
+      YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD_DETAILS: "/youngScotNecDetails",
       NAME_ENTRY: "/nameEntry",
       DATE_OF_BIRTH: "/dateOfBirth",
       CHECK_DETAILS: "/checkDetails",
