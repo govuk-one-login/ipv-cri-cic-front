@@ -4,7 +4,8 @@ const brpDetails = require("./controllers/brpDetails");
 const nameEntry = require("./controllers/nameEntry");
 const photocardDlDetails = require('./controllers/photocardDl');
 const dobEntry = require("./controllers/dateOfBirth");
-const nonUKPassportDetails = require('./controllers/nonUKPassportDetails')
+const nonUKPassportDetails = require('./controllers/nonUKPassportDetails');
+const checkDetails = require('./controllers/checkDetails');
 const root = require("./controllers/root");
 
 module.exports = {
@@ -62,8 +63,8 @@ module.exports = {
     next: dobEntry.prototype.next
   },
   "/checkDetails": {
-    
-    next: "/done",
+    controller: checkDetails,
+    next: checkDetails.prototype.next
   },
   '/done': {
 

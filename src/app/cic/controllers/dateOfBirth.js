@@ -12,12 +12,14 @@ class DateOfBirthController extends DateController {
       }
 
       locals.dateOfBirth = req.sessionModel.get("dateOfBirth");
-      console.log(req.form.values)
+   
+
       callback(err, locals);
     });
   }
 
-    next() {
+    next(req) {
+      console.log(req.session)
       return "/checkDetails"
     } 
 }
