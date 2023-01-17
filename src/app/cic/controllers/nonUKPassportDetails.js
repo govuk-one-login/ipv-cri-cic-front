@@ -26,10 +26,10 @@ class NonUKPassportDetailsController extends DateController {
       const isOutsideExpireWindow = inputDate.isAfter(  new Date(
         new Date().getFullYear(),
         new Date().getMonth(),
-        new Date().getDate()
+        new Date().getDate() - 1
       )
         .toISOString()
-        .split("T")[0],'months')
+        .split("T")[0],'days')
 
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
 
