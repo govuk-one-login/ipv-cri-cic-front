@@ -13,7 +13,9 @@ class CheckDetailsController extends DateController {
       }
 
       const dateOfBirth = req.form.values.dateOfBirth;
-      locals.formattedDate = this.formatDate(dateOfBirth)
+      const expiryDate = req.form.values.passportExpiryDate;
+      locals.formattedBirthDate = this.formatDate(dateOfBirth)
+      locals.formattedExpiryDate = this.formatDate(expiryDate)
       callback(err, locals);
     });
   }
