@@ -328,7 +328,7 @@ Resources:
           Environment:
             - Name: API_BASE_URL
               Value: !Sub
-                - "https://${APIGatewayId}.execute-api.eu-west-2.amazonaws.com/${Environment}"
+                - "https://${APIGatewayId}.execute-api.eu-west-2.amazonaws.com/${Environment}/"
                 - APIGatewayId:
                     Fn::ImportValue: di-ipv-cri-cic-PrivateCICApiGatewayId
                     # Fn::ImportValue: cic-cri-api-v1-PrivateCICApiGatewayId  #Hardcoded , needs to be updated to use a parameter for BE stack name
