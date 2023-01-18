@@ -4,7 +4,7 @@ const DateControllerMixin = require("hmpo-components").mixins.Date;
 
 const DateController = DateControllerMixin(BaseController);
 
-class PhotocardDlController extends DateController {
+class EuPhotocardDlController extends DateController {
 
   locals(req, res, callback) {
     super.locals(req, res, (err, locals) => {
@@ -12,7 +12,7 @@ class PhotocardDlController extends DateController {
         return callback(err, locals);
       }
 
-      locals.photocardDlExpiryDate = req.sessionModel.get("photocardDlExpiryDate");
+      locals.euPhotocardDlExpiryDate = req.sessionModel.get("euPhotocardDlExpiryDate");
 
       callback(err, locals);
     });
@@ -20,21 +20,19 @@ class PhotocardDlController extends DateController {
 
   async saveValues(req, res, next) {
     try {
-      const photocardDlExpiryDate = req.form.values.photocardDlExpiryDate;
-      const inputDate = moment(photocardDlExpiryDate, 'YYYY-MM-DD');
+      const euPhotocardDlExpiryDate = req.form.values.euPhotocardDlExpiryDate;
+      const inputDate = moment(euPhotocardDlExpiryDate, 'YYYY-MM-DD');
 
       const isOutsideExpireWindow = inputDate.isAfter(  new Date(
         new Date().getFullYear(),
         new Date().getMonth(),
-        new Date().getDate() - 1
+        new Date().getDate()
       )
         .toISOString()
         .split("T")[0],'days')
 
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
-      req.sessionModel.set("expiryDate", photocardDlExpiryDate);
-      req.sessionModel.set("photoIdChoice", "UK Photocard Driving Licence");
-      req.sessionModel.set("changeUrl", "photocardDlDetails");
+      req.sessionModel.set("euPhotocardDlExpiryDate", euPhotocardDlExpiryDate);
 
       return next();
     } catch (err) {
@@ -44,6 +42,7 @@ class PhotocardDlController extends DateController {
 
   next(req) {
     if (req.sessionModel.get("isOutsideExpireWindow")) {
+
       return "/nameEntry"
     } else{
       return "/photoIdExpiry"
@@ -51,4 +50,4 @@ class PhotocardDlController extends DateController {
   }
 
 }
-module.exports = PhotocardDlController;
+module.exports = EuPhotocardDlController;
