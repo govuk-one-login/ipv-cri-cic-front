@@ -1,6 +1,6 @@
-const moment = require("moment");
 const BaseController = require("hmpo-form-wizard").Controller;
 const DateControllerMixin = require("hmpo-components").mixins.Date;
+const { formatDate } = require("../utils")
 
 const DateController = DateControllerMixin(BaseController);
 
@@ -16,33 +16,19 @@ class CheckDetailsController extends DateController {
       const expiryDate = req.sessionModel.get("expiryDate");
       const idChoice = req.sessionModel.get("photoIdChoice");
       const changeUrl = req.sessionModel.get("changeUrl");
-      locals.formattedBirthDate = this.formatDate(dateOfBirth);
-      locals.formattedExpiryDate = this.formatDate(expiryDate);
+
+      locals.formattedBirthDate = formatDate(dateOfBirth);
+      locals.formattedExpiryDate = formatDate(expiryDate);
       locals.idChoice = idChoice;
       locals.changeUrl = `/${changeUrl}`;
-      console.log(req.form.values)
+
       callback(err, locals);
     });
   }
 
-  formatDate(date) {
-    const datePart = date.match(/\d+/g),
-    year = datePart[0].substring(0,4),
-    month = datePart[1], day = datePart[2];
-  
-    return day + ' ' + month + ' ' + year
-  }
-
-  next(req) {
-    
-    // console.log("CHANGING")
-    // console.log(req.session['hmpo-journey-cic'].history)
-    // console.log("END OF LOG")
-    // console.log("-------------------------------")
+  next() {
     return '/done'
   }
 }
-
-
 
 module.exports = CheckDetailsController;
