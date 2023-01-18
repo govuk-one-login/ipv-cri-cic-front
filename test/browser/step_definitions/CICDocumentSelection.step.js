@@ -2,39 +2,36 @@ const { Given, When, Then } = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const { PassportDetailsPage } = require("../pages");
+const {PhotoIdSelectionPage, PassportDetailsPage } = require("../pages");
 
 //AC1 - Successful redirect on ‘UK passport’ selection (Happy path)
-  //Given(/^the UK passport option is selected$/, async function () {
-    // console.log(">>In passportDetailsPage - UK passport option selected function");
-    // const passportDetailsPage = new PassportDetailsPage(await this.page);
+  Given(/^the UK passport option is selected$/, async function () {
+     console.log(">>In PhotoIdSelectionPage - UK passport option selected function");
+     
+     const photoIdPage = new PhotoIdSelectionPage(await this.page);
+     
+     await photoIdPage.ukPassportChoice();
 
-    // // if (expect(passportDetailsPage.isCurrentPage()).to.be.true){
-    //   console.log(passportDetailsPage.isCurrentPage());
+     //expect(photoIdPage.isCurrentPage()).to.be.true
+   
+  });
 
-    //   await passportDetailsPage.continue();
-    // // }
-  //});
+  When(/^the user clicks the continue button$/, async function () {
+    console.log(">>In photoIdPage - UK passport option selected function");
 
-
-  // When(/^the user clicks the continue button$/, async function () {
-  //   console.log(">>In passportDetailsPage - UK passport option selected function");
-
-  //   const passportDetailsPage = new PassportDetailsPage(this.page);
+    const photoIdPage = new PhotoIdSelectionPage(this.page);
   
-  //   expect(passportDetailsPage.isCurrentPage()).to.be.true;
+    await photoIdPage.continue();
   
-  //   await passportDetailsPage.continue();
+  });
   
-  // });
+  Then(/^the user is routed to the next screen in the journey: Passport Expiry Entry Screen$/, async function () {
   
-  // Then(/^the user is routed to the next screen in the journey: Passport Expiry Entry Screen$/, async function () {
-  //   // Write code here that turns the phrase above into concrete actions
-  //   const passportDetailsPage = new PassportDetailsPage(this.page);
+    const passportDetailsPage = new PassportDetailsPage(this.page);
 
-  //   expect(passportDetailsPage.isCurrentPage()).to.be.true;
+    //expect(passportDetailsPage.isCurrentPage()).to.be.true;
 
-  // });
+  });
 
 
   // //AC2 - Successful redirect on ‘BRP’ selection (Happy path)

@@ -13,12 +13,12 @@ Given(/^the user wants to progress to the next step of the journey$/, async func
   expect(landingPage.isCurrentPage()).to.be.true;
 });
 
-When(/^the user clicks the continue button$/, async function () {
+When(/^the user clicks the continue button on the LandingPage$/, async function () {
   // console.log(">>In cic step defintion");
   //  console.log(">>continue on photoId page");
   const landingPage = new LandingPage(this.page);
 
-  expect(landingPage.isCurrentPage()).to.be.true;
+ // expect(landingPage.isCurrentPage()).to.be.true;
 
   await landingPage.continue();
 

@@ -19,4 +19,5 @@ module.exports = class PlaywrightDevPage {
     // console.log(">>In continue");
     await this.page.click("#continue");
   }
+
 };
