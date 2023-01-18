@@ -14,6 +14,7 @@ class BrpDetailsController extends DateController {
       const isOutsideExpireWindow = inputDate.isAfter(  new Date().toISOString().split("T")[0])
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
       req.sessionModel.set("expiryDate", brpExpiryDate);
+      req.sessionModel.set("photoIdChoice", "Biometric residence permit (BRP)");
 
       return next();
     } catch (err) {

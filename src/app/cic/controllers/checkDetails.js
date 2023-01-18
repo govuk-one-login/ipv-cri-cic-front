@@ -27,7 +27,7 @@ class CheckDetailsController extends DateController {
     year = datePart[0].substring(0,4),
     month = datePart[1], day = datePart[2];
   
-    return day + '-' + month + '-' + year
+    return day + ' ' + month + ' ' + year
   }
 
   next(req) {
