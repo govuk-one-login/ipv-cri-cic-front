@@ -15,9 +15,12 @@ class CheckDetailsController extends DateController {
       const dateOfBirth = req.form.values.dateOfBirth;
       const expiryDate = req.sessionModel.get("expiryDate");
       const idChoice = req.sessionModel.get("photoIdChoice");
+      const changeUrl = req.sessionModel.get("changeUrl");
       locals.formattedBirthDate = this.formatDate(dateOfBirth);
       locals.formattedExpiryDate = this.formatDate(expiryDate);
       locals.idChoice = idChoice;
+      locals.changeUrl = `/${changeUrl}`;
+      console.log(req.form.values)
       callback(err, locals);
     });
   }
