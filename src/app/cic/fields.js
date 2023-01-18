@@ -99,6 +99,7 @@ module.exports = {
     validate: [
       "required", "date",
       {type: "before", arguments: [new Date().toISOString().split("T")[0]]},
+      {type: "after", arguments: ["1899-01-31"]}
     ]
   }
 };
