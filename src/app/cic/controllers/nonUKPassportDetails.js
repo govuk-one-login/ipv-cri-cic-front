@@ -32,6 +32,7 @@ class NonUKPassportDetailsController extends DateController {
         .split("T")[0],'months')
 
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
+      req.sessionModel.set("expiryDate", nonUKPassportExpiryDate);
 
       return next();
     } catch (err) {

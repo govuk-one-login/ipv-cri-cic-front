@@ -13,9 +13,11 @@ class CheckDetailsController extends DateController {
       }
 
       const dateOfBirth = req.form.values.dateOfBirth;
-      const expiryDate = req.form.values.passportExpiryDate;
-      locals.formattedBirthDate = this.formatDate(dateOfBirth)
-      locals.formattedExpiryDate = this.formatDate(expiryDate)
+      const expiryDate = req.sessionModel.get("expiryDate");
+      const idChoice = req.sessionModel.get("photoIdChoice");
+      locals.formattedBirthDate = this.formatDate(dateOfBirth);
+      locals.formattedExpiryDate = this.formatDate(expiryDate);
+      locals.idChoice = idChoice;
       callback(err, locals);
     });
   }
@@ -29,7 +31,11 @@ class CheckDetailsController extends DateController {
   }
 
   next(req) {
-    console.log(req.form.values)
+    
+    // console.log("CHANGING")
+    // console.log(req.session['hmpo-journey-cic'].history)
+    // console.log("END OF LOG")
+    // console.log("-------------------------------")
     return '/done'
   }
 }

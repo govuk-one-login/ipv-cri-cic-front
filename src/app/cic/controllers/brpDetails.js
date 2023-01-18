@@ -13,6 +13,7 @@ class BrpDetailsController extends DateController {
 
       const isOutsideExpireWindow = inputDate.isAfter(  new Date().toISOString().split("T")[0])
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
+      req.sessionModel.set("expiryDate", brpExpiryDate);
 
       return next();
     } catch (err) {

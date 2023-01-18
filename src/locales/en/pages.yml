@@ -62,6 +62,3 @@ checkDetails:
   name: "Name"
   dateOfBirth: "Date of Birth"
   changeLink: "Change"
-
-idChoice:
-  ukPassport: "UK Passport"
