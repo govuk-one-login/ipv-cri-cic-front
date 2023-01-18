@@ -18,6 +18,11 @@
   <div class="govuk-grid-column-two-thirds-from-desktop">
     <h1 class="govuk-heading-l">{{ translate("checkDetails.title") }}</h1>
     <h2 class="govuk-heading-m"></h2>
+    {{ govukWarningText({
+      text: translate("checkDetails.validation.default"),
+      iconFallbackText: "Warning"
+    }) }}
+    
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-6',
         rows: [
@@ -91,13 +96,9 @@
           }
         ]
       }) }}
-
-      {{ govukWarningText({
-        text: translate("checkDetails.validation.default"),
-        iconFallbackText: "Warning"
-      }) }}
-
-      {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
+      <div id="details-btn">
+      {{ hmpoSubmit(ctx, {id: "continue", text: translate("checkDetails.buttonText")}) }}
+      </div>
     </div>
   </div>
 
