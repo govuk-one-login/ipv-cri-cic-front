@@ -41,12 +41,13 @@ class PassportDetailsController extends DateController {
   }
 
   next(req) {
-    if (req.sessionModel.get("isOutsideExpireWindow")) {
+    if (req.sessionModel.get("detailsComplete")) {
+      return "/checkDetails"
+    } else if (req.sessionModel.get("isOutsideExpireWindow")) {
       return "/nameEntry"
     } else{
       return "/photoIdExpiry"
     }
   }
-
 }
 module.exports = PassportDetailsController;

@@ -15,8 +15,12 @@ class NameEntryController extends BaseController {
     });
   }
 
-    next() {
-      return "/dateOfBirth"
+    next(req) {
+      if (req.sessionModel.get("detailsComplete")) {
+        return "/checkDetails"
+      } else {
+        return "/dateOfBirth"
+      }
     } 
 }
 module.exports = NameEntryController; 

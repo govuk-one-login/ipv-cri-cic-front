@@ -17,7 +17,8 @@ class DateOfBirthController extends DateController {
     });
   }
 
-    next() {
+    next(req) {
+      req.sessionModel.set("detailsComplete", true)
       return "/checkDetails"
     } 
 }

@@ -104,7 +104,9 @@ class PhotoIdSelectionController extends BaseController {
 
   next(req) {
 
-    if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.UK_PASSPORT)) {
+    if (req.sessionModel.get("detailsComplete")) {
+      return "/checkDetails"
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.UK_PASSPORT)) {
       return APP.PATHS.PASSPORT_DETAILS
     } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.BRP)) {
       return APP.PATHS.BRP_DETAILS
