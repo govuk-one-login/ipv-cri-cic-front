@@ -1,6 +1,6 @@
 photoIdChoice:
   validation:
-    required: Select a photo ID you can take to a Post Office
+    required: Choose a photo ID you can take to a Post Office
   content: ""
   items:
     ukPassport:
@@ -21,6 +21,8 @@ photoIdChoice:
       label: CitizenCard
     youngScotNationalEntitlementCard:
       label: Young Scot National Entitlement Card (NEC)
+    noPhotoId:
+      label: I do not have any of these documents
 
 "date-day":
   label: Day
