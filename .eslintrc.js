@@ -13,7 +13,7 @@ module.exports = {
     root: true,
     extends: ["eslint:recommended", "prettier"],
     rules: {
-        "no-console": off,
+        "no-console": "off",
         "padding-line-between-statements": [
             "error",
             { blankLine: "any", prev: "*", next: "*" },
