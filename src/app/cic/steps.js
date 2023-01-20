@@ -10,6 +10,7 @@ const euIdentityCardDetails = require("./controllers/euIdentityCardDetails");
 const youngScotNationalEntitlementCardDetails = require('./controllers/youngScotNationalEntitlementCardDetails');
 const nameEntry = require("./controllers/nameEntry");
 const dobEntry = require("./controllers/dateOfBirth");
+const checkDetails = require('./controllers/checkDetails');
 const root = require("./controllers/root");
 
 module.exports = {
@@ -92,8 +93,8 @@ module.exports = {
     next: dobEntry.prototype.next
   },
   "/checkDetails": {
-    
-    next: "/done",
+    controller: checkDetails,
+    next: checkDetails.prototype.next
   },
   '/done': {
 

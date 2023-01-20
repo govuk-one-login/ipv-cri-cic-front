@@ -24,7 +24,12 @@ class EuIdentityCardController extends DateController {
       )
         .toISOString()
         .split("T")[0],'days')
+        
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
+      req.sessionModel.set("expiryDate", euIdCardExpiryDate);
+      req.sessionModel.set("photoIdChoice", "EU Identity Card");
+      req.sessionModel.set("changeUrl", "euIdentityCardDetails");
+      
       return next();
     } catch (err) {
       return next(err);
