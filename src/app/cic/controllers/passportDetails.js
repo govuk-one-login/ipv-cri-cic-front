@@ -26,7 +26,7 @@ class PassportDetailsController extends DateController {
       const isOutsideExpireWindow = inputDate.isAfter(  new Date(
         new Date().getFullYear(),
         new Date().getMonth() - 18,
-        new Date().getDate()
+        new Date().getDate() - 1
       )
         .toISOString()
         .split("T")[0],'days')
