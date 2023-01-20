@@ -77,7 +77,7 @@ dateOfBirth:
 
 checkDetails:
   title: "Check your details"
-  selectedId: "Selected photo ID"
+  selectedId: "Chosen photo ID"
   expiryDate: "Expiry date"
   name: "Name"
   dateOfBirth: "Date of birth"

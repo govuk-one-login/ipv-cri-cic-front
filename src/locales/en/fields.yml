@@ -136,4 +136,4 @@ checkDetails:
   label: ""
   legend: ""
   validation:
-    default: "Make sure your details are correct before you continue. You will not be able to change them later"
+    default: "Make sure your details are correct before you continue. You will not be able to change them later."
