@@ -22,7 +22,7 @@
     "minfiy-build-js": "uglifyjs src/assets/javascript/application.js -o src/assets/javascript/application.js -c -m && uglifyjs src/assets/javascript/cookies.js -o src/assets/javascript/cookies.js -c -m",
     "lint": "eslint .",
     "prepare": "husky install",
-    "test": "mocha",
+    "test": "jest",
     "test:coverage": "nyc --reporter=lcov --reporter=text-summary yarn test",
     "test:watch": "mocha --watch",
     "mocks": "yarn run wiremock --verbose --port 8090 --root-dir test/mocks",
@@ -49,7 +49,7 @@
     "chai-as-promised": "7.1.1",
     "eslint": "8.24.0",
     "eslint-config-prettier": "8.5.0",
-   "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-prettier": "4.2.1",
     "husky": "8.0.1",
     "lint-staged": "13.0.3",
     "mocha": "10.0.0",
@@ -85,6 +85,7 @@
     "hmpo-form-wizard": "12.0.6",
     "hmpo-i18n": "5.0.2",
     "hmpo-logger": "6.1.1",
+    "jest": "^29.3.1",
     "jsonwebtoken": "8.5.1",
     "nunjucks": "3.2.3"
   }
