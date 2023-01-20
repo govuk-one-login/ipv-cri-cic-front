@@ -23,7 +23,7 @@ class CitizenCardController extends DateController {
         new Date().getDate()
       )
         .toISOString()
-        .split("T")[0],'months')
+        .split("T")[0],'days')
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
       return next();
     } catch (err) {
