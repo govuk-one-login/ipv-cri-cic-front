@@ -25,7 +25,7 @@ When(/^the user clicks the continue button on the LandingPage$/, async function 
 });
 
 
-Then(/^the user is routed to the next screen in the journey$/, async function () {
+Then(/^the user is routed to the next screen in the journey PhotoId Selection$/, async function () {
   const photoIdPage = new PhotoIdSelectionPage(this.page);
 
   expect(photoIdPage.isCurrentPage()).to.be.true;

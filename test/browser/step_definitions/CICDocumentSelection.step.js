@@ -16,7 +16,7 @@ const {PhotoIdSelectionPage, PassportDetailsPage } = require("../pages");
    
   });
 
-  When(/^the user clicks the continue button$/, async function () {
+  When(/^the user clicks the PhotoId continue button$/, async function () {
     console.log(">>In photoIdPage - UK passport option selected function");
 
     const photoIdPage = new PhotoIdSelectionPage(this.page);
@@ -25,11 +25,11 @@ const {PhotoIdSelectionPage, PassportDetailsPage } = require("../pages");
   
   });
   
-  Then(/^the user is routed to the next screen in the journey: Passport Expiry Entry Screen$/, async function () {
+  Then(/^the user is routed to the next screen in the journey Passport Details$/, async function () {
   
     const passportDetailsPage = new PassportDetailsPage(this.page);
 
-    //expect(passportDetailsPage.isCurrentPage()).to.be.true;
+     expect(passportDetailsPage.isCurrentPage()).to.be.true;
 
   });
 
