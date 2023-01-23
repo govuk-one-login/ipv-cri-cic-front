@@ -1,10 +1,9 @@
-const { Given } = require("@cucumber/cucumber");
+const { Given, Then } = require("@cucumber/cucumber");
 
 const { RelyingPartyPage } = require("../pages");
+const { expect } = require("chai");
 
 Given(/^([A-Za-z ])+is using the system$/, async function (name) {
-  // console.log(">>In details step defintion");
-  // console.log(">>using the system function");
   this.user = this.allUsers[name];
   const rpPage = new RelyingPartyPage(this.page);
 
@@ -14,10 +13,21 @@ Given(/^([A-Za-z ])+is using the system$/, async function (name) {
 Given(
   "they have provided their details",
   { timeout: 10 * 1000 },
-  async function () {
-    // console.log(">>In details step defintion");
-    // console.log(">>In they have provided their details function");
-   
-  }
-  
+  async function () {}
 );
+
+Then("they should be redirected as a success", function () {
+  const rpPage = new RelyingPartyPage(this.page);
+
+  expect(rpPage.isRelyingPartyServer()).to.be.true;
+
+  expect(rpPage.hasSuccessQueryParams()).to.be.true;
+});
+
+Then("they should be redirected as an error", function () {
+  const rpPage = new RelyingPartyPage(this.page);
+
+  expect(rpPage.isRelyingPartyServer()).to.be.true;
+
+  expect(rpPage.hasErrorQueryParams()).to.be.true;
+});

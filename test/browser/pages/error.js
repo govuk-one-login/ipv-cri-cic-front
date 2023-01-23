@@ -6,12 +6,20 @@ module.exports = class PlaywrightDevPage {
     this.page = page;
   }
 
+  getErrorTitle() {
+    return this.page.textContent('[data-id="error-title"]');
+  }
+
   getSomethingWentWrongMessage() {
     return "Sorry, there is a problem with the service";
   }
 
-  getErrorTitle() {
-    return this.page.textContent('[data-id="error-title"]');
+  getLocalisedSomethingWentWrongMessage(lang) {
+    if (lang.toLowerCase() === "welsh") {
+      return "Mae'n ddrwg gennym, mae problem";
+    } else {
+      return "Sorry, there is a problem with the service";
+    }
   }
 
   isCurrentPage() {

@@ -6,29 +6,14 @@ module.exports = class PlaywrightDevPage {
     this.page = page;
   }
 
-  
   async goto() {
-    // console.log(">>In relying-party.js");
-    // console.log(">>In goto function");
     this.startingUrl =
       "http://localhost:5020/oauth2/authorize?request=lorem&client_id=standalone";
 
     await this.page.goto(this.startingUrl);
   }
 
-  async isRedirectPage() {
-    // console.log(">> In isRedirectPage function");
-    const url = this.page.url();
-
-    const isCorrectPage =
-      url.startsWith("http://example.net") &&
-      url.endsWith("client_id=standalone&state=sT%40t3&code=FACEFEED");
-
-    return isCorrectPage;
-  }
-
   isRelyingPartyServer() {
-    // console.log(">>In isRelyingPartyServer function");
     return new URL(this.page.url()).origin === "http://example.net";
   }
 
@@ -47,7 +32,7 @@ module.exports = class PlaywrightDevPage {
 
     return (
       searchParams.get("error") === "server_error" &&
-      searchParams.get("error_description") === "general error"
+      searchParams.get("error_description") === "gateway"
     );
   }
 };

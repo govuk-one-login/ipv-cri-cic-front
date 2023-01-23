@@ -1,23 +1,23 @@
 {
   "mappings": [
     {
-      "scenarioName": "cic-session-error",
+      "scenarioName": "cic-success",
       "request": {
         "method": "GET",
-        "url": "/__reset/cic-session-error"
+        "url": "/__reset/cic-success"
       },
       "response": {
         "status": 200
       }
     },
     {
-      "scenarioName": "cic-session-error",
+      "scenarioName": "cic-success",
       "request": {
         "method": "POST",
         "url": "/session",
         "headers": {
           "x-scenario-id": {
-            "equalTo": "cic-session-error"
+            "equalTo": "cic-success"
           }
         },
         "bodyPatterns": [
@@ -31,7 +31,12 @@
         ]
       },
       "response": {
-        "status": 500
+        "status": 200,
+        "jsonBody": {
+          "session_id": "ABADCAFE",
+          "state": "sT@t3",
+          "redirect_uri": "http://example.net/return"
+        }
       }
     }
   ]

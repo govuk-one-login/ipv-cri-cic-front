@@ -10,8 +10,7 @@ BeforeAll(async function () {
         // Not headless so we can watch test runs
         headless: false,
         // Slow so we can see things happening
-        //slowMo: 500,
-        slowMo: 1000,
+        slowMo: 500,
       });
 });
 
@@ -29,20 +28,10 @@ Before(async function ({ pickle } = {}) {
   }
 
   const header = tag?.name.substring(10);
-  if (!header) {
-    return;
-  }
 
   this.SCENARIO_ID_HEADER = header;
 
-  const url = `http://localhost:8090/__reset/${header}`;
-
-  try {
-    await axios.get(url);
-  } catch (e) {
-    console.log(`Error fetching ${url}`); // eslint-disable-line no-console
-    console.log(`${e.message}`); // eslint-disable-line no-console
-  }
+  await axios.get(`${process.env.API_BASE_URL}/__reset/${header}`);
 });
 
 // Create a new test context and page per scenario

@@ -3,12 +3,14 @@ const sinon = require("sinon");
 const sinonChai = require("sinon-chai");
 const chaiAsPromised = require("chai-as-promised");
 const reqres = require("reqres");
+
 const JourneyModel = require("hmpo-form-wizard/lib/journey-model");
 const WizardModel = require("hmpo-form-wizard/lib/wizard-model.js");
 
 chai.should();
 chai.use(sinonChai);
 chai.use(chaiAsPromised);
+
 const expect = chai.expect;
 
 global.sinon = sinon;
@@ -20,10 +22,6 @@ global.setupDefaultMocks = () => {
     axios: {
       get: sinon.fake(),
       post: sinon.fake(),
-      put: sinon.fake(),
-    },
-    ordnanceAxios: {
-      get: sinon.fake(),
     },
   });
 
@@ -31,7 +29,6 @@ global.setupDefaultMocks = () => {
     req,
     key: "test",
   });
-
   req.sessionModel = new WizardModel(null, {
     req,
     key: "test",
@@ -40,7 +37,9 @@ global.setupDefaultMocks = () => {
   });
 
   const res = reqres.res({});
+
   const next = sinon.fake();
+
   return {
     req,
     res,

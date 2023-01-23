@@ -26,13 +26,15 @@ class PassportDetailsController extends DateController {
       const isOutsideExpireWindow = inputDate.isAfter(  new Date(
         new Date().getFullYear(),
         new Date().getMonth() - 18,
-        new Date().getDate()
+        new Date().getDate() - 1
       )
         .toISOString()
-        .split("T")[0],'months')
+        .split("T")[0],'days')
 
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
-      req.sessionModel.set("passportExpiryDate", passportExpiryDate);
+      req.sessionModel.set("expiryDate", passportExpiryDate);
+      req.sessionModel.set("photoIdChoice", "UK Passport");
+      req.sessionModel.set("changeUrl", "passportDetails");
 
       return next();
     } catch (err) {
