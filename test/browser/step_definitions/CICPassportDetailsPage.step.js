@@ -17,14 +17,12 @@ const { PassportDetailsPage, NameEntryPage} = require("../pages");
   });
 
 
-  /*Given('it is in the correct format as described above', async function () {
-    // Write code here that turns the phrase above into concrete actions
-   // return 'pending';
-  //});
+  Given('it is in the correct format as described above', async function () {}
+  );
 
 
   When(/^the user clicks continue$/, async function () {
-    console.log(">>In photoIdPage - UK passport option selected function");
+    console.log(">>In PPID - UK passport option selected function");
 
     const passportDetailsPage = new PassportDetailsPage(this.page);
   
@@ -35,12 +33,11 @@ const { PassportDetailsPage, NameEntryPage} = require("../pages");
   });
   
 
-  Then('the user is routed to the next screen in the journey: Name Entry Screen', function () {
-        console.log(">>In passportDetailsPage - continue journey function");
+  // Then('the user is routed to the next screen in the journey: Name Entry Screen', function () {
+  //       console.log(">>In passportDetailsPage - continue journey function");
     
-        const nameEntryPage = new NameEntryPage();
+  //       const nameEntryPage = new NameEntryPage();
 
-        expect(nameEntryPage.isCurrentPage()).to.be.true;
+  //       expect(nameEntryPage.isCurrentPage()).to.be.true;
 
-  });
-*/
+  // });

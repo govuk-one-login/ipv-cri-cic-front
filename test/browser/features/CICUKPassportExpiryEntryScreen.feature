@@ -12,8 +12,8 @@ Background:
 @mock-api:f2f-cic-success
 Scenario: UK passport not expired (Happy path)
 Given the date entered is within accepted expiration window
-#And it is in the correct format as described above
-#When the user clicks the continue button
+And it is in the correct format as described above
+When the user clicks the continue button
 #Then the user is routed to the next screen in the journey: Name Entry Screen 
 
 #Scenario: UK passport expired (Unhappy path)
