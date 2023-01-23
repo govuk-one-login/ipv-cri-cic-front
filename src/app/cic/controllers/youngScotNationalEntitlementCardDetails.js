@@ -23,7 +23,7 @@ class YoungScotNationalEntitlementCardDetailsController extends DateController {
       const youngScotNationalEntitlementCardExpiryDate = req.form.values.youngScotNationalEntitlementCardExpiryDate;
       const inputDate = moment(youngScotNationalEntitlementCardExpiryDate, 'YYYY-MM-DD');
 
-      const isOutsideExpireWindow = inputDate.isAfter(  new Date(
+      const isOutsideExpireWindow = inputDate.utc().isAfter(  new Date(
         new Date().getFullYear(),
         new Date().getMonth(),
         new Date().getDate()

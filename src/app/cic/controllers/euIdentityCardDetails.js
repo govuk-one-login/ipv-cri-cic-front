@@ -17,7 +17,7 @@ class EuIdentityCardController extends DateController {
     try {
       const euIdCardExpiryDate = req.form.values.euIdCardExpiryDate;
       const inputDate = moment(euIdCardExpiryDate, 'YYYY-MM-DD');
-      const isOutsideExpireWindow = inputDate.isAfter(  new Date(
+      const isOutsideExpireWindow = inputDate.utc().isAfter(  new Date(
         new Date().getFullYear(),
         new Date().getMonth(),
         new Date().getDate()

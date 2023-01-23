@@ -23,7 +23,7 @@ class EuPhotocardDlController extends DateController {
       const euPhotocardDlExpiryDate = req.form.values.euPhotocardDlExpiryDate;
       const inputDate = moment(euPhotocardDlExpiryDate, 'YYYY-MM-DD');
 
-      const isOutsideExpireWindow = inputDate.isAfter(  new Date(
+      const isOutsideExpireWindow = inputDate.utc().isAfter(  new Date(
         new Date().getFullYear(),
         new Date().getMonth(),
         new Date().getDate()

@@ -23,7 +23,7 @@ class NonUKPassportDetailsController extends DateController {
       const nonUKPassportExpiryDate = req.form.values.nonUKPassportExpiryDate;
       const inputDate = moment(nonUKPassportExpiryDate, 'YYYY-MM-DD');
 
-      const isOutsideExpireWindow = inputDate.isAfter(  new Date(
+      const isOutsideExpireWindow = inputDate.utc().isAfter(  new Date(
         new Date().getFullYear(),
         new Date().getMonth(),
         new Date().getDate() - 1

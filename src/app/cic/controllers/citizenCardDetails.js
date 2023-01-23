@@ -17,7 +17,7 @@ class CitizenCardController extends DateController {
     try {
       const citizenCardExpiryDate = req.form.values.citizenCardExpiryDate;
       const inputDate = moment(citizenCardExpiryDate, 'YYYY-MM-DD');
-      const isOutsideExpireWindow = inputDate.isAfter(  new Date(
+      const isOutsideExpireWindow = inputDate.utc().isAfter(  new Date(
         new Date().getFullYear(),
         new Date().getMonth(),
         new Date().getDate()
