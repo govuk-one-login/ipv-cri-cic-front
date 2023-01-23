@@ -33,7 +33,7 @@ class PhotocardDlController extends DateController {
 
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
       req.sessionModel.set("expiryDate", photocardDlExpiryDate);
-      req.sessionModel.set("photoIdChoice", "UK Photocard Driving Licence");
+      req.sessionModel.set("photoIdChoice", "UK photocard driving licence");
       req.sessionModel.set("changeUrl", "photocardDlDetails");
 
       return next();
