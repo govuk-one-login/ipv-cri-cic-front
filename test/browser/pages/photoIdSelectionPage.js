@@ -10,9 +10,8 @@ module.exports = class PlaywrightDevPage {
   isCurrentPage() {
      console.log(">>In photoIdSelectionPage.js");
      console.log(">>In isCurrentPage function");
-
     return this.page.url() === this.url;
-    console.log(url);
+   
   }
 
   async continue() {

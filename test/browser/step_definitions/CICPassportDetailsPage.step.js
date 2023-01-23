@@ -2,7 +2,7 @@ const { Given, When, Then, And} = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const { PassportDetailsPage, NameEntryPage} = require("../pages");
+const { PassportDetailsPage} = require("../pages");
 
   Given(/^the date entered is within accepted expiration window$/, async function () {
     console.log('>> In PPD page - fill out date fields');
@@ -21,7 +21,7 @@ const { PassportDetailsPage, NameEntryPage} = require("../pages");
   );
 
 
-  When(/^the user clicks continue$/, async function () {
+  When(/^the user clicks the continue button$/, async function () {
     console.log(">>In PPID - UK passport option selected function");
 
     const passportDetailsPage = new PassportDetailsPage(this.page);
