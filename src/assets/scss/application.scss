@@ -45,3 +45,19 @@ $govuk-assets-path: "/public/";
 .hint-with-margin {
   margin-top: 30px;
 }
+
+.govuk-summary-list .govuk-summary-list__key {
+  color: #000;
+  font-weight: bold;
+  padding-bottom: 30px;
+  padding-top: 40px;
+}
+
+.govuk-warning-text {
+  margin-bottom: 0px;
+}
+
+#details-btn {
+  margin-top: 0;
+  padding-top: 0;
+}
