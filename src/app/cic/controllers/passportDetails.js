@@ -20,39 +20,51 @@ class PassportDetailsController extends DateController {
 
   async saveValues(req, res, next) {
     try {
+      //User input 
       const passportExpiryDate = req.form.values.passportExpiryDate;
       const inputDate = moment(passportExpiryDate, 'YYYY-MM-DD');
+      const inputDateUTC = inputDate.utc();
 
-      const isOutsideExpireWindow = inputDate.utc().isBetween(  
-        new Date(
-          new Date().getFullYear(),
-          new Date().getMonth() - 18,
-          new Date().getDate() - 1
-        )
+      // Lower limit for date input
+      const lowerUTC = new Date(
+        new Date().getFullYear(),
+        new Date().getMonth() - 18,
+        new Date().getDate()
+      )
+      .toISOString()
+ //     .split("T")[0];
+
+      //Upper limit for date input  
+      const upperUTC = new Date(
+        new Date().getFullYear() + 10,
+        new Date().getMonth(),
+        new Date().getDate()
+      )
         .toISOString()
-        .split("T")[0],
-        
-        new Date(
-          new Date().getFullYear() + 10,
-          new Date().getMonth(),
-          new Date().getDate() + 1
-        )
-          .toISOString()
-          .split("T")[0],
-          'day'
+        .split("T")[0];
+      
+      // Compare user input between upper and lower limits
+      const isOutsideExpireWindow = inputDateUTC.isBetween(  
+        lowerUTC, upperUTC,'days','[]'
       )
 
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
       req.sessionModel.set("expiryDate", passportExpiryDate);
       req.sessionModel.set("photoIdChoice", "UK Passport");
       req.sessionModel.set("changeUrl", "passportDetails");
+      
+      console.log('user:',inputDateUTC);
+      console.log('lower:',lowerUTC);
+      
+      
 
       return next();
     } catch (err) {
       return next(err);
     }
   }
-
+  
+  // Redirect according to user input
   next(req) {
     if (req.sessionModel.get("isOutsideExpireWindow")) {
       return "/nameEntry"

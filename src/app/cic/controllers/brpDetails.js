@@ -8,21 +8,28 @@ class BrpDetailsController extends DateController {
 
   async saveValues(req, res, next) {
     try {
+      //User input 
       const brpExpiryDate = req.form.values.brpExpiryDate;
       const inputDate = moment(brpExpiryDate, 'YYYY-MM-DD');
+      const inputDateUTC = inputDate.utc()
 
-      const isOutsideExpireWindow = inputDate.utc().isBetween(  
-        new Date(
+      // Lower limit for date input
+      const lowerUTC = new Date(
           new Date().getFullYear(),
           new Date().getMonth(),
-          new Date().getDate() - 1
+          new Date().getDate()
         )
         .toISOString()
-        .split("T")[0],
+        .split("T")[0];
          
-        new Date("2025-01-01").toISOString().split("T")[0]
+      //Upper limit for date input  
+      const upperUTC = new Date("2024-12-31").toISOString().split("T")[0];
+
+      // Compare user input between upper and lower limits
+      const isOutsideExpireWindow = inputDateUTC.isBetween(  
+        lowerUTC, upperUTC,'days','[]'
       )
-      
+    
     req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
     req.sessionModel.set("expiryDate", brpExpiryDate);
     req.sessionModel.set("photoIdChoice", "Biometric residence permit (BRP)");

@@ -27,112 +27,50 @@ module.exports = {
   passportExpiryDate: {
     type: "date",
     journeyKey: "passportExpiryDate",
-    validate: [
-      "required", "date",
-  /*     {type: "before", arguments: new Date(
-        new Date().getFullYear() + 10,
-        new Date().getMonth(),
-        new Date().getDate() + 1
-      )
-        .toISOString()
-        .split("T")[0]} */
-    ],
+    validate: ["required", "date"]
   },
   nonUKPassportExpiryDate: {
     type: "date",
     journeyKey: "nonUKPassportExpiryDate",
-    validate: [
-      "required", "date",
-      {type: "before", arguments: new Date(
-        new Date().getFullYear() + 75,
-        new Date().getMonth(),
-        new Date().getDate() + 1
-      )
-        .toISOString()
-        .split("T")[0]}
-    ],
+    validate: ["required", "date"]
   },
   photocardDlExpiryDate: {
     type: "date",
     journeyKey: "photocardDlExpiryDate",
-    validate: [
-      "required", "date",
-      {type: "before", arguments: new Date(
-        new Date().getFullYear() + 10,
-        new Date().getMonth(),
-        new Date().getDate() + 1
-      )
-        .toISOString()
-        .split("T")[0]}
-    ],
+    validate: ["required", "date"]
   },
   brpExpiryDate: {
     type: "date",
     journeyKey: "brpExpiryDate",
-    validate: ["required", "date",
-    {type: "before", arguments: ["2025-01-01"]}]
-
+    validate: ["required", "date"]
   },
   eeaPrCardExpiryDate: {
     type: "date",
     journeyKey: "eeaPrCardExpiryDate",
-    validate: ["required", "date",]
+    validate: ["required", "date"]
   },
   euPhotocardDlExpiryDate: {
     type: "date",
     journeyKey: "euPhotocardDlDate",
-    validate: [
-      "required", "date",
-      {type: "before", arguments: new Date(
-        new Date().getFullYear() + 75,
-        new Date().getMonth(),
-        new Date().getDate() + 1
-      )
-      .toISOString()
-      .split("T")[0]}
-    ],
+    validate: ["required", "date"]
   },
   citizenCardExpiryDate: {
     type: "date",
     journeyKey: "citizenCardExpiryDate",
     validate: [
-      "required", "date",
-      {type: "before", arguments: new Date(
-        new Date().getFullYear() + 4,
-        new Date().getMonth(),
-        new Date().getDate() + 1
-      )
-        .toISOString()
-        .split("T")[0]}
-    ],
+      "required", "date"]
   },
   youngScotNationalEntitlementCardExpiryDate: {
     type: "date",
     journeyKey: "youngScotNationalEntitlementCardExpiryDate",
     validate: [
-      "required", "date",
-      {type: "before", arguments: new Date(
-        new Date().getFullYear() + 15,
-        new Date().getMonth(),
-        new Date().getDate() + 1
-      )
-        .toISOString()
-        .split("T")[0]}
-    ],
+      "required", "date"]
   },
   euIdCardExpiryDate: {
     type: "date",
     journeyKey: "euIdCardExpiryDate",
     validate: [
-      "required", "date",
-      {type: "before", arguments: new Date(
-        new Date().getFullYear() + 75,
-        new Date().getMonth(),
-        new Date().getDate() + 1
-      )
-        .toISOString()
-        .split("T")[0]}
-    ],
+      "required", "date"]
   },
   surname: {
     type: "text",
