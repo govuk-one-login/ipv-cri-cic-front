@@ -27,7 +27,7 @@ class EeaPermanentResidencyCardController extends DateController {
         
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
       req.sessionModel.set("expiryDate", eeaPrCardExpiryDate);
-      req.sessionModel.set("photoIdChoice", "EEA permanent residency card");
+      req.sessionModel.set("photoIdChoice", "EEA Permanent Residency Card");
       req.sessionModel.set("changeUrl", "eeaPermanentResidencyCardDetails");
 
       return next();
