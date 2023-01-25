@@ -27,11 +27,10 @@ module.exports = {
     next: "photoIdSelection",
   },
   "/photoIdSelection": {
-    controller: photoIdSelect,
     fields: ['photoIdChoice'],
+    controller: photoIdSelect,
     next: photoIdSelect.prototype.next
   },
-
   "/passportDetails": {
     fields: ["passportExpiryDate"],
     controller: passportDetails,

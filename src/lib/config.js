@@ -41,6 +41,9 @@ module.exports = {
       YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD: "youngScotNationalEntitlementCard",
       NO_PHOTO_ID: "noPhotoId"
     },
+    // NO_PHOTO_ID_OPTIONS:{
+    //   NO_PHOTO_ID: "noPhotoId"
+    // },
     UK_PASSPORT_HINT: "If your UK passport has expired, you can still use it to prove your identity up to 18 months after the expiry date",
     ANALYTICS: {
       ID: process.env.GTM_ID,
