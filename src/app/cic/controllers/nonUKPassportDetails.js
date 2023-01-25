@@ -23,13 +23,23 @@ class NonUKPassportDetailsController extends DateController {
       const nonUKPassportExpiryDate = req.form.values.nonUKPassportExpiryDate;
       const inputDate = moment(nonUKPassportExpiryDate, 'YYYY-MM-DD');
 
-      const isOutsideExpireWindow = inputDate.utc().isAfter(  new Date(
-        new Date().getFullYear(),
-        new Date().getMonth(),
-        new Date().getDate() - 1
-      )
+      const isOutsideExpireWindow = inputDate.utc().isBetween(  
+        new Date(
+          new Date().getFullYear(),
+          new Date().getMonth(),
+          new Date().getDate() - 1
+        )
         .toISOString()
-        .split("T")[0],'days')
+        .split("T")[0],
+        
+        new Date(
+          new Date().getFullYear() + 75,
+          new Date().getMonth(),
+          new Date().getDate() + 1
+        )
+        .toISOString()
+        .split("T")[0]
+      )
 
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
       req.sessionModel.set("expiryDate", nonUKPassportExpiryDate);

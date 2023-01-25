@@ -13,17 +13,29 @@ class EuIdentityCardController extends DateController {
       callback(err, locals);
     });
   }
+  
   async saveValues(req, res, next) {
     try {
       const euIdCardExpiryDate = req.form.values.euIdCardExpiryDate;
       const inputDate = moment(euIdCardExpiryDate, 'YYYY-MM-DD');
-      const isOutsideExpireWindow = inputDate.utc().isAfter(  new Date(
-        new Date().getFullYear(),
-        new Date().getMonth(),
-        new Date().getDate()
-      )
+
+      const isOutsideExpireWindow = inputDate.utc().isBetween(  
+        new Date(
+          new Date().getFullYear(),
+          new Date().getMonth(),
+          new Date().getDate() - 1
+        )
         .toISOString()
-        .split("T")[0],'days')
+        .split("T")[0],
+        
+        new Date(
+          new Date().getFullYear() + 75,
+          new Date().getMonth(),
+          new Date().getDate() + 1
+        )
+          .toISOString()
+          .split("T")[0]
+      )
         
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
       req.sessionModel.set("expiryDate", euIdCardExpiryDate);

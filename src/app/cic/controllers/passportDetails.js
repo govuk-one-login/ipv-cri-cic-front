@@ -23,13 +23,24 @@ class PassportDetailsController extends DateController {
       const passportExpiryDate = req.form.values.passportExpiryDate;
       const inputDate = moment(passportExpiryDate, 'YYYY-MM-DD');
 
-      const isOutsideExpireWindow = inputDate.utc().isAfter(  new Date(
-        new Date().getFullYear(),
-        new Date().getMonth() - 18,
-        new Date().getDate() - 1
-      )
+      const isOutsideExpireWindow = inputDate.utc().isBetween(  
+        new Date(
+          new Date().getFullYear(),
+          new Date().getMonth() - 18,
+          new Date().getDate() - 1
+        )
         .toISOString()
-        .split("T")[0],'days')
+        .split("T")[0],
+        
+        new Date(
+          new Date().getFullYear() + 10,
+          new Date().getMonth(),
+          new Date().getDate() + 1
+        )
+          .toISOString()
+          .split("T")[0],
+          'day'
+      )
 
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
       req.sessionModel.set("expiryDate", passportExpiryDate);

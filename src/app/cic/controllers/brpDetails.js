@@ -11,13 +11,17 @@ class BrpDetailsController extends DateController {
       const brpExpiryDate = req.form.values.brpExpiryDate;
       const inputDate = moment(brpExpiryDate, 'YYYY-MM-DD');
 
-      const isOutsideExpireWindow = inputDate.utc().isAfter(  new Date(
-        new Date().getFullYear(),
-        new Date().getMonth(),
-        new Date().getDate() - 1
-      )
+      const isOutsideExpireWindow = inputDate.utc().isBetween(  
+        new Date(
+          new Date().getFullYear(),
+          new Date().getMonth(),
+          new Date().getDate() - 1
+        )
         .toISOString()
-        .split("T")[0],'days')
+        .split("T")[0],
+         
+        new Date("2025-01-01").toISOString().split("T")[0]
+      )
       
     req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
     req.sessionModel.set("expiryDate", brpExpiryDate);

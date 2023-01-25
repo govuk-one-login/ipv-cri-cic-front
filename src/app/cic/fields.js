@@ -29,13 +29,13 @@ module.exports = {
     journeyKey: "passportExpiryDate",
     validate: [
       "required", "date",
-      {type: "before", arguments: new Date(
+  /*     {type: "before", arguments: new Date(
         new Date().getFullYear() + 10,
         new Date().getMonth(),
         new Date().getDate() + 1
       )
         .toISOString()
-        .split("T")[0]}
+        .split("T")[0]} */
     ],
   },
   nonUKPassportExpiryDate: {
