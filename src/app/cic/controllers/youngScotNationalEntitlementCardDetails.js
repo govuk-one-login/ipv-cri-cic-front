@@ -33,7 +33,7 @@ class YoungScotNationalEntitlementCardDetailsController extends DateController {
 
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
       req.sessionModel.set("expiryDate", youngScotNationalEntitlementCardExpiryDate);
-      req.sessionModel.set("photoIdChoice", "Young Scot National Entitlement Card");
+      req.sessionModel.set("photoIdChoice", "Young Scot National Entitlement Card (NEC)");
       req.sessionModel.set("changeUrl", "youngScotNecDetails");
 
       return next();
