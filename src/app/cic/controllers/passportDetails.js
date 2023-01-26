@@ -32,7 +32,7 @@ class PassportDetailsController extends DateController {
         new Date().getDate()
       )
       .toISOString()
- //     .split("T")[0];
+      .split("T")[0];
 
       //Upper limit for date input  
       const upperUTC = new Date(
@@ -55,8 +55,6 @@ class PassportDetailsController extends DateController {
       
       console.log('user:',inputDateUTC);
       console.log('lower:',lowerUTC);
-      
-      
 
       return next();
     } catch (err) {
