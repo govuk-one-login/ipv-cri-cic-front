@@ -21,7 +21,7 @@ class YoungScotNationalEntitlementCardDetailsController extends DateController {
   async saveValues(req, res, next) {
     try {
       //User input 
-      const passportExpiryDate = req.form.values.youngScotNationalEntitlementCardExpiryDate;
+      const youngScotNationalEntitlementCardExpiryDate = req.form.values.youngScotNationalEntitlementCardExpiryDate;
       const inputDate = moment(youngScotNationalEntitlementCardExpiryDate, 'YYYY-MM-DD');
       const inputDateUTC = inputDate.utc()
 

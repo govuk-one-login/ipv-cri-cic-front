@@ -21,7 +21,7 @@ class NonUKPassportDetailsController extends DateController {
   async saveValues(req, res, next) {
     try {
        //User input 
-       const passportExpiryDate = req.form.values.nonUKPassportExpiryDate;
+       const nonUKPassportExpiryDate = req.form.values.nonUKPassportExpiryDate;
        const inputDate = moment(nonUKPassportExpiryDate, 'YYYY-MM-DD');
        const inputDateUTC = inputDate.utc()
  

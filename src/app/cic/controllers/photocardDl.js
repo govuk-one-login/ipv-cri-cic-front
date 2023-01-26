@@ -21,7 +21,7 @@ class PhotocardDlController extends DateController {
   async saveValues(req, res, next) {
     try {
       //User input 
-      const passportExpiryDate = req.form.values.photocardDlExpiryDate;
+      const photocardDlExpiryDate = req.form.values.photocardDlExpiryDate;
       const inputDate = moment(photocardDlExpiryDate, 'YYYY-MM-DD');
       const inputDateUTC = inputDate.utc()
 
