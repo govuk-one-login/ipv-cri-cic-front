@@ -30,8 +30,11 @@ class NonUKPassportDetailsController extends DateController {
       )
         .toISOString()
         .split("T")[0],'days')
-
+      
+      // Values used on this page  
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
+      req.sessionModel.set("nonUKPassportExpiryDate", nonUKPassportExpiryDate);
+      //Values used on checkDetails page
       req.sessionModel.set("expiryDate", nonUKPassportExpiryDate);
       req.sessionModel.set("photoIdChoice", "Non-UK passport");
       req.sessionModel.set("changeUrl", "nonUKPassportDetails");

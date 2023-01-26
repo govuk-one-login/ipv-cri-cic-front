@@ -18,8 +18,11 @@ class BrpDetailsController extends DateController {
       )
         .toISOString()
         .split("T")[0],'days')
-      
+     
+    // Values used on this page    
     req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
+    req.sessionModel.set("brpExpiryDate", brpExpiryDate);
+    //Values used on checkDetails page
     req.sessionModel.set("expiryDate", brpExpiryDate);
     req.sessionModel.set("photoIdChoice", "Biometric residence permit (BRP)");
     req.sessionModel.set("changeUrl", "brpDetails");

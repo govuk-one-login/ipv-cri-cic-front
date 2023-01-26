@@ -30,8 +30,11 @@ class YoungScotNationalEntitlementCardDetailsController extends DateController {
       )
         .toISOString()
         .split("T")[0],'days')
-
+      
+      // Values used on this page   
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
+      req.sessionModel.set("youngScotNationalEntitlementCardExpiryDate", youngScotNationalEntitlementCardExpiryDate);
+      //Values used on checkDetails page
       req.sessionModel.set("expiryDate", youngScotNationalEntitlementCardExpiryDate);
       req.sessionModel.set("photoIdChoice", "Young Scot National Entitlement Card (NEC)");
       req.sessionModel.set("changeUrl", "youngScotNecDetails");
