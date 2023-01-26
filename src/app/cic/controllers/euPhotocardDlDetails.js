@@ -31,7 +31,10 @@ class EuPhotocardDlController extends DateController {
         .toISOString()
         .split("T")[0],'days')
 
+      // Values used on this page
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
+      req.sessionModel.set("euPhotocardDlExpiryDate", euPhotocardDlExpiryDate);
+      //Values used on checkDetails page
       req.sessionModel.set("expiryDate", euPhotocardDlExpiryDate);
       req.sessionModel.set("photoIdChoice", "EU photocard driving licence");
       req.sessionModel.set("changeUrl", "euPhotocardDlDetails");

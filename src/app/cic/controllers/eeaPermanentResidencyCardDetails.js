@@ -24,8 +24,11 @@ class EeaPermanentResidencyCardController extends DateController {
       )
         .toISOString()
         .split("T")[0],'months')
-        
+
+      // Values used on this page    
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
+      req.sessionModel.set("eeaPrCardExpiryDate", eeaPrCardExpiryDate);
+      //Values used on checkDetails page
       req.sessionModel.set("expiryDate", eeaPrCardExpiryDate);
       req.sessionModel.set("photoIdChoice", "EEA permanent residency card");
       req.sessionModel.set("changeUrl", "eeaPermanentResidencyCardDetails");
