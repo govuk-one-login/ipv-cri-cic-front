@@ -10,13 +10,13 @@ photoIdChoice:
     brp:
       label: Biometric residence permit (BRP)
     otherPassport:
-      label: Non-UK biometric passport
+      label: Non-UK passport
     euPhotocardDl:
       label: EU photocard driving licence
     eeaPermanentResidencyCard:
       label: EEA Permanent Residency Card
     euIdentityCard:
-      label: EU Identity Card
+      label: National Identity card from an EEA country
     citizenCard:
       label: CitizenCard
     youngScotNationalEntitlementCard:
