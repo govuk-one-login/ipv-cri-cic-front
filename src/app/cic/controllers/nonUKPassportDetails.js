@@ -40,7 +40,6 @@ class NonUKPassportDetailsController extends DateController {
   }
 
   next(req) {
-    console.log(req.form.values);
     if (req.sessionModel.get("isOutsideExpireWindow")) {
       return "/nameEntry"
     } else{

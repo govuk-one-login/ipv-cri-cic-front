@@ -18,8 +18,6 @@ class DateOfBirthController extends DateController {
   }
 
     next(req) {
-      console.log("!!!!!DATE OF BIRTH!!!!!")
-      console.log(req.form.values);
       return "/checkDetails"
     } 
 }
