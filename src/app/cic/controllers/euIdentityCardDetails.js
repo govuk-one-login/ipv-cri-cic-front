@@ -28,7 +28,7 @@ class EuIdentityCardController extends DateController {
         new Date().getDate()
       )
       .toISOString()
-      .split("T")[0];
+      //.split("T")[0];
       
       //Upper limit for date input  
       const upperUTC = new Date(
@@ -36,8 +36,8 @@ class EuIdentityCardController extends DateController {
         new Date().getMonth(),
         new Date().getDate()
       )
-        .toISOString()
-        .split("T")[0];
+      .toISOString()
+      //.split("T")[0];
       
       // Compare user input between upper and lower limits
       const isOutsideExpireWindow = inputDateUTC.isBetween(  

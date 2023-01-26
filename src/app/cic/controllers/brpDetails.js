@@ -20,10 +20,12 @@ class BrpDetailsController extends DateController {
           new Date().getDate()
         )
         .toISOString()
-        .split("T")[0];
+        //.split("T")[0];
          
       //Upper limit for date input  
-      const upperUTC = new Date("2024-12-31").toISOString().split("T")[0];
+      const upperUTC = new Date("2024-12-31")
+      .toISOString()
+      //.split("T")[0];
 
       // Compare user input between upper and lower limits
       const isOutsideExpireWindow = inputDateUTC.isBetween(  
