@@ -47,10 +47,13 @@ class YoungScotNationalEntitlementCardDetailsController extends DateController {
       const isOutsideExpireWindow = inputDateUTC.isBetween(  
         lowerUTC, upperUTC,'days','[]'
       )
-
+      
+      // Values used on this page   
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
+      req.sessionModel.set("youngScotNationalEntitlementCardExpiryDate", youngScotNationalEntitlementCardExpiryDate);
+      //Values used on checkDetails page
       req.sessionModel.set("expiryDate", youngScotNationalEntitlementCardExpiryDate);
-      req.sessionModel.set("photoIdChoice", "Young Scot National Entitlement Card");
+      req.sessionModel.set("photoIdChoice", "Young Scot National Entitlement Card (NEC)");
       req.sessionModel.set("changeUrl", "youngScotNecDetails");
 
       return next();

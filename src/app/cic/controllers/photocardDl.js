@@ -47,10 +47,13 @@ class PhotocardDlController extends DateController {
       const isOutsideExpireWindow = inputDateUTC.isBetween(  
         lowerUTC, upperUTC,'days','[]'
       )
-
+      
+      // Values used on this page  
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
+      req.sessionModel.set("photocardDlExpiryDate", photocardDlExpiryDate);
+      //Values used on checkDetails page
       req.sessionModel.set("expiryDate", photocardDlExpiryDate);
-      req.sessionModel.set("photoIdChoice", "UK Photocard Driving Licence");
+      req.sessionModel.set("photoIdChoice", "UK photocard driving licence");
       req.sessionModel.set("changeUrl", "photocardDlDetails");
 
       return next();

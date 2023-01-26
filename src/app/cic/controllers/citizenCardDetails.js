@@ -42,8 +42,11 @@ class CitizenCardController extends DateController {
       const isOutsideExpireWindow = inputDateUTC.isBetween(  
         lowerUTC, upperUTC,'days','[]'
       )
-        
+      
+      // Values used on this page 
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
+      req.sessionModel.set("citizenCardExpiryDate", citizenCardExpiryDate);
+      //Values used on checkDetails page
       req.sessionModel.set("expiryDate", citizenCardExpiryDate);
       req.sessionModel.set("photoIdChoice", "CitizenCard");
       req.sessionModel.set("changeUrl", "citizenCardDetails");

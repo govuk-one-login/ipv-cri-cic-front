@@ -48,9 +48,12 @@ class PassportDetailsController extends DateController {
         lowerUTC, upperUTC,'days','[]'
       )
 
+      // Values used on this page  
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
+      req.sessionModel.set("passportExpiryDate", passportExpiryDate);
+      //Values used on checkDetails page
       req.sessionModel.set("expiryDate", passportExpiryDate);
-      req.sessionModel.set("photoIdChoice", "UK Passport");
+      req.sessionModel.set("photoIdChoice", "UK passport");
       req.sessionModel.set("changeUrl", "passportDetails");
       
       console.log('user:',inputDateUTC);
