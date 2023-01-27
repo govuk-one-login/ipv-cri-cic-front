@@ -26,8 +26,7 @@ class CitizenCardController extends DateController {
         new Date().getMonth(),
         new Date().getDate()
       )
-      .toISOString()
-      //.split("T")[0];
+      .toISOString();
 
       //Upper limit for date input  
       const upperUTC = new Date(
@@ -35,8 +34,7 @@ class CitizenCardController extends DateController {
         new Date().getMonth(),
         new Date().getDate()
       )
-      .toISOString()
-      //.split("T")[0];
+      .toISOString();
       
       // Compare user input between upper and lower limits
       const isOutsideExpireWindow = inputDateUTC.isBetween(  

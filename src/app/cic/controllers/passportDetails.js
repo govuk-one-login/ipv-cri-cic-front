@@ -31,8 +31,7 @@ class PassportDetailsController extends DateController {
         new Date().getMonth() - 18,
         new Date().getDate()
       )
-      .toISOString()
-      //.split("T")[0];
+      .toISOString();
 
       //Upper limit for date input  
       const upperUTC = new Date(
@@ -40,8 +39,7 @@ class PassportDetailsController extends DateController {
         new Date().getMonth(),
         new Date().getDate()
       )
-      .toISOString()
-      //.split("T")[0];
+      .toISOString();
       
       // Compare user input between upper and lower limits
       const isOutsideExpireWindow = inputDateUTC.isBetween(  
@@ -55,9 +53,6 @@ class PassportDetailsController extends DateController {
       req.sessionModel.set("expiryDate", passportExpiryDate);
       req.sessionModel.set("photoIdChoice", "UK passport");
       req.sessionModel.set("changeUrl", "passportDetails");
-      
-      console.log('user:',inputDateUTC);
-      console.log('lower:',lowerUTC);
 
       return next();
     } catch (err) {
