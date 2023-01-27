@@ -23,9 +23,7 @@ class EeaPermanentResidencyCardController extends DateController {
         new Date().getMonth(),
         new Date().getDate()
       )
-        .toISOString()
-        .split("T")[0],'days')
-        
+        .toISOString());      
 
       // Values used on this page    
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
