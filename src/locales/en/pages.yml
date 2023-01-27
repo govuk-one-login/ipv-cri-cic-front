@@ -29,7 +29,7 @@ youngScotNationalEntitlementCard:
   youngScotNationalEntitlementCardInformationContext: "We need this information to check that your photo ID is valid."
   
 euIdentityCard: 
-  title: "When does your EU identity card expire?" 
+  title: "When does your National Identity card from an EEA country expire?" 
   content: "We need this information to check that your photo ID is valid."
 
 photoIdSelection:
@@ -38,7 +38,7 @@ photoIdSelection:
   content: "Your photo ID must be an original, you cannot use photocopies."
 
 eeaPermanentResidencyCard: 
-  title: "When does your EEA permanent residency card expire?" 
+  title: "When was your EEA permanent residency card issued?" 
   content: "We need this information to check that your photo ID is valid."
 
 landingPage:

@@ -15,15 +15,31 @@ class CitizenCardController extends DateController {
   }
   async saveValues(req, res, next) {
     try {
+      //User input 
       const citizenCardExpiryDate = req.form.values.citizenCardExpiryDate;
       const inputDate = moment(citizenCardExpiryDate, 'YYYY-MM-DD');
-      const isOutsideExpireWindow = inputDate.isAfter(  new Date(
+      const inputDateUTC = inputDate.utc()
+
+      // Lower limit for date input
+      const lowerUTC = new Date(
         new Date().getFullYear(),
         new Date().getMonth(),
         new Date().getDate()
       )
-        .toISOString()
-        .split("T")[0],'months')
+      .toISOString();
+
+      //Upper limit for date input  
+      const upperUTC = new Date(
+        new Date().getFullYear() + 4,
+        new Date().getMonth(),
+        new Date().getDate()
+      )
+      .toISOString();
+      
+      // Compare user input between upper and lower limits
+      const isOutsideExpireWindow = inputDateUTC.isBetween(  
+        lowerUTC, upperUTC,'days','[]'
+      )
       
       // Values used on this page 
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);

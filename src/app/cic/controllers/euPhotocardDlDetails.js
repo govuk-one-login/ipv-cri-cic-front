@@ -20,16 +20,31 @@ class EuPhotocardDlController extends DateController {
 
   async saveValues(req, res, next) {
     try {
+      //User input 
       const euPhotocardDlExpiryDate = req.form.values.euPhotocardDlExpiryDate;
       const inputDate = moment(euPhotocardDlExpiryDate, 'YYYY-MM-DD');
+      const inputDateUTC = inputDate.utc()
 
-      const isOutsideExpireWindow = inputDate.isAfter(  new Date(
+      // Lower limit for date input
+      const lowerUTC = new Date(
         new Date().getFullYear(),
         new Date().getMonth(),
         new Date().getDate()
       )
-        .toISOString()
-        .split("T")[0],'days')
+      .toISOString();
+
+      //Upper limit for date input  
+      const upperUTC = new Date(
+        new Date().getFullYear() + 75,
+        new Date().getMonth(),
+        new Date().getDate()
+      )
+      .toISOString();
+      
+      // Compare user input between upper and lower limits
+      const isOutsideExpireWindow = inputDateUTC.isBetween(  
+        lowerUTC, upperUTC,'days','[]'
+      )
 
       // Values used on this page
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);

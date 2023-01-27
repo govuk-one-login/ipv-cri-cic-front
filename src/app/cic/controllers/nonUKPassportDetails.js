@@ -20,17 +20,32 @@ class NonUKPassportDetailsController extends DateController {
 
   async saveValues(req, res, next) {
     try {
-      const nonUKPassportExpiryDate = req.form.values.nonUKPassportExpiryDate;
-      const inputDate = moment(nonUKPassportExpiryDate, 'YYYY-MM-DD');
+       //User input 
+       const nonUKPassportExpiryDate = req.form.values.nonUKPassportExpiryDate;
+       const inputDate = moment(nonUKPassportExpiryDate, 'YYYY-MM-DD');
+       const inputDateUTC = inputDate.utc()
+ 
+       // Lower limit for date input
+       const lowerUTC = new Date(
+         new Date().getFullYear(),
+         new Date().getMonth(),
+         new Date().getDate()
+       )
+       .toISOString();
+ 
+       //Upper limit for date input  
+       const upperUTC = new Date(
+         new Date().getFullYear() + 75,
+         new Date().getMonth(),
+         new Date().getDate()
+       )
+        .toISOString();
+       
+       // Compare user input between upper and lower limits
+       const isOutsideExpireWindow = inputDateUTC.isBetween(  
+         lowerUTC, upperUTC,'days','[]'
+       )
 
-      const isOutsideExpireWindow = inputDate.isAfter(  new Date(
-        new Date().getFullYear(),
-        new Date().getMonth(),
-        new Date().getDate() - 1
-      )
-        .toISOString()
-        .split("T")[0],'days')
-      
       // Values used on this page  
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
       req.sessionModel.set("nonUKPassportExpiryDate", nonUKPassportExpiryDate);

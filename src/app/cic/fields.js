@@ -27,12 +27,12 @@ module.exports = {
   passportExpiryDate: {
     type: "date",
     journeyKey: "passportExpiryDate",
-    validate: ["required", "date"],
+    validate: ["required", "date"]
   },
   nonUKPassportExpiryDate: {
     type: "date",
     journeyKey: "nonUKPassportExpiryDate",
-    validate: ["required", "date"],
+    validate: ["required", "date"]
   },
   photocardDlExpiryDate: {
     type: "date",
@@ -57,18 +57,20 @@ module.exports = {
   citizenCardExpiryDate: {
     type: "date",
     journeyKey: "citizenCardExpiryDate",
-    validate: ["required", "date"],
+    validate: [
+      "required", "date"]
   },
   youngScotNationalEntitlementCardExpiryDate: {
     type: "date",
     journeyKey: "youngScotNationalEntitlementCardExpiryDate",
-    validate: ["required", "date"]
+    validate: [
+      "required", "date"]
   },
   euIdCardExpiryDate: {
     type: "date",
     journeyKey: "euIdCardExpiryDate",
     validate: [
-      "required", "date"],
+      "required", "date"]
   },
   surname: {
     type: "text",

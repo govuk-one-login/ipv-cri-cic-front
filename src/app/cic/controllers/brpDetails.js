@@ -8,16 +8,27 @@ class BrpDetailsController extends DateController {
 
   async saveValues(req, res, next) {
     try {
+      //User input 
       const brpExpiryDate = req.form.values.brpExpiryDate;
       const inputDate = moment(brpExpiryDate, 'YYYY-MM-DD');
+      const inputDateUTC = inputDate.utc()
 
-      const isOutsideExpireWindow = inputDate.isAfter(  new Date(
-        new Date().getFullYear(),
-        new Date().getMonth(),
-        new Date().getDate() - 1
+      // Lower limit for date input
+      const lowerUTC = new Date(
+          new Date().getFullYear(),
+          new Date().getMonth(),
+          new Date().getDate()
+        )
+        .toISOString();
+         
+      //Upper limit for date input  
+      const upperUTC = new Date("2024-12-31")
+      .toISOString();
+
+      // Compare user input between upper and lower limits
+      const isOutsideExpireWindow = inputDateUTC.isBetween(  
+        lowerUTC, upperUTC,'days','[]'
       )
-        .toISOString()
-        .split("T")[0],'days')
      
     // Values used on this page    
     req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);

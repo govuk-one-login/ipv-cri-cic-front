@@ -16,7 +16,7 @@ photoIdChoice:
     eeaPermanentResidencyCard:
       label: EEA Permanent Residency Card
     euIdentityCard:
-      label: EU Identity Card
+      label: National Identity card from an EEA country
     citizenCard:
       label: CitizenCard
     youngScotNationalEntitlementCard:
@@ -100,7 +100,7 @@ euIdCardExpiryDate:
   legend: "" 
   hint: "For example, 31 3 2025"
   validation:
-    default: "Enter the expiry date as it appears on your EU identity card"
+    default: "Enter the expiry date as it appears on your National Identity card from an EEA country"
     after: "The expiry date must be in the future"
 
 surname:

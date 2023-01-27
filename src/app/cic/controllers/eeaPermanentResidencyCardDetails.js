@@ -17,13 +17,13 @@ class EeaPermanentResidencyCardController extends DateController {
     try {
       const eeaPrCardExpiryDate = req.form.values.eeaPrCardExpiryDate;
       const inputDate = moment(eeaPrCardExpiryDate, 'YYYY-MM-DD');
-      const isOutsideExpireWindow = inputDate.isAfter(  new Date(
+
+      const isOutsideExpireWindow = inputDate.utc().isAfter(  new Date(
         new Date().getFullYear(),
         new Date().getMonth(),
         new Date().getDate()
       )
-        .toISOString()
-        .split("T")[0],'months')
+        .toISOString());      
 
       // Values used on this page    
       req.sessionModel.set("isOutsideExpireWindow", isOutsideExpireWindow);
