@@ -27,6 +27,8 @@ module.exports = {
       NAME_ENTRY: "/nameEntry",
       DATE_OF_BIRTH: "/dateOfBirth",
       CHECK_DETAILS: "/checkDetails",
+      EXPIRED_ID: "/photoIdExpiry",
+      DONE: "/done"
     },
     PHOTO_ID_OPTIONS:{
       UK_PASSPORT:"ukPassport",

@@ -1,4 +1,5 @@
 const BaseController = require("hmpo-form-wizard").Controller;
+const {APP} = require("../../../lib/config");
 
 class NameEntryController extends BaseController {
 
@@ -17,9 +18,9 @@ class NameEntryController extends BaseController {
 
     next(req) {
       if (req.sessionModel.get("detailsComplete")) {
-        return "/checkDetails"
+        return APP.PATHS.CHECK_DETAILS
       } else {
-        return "/dateOfBirth"
+        return APP.PATHS.EXPIRED_ID
       }
     } 
 }

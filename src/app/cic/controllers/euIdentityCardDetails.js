@@ -2,6 +2,7 @@ const moment = require('moment');
 const BaseController = require("hmpo-form-wizard").Controller;
 const DateControllerMixin = require("hmpo-components").mixins.Date;
 const DateController = DateControllerMixin(BaseController);
+const {APP} = require("../../../lib/config");
 
 class EuIdentityCardController extends DateController {
   locals(req, res, callback) {
@@ -37,11 +38,11 @@ class EuIdentityCardController extends DateController {
   }
   next(req) {
     if (req.sessionModel.get("detailsComplete")) {
-      return "/checkDetails"
+      return APP.PATHS.CHECK_DETAILS
     } else if (req.sessionModel.get("isOutsideExpireWindow")) {
-      return "/nameEntry"
+      return APP.PATHS.NAME_ENTRY
     } else{
-      return "/photoIdExpiry"
+      return APP.PATHS.EXPIRED_ID
     }
   }
 }

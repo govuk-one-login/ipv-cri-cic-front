@@ -1,6 +1,7 @@
 const BaseController = require("hmpo-form-wizard").Controller;
 const DateControllerMixin = require("hmpo-components").mixins.Date;
 const { formatDate } = require("../utils")
+const {APP} = require("../../../lib/config");
 
 const DateController = DateControllerMixin(BaseController);
 
@@ -32,7 +33,7 @@ class CheckDetailsController extends DateController {
   }
 
   next() {
-    return '/done'
+    return APP.PATHS.DONE
   }
 }
 
