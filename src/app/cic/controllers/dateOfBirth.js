@@ -4,7 +4,6 @@ const DateControllerMixin = require("hmpo-components").mixins.Date;
 const DateController = DateControllerMixin(BaseController);
 
 class DateOfBirthController extends DateController {
-
   locals(req, res, callback) {
     super.locals(req, res, (err, locals) => {
       if (err) {
@@ -16,10 +15,5 @@ class DateOfBirthController extends DateController {
       callback(err, locals);
     });
   }
-
-    next(req) {
-      req.sessionModel.set("detailsComplete", true)
-      return "/checkDetails"
-    } 
 }
-module.exports = DateOfBirthController; 
+module.exports = DateOfBirthController;
