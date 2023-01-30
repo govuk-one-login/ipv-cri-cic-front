@@ -8,11 +8,11 @@ module.exports = class PlaywrightDevPage {
   }
 
 
-  isCurrentPage() {
+  async isCurrentPage() {
     console.log(">>In passportDetails.js");
     console.log(">>In isCurrentPage function");
 
-    return this.page.url() === this.url;
+    return await this.page.url() === this.url;
   }
 
   async continue() {
@@ -27,18 +27,11 @@ module.exports = class PlaywrightDevPage {
 
   async expiryDateMonth() {
     await this.page.locator("#passportExpiryDate-month").fill("3");
-    console.log(`>>Expiry Month: $this.page.locator("#passportExpiryDate-month")`); 
   }
 
   async expiryDateYear() {
     await this.page.locator("#passportExpiryDate-year").fill("2025");
   }
 
-  async setExpiryDateDay() {
-    const day  = this.page.locator("#passportExpiryDate-day");
-    day.isVisible({ timeout: 50000 });
-    day.click();
-    await day.fill('31');
-  }
 
 };

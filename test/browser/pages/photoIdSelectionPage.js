@@ -7,10 +7,10 @@ module.exports = class PlaywrightDevPage {
     this.url = "http://localhost:5020/photoIdSelection";
   }
 
-  isCurrentPage() {
+  async isCurrentPage() {
      console.log(">>In photoIdSelectionPage.js");
      console.log(">>In isCurrentPage function");
-    return this.page.url() === this.url;
+    return await this.page.url() === this.url;
    
   }
 
