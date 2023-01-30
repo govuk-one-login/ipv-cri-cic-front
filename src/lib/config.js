@@ -27,7 +27,8 @@ module.exports = {
       NAME_ENTRY: "/nameEntry",
       DATE_OF_BIRTH: "/dateOfBirth",
       CHECK_DETAILS: "/checkDetails",
-      NO_PHOTO_ID: "https://signin.account.gov.uk/no-photo-id"
+      NO_PHOTO_ID: "https://signin.account.gov.uk/no-photo-id",
+      EXPIRED_ID: "/photoIdExpiry"
     },
     PHOTO_ID_OPTIONS:{
       UK_PASSPORT:"ukPassport",
