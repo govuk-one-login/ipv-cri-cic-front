@@ -5,9 +5,10 @@ Feature: Happy path
 
   Background:
     Given Authenticatable Anita is using the system
-    And they have provided their details
+    When they have provided their details
+    Then they should be redirected to the landingPage
 
-  @mock-api:f2f-cic-success
+@test
   Scenario: Continue button redirect successful
     Given the user wants to progress to the next step of the journey
     When the user clicks the continue button on the LandingPage

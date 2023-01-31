@@ -13,7 +13,7 @@ module.exports = class PlaywrightDevPage {
     await this.page.goto(this.startingUrl);
   }
 
-  isRelyingPartyServer() {
+ isRelyingPartyServer() {
     return new URL(this.page.url()).origin === "http://example.net";
   }
 
