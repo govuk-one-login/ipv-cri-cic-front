@@ -102,7 +102,7 @@ euIdCardExpiryDate:
   legend: "" 
   hint: "For example, 31 3 2025"
   validation:
-    default: "Enter the expiry date as it appears on your EU identity card"
+    default: "Enter the expiry date as it appears on your National Identity card from an EEA country"
     after: "The expiry date must be in the future"
 
 surname:
@@ -138,4 +138,4 @@ checkDetails:
   label: ""
   legend: ""
   validation:
-    default: "Make sure your details are correct before you continue. You will not be able to change them later"
+    default: "Make sure your details are correct before you continue. You will not be able to change them later."

@@ -29,7 +29,7 @@ youngScotNationalEntitlementCard:
   youngScotNationalEntitlementCardInformationContext: "We need this information to check that your photo ID is valid."
   
 euIdentityCard: 
-  title: "When does your EU identity card expire?" 
+  title: "When does your National Identity card from an EEA country expire?" 
   content: "We need this information to check that your photo ID is valid."
 
 photoIdSelection:
@@ -40,7 +40,7 @@ photoIdSelection:
             You can use a UK passport up to 18 months after its expiry date. All other photo IDs must be in date.
             <br><br>"
 eeaPermanentResidencyCard: 
-  title: "When does your EEA permanent residency card expire?" 
+  title: "When was your EEA permanent residency card issued?" 
   content: "We need this information to check that your photo ID is valid."
 
 landingPage:
@@ -78,9 +78,11 @@ dateOfBirth:
   dobInformationContext: "Enter your date of birth as it appears on your photo ID."
 
 checkDetails:
-  title: "Check your answers"
-  selectedId: "Selected photo ID"
+  title: "Check your details"
+  selectedId: "Chosen photo ID"
   expiryDate: "Expiry date"
   name: "Name"
-  dateOfBirth: "Date of Birth"
+  dateOfBirth: "Date of birth"
   changeLink: "Change"
+  buttonText: "I confirm my details are correct"
+  
