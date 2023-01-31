@@ -27,6 +27,8 @@ module.exports = {
       NAME_ENTRY: "/nameEntry",
       DATE_OF_BIRTH: "/dateOfBirth",
       CHECK_DETAILS: "/checkDetails",
+      NO_PHOTO_ID: "https://signin.account.gov.uk/no-photo-id",
+      EXPIRED_ID: "/photoIdExpiry"
     },
     PHOTO_ID_OPTIONS:{
       UK_PASSPORT:"ukPassport",
@@ -37,10 +39,10 @@ module.exports = {
       EEA_PERMANENT_RESIDENCY_CARD: "eeaPermanentResidencyCard",
       EU_IDENTITY_CARD: "euIdentityCard",
       CITIZEN_CARD: "citizenCard",
-      YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD: "youngScotNationalEntitlementCard"
+      YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD: "youngScotNationalEntitlementCard",
+      NO_PHOTO_ID: "noPhotoId"
     },
-    UK_PASSPORT_HINT: "If your UK passport has expired, you can still use it to prove your identity up until 18 months after the expiry date",
-    NON_UK_PASSPORT_HINT: "Biometric passports or e-Passports have a small rectangular camera icon on the front cover",
+    UK_PASSPORT_HINT: "If your UK passport has expired, you can still use it to prove your identity up to 18 months after the expiry date",
     ANALYTICS: {
       ID: process.env.GTM_ID,
       DOMAIN: process.env.ANALYTICS_DOMAIN || "localhost",

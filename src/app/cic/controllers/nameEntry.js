@@ -1,4 +1,5 @@
 const BaseController = require("hmpo-form-wizard").Controller;
+const {APP} = require("../../../lib/config");
 
 class NameEntryController extends BaseController {
 
@@ -16,7 +17,7 @@ class NameEntryController extends BaseController {
   }
 
     next() {
-      return "/dateOfBirth"
+      return APP.PATHS.DATE_OF_BIRTH
     } 
 }
 module.exports = NameEntryController; 
