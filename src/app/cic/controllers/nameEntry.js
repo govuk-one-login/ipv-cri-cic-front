@@ -20,7 +20,7 @@ class NameEntryController extends BaseController {
       if (req.sessionModel.get("detailsComplete")) {
         return APP.PATHS.CHECK_DETAILS
       } else {
-        return APP.PATHS.EXPIRED_ID
+        return APP.PATHS.DATE_OF_BIRTH
       }
     } 
 }
