@@ -33,7 +33,6 @@ module.exports = {
     editable: true,
     editBackStep: "checkDetails",
     invalidates: [
-      "photoIdSelection",
       "brpExpiryDate",
       "citizenCardExpiryDate",
       "eeaPrCardExpiryDate",
@@ -44,7 +43,7 @@ module.exports = {
       "photocardDlExpiryDate",
       "youngScotNationalEntitlementCardExpiryDate"
     ],
-    next: photoIdSelection.prototype.next
+    next: photoIdSelect.prototype.next
   },
   "/passportDetails": {
     fields: ["passportExpiryDate"],
