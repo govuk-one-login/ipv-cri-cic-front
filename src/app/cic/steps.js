@@ -33,6 +33,18 @@ module.exports = {
     controller: photoIdSelect,
     editable: true,
     editBackStep: "checkDetails",
+    invalidates: [
+      "photoIdSelection",
+      "brpExpiryDate",
+      "citizenCardExpiryDate",
+      "eeaPrCardExpiryDate",
+      "euIdCardExpiryDate",
+      "euPhotocardDlExpiryDate",
+      "nonUKPassportExpiryDate",
+      "passportExpiryDate",
+      "photocardDlExpiryDate",
+      "youngScotNationalEntitlementCardExpiryDate"
+    ],
     next: [
       {
         field: "photoIdChoice",
