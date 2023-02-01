@@ -1,0 +1,66 @@
+{
+  "mappings": [
+    {
+      "scenarioName": "save-cic",
+      "newScenarioState": "Started",
+      "request": {
+        "method": "GET",
+        "url": "/__reset/save-cic"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "scenarioName": "save-cic",
+      "requiredScenarioState": "Started",
+      "newScenarioState": "AuthCode",
+      "request": {
+        "method": "POST",
+        "url": "/claimedidentity",
+
+        "bodyPatterns": [
+          {
+            "equalToJson": {
+              "fullName": "${json-unit.any-string}",
+              "dateOfBirth": "${json-unit.any-string}",
+              "documentSelected": "${json-unit.any-string}",
+              "dateOfExpiry": "${json-unit.any-string}"
+            },
+            "ignoreArrayOrder": true
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "session_id": "ABADCAFE",
+          "state": "sT@t3",
+          "redirect_uri": "http://example.net/return"
+        }
+      }
+    },
+    {
+      "scenarioName": "save-cic",
+      "requiredScenarioState": "AuthCode",
+      "request": {
+        "method": "GET",
+        "urlPath": "/authorization",
+        "headers": {
+          "session-id": {
+            "equalTo": "ABADCAFE"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "authorizationCode": {
+            "value": "RICHAAAA"
+          }
+        }
+      }
+    }
+  ]
+}
+

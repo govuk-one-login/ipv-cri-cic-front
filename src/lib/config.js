@@ -5,10 +5,8 @@ module.exports = {
     BASE_URL: process.env.API_BASE_URL || "http://localhost:8090",
     PATHS: {
       SESSION: "/session",
-      QUESTION: "/question",
-      ANSWER: "/answer",
       AUTHORIZATION: "/authorization",
-      ABANDON: "/abandon",
+      SAVE_CICDATA: "/claimedidentity"
     },
   },
   APP: {
@@ -26,7 +24,7 @@ module.exports = {
       YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD_DETAILS: "/youngScotNecDetails",
       NAME_ENTRY: "/nameEntry",
       DATE_OF_BIRTH: "/dateOfBirth",
-      CHECK_DETAILS: "/checkDetails",
+      CHECK_DETAILS: "/checkDetails"
     },
     PHOTO_ID_OPTIONS:{
       UK_PASSPORT:"ukPassport",

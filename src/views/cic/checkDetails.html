@@ -22,7 +22,7 @@
       text: translate("checkDetails.validation.default"),
       iconFallbackText: "Warning"
     }) }}
-    
+
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-6',
         rows: [
@@ -96,9 +96,10 @@
           }
         ]
       }) }}
-      <div id="details-btn">
+
+       {% call hmpoForm(ctx) %}
       {{ hmpoSubmit(ctx, {id: "continue", text: translate("checkDetails.buttonText")}) }}
-      </div>
+         {% endcall %}
     </div>
   </div>
 
