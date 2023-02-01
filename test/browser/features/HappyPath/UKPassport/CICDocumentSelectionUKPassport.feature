@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @success
+@mock-api:f2f-cic-success @success @ukPass
 Feature: Build Document Selection Screen
 
   Background:
@@ -10,7 +10,6 @@ Feature: Build Document Selection Screen
     When the user clicks the continue button on the LandingPage
     Then the user is routed to the next screen in the journey PhotoId Selection
     
-
 Scenario: Successful redirect on 'UK passport' selection (Happy path)
 Given the UK passport option is selected
 When the user clicks the PhotoId continue button
