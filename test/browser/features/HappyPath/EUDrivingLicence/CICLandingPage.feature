@@ -8,7 +8,7 @@ Feature: Happy path
     When they have provided their details
     Then they should be redirected to the landingPage
 
-@test
+
   Scenario: Continue button redirect successful
     Given the user wants to progress to the next step of the journey
     When the user clicks the continue button on the LandingPage

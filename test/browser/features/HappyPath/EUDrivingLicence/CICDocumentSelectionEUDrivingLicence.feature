@@ -31,11 +31,11 @@ Feature: Build Document Selection Screen
 #When the user clicks the continue button
 #Then the user is routed to the next screen in the journey: Other Passport Expiry Entry Screen
 
-@test
+
   Scenario: Successful redirect on EU driving licence selection (Happy path)
   Given the EU driving licence option is selected
-  When the user clicks the continue button
-  Then the user is routed to the next screen in the journey: EU driving Licence Expiry Entry Screen
+  When the user clicks the EU driving licence button
+  Then the user is routed to the EU DL Expiry Entry Screen
 
 #Scenario: Redirect if none of the documents available (Happy path)
 #Given the user has none of the eligible identity documents

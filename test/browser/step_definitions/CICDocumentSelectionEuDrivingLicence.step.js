@@ -2,37 +2,37 @@ const { Given, When, Then } = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const {PhotoIdSelectionPage, PassportDetailsPage } = require("../pages");
+const {PhotoIdSelectionPage, EuDrivingLicenceDetailsPage } = require("../pages");
 
-//AC1 - Successful redirect on ‘UK passport’ selection (Happy path)
-  Given(/^the UK passport option is selected$/, async function () {
-     console.log(">>In PhotoIdSelectionPage - UK passport option selected function");
+// AC1 - Successful redirect on ‘UK passport’ selection (Happy path)
+  // Given(/^the UK passport option is selected$/, async function () {
+  //    console.log(">>In PhotoIdSelectionPage - UK passport option selected function");
      
-     const photoIdPage = new PhotoIdSelectionPage(await this.page);
+  //    const photoIdPage = new PhotoIdSelectionPage(await this.page);
      
-     await photoIdPage.ukPassportChoice();
+  //    await photoIdPage.ukPassportChoice();
 
-     expect(await photoIdPage.isCurrentPage()).to.be.true
+  //    expect(await photoIdPage.isCurrentPage()).to.be.true
    
-  });
+  // });
 
-  When(/^the user clicks the PhotoId continue button$/, async function () {
-    console.log(">>In photoIdPage - UK passport option continue function");
+  // When(/^the user clicks the PhotoId continue button$/, async function () {
+  //   console.log(">>In photoIdPage - UK passport option continue function");
 
-    const photoIdPage = new PhotoIdSelectionPage(await this.page);
+  //   const photoIdPage = new PhotoIdSelectionPage(await this.page);
   
-    await photoIdPage.continue();
+  //   await photoIdPage.continue();
   
-  });
+  // });
   
-  Then(/^the user is routed to the next screen in the journey Passport Details$/, async function () {
-    console.log(">>In photoIdPage - UK passport option continue journey function");
+  // Then(/^the user is routed to the next screen in the journey Passport Details$/, async function () {
+  //   console.log(">>In photoIdPage - UK passport option continue journey function");
 
-    const passportDetailsPage = new PassportDetailsPage(await this.page);
+  //   const passportDetailsPage = new PassportDetailsPage(await this.page);
 
-    expect(await passportDetailsPage.isCurrentPage()).to.be.true;
+  //   expect(await passportDetailsPage.isCurrentPage()).to.be.true;
 
-  });
+  // });
 
 //AC2 - Successful redirect on ‘Eu Driving Licence' selection (Happy path)
   Given(/^the EU driving licence option is selected$/, async function () {
@@ -46,7 +46,7 @@ const {PhotoIdSelectionPage, PassportDetailsPage } = require("../pages");
    
   });
 
-  When(/^the user clicks the PhotoId continue button$/, async function () {
+  When(/^the user clicks the EU driving licence button$/, async function () {
     console.log(">>In photoIdPage - EU Driving Licence option continue function");
 
     const photoIdPage = new PhotoIdSelectionPage(await this.page);
@@ -55,12 +55,12 @@ const {PhotoIdSelectionPage, PassportDetailsPage } = require("../pages");
   
   });
   
-  Then(/^the user is routed to the next screen in the journey EU Driving Licence Details$/, async function () {
+  Then(/^the user is routed to the EU DL Expiry Entry Screen$/, async function () {
     console.log(">>In photoIdPage - EU Driving Licence option continue journey function");
 
-    const passportDetailsPage = new PassportDetailsPage(await this.page);
+    const euDrivingLicenceDetailsPage = new EuDrivingLicenceDetailsPage(await this.page);
 
-    expect(await passportDetailsPage.isCurrentPage()).to.be.true;
+    expect(await euDrivingLicenceDetailsPage.isCurrentPage()).to.be.true;
 
   });
 
