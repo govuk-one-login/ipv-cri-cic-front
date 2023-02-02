@@ -52,6 +52,7 @@ class PassportDetailsController extends DateController {
       req.sessionModel.set("passportExpiryDate", passportExpiryDate);
       //Values used on checkDetails page
       req.sessionModel.set("expiryDate", passportExpiryDate);
+      
       return next();
     } catch (err) {
       return next(err);

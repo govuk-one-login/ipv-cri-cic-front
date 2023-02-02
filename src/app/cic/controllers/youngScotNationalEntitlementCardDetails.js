@@ -52,8 +52,6 @@ class YoungScotNationalEntitlementCardDetailsController extends DateController {
       req.sessionModel.set("youngScotNationalEntitlementCardExpiryDate", youngScotNationalEntitlementCardExpiryDate);
       //Values used on checkDetails page
       req.sessionModel.set("expiryDate", youngScotNationalEntitlementCardExpiryDate);
-      req.sessionModel.set("selectedDocument", "Young Scot National Entitlement Card (NEC)");
-      req.sessionModel.set("changeUrl", "youngScotNecDetails");
 
       return next();
     } catch (err) {

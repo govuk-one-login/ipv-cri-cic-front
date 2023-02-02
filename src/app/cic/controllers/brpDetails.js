@@ -36,9 +36,7 @@ class BrpDetailsController extends DateController {
     req.sessionModel.set("brpExpiryDate", brpExpiryDate);
     //Values used on checkDetails page
     req.sessionModel.set("expiryDate", brpExpiryDate);
-    req.sessionModel.set("selectedDocument", "Biometric residence permit (BRP)");
-    req.sessionModel.set("changeUrl", "brpDetails");
-
+    
       return next();
     } catch (err) {
       return next(err);

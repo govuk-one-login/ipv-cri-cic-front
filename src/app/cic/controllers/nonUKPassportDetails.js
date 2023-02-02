@@ -52,7 +52,6 @@ class NonUKPassportDetailsController extends DateController {
       req.sessionModel.set("nonUKPassportExpiryDate", nonUKPassportExpiryDate);
       //Values used on checkDetails page
       req.sessionModel.set("expiryDate", nonUKPassportExpiryDate);
-      
 
       return next();
     } catch (err) {
