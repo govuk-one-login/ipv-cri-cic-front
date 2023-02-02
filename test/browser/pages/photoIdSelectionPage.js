@@ -43,4 +43,10 @@ module.exports = class PlaywrightDevPage {
     console.log(">>In nonUKPassportChoice function");
     await this.page.click("#photoIdChoice-otherPassport");
   }
+
+  async citizenCardChoice(){
+    console.log(">>In citizenCardDetailsPage.js");
+    console.log(">>In citizenCardChoice function");
+    await this.page.click("#photoIdChoice-citizenCard");
+  }
 };

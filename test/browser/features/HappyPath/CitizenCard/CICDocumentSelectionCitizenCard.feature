@@ -10,10 +10,10 @@ Feature: Build Document Selection Screen
     When the user clicks the continue button on the LandingPage
     Then the user is routed to the next screen in the journey PhotoId Selection
     
-Scenario: Successful redirect on 'Non UK passport' selection (Happy path)
-Given the Other passport option is selected
-When the user clicks the continue button on the NonUKPassportPage
-Then the user is routed to the next screen in the journey Other Passport Details
+Scenario: Successful redirect on 'CitizenCard' selection (Happy path)
+Given the CitizenCard option is selected
+When the user clicks the continue button with CitizenCard selected
+Then the user is routed to the next screen in the journey CitizenCard Details
 
 #Scenario: Successful redirect on 'UK passport' selection (Happy path)
 #Given the UK passport option is selected

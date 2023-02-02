@@ -12,7 +12,7 @@ Feature: The user enters their date of birth to be used as part of their claimed
         Then the user is routed to the next screen in the journey PhotoId Selection
 
         Given the Other passport option is selected
-        When the user clicks the continue button with Non UK passport selected
+        When the user clicks the continue button with CitizenCard selected
         Then the user is routed to the next screen in the journey Other Passport Details
 
         Given the date entered is within accepted Non UK expiration window

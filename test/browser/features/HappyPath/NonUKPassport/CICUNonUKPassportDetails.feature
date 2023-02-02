@@ -11,7 +11,7 @@ Feature: Enter UK Passport Details  - Happy Path
         Then the user is routed to the next screen in the journey PhotoId Selection
 
         Given the Other passport option is selected
-        When the user clicks the continue button
+        When the user clicks the continue button on the NonUKPassportPage
         Then the user is routed to the next screen in the journey Other Passport Details
 
 

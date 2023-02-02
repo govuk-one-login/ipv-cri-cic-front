@@ -11,12 +11,12 @@ Background:
     When the user clicks the continue button on the LandingPage
     Then the user is routed to the next screen in the journey PhotoId Selection
 
-    Given the UK passport option is selected
+    Given the CitizenCard option is selected
     When the user clicks the PhotoId continue button
-    Then the user is routed to the next screen in the journey Passport Details
+    Then the user is routed to the next screen in the journey CitizenCard Details
 
-    Given the date entered is within accepted UK Passport expiration window
-    When the user clicks the continue button on the UKPassportPage
+    Given the date entered is within accepted CitizenCard expiration window
+    When the user clicks the continue button on the CitizenCard details page
     Then the user is routed to the next screen in the journey Name Entry Screen
 
     Given there has been an entry into the surname and first name fields

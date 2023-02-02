@@ -16,7 +16,7 @@ Background:
 
 
 Scenario: UK passport not expired (Happy path)
-Given the date entered is within accepted expiration window
+Given the date entered is within accepted UK Passport expiration window
 #When it is in the correct format as described above
 When the user clicks the continue button on the UKPassportPage
 Then the user is routed to the next screen in the journey Name Entry Screen 

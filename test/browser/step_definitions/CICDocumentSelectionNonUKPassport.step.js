@@ -4,7 +4,7 @@ const { expect } = require("chai");
 
 const {PhotoIdSelectionPage, NonUKPassportDetailsPage, } = require("../pages");
 
-//AC1 - Successful redirect on ‘UK passport’ selection (Happy path)
+//AC1 - Successful redirect on ‘Non UK passport’ selection (Happy path)
   Given(/^the Other passport option is selected$/, async function () {
      console.log(">>In PhotoIdSelectionPage - UK passport option selected function");
      
@@ -18,7 +18,7 @@ const {PhotoIdSelectionPage, NonUKPassportDetailsPage, } = require("../pages");
 
   
 
-  When(/^the user clicks the continue button$/, async function () {
+  When(/^the user clicks the continue button with Non UK passport selected$/, async function () {
     console.log(">>In photoIdPage - UK passport option continue function");
 
     const photoIdPage = new PhotoIdSelectionPage(await this.page);

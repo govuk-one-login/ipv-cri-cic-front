@@ -7,5 +7,6 @@ module.exports = {
   NameEntryPage: require("./nameEntryPage"),
   DateOfBirthPage: require("./dateOfBirthPage"),
   CheckDetailsPage: require("./checkDetailsPage"),
-  NonUKPassportDetailsPage:  require("./nonUKPassportDetailsPage")
+  NonUKPassportDetailsPage:  require("./nonUKPassportDetailsPage"),
+  CitizenCardDetailsPage: require("./citizenCardDetailsPage")
 };
