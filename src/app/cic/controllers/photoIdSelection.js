@@ -3,6 +3,19 @@ const BaseController = require("hmpo-form-wizard").Controller;
 const logger = require("hmpo-logger").get();
 
 class PhotoIdSelectionController extends BaseController {
+
+  locals(req, res, callback) {
+    super.locals(req, res, (err, locals) => {
+      if (err) {
+        return callback(err, locals);
+      }
+
+      locals.photoIdChoice = req.sessionModel.get("photoIdChoice");
+
+      callback(err, locals);
+    });
+  }
+
   async saveValues(req, res, next) {
     try {
       logger.info("user submitting photo Id choice", { req, res });
@@ -28,6 +41,8 @@ class PhotoIdSelectionController extends BaseController {
               { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.UK_PASSPORT, true);
+          req.sessionModel.set("selectedDocument", "UK passport");
+          req.sessionModel.set("changeUrl", "passportDetails");
           return next();
         }
         case APP.PHOTO_ID_OPTIONS.BRP: {
@@ -52,6 +67,8 @@ class PhotoIdSelectionController extends BaseController {
               { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT, true);
+          req.sessionModel.set("selectedDocument", "Non-UK passport");
+          req.sessionModel.set("changeUrl", "nonUKPassportDetails");
           return next();
         }
 
@@ -108,6 +125,30 @@ class PhotoIdSelectionController extends BaseController {
       return next(new Error("photo-id-selection: Invalid action " + action));
     } catch (err) {
       return next(err);
+    }
+  }
+
+  next(req) {
+    if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.UK_PASSPORT)) {
+      return APP.PATHS.PASSPORT_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.BRP)) {
+      return APP.PATHS.BRP_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL)) {
+      return APP.PATHS.PHOTOCARD_DL_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT)) {
+      return APP.PATHS.NON_UK_PASSPORT_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.EEA_PERMANENT_RESIDENCY_CARD)) {
+      return APP.PATHS.EEA_PERMANENT_RESIDENCY_CARD_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL)) {
+      return APP.PATHS.EU_PHOTOCARD_DL_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.CITIZEN_CARD)) {
+      return APP.PATHS.CITIZEN_CARD_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD)) {
+      return APP.PATHS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD)) {
+      return APP.PATHS.EU_IDENTITY_CARD_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.NO_PHOTO_ID)) {
+      return APP.PATHS.NO_PHOTO_ID
     }
   }
 

@@ -14,7 +14,7 @@ class CheckDetailsController extends DateController {
 
       const dateOfBirth = req.form.values.dateOfBirth;
       const expiryDate = req.sessionModel.get("expiryDate");
-      const idChoice = req.sessionModel.get("photoIdChoice");
+      const idChoice = req.sessionModel.get("selectedDocument");
       const changeUrl = req.sessionModel.get("changeUrl");
       const firstName = req.sessionModel.get("firstName");
       const middleName = req.sessionModel.get("middleName");

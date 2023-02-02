@@ -44,56 +44,7 @@ module.exports = {
       "photocardDlExpiryDate",
       "youngScotNationalEntitlementCardExpiryDate"
     ],
-    next: [
-      {
-        field: "photoIdChoice",
-        value: APP.PHOTO_ID_OPTIONS.UK_PASSPORT,
-        next: APP.PATHS.PASSPORT_DETAILS,
-      },
-      {
-        field: "photoIdChoice",
-        value: APP.PHOTO_ID_OPTIONS.BRP,
-        next: APP.PATHS.BRP_DETAILS,
-      },
-      {
-        field: "photoIdChoice",
-        value: APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL,
-        next: APP.PATHS.PHOTOCARD_DL_DETAILS,
-      },
-      {
-        field: "photoIdChoice",
-        value: APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT,
-        next: APP.PATHS.NON_UK_PASSPORT_DETAILS,
-      },
-
-      {
-        field: "photoIdChoice",
-        value: APP.PHOTO_ID_OPTIONS.EEA_PERMANENT_RESIDENCY_CARD,
-        next: APP.PATHS.EEA_PERMANENT_RESIDENCY_CARD_DETAILS,
-      },
-
-      {
-        field: "photoIdChoice",
-        value: APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL,
-        next: APP.PATHS.EU_PHOTOCARD_DL_DETAILS,
-      },
-      {
-        field: "photoIdChoice",
-        value: APP.PHOTO_ID_OPTIONS.CITIZEN_CARD,
-        next: APP.PATHS.CITIZEN_CARD_DETAILS,
-      },
-      {
-        field: "photoIdChoice",
-        value: APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD,
-        next: APP.PATHS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD_DETAILS,
-      },
-
-      {
-        field: "photoIdChoice",
-        value: APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD,
-        next: APP.PATHS.EU_IDENTITY_CARD_DETAILS,
-      },
-    ],
+    next: photoIdSelect.prototype.next
   },
   "/passportDetails": {
     fields: ["passportExpiryDate"],
