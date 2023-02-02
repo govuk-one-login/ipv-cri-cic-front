@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @success
+@mock-api:f2f-cic-success
 Feature: The user enters their name to be used as part of their claimed identity
 
 
@@ -11,13 +11,13 @@ Feature: The user enters their name to be used as part of their claimed identity
         When the user clicks the continue button on the LandingPage
         Then the user is routed to the next screen in the journey PhotoId Selection
 
-        Given the Other passport option is selected
-        When the user clicks the continue button
-        Then the user is routed to the next screen in the journey Other Passport Details
+        Given the UK photocard driving licence option is selected
+        When the user clicks the UK DL continue button
+        Then the user is routed to the next screen in the journey UKPhotoDL Expiry Date
 
-        Given the date entered is within accepted Non UK expiration window
-        When the user clicks the continue button on the NonUKPassportPage
-        Then the user is routed to the next screen in the NonUKPassport journey - Name Entry
+        Given the date entered is within accepted UKPhotoDL expiration window
+        When the user clicks the continue button on the UKPhotoDL Page
+        Then the user is routed to the next screen in the UKPhotoDL journey - Name Entry
 
     Scenario: Successful validation of Surname and First name fields
         Given there has been an entry into the surname and first name fields
