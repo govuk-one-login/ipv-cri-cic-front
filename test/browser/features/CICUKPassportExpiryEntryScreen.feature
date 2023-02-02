@@ -10,14 +10,12 @@ Background:
     When the user clicks the continue button on the LandingPage
     Then the user is routed to the next screen in the journey PhotoId Selection
 
-    # Given the UK passport option is selected
-    # When the user clicks the PhotoId continue button
-    # Then the user is routed to the next screen in the journey Passport Details
-
+    Given the UK passport option is selected
+    When the user clicks the PhotoId continue button
+    Then the user is routed to the next screen in the journey Passport Details
 
 Scenario: UK passport not expired (Happy path)
-Given the date entered is within accepted expiration window
-#When it is in the correct format as described above
+Given the UK Passport date entered is within accepted expiration window
 When the user clicks the continue button on the UKPassportPage
 Then the user is routed to the next screen in the journey Name Entry Screen 
 

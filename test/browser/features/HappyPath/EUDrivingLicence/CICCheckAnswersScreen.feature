@@ -15,7 +15,7 @@ Background:
     When the user clicks the EU driving licence button
     Then the user is routed to the EU DL Expiry Entry Screen
 
-    Given the date entered is within accepted expiration window
+    Given the EU Driving Licence date entered is within accepted expiration window
     When the user clicks the continue button on the UKPassportPage
     Then the user is routed to the next screen in the journey Name Entry Screen
 

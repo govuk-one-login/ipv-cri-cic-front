@@ -14,7 +14,7 @@ Background:
     When the user clicks the EU driving licence button
     Then the user is routed to the EU DL Expiry Entry Screen
 
-@test
+
 Scenario: EU Driving Licence not expired (Happy path)
 Given the EU Driving Licence date entered is within accepted expiration window
 #When it is in the correct format as described above
