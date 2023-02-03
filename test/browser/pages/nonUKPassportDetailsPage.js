@@ -9,15 +9,10 @@ module.exports = class PlaywrightDevPage {
 
 
   async isCurrentPage() {
-    console.log(">>In nonUKPassportDetails.js");
-    console.log(">>In isCurrentPage function");
-
     return await this.page.url() === this.url;
   }
 
   async continue() {
-    console.log(">>In nonUKPassPortDetailsPage.js");
-    console.log(">>In continue function");
     await this.page.click("#continue");
   }
 

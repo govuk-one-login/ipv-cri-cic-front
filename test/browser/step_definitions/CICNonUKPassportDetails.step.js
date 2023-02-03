@@ -17,10 +17,6 @@ const { NonUKPassportDetailsPage, NameEntryPage} = require("../pages");
   });
 
 
-  //When(/^it is in the correct format as described above$/, async function () {}
-  //);
-
-
   When(/^the user clicks the continue button on the Non UK passport page$/, async function () {
     console.log(">>In Non UK PPID - Non UK passport option selected function");
 

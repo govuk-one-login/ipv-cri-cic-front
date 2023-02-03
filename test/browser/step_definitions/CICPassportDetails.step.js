@@ -17,16 +17,10 @@ const { PassportDetailsPage, NameEntryPage} = require("../pages");
   });
 
 
-  //When(/^it is in the correct format as described above$/, async function () {}
-  //);
-
-
   When(/^the user clicks the continue button on the UKPassportPage$/, async function () {
     console.log(">>In PPID - UK passport option selected function");
 
     const passportDetailsPage = new PassportDetailsPage(await this.page);
-  
-   // expect(await passportDetailsPage.isCurrentPage()).to.be.true;
 
     await passportDetailsPage.continue();
   

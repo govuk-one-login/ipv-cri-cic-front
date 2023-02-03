@@ -4,7 +4,6 @@ const { expect } = require("chai");
 
 const {PhotoIdSelectionPage, CitizenCardDetailsPage } = require("../pages");
 
-//AC1 - Successful redirect on ‘CitizenCard’ selection (Happy path)
   Given(/^the CitizenCard option is selected$/, async function () {
      console.log(">>In PhotoIdSelectionPage - CitizenCard option selected function");
      
@@ -26,6 +25,7 @@ const {PhotoIdSelectionPage, CitizenCardDetailsPage } = require("../pages");
     await photoIdPage.continue();
   
   });
+  
   
   Then(/^the user is routed to the next screen in the CitizenCard journey - CitizenCard details$/, async function () {
      console.log(">>In photoIdPage - CitizenCard option continue journey function");

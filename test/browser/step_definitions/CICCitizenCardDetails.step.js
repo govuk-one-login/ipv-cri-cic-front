@@ -16,11 +16,7 @@ const { CitizenCardDetailsPage, NameEntryPage} = require("../pages");
 
   });
 
-
-  //When(/^it is in the correct format as described above$/, async function () {}
-  //);
-
-
+  
   When(/^the user clicks the continue button on the CitizenCard details page$/, async function () {
     console.log(">>In CitizenCard details page - CitizenCard option selected function");
 
