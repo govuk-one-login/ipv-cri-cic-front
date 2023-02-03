@@ -29,30 +29,3 @@ Feature: The user enters their date of birth to be used as part of their claimed
 
     Scenario: Previously provided information successfully rendered on the page
         Given the user has completed the previous CIC screens
-#When the page is rendered
-#Then fields for each of the previous screens are pre-populated with the data captured
-
-#Scenario: Successful routing to IPV Core (Address CRI browser redirect)
-#Given the user has finished changing the
-#When the Continuebutton is clicked
-#Then the user is successfully routed to IPV Core for a redirect to Address CRI
-
-#Scenario: Edit an answer given in a previous CIC screen
-#Given the user chooses to amend the information provided for a previous screen
-#When the Editbutton corresponding to this screen is clicked
-#Then the user is redirected to the relevant screen to enter the new information
-
-#Scenario: Edited answers rendered when returning to “Check My Answers” Screen
-#Given the user returned to a previous screen to edit an answer
-#When the user returns to the Check My Answers Screen
-#Then the amended information is rendered on the screen
-
-#Scenario: User can choose to print the “Check My Answers Screen”
-#Given the user wishes to print a copy of their answers
-#When the “Print this page” button is clicked
-#Then the browser print/pdf tool is rendered
-
-#Scenario: Successful redirect to previous screen on “Back” button click
-#Given the user wishes to navigate to the previous screen
-#When the Backbutton is clicked
-#Then the user is routed to the DOB Entry Screen

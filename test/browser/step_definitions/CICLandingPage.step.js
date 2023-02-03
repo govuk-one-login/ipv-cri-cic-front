@@ -6,7 +6,6 @@ const { LandingPage, PhotoIdSelectionPage} = require("../pages");
 
 
 Given(/^the user wants to progress to the next step of the journey$/, async function () {
-  // console.log(">>In LandingPage step defintion next journey function");
   const landingPage = new LandingPage(await this.page);
 
   expect(await landingPage.isCurrentPage()).to.be.true;
@@ -14,9 +13,6 @@ Given(/^the user wants to progress to the next step of the journey$/, async func
 });
 
 When(/^the user clicks the continue button on the LandingPage$/, async function () {
-  // console.log(">>In cic step defintion");
-  //  console.log(">>continue on photoId page");
-
   const landingPage = new LandingPage(await this.page);
 
   await landingPage.continue();
@@ -30,24 +26,3 @@ Then(/^the user is routed to the next screen in the journey PhotoId Selection$/,
   expect(await photoIdPage.isCurrentPage()).to.be.true;
 
 });
-
-       
-// Given(/^the user wants to view their nearest post office that offers ID verification$/,
-//   async function () {
-//     // Write code here that turns the phrase above into concrete actions
-//     return "pending";
-//   }
-// );
-
-// When(/^they click on the hyperlink$/, async function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// Then(/^they are redirected to the PO's own branch checking page$/,
-//   async function () {
-//     // Write code here that turns the phrase above into concrete actions
-//     return "pending";
-//   }
-// );
-       

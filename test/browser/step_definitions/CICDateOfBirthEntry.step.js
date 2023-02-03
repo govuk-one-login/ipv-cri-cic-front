@@ -24,7 +24,6 @@ Given(/^the DOB fields are populated with valid values$/, async function () {
 
 
   Then(/^they are routed to the Check My Answers Screen$/, async function () {
-    console.log(">>In DateOfBirthPage - next screen function");
     const cdPage = new CheckDetailsPage(await this.page);
 
     expect(await cdPage.isCurrentPage()).to.be.true;
