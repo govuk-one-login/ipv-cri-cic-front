@@ -16,7 +16,7 @@ Feature: The user enters their name to be used as part of their claimed identity
         Then the user is routed to the next screen in the journey Other Passport Details
 
         Given the date entered is within accepted Non UK expiration window
-        When the user clicks the continue button on the NonUKPassportPage
+        When the user clicks the continue button on the Non UK passport page
         Then the user is routed to the next screen in the NonUKPassport journey - Name Entry
 
     Scenario: Successful validation of Surname and First name fields

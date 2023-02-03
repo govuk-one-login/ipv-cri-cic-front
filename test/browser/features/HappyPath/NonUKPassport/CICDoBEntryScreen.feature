@@ -16,7 +16,7 @@ Feature: The user enters their date of birth to be used as part of their claimed
         Then the user is routed to the next screen in the journey Other Passport Details
 
         Given the date entered is within accepted Non UK expiration window
-        When the user clicks the continue button on the NonUKPassportPage
+        When the user clicks the continue button on the Non UK passport page
         Then the user is routed to the next screen in the NonUKPassport journey - Name Entry
 
         Given there has been an entry into the surname and first name fields

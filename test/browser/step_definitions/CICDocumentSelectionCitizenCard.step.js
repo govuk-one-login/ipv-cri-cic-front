@@ -27,7 +27,7 @@ const {PhotoIdSelectionPage, CitizenCardDetailsPage } = require("../pages");
   
   });
   
-  Then(/^the user is routed to the next screen in the journey CitizenCard Details$/, async function () {
+  Then(/^the user is routed to the next screen in the CitizenCard journey - CitizenCard details$/, async function () {
      console.log(">>In photoIdPage - CitizenCard option continue journey function");
     const citizenCardDetails = new CitizenCardDetailsPage(await this.page);
 

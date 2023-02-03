@@ -30,7 +30,7 @@ module.exports = class PlaywrightDevPage {
     }
   
     async expiryDateYear() {
-      await this.page.locator("#citizenCardExpiryDate-year").fill("2022");
+      await this.page.locator("#citizenCardExpiryDate-year").fill("2024");
     }
   
   
