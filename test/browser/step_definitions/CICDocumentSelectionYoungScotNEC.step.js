@@ -26,3 +26,4 @@ const {PhotoIdSelectionPage, YoungScotNECDetailsPage } = require("../pages");
     expect(await youngScotNECDetailsPage.isCurrentPage()).to.be.true;
 
   });
+  

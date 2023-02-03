@@ -28,5 +28,4 @@ module.exports = class PlaywrightDevPage {
     await this.page.locator("#passportExpiryDate-year").fill("2022");
   }
 
-
 };

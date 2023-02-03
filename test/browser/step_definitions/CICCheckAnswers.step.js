@@ -9,4 +9,4 @@ Given(/^the user has completed the previous CIC screens$/, async function () {
 
     expect(await cpdPage.isCurrentPage()).to.be.true;
   
- });
+});

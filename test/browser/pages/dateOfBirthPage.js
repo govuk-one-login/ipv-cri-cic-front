@@ -9,15 +9,10 @@ module.exports = class PlaywrightDevPage {
 
 
   async isCurrentPage() {
-    console.log(">>In dateOfBirth.js");
-    console.log(">>In isCurrentPage function");
-
     return await this.page.url() === this.url;
   }
 
   async continue() {
-    console.log(">>In dateOfBirth.js");
-    console.log(">>In continue function");
     await this.page.click("#continue");
   }
 
@@ -32,6 +27,5 @@ module.exports = class PlaywrightDevPage {
   async dateOfBirthYear() {
     await this.page.locator("#dateOfBirth-year").fill("1980");
   }
-
 
 };
