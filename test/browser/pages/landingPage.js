@@ -8,15 +8,10 @@ module.exports = class PlaywrightDevPage {
   }
 
   async isCurrentPage() {
-    // console.log(">>In landingPage.js");
-    // console.log(">>In isCurrentPage function");
-
     return await this.page.url() === this.url;
   }
 
   async continue() {
-    // console.log(">>In landingPage.js");
-    // console.log(">>In continue");
     await this.page.click("#continue");
   }
 

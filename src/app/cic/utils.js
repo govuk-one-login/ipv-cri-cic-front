@@ -9,7 +9,6 @@ const moment = require("moment");
  */
 function formatDate(date, format) {
   const isValid = moment(date, format,true).isValid();
-  console.log("This date ",date+"   is valid? ", isValid);
 
   if(isValid){
     const check = moment(date, format);

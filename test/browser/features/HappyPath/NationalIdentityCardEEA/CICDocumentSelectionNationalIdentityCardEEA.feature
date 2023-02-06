@@ -9,8 +9,8 @@ Feature: Build Document Selection Screen
     Given the user wants to progress to the next step of the journey
     When the user clicks the continue button on the LandingPage
     Then the user is routed to the next screen in the journey PhotoId Selection
-    
-Scenario: Successful redirect on 'UK passport' selection (Happy path)
-Given the UK passport option is selected
-When the user clicks the PhotoId continue button
-Then the user is routed to the next screen in the journey Passport Details
+
+Scenario: Successful redirect on 'National Identity Card EEA' selection (Happy path)
+Given the National Identity Card EEA option is selected
+When the user clicks the continue button with National Identity Card EEA selected
+Then the user is routed to the next screen in the National Identity Card EEA journey - National Identity Card EEA details
