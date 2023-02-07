@@ -29,7 +29,7 @@ module.exports = class PlaywrightDevPage {
   async drivingLicenceChoice(){
     console.log(">>In passPortDetailsPage.js");
     console.log(">>In drivingLicenceChoice function");
-    await this.page.click("#photoIdChoice-ukPhotocardDL");
+    await this.page.click("#photoIdChoice-ukPhotocardDl");
   }
 
   async brpChoice(){
