@@ -4,7 +4,7 @@ const { expect } = require("chai");
 
 const { PassportDetailsPage, NameEntryPage} = require("../pages");
 
-  Given(/^the date entered is within accepted expiration window$/, async function () {
+  Given(/^the date entered is within accepted UK Passport expiration window$/, async function () {
     console.log('>> In PPD page - fill out date fields');
     const passportDetailsPage = new PassportDetailsPage(await this.page);
   
@@ -21,8 +21,10 @@ const { PassportDetailsPage, NameEntryPage} = require("../pages");
     console.log(">>In PPID - UK passport option selected function");
 
     const passportDetailsPage = new PassportDetailsPage(await this.page);
+
   
     expect(await passportDetailsPage.isCurrentPage()).to.be.true;
+
 
     await passportDetailsPage.continue();
   
