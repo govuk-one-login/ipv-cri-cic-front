@@ -6,7 +6,6 @@ const { LandingPage, PhotoIdSelectionPage} = require("../pages");
 
 
 Given(/^the user wants to progress to the next step of the journey$/, async function () {
-  // console.log(">>In LandingPage step defintion next journey function");
   const landingPage = new LandingPage(await this.page);
 
   expect(await landingPage.isCurrentPage()).to.be.true;
@@ -26,5 +25,6 @@ Then(/^the user is routed to the next screen in the journey PhotoId Selection$/,
   const photoIdPage = new PhotoIdSelectionPage(await this.page);
 
   expect(await photoIdPage.isCurrentPage()).to.be.true;
+
 
 });

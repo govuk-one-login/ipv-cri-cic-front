@@ -15,7 +15,7 @@ Background:
     When the user clicks the PhotoId continue button
     Then the user is routed to the next screen in the journey Passport Details
 
-    Given the date entered is within accepted expiration window
+    Given the date entered is within accepted UK Passport expiration window
     When the user clicks the continue button on the UKPassportPage
     Then the user is routed to the next screen in the journey Name Entry Screen
 
@@ -27,3 +27,4 @@ Scenario: Successful redirect (Happy path)
 Given the DOB fields are populated with valid values
 When the user clicks the DoB continue button
 Then they are routed to the Check My Answers Screen
+
