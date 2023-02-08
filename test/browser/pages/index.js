@@ -8,7 +8,8 @@ module.exports = {
   NameEntryPage: require("./nameEntryPage"),
   DateOfBirthPage: require("./dateOfBirthPage"),
   CheckDetailsPage: require("./checkDetailsPage"),
-  NonUKPassportDetailsPage:  require("./nonUKPassportDetailsPage"),
+  NonUKPassportDetailsPage: require("./nonUKPassportDetailsPage"),
+  NationalIdentityCardEEADetailsPage: require("./nationalIdentityCardEEADetailsPage"),
   CitizenCardDetailsPage: require("./citizenCardDetailsPage"),
   PhotoDlDetailsPage: require("./photoDlDetailsPage"),
   BRPDetailsPage: require("./brpDetailsPage")

@@ -30,4 +30,3 @@ Background:
 
 Scenario: Previously provided information successfully rendered on the page
 Given the user has completed the previous CIC screens
-

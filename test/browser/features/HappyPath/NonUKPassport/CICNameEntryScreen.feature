@@ -23,4 +23,3 @@ Feature: The user enters their name to be used as part of their claimed identity
         Given there has been an entry into the surname and first name fields
         When the user clicks the NameEntry continue button
         Then the user is routed to the next screen in the journey DOB Entry
-

@@ -28,4 +28,3 @@ Feature: The user enters their date of birth to be used as part of their claimed
         Given the DOB fields are populated with valid values
         When the user clicks the DoB continue button
         Then they are routed to the Check My Answers Screen
-
