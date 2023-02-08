@@ -2,7 +2,8 @@ const { Given, When, Then } = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const {PhotoIdSelectionPage, PassportDetailsPage } = require("../pages");
+
+const { PhotoIdSelectionPage, PassportDetailsPage } = require("../pages");
 
   Given(/^the UK passport option is selected$/, async function () {
     const photoIdPage = new PhotoIdSelectionPage(await this.page);
@@ -25,5 +26,5 @@ const {PhotoIdSelectionPage, PassportDetailsPage } = require("../pages");
 
     expect(await passportDetailsPage.isCurrentPage()).to.be.true;
 
-
   });
+
