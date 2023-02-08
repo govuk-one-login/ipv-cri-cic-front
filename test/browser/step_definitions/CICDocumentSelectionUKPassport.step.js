@@ -2,9 +2,9 @@ const { Given, When, Then } = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
+
 const { PhotoIdSelectionPage, PassportDetailsPage } = require("../pages");
 
-// AC1 - Successful redirect on ‘UK passport’ selection (Happy path)
   Given(/^the UK passport option is selected$/, async function () {
      console.log(">>In PhotoIdSelectionPage - UK passport option selected function");
      
@@ -33,3 +33,4 @@ const { PhotoIdSelectionPage, PassportDetailsPage } = require("../pages");
     expect(await passportDetailsPage.isCurrentPage()).to.be.true;
 
   });
+

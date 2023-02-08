@@ -48,8 +48,6 @@ class CitizenCardController extends DateController {
       req.sessionModel.set("citizenCardExpiryDate", citizenCardExpiryDate);
       //Values used on checkDetails page
       req.sessionModel.set("expiryDate", citizenCardExpiryDate);
-      req.sessionModel.set("photoIdChoice", "CitizenCard");
-      req.sessionModel.set("changeUrl", "citizenCardDetails");
 
       return next();
     } catch (err) {

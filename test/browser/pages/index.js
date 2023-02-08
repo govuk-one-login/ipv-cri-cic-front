@@ -7,5 +7,9 @@ module.exports = {
   EuDrivingLicenceDetailsPage: require("./euDrivingLicenceDetailsPage"),
   NameEntryPage: require("./nameEntryPage"),
   DateOfBirthPage: require("./dateOfBirthPage"),
-  CheckDetailsPage: require("./checkDetailsPage")
+  CheckDetailsPage: require("./checkDetailsPage"),
+  NonUKPassportDetailsPage:  require("./nonUKPassportDetailsPage"),
+  CitizenCardDetailsPage: require("./citizenCardDetailsPage"),
+  PhotoDlDetailsPage: require("./photoDlDetailsPage"),
+  BRPDetailsPage: require("./brpDetailsPage")
 };

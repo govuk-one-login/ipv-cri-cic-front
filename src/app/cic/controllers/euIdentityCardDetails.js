@@ -48,7 +48,7 @@ class EuIdentityCardController extends DateController {
       req.sessionModel.set("euIdCardExpiryDate", euIdCardExpiryDate);
       //Values used on checkDetails page
       req.sessionModel.set("expiryDate", euIdCardExpiryDate);
-      req.sessionModel.set("photoIdChoice", "EU Identity Card");
+      req.sessionModel.set("selectedDocument", "EU Identity Card");
       req.sessionModel.set("changeUrl", "euIdentityCardDetails");
       
       return next();
