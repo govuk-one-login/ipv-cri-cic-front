@@ -3,7 +3,6 @@ const passportDetails = require("./controllers/passportDetails");
 const nonUKPassportDetails = require('./controllers/nonUKPassportDetails')
 const brpDetails = require("./controllers/brpDetails");
 const photocardDlDetails = require('./controllers/photocardDl');
-const eeaPermanentResidencyCard = require("./controllers/eeaPermanentResidencyCardDetails");
 const euPhotocardDlDetails = require('./controllers/euPhotocardDlDetails')
 const citizenCardDetails = require("./controllers/citizenCardDetails");
 const euIdentityCardDetails = require("./controllers/euIdentityCardDetails");
@@ -35,7 +34,6 @@ module.exports = {
     invalidates: [
       "brpExpiryDate",
       "citizenCardExpiryDate",
-      "eeaPrCardExpiryDate",
       "euIdCardExpiryDate",
       "euPhotocardDlExpiryDate",
       "nonUKPassportExpiryDate",
@@ -93,13 +91,6 @@ module.exports = {
     editable: true,
     editBackStep: "checkDetails",
     next: citizenCardDetails.prototype.next
-  },
-  "/eeaPermanentResidencyCardDetails": {
-    fields: ["eeaPrCardExpiryDate"],
-    controller: eeaPermanentResidencyCard,
-    editable: true,
-    editBackStep: "checkDetails",
-    next: eeaPermanentResidencyCard.prototype.next
   },
   "/euPhotocardDlDetails": {
     fields: ["euPhotocardDlExpiryDate"],
