@@ -10,6 +10,5 @@ module.exports = {
   NonUKPassportDetailsPage:  require("./nonUKPassportDetailsPage"),
   CitizenCardDetailsPage: require("./citizenCardDetailsPage"),
   PhotoDlDetailsPage: require("./photoDlDetailsPage"),
-  BRPDetailsPage: require("./brpDetailsPage"),
-  CitizenCardDetailsPage: require("./citizenCardDetailsPage")
+  BRPDetailsPage: require("./brpDetailsPage")
 };
