@@ -1,7 +1,6 @@
 const { Given, When, Then, And} = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
-const e = require("express");
 
 const { EuDrivingLicenceDetailsPage, NameEntryPage } = require("../pages");
 
