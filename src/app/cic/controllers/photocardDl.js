@@ -52,8 +52,6 @@ class PhotocardDlController extends DateController {
       req.sessionModel.set("photocardDlExpiryDate", photocardDlExpiryDate);
       //Values used on checkDetails page
       req.sessionModel.set("expiryDate", photocardDlExpiryDate);
-      req.sessionModel.set("photoIdChoice", "UK photocard driving licence");
-      req.sessionModel.set("changeUrl", "photocardDlDetails");
 
       return next();
     } catch (err) {
