@@ -31,6 +31,10 @@ module.exports = class PlaywrightDevPage {
   async nonUKPassportChoice(){
     await this.page.click("#photoIdChoice-otherPassport");
   }
+  
+  async nationalIdentityCardEEAChoice(){
+    await this.page.click("#photoIdChoice-euIdentityCard");
+  }
 
   async citizenCardChoice(){
     await this.page.click("#photoIdChoice-citizenCard");

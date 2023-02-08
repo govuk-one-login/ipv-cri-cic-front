@@ -11,8 +11,6 @@ module.exports = class PlaywrightDevPage {
   }
 
   getSomethingWentWrongMessage() {
-    console.log(">>In getSomethingWentWrongMessage function");
-    console.log(this.page.url());
     return "Sorry, there is a problem with the service";
   }
 

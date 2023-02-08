@@ -8,14 +8,10 @@ module.exports = class PlaywrightDevPage {
   }
 
   async isCurrentPage() {
-     console.log(">>In checkDetailsPage - isCurrentPage function")
-
     return await this.page.url() === this.url;
   }
 
   async continue() {
-    console.log(">>In checkDetailsPage - continue function")
-    
     await this.page.click("#continue");
   }
 

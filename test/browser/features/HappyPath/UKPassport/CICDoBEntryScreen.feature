@@ -27,4 +27,3 @@ Scenario: Successful redirect (Happy path)
 Given the DOB fields are populated with valid values
 When the user clicks the DoB continue button
 Then they are routed to the Check My Answers Screen
-

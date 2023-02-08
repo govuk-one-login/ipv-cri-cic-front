@@ -13,7 +13,6 @@ Given(/^the user wants to progress to the next step of the journey$/, async func
 });
 
 When(/^the user clicks the continue button on the LandingPage$/, async function () {
-
   const landingPage = new LandingPage(await this.page);
 
   await landingPage.continue();

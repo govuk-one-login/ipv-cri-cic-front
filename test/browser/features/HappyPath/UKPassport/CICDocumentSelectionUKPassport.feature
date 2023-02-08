@@ -14,4 +14,3 @@ Scenario: Successful redirect on 'UK passport' selection (Happy path)
 Given the UK passport option is selected
 When the user clicks the PhotoId continue button
 Then the user is routed to the next screen in the journey Passport Details
-
