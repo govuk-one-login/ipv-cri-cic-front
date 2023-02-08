@@ -11,19 +11,22 @@ Background:
     When the user clicks the continue button on the LandingPage
     Then the user is routed to the next screen in the journey PhotoId Selection
 
-    Given the UK passport option is selected
-    When the user clicks the PhotoId continue button
-    Then the user is routed to the next screen in the journey Passport Details
+    Given the EU driving licence option is selected
+    When the user clicks the EU driving licence button
+    Then the user is routed to the EU DL Expiry Entry Screen
 
-    Given the date entered is within accepted UK Passport expiration window
-    When the user clicks the continue button on the UKPassportPage
+    Given the EU Driving Licence date entered is within accepted expiration window
+    When the user clicks the continue button on the EU Driving Licence details page
     Then the user is routed to the next screen in the journey Name Entry Screen
 
     Given there has been an entry into the surname and first name fields
     When the user clicks the NameEntry continue button
     Then the user is routed to the next screen in the journey DOB Entry
 
-Scenario: Successful redirect (Happy path)
-Given the DOB fields are populated with valid values
-When the user clicks the DoB continue button
-Then they are routed to the Check My Answers Screen
+    Given the DOB fields are populated with valid values
+    When the user clicks the DoB continue button
+    Then they are routed to the Check My Answers Screen
+
+
+Scenario: Previously provided information successfully rendered on the page
+Given the user has completed the previous CIC screens

@@ -11,7 +11,7 @@ module.exports = class PlaywrightDevPage {
     return await this.page.url() === this.url;
   }
 
-  async continue() {   
+  async continue() {
     await this.page.click("#continue");
   }
 

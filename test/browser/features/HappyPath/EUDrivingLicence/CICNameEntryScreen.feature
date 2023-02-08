@@ -11,14 +11,13 @@ Background:
     When the user clicks the continue button on the LandingPage
     Then the user is routed to the next screen in the journey PhotoId Selection
 
-    Given the UK passport option is selected
-    When the user clicks the PhotoId continue button
-    Then the user is routed to the next screen in the journey Passport Details
+    Given the EU driving licence option is selected
+    When the user clicks the EU driving licence button
+    Then the user is routed to the EU DL Expiry Entry Screen
 
-    Given the date entered is within accepted UK Passport expiration window
-    When the user clicks the continue button on the UKPassportPage
+    Given the EU Driving Licence date entered is within accepted expiration window
+    When the user clicks the continue button on the EU Driving Licence details page
     Then the user is routed to the next screen in the journey Name Entry Screen
-
 
 Scenario: Successful validation of Surname and First name fields
 Given there has been an entry into the surname and first name fields

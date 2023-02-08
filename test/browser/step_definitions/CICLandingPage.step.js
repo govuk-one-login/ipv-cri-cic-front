@@ -25,4 +25,5 @@ Then(/^the user is routed to the next screen in the journey PhotoId Selection$/,
 
   expect(await photoIdPage.isCurrentPage()).to.be.true;
 
+
 });
