@@ -21,7 +21,7 @@ module.exports = class PlaywrightDevPage {
   }
 
   async drivingLicenceChoice(){
-    await this.page.click("#photoIdChoice-ukPhotocardDL");
+    await this.page.click("#photoIdChoice-ukPhotocardDl");
   }
 
   async brpChoice(){
@@ -34,5 +34,9 @@ module.exports = class PlaywrightDevPage {
   
   async nationalIdentityCardEEAChoice(){
     await this.page.click("#photoIdChoice-euIdentityCard");
+  }
+
+  async citizenCardChoice(){
+    await this.page.click("#photoIdChoice-citizenCard");
   }
 };

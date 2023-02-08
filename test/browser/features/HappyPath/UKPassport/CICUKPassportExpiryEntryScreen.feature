@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @success @ukPass
+@mock-api:f2f-cic-success @success
 Feature: Enter UK Passport Details  - Happy Path
 
 Background:
@@ -16,6 +16,6 @@ Background:
 
 
 Scenario: UK passport not expired (Happy path)
-Given the date entered is within accepted expiration window
-When the user clicks the continue button on the UKPassportPage
-Then the user is routed to the next screen in the journey Name Entry Screen 
+    Given the date entered is within accepted UK Passport expiration window
+    When the user clicks the continue button on the UKPassportPage
+    Then the user is routed to the next screen in the journey Name Entry Screen

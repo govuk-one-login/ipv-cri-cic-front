@@ -25,25 +25,5 @@ Then(/^the user is routed to the next screen in the journey PhotoId Selection$/,
 
   expect(await photoIdPage.isCurrentPage()).to.be.true;
 
+
 });
-
-       
-// Given(/^the user wants to view their nearest post office that offers ID verification$/,
-//   async function () {
-//     // Write code here that turns the phrase above into concrete actions
-//     return "pending";
-//   }
-// );
-
-// When(/^they click on the hyperlink$/, async function () {
-//   // Write code here that turns the phrase above into concrete actions
-//   return "pending";
-// });
-
-// Then(/^they are redirected to the PO's own branch checking page$/,
-//   async function () {
-//     // Write code here that turns the phrase above into concrete actions
-//     return "pending";
-//   }
-// );
-       

@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @success @ukPass
+@mock-api:f2f-cic-success @success
 Feature: The user enters their name to be used as part of their claimed identity
 
 
@@ -15,7 +15,7 @@ Background:
     When the user clicks the PhotoId continue button
     Then the user is routed to the next screen in the journey Passport Details
 
-    Given the date entered is within accepted expiration window
+    Given the date entered is within accepted UK Passport expiration window
     When the user clicks the continue button on the UKPassportPage
     Then the user is routed to the next screen in the journey Name Entry Screen
 
