@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @success @nonUK
+@mock-api:f2f-cic-success @success
 Feature: The user enters their date of birth to be used as part of their claimed identity
 
 
@@ -29,3 +29,4 @@ Feature: The user enters their date of birth to be used as part of their claimed
 
     Scenario: Previously provided information successfully rendered on the page
         Given the user has completed the previous CIC screens
+

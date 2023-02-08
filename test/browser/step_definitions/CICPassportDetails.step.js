@@ -22,6 +22,10 @@ const { PassportDetailsPage, NameEntryPage} = require("../pages");
 
     const passportDetailsPage = new PassportDetailsPage(await this.page);
 
+  
+    expect(await passportDetailsPage.isCurrentPage()).to.be.true;
+
+
     await passportDetailsPage.continue();
   
   });

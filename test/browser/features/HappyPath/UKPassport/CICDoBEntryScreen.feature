@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @success @ukPass
+@mock-api:f2f-cic-success @success
 Feature: The user enters their date of birth to be used as part of their claimed identity
 
 
@@ -27,3 +27,4 @@ Scenario: Successful redirect (Happy path)
 Given the DOB fields are populated with valid values
 When the user clicks the DoB continue button
 Then they are routed to the Check My Answers Screen
+
