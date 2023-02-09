@@ -14,7 +14,6 @@ Feature: Enter Non UK Passport - Happy Path
         When the user clicks the continue button with Non UK passport selected
         Then the user is routed to the next screen in the journey Other Passport Details
 
-@test
     Scenario: Non UK Passport expired (UnHappy path)
         Given the date entered is outside the accepted Non UK Passport expiration window
         When the user clicks the continue button on the Non UK Passport Page
