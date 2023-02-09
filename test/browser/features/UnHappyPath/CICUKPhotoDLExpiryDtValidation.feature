@@ -14,8 +14,8 @@ Feature: Enter UK driving licence   - Happy Path
         When the user clicks the UK DL continue button
         Then the user is routed to the next screen in the journey UKPhotoDL Expiry Date
 
-@test
-    Scenario: UK driving licence not expired (UnHappy path)
+
+    Scenario: UK driving licence expired (UnHappy path)
         Given the date entered is outside the accepted UKPhotoDLExpiry expiration window
         When the user clicks the continue button on the UKPhotoDLExpiry Page
         Then the user is routed to the Expired Date Error Screen

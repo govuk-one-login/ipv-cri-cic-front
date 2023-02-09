@@ -21,11 +21,11 @@ module.exports = class PlaywrightDevPage {
   }
 
   async expiryDateMonth() {
-    await this.page.locator("#nonUKPassportExpiryDate-month").fill("02");
+    await this.page.locator("#nonUKPassportExpiryDate-month").fill("06");
   }
 
   async expiryDateYear() {
-    await this.page.locator("#nonUKPassportExpiryDate-year").fill("2024");
+    await this.page.locator("#nonUKPassportExpiryDate-year").fill("2099");
   }
 
 
