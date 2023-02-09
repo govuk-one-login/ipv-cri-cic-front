@@ -3,6 +3,7 @@ const BaseController = require("hmpo-form-wizard").Controller;
 const logger = require("hmpo-logger").get();
 
 class PhotoIdSelectionController extends BaseController {
+
   async saveValues(req, res, next) {
     try {
       logger.info("user submitting photo Id choice", { req, res });
@@ -11,17 +12,12 @@ class PhotoIdSelectionController extends BaseController {
       req.sessionModel.set(APP.PHOTO_ID_OPTIONS.BRP, undefined);
       req.sessionModel.set(APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL, undefined);
       req.sessionModel.set(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT, undefined);
-      req.sessionModel.set(
-        APP.PHOTO_ID_OPTIONS.EEA_PERMANENT_RESIDENCY_CARD,
-        undefined
-      );
+      req.sessionModel.set(APP.PHOTO_ID_OPTIONS.EEA_PERMANENT_RESIDENCY_CARD, undefined);
       req.sessionModel.set(APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL, undefined);
       req.sessionModel.set(APP.PHOTO_ID_OPTIONS.CITIZEN_CARD, undefined);
-      req.sessionModel.set(
-        APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD,
-        undefined
-      );
+      req.sessionModel.set(APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD, undefined);
       req.sessionModel.set(APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD, undefined);
+      req.sessionModel.set(APP.PHOTO_ID_OPTIONS.NO_PHOTO_ID, undefined)
 
       const action = req.form.values.photoIdChoice;
       req.sessionModel.set("photoIdChoice", action);
@@ -33,6 +29,8 @@ class PhotoIdSelectionController extends BaseController {
             { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.UK_PASSPORT, true);
+          req.sessionModel.set("selectedDocument", "UK passport");
+          req.sessionModel.set("changeUrl", "passportDetails");
           return next();
         }
         case APP.PHOTO_ID_OPTIONS.BRP: {
@@ -41,6 +39,8 @@ class PhotoIdSelectionController extends BaseController {
             { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.BRP, true);
+          req.sessionModel.set("selectedDocument", "Biometric residence permit (BRP)");
+          req.sessionModel.set("changeUrl", "brpDetails");
           return next();
         }
         case APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL: {
@@ -49,6 +49,8 @@ class PhotoIdSelectionController extends BaseController {
             { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL, true);
+          req.sessionModel.set("selectedDocument", "UK photocard driving licence");
+          req.sessionModel.set("changeUrl", "photocardDlDetails");
           return next();
         }
         case APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT: {
@@ -57,6 +59,8 @@ class PhotoIdSelectionController extends BaseController {
             { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT, true);
+          req.sessionModel.set("selectedDocument", "Non-UK passport");
+          req.sessionModel.set("changeUrl", "nonUKPassportDetails");
           return next();
         }
 
@@ -65,10 +69,9 @@ class PhotoIdSelectionController extends BaseController {
             "photo-id-selection: user has selected EEA PR Card - redirecting to EEA PR card details page",
             { req, res }
           );
-          req.sessionModel.set(
-            APP.PHOTO_ID_OPTIONS.EEA_PERMANENT_RESIDENCY_CARD,
-            true
-          );
+          req.sessionModel.set(APP.PHOTO_ID_OPTIONS.EEA_PERMANENT_RESIDENCY_CARD, true);
+          req.sessionModel.set("selectedDocument", "EEA Permanent Residency Card");
+          req.sessionModel.set("changeUrl", "eeaPermanentResidencyCardDetails");
           return next();
         }
         case APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL: {
@@ -77,6 +80,8 @@ class PhotoIdSelectionController extends BaseController {
             { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL, true);
+          req.sessionModel.set("selectedDocument", "EU photocard driving licence");
+          req.sessionModel.set("changeUrl", "euPhotocardDlDetails");
           return next();
         }
         case APP.PHOTO_ID_OPTIONS.CITIZEN_CARD: {
@@ -85,6 +90,8 @@ class PhotoIdSelectionController extends BaseController {
             { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.CITIZEN_CARD, true);
+          req.sessionModel.set("selectedDocument", "CitizenCard");
+          req.sessionModel.set("changeUrl", "citizenCardDetails");
           return next();
         }
         case APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD: {
@@ -92,10 +99,9 @@ class PhotoIdSelectionController extends BaseController {
             "photo-id-selection: user has selected Young Scot NEC - redirecting to NEC details page",
             { req, res }
           );
-          req.sessionModel.set(
-            APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD,
-            true
-          );
+          req.sessionModel.set(APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD, true);
+          req.sessionModel.set("selectedDocument", "Young Scot National Entitlement Card (NEC)");
+          req.sessionModel.set("changeUrl", "youngScotNecDetails");
           return next();
         }
         case APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD: {
@@ -104,6 +110,16 @@ class PhotoIdSelectionController extends BaseController {
             { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD, true);
+          req.sessionModel.set("selectedDocument", "EU photocard driving licence");
+          req.sessionModel.set("changeUrl", "euPhotocardDlDetails");
+          return next();
+        }
+        case APP.PHOTO_ID_OPTIONS.NO_PHOTO_ID: {
+          logger.info(
+            "photo-id-selection: user has selected No ID - redirecting to No ID page",
+            { req, res }
+          );
+          req.sessionModel.set(APP.PHOTO_ID_OPTIONS.NO_PHOTO_ID, true);
           return next();
         }
       }
@@ -113,6 +129,32 @@ class PhotoIdSelectionController extends BaseController {
       return next(err);
     }
   }
+
+  next(req) {
+    if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.UK_PASSPORT)) {
+      return APP.PATHS.PASSPORT_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.BRP)) {
+      return APP.PATHS.BRP_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL)) {
+      return APP.PATHS.PHOTOCARD_DL_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT)) {
+      return APP.PATHS.NON_UK_PASSPORT_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.EEA_PERMANENT_RESIDENCY_CARD)) {
+      return APP.PATHS.EEA_PERMANENT_RESIDENCY_CARD_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL)) {
+      return APP.PATHS.EU_PHOTOCARD_DL_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.CITIZEN_CARD)) {
+      return APP.PATHS.CITIZEN_CARD_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD)) {
+      return APP.PATHS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD)) {
+      return APP.PATHS.EU_IDENTITY_CARD_DETAILS
+    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.NO_PHOTO_ID)) {
+      return APP.PATHS.NO_PHOTO_ID
+    }
+  }
+
 }
 
 module.exports = PhotoIdSelectionController;
+
