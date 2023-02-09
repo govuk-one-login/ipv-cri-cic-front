@@ -27,9 +27,8 @@ Feature: The user enters their date of birth to be used as part of their claimed
         When the user clicks the DoB continue button
         Then they are routed to the Check My Answers Screen
 
-@test
+
     Scenario: Previously provided information successfully rendered on the page
         Given the user has completed the previous CIC screens
-#When the page is rendered
-#Then fields for each of the previous screens are pre-populated with the data captured
+
 

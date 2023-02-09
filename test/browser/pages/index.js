@@ -12,5 +12,6 @@ module.exports = {
   NationalIdentityCardEEADetailsPage: require("./nationalIdentityCardEEADetailsPage"),
   CitizenCardDetailsPage: require("./citizenCardDetailsPage"),
   PhotoDlDetailsPage: require("./photoDlDetailsPage"),
-  BRPDetailsPage: require("./brpDetailsPage")
+  BRPDetailsPage: require("./brpDetailsPage"),
+  PhotoIdExpiryPage: require("./photoIdExpiryPage")
 };
