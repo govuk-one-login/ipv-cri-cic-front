@@ -28,5 +28,4 @@ module.exports = class PlaywrightDevPage {
     await this.page.locator("#nonUKPassportExpiryDate-year").fill("2024");
   }
 
-
 };

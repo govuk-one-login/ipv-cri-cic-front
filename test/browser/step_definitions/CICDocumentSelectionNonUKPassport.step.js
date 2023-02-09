@@ -12,7 +12,6 @@ const {PhotoIdSelectionPage, NonUKPassportDetailsPage, } = require("../pages");
      expect(await photoIdPage.isCurrentPage()).to.be.true
    
   });
-
  
   When(/^the user clicks the continue button with Non UK passport selected$/, async function () {
     const photoIdPage = new PhotoIdSelectionPage(await this.page);

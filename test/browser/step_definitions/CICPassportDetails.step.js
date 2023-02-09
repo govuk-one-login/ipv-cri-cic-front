@@ -4,7 +4,6 @@ const { expect } = require("chai");
 
 const { PassportDetailsPage, NameEntryPage} = require("../pages");
 
- 
   Given(/^the date entered is within accepted UK Passport expiration window$/, async function () {
     const passportDetailsPage = new PassportDetailsPage(await this.page);
   

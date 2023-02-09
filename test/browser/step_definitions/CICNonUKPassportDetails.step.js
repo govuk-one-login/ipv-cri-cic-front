@@ -26,8 +26,8 @@ const { NonUKPassportDetailsPage, NameEntryPage} = require("../pages");
   
 
   Then(/^the user is routed to the next screen in the NonUKPassport journey - Name Entry$/, async function () {
-      const nameEntryPage = new NameEntryPage(await this.page);
+    const nameEntryPage = new NameEntryPage(await this.page);
 
-      expect(await nameEntryPage.isCurrentPage()).to.be.true;
+    expect(await nameEntryPage.isCurrentPage()).to.be.true;
 
   });

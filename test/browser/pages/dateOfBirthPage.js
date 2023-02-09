@@ -28,5 +28,4 @@ module.exports = class PlaywrightDevPage {
     await this.page.locator("#dateOfBirth-year").fill("1980");
   }
 
-
 };

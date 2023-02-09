@@ -23,7 +23,6 @@ When(/^the user clicks the NameEntry continue button$/, async function () {
 
 });
 
-
 Then(
   /^the user is routed to the next screen in the journey DOB Entry$/,
   async function () {
