@@ -2,7 +2,7 @@ const { Given, When, Then, And} = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const {PassportDetailsPage, PhotoIdExpiryPage, NonUKPassportDetailsPage} = require("../pages");
+const {PassportDetailsPage, PhotoIdExpiryPage} = require("../pages");
 
   Given(/^the date entered is outside the accepted UK Passport expiration window$/, async function () {
 
