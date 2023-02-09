@@ -100,14 +100,14 @@ module.exports = {
     next: [
       {
         field: "passportExpiryDate",
-        op: "after",
-        value: "10 years",
+        op: "before",
+        value: "18 months",
         next: "photoIdExpiry",
       },
       {
         field: "passportExpiryDate",
-        op: "before",
-        value: "18 months",
+        op: "after",
+        value: "10 years",
         next: "photoIdExpiry",
       },
       "nameEntry",
