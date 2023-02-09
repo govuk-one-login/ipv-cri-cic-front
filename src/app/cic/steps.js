@@ -119,14 +119,8 @@ module.exports = {
     next: [
       {
         field: "nonUKPassportExpiryDate",
-        op: "before",
-        value: "18 months ago",
-        next: "photoIdExpiry",
-      },
-      {
-        field: "nonUKPassportExpiryDate",
-        op: "before",
-        value: "10 years ago",
+        op: "after",
+        value: "10 years",
         next: "photoIdExpiry",
       },
       "nameEntry",
@@ -138,8 +132,8 @@ module.exports = {
     next: [
       {
         field: "photocardDlExpiryDate",
-        op: "before",
-        value: "10 years ago",
+        op: "after",
+        value: "10 years",
         next: "nameEntry",
       },
       "photoIdExpiry",
@@ -164,8 +158,8 @@ module.exports = {
     next: [
       {
         field: "euIdCardExpiryDate",
-        op: "before",
-        value: "18 months ago",
+        op: "after",
+        value: "75 years",
         next: "photoIdExpiry",
       },
       "nameEntry",
@@ -177,8 +171,8 @@ module.exports = {
     next: [
       {
         field: "youngScotNationalEntitlementCardExpiryDate",
-        op: "before",
-        value: "18 months ago",
+        op: "after",
+        value: "15 years",
         next: "photoIdExpiry",
       },
       "nameEntry",
@@ -189,9 +183,9 @@ module.exports = {
     controller: citizenCardDetails,
     next: [
       {
-        field: "passportExpiryDate",
-        op: "before",
-        value: "18 months ago",
+        field: "citizenCardExpiryDate",
+        op: "after",
+        value: "4 years",
         next: "photoIdExpiry",
       },
       "nameEntry",
@@ -202,8 +196,8 @@ module.exports = {
     controller: eeaPermanentResidencyCard,
     next: [
       {
-        field: "passportExpiryDate",
-        op: "before",
+        field: "eeaPrCardExpiryDate",
+        op: "after",
         value: "18 months ago",
         next: "photoIdExpiry",
       },
@@ -215,9 +209,9 @@ module.exports = {
     controller: euPhotocardDlDetails,
     next: [
       {
-        field: "passportExpiryDate",
-        op: "before",
-        value: "18 months ago",
+        field: "euPhotocardDlExpiryDate",
+        op: "after",
+        value: "75 years",
         next: "photoIdExpiry",
       },
       "nameEntry",
