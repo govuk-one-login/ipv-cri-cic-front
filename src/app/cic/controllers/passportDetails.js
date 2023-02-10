@@ -4,17 +4,5 @@ const DateControllerMixin = require("hmpo-components").mixins.Date;
 
 const DateController = DateControllerMixin(BaseController);
 
-class PassportDetailsController extends DateController {
-  locals(req, res, callback) {
-    super.locals(req, res, (err, locals) => {
-      if (err) {
-        return callback(err, locals);
-      }
-
-      locals.passportExpiryDate = req.sessionModel.get("passportExpiryDate");
-
-      callback(err, locals);
-    });
-  }
-}
+class PassportDetailsController extends DateController {}
 module.exports = PassportDetailsController;

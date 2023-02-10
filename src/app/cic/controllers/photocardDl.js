@@ -4,19 +4,5 @@ const DateControllerMixin = require("hmpo-components").mixins.Date;
 
 const DateController = DateControllerMixin(BaseController);
 
-class PhotocardDlController extends DateController {
-  locals(req, res, callback) {
-    super.locals(req, res, (err, locals) => {
-      if (err) {
-        return callback(err, locals);
-      }
-
-      locals.photocardDlExpiryDate = req.sessionModel.get(
-        "photocardDlExpiryDate"
-      );
-
-      callback(err, locals);
-    });
-  }
-}
+class PhotocardDlController extends DateController {}
 module.exports = PhotocardDlController;
