@@ -122,7 +122,7 @@ module.exports = {
     editBackStep: "checkDetails",
     next: [
       {
-        field: "passportExpiryDate",
+        field: "nonUKPassportExpiryDate",
         op: "before",
         value: "today",
         next: "photoIdExpiry",
@@ -144,6 +144,12 @@ module.exports = {
     next: [
       {
         field: "photocardDlExpiryDate",
+        op: "before",
+        value: "today",
+        next: "photoIdExpiry",
+      },
+      {
+        field: "photocardDlExpiryDate",
         op: "after",
         value: "10 years",
         next: "nameEntry",
@@ -157,6 +163,12 @@ module.exports = {
     editable: true,
     editBackStep: "checkDetails",
     next: [
+      {
+        field: "brpExpiryDate",
+        op: "before",
+        value: "today",
+        next: "photoIdExpiry",
+      },
       {
         field: "brpExpiryDate",
         op: "after",
@@ -174,6 +186,12 @@ module.exports = {
     next: [
       {
         field: "euIdCardExpiryDate",
+        op: "before",
+        value: "today",
+        next: "photoIdExpiry",
+      },
+      {
+        field: "euIdCardExpiryDate",
         op: "after",
         value: "75 years",
         next: "photoIdExpiry",
@@ -187,6 +205,12 @@ module.exports = {
     editable: true,
     editBackStep: "checkDetails",
     next: [
+      {
+        field: "youngScotNationalEntitlementCardExpiryDate",
+        op: "before",
+        value: "today",
+        next: "photoIdExpiry",
+      },
       {
         field: "youngScotNationalEntitlementCardExpiryDate",
         op: "after",
@@ -204,6 +228,12 @@ module.exports = {
     next: [
       {
         field: "citizenCardExpiryDate",
+        op: "before",
+        value: "today",
+        next: "photoIdExpiry",
+      },
+      {
+        field: "citizenCardExpiryDate",
         op: "after",
         value: "4 years",
         next: "photoIdExpiry",
@@ -216,6 +246,12 @@ module.exports = {
     controller: eeaPermanentResidencyCard,
     editable: true,
     next: [
+      {
+        field: "eeaPrCardExpiryDate",
+        op: "before",
+        value: "today",
+        next: "photoIdExpiry",
+      },
       {
         field: "eeaPrCardExpiryDate",
         op: "after",
@@ -231,6 +267,12 @@ module.exports = {
     editable: true,
     editBackStep: "checkDetails",
     next: [
+      {
+        field: "nonUKPassportExpiryDate",
+        op: "before",
+        value: "today",
+        next: "photoIdExpiry",
+      },
       {
         field: "euPhotocardDlExpiryDate",
         op: "after",
