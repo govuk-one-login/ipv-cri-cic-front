@@ -122,6 +122,12 @@ module.exports = {
     editBackStep: "checkDetails",
     next: [
       {
+        field: "passportExpiryDate",
+        op: "before",
+        value: "today",
+        next: "photoIdExpiry",
+      },
+      {
         field: "nonUKPassportExpiryDate",
         op: "after",
         value: "10 years",
