@@ -1,6 +1,7 @@
 const moment = require("moment");
 const BaseController = require("hmpo-form-wizard").Controller;
 const DateControllerMixin = require("hmpo-components").mixins.Date;
+const {APP} = require("../../../lib/config");
 
 const DateController = DateControllerMixin(BaseController);
 
@@ -35,9 +36,7 @@ class BrpDetailsController extends DateController {
     req.sessionModel.set("brpExpiryDate", brpExpiryDate);
     //Values used on checkDetails page
     req.sessionModel.set("expiryDate", brpExpiryDate);
-    req.sessionModel.set("photoIdChoice", "Biometric residence permit (BRP)");
-    req.sessionModel.set("changeUrl", "brpDetails");
-
+    
       return next();
     } catch (err) {
       return next(err);
@@ -46,9 +45,9 @@ class BrpDetailsController extends DateController {
 
   next(req) {
     if (req.sessionModel.get("isOutsideExpireWindow")) {
-      return "/nameEntry"
+      return APP.PATHS.NAME_ENTRY
     } else{
-      return "/photoIdExpiry"
+      return APP.PATHS.EXPIRED_ID
     }
   }
 

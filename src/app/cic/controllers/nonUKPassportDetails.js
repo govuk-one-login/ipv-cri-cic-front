@@ -1,6 +1,7 @@
 const moment = require('moment');
 const BaseController = require("hmpo-form-wizard").Controller;
 const DateControllerMixin = require("hmpo-components").mixins.Date;
+const {APP} = require("../../../lib/config");
 
 const DateController = DateControllerMixin(BaseController);
 
@@ -51,8 +52,6 @@ class NonUKPassportDetailsController extends DateController {
       req.sessionModel.set("nonUKPassportExpiryDate", nonUKPassportExpiryDate);
       //Values used on checkDetails page
       req.sessionModel.set("expiryDate", nonUKPassportExpiryDate);
-      req.sessionModel.set("photoIdChoice", "Non-UK passport");
-      req.sessionModel.set("changeUrl", "nonUKPassportDetails");
 
       return next();
     } catch (err) {
@@ -62,9 +61,9 @@ class NonUKPassportDetailsController extends DateController {
 
   next(req) {
     if (req.sessionModel.get("isOutsideExpireWindow")) {
-      return "/nameEntry"
+      return APP.PATHS.NAME_ENTRY
     } else{
-      return "/photoIdExpiry"
+      return APP.PATHS.EXPIRED_ID
     }
   }
 

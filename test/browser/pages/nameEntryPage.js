@@ -7,18 +7,24 @@ module.exports = class PlaywrightDevPage {
       this.url = "http://localhost:5020/nameEntry";
     }
   
-    isCurrentPage() {
-      // console.log(">>In nameEntryPage.js");
-      // console.log(">>In isCurrentPage function");
-  
-      return this.page.url() === this.url;
-    }
+    async isCurrentPage() {  
+      return await this.page.url() === this.url;
+  }
   
     async continue() {
-      // console.log(">>In nameEntryPage.js");
-      // console.log(">>In continue");
       await this.page.click("#continue");
     }
   
+    async enterSurname(){
+      await this.page.locator("#surname").fill("Hartley");
+    }
+
+    async enterFirstName(){
+      await this.page.locator("#firstName").fill("James");
+    }
+
+    async enterMiddleName(){
+      await this.page.locator("#middleName").fill("Robert");
+    }
   };
   

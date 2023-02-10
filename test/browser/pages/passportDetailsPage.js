@@ -8,37 +8,24 @@ module.exports = class PlaywrightDevPage {
   }
 
 
-  isCurrentPage() {
-    console.log(">>In passportDetails.js");
-    console.log(">>In isCurrentPage function");
-
-    return this.page.url() === this.url;
+  async isCurrentPage() {
+    return await this.page.url() === this.url;
   }
 
   async continue() {
-    console.log(">>In passPortDetailsPage.js");
-    console.log(">>In continue function");
     await this.page.click("#continue");
   }
 
   async expiryDateDay() {
-    await this.page.locator("#passportExpiryDate-day").type("31");
+    await this.page.locator("#passportExpiryDate-day").fill("01");
   }
 
   async expiryDateMonth() {
-    await this.page.locator("#passportExpiryDate-month").fill("3");
-    console.log(`>>Expiry Month: $this.page.locator("#passportExpiryDate-month")`); 
+    await this.page.locator("#passportExpiryDate-month").fill("08");
   }
 
   async expiryDateYear() {
-    await this.page.locator("#passportExpiryDate-year").fill("2025");
-  }
-
-  async setExpiryDateDay() {
-    const day  = this.page.locator("#passportExpiryDate-day");
-    day.isVisible({ timeout: 50000 });
-    day.click();
-    await day.fill('31');
+    await this.page.locator("#passportExpiryDate-year").fill("2022");
   }
 
 };

@@ -36,7 +36,7 @@
             actions: {
               items: [
                 {
-                  href: "/photoIdSelection",
+                  href: "/photoIdSelection/edit",
                   text: "Change",
                   visuallyHiddenText: "ID Selection"
                 }
@@ -53,7 +53,7 @@
             actions: {
               items: [
                 {
-                  href: changeUrl,
+                  href: changeUrl + "/edit",
                   text: "Change",
                   visuallyHiddenText: "expiryDate"
                 }
@@ -65,12 +65,12 @@
               text: translate("checkDetails.name")
             },
             value: {
-              html: values.firstName + " " + values.middleName + " " + values.surname
+              html: translate("{{ fullName }}")
             },
             actions: {
               items: [
                 {
-                  href: "/nameEntry",
+                  href: "/nameEntry/edit",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -87,7 +87,7 @@
             actions: {
               items: [
                 {
-                  href: "/dateOfBirth",
+                  href: "/dateOfBirth/edit",
                   text: "Change",
                   visuallyHiddenText: "dateOfBirth"
                 }

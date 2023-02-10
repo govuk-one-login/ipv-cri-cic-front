@@ -1,6 +1,7 @@
-const { Given, Then } = require("@cucumber/cucumber");
+const { Given, Then, When } = require("@cucumber/cucumber");
 
-const { RelyingPartyPage } = require("../pages");
+const { RelyingPartyPage, LandingPage } = require("../pages");
+
 const { expect } = require("chai");
 
 Given(/^([A-Za-z ])+is using the system$/, async function (name) {
@@ -10,19 +11,17 @@ Given(/^([A-Za-z ])+is using the system$/, async function (name) {
   await rpPage.goto();
 });
 
-Given(
-  "they have provided their details",
-  { timeout: 10 * 1000 },
+When("they have provided their details",{
+  timeout: 10 * 1000 },
   async function () {}
 );
 
-Then("they should be redirected as a success", function () {
-  const rpPage = new RelyingPartyPage(this.page);
+Then("they should be redirected to the landingPage", async function () {
+  const landingPage = new LandingPage(await this.page);
 
-  expect(rpPage.isRelyingPartyServer()).to.be.true;
-
-  expect(rpPage.hasSuccessQueryParams()).to.be.true;
+  expect(await landingPage.isCurrentPage()).to.be.true;
 });
+
 
 Then("they should be redirected as an error", function () {
   const rpPage = new RelyingPartyPage(this.page);

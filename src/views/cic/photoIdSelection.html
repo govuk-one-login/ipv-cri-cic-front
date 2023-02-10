@@ -11,19 +11,10 @@
   }) }}
 {% endblock %}
 
-<h1 id="header" data-page="{{hmpoPageKey}}" class="govuk-heading-l">
-  {{ translate("photocardDl.title") }}
-</h1>
 
 {% block submitButton %}
   {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
 
-
-<div>
-   <p>
-     <a href={{ "common.photoIdSelection.linkToNoPhotoId" | translate }}> {{ "common.photoIdSelection.noPhotoId" | translate }}</a>
-   </p>
-</div>
 
 {% endblock %}
 

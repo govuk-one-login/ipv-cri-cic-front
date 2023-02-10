@@ -42,10 +42,26 @@
     },
     {
       "scenarioName": "save-cic",
-      "requiredScenarioState": "AuthCode",
       "request": {
         "method": "GET",
         "urlPath": "/authorization",
+        "queryParameters": {
+          "client_id": {
+            "equalTo": "standalone"
+          },
+          "state": {
+            "equalTo": "sT@t3"
+          },
+          "redirect_uri": {
+            "equalTo":  "http://example.net/return"
+          },
+          "response_type": {
+            "equalTo": "code"
+          },
+          "scope": {
+            "equalTo": "openid"
+          }
+        },
         "headers": {
           "session-id": {
             "equalTo": "ABADCAFE"
@@ -56,7 +72,7 @@
         "status": 200,
         "jsonBody": {
           "authorizationCode": {
-            "value": "RICHAAAA"
+            "value": "FACEFEED"
           }
         }
       }

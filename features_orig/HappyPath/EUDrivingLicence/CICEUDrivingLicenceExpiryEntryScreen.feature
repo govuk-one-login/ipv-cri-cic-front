@@ -1,20 +1,25 @@
-Feature: Enter UK Passport Details  - Happy Path
+@mock-api:f2f-cic-success @success
+Feature: Enter EU Driving Licence Details  - Happy Path
 
 Background:
-   Given Authenticatable Anita is using the system
-    And the user wants to progress to the next step of the journey
-    And the user clicks the continue button on the LandingPage
-    And the user is routed to the next screen in the journey PhotoId Selection
-    And the UK passport option is selected
-    And the user clicks the PhotoId continue button
-    And the user is routed to the next screen in the journey Passport Details
+    Given Authenticatable Anita is using the system
+    When they have provided their details
+    Then they should be redirected to the landingPage
 
-@mock-api:f2f-cic-success
-Scenario: UK passport not expired (Happy path)
-Given the date entered is within accepted expiration window
-And it is in the correct format as described above
-When the user clicks the continue button
-#Then the user is routed to the next screen in the journey: Name Entry Screen 
+    Given the user wants to progress to the next step of the journey
+    When the user clicks the continue button on the LandingPage
+    Then the user is routed to the next screen in the journey PhotoId Selection
+
+    Given the EU driving licence option is selected
+    When the user clicks the EU driving licence button
+    Then the user is routed to the EU DL Expiry Entry Screen
+
+
+Scenario: EU Driving Licence not expired (Happy path)
+Given the EU Driving Licence date entered is within accepted expiration window
+#When it is in the correct format as described above
+When the user clicks the continue button on the EU Driving Licence details page
+Then the user is routed from EU DL Details to Name Entry Screen
 
 #Scenario: UK passport expired (Unhappy path)
 #Given the date entered is outside of the accepted expiration window

@@ -7,40 +7,44 @@ module.exports = class PlaywrightDevPage {
     this.url = "http://localhost:5020/photoIdSelection";
   }
 
-  isCurrentPage() {
-     console.log(">>In photoIdSelectionPage.js");
-     console.log(">>In isCurrentPage function");
-    return this.page.url() === this.url;
+  async isCurrentPage() {
+    return await this.page.url() === this.url;
    
   }
 
   async continue() {
-    // console.log(">>In photoIdSelectionPage.js");
-    // console.log(">>In continue");
     await this.page.click("#continue");
   }
 
   async ukPassportChoice(){
-    console.log(">>In passPortDetailsPage.js");
-    console.log(">>In passportChoice function");
     await this.page.click("#photoIdChoice");
   }
 
   async drivingLicenceChoice(){
-    console.log(">>In passPortDetailsPage.js");
-    console.log(">>In drivingLicenceChoice function");
-    await this.page.click("#photoIdChoice-ukPhotocardDL");
+    await this.page.click("#photoIdChoice-ukPhotocardDl");
   }
 
   async brpChoice(){
-    console.log(">>In passPortDetailsPage.js");
-    console.log(">>In brpChoice function");
     await this.page.click("#photoIdChoice-brp");
   }
 
   async nonUKPassportChoice(){
-    console.log(">>In passPortDetailsPage.js");
-    console.log(">>In nonUKPassportChoice function");
     await this.page.click("#photoIdChoice-otherPassport");
+  }
+
+  async youngScotNecChoice(){
+    await this.page.click("#photoIdChoice-youngScotNationalEntitlementCard");
+  }
+  
+  async nationalIdentityCardEEAChoice(){
+    await this.page.click("#photoIdChoice-euIdentityCard");
+  }
+
+  async euDrivingLicenceChoice(){
+    await this.page.click("#photoIdChoice-euPhotocardDl");
+  }
+
+  async citizenCardChoice(){
+    await this.page.click("#photoIdChoice-citizenCard");
   }
 };

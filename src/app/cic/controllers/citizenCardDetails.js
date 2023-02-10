@@ -2,6 +2,8 @@ const moment = require('moment');
 const BaseController = require("hmpo-form-wizard").Controller;
 const DateControllerMixin = require("hmpo-components").mixins.Date;
 const DateController = DateControllerMixin(BaseController);
+const {APP} = require("../../../lib/config");
+
 
 class CitizenCardController extends DateController {
   locals(req, res, callback) {
@@ -46,8 +48,6 @@ class CitizenCardController extends DateController {
       req.sessionModel.set("citizenCardExpiryDate", citizenCardExpiryDate);
       //Values used on checkDetails page
       req.sessionModel.set("expiryDate", citizenCardExpiryDate);
-      req.sessionModel.set("photoIdChoice", "CitizenCard");
-      req.sessionModel.set("changeUrl", "citizenCardDetails");
 
       return next();
     } catch (err) {
@@ -56,9 +56,9 @@ class CitizenCardController extends DateController {
   }
   next(req) {
     if (req.sessionModel.get("isOutsideExpireWindow")) {
-      return "/nameEntry"
+      return APP.PATHS.NAME_ENTRY
     } else{
-      return "/photoIdExpiry"
+      return APP.PATHS.EXPIRED_ID
     }
   }
 }

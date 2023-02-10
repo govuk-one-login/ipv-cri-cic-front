@@ -7,16 +7,11 @@ module.exports = class PlaywrightDevPage {
     this.url = "http://localhost:5020/landingPage";
   }
 
-  isCurrentPage() {
-    // console.log(">>In landingPage.js");
-    // console.log(">>In isCurrentPage function");
-
-    return this.page.url() === this.url;
+  async isCurrentPage() {
+    return await this.page.url() === this.url;
   }
 
   async continue() {
-    // console.log(">>In landingPage.js");
-    // console.log(">>In continue");
     await this.page.click("#continue");
   }
 

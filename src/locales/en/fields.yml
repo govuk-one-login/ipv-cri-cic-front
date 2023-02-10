@@ -1,6 +1,6 @@
 photoIdChoice:
   validation:
-    required: Select a photo ID you can take to a Post Office
+    required: Choose a photo ID you can take to a Post Office
   content: ""
   items:
     ukPassport:
@@ -13,15 +13,15 @@ photoIdChoice:
       label: Non-UK passport
     euPhotocardDl:
       label: EU photocard driving licence
-    eeaPermanentResidencyCard:
-      label: EEA Permanent Residency Card
     euIdentityCard:
       label: National Identity card from an EEA country
     citizenCard:
       label: CitizenCard
     youngScotNationalEntitlementCard:
       label: Young Scot National Entitlement Card (NEC)
-
+    noPhotoId:
+      label: I do not have any of these documents
+    
 "date-day":
   label: Day
 
@@ -61,14 +61,6 @@ photocardDlExpiryDate:
   hint: "For example, 31 3 2025"
   validation:
     default: "Enter the expiry date as it appears on your driving licence"
-    after: "The expiry date must be in the future"
-
-eeaPrCardExpiryDate:
-  label: "" 
-  legend: "" 
-  hint: "For example, 31 3 2025"
-  validation: 
-    default: "Enter the expiry date as it appears on your EEA permanent residency card"
     after: "The expiry date must be in the future"
 
 euPhotocardDlExpiryDate:
