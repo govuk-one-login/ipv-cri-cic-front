@@ -14,14 +14,12 @@ module.exports = class PlaywrightDevPage {
   }
 
  isRelyingPartyServer() {
-    console.log("URL IS "+new URL(this.page.url()).origin)
     return new URL(this.page.url()).origin === "http://example.net";
   }
 
   hasSuccessQueryParams() {
     const { searchParams } = new URL(this.page.url());
 
-    console.log("Searcg "+searchParams)
     return (
       searchParams.get("client_id") === "standalone" &&
       searchParams.get("state") === "sT@t3" &&
