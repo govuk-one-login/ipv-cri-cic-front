@@ -33,14 +33,14 @@ module.exports = {
     fields: ["photoIdChoice"],
     invalidates: [
       "passportExpiryDate",
-      "nonPassportExpiryDate",
-      "photocardDLDetails",
-      "passportExpiryDate",
-      "passportExpiryDate",
-      "dateOfBirth",
-      "surname",
-      "firstName",
-      "middleName",
+      "nonUKPassportExpiryDate",
+      "photocardDlExpiryDate",
+      "brpExpiryDate",
+      "euIdCardExpiryDate",
+      "youngScotNationalEntitlementCardExpiryDate",
+      "citizenCardExpiryDate",
+      "eeaPrCardExpiryDate",
+      "euPhotocardDlExpiryDate",
     ],
     next: [
       {
@@ -97,6 +97,8 @@ module.exports = {
   "/passportDetails": {
     fields: ["passportExpiryDate"],
     controller: passportDetails,
+    editable: true,
+    editBackStep: "checkDetails",
     next: [
       {
         field: "passportExpiryDate",
@@ -116,6 +118,8 @@ module.exports = {
   "/nonUKPassportDetails": {
     fields: ["nonUKPassportExpiryDate"],
     controller: nonUKPassportDetails,
+    editable: true,
+    editBackStep: "checkDetails",
     next: [
       {
         field: "nonUKPassportExpiryDate",
@@ -129,6 +133,8 @@ module.exports = {
   "/photocardDlDetails": {
     fields: ["photocardDlExpiryDate"],
     controller: photocardDlDetails,
+    editable: true,
+    editBackStep: "checkDetails",
     next: [
       {
         field: "photocardDlExpiryDate",
@@ -142,6 +148,8 @@ module.exports = {
   "/brpDetails": {
     fields: ["brpExpiryDate"],
     controller: brpDetails,
+    editable: true,
+    editBackStep: "checkDetails",
     next: [
       {
         field: "brpExpiryDate",
@@ -155,6 +163,8 @@ module.exports = {
   "/euIdentityCardDetails": {
     fields: ["euIdCardExpiryDate"],
     controller: euIdentityCardDetails,
+    editable: true,
+    editBackStep: "checkDetails",
     next: [
       {
         field: "euIdCardExpiryDate",
@@ -168,6 +178,8 @@ module.exports = {
   "/youngScotNecDetails": {
     fields: ["youngScotNationalEntitlementCardExpiryDate"],
     controller: youngScotNationalEntitlementCardDetails,
+    editable: true,
+    editBackStep: "checkDetails",
     next: [
       {
         field: "youngScotNationalEntitlementCardExpiryDate",
@@ -181,6 +193,8 @@ module.exports = {
   "/citizenCardDetails": {
     fields: ["citizenCardExpiryDate"],
     controller: citizenCardDetails,
+    editable: true,
+    editBackStep: "checkDetails",
     next: [
       {
         field: "citizenCardExpiryDate",
@@ -194,6 +208,7 @@ module.exports = {
   "/eeaPermanentResidencyCardDetails": {
     fields: ["eeaPrCardExpiryDate"],
     controller: eeaPermanentResidencyCard,
+    editable: true,
     next: [
       {
         field: "eeaPrCardExpiryDate",
@@ -207,6 +222,8 @@ module.exports = {
   "/euPhotocardDlDetails": {
     fields: ["euPhotocardDlExpiryDate"],
     controller: euPhotocardDlDetails,
+    editable: true,
+    editBackStep: "checkDetails",
     next: [
       {
         field: "euPhotocardDlExpiryDate",
