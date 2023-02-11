@@ -17,7 +17,7 @@
       "newScenarioState": "AuthCode",
       "request": {
         "method": "POST",
-        "url": "/claimedidentity",
+        "url": "/claimedIdentity",
 
         "bodyPatterns": [
           {
