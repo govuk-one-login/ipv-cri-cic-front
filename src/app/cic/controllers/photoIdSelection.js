@@ -119,28 +119,6 @@ class PhotoIdSelectionController extends BaseController {
     }
   }
 
-  next(req) {
-    if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.UK_PASSPORT)) {
-      return APP.PATHS.PASSPORT_DETAILS
-    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.BRP)) {
-      return APP.PATHS.BRP_DETAILS
-    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL)) {
-      return APP.PATHS.PHOTOCARD_DL_DETAILS
-    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT)) {
-      return APP.PATHS.NON_UK_PASSPORT_DETAILS
-    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL)) {
-      return APP.PATHS.EU_PHOTOCARD_DL_DETAILS
-    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.CITIZEN_CARD)) {
-      return APP.PATHS.CITIZEN_CARD_DETAILS
-    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD)) {
-      return APP.PATHS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD_DETAILS
-    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD)) {
-      return APP.PATHS.EU_IDENTITY_CARD_DETAILS
-    } else if (req.sessionModel.get(APP.PHOTO_ID_OPTIONS.NO_PHOTO_ID)) {
-      return APP.PATHS.NO_PHOTO_ID
-    }
-  }
-
 }
 
 module.exports = PhotoIdSelectionController;
