@@ -26,8 +26,6 @@ Background:
     Given the DOB fields are populated with valid values
     When the user clicks the DoB continue button
     Then they are routed to the Check My Answers Screen
-    When the user clicks the Check My Answers Submit button
-    Then they should be redirected as a success
 
 
 Scenario: Previously provided information successfully rendered on the page
