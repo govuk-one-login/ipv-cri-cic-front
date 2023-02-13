@@ -28,6 +28,8 @@ class PhotoIdSelectionController extends BaseController {
               { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.UK_PASSPORT, true);
+          req.sessionModel.set("selectedDocument", "UK passport");
+          req.sessionModel.set("changeUrl", "passportDetails");
           return next();
         }
         case APP.PHOTO_ID_OPTIONS.BRP: {
@@ -36,6 +38,8 @@ class PhotoIdSelectionController extends BaseController {
               { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.BRP, true);
+          req.sessionModel.set("selectedDocument", "Biometric residence permit (BRP)");
+          req.sessionModel.set("changeUrl", "brpDetails");
           return next();
         }
         case APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL: {
@@ -44,6 +48,8 @@ class PhotoIdSelectionController extends BaseController {
               { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL, true);
+          req.sessionModel.set("selectedDocument", "UK photocard driving licence");
+          req.sessionModel.set("changeUrl", "photocardDlDetails");
           return next();
         }
         case APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT: {
@@ -52,6 +58,8 @@ class PhotoIdSelectionController extends BaseController {
               { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT, true);
+          req.sessionModel.set("selectedDocument", "Non-UK passport");
+          req.sessionModel.set("changeUrl", "nonUKPassportDetails");
           return next();
         }
 
@@ -61,6 +69,8 @@ class PhotoIdSelectionController extends BaseController {
               { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL, true);
+          req.sessionModel.set("selectedDocument", "EU photocard driving licence");
+          req.sessionModel.set("changeUrl", "euPhotocardDlDetails");
           return next();
         }
         case APP.PHOTO_ID_OPTIONS.CITIZEN_CARD: {
@@ -69,6 +79,8 @@ class PhotoIdSelectionController extends BaseController {
               { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.CITIZEN_CARD, true);
+          req.sessionModel.set("selectedDocument", "Citizen Card");
+          req.sessionModel.set("changeUrl", "citizenCardDetails");
           return next();
         }
         case APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD: {
@@ -77,6 +89,8 @@ class PhotoIdSelectionController extends BaseController {
               { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD, true);
+          req.sessionModel.set("selectedDocument", "Young Scot National Entitlement Card (NEC)");
+          req.sessionModel.set("changeUrl", "youngScotNecDetails");
           return next();
         }
         case APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD: {
@@ -85,6 +99,8 @@ class PhotoIdSelectionController extends BaseController {
               { req, res }
           );
           req.sessionModel.set(APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD, true); 
+          req.sessionModel.set("selectedDocument", "National Identity card from an EEA country");
+          req.sessionModel.set("changeUrl", "euIdentityCardDetails");
           return next();
         }
         case APP.PHOTO_ID_OPTIONS.NO_PHOTO_ID: {
@@ -102,7 +118,7 @@ class PhotoIdSelectionController extends BaseController {
       return next(err);
     }
   }
-
+  
 }
 
 module.exports = PhotoIdSelectionController;

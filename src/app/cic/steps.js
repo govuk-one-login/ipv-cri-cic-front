@@ -143,9 +143,9 @@ module.exports = {
         field: "photocardDlExpiryDate",
         op: "after",
         value: "10 years",
-        next: "nameEntry",
+        next: "photoIdExpiry",
       },
-      "photoIdExpiry",
+      "nameEntry",
     ],
   },
   "/brpDetails": {
