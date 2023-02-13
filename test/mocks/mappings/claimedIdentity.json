@@ -33,7 +33,7 @@
       "response": {
         "status": 200,
         "jsonBody": {
-          "session_id": "ABADCAFE",
+          "authorizationCode": "FACEFEED",
           "state": "sT@t3",
           "redirect_uri": "http://example.net/return"
         }

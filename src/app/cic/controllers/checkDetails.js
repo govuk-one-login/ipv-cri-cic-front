@@ -39,7 +39,6 @@ class CheckDetailsController extends DateController {
   async saveValues(req, res, callback) {
 
     try {
-      console.log("came here!!!!!!!!!")
       const fullNameVal = req.sessionModel.get("middleName")? req.sessionModel.get("firstName") + " "+ req.sessionModel.get("middleName") + " "+ req.sessionModel.get("surname"):
         req.sessionModel.get("firstName") +  " "+ req.sessionModel.get("surname")
       const cicData ={
@@ -48,8 +47,7 @@ class CheckDetailsController extends DateController {
         documentSelected:  req.sessionModel.get("photoIdChoice"),
         dateOfExpiry: req.sessionModel.get("expiryDate")
       }
-      console.log("going to save cic data")
-      await this.saveCicData(req.axios, cicData, req.session.tokenId);
+      await this.saveCicData(req.axios, cicData, req);
       callback();
 
     } catch (err) {
@@ -58,17 +56,16 @@ class CheckDetailsController extends DateController {
 
   }
 
-  async saveCicData(axios, cicData, sessionId) {
-    // set the headers to undefined will a fail a production level request but pass the browser tests for now.
-    console.log("URL IS  ",API.PATHS.SAVE_CICDATA)
-    const headers = sessionId
-      ? {session_id: sessionId, "session-id": sessionId}
-      : {session_id: "1234", "session-id": "1234"};
+  async saveCicData(axios, cicData, req) {
+
+    const headers = {
+      "session-id": req.session.tokenId,
+        session_id: req.session.tokenId,
+    }
+
     const resp = await axios.post(`${API.PATHS.SAVE_CICDATA}`, cicData, {
       headers,
     });
-
-    console.log("Data is ",resp.data)
     return resp.data;
   }
 }
