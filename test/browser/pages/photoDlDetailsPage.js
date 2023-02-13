@@ -25,7 +25,7 @@ module.exports = class PlaywrightDevPage {
   }
 
   async expiryDateYear() {
-    await this.page.locator("#photocardDlExpiryDate-year").fill("2033");
+    await this.page.locator("#photocardDlExpiryDate-year").fill("2024");
   }
 
 
