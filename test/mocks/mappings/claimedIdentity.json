@@ -14,7 +14,6 @@
     {
       "scenarioName": "save-cic",
       "requiredScenarioState": "Started",
-      "newScenarioState": "AuthCode",
       "request": {
         "method": "POST",
         "url": "/claimedIdentity",
