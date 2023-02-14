@@ -2,11 +2,11 @@ const { Given, When, Then, And} = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const {PassportDetailsPageFuture, PhotoIdExpiryPage} = require("../pages");
+const {PassportDetailsPageInvalidFuture, PhotoIdExpiryPage} = require("../pages");
 
-  Given(/^the date entered is more than 10 years in the future$/, async function () {
+  Given(/^the date entered is more than 10 years from today$/, async function () {
 
-    const ukPassport = new PassportDetailsPageFuture(await this.page);
+    const ukPassport = new PassportDetailsPageInvalidFuture(await this.page);
   
     await ukPassport.expiryDateDay();
 
@@ -19,7 +19,7 @@ const {PassportDetailsPageFuture, PhotoIdExpiryPage} = require("../pages");
 
   When(/^the user clicks the continue button on the UK Passport page$/, async function () {
 
-    const ukPassport = new PassportDetailsPageFuture(await this.page);
+    const ukPassport = new PassportDetailsPageInvalidFuture(await this.page);
   
     expect(await ukPassport.isCurrentPage()).to.be.true;
 

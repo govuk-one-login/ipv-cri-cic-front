@@ -4,7 +4,7 @@ module.exports = class PlaywrightDevPage {
    */
   constructor(page) {
     this.page = page;
-    this.url = "http://localhost:5020/nonUKPassportDetails";
+    this.url = "http://localhost:5020/passportDetails";
   }
 
 
@@ -17,15 +17,16 @@ module.exports = class PlaywrightDevPage {
   }
 
   async expiryDateDay() {
-    await this.page.locator("#nonUKPassportExpiryDate-day").fill("01");
+    await this.page.locator("#passportExpiryDate-day").fill("09");
   }
 
   async expiryDateMonth() {
-    await this.page.locator("#nonUKPassportExpiryDate-month").fill("06");
+    await this.page.locator("#passportExpiryDate-month").fill("07");
   }
 
   async expiryDateYear() {
-    await this.page.locator("#nonUKPassportExpiryDate-year").fill("2099");
+    await this.page.locator("#passportExpiryDate-year").fill("2024");
   }
+
 
 };

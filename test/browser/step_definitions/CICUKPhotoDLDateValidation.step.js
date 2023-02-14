@@ -2,11 +2,11 @@ const { Given, When, Then, And} = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const {PhotoDlDetailsPage, PhotoIdExpiryPage} = require("../pages");
+const {PhotoDlDetailsPageInvalid, PhotoIdExpiryPage} = require("../pages");
 
   Given(/^the date entered is outside the accepted UKPhotoDLExpiry expiration window$/, async function () {
 
-    const ukPhotoDl = new PhotoDlDetailsPage(await this.page);
+    const ukPhotoDl = new PhotoDlDetailsPageInvalid(await this.page);
   
     await ukPhotoDl.expiryDateDay();
 
@@ -19,7 +19,7 @@ const {PhotoDlDetailsPage, PhotoIdExpiryPage} = require("../pages");
 
   When(/^the user clicks the continue button on the UKPhotoDLExpiry Page$/, async function () {
 
-    const ukPhotoDl = new PhotoDlDetailsPage(await this.page);
+    const ukPhotoDl = new PhotoDlDetailsPageInvalid(await this.page);
   
     expect(await ukPhotoDl.isCurrentPage()).to.be.true;
 

@@ -4,7 +4,7 @@ module.exports = class PlaywrightDevPage {
    */
   constructor(page) {
     this.page = page;
-    this.url = "http://localhost:5020/nonUKPassportDetails";
+    this.url = "http://localhost:5020/youngScotNecDetails";
   }
 
 
@@ -17,15 +17,14 @@ module.exports = class PlaywrightDevPage {
   }
 
   async expiryDateDay() {
-    await this.page.locator("#nonUKPassportExpiryDate-day").fill("01");
+    await this.page.locator("#youngScotNationalEntitlementCardExpiryDate-day").fill("01");
   }
 
   async expiryDateMonth() {
-    await this.page.locator("#nonUKPassportExpiryDate-month").fill("06");
+    await this.page.locator("#youngScotNationalEntitlementCardExpiryDate-month").fill("03");
   }
 
   async expiryDateYear() {
-    await this.page.locator("#nonUKPassportExpiryDate-year").fill("2099");
+    await this.page.locator("#youngScotNationalEntitlementCardExpiryDate-year").fill("2024");
   }
-
 };
