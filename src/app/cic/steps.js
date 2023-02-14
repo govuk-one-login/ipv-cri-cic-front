@@ -254,9 +254,7 @@ module.exports = {
     ],
   },
   "/photoIdExpiry": {
-    editable: true,
-    editBackStep: "checkDetails",
-     next: "/photoIdSelection",
+     next: "photoIdSelection",
   },
   "/nameEntry": {
     editable: true,
