@@ -27,4 +27,3 @@ const { PhotoIdSelectionPage, PassportDetailsPageValid } = require("../pages");
     expect(await passportDetailsPage.isCurrentPage()).to.be.true;
 
   });
-

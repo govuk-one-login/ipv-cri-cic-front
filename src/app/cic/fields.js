@@ -13,7 +13,6 @@ module.exports = {
     {value: APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL},
     {value: APP.PHOTO_ID_OPTIONS.BRP},
     {value: APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL},
-    {value: APP.PHOTO_ID_OPTIONS.EEA_PERMANENT_RESIDENCY_CARD},
     {value: APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD},
     {value: APP.PHOTO_ID_OPTIONS.CITIZEN_CARD},
     {value: APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD},
@@ -40,11 +39,6 @@ module.exports = {
   brpExpiryDate: {
     type: "date",
     journeyKey: "brpExpiryDate",
-    validate: ["required", "date"]
-  },
-  eeaPrCardExpiryDate: {
-    type: "date",
-    journeyKey: "eeaPrCardExpiryDate",
     validate: ["required", "date"]
   },
   euPhotocardDlExpiryDate: {

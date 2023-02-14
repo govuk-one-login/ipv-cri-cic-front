@@ -18,10 +18,6 @@ class RootController extends BaseController {
       if (sharedClaims?.birthDate?.length > 0) {
         req.sessionModel.set("dateOfBirth", sharedClaims.birthDate[0].value);
       }
-      // Verify sharedClaim name for ID types
-      if (sharedClaims?.eeaPrCard?.length > 0) {
-        req.sessionModel.set("eeaPrCardExpiryDate", sharedClaims.eeaPrCard[0].expiryDate);
-      }
     }
     super.saveValues(req, res, next);
   }
