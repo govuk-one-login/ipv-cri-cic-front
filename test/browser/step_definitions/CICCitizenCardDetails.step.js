@@ -2,10 +2,10 @@ const { Given, When, Then, And} = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const { CitizenCardDetailsPage, NameEntryPage} = require("../pages");
+const { CitizenCardDetailsPageValid, NameEntryPage} = require("../pages");
 
   Given(/^the date entered is within accepted CitizenCard expiration window$/, async function () {
-    const citizenCardDetails = new CitizenCardDetailsPage(await this.page);
+    const citizenCardDetails = new CitizenCardDetailsPageValid(await this.page);
   
     await citizenCardDetails.expiryDateDay();
 
@@ -17,7 +17,7 @@ const { CitizenCardDetailsPage, NameEntryPage} = require("../pages");
 
   
   When(/^the user clicks the continue button on the CitizenCard details page$/, async function () {
-    const citizenCardDetails = new CitizenCardDetailsPage(await this.page);
+    const citizenCardDetails = new CitizenCardDetailsPageValid(await this.page);
   
     expect(await citizenCardDetails.isCurrentPage()).to.be.true;
 
