@@ -2,10 +2,10 @@ const { Given, When, Then, And} = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const { YoungScotNECDetailsPage, NameEntryPage} = require("../pages");
+const { YoungScotNECDetailsPageValid, NameEntryPage} = require("../pages");
 
   Given(/^the date entered is within accepted Young Scot NEC expiration window$/, async function () {
-    const youngScotNECDetailsPage = new YoungScotNECDetailsPage(await this.page);
+    const youngScotNECDetailsPage = new YoungScotNECDetailsPageValid(await this.page);
   
     await youngScotNECDetailsPage.expiryDateDay();
 
@@ -16,7 +16,7 @@ const { YoungScotNECDetailsPage, NameEntryPage} = require("../pages");
   });
 
   When(/^the user clicks the continue button on the Young Scot NEC Page$/, async function () {
-    const youngScotNECDetailsPage = new YoungScotNECDetailsPage(await this.page);
+    const youngScotNECDetailsPage = new YoungScotNECDetailsPageValid(await this.page);
 
     await youngScotNECDetailsPage.continue();
   
