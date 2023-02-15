@@ -2,7 +2,7 @@ const { Given, When, Then } = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const {PhotoIdSelectionPage, NonUKPassportDetailsPage, } = require("../pages");
+const {PhotoIdSelectionPage, NonUKPassportDetailsPageValid, } = require("../pages");
 
   Given(/^the Other passport option is selected$/, async function () {
      const photoIdPage = new PhotoIdSelectionPage(await this.page);
@@ -21,7 +21,7 @@ const {PhotoIdSelectionPage, NonUKPassportDetailsPage, } = require("../pages");
   });
   
   Then(/^the user is routed to the next screen in the journey Other Passport Details$/, async function () {
-    const nonUKPassportDetails = new NonUKPassportDetailsPage(await this.page);
+    const nonUKPassportDetails = new NonUKPassportDetailsPageValid(await this.page);
 
      expect(await nonUKPassportDetails.isCurrentPage()).to.be.true;
 
