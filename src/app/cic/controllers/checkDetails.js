@@ -64,6 +64,10 @@ class CheckDetailsController extends DateController {
       locals.changeUrl = `/${changeUrl}`;
       locals.fullName = fullName
 
+      if(locals.formattedExpiryDate){
+        req.sessionModel.set("expiryDate", expiryDate);
+      }
+
       callback(err, locals);
     });
   }
@@ -96,7 +100,7 @@ class CheckDetailsController extends DateController {
 
     const headers = {
       "session-id": req.session.tokenId,
-        session_id: req.session.tokenId,
+      session_id: req.session.tokenId,
     }
 
     const resp = await axios.post(`${API.PATHS.SAVE_CICDATA}`, cicData, {
