@@ -2,10 +2,10 @@ const { Given, When, Then, And} = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const { PassportDetailsPage, NameEntryPage} = require("../pages");
+const { PassportDetailsPageValid, NameEntryPage} = require("../pages");
 
   Given(/^the date entered is within accepted UK Passport expiration window$/, async function () {
-    const passportDetailsPage = new PassportDetailsPage(await this.page);
+    const passportDetailsPage = new PassportDetailsPageValid(await this.page);
   
     await passportDetailsPage.expiryDateDay();
 
@@ -17,7 +17,7 @@ const { PassportDetailsPage, NameEntryPage} = require("../pages");
 
 
   When(/^the user clicks the continue button on the UKPassportPage$/, async function () {
-    const passportDetailsPage = new PassportDetailsPage(await this.page);
+    const passportDetailsPage = new PassportDetailsPageValid(await this.page);
   
     expect(await passportDetailsPage.isCurrentPage()).to.be.true;
 
