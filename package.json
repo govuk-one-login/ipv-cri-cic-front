@@ -22,7 +22,7 @@
     "minfiy-build-js": "uglifyjs src/assets/javascript/application.js -o src/assets/javascript/application.js -c -m && uglifyjs src/assets/javascript/cookies.js -o src/assets/javascript/cookies.js -c -m",
     "lint": "eslint .",
     "prepare": "husky install",
-    "test": "jest",
+    "test": "mocha",
     "test:coverage": "nyc --reporter=lcov --reporter=text-summary yarn test",
     "test:watch": "mocha --watch",
     "mocks": "yarn run wiremock --verbose --port 8090 --root-dir test/mocks",
