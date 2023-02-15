@@ -517,7 +517,8 @@ Resources:
     Type: AWS::Logs::LogGroup
     Properties:
       LogGroupName: !Sub /aws/apigateway/${AWS::StackName}-CICFront-API-GW-AccessLogs
-
+      RetentionInDays: 14
+      
   #  CSLSAPIGWAccessSubscriptionFilter:
   #    Type: AWS::Logs::SubscriptionFilter
   #    Condition: IsNotDevelopment
