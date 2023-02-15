@@ -9,15 +9,10 @@ module.exports = class PlaywrightDevPage {
 
 
   async isCurrentPage() {
-    console.log(">>In brpDetails.js");
-    console.log(">>In isCurrentPage function");
-
     return await this.page.url() === this.url;
   }
 
   async continue() {
-    console.log(">>In brpDetailsPage.js");
-    console.log(">>In continue function");
     await this.page.click("#continue");
   }
 
@@ -30,7 +25,7 @@ module.exports = class PlaywrightDevPage {
   }
 
   async expiryDateYear() {
-    await this.page.locator("#brpExpiryDate-year").fill("2023");
+    await this.page.locator("#brpExpiryDate-year").fill("2025");
   }
 
 

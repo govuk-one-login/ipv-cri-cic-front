@@ -2,11 +2,9 @@ const { Given, When, Then } = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const {PhotoIdSelectionPage, BRPDetailsPage, } = require("../pages");
+const {PhotoIdSelectionPage, BRPDetailsPageValid, } = require("../pages");
 
   Given(/^the BRP option is selected$/, async function () {
-     console.log(">>In PhotoIdSelectionPage - BRP option selected function");
-     
      const photoIdPage = new PhotoIdSelectionPage(await this.page);
      
      await photoIdPage.brpChoice();
@@ -18,8 +16,6 @@ const {PhotoIdSelectionPage, BRPDetailsPage, } = require("../pages");
   
 
   When(/^the user clicks the BRP continue button$/, async function () {
-    console.log(">>In photoIdPage - BRP option continue function");
-
     const photoIdPage = new PhotoIdSelectionPage(await this.page);
   
     await photoIdPage.continue();
@@ -27,8 +23,7 @@ const {PhotoIdSelectionPage, BRPDetailsPage, } = require("../pages");
   });
   
   Then(/^the user is routed to the next screen in the journey BRP Expiry Date$/, async function () {
-     console.log(">>In photoIdPage - BRP option continue journey function");
-     const brpDetailsPage = new BRPDetailsPage(await this.page);
+     const brpDetailsPage = new BRPDetailsPageValid(await this.page);
 
      expect(await brpDetailsPage.isCurrentPage()).to.be.true;
 
