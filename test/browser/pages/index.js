@@ -17,6 +17,7 @@ module.exports = {
   CitizenCardDetailsPage: require("./citizenCardDetailsPage"),
   PhotoDlDetailsPageValid: require("./photoDlDetailsPageValid"),
   PhotoDlDetailsPageInvalid: require("./photoDlDetailsPageInvalid"),
-  BRPDetailsPage: require("./brpDetailsPage"),
+  BRPDetailsPageValid: require("./brpDetailsPageValid"),
+  BRPDetailsPageInvalid: require("./brpDetailsPageInvalid"),
   PhotoIdExpiryPage: require("./photoIdExpiryPage")
 };
