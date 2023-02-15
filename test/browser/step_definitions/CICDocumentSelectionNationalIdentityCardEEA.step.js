@@ -1,7 +1,7 @@
 const { Given, When, Then } = require("@cucumber/cucumber");
 const { expect } = require("chai");
 
-const {PhotoIdSelectionPage, NationalIdentityCardEEADetailsPage } = require("../pages");
+const {PhotoIdSelectionPage, NationalIdentityCardEEADetailsPageValid } = require("../pages");
 
   Given(/^the National Identity Card EEA option is selected$/, async function () {     
      const photoIdPage = new PhotoIdSelectionPage(await this.page);
@@ -18,8 +18,8 @@ const {PhotoIdSelectionPage, NationalIdentityCardEEADetailsPage } = require("../
   });
 
   Then(/^the user is routed to the next screen in the National Identity Card EEA journey - National Identity Card EEA details$/, async function () {
-    const nationalIdentityCardEEADetailsPage = new NationalIdentityCardEEADetailsPage(await this.page);
+    const nationalIdentityCardEEA = new NationalIdentityCardEEADetailsPageValid(await this.page);
 
-    expect(await nationalIdentityCardEEADetailsPage.isCurrentPage()).to.be.true;
+    expect(await nationalIdentityCardEEA.isCurrentPage()).to.be.true;
 
   });
