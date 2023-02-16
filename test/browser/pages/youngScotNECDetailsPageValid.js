@@ -27,4 +27,9 @@ module.exports = class PlaywrightDevPage {
   async expiryDateYear() {
     await this.page.locator("#youngScotNationalEntitlementCardExpiryDate-year").fill("2024");
   }
+  
+  async checkErrorText(){
+    const errorText = await this.page.locator("#error-summary-title").textContent();
+    return errorText.trim(); 
+  }
 };
