@@ -14,8 +14,6 @@ Background:
     When the user clicks the PhotoId continue button
     Then the user is routed to the next screen in the journey Passport Details
 
-@test
 Scenario: UK passport not expired (Happy path)
-    #Given the date entered is within accepted UK Passport expiration window
     Given the user clicks the continue button only on the UKPassportPage
     Then the user sees an inline error message displayed
