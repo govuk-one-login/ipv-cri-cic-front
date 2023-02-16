@@ -28,4 +28,9 @@ module.exports = class PlaywrightDevPage {
     await this.page.locator("#dateOfBirth-year").fill("1980");
   }
 
+  async checkErrorText(){
+    const errorText = await this.page.locator("#error-summary-title").textContent();
+    return errorText.trim(); 
+  }
+
 };
