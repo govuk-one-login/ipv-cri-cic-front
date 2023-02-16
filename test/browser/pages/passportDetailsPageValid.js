@@ -29,4 +29,8 @@ module.exports = class PlaywrightDevPage {
   }
 
 
+  async checkErrorText(){
+    const errorText = await this.page.locator("#error-summary-title").textContent();
+    return errorText.trim(); 
+  }
 };
