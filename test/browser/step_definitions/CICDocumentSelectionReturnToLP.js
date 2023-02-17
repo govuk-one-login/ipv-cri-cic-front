@@ -7,7 +7,7 @@ const {PhotoIdSelectionPage, LandingPage, } = require("../pages");
   Given(/^the user has navigated to the Document Selection page$/, async function () {
      const photoIdPage = new PhotoIdSelectionPage(await this.page);
      
-     await photoIdPage.brpChoice();
+     //await photoIdPage.brpChoice();
 
      expect(await photoIdPage.isCurrentPage()).to.be.true
    
@@ -15,7 +15,7 @@ const {PhotoIdSelectionPage, LandingPage, } = require("../pages");
 
   
 
-  When(/^the Document Selection Back link is clicked$/, async function () {
+  When(/^the Back link is clicked on the Document Selection page$/, async function () {
     const photoIdPage = new PhotoIdSelectionPage(await this.page);
   
     await photoIdPage.back();
