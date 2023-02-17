@@ -44,8 +44,7 @@ describe("PhotoIdSelectionController", () => {
     });
   });
 
-  // NOTE: This is when user does not select any radio
-  describe("saveValues with no option selected", () => {
+  describe("saveValues when user selects no option", () => {
     it("should call next with error", async () => {
       
       req.form.values.photoIdChoice = undefined;
