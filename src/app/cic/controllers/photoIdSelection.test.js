@@ -28,55 +28,36 @@ describe("PhotoIdSelectionController", () => {
   });
 
   describe("saveValues", () => {
-    it("should save selectedDocument to sessionModel if date is valid", async () => {
+    it("should save values to sessionModel according to selected document type", async () => {
       
-      req.sessionModel.set("photoIdChoice", APP.PHOTO_ID_OPTIONS.UK_PASSPORT);
+      req.form.values.photoIdChoice = APP.PHOTO_ID_OPTIONS.UK_PASSPORT;
 
         await photoIdSelectionController.saveValues(req, res, next);
+        const selectedDocumentValue = req.sessionModel.get("photoIdChoice")
         const selectedDocument = req.sessionModel.get("selectedDocument");
-        const changeUrl = 1 //req.sessionModel.get("changeUrl");
+        const changeUrl = req.sessionModel.get("changeUrl");
 
         expect(next).to.have.been.calledOnce;
+        expect(selectedDocumentValue).to.equal(APP.PHOTO_ID_OPTIONS.UK_PASSPORT)
         expect(selectedDocument).to.equal("UK passport");
         expect(changeUrl).to.equal("passportDetails");
-
-
     });
+  });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // it("should save photoIdChoice to sessionModel if date is valid", async () => {
-
-    //   const photoIdChoiceToSave = {
-    //     APP.PHOTO_ID_OPTIONS.UK_PASSPORT true
-    //   };
-    //   req.form.values = photoIdChoiceToSave;
-  
-    //   await youngScotController.saveValues(req, res, next);
-    //   const savedExpiry = req.sessionModel.get("youngScotNationalEntitlementCardExpiryDate")
-
-    //   expect(next).to.have.been.calledOnce;
-    //   expect(savedExpiry).to.equal(expiryDateToSave.youngScotNationalEntitlementCardExpiryDate);
+  // NOTE: This is when user does not select any radio
+  describe("saveValues with no option selected", () => {
+    it("should call next with error", async () => {
       
-    // });
+      req.form.values.photoIdChoice = undefined;
 
-   
-
-    // it("should save changeUrl to sessionModel if date is valid", async () => {
-    // });
+        await photoIdSelectionController.saveValues(req, res, next);
+        const nextError = next.firstArg;
+        const nextErrMessage = ("photo-id-selection: Invalid action " + undefined);
+        
+        expect(next).to.have.been.calledOnce;
+        expect(nextError).to.be.instanceOf(Error);
+        expect(nextError.message).to.equal(nextErrMessage);
+    });
+  });
 
   });
-})
