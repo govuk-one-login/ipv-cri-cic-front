@@ -6,8 +6,7 @@ module.exports = class PlaywrightDevPage {
     this.page = page;
     this.url = "http://localhost:5020/brpDetails";
   }
-
-
+  
   async isCurrentPage() {
     return await this.page.url() === this.url;
   }
@@ -17,16 +16,18 @@ module.exports = class PlaywrightDevPage {
   }
 
   async expiryDateDay() {
-    await this.page.locator("#brpExpiryDate-day").fill("30");
+    const expDay = new Date().getDate().toString()
+    await this.page.locator("#brpExpiryDate-day").fill(expDay);
   }
 
   async expiryDateMonth() {
-    await this.page.locator("#brpExpiryDate-month").fill("10");
+    const currentMonth = new Date().getMonth() + 1
+    const expMonth = currentMonth.toString()
+    await this.page.locator("#brpExpiryDate-month").fill(expMonth);
   }
 
   async expiryDateYear() {
-    await this.page.locator("#brpExpiryDate-year").fill("2023");
+    const expYear = new Date().getFullYear().toString()
+    await this.page.locator("#brpExpiryDate-year").fill(expYear);
   }
-
-
 };
