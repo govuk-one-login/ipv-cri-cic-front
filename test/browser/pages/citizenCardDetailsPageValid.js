@@ -16,6 +16,10 @@ module.exports = class PlaywrightDevPage {
       await this.page.click("#continue");
     }
   
+    async back(){
+      await this.page.click("#back");
+    }
+    
     async expiryDateDay() {
       await this.page.locator("#citizenCardExpiryDate-day").fill("01");
     }
@@ -29,4 +33,5 @@ module.exports = class PlaywrightDevPage {
     }
   
   
+
   };

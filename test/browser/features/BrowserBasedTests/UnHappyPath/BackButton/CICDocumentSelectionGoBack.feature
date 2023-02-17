@@ -12,5 +12,5 @@ Feature: Build Document Selection Screen
 
 Scenario: Successful redirect from Document Selection screen back to Landing page
 Given the user has navigated to the Document Selection page
-When the Document Selection Back link is clicked
+When the Back link is clicked on the Document Selection page
 Then the user is navigated back to the previous screen - the Landing page
