@@ -99,8 +99,7 @@ class CheckDetailsController extends DateController {
   async saveCicData(axios, cicData, req) {
 
     const headers = {
-      "session-id": req.session.tokenId,
-      session_id: req.session.tokenId,
+      "x-govuk-signin-session-id": req.session.tokenId
     }
 
     const resp = await axios.post(`${API.PATHS.SAVE_CICDATA}`, cicData, {
