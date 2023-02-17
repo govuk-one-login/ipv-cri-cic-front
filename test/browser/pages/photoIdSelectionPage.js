@@ -49,6 +49,6 @@ module.exports = class PlaywrightDevPage {
   }
 
   async back(){
-    const errorText = await this.page.click("#back");
+    await this.page.click("#back");
   }
 };
