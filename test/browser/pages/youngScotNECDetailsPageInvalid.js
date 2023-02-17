@@ -17,14 +17,20 @@ module.exports = class PlaywrightDevPage {
   }
 
   async expiryDateDay() {
-    await this.page.locator("#youngScotNationalEntitlementCardExpiryDate-day").fill("01");
+  const tomorrow = new Date().getDate() + 1
+  const expDay = tomorrow.toString()
+    await this.page.locator("#youngScotNationalEntitlementCardExpiryDate-day").fill(expDay);
   }
 
   async expiryDateMonth() {
-    await this.page.locator("#youngScotNationalEntitlementCardExpiryDate-month").fill("03");
+    const currentMonth = new Date().getMonth() + 1
+    const expMonth = currentMonth.toString()
+    await this.page.locator("#youngScotNationalEntitlementCardExpiryDate-month").fill(expMonth);
   }
 
   async expiryDateYear() {
-    await this.page.locator("#youngScotNationalEntitlementCardExpiryDate-year").fill("2042");
+    const futureYear = new Date().getFullYear() + 15
+    const expYear = futureYear.toString()
+    await this.page.locator("#youngScotNationalEntitlementCardExpiryDate-year").fill(expYear);
   }
 };
