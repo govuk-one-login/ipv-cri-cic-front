@@ -47,4 +47,8 @@ module.exports = class PlaywrightDevPage {
   async citizenCardChoice(){
     await this.page.click("#photoIdChoice-citizenCard");
   }
+
+  async back(){
+    const errorText = await this.page.click("#back");
+  }
 };
