@@ -16,17 +16,19 @@ module.exports = class PlaywrightDevPage {
     await this.page.click("#continue");
   }
 
-  async expiryDateDay() {
-    await this.page.locator("#passportExpiryDate-day").fill("09");
+  async expiryDate() {
+    const lowerUTC = new Date(
+      new Date().getFullYear(),
+      new Date().getMonth() - 18,
+      new Date().getDate()
+    )
+    .toISOString();
+    const fullDate = lowerUTC.split("T")[0]
+    const expDay = fullDate.split("-")[2]
+    const expMonth = fullDate.split("-")[1]
+    const expYear = fullDate.split("-")[0]
+    await this.page.locator("#passportExpiryDate-day").fill(expDay);
+    await this.page.locator("#passportExpiryDate-month").fill(expMonth);
+    await this.page.locator("#passportExpiryDate-year").fill(expYear);
   }
-
-  async expiryDateMonth() {
-    await this.page.locator("#passportExpiryDate-month").fill("07");
-  }
-
-  async expiryDateYear() {
-    await this.page.locator("#passportExpiryDate-year").fill("2021");
-  }
-
-
 };
