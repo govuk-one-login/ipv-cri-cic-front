@@ -31,29 +31,17 @@ describe("RootController", () => {
 
       req.session.shared_claims = {
         passport: [
-          {
-            expiryDate: "2024-03-01"
-          }
+          { expiryDate: "2024-03-01" }
         ],
         name: [
           {
             nameParts: [
-              {
-                value: "First"
-              },
-              {
-                value: "Middle"
-              },
-              {
-                value: "Last"
-              }
+              { value: "First" },
+              { value: "Middle" },
+              { value: "Last" }
             ]
           }],
-        birthDate: [
-          {
-            value: "1999-03-01"
-          }
-        ]
+        birthDate: [{ value: "1999-03-01" }]
       };
 
       await rootController.saveValues(req, res, next);
@@ -78,28 +66,12 @@ describe("RootController", () => {
       name: [
         {
           nameParts: [
-            {
-              value: "First"
-            },
-            {
-              value: "Middle"
-            },
-            {
-              value: "Last"
-            }
+            { value: "First" },
+            { value: "Middle" },
+            { value: "Last" }
           ]
         }],
-      birthDate: [
-        {
-          value: "1999-03-01"
-        }
-      ],
-      sessionModel: {
-        set: sinon.fake(),
-      },
-      anything: {
-        set: sinon.fake(),
-      }
+      birthDate: [{ value: "1999-03-01" }]
     };
 
     await rootController.saveValues(req, res, next);
@@ -114,8 +86,6 @@ describe("RootController", () => {
     expect(firstName).to.equal("First");
     expect(surname).to.equal("Last");
     expect(dateOfBirth).to.equal("1999-03-01");
-    expect(req.session.shared_claims.sessionModel.set.called).to.be.false;
-    expect(req.session.shared_claims.anything.set.called).to.be.false;
   });
 
   it("should not update sessionModel if no shared_claims attributes present", async () => {
@@ -123,18 +93,21 @@ describe("RootController", () => {
     req.session.shared_claims = {
       passport: [],
       name: [],
-      birthDate: [],
-      sessionModel: {
-        set: sinon.fake(),
-      },
-      anything: {
-        set: sinon.fake(),
-      }
+      birthDate: []
     };
 
     await rootController.saveValues(req, res, next);
-    expect(req.session.shared_claims.sessionModel.set.called).to.be.false;
-    expect(req.session.shared_claims.anything.set.called).to.be.false;
+    const passportExpiryDate = req.sessionModel.get("passportExpiryDate");
+    const nonUKPassportExpiryDate = req.sessionModel.get("nonUKPassportExpiryDate");
+    const firstName = req.sessionModel.get("firstName");
+    const surname = req.sessionModel.get("surname");
+    const dateOfBirth = req.sessionModel.get("dateOfBirth");
+
+    expect(passportExpiryDate).to.equal(undefined);
+    expect(nonUKPassportExpiryDate).to.equal(undefined);
+    expect(firstName).to.equal(undefined);
+    expect(surname).to.equal(undefined);
+    expect(dateOfBirth).to.equal(undefined);
   });
 });
 
