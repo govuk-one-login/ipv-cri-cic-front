@@ -31,12 +31,7 @@
         ]
       },
       "response": {
-        "status": 200,
-        "jsonBody": {
-          "authorizationCode": "FACEFEED",
-          "state": "sT@t3",
-          "redirect_uri": "http://example.net/return"
-        }
+        "status": 200
       }
     },
     {
@@ -72,6 +67,12 @@
         "jsonBody": {
           "authorizationCode": {
             "value": "FACEFEED"
+          },
+          "state": {
+            "value": "sT@t3"
+          },
+          "redirect_uri": {
+            "value": "http://example.net"
           }
         }
       }

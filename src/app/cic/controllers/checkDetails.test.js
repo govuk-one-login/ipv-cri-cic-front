@@ -86,8 +86,7 @@ describe("CheckDetails controller", () => {
           cicData,
           {
             headers: {
-              "session-id": req.session.tokenId,
-              session_id: req.session.tokenId,
+              "x-govuk-signin-session-id": req.session.tokenId
             },
           }
         );
