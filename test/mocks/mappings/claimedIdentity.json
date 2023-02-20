@@ -21,10 +21,10 @@
         "bodyPatterns": [
           {
             "equalToJson": {
-              "fullName": "${json-unit.any-string}",
-              "dateOfBirth": "${json-unit.any-string}",
-              "documentSelected": "${json-unit.any-string}",
-              "dateOfExpiry": "${json-unit.any-string}"
+              "full_name": "${json-unit.any-string}",
+              "date_of_birth": "${json-unit.any-string}",
+              "document_selected": "${json-unit.any-string}",
+              "date_of_expiry": "${json-unit.any-string}"
             },
             "ignoreArrayOrder": true
           }
