@@ -82,10 +82,10 @@ class CheckDetailsController extends DateController {
       const fullNameVal = req.sessionModel.get("middleName")? req.sessionModel.get("firstName") + " "+ req.sessionModel.get("middleName") + " "+ req.sessionModel.get("surname"):
         req.sessionModel.get("firstName") +  " "+ req.sessionModel.get("surname")
       const cicData ={
-        fullName: `${fullNameVal}`,
-        dateOfBirth: req.sessionModel.get("dateOfBirth"),
-        documentSelected:  req.sessionModel.get("photoIdChoice"),
-        dateOfExpiry: req.sessionModel.get("expiryDate")
+        full_name: `${fullNameVal}`,
+        date_of_birth: req.sessionModel.get("dateOfBirth"),
+        document_selected:  req.sessionModel.get("photoIdChoice"),
+        date_of_expiry: req.sessionModel.get("expiryDate")
       }
       await this.saveCicData(req.axios, cicData, req);
       callback();
