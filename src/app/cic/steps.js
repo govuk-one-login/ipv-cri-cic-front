@@ -274,5 +274,10 @@ module.exports = {
     controller: checkDetails,
     next: "done",
   },
-  "/done": {},
+  "/done": {
+    skip: true,
+    noPost: true,
+    next: "/oauth2/callback",
+  },
+
 };
