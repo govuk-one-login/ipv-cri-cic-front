@@ -17,6 +17,7 @@ module.exports = class PlaywrightDevPage {
     
     async back(){
       await this.page.click("#back");
+    }
   
     async expiryDate() {
       const expDay = new Date().getDate().toString()
