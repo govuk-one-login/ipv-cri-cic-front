@@ -11,13 +11,13 @@ Feature: The user enters their name to be used as part of their claimed identity
         When the user clicks the continue button on the LandingPage
         Then the user is routed to the next screen in the journey PhotoId Selection
 
-        Given the Non UK passport option is selected
-        When the user clicks the continue button with Non UK passport selected
-        Then the user is routed to the next screen in the journey Non UK passport Details
+        Given the CitizenCard option is selected
+        When the user clicks the continue button with CitizenCard selected
+        Then the user is routed to the next screen in the CitizenCard journey - CitizenCard details
 
-        Given the date entered is within accepted Non UK expiration window
-        When the user clicks the continue button on the Non UK passport page
-        Then the user is routed to the next screen in the NonUKPassport journey - Name Entry
+        Given the date entered is within accepted CitizenCard expiration window
+        When the user clicks the continue button on the CitizenCard details page
+        Then the user is routed to the next screen in the CitizenCard journey - Name Entry
 
     Scenario: Successful validation of Surname and First name fields
         Given there has been an entry into the surname and first name fields
