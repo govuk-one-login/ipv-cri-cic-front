@@ -8,11 +8,7 @@ const {NationalIdentityCardEEADetailsPageInvalid, PhotoIdExpiryPage} = require("
 
     const nationalIdentityCardEEA = new NationalIdentityCardEEADetailsPageInvalid(await this.page);
   
-    await nationalIdentityCardEEA.expiryDateDay();
-
-    await nationalIdentityCardEEA.expiryDateMonth();
-
-    await nationalIdentityCardEEA.expiryDateYear();
+    await nationalIdentityCardEEA.expiryDate();
 
   });
 

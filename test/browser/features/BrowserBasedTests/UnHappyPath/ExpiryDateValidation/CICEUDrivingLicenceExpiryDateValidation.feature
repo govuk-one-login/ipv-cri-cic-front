@@ -14,7 +14,7 @@ Feature: Enter EU driving licence - Happy Path
         When the user clicks the EU driving licence button
         Then the user is routed to the EU DL Expiry Entry Screen
 
-
+    
     Scenario: EU driving licence expired (UnHappy path)
         Given the date entered is outside the accepted EU driving licence expiration window
         When the user clicks the continue button on the EU driving licence page

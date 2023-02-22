@@ -8,11 +8,7 @@ const {YoungScotNECDetailsPageInvalid, PhotoIdExpiryPage} = require("../pages");
 
     const youngScotNecDetails = new YoungScotNECDetailsPageInvalid(await this.page);
   
-    await youngScotNecDetails.expiryDateDay();
-
-    await youngScotNecDetails.expiryDateMonth();
-
-    await youngScotNecDetails.expiryDateYear();
+    await youngScotNecDetails.expiryDate();
 
   });
 
