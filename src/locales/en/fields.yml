@@ -37,9 +37,9 @@ passportExpiryDate:
   hint: "For example, 31 3 2025"
   validation:
     default: "Enter a complete date"
-    "numeric-day": "Enter a valid day"
-    "numeric-month": "Enter a valid month"
-    "numeric-year": "Enter a valid year"
+    "numeric-day": "Enter the day of expiry"
+    "numeric-month": "Enter the month of expiry"
+    "numeric-year": "Enter the year of expiry"
 
 nonUKPassportExpiryDate:
   legend: ""
