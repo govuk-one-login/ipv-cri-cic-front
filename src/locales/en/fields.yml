@@ -35,17 +35,17 @@ passportExpiryDate:
   legend: ""
   label: ""
   hint: "For example, 31 3 2025"
-  validation:
-    default: "Enter a complete date"
-    "date": "Enter the date of expiry"
-    "numeric-day": "The expiry date must inlcude a day that contains numbers only"
-    "numeric-month": "The expiry date must inlcude a month that contains numbers only"
-    "numeric-year": "The expiry date must inlcude a year that contains numbers only"
-    "date-day": "The expiry date must include a day that is a number between 1 and 31"
-    "date-month": "The expiry month must include a month that is a number between 1 and 12"
-    "required-day": "Enter the day of expiry"
-    "required-month": "Enter the month of expiry"
+  "validation": {
+    default: "Enter the date of expiry",
+    "numeric-day": "The expiry date must inlcude a day that contains numbers only",
+    "numeric-month": "The expiry date must inlcude a month that contains numbers only",
+    "numeric-year": "The expiry date must inlcude a year that contains numbers only",
+    "date-day": "The expiry date must include a day that is a number between 1 and 31",
+    "date-month": "The expiry month must include a month that is a number between 1 and 12",
+    "required-day": "Enter the day of expiry",
+    "required-month": "Enter the month of expiry",
     "required-year": "Enter the year of expiry"
+  }
 
 nonUKPassportExpiryDate:
   legend: ""
