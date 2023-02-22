@@ -23,7 +23,6 @@ Feature: The user enters their date of birth to be used as part of their claimed
         When the user clicks the NameEntry continue button
         Then the user is routed to the next screen in the journey DOB Entry
 
-@test
     Scenario: Successful redirect from DoB Entry to previous page
         Given the user has navigated to the DoB Entry page 
         When the Back link is clicked on the DoB Entry page
