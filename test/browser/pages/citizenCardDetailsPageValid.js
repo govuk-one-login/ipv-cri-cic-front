@@ -7,7 +7,6 @@ module.exports = class PlaywrightDevPage {
       this.url = "http://localhost:5020/citizenCardDetails";
     }
   
-    
     async isCurrentPage() {
       return await this.page.url() === this.url;
     }
