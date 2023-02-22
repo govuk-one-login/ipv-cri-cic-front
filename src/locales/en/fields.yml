@@ -36,8 +36,10 @@ passportExpiryDate:
   label: ""
   hint: "For example, 31 3 2025"
   validation:
-    default: "Enter the expiry date as it appears on your passport"
-    after: "Your passport must not have expired more than 18 months ago"
+    default: "Enter a complete date"
+    "numeric-day": "Enter a valid day"
+    "numeric-month": "Enter a valid month"
+    "numeric-year": "Enter a valid year"
 
 nonUKPassportExpiryDate:
   legend: ""
