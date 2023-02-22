@@ -33,4 +33,8 @@ module.exports = class PlaywrightDevPage {
     return errorText.trim(); 
   }
 
+  async back(){
+    await this.page.click("#back");
+  }
+  
 };

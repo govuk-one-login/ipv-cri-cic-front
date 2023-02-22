@@ -19,8 +19,8 @@ Background:
     When the user clicks the continue button on the EU Driving Licence details page
     Then the user is routed to the next screen in the journey Name Entry Screen
     
-@test
-Scenario: Successful validation of Surname and First name fields
+
+Scenario: Successful redirection from Name Entry page to previous page
 Given the user has navigated to the Name Entry screen
 When the Back link is clicked on the Name Entry screen
 Then the user is navigated back to the screen that they came from
