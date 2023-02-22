@@ -8,9 +8,7 @@ const { DateOfBirthPage, CheckDetailsPage }  = require("../pages");
 Given(/^the DOB fields are populated with valid values$/, async function () {
    const dobPage = new DateOfBirthPage(await this.page);
 
-    await dobPage.dateOfBirthDay();
-    await dobPage.dateOfBirthMonth();
-    await dobPage.dateOfBirthYear();
+    await dobPage.dateOfBirth();
 
 });
 

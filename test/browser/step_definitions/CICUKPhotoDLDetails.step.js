@@ -7,11 +7,7 @@ const { NameEntryPage, PhotoDlDetailsPageValid} = require("../pages");
   Given(/^the date entered is within accepted UKPhotoDL expiration window$/, async function () {
     const ukPhotoDl = new PhotoDlDetailsPageValid(await this.page);
   
-    await ukPhotoDl.expiryDateDay();
-
-    await ukPhotoDl.expiryDateMonth();
-
-    await ukPhotoDl.expiryDateYear();
+    await ukPhotoDl.expiryDate();
 
   });
 

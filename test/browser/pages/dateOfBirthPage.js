@@ -16,20 +16,14 @@ module.exports = class PlaywrightDevPage {
     await this.page.click("#continue");
   }
 
-  async dateOfBirthDay() {
+  async dateOfBirth() {
     const birthDay = new Date().getDate().toString()
-    await this.page.locator("#dateOfBirth-day").fill(birthDay);
-  }
-
-  async dateOfBirthMonth() {
     const month = new Date().getMonth() + 1
     const birthMonth = month.toString()
-    await this.page.locator("#dateOfBirth-month").fill(birthMonth);
-  }
-
-  async dateOfBirthYear() {
     const year = new Date().getFullYear() - 35
     const birthYear = year.toString()
+    await this.page.locator("#dateOfBirth-day").fill(birthDay);
+    await this.page.locator("#dateOfBirth-month").fill(birthMonth);
     await this.page.locator("#dateOfBirth-year").fill(birthYear);
   }
 

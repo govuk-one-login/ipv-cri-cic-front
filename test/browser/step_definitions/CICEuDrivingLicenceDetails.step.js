@@ -7,11 +7,7 @@ const { EuDrivingLicenceDetailsPageValid, NameEntryPage } = require("../pages");
   Given(/^the EU Driving Licence date entered is within accepted expiration window$/, async function () {
     const euDrivingLicenceDetailsPage = new EuDrivingLicenceDetailsPageValid(await this.page);
   
-    await euDrivingLicenceDetailsPage.expiryDateDay();
-
-    await euDrivingLicenceDetailsPage.expiryDateMonth();
-
-    await euDrivingLicenceDetailsPage.expiryDateYear();
+    await euDrivingLicenceDetailsPage.expiryDate();
 
   });
 

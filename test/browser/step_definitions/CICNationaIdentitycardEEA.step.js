@@ -7,11 +7,7 @@ const { NameEntryPage, NationalIdentityCardEEADetailsPageValid} = require("../pa
   Given(/^the date entered is within accepted National Identity Card EEA expiration window$/, async function () {
     const nationalIdentityCardEEA = new NationalIdentityCardEEADetailsPageValid(await this.page);
 
-    await nationalIdentityCardEEA.expiryDateDay();
-
-    await nationalIdentityCardEEA.expiryDateMonth();
-
-    await nationalIdentityCardEEA.expiryDateYear();
+    await nationalIdentityCardEEA.expiryDate();
 
   });
 
