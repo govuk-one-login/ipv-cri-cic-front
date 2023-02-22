@@ -40,6 +40,8 @@ passportExpiryDate:
     "numeric-day": "Enter the day of expiry"
     "numeric-month": "Enter the month of expiry"
     "numeric-year": "Enter the year of expiry"
+    "date-day": "The expiry date must include a day that is a number between 1 and 31"
+    "date-month": "The expiry month must include a month that is a number between 1 and 12"
 
 nonUKPassportExpiryDate:
   legend: ""

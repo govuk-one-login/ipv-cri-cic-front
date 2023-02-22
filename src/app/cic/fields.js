@@ -28,20 +28,6 @@ module.exports = {
     // { type: "passportExpiryDate-day"["numeric-day"], fn: (value) => value > 31 || value < 1 }
     ]
   },
-  "date-month": {
-    type: "date",
-    journeyKey: "passportExpiryDate",
-    validate: ["required", "date",
-      
-    ]
-  },
-  "date-year": {
-    type: "date",
-    journeyKey: "passportExpiryDate",
-    validate: ["required", "date",
-      
-    ]
-  },
   nonUKPassportExpiryDate: {
     type: "date",
     journeyKey: "nonUKPassportExpiryDate",
