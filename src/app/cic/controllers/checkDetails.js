@@ -1,7 +1,7 @@
 const BaseController = require("hmpo-form-wizard").Controller;
 const DateControllerMixin = require("hmpo-components").mixins.Date;
 const { formatDate } = require("../utils")
-const {APP} = require("../../../lib/config");
+const { APP, API } = require("../../../lib/config");
 
 const DateController = DateControllerMixin(BaseController);
 
@@ -57,12 +57,16 @@ class CheckDetailsController extends DateController {
       const middleName = req.sessionModel.get("middleName");
       const surname = req.sessionModel.get("surname")
       const fullName = firstName + " " + middleName + " " + surname
-      
+
       locals.formattedBirthDate = formatDate(dateOfBirth, "YYYY-MM-DD");
       locals.formattedExpiryDate = formatDate(expiryDate, "YYYY-MM-DD");
       locals.idChoice = idChoice;
       locals.changeUrl = `/${changeUrl}`;
       locals.fullName = fullName
+
+      if(locals.formattedExpiryDate){
+        req.sessionModel.set("expiryDate", expiryDate);
+      }
 
       callback(err, locals);
     });
@@ -70,6 +74,38 @@ class CheckDetailsController extends DateController {
 
   next() {
     return '/done'
+  }
+
+  async saveValues(req, res, callback) {
+
+    try {
+      const fullNameVal = req.sessionModel.get("middleName")? req.sessionModel.get("firstName") + " "+ req.sessionModel.get("middleName") + " "+ req.sessionModel.get("surname"):
+        req.sessionModel.get("firstName") +  " "+ req.sessionModel.get("surname")
+      const cicData ={
+        full_name: `${fullNameVal}`,
+        date_of_birth: req.sessionModel.get("dateOfBirth"),
+        document_selected:  req.sessionModel.get("photoIdChoice"),
+        date_of_expiry: req.sessionModel.get("expiryDate")
+      }
+      await this.saveCicData(req.axios, cicData, req);
+      callback();
+
+    } catch (err) {
+      callback(err);
+    }
+
+  }
+
+  async saveCicData(axios, cicData, req) {
+
+    const headers = {
+      "x-govuk-signin-session-id": req.session.tokenId
+    }
+
+    const resp = await axios.post(`${API.PATHS.SAVE_CICDATA}`, cicData, {
+      headers,
+    });
+    return resp.data;
   }
 }
 

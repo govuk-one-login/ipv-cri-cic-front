@@ -26,5 +26,12 @@ module.exports = class PlaywrightDevPage {
     async enterMiddleName(){
       await this.page.locator("#middleName").fill("Robert");
     }
+
+    async back(){
+      await this.page.click("#back");
+    }
+    
   };
+
+  
   

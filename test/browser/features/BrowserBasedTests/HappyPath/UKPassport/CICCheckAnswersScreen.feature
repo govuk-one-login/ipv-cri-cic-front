@@ -18,7 +18,7 @@ Background:
     Given the date entered is within accepted UK Passport expiration window
     When the user clicks the continue button on the UKPassportPage
     Then the user is routed to the next screen in the journey Name Entry Screen
- 
+
     Given there has been an entry into the surname and first name fields
     When the user clicks the NameEntry continue button
     Then the user is routed to the next screen in the journey DOB Entry
@@ -29,4 +29,6 @@ Background:
 
 
 Scenario: Previously provided information successfully rendered on the page
-Given the user has completed the previous CIC screens
+    Given the user has completed the previous CIC screens
+    When the user clicks the Check My Answers Submit button
+    Then they should be redirected as a success

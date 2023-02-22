@@ -15,6 +15,9 @@ module.exports = class PlaywrightDevPage {
     async continue() {
       await this.page.click("#continue");
     }
+    
+    async back(){
+      await this.page.click("#back");
   
     async expiryDate() {
       const expDay = new Date().getDate().toString()
@@ -25,4 +28,4 @@ module.exports = class PlaywrightDevPage {
       await this.page.locator("#citizenCardExpiryDate-month").fill(expMonth);
       await this.page.locator("#citizenCardExpiryDate-year").fill(expYear);
     }
-};
+ };

@@ -29,5 +29,7 @@ Background:
 
 
 Scenario: Previously provided information successfully rendered on the page
-Given the user has completed the previous CIC screens
+    Given the user has completed the previous CIC screens
+    When the user clicks the Check My Answers Submit button
+    Then they should be redirected as a success
 

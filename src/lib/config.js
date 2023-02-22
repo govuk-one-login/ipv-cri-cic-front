@@ -5,10 +5,8 @@ module.exports = {
     BASE_URL: process.env.API_BASE_URL || "http://localhost:8090",
     PATHS: {
       SESSION: "/session",
-      QUESTION: "/question",
-      ANSWER: "/answer",
       AUTHORIZATION: "/authorization",
-      ABANDON: "/abandon",
+      SAVE_CICDATA: "/claimedIdentity"
     },
   },
   APP: {
