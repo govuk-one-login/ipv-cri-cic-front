@@ -8,11 +8,7 @@ const {BRPDetailsPageInvalid, PhotoIdExpiryPage} = require("../pages");
 
     const brp = new BRPDetailsPageInvalid(await this.page);
   
-    await brp.expiryDateDay();
-
-    await brp.expiryDateMonth();
-
-    await brp.expiryDateYear();
+    await brp.expiryDate();
 
   });
 

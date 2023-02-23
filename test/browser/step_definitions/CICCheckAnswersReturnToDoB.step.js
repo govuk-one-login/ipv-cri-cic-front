@@ -22,5 +22,5 @@ Then(/^the user is navigated back to the DOB Entry page$/, async function () {
   const doBPage = new DateOfBirthPage(await this.page);
 
   expect(await doBPage.isCurrentPage()).to.be.true;
-
 });
+

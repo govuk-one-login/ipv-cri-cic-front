@@ -8,11 +8,7 @@ const {EuDrivingLicenceDetailsPageInvalid, PhotoIdExpiryPage} = require("../page
 
     const euDrivingLicence = new EuDrivingLicenceDetailsPageInvalid(await this.page);
   
-    await euDrivingLicence.expiryDateDay();
-
-    await euDrivingLicence.expiryDateMonth();
-
-    await euDrivingLicence.expiryDateYear();
+    await euDrivingLicence.expiryDate();
 
   });
 

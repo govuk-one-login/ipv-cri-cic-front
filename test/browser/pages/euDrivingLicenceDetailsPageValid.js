@@ -7,7 +7,6 @@ module.exports = class PlaywrightDevPage {
       this.url = "http://localhost:5020/euPhotocardDlDetails";
     }
   
-  
     async isCurrentPage() {
       return await this.page.url() === this.url;
     }
@@ -16,17 +15,13 @@ module.exports = class PlaywrightDevPage {
       await this.page.click("#continue");
     }
   
-    async expiryDateDay() {
-      await this.page.locator("#euPhotocardDlExpiryDate-day").type("31");
+    async expiryDate() {
+      const expDay = new Date().getDate().toString()
+      const currentMonth = new Date().getMonth() + 1
+      const expMonth = currentMonth.toString()
+      const expYear = new Date().getFullYear().toString()
+      await this.page.locator("#euPhotocardDlExpiryDate-day").type(expDay);
+      await this.page.locator("#euPhotocardDlExpiryDate-month").fill(expMonth);
+      await this.page.locator("#euPhotocardDlExpiryDate-year").fill(expYear);
     }
-  
-    async expiryDateMonth() {
-      await this.page.locator("#euPhotocardDlExpiryDate-month").fill("3");
-    }
-  
-    async expiryDateYear() {
-      await this.page.locator("#euPhotocardDlExpiryDate-year").fill("2025");
-    }
-  
-  
-  };
+};

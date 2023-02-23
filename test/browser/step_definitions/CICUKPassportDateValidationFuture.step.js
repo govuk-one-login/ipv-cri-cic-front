@@ -10,10 +10,6 @@ const {PassportDetailsPageInvalidFuture, PhotoIdExpiryPage} = require("../pages"
   
     await ukPassport.expiryDateDay();
 
-    await ukPassport.expiryDateMonth();
-
-    await ukPassport.expiryDateYear();
-
   });
 
 

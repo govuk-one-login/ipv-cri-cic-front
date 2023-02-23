@@ -8,11 +8,7 @@ const {CitizenCardDetailsPageInvalid, PhotoIdExpiryPage} = require("../pages");
 
     const citizenCardDetails = new CitizenCardDetailsPageInvalid(await this.page);
   
-    await citizenCardDetails.expiryDateDay();
-
-    await citizenCardDetails.expiryDateMonth();
-
-    await citizenCardDetails.expiryDateYear();
+    await citizenCardDetails.expiryDate();
 
   });
 

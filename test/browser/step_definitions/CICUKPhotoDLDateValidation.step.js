@@ -8,11 +8,7 @@ const {PhotoDlDetailsPageInvalid, PhotoIdExpiryPage} = require("../pages");
 
     const ukPhotoDl = new PhotoDlDetailsPageInvalid(await this.page);
   
-    await ukPhotoDl.expiryDateDay();
-
-    await ukPhotoDl.expiryDateMonth();
-
-    await ukPhotoDl.expiryDateYear();
+    await ukPhotoDl.expiryDate();
 
   });
 

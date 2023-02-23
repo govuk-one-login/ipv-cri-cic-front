@@ -7,11 +7,7 @@ const { CitizenCardDetailsPageValid, NameEntryPage} = require("../pages");
   Given(/^the date entered is within accepted CitizenCard expiration window$/, async function () {
     const citizenCardDetails = new CitizenCardDetailsPageValid(await this.page);
   
-    await citizenCardDetails.expiryDateDay();
-
-    await citizenCardDetails.expiryDateMonth();
-
-    await citizenCardDetails.expiryDateYear();
+    await citizenCardDetails.expiryDate();
 
   });
 

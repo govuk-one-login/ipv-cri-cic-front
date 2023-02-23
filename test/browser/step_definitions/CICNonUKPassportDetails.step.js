@@ -7,11 +7,7 @@ const { NonUKPassportDetailsPageValid, NameEntryPage} = require("../pages");
   Given(/^the date entered is within accepted Non UK expiration window$/, async function () {
     const nonUKPassportDetails = new NonUKPassportDetailsPageValid(await this.page);
   
-    await nonUKPassportDetails.expiryDateDay();
-
-    await nonUKPassportDetails.expiryDateMonth();
-
-    await nonUKPassportDetails.expiryDateYear();
+    await nonUKPassportDetails.expiryDate();
 
   });
 
