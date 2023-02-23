@@ -1,5 +1,5 @@
 @mock-api:f2f-cic-success @success
-Feature: The user enters their name to be used as part of their claimed identity
+Feature: The user enters their date of birth to be used as part of their claimed identity
 
 
     Background:
@@ -19,7 +19,15 @@ Feature: The user enters their name to be used as part of their claimed identity
         When the user clicks the continue button on the Non UK passport page
         Then the user is routed to the next screen in the NonUKPassport journey - Name Entry
 
-    Scenario: Successful validation of Surname and First name fields
         Given there has been an entry into the surname and first name fields
         When the user clicks the NameEntry continue button
         Then the user is routed to the next screen in the journey DOB Entry
+
+        Given the DOB fields are populated with valid values
+        When the user clicks the DoB continue button
+        Then they are routed to the Check My Answers Screen
+
+    Scenario: Successful redirect from Check My Answers screen back to previous screen
+        Given the user has navigated to the Check My Answers page
+        When the Back link is clicked on the Check My Answers page
+        Then the user is navigated back to the DOB Entry page
