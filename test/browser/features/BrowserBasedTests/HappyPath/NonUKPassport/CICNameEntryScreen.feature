@@ -13,7 +13,7 @@ Feature: The user enters their name to be used as part of their claimed identity
 
         Given the Other passport option is selected
         When the user clicks the continue button with Non UK passport selected
-        Then the user is routed to the next screen in the journey OtherPassport Details
+        Then the user is routed to the next screen - OtherPassport Details
 
         Given the date entered is within accepted Non UK expiration window
         When the user clicks the continue button on the Non UK passport page

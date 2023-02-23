@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @success
+@mock-api:f2f-cic-success @success @test
 Feature: The user enters their date of birth to be used as part of their claimed identity
 
 
@@ -13,7 +13,7 @@ Feature: The user enters their date of birth to be used as part of their claimed
 
         Given the Other passport option is selected
         When the user clicks the continue button with Non UK passport selected
-        Then the user is routed to the next screen in the journey OtherPassport Detai
+        Then the user is routed to the next screen - OtherPassport Details
 
         Given the date entered is within accepted Non UK expiration window
         When the user clicks the continue button on the Non UK passport page
