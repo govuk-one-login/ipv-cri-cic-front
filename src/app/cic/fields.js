@@ -25,7 +25,18 @@ module.exports = {
     type: "date",
     journeyKey: "passportExpiryDate",
     validate: ["required", "date",
-    // { type: "dayAndMonthEmpty", fn: (day, month) => day && month }
+      {
+        type: "before",
+        arguments: [
+          new Date(
+            new Date().getFullYear() + 10,
+            new Date().getMonth(),
+            new Date().getDate() + 1,
+          )
+            .toISOString()
+            .split("T")[0],
+        ],
+      },
     ]
   },
   nonUKPassportExpiryDate: {
