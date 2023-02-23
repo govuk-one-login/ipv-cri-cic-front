@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @success @test
+@mock-api:f2f-cic-success @success
 Feature: The user enters their date of birth to be used as part of their claimed identity
 
 
@@ -29,4 +29,5 @@ Feature: The user enters their date of birth to be used as part of their claimed
 
     Scenario: Successful redirect from Check My Answers screen back to previous screen
         Given the user has navigated to the Check My Answers page
+        When the Back link is clicked on the Check My Answers page
         Then the user is navigated back to the DOB Entry page
