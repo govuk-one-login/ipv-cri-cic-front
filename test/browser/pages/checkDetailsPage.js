@@ -18,5 +18,4 @@ module.exports = class PlaywrightDevPage {
   async back(){
     await this.page.click("#back");
   }
-
 };

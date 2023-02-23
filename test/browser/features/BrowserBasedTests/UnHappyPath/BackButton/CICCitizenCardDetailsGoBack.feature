@@ -14,8 +14,7 @@ Feature: Enter CitizenCard Details  - Happy Path
         When the user clicks the continue button with CitizenCard selected
         Then the user is routed to the next screen in the CitizenCard journey - CitizenCard details
 
-
-    Scenario: Successful redirect from Citizen Card Expiry  screen back to Document Selection screen
+    Scenario: Successful redirect from Citizen Card Expiry screen back to Document Selection screen
     Given the user has navigated to the Citizen Card Expiry page
     When the Back link is clicked on the Citizen Card Expiry page
     Then the user is navigated back to the Document Selection page
