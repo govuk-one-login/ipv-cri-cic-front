@@ -62,7 +62,21 @@ module.exports = {
     type: "date",
     journeyKey: "euIdCardExpiryDate",
     validate: [
-      "required", "date"]
+      "required", "date",
+      {
+        type: "before",
+        arguments: [
+          new Date(
+            new Date().getFullYear() + 75,
+            new Date().getMonth(),
+            new Date().getDate() + 1,
+          )
+            .toISOString()
+            .split("T")[0],
+        ],
+      },
+    
+    ]
   },
   surname: {
     type: "text",
