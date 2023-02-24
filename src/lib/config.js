@@ -5,10 +5,8 @@ module.exports = {
     BASE_URL: process.env.API_BASE_URL || "http://localhost:8090",
     PATHS: {
       SESSION: "/session",
-      QUESTION: "/question",
-      ANSWER: "/answer",
       AUTHORIZATION: "/authorization",
-      ABANDON: "/abandon",
+      SAVE_CICDATA: "/claimedIdentity"
     },
   },
   APP: {
@@ -20,7 +18,6 @@ module.exports = {
       PHOTOCARD_DL_DETAILS: "/photocardDlDetails",
       BRP_DETAILS: "/brpDetails",
       EU_PHOTOCARD_DL_DETAILS: "/euPhotocardDlDetails",
-      EEA_PERMANENT_RESIDENCY_CARD_DETAILS: "/eeaPermanentResidencyCardDetails",
       EU_IDENTITY_CARD_DETAILS: "/euIdentityCardDetails",
       CITIZEN_CARD_DETAILS: "/citizenCardDetails",
       YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD_DETAILS: "/youngScotNecDetails",
@@ -36,7 +33,6 @@ module.exports = {
       UK_PHOTOCARD_DL: "ukPhotocardDl",
       BRP: "brp",
       EU_PHOTOCARD_DL: "euPhotocardDl",
-      EEA_PERMANENT_RESIDENCY_CARD: "eeaPermanentResidencyCard",
       EU_IDENTITY_CARD: "euIdentityCard",
       CITIZEN_CARD: "citizenCard",
       YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD: "youngScotNationalEntitlementCard",

@@ -7,7 +7,7 @@ module.exports = class PlaywrightDevPage {
       this.url = "http://localhost:5020/nameEntry";
     }
   
-  async isCurrentPage() {
+    async isCurrentPage() {  
       return await this.page.url() === this.url;
   }
   
@@ -26,5 +26,16 @@ module.exports = class PlaywrightDevPage {
     async enterMiddleName(){
       await this.page.locator("#middleName").fill("Robert");
     }
+
+    async back(){
+      await this.page.click("#back");
+    }
+    
+    async checkErrorText(){
+      const errorText = await this.page.locator("#error-summary-title").textContent();
+      return errorText.trim(); 
+    }
   };
+
+  
   

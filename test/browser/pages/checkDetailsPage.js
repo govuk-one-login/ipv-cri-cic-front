@@ -15,4 +15,7 @@ module.exports = class PlaywrightDevPage {
     await this.page.click("#continue");
   }
 
+  async back(){
+    await this.page.click("#back");
+  }
 };

@@ -3,7 +3,6 @@ const { Controller: BaseController } = require("hmpo-form-wizard");
 class RootController extends BaseController {
   async saveValues(req, res, next) {
     const sharedClaims = req.session?.shared_claims;
-    // req.sessionModel.set("passportExpiryDate", "2022-02-02");
 
     if (sharedClaims) {
 
@@ -17,10 +16,6 @@ class RootController extends BaseController {
       }
       if (sharedClaims?.birthDate?.length > 0) {
         req.sessionModel.set("dateOfBirth", sharedClaims.birthDate[0].value);
-      }
-      // Verify sharedClaim name for ID types
-      if (sharedClaims?.eeaPrCard?.length > 0) {
-        req.sessionModel.set("eeaPrCardExpiryDate", sharedClaims.eeaPrCard[0].expiryDate);
       }
     }
     super.saveValues(req, res, next);
