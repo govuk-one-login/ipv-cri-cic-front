@@ -50,7 +50,20 @@ module.exports = {
     type: "date",
     journeyKey: "citizenCardExpiryDate",
     validate: [
-      "required", "date"]
+      "required", "date",
+      {
+        type: "before",
+        arguments: [
+          new Date(
+            new Date().getFullYear() + 4,
+            new Date().getMonth(),
+            new Date().getDate() + 1,
+          )
+            .toISOString()
+            .split("T")[0],
+        ],
+      },
+    ]
   },
   youngScotNationalEntitlementCardExpiryDate: {
     type: "date",
@@ -77,7 +90,7 @@ module.exports = {
     journeyKey: "firstName",
     validate: [
       "required",
-      {type: "regexSurname", fn: (value) => value.match(/^[a-zA-Z .'-]*$/)}
+      {type: "regexFirstname", fn: (value) => value.match(/^[a-zA-Z .'-]*$/)}
     ]
   },
   middleName: {
