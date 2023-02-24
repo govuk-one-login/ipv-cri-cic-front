@@ -11,7 +11,7 @@ const nameEntry = require("./controllers/nameEntry");
 const dobEntry = require("./controllers/dateOfBirth");
 const checkDetails = require('./controllers/checkDetails');
 const root = require("./controllers/root");
-const {APP} = require("../../lib/config");
+const { APP } = require("../../lib/config");
 
 module.exports = {
   "/": {
@@ -160,12 +160,6 @@ module.exports = {
         value: "today",
         next: "photoIdExpiry",
       },
-      {
-        field: "brpExpiryDate",
-        op: "after",
-        value: "2025-01-01",
-        next: "photoIdExpiry",
-      },
       "nameEntry",
     ],
   },
@@ -254,7 +248,7 @@ module.exports = {
     ],
   },
   "/photoIdExpiry": {
-     next: "photoIdSelection",
+    next: "photoIdSelection",
   },
   "/nameEntry": {
     editable: true,
