@@ -1,4 +1,4 @@
-const {APP} = require("../../lib/config");
+const { APP } = require("../../lib/config");
 
 module.exports = {
   photoIdChoice: {
@@ -7,18 +7,20 @@ module.exports = {
     label: "",
     hint: "",
     items: [
-      {value: APP.PHOTO_ID_OPTIONS.UK_PASSPORT,
-      hint: {text: APP.UK_PASSPORT_HINT}},
-    {value: APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT},
-    {value: APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL},
-    {value: APP.PHOTO_ID_OPTIONS.BRP},
-    {value: APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL},
-    {value: APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD},
-    {value: APP.PHOTO_ID_OPTIONS.CITIZEN_CARD},
-    {value: APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD},
-    {divider: "or"},
-    {value:APP.PHOTO_ID_OPTIONS.NO_PHOTO_ID}
-  ],
+      {
+        value: APP.PHOTO_ID_OPTIONS.UK_PASSPORT,
+        hint: { text: APP.UK_PASSPORT_HINT }
+      },
+      { value: APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT },
+      { value: APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL },
+      { value: APP.PHOTO_ID_OPTIONS.BRP },
+      { value: APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL },
+      { value: APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD },
+      { value: APP.PHOTO_ID_OPTIONS.CITIZEN_CARD },
+      { value: APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD },
+      { divider: "or" },
+      { value: APP.PHOTO_ID_OPTIONS.NO_PHOTO_ID }
+    ],
     validate: ["required"]
   },
   passportExpiryDate: {
@@ -38,8 +40,13 @@ module.exports = {
   },
   brpExpiryDate: {
     type: "date",
-    journeyKey: "brpExpiryDate",
-    validate: ["required", "date"]
+    journeyKey: "passportExpiryDate",
+    validate: ["required", "date",
+      {
+        type: "before",
+        arguments: ["2025-01-01"]
+      },
+    ]
   },
   euPhotocardDlExpiryDate: {
     type: "date",
@@ -69,7 +76,7 @@ module.exports = {
     journeyKey: "surname",
     validate: [
       "required",
-      {type: "regexSurname", fn: (value) => value.match(/^[a-zA-Z .'-]*$/)}
+      { type: "regexSurname", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) }
     ]
   },
   firstName: {
@@ -77,14 +84,14 @@ module.exports = {
     journeyKey: "firstName",
     validate: [
       "required",
-      {type: "regexSurname", fn: (value) => value.match(/^[a-zA-Z .'-]*$/)}
+      { type: "regexSurname", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) }
     ]
   },
   middleName: {
     type: "text",
     journeyKey: "middleName",
     validate: [
-      {type: "regexSurname", fn: (value) => value.match(/^[a-zA-Z .'-]*$/)}
+      { type: "regexSurname", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) }
     ]
   },
   dateOfBirth: {
@@ -92,8 +99,8 @@ module.exports = {
     journeyKey: "dateOfBirth",
     validate: [
       "required", "date",
-      {type: "before", arguments: [new Date().toISOString().split("T")[0]]},
-      {type: "after", arguments: ["1899-12-31"]}
+      { type: "before", arguments: [new Date().toISOString().split("T")[0]] },
+      { type: "after", arguments: ["1899-12-31"] }
     ]
   }
 };

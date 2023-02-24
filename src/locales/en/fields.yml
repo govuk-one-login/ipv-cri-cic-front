@@ -51,9 +51,17 @@ brpExpiryDate:
   legend: ""
   label: ""
   hint: "For example, 31 3 2025"
-  validation:
-    default: "Enter the expiry date as it appears on your BRP"
-    after: "The expiry date must be in the future"
+  validation: 
+    default: "Enter the date of expiry"
+    before: "Enter a valid expiry date"
+    "numeric-day": "The expiry date must include a day that contains numbers only"
+    "numeric-month": "The expiry date must include a month that contains numbers only"
+    "numeric-year": "The expiry date must include a year that contains numbers only"
+    "date-day": "The expiry date must include a day that is a number between 1 and 31"
+    "date-month": "The expiry date must include a month that is a number between 1 and 12"
+    "required-day": "Enter the full expiry date"
+    "required-month": "Enter the full expiry date"
+    "required-year": "Enter the full expiry date"
 
 photocardDlExpiryDate:
   legend: ""
