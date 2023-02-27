@@ -2,7 +2,7 @@ const { Given, When, Then } = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const { CheckDetailsPage, PhotoIdSelectionPageEdit, EuDrivingLicenceDetailsPageValidEdit }  = require("../pages");
+const { CheckDetailsPage, PhotoIdSelectionPageEdit }  = require("../pages");
 
 Given(/^the user has navigated to Check My Answers Page$/, async function () {
     const cdPage = new CheckDetailsPage(await this.page);
