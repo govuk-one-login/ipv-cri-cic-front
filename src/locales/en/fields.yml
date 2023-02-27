@@ -126,7 +126,7 @@ dateOfBirth:
     "numeric-day": "Your date of birth must include a day that contains numbers only"
     "numeric-month": "Your date of birth must include a month that contains numbers only"
     "numeric-year": "Your date of birth must include a year that contains numbers only"
-    "date-day": "Your date of birth must include a day that is a number between 1 and 31"
+    "date-day": "Enter a valid day"
     "date-month": "Your date of birth must include a month that is a number between 1 and 12"
     "required-day": "Enter your full date of birth"
     "required-month": "Enter your full date of birth"
