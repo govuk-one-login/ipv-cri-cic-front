@@ -38,4 +38,3 @@ Feature: The user enters their date of birth to be used as part of their claimed
         Then the user enters a date within the expiry window
         Then the user clicks continue
         Then the user is navigated back to the Check My Answers screen
-
