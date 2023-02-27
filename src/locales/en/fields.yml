@@ -97,7 +97,7 @@ euIdCardExpiryDate:
     "numeric-day": "The expiry date must include a day that contains numbers only"
     "numeric-month": "The expiry date must include a month that contains numbers only"
     "numeric-year": "The expiry date must include a year that contains numbers only"
-    "date-day": "The expiry date must include a day that is a number between 1 and 31"
+    "date-day": "Enter a valid day"
     "date-month": "The expiry date must include a month that is a number between 1 and 12"
     "required-day": "Enter the full expiry date"
     "required-month": "Enter the full expiry date"
