@@ -18,4 +18,13 @@ module.exports = class PlaywrightDevPage {
   async back(){
     await this.page.click("#back");
   }
+
+  get expiryDateLink() {
+    return this.page.locator('[href*="/nonUKPassportDetails/edit"]');
+  }
+  
+  async changeExpiryDate(){
+    await this.expiryDateLink.click();
+  }
+               
 };
