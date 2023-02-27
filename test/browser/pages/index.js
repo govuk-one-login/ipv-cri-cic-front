@@ -4,6 +4,7 @@ module.exports = {
   RelyingPartyPage: require("./relying-party.js"),
   ErrorPage: require("./error.js"),
   PassportDetailsPageValid: require("./passportDetailsPageValid"),
+  NonPassportDetailsPageValidEdit: require("./nonUKPassportDetailsPageValidEdit"),
   PassportDetailsPageInvalidFuture: require("./passportDetailsPageInvalidFuture"),
   PassportDetailsPageInvalidPast: require("./passportDetailsPageInvalidPast"),
   EuDrivingLicenceDetailsPageValid: require("./euDrivingLicenceDetailsPageValid"),
