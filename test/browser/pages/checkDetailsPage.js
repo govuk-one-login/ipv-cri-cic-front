@@ -26,5 +26,13 @@ module.exports = class PlaywrightDevPage {
   async changeExpiryDate(){
     await this.expiryDateLink.click();
   }
+
+  get idTypeLink() {
+    return this.page.locator('[href*="/photoIdSelection/edit"]');
+  }
+  
+  async changeIdType(){
+    await this.idTypeLink.click();
+  }
                
 };
