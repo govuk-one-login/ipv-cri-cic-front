@@ -1,6 +1,7 @@
 module.exports = {
   LandingPage: require("./landingPage"),
   PhotoIdSelectionPage: require("./photoIdSelectionPage"),
+  PhotoIdSelectionPageEdit: require("./photoIdSelectionPageEdit"),
   RelyingPartyPage: require("./relying-party.js"),
   ErrorPage: require("./error.js"),
   PassportDetailsPageValid: require("./passportDetailsPageValid"),
@@ -8,6 +9,7 @@ module.exports = {
   PassportDetailsPageInvalidFuture: require("./passportDetailsPageInvalidFuture"),
   PassportDetailsPageInvalidPast: require("./passportDetailsPageInvalidPast"),
   EuDrivingLicenceDetailsPageValid: require("./euDrivingLicenceDetailsPageValid"),
+  EuDrivingLicenceDetailsPageValidEdit: require("./euDrivingLicenceDetailsPageValidEdit"),
   EuDrivingLicenceDetailsPageInvalid: require("./euDrivingLicenceDetailsPageInvalid"),
   NameEntryPage: require("./nameEntryPage"),
   DateOfBirthPage: require("./dateOfBirthPage"),
