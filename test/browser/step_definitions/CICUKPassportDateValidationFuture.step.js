@@ -2,17 +2,13 @@ const { Given, When, Then, And} = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const {PassportDetailsPageInvalidFuture, PhotoIdExpiryPage} = require("../pages");
+const { PassportDetailsPageInvalidFuture } = require("../pages");
 
   Given(/^the date entered is more than 10 years from today$/, async function () {
 
     const ukPassport = new PassportDetailsPageInvalidFuture(await this.page);
   
     await ukPassport.expiryDateDay();
-
-    await ukPassport.expiryDateMonth();
-
-    await ukPassport.expiryDateYear();
 
   });
 
@@ -28,10 +24,16 @@ const {PassportDetailsPageInvalidFuture, PhotoIdExpiryPage} = require("../pages"
   });
   
 
-  Then(/^the user is routed to the Expired Date Error Screen from the UK Passport screen$/, async function () {
+  Then(/^the user sees an inline error message displayed on the UK Passport Page$/, async function () {
         
-        const photoIdExpPg = new PhotoIdExpiryPage(await this.page);
+    const ukPassport = new PassportDetailsPageInvalidFuture(await this.page);
 
-        expect(await photoIdExpPg.isCurrentPage()).to.be.true;
+    expect(await ukPassport.isCurrentPage()).to.be.true;
+
+    const inlineError = 'There is a problem';
+
+    const error = await ukPassport.checkErrorText();
+      
+    expect(await error).to.equal(inlineError);
 
   });

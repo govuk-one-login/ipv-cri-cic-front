@@ -14,7 +14,6 @@ Feature: Enter CitizenCard Details  - Happy Path
         When the user clicks the continue button with CitizenCard selected
         Then the user is routed to the next screen in the CitizenCard journey - CitizenCard details
 
-    
     Scenario: CitizenCard not expired (Happy path)
         Given the date entered is within accepted CitizenCard expiration window
         When the user clicks the continue button on the CitizenCard details page

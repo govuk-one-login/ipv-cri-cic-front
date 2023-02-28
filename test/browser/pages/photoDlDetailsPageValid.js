@@ -16,17 +16,13 @@ module.exports = class PlaywrightDevPage {
     await this.page.click("#continue");
   }
 
-  async expiryDateDay() {
-    await this.page.locator("#photocardDlExpiryDate-day").fill("28");
+  async expiryDate() {
+    const expDay = new Date().getDate().toString()
+    const currentMonth = new Date().getMonth() + 1
+    const expMonth = currentMonth.toString()
+    const expYear = new Date().getFullYear().toString()
+    await this.page.locator("#photocardDlExpiryDate-day").fill(expDay);
+    await this.page.locator("#photocardDlExpiryDate-month").fill(expMonth);
+    await this.page.locator("#photocardDlExpiryDate-year").fill(expYear);
   }
-
-  async expiryDateMonth() {
-    await this.page.locator("#photocardDlExpiryDate-month").fill("05");
-  }
-
-  async expiryDateYear() {
-    await this.page.locator("#photocardDlExpiryDate-year").fill("2024");
-  }
-
-
 };

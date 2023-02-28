@@ -13,4 +13,4 @@ Feature: Build Document Selection Screen
 Scenario: Successful redirect on 'Non UK passport' selection (Happy path)
 Given the Other passport option is selected
 When the user clicks the continue button with Non UK passport selected
-Then the user is routed to the next screen in the journey Other Passport Details
+Then the user is routed to the next screen - OtherPassport Details

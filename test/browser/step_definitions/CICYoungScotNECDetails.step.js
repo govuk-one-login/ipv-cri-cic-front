@@ -7,11 +7,7 @@ const { YoungScotNECDetailsPageValid, NameEntryPage} = require("../pages");
   Given(/^the date entered is within accepted Young Scot NEC expiration window$/, async function () {
     const youngScotNECDetailsPage = new YoungScotNECDetailsPageValid(await this.page);
   
-    await youngScotNECDetailsPage.expiryDateDay();
-
-    await youngScotNECDetailsPage.expiryDateMonth();
-
-    await youngScotNECDetailsPage.expiryDateYear();
+    await youngScotNECDetailsPage.expiryDate();
 
   });
 

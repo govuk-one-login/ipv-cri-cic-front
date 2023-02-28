@@ -2,17 +2,13 @@ const { Given, When, Then, And} = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const {BRPDetailsPageInvalid, PhotoIdExpiryPage} = require("../pages");
+const { BRPDetailsPageInvalid } = require("../pages");
 
   Given(/^the date entered is outside the accepted BRP expiration window$/, async function () {
 
     const brp = new BRPDetailsPageInvalid(await this.page);
   
-    await brp.expiryDateDay();
-
-    await brp.expiryDateMonth();
-
-    await brp.expiryDateYear();
+    await brp.expiryDate();
 
   });
 
@@ -28,10 +24,16 @@ const {BRPDetailsPageInvalid, PhotoIdExpiryPage} = require("../pages");
   });
   
 
-  Then(/^the user is routed to the Expired Date Error Screen from the BRP screen$/, async function () {
+  Then(/^the user sees an inline error message displayed on the BRP Page$/, async function () {
         
-        const photoIdExpPg = new PhotoIdExpiryPage(await this.page);
+    const brp = new BRPDetailsPageInvalid(await this.page);
 
-        expect(await photoIdExpPg.isCurrentPage()).to.be.true;
+    expect(await brp.isCurrentPage()).to.be.true;
+
+    const inlineError = 'There is a problem';
+
+    const error = await brp.checkErrorText();
+      
+    expect(await error).to.equal(inlineError);
 
   });

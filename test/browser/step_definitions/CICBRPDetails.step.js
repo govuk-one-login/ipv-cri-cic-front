@@ -7,11 +7,7 @@ const { BRPDetailsPageValid, NameEntryPage,} = require("../pages");
   Given(/^the date entered is within accepted BRP expiration window$/, async function () {
     const brpDetailsPage = new BRPDetailsPageValid(await this.page);
   
-    await brpDetailsPage.expiryDateDay();
-
-    await brpDetailsPage.expiryDateMonth();
-
-    await brpDetailsPage.expiryDateYear();
+    await brpDetailsPage.expiryDate();
 
   });
 

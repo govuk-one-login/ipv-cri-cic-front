@@ -20,7 +20,7 @@ const {PhotoIdSelectionPage, NonUKPassportDetailsPageValid, } = require("../page
   
   });
   
-  Then(/^the user is routed to the next screen in the journey Other Passport Details$/, async function () {
+  Then(/^the user is routed to the next screen - OtherPassport Details$/, async function () {
     const nonUKPassportDetails = new NonUKPassportDetailsPageValid(await this.page);
 
      expect(await nonUKPassportDetails.isCurrentPage()).to.be.true;

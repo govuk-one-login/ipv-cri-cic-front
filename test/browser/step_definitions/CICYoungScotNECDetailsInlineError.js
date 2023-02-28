@@ -4,7 +4,7 @@ const { expect } = require("chai");
 
 const { YoungScotNECDetailsPageValid } = require("../pages");
 
-  When(/^the user clicks the continue button only on the YSNECPage$/, async function () {
+  Given(/^the user clicks the continue button only on the YSNECPage$/, async function () {
     const youngScotNECDetailsPage = new YoungScotNECDetailsPageValid(await this.page);
 
     await youngScotNECDetailsPage.continue();

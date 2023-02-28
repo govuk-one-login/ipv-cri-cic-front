@@ -15,4 +15,24 @@ module.exports = class PlaywrightDevPage {
     await this.page.click("#continue");
   }
 
+  async back(){
+    await this.page.click("#back");
+  }
+
+  get expiryDateLink() {
+    return this.page.locator('[href*="/nonUKPassportDetails/edit"]');
+  }
+  
+  async changeExpiryDate(){
+    await this.expiryDateLink.click();
+  }
+
+  get idTypeLink() {
+    return this.page.locator('[href*="/photoIdSelection/edit"]');
+  }
+  
+  async changeIdType(){
+    await this.idTypeLink.click();
+  }
+               
 };

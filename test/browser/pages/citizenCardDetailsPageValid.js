@@ -7,7 +7,6 @@ module.exports = class PlaywrightDevPage {
       this.url = "http://localhost:5020/citizenCardDetails";
     }
   
-  
     async isCurrentPage() {
       return await this.page.url() === this.url;
     }
@@ -15,23 +14,18 @@ module.exports = class PlaywrightDevPage {
     async continue() {
       await this.page.click("#continue");
     }
-  
+    
     async back(){
       await this.page.click("#back");
     }
-    
-    async expiryDateDay() {
-      await this.page.locator("#citizenCardExpiryDate-day").fill("01");
+  
+    async expiryDate() {
+      const expDay = new Date().getDate().toString()
+      const currentMonth = new Date().getMonth() + 1
+      const expMonth = currentMonth.toString()
+      const expYear = new Date().getFullYear().toString()
+      await this.page.locator("#citizenCardExpiryDate-day").fill(expDay);
+      await this.page.locator("#citizenCardExpiryDate-month").fill(expMonth);
+      await this.page.locator("#citizenCardExpiryDate-year").fill(expYear);
     }
-  
-    async expiryDateMonth() {
-      await this.page.locator("#citizenCardExpiryDate-month").fill("08");
-    }
-  
-    async expiryDateYear() {
-      await this.page.locator("#citizenCardExpiryDate-year").fill("2024");
-    }
-  
-  
-
-  };
+ };
