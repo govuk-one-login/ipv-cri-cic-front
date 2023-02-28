@@ -42,5 +42,12 @@ module.exports = class PlaywrightDevPage {
   async changeName(){
     await this.nameEntryLink.click();
   }
-               
+
+  get doBLink() {
+    return this.page.locator('[href*="/dateOfBirth/edit"]')
+  }
+
+  async changeDoB(){
+    await this.doBLink.click();
+  }             
 };
