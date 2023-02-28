@@ -27,4 +27,9 @@ module.exports = class PlaywrightDevPage {
     await this.page.locator("#passportExpiryDate-month").fill(expMonth);
     await this.page.locator("#passportExpiryDate-year").fill(expYear);
   }
+
+  async checkErrorText(){
+    const errorText = await this.page.locator("#error-summary-title").textContent();
+    return errorText.trim(); 
+  }
 };

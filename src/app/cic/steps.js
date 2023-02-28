@@ -82,6 +82,11 @@ module.exports = {
         value: APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD,
         next: APP.PATHS.EU_IDENTITY_CARD_DETAILS,
       },
+      {
+        field: "photoIdChoice",
+        value: APP.PHOTO_ID_OPTIONS.NO_PHOTO_ID,
+        next: APP.PATHS.NO_PHOTO_ID,
+      },
     ],
   },
 
@@ -121,7 +126,7 @@ module.exports = {
       {
         field: "nonUKPassportExpiryDate",
         op: "after",
-        value: "10 years",
+        value: "75 years",
         next: "photoIdExpiry",
       },
       "nameEntry",
@@ -233,7 +238,7 @@ module.exports = {
     editBackStep: "checkDetails",
     next: [
       {
-        field: "nonUKPassportExpiryDate",
+        field: "euPhotocardDlExpiryDate",
         op: "before",
         value: "today",
         next: "photoIdExpiry",

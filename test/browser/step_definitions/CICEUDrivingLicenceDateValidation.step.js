@@ -2,7 +2,7 @@ const { Given, When, Then, And} = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const {EuDrivingLicenceDetailsPageInvalid, PhotoIdExpiryPage} = require("../pages");
+const { EuDrivingLicenceDetailsPageInvalid } = require("../pages");
 
   Given(/^the date entered is outside the accepted EU driving licence expiration window$/, async function () {
 
@@ -24,10 +24,16 @@ const {EuDrivingLicenceDetailsPageInvalid, PhotoIdExpiryPage} = require("../page
   });
   
 
-  Then(/^the user is routed to the Expired Date Error Screen from the EU driving licence screen$/, async function () {
+  Then(/^the user sees an inline error message displayed on the EU DL Page$/, async function () {
         
-        const photoIdExpPg = new PhotoIdExpiryPage(await this.page);
+    const euDL = new EuDrivingLicenceDetailsPageInvalid(await this.page);
 
-        expect(await photoIdExpPg.isCurrentPage()).to.be.true;
+    expect(await euDL.isCurrentPage()).to.be.true;
+
+    const inlineError = 'There is a problem';
+
+    const error = await euDL.checkErrorText();
+      
+    expect(await error).to.equal(inlineError);
 
   });

@@ -14,7 +14,8 @@ Feature: Enter BRP - Happy Path
         When the user clicks the BRP continue button
         Then the user is routed to the next screen in the journey BRP Expiry Date
     
+    
     Scenario: BRP expired (UnHappy path)
         Given the date entered is outside the accepted BRP expiration window
         When the user clicks the continue button on the BRP page
-        Then the user is routed to the Expired Date Error Screen from the BRP screen
+        Then the user sees an inline error message displayed on the BRP Page

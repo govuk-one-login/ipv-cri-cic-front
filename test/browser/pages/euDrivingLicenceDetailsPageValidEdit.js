@@ -4,9 +4,8 @@ module.exports = class PlaywrightDevPage {
      */
     constructor(page) {
       this.page = page;
-      this.url = "http://localhost:5020/euPhotocardDlDetails";
+      this.url = "http://localhost:5020/euPhotocardDlDetails/edit";
     }
-  
   
     async isCurrentPage() {
       return await this.page.url() === this.url;
@@ -17,19 +16,12 @@ module.exports = class PlaywrightDevPage {
     }
   
     async expiryDate() {
-      const tomorrow = new Date().getDate() + 1
-      const expDay = tomorrow.toString()
+      const expDay = new Date().getDate().toString()
       const currentMonth = new Date().getMonth() + 1
       const expMonth = currentMonth.toString()
-      const futureYear = new Date().getFullYear() + 75
-      const expYear = futureYear.toString()
+      const expYear = new Date().getFullYear().toString()
       await this.page.locator("#euPhotocardDlExpiryDate-day").type(expDay);
       await this.page.locator("#euPhotocardDlExpiryDate-month").fill(expMonth);
       await this.page.locator("#euPhotocardDlExpiryDate-year").fill(expYear);
-    }
-
-    async checkErrorText(){
-      const errorText = await this.page.locator("#error-summary-title").textContent();
-      return errorText.trim(); 
     }
 };
