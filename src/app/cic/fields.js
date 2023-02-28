@@ -84,7 +84,7 @@ module.exports = {
     journeyKey: "surname",
     validate: [
       "required",
-      { type: "regexSurname", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) }
+      { type: "regexName", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) }
     ]
   },
   firstName: {
@@ -92,14 +92,14 @@ module.exports = {
     journeyKey: "firstName",
     validate: [
       "required",
-      { type: "regexSurname", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) }
+      { type: "regexName", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) }
     ]
   },
   middleName: {
     type: "text",
     journeyKey: "middleName",
     validate: [
-      { type: "regexSurname", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) }
+      { type: "regexName", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) }
     ]
   },
   dateOfBirth: {
