@@ -121,7 +121,7 @@ module.exports = {
       {
         field: "nonUKPassportExpiryDate",
         op: "after",
-        value: "10 years",
+        value: "75 years",
         next: "photoIdExpiry",
       },
       "nameEntry",
