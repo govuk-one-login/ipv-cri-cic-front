@@ -34,5 +34,13 @@ module.exports = class PlaywrightDevPage {
   async changeIdType(){
     await this.idTypeLink.click();
   }
+  
+  get nameEntryLink() {
+    return this.page.locator('[href*="/nameEntry/edit"]')
+  }
+
+  async changeName(){
+    await this.nameEntryLink.click();
+  }
                
 };

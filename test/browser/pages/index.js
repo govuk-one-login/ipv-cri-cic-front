@@ -13,6 +13,7 @@ module.exports = {
   EuDrivingLicenceDetailsPageInvalidFuture: require("./euDrivingLicenceDetailsPageInvalidFuture"),
   EuDrivingLicenceDetailsPageInvalidPast: require("./euDrivingLicenceDetailsPageInvalidPast"),
   NameEntryPage: require("./nameEntryPage"),
+  NameEntryPageEdit: require("./nameEntryPageEdit"),
   DateOfBirthPage: require("./dateOfBirthPage"),
   CheckDetailsPage: require("./checkDetailsPage"),
   YoungScotNECDetailsPageValid: require("./youngScotNECDetailsPageValid"),
