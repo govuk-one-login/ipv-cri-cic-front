@@ -15,6 +15,7 @@ module.exports = {
   NameEntryPage: require("./nameEntryPage"),
   NameEntryPageEdit: require("./nameEntryPageEdit"),
   DateOfBirthPage: require("./dateOfBirthPage"),
+  DateOfBirthPageEdit: require("./dateOfBirthPageEdit"),
   CheckDetailsPage: require("./checkDetailsPage"),
   YoungScotNECDetailsPageValid: require("./youngScotNECDetailsPageValid"),
   YoungScotNECDetailsPageInvalid: require("./youngScotNECDetailsPageInvalid"),
