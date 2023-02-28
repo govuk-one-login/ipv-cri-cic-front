@@ -27,7 +27,7 @@ Feature: The user enters their date of birth to be used as part of their claimed
         When the user clicks the DoB continue button
         Then they are routed to the Check My Answers Screen
     
-    @test
+    
     Scenario: Successful redirect from CMA screen back to name entry and back to CMA screen
         Given the user has navigated to Check My Answers Page
         When the name entry edit link is clicked
