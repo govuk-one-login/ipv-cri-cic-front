@@ -24,7 +24,7 @@ const { CitizenCardDetailsPageInvalid } = require("../pages");
   });
   
 
-  Then(/^Then the user sees an inline error message displayed on the CitizenCard Page$/, async function () {
+  Then(/^the user sees an inline error message displayed on the CitizenCard Page$/, async function () {
         
     const citizenCard = new CitizenCardDetailsPageInvalid(await this.page);
 

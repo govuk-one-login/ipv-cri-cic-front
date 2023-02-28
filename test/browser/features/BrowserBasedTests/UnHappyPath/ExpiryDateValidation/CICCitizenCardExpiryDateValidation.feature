@@ -18,4 +18,4 @@ Feature: Enter CitizenCard - Happy Path
     Scenario: CitizenCard expired (UnHappy path)
         Given the date entered is outside the accepted CitizenCard expiration window
         When the user clicks the continue button on the CitizenCard details Page
-        Then Then the user sees an inline error message displayed on the CitizenCard Page
+        Then the user sees an inline error message displayed on the CitizenCard Page
