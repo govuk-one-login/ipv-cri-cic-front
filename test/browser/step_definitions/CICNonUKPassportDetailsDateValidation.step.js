@@ -2,7 +2,7 @@ const { Given, When, Then, And} = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const {NonUKPassportDetailsPageInvalid, PhotoIdExpiryPage} = require("../pages");
+const { NonUKPassportDetailsPageInvalid } = require("../pages");
 
   Given(/^the date entered is outside the accepted Non UK Passport expiration window$/, async function () {
 
@@ -24,10 +24,16 @@ const {NonUKPassportDetailsPageInvalid, PhotoIdExpiryPage} = require("../pages")
   });
   
 
-  Then(/^the user is routed to the Expired Date Error Screen from the Non UK Passport screen$/, async function () {
+  Then(/^the user sees an inline error message displayed on the Non UK Passport Page$/, async function () {
         
-        const photoIdExpPg = new PhotoIdExpiryPage(await this.page);
+    const nonUKPassport = new NonUKPassportDetailsPageInvalid(await this.page);
 
-        expect(await photoIdExpPg.isCurrentPage()).to.be.true;
+    expect(await nonUKPassport.isCurrentPage()).to.be.true;
+
+    const inlineError = 'There is a problem';
+
+    const error = await nonUKPassport.checkErrorText();
+      
+    expect(await error).to.equal(inlineError);
 
   });

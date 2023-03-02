@@ -14,8 +14,8 @@ Feature: Enter UK Passport - Happy Path
         When the user clicks the PhotoId continue button
         Then the user is routed to the next screen in the journey Passport Details
     
-    
+
     Scenario: UK Passport expired (UnHappy path)
         Given the date entered is more than 10 years from today
         When the user clicks the continue button on the UK Passport page
-        Then the user is routed to the Expired Date Error Screen from the UK Passport screen
+        Then the user sees an inline error message displayed on the UK Passport Page

@@ -61,15 +61,6 @@ error:
     buttonText: Go to the GOV.UK homepage
     buttonLink: https://www.gov.uk/
 
-"date-day":
-  label: Day
-
-"date-month":
-  label: Month
-
-"date-year":
-  label: Year
-
 common:
     confirmIdentityAnotherWay:
       confirmIdentity: "I want to prove my identity another way"
