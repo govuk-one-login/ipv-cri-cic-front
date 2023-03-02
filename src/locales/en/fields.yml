@@ -35,10 +35,18 @@ passportExpiryDate:
   legend: ""
   label: ""
   hint: "For example, 31 3 2025"
-  validation:
-    default: "Enter the expiry date as it appears on your passport"
-    after: "Your passport must not have expired more than 18 months ago"
-
+  validation: 
+    default: "Enter the date of expiry"
+    before: "Enter a valid expiry date"
+    "numeric-day": "The expiry date must include a day that contains numbers only"
+    "numeric-month": "The expiry date must include a month that contains numbers only"
+    "numeric-year": "The expiry date must include a year that contains numbers only"
+    "date-day": "Enter a valid day"
+    "date-month": "The expiry date must include a month that is a number between 1 and 12"
+    "required-day": "Enter the full expiry date"
+    "required-month": "Enter the full expiry date"
+    "required-year": "Enter the full expiry date"
+  
 nonUKPassportExpiryDate:
   legend: ""
   label: ""
@@ -101,7 +109,7 @@ surname:
   validation:
     default: "Enter your last name as it appears on your photo ID"
     maxlength: "Enter your last name as it appears on your photo ID"
-    regexSurname: "Enter your last name as it appears on your photo ID"
+    regexName: "Enter your last name as it appears on your photo ID"
 
 firstName:
   label: First name
@@ -109,11 +117,12 @@ firstName:
   validation:
     default: "Enter your first name as it appears on your photo ID"
     maxlength: "Enter your first name as it appears on your photo ID"
-    regexFirstname: "Enter your first name as it appears on your photo ID"
+    regexName: "Enter your first name as it appears on your photo ID"
 
 middleName:
   label: Middle names
   hint: Leave this blank if you do not have any middle names
+  regexName: "Enter your first name as it appears on your photo ID"
 
 dateOfBirth:
   legend: ""
