@@ -26,7 +26,20 @@ module.exports = {
   passportExpiryDate: {
     type: "date",
     journeyKey: "passportExpiryDate",
-    validate: ["required", "date"]
+    validate: ["required", "date",
+      {
+        type: "before",
+        arguments: [
+          new Date(
+            new Date().getFullYear() + 10,
+            new Date().getMonth(),
+            new Date().getDate() + 1,
+          )
+            .toISOString()
+            .split("T")[0],
+        ],
+      },
+    ]
   },
   nonUKPassportExpiryDate: {
     type: "date",
@@ -76,7 +89,7 @@ module.exports = {
     journeyKey: "surname",
     validate: [
       "required",
-      { type: "regexSurname", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) }
+      {type: "regexName", fn: (value) => value.match(/^[a-zA-Z .'-]*$/)}
     ]
   },
   firstName: {
@@ -84,14 +97,14 @@ module.exports = {
     journeyKey: "firstName",
     validate: [
       "required",
-      { type: "regexSurname", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) }
+      {type: "regexName", fn: (value) => value.match(/^[a-zA-Z .'-]*$/)}
     ]
   },
   middleName: {
     type: "text",
     journeyKey: "middleName",
     validate: [
-      { type: "regexSurname", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) }
+      {type: "regexName", fn: (value) => value.match(/^[a-zA-Z .'-]*$/)}
     ]
   },
   dateOfBirth: {

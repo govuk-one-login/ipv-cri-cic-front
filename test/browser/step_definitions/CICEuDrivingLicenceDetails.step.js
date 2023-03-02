@@ -26,3 +26,4 @@ const { EuDrivingLicenceDetailsPageValid, NameEntryPage } = require("../pages");
     expect(await nameEntryPage.isCurrentPage()).to.be.true;
 
   });
+  

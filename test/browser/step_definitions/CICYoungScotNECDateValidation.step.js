@@ -2,7 +2,7 @@ const { Given, When, Then, And} = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const {YoungScotNECDetailsPageInvalid, PhotoIdExpiryPage} = require("../pages");
+const { YoungScotNECDetailsPageInvalid } = require("../pages");
 
   Given(/^the date entered is outside the accepted Young Scot NEC expiration window$/, async function () {
 
@@ -24,10 +24,15 @@ const {YoungScotNECDetailsPageInvalid, PhotoIdExpiryPage} = require("../pages");
   });
   
 
-  Then(/^the user is routed to the Expired Date Error Screen from the Young Scot NEC Screen$/, async function () {
+  Then(/^the user sees an inline error message displayed on the Young Scot NEC Screen$/, async function () {
         
-        const photoIdExpPg = new PhotoIdExpiryPage(await this.page);
+    const ysNEC = new YoungScotNECDetailsPageInvalid(await this.page);
 
-        expect(await photoIdExpPg.isCurrentPage()).to.be.true;
+    expect(await ysNEC.isCurrentPage()).to.be.true;
 
+    const inlineError = 'There is a problem';
+
+    const error = await ysNEC.checkErrorText();
+      
+    expect(await error).to.equal(inlineError);
   });
