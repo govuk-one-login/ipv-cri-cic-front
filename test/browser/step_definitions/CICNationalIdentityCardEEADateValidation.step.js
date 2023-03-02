@@ -2,7 +2,7 @@ const { Given, When, Then, And} = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const {NationalIdentityCardEEADetailsPageInvalid, PhotoIdExpiryPage} = require("../pages");
+const { NationalIdentityCardEEADetailsPageInvalid } = require("../pages");
 
   Given(/^the date entered is outside the accepted National Identity Card EEA expiration window$/, async function () {
 
@@ -24,10 +24,16 @@ const {NationalIdentityCardEEADetailsPageInvalid, PhotoIdExpiryPage} = require("
   });
   
 
-  Then(/^the user is routed to the Expired Date Error Screen from the National Identity Card EEA Screen$/, async function () {
+  Then(/^the user sees an inline error message displayed on the EEA ID Page$/, async function () {
         
-        const photoIdExpPg = new PhotoIdExpiryPage(await this.page);
+    const eeaID = new NationalIdentityCardEEADetailsPageInvalid(await this.page);
 
-        expect(await photoIdExpPg.isCurrentPage()).to.be.true;
+    expect(await eeaID.isCurrentPage()).to.be.true;
+
+    const inlineError = 'There is a problem';
+
+    const error = await eeaID.checkErrorText();
+      
+    expect(await error).to.equal(inlineError);
 
   });

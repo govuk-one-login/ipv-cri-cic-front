@@ -27,4 +27,9 @@ module.exports = class PlaywrightDevPage {
     await this.page.locator("#photocardDlExpiryDate-month").fill(expMonth);
     await this.page.locator("#photocardDlExpiryDate-year").fill(expYear);
   }
+
+  async checkErrorText(){
+    const errorText = await this.page.locator("#error-summary-title").textContent();
+    return errorText.trim(); 
+  }
 };
