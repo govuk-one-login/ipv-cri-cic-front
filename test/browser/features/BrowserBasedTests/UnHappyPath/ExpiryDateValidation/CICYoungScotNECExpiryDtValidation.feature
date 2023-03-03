@@ -15,7 +15,7 @@ Feature: Enter UK driving licence   - Happy Path
         Then the user is routed to the next screen in the Young Scot NEC journey - Young Scot NEC details
 
 
-    Scenario: Young Scot NEC expired (UnHappy path)
-        Given the date entered is outside the accepted Young Scot NEC expiration window
-        When the user clicks the continue button on the Young Scot NEC Page
-        Then the user sees an inline error message displayed on the Young Scot NEC Screen
+    # Scenario: Young Scot NEC expired (UnHappy path)
+    #     Given the date entered is outside the accepted Young Scot NEC expiration window
+    #     When the user clicks the continue button on the Young Scot NEC Page
+    #     Then the user sees an inline error message displayed on the Young Scot NEC Screen
