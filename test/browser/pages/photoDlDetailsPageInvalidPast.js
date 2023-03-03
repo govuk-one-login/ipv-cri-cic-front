@@ -4,7 +4,7 @@ module.exports = class PlaywrightDevPage {
    */
   constructor(page) {
     this.page = page;
-    this.url = "http://localhost:5020/euPhotocardDlDetails";
+    this.url = "http://localhost:5020/photocardDlDetails";
   }
 
 
@@ -23,8 +23,8 @@ module.exports = class PlaywrightDevPage {
     const expMonth = currentMonth.toString()
     const pastYear = new Date().getFullYear() - 3
     const expYear = pastYear.toString()
-    await this.page.locator("#euPhotocardDlExpiryDate-day").type(expDay);
-    await this.page.locator("#euPhotocardDlExpiryDate-month").fill(expMonth);
-    await this.page.locator("#euPhotocardDlExpiryDate-year").fill(expYear);
+    await this.page.locator("#photocardDlExpiryDate-day").fill(expDay);
+    await this.page.locator("#photocardDlExpiryDate-month").fill(expMonth);
+    await this.page.locator("#photocardDlExpiryDate-year").fill(expYear);
   }
 };
