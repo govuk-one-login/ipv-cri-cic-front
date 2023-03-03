@@ -27,4 +27,10 @@ module.exports = class PlaywrightDevPage {
       await this.page.locator("#citizenCardExpiryDate-month").fill(expMonth);
       await this.page.locator("#citizenCardExpiryDate-year").fill(expYear);
     }
+
+    async checkErrorText(){
+      const errorText = await this.page.locator("#error-summary-title").textContent();
+      return errorText.trim(); 
+    }
+
 };
