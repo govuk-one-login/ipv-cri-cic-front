@@ -1,5 +1,5 @@
 @mock-api:f2f-cic-success @success
-Feature: Enter UK driving licence   - Happy Path
+Feature: Enter Young Scot NEC   - Happy Path
 
     Background:
         Given Authenticatable Anita is using the system
@@ -16,6 +16,6 @@ Feature: Enter UK driving licence   - Happy Path
 
 
     Scenario: Young Scot NEC expired (UnHappy path)
-        Given the date entered is outside the accepted Young Scot NEC expiration window
-        When the user clicks the continue button on the Young Scot NEC Page
+        Given the date entered is beyond the accepted Young Scot NEC expiration window
+        When the user clicks the continue button on the Young Scot NEC Future Page
         Then the user sees an inline error message displayed on the Young Scot NEC Screen
