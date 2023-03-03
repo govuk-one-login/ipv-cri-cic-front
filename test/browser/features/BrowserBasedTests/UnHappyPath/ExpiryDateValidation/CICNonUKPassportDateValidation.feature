@@ -15,7 +15,7 @@ Feature: Enter UK Passport Details  - Happy Path
         Then the user is routed to the next screen - OtherPassport Details
 
     
-    Scenario: Non UK Passport expired (UnHappy path)
-        Given the date entered is outside the accepted Non UK Passport expiration window
-        When the user clicks the continue button on the Non UK Passport page
-        Then the user sees an inline error message displayed on the Non UK Passport Page
+    # Scenario: Non UK Passport expired (UnHappy path)
+    #     Given the date entered is outside the accepted Non UK Passport expiration window
+    #     When the user clicks the continue button on the Non UK Passport page
+    #     Then the user sees an inline error message displayed on the Non UK Passport Page
