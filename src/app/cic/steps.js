@@ -195,12 +195,6 @@ module.exports = {
         value: "today",
         next: "photoIdExpiry",
       },
-      {
-        field: "youngScotNationalEntitlementCardExpiryDate",
-        op: "after",
-        value: "15 years",
-        next: "photoIdExpiry",
-      },
       "nameEntry",
     ],
   },

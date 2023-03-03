@@ -2,20 +2,20 @@ const { Given, When, Then, And} = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const { YoungScotNECDetailsPageInvalid } = require("../pages");
+const { YoungScotNECDetailsPageInvalidFuture } = require("../pages");
 
-  Given(/^the date entered is outside the accepted Young Scot NEC expiration window$/, async function () {
+  Given(/^the date entered is beyond the accepted Young Scot NEC expiration window$/, async function () {
 
-    const youngScotNecDetails = new YoungScotNECDetailsPageInvalid(await this.page);
+    const youngScotNecDetails = new YoungScotNECDetailsPageInvalidFuture(await this.page);
   
     await youngScotNecDetails.expiryDate();
 
   });
 
 
-  When(/^the user clicks the continue button on the Young Scot NEC details Page$/, async function () {
+  When(/^the user clicks the continue button on the Young Scot NEC Future Page$/, async function () {
 
-    const youngScotNecDetails = new YoungScotNECDetailsPageInvalid(await this.page);
+    const youngScotNecDetails = new YoungScotNECDetailsPageInvalidFuture(await this.page);
   
     expect(await youngScotNecDetails.isCurrentPage()).to.be.true;
 
@@ -26,7 +26,7 @@ const { YoungScotNECDetailsPageInvalid } = require("../pages");
 
   Then(/^the user sees an inline error message displayed on the Young Scot NEC Screen$/, async function () {
         
-    const ysNEC = new YoungScotNECDetailsPageInvalid(await this.page);
+    const ysNEC = new YoungScotNECDetailsPageInvalidFuture(await this.page);
 
     expect(await ysNEC.isCurrentPage()).to.be.true;
 
