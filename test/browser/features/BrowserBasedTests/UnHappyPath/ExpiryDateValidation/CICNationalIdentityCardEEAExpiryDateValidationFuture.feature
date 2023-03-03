@@ -14,8 +14,8 @@ Feature: Enter National Identity Card from an EEA country - Happy Path
         When the user clicks the continue button with National Identity Card EEA selected
         Then the user is routed to the next screen in the National Identity Card EEA journey - National Identity Card EEA details
 
-
+    
     Scenario: National Identity Card from an EEA country expired (UnHappy path)
-        Given the date entered is outside the accepted National Identity Card EEA expiration window
-        When the user clicks the continue button on the National Identity Card EEA details Page
-        Then the user is routed to the Expired Date Error Screen from the National Identity Card EEA Screen
+        Given the date entered is beyond the accepted National Identity Card EEA expiration window
+        When the user clicks the continue button on the National Identity Card EEA Future details Page
+        Then the user sees an inline error on the National Identity Card EEA Screen

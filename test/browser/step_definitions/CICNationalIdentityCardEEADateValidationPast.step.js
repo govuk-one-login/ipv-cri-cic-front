@@ -2,20 +2,20 @@ const { Given, When, Then, And} = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const {NationalIdentityCardEEADetailsPageInvalid, PhotoIdExpiryPage} = require("../pages");
+const {NationalIdentityCardEEADetailsPageInvalidPast, PhotoIdExpiryPage} = require("../pages");
 
-  Given(/^the date entered is outside the accepted National Identity Card EEA expiration window$/, async function () {
+  Given(/^the date entered is before the accepted National Identity Card EEA expiration window$/, async function () {
 
-    const nationalIdentityCardEEA = new NationalIdentityCardEEADetailsPageInvalid(await this.page);
+    const nationalIdentityCardEEA = new NationalIdentityCardEEADetailsPageInvalidPast(await this.page);
   
     await nationalIdentityCardEEA.expiryDate();
 
   });
 
 
-  When(/^the user clicks the continue button on the National Identity Card EEA details Page$/, async function () {
+  When(/^the user clicks the continue button on the National Identity Card EEA Past details Page$/, async function () {
 
-    const nationalIdentityCardEEA = new NationalIdentityCardEEADetailsPageInvalid(await this.page);
+    const nationalIdentityCardEEA = new NationalIdentityCardEEADetailsPageInvalidPast(await this.page);
   
     expect(await nationalIdentityCardEEA.isCurrentPage()).to.be.true;
 
