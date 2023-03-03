@@ -28,6 +28,7 @@ module.exports = {
   PhotoDlDetailsPageValid: require("./photoDlDetailsPageValid"),
   PhotoDlDetailsPageInvalid: require("./photoDlDetailsPageInvalid"),
   BRPDetailsPageValid: require("./brpDetailsPageValid"),
-  BRPDetailsPageInvalid: require("./brpDetailsPageInvalid"),
+  BRPDetailsPageInvalidFuture: require("./brpDetailsPageInvalidFuture"),
+  BRPDetailsPageInvalidPast: require("./brpDetailsPageInvalidPast"),
   PhotoIdExpiryPage: require("./photoIdExpiryPage")
 };
