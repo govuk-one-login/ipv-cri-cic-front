@@ -21,10 +21,15 @@ module.exports = class PlaywrightDevPage {
   const expDay = tomorrow.toString()
   const currentMonth = new Date().getMonth() + 1
   const expMonth = currentMonth.toString()
-  const futureYear = new Date().getFullYear() + 15
+  const futureYear = new Date().getFullYear() - 15
   const expYear = futureYear.toString()
   await this.page.locator("#youngScotNationalEntitlementCardExpiryDate-day").fill(expDay);
   await this.page.locator("#youngScotNationalEntitlementCardExpiryDate-month").fill(expMonth);
   await this.page.locator("#youngScotNationalEntitlementCardExpiryDate-year").fill(expYear);
+  }
+
+  async checkErrorText(){
+    const errorText = await this.page.locator("#error-summary-title").textContent();
+    return errorText.trim(); 
   }
 };

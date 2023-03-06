@@ -4,7 +4,7 @@ module.exports = class PlaywrightDevPage {
    */
   constructor(page) {
     this.page = page;
-    this.url = "http://localhost:5020/passportDetails";
+    this.url = "http://localhost:5020/photocardDlDetails";
   }
 
 
@@ -16,16 +16,16 @@ module.exports = class PlaywrightDevPage {
     await this.page.click("#continue");
   }
 
-  async expiryDateDay() {
+  async expiryDate() {
     const tomorrow = new Date().getDate() + 1
     const expDay = tomorrow.toString()
     const currentMonth = new Date().getMonth() + 1
     const expMonth = currentMonth.toString()
     const futureYear = new Date().getFullYear() + 10
     const expYear = futureYear.toString()
-    await this.page.locator("#passportExpiryDate-day").fill(expDay);
-    await this.page.locator("#passportExpiryDate-month").fill(expMonth);
-    await this.page.locator("#passportExpiryDate-year").fill(expYear);
+    await this.page.locator("#photocardDlExpiryDate-day").fill(expDay);
+    await this.page.locator("#photocardDlExpiryDate-month").fill(expMonth);
+    await this.page.locator("#photocardDlExpiryDate-year").fill(expYear);
   }
 
   async checkErrorText(){

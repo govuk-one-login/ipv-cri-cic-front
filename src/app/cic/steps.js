@@ -11,7 +11,7 @@ const nameEntry = require("./controllers/nameEntry");
 const dobEntry = require("./controllers/dateOfBirth");
 const checkDetails = require('./controllers/checkDetails');
 const root = require("./controllers/root");
-const {APP} = require("../../lib/config");
+const { APP } = require("../../lib/config");
 
 module.exports = {
   "/": {
@@ -82,6 +82,11 @@ module.exports = {
         value: APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD,
         next: APP.PATHS.EU_IDENTITY_CARD_DETAILS,
       },
+      {
+        field: "photoIdChoice",
+        value: APP.PHOTO_ID_OPTIONS.NO_PHOTO_ID,
+        next: APP.PATHS.NO_PHOTO_ID,
+      },
     ],
   },
 
@@ -95,12 +100,6 @@ module.exports = {
         field: "passportExpiryDate",
         op: "before",
         value: "18 months ago",
-        next: "photoIdExpiry",
-      },
-      {
-        field: "passportExpiryDate",
-        op: "after",
-        value: "10 years",
         next: "photoIdExpiry",
       },
       "nameEntry",
@@ -121,7 +120,7 @@ module.exports = {
       {
         field: "nonUKPassportExpiryDate",
         op: "after",
-        value: "10 years",
+        value: "75 years",
         next: "photoIdExpiry",
       },
       "nameEntry",
@@ -137,12 +136,6 @@ module.exports = {
         field: "photocardDlExpiryDate",
         op: "before",
         value: "today",
-        next: "photoIdExpiry",
-      },
-      {
-        field: "photocardDlExpiryDate",
-        op: "after",
-        value: "10 years",
         next: "photoIdExpiry",
       },
       "nameEntry",
@@ -202,12 +195,6 @@ module.exports = {
         value: "today",
         next: "photoIdExpiry",
       },
-      {
-        field: "youngScotNationalEntitlementCardExpiryDate",
-        op: "after",
-        value: "15 years",
-        next: "photoIdExpiry",
-      },
       "nameEntry",
     ],
   },
@@ -233,7 +220,7 @@ module.exports = {
     editBackStep: "checkDetails",
     next: [
       {
-        field: "nonUKPassportExpiryDate",
+        field: "euPhotocardDlExpiryDate",
         op: "before",
         value: "today",
         next: "photoIdExpiry",
@@ -248,7 +235,7 @@ module.exports = {
     ],
   },
   "/photoIdExpiry": {
-     next: "photoIdSelection",
+    next: "photoIdSelection",
   },
   "/nameEntry": {
     editable: true,
