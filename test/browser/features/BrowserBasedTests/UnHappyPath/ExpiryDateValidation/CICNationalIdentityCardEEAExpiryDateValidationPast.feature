@@ -16,12 +16,7 @@ Feature: Enter National Identity Card from an EEA country - Happy Path
 
     
     Scenario: National Identity Card from an EEA country expired (UnHappy path)
-<<<<<<<< HEAD:test/browser/features/BrowserBasedTests/UnHappyPath/ExpiryDateValidation/CICNationalIdentityCardEEAExpiryDateValidationPast.feature
         Given the date entered is before the accepted National Identity Card EEA expiration window
         When the user clicks the continue button on the National Identity Card EEA Past details Page
         Then the user is routed to the Expired Date Error Screen from the National Identity Card EEA Screen
-========
-        Given the date entered is outside the accepted National Identity Card EEA expiration window
-        When the user clicks the continue button on the National Identity Card EEA details Page
-        Then the user sees an inline error message displayed on the EEA ID Page
->>>>>>>> main:test/browser/features/BrowserBasedTests/UnHappyPath/ExpiryDateValidation/CICNationalIdentityCardEEAExpiryDateValidation
+
