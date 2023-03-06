@@ -43,7 +43,7 @@ module.exports = {
   },
   nonUKPassportExpiryDate: {
     type: "date",
-    journeyKey: "passportExpiryDate",
+    journeyKey: "nonUKPassportExpiryDate",
     validate: ["required", "date",
       {
         type: "before",
