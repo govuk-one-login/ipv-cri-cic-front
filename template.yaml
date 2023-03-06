@@ -269,7 +269,7 @@ Resources:
         DeploymentCircuitBreaker:
           Enable: TRUE
           Rollback: TRUE
-      DesiredCount: 1
+      DesiredCount: 2
       EnableECSManagedTags: false
       HealthCheckGracePeriodSeconds: 60
       LaunchType: FARGATE

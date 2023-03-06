@@ -2,15 +2,20 @@ const { Given, When, Then, And} = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
+
 const {EuDrivingLicenceDetailsPageInvalidFuture} = require("../pages");
 
   Given(/^the date entered is beyond the accepted EU driving licence expiration window$/, async function () {
+
+const { EuDrivingLicenceDetailsPageInvalidFuture } = require("../pages");
+
 
     const euDrivingLicence = new EuDrivingLicenceDetailsPageInvalidFuture(await this.page);
   
     await euDrivingLicence.expiryDate();
 
   });
+
 
 
   When(/^the user clicks the continue button on the EU driving licence Future page$/, async function () {
