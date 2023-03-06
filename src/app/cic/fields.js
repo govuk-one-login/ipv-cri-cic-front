@@ -67,7 +67,12 @@ module.exports = {
   brpExpiryDate: {
     type: "date",
     journeyKey: "brpExpiryDate",
-    validate: ["required", "date"]
+    validate: ["required", "date",
+      {
+        type: "before",
+        arguments: ["2025-01-01"]
+      },
+    ]
   },
   euPhotocardDlExpiryDate: {
     type: "date",

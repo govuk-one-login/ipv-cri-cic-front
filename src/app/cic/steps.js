@@ -153,12 +153,6 @@ module.exports = {
         value: "today",
         next: "photoIdExpiry",
       },
-      {
-        field: "brpExpiryDate",
-        op: "after",
-        value: "2025-01-01",
-        next: "photoIdExpiry",
-      },
       "nameEntry",
     ],
   },

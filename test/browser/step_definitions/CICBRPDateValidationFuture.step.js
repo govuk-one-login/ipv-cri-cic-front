@@ -2,20 +2,20 @@ const { Given, When, Then, And} = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const { BRPDetailsPageInvalid } = require("../pages");
+const { BRPDetailsPageInvalidFuture } = require("../pages");
 
-  Given(/^the date entered is outside the accepted BRP expiration window$/, async function () {
+  Given(/^the date entered is beyond the accepted BRP expiration window$/, async function () {
 
-    const brp = new BRPDetailsPageInvalid(await this.page);
+    const brp = new BRPDetailsPageInvalidFuture(await this.page);
   
     await brp.expiryDate();
 
   });
 
 
-  When(/^the user clicks the continue button on the BRP page$/, async function () {
+  When(/^the user clicks the continue button on the BRPFuture page$/, async function () {
 
-    const brp = new BRPDetailsPageInvalid(await this.page);
+    const brp = new BRPDetailsPageInvalidFuture(await this.page);
   
     expect(await brp.isCurrentPage()).to.be.true;
 
@@ -26,7 +26,7 @@ const { BRPDetailsPageInvalid } = require("../pages");
 
   Then(/^the user sees an inline error message displayed on the BRP Page$/, async function () {
         
-    const brp = new BRPDetailsPageInvalid(await this.page);
+    const brp = new BRPDetailsPageInvalidFuture(await this.page);
 
     expect(await brp.isCurrentPage()).to.be.true;
 

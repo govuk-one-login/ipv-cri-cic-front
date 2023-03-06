@@ -30,6 +30,7 @@ module.exports = {
   PhotoDlDetailsPageInvalidFuture: require("./photoDlDetailsPageInvalidFuture"),
   PhotoDlDetailsPageInvalidPast: require("./photoDlDetailsPageInvalidPast"),
   BRPDetailsPageValid: require("./brpDetailsPageValid"),
-  BRPDetailsPageInvalid: require("./brpDetailsPageInvalid"),
+  BRPDetailsPageInvalidFuture: require("./brpDetailsPageInvalidFuture"),
+  BRPDetailsPageInvalidPast: require("./brpDetailsPageInvalidPast"),
   PhotoIdExpiryPage: require("./photoIdExpiryPage")
 };
