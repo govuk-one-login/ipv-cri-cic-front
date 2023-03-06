@@ -2,7 +2,7 @@ const { Given, When, Then, And} = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const {CitizenCardDetailsPageInvalidFuture, PhotoIdExpiryPage} = require("../pages");
+const {CitizenCardDetailsPageInvalidFuture} = require("../pages");
 
   Given(/^the date entered is beyond the accepted CitizenCard expiration window$/, async function () {
 
