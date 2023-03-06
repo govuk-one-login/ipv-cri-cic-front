@@ -2,7 +2,7 @@ const { Given, When, Then, And} = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const {NationalIdentityCardEEADetailsPageInvalidFuture, PhotoIdExpiryPage} = require("../pages");
+const {NationalIdentityCardEEADetailsPageInvalidFuture} = require("../pages");
 
   Given(/^the date entered is beyond the accepted National Identity Card EEA expiration window$/, async function () {
 
