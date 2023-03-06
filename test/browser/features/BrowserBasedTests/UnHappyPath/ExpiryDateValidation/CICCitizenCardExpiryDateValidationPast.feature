@@ -16,12 +16,7 @@ Feature: Enter CitizenCard - Happy Path
 
     
     Scenario: CitizenCard expired (UnHappy path)
-<<<<<<<< HEAD:test/browser/features/BrowserBasedTests/UnHappyPath/ExpiryDateValidation/CICCitizenCardExpiryDateValidationPast.feature
         Given the date entered is before the accepted CitizenCard expiration window
         When the user clicks the continue button on the CitizenCard Past details Page
         Then the user is routed to the Expired Date Error Screen from the CitizenCard Screen
-========
-        Given the date entered is outside the accepted CitizenCard expiration window
-        When the user clicks the continue button on the CitizenCard details Page
-        Then the user sees an inline error message displayed on the CitizenCard Page
->>>>>>>> main:test/browser/features/BrowserBasedTests/UnHappyPath/ExpiryDateValidation/CICCitizenCardExpiryDateValidation
+
