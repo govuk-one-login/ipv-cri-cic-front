@@ -2,7 +2,7 @@ const { Given, When, Then, And } = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
-const { CitizenCardDetailsPageInvalidPast } = require("../pages");
+const { CitizenCardDetailsPageInvalidPast, PhotoIdExpiryPage } = require("../pages");
 
 Given(/^the date entered is before the accepted CitizenCard expiration window$/, async function () {
 
@@ -24,16 +24,10 @@ When(/^the user clicks the continue button on the CitizenCard Past details Page$
 });
 
 
-Then(/^the user sees an inline error message displayed on the CitizenCard Page$/, async function () {
+Then(/^the user is routed to the Expired Date Error Screen from the CitizenCard Screen$/, async function () {
 
-  const citizenCard = new CitizenCardDetailsPageInvalidPast(await this.page);
+    const photoIdExpPg = new PhotoIdExpiryPage(await this.page);
 
-  expect(await citizenCard.isCurrentPage()).to.be.true;
-
-  const inlineError = 'There is a problem';
-
-  const error = await citizenCard.checkErrorText();
-
-  expect(await error).to.equal(inlineError);
+    expect(await photoIdExpPg.isCurrentPage()).to.be.true;
 
 });
