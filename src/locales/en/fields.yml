@@ -157,13 +157,21 @@ middleName:
   regexName: "Enter your first name as it appears on your photo ID"
 
 dateOfBirth:
-  label: ""
   legend: ""
-  hint: For example, 31 3 1980
-  validation:
-    default: "Enter your date of birth as it appears on your photo ID"
-    maxlength: "Enter your date of birth as it appears on your photo ID"
-    regexSurname: "Enter your date of birth as it appears on your photo ID"
+  label: ""
+  hint: "For example, 31 3 1980"
+  validation: 
+    default: "Enter your date of birth"
+    before: "Your date of birth must be in the past"
+    after: "Enter a valid date of birth"
+    "numeric-day": "Your date of birth must include a day that contains numbers only"
+    "numeric-month": "Your date of birth must include a month that contains numbers only"
+    "numeric-year": "Your date of birth must include a year that contains numbers only"
+    "date-day": "Enter a valid day"
+    "date-month": "Your date of birth must include a month that is a number between 1 and 12"
+    "required-day": "Enter your full date of birth"
+    "required-month": "Enter your full date of birth"
+    "required-year": "Enter your full date of birth"
 
 checkDetails: 
   label: ""
