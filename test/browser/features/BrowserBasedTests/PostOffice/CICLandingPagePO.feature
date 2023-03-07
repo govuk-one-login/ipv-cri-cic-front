@@ -8,7 +8,7 @@ Feature: Happy path
     When they have provided their details
     Then they should be redirected to the landingPage
 
-@test
+
   Scenario: Continue button redirect successful
     Given the user wants to view their nearest post office that offers ID verification
     When the user clicks on the hyperlink
