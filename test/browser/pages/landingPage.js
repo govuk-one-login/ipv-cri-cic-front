@@ -1,7 +1,7 @@
 module.exports = class PlaywrightDevPage {
   /**
    * @param {import('@playwright/test').Page} page
-   */s
+   */
   constructor(page) {
     this.page = page;
     this.url = "http://localhost:5020/landingPage";
@@ -23,7 +23,6 @@ module.exports = class PlaywrightDevPage {
    async postOfficeLink() {
     await this.poLink.click();
     await this.page.locator("#ensCloseBanner").click();
-    console.log(">> Clicked on Accept All button");
   }
 
 
