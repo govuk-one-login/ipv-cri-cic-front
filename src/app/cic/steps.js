@@ -207,12 +207,6 @@ module.exports = {
         value: "today",
         next: "photoIdExpiry",
       },
-      {
-        field: "euPhotocardDlExpiryDate",
-        op: "after",
-        value: "75 years",
-        next: "photoIdExpiry",
-      },
       "nameEntry",
     ],
   },
