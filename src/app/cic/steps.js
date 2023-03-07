@@ -198,12 +198,6 @@ module.exports = {
         value: "today",
         next: "photoIdExpiry",
       },
-      {
-        field: "citizenCardExpiryDate",
-        op: "after",
-        value: "4 years",
-        next: "photoIdExpiry",
-      },
       "nameEntry",
     ],
   },

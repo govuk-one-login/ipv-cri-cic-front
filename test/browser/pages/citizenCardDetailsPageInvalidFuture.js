@@ -32,4 +32,5 @@ module.exports = class PlaywrightDevPage {
       const errorText = await this.page.locator("#error-summary-title").textContent();
       return errorText.trim(); 
     }
+
 };
