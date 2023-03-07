@@ -15,4 +15,15 @@ module.exports = class PlaywrightDevPage {
     await this.page.click("#continue");
   }
 
+  get poLink() {
+  return this.page.locator('[href*="https://www.postoffice.co.uk/identity/in-branch-verification-service"]');
+
+  }
+
+   async postOfficeLink() {
+    await this.poLink.click();
+    await this.page.locator("#ensCloseBanner").click();
+  }
+
+
 };
