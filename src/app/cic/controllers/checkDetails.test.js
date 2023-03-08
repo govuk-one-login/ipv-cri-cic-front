@@ -70,10 +70,11 @@ describe("CheckDetails controller", () => {
       it("should call claimedIdentity endpoint", async () => {
         req.axios.post = sinon.fake.resolves();
 
-        const fullNameVal = req.sessionModel.get("middleName")? req.sessionModel.get("firstName") + " "+ req.sessionModel.get("middleName") + " "+ req.sessionModel.get("surname"):
-          req.sessionModel.get("firstName") +  " "+ req.sessionModel.get("surname")
+        const givenNamesVal = req.sessionModel.get("middleName")? req.sessionModel.get("firstName") + " "+ req.sessionModel.get("middleName"):
+          req.sessionModel.get("firstName");
         const cicData ={
-          full_name: `${fullNameVal}`,
+          given_names: `${givenNamesVal}`,
+          family_names: req.sessionModel.get("surname"),
           date_of_birth: req.sessionModel.get("dateOfBirth"),
           document_selected:  req.sessionModel.get("photoIdChoice"),
           date_of_expiry: req.sessionModel.get("expiryDate")
