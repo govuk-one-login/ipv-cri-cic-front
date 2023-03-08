@@ -1,22 +1,20 @@
-
 {% extends "base-form.njk" %}
 {% set gtmJourney = "cic - photoIdSelection" %}
-
+{% from "govuk/components/header/macro.njk" import govukHeader %}
 {% set hmpoTitle = photoIdSelection.label %}
 {% set hmpoPageKey = "photoIdSelection" %}
 {% set isPageHeading = true %}
 
+{% block header %}
+  {{ govukHeader ({
+    serviceName: translate("govuk.serviceName")
+  }) }}
+{% endblock %}
 
 
 {% block submitButton %}
   {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
 
-
-<div>
-   <p>
-     <a href={{ "common.photoIdSelection.linkToNoPhotoId" | translate }}> {{ "common.photoIdSelection.noPhotoId" | translate }}</a>
-   </p>
-</div>
 
 {% endblock %}
 

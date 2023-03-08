@@ -3,13 +3,23 @@
 {# the content for this page is controlled by locales/en/default.yml #}
 {% set hmpoTitle = photoIdExpiry.pageTitle %}
 {% set hmpoPageKey = "photoIdExpiry" %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+
+{% block header %}
+  {{ govukHeader ({
+    serviceName: translate("govuk.serviceName")
+  }) }}
+{% endblock %}
 
 {% block content %}
 
-<h1 class="govuk-heading-l">{{ "photoIdExpiry.title" | translate }}</h1>
+<h1 id="header" class="govuk-heading-l">{{ "photoIdExpiry.title" | translate }}</h1>
 
 <p>{{ "photoIdExpiry.one" | translate }}</p>
-<p>{{ "photoIdExpiry.two" | translate }}</p>
+<br>
+<p>{{ "photoIdExpiry.two" | translate }}
+  <br>{{ "photoIdExpiry.three" | translate }}
+</p>
 
 {% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
 {% block submitButton %}

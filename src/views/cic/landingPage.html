@@ -4,41 +4,53 @@
 {% set hmpoTitle = landingPage.pageTitle %}
 {% set hmpoPageKey = "landingPage" %}
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+
+{% block header %}
+  {{ govukHeader ({
+    serviceName: translate("govuk.serviceName")
+  }) }}
+{% endblock %}
 
 {% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
 
-<h1 class="govuk-heading-l">{{ "landingPage.title" | translate }}</h1>
+    <h1 class="govuk-heading-xl">{{ "landingPage.title" | translate }}</h1>
 
-<h2 class="govuk-heading-m">{{ "landingPage.body" | translate }}</h2>
+    <h2 class="govuk-heading-m">{{ "landingPage.body" | translate }}</h2>
 
-<ol class="govuk-list govuk-list--number">
-  <li>{{ "landingPage.instructions.steps.one" | translate }}</li>
-  <li>{{ "landingPage.instructions.steps.two" | translate }}</li>
-  <li>{{ "landingPage.instructions.steps.three" | translate }}</li>
-</ol>
+    <ol class="govuk-list govuk-list--number">
+      <li>{{ "landingPage.instructions.steps.one" | translate }}</li>
+      <li>{{ "landingPage.instructions.steps.two" | translate }}</li>
+      <li>{{ "landingPage.instructions.steps.three" | translate }}</li>
+    </ol>
 
 
-{% set insetBody %}
-<div>
-   <p>
-     {{ "common.postoffice.service" | translate }}
-     <a href={{ "common.postoffice.pathToPoBranchSearch" | translate }}> {{ "common.postoffice.postofficeLink" | translate }}</a>
-   </p>
+    {% set insetBody %}
+    <div>
+      <p>
+        {{ "common.postoffice.service" | translate }}
+        <a href={{ "common.postoffice.pathToPoBranchSearch" | translate }}> {{ "common.postoffice.postofficeLink" | translate }}</a>
+      </p>
+    </div>
+    {% endset %}
+
+    {{ govukInsetText({ 
+      html: insetBody
+    }) }}
+
+
+    <h2 class="govuk-heading-m">{{ "landingPage.dataInfo.title" | translate }}</h2>
+    <p>{{ "landingPage.dataInfo.body" | translate }}</p>
+
+    {% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
+    {% block submitButton %}
+      {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
+    {% endblock %}
+    {% endcall %}
+  </div>
 </div>
-{% endset %}
-
-{{ govukInsetText({ html: insetBody }) }}
-
-
-<h2 class="govuk-heading-m">{{ "landingPage.dataInfo.title" | translate }}</h2>
-<p>{{ "landingPage.dataInfo.body" | translate }}</p>
-
-{% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
-{% block submitButton %}
-  {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
-{% endblock %}
-{% endcall %}
-
 
 {% include "common/confirmIdentityAnotherWay.html" %}
 

@@ -1,0 +1,114 @@
+{% extends "base-form.njk" %}
+{# the content for this page is controlled by locales/en/default.yml #}
+{% set hmpoPageKey = "checkDetails" %}
+{% set gtmJourney = "cic - checkYourDetails" %}
+
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{% block header %}
+  {{ govukHeader ({
+    serviceName: translate("govuk.serviceName")
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <h1 class="govuk-heading-l">{{ translate("checkDetails.title") }}</h1>
+    <h2 class="govuk-heading-m"></h2>
+    {{ govukWarningText({
+      text: translate("checkDetails.validation.default"),
+      iconFallbackText: "Warning"
+    }) }}
+
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-6',
+        rows: [
+          {
+            key: {
+              text: translate("checkDetails.selectedId")
+            },
+            value: {
+              html: translate("{{ idChoice }}")
+            },
+            actions: {
+              items: [
+                {
+                  href: "/photoIdSelection/edit",
+                  text: "Change",
+                  visuallyHiddenText: "ID Selection"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: translate("checkDetails.expiryDate")
+            },
+            value: {
+              html: translate("{{ formattedExpiryDate }}")
+            },
+            actions: {
+              items: [
+                {
+                  href: changeUrl + "/edit",
+                  text: "Change",
+                  visuallyHiddenText: "expiryDate"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: translate("checkDetails.name")
+            },
+            value: {
+              html: translate("{{ fullName }}")
+            },
+            actions: {
+              items: [
+                {
+                  href: "/nameEntry/edit",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: translate("checkDetails.dateOfBirth")
+            },
+            value: {
+              html: translate("{{ formattedBirthDate }}")
+            },
+            actions: {
+              items: [
+                {
+                  href: "/dateOfBirth/edit",
+                  text: "Change",
+                  visuallyHiddenText: "dateOfBirth"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+       {% call hmpoForm(ctx) %}
+      {{ hmpoSubmit(ctx, {id: "continue", text: translate("checkDetails.buttonText")}) }}
+         {% endcall %}
+    </div>
+  </div>
+
+
+{% endblock %}
+
+{# generate the specific footer items required for the PYI flows #}
+{% set footerNavItems = translate("govuk.footerNavItems") %}
+
+{% block footer %}
+    {{ govukFooter( footerNavItems ) }}
+{% endblock %}

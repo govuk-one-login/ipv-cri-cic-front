@@ -5,10 +5,8 @@ module.exports = {
     BASE_URL: process.env.API_BASE_URL || "http://localhost:8090",
     PATHS: {
       SESSION: "/session",
-      QUESTION: "/question",
-      ANSWER: "/answer",
       AUTHORIZATION: "/authorization",
-      ABANDON: "/abandon",
+      SAVE_CICDATA: "/claimedIdentity"
     },
   },
   APP: {
@@ -16,17 +14,31 @@ module.exports = {
     PATHS: {
       CIC: "/",
       PASSPORT_DETAILS: "/passportDetails",
-      BRP_DETAILS: "/brpDetails",
+      NON_UK_PASSPORT_DETAILS: "/nonUKPassportDetails",
       PHOTOCARD_DL_DETAILS: "/photocardDlDetails",
-      OTHER_PASSPORT_DETAILS: "/otherPassportDetails"
+      BRP_DETAILS: "/brpDetails",
+      EU_PHOTOCARD_DL_DETAILS: "/euPhotocardDlDetails",
+      EU_IDENTITY_CARD_DETAILS: "/euIdentityCardDetails",
+      CITIZEN_CARD_DETAILS: "/citizenCardDetails",
+      YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD_DETAILS: "/youngScotNecDetails",
+      NAME_ENTRY: "/nameEntry",
+      DATE_OF_BIRTH: "/dateOfBirth",
+      CHECK_DETAILS: "/checkDetails",
+      NO_PHOTO_ID: "https://signin.account.gov.uk/no-photo-id",
+      EXPIRED_ID: "/photoIdExpiry"
     },
     PHOTO_ID_OPTIONS:{
       UK_PASSPORT:"ukPassport",
+      OTHER_PASSPORT: "otherPassport",
+      UK_PHOTOCARD_DL: "ukPhotocardDl",
       BRP: "brp",
-      UK_PHOTOCARD_DL: "ukPhotocardDL",
-      OTHER_PASSPORT: "otherPassport"
+      EU_PHOTOCARD_DL: "euPhotocardDl",
+      EU_IDENTITY_CARD: "euIdentityCard",
+      CITIZEN_CARD: "citizenCard",
+      YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD: "youngScotNationalEntitlementCard",
+      NO_PHOTO_ID: "noPhotoId"
     },
-    UK_PASSPORT_HINT: "If your passport has expired, you can still use it to prove your identity up until 18 months after the expiry date.",
+    UK_PASSPORT_HINT: "If your UK passport has expired, you can still use it to prove your identity up to 18 months after the expiry date",
     ANALYTICS: {
       ID: process.env.GTM_ID,
       DOMAIN: process.env.ANALYTICS_DOMAIN || "localhost",

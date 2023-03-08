@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Use Node.js 16.x
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: 'yarn'
@@ -25,10 +25,12 @@ jobs:
         run: yarn install
       - name: Run lint
         run: yarn lint
-      # - name: Run test and write coverage
-      #   run: yarn test:coverage
-      # - name: Run browser tests
-      #   run: npm run test:browser:ci
+      - name: Run build
+        run: yarn build
+      - name: Run test and write coverage
+        run: yarn test:coverage
+      - name: Run browser tests
+        run: npm run test:browser:ci
       # - name: Run sonarcloud scan
       #   if: ${{ github.actor != 'dependabot[bot]' }}
       #   uses: sonarsource/sonarcloud-github-action@master
