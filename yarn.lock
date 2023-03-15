@@ -487,7 +487,6 @@
     "@cucumber/cucumber-expressions" "16.0.0"
     "@cucumber/gherkin" "24.0.0"
     "@cucumber/gherkin-streams" "5.0.1"
-    "@cucumber/gherkin-utils" "8.0.0"
     "@cucumber/html-formatter" "20.0.0"
     "@cucumber/message-streams" "4.0.1"
     "@cucumber/messages" "19.1.2"
@@ -529,15 +528,6 @@
   dependencies:
     "commander" "9.1.0"
     "source-map-support" "0.5.21"
-
-"@cucumber/gherkin-utils@8.0.0":
-  "integrity" "sha512-8uIZInEe3cO1cASmy3BA0PbVFUI+xWBnZAxmICbVOPsZaMB85MtESZLafzErgfRQPsHf6uYbVagP7MIjNPM5Jw=="
-  "resolved" "https://registry.npmjs.org/@cucumber/gherkin-utils/-/gherkin-utils-8.0.0.tgz"
-  "version" "8.0.0"
-  dependencies:
-    "@cucumber/messages" "^19.0.0"
-    "@teppeis/multimaps" "2.0.0"
-    "commander" "9.3.0"
 
 "@cucumber/gherkin@>=22.0.0", "@cucumber/gherkin@24.0.0":
   "integrity" "sha512-b7OsnvX1B8myDAKMc+RAiUX9bzgtNdjGsiMj10O13xu2HBWIOQ19EqBJ4xLO5CFG/lGk1J/+L0lANQVowxLVBg=="
