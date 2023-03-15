@@ -72,31 +72,31 @@ Mappings:
     ### These environment variables are referenced further down the file.
     ### Please ensure that any variables defined for an environment are defined for _all_ environments.
     dev:
-      EXTERNALWEBSITEHOST: "www.review-c.dev.account.gov.uk"
+      EXTERNALWEBSITEHOST: "review-c.dev.account.gov.uk"
       APIBASEURL: "app.review-c.dev.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-dev"
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "dev.account.gov.uk"
     build:
-      EXTERNALWEBSITEHOST: "www.review-c.build.account.gov.uk"
+      EXTERNALWEBSITEHOST: "review-c.build.account.gov.uk"
       APIBASEURL: "app.review-c.build.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-build"
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "build.account.gov.uk"
     staging:
-      EXTERNALWEBSITEHOST: "www.review-c.staging.account.gov.uk"
+      EXTERNALWEBSITEHOST: "review-c.staging.account.gov.uk"
       APIBASEURL: "app.review-c.staging.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-staging"
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "staging.account.gov.uk"
     integration:
-      EXTERNALWEBSITEHOST: "www.review-c.integration.account.gov.uk"
+      EXTERNALWEBSITEHOST: "review-c.integration.account.gov.uk"
       APIBASEURL: "app.review-c.integration.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-integration"
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
     production:
-      EXTERNALWEBSITEHOST: "www.review-c.account.gov.uk"
+      EXTERNALWEBSITEHOST: review-c.account.gov.uk"
       APIBASEURL: "app.review-c.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-production"
       GTMID: "TT5HDKV"
@@ -201,9 +201,9 @@ Resources:
         - !GetAtt LoadBalancerSG.GroupId
       Subnets:
         - Fn::ImportValue:
-            !Sub "${VpcStackName}-PrivateSubnetIdA"
+            !Sub "${VpcStackName}-ProtectedSubnetIdA"
         - Fn::ImportValue:
-            !Sub "${VpcStackName}-PrivateSubnetIdB"
+            !Sub "${VpcStackName}-ProtectedSubnetIdB"
       Type: application
       LoadBalancerAttributes: !If
         - IsNotDevelopment
@@ -328,13 +328,12 @@ Resources:
           Environment:
             - Name: API_BASE_URL
               Value: !Sub
-                - "https://${APIGatewayId}.execute-api.eu-west-2.amazonaws.com/${Environment}"
-                - APIGatewayId:
-                    # Fn::ImportValue: di-ipv-cri-cic-PrivateCICApiGatewayId
-                    Fn::ImportValue: cic-cri-api-CICApiGatewayId  #Hardcoded , needs to be updated to use a parameter for BE stack name
-                  Environment: !Ref Environment
+                - api.review-c.${Environment}.account.gov.uk
+                - Environment: !Ref Environment
             - Name: EXTERNAL_WEBSITE_HOST
-              Value: !GetAtt ApiGwHttpEndpoint.ApiEndpoint
+              Value: !Sub
+                - review-c.${Environment}.account.gov.uk/landingPage
+                - Environment: !Ref Environment
             - Name: SESSION_TABLE_NAME
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, SESSIONTABLENAME ]
             - Name: FRONT_END_URL
