@@ -27,7 +27,7 @@ Parameters:
       - "production"
   VpcStackName:
     Description: >
-      The name of the stack that defines the VPC in which this container will
+      The name of thes stack that defines the VPC in which this container will
       run.
     Type: String
   PermissionsBoundary:
@@ -201,9 +201,9 @@ Resources:
         - !GetAtt LoadBalancerSG.GroupId
       Subnets:
         - Fn::ImportValue:
-            !Sub "${VpcStackName}-PrivateSubnetIdA"
+            !Sub "${VpcStackName}-ProtectedSubnetIdA"
         - Fn::ImportValue:
-            !Sub "${VpcStackName}-PrivateSubnetIdB"
+            !Sub "${VpcStackName}-ProtectedSubnetIdB"
       Type: application
       LoadBalancerAttributes: !If
         - IsNotDevelopment
@@ -284,9 +284,9 @@ Resources:
             - !GetAtt ECSSecurityGroup.GroupId
           Subnets:
             - Fn::ImportValue:
-                !Sub "${VpcStackName}-PrivateSubnetIdA"
+                !Sub "${VpcStackName}-ProtectedSubnetIdA"
             - Fn::ImportValue:
-                !Sub "${VpcStackName}-PrivateSubnetIdB"
+                !Sub "${VpcStackName}-ProtectedSubnetIdB"
       TaskDefinition: !Ref ECSServiceTaskDefinition
       Tags:
         - Key: Name
@@ -327,20 +327,13 @@ Resources:
           Name: app
           Environment:
             - Name: API_BASE_URL
-              Value: !Sub
-                - "https://${APIGatewayId}.execute-api.eu-west-2.amazonaws.com/${Environment}"
-                - APIGatewayId:
-                    # Fn::ImportValue: di-ipv-cri-cic-PrivateCICApiGatewayId
-                    Fn::ImportValue: backend-viveak-CICApiGatewayId  #Hardcoded , needs to be updated to use a parameter for BE stack name
-                  Environment: !Ref Environment
+              Value: "https://api.review-c.dev.account.gov.uk"
             - Name: EXTERNAL_WEBSITE_HOST
-              Value: !GetAtt ApiGwHttpEndpoint.ApiEndpoint
+              Value: "https://review-c.dev.account.gov.uk"
             - Name: SESSION_TABLE_NAME
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, SESSIONTABLENAME ]
             - Name: FRONT_END_URL
-              Value: !Sub
-                - "https://${Url}"
-                - Url: !FindInMap [EnvironmentVariables, !Ref Environment, EXTERNALWEBSITEHOST ]
+              Value: "https://review-c.dev.account.gov.uk"
 
             #No backend api url available ????
             #            - Name: API_URL
