@@ -30,10 +30,20 @@ Parameters:
       The name of the stack that defines the VPC in which this container will
       run.
     Type: String
+    Default: "vpc-cri"
   PermissionsBoundary:
     Description: "The ARN of the permissions boundary to apply when creating IAM roles"
     Type: String
     Default: "none"
+  ContainerPort:
+    Description: >
+      The port on which the container is running
+    Type: Number
+    Default: 5000
+  MaxContainerCount:
+    Description: Maximum number of FE node/express container tasks to allow autoscaling to reach
+    Type: Number
+    Default: 12
 
 Conditions:
   IsNotDevelopment: !Or
@@ -49,7 +59,7 @@ Conditions:
           - "none"
 
 Mappings:
-  # See https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
+  # See http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
   # To be added later
   #  PlatformConfiguration:
   #    dev:
@@ -63,7 +73,7 @@ Mappings:
   #    production:
   #      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
 
-  # see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
+  # see http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
   ElasticLoadBalancerAccountIds:
     eu-west-2:
       AccountId: 652711504416
@@ -128,8 +138,8 @@ Resources:
         Egress between the CIC Front load balancer and
         the CIC Front ECS security group
       DestinationSecurityGroupId: !GetAtt ECSSecurityGroup.GroupId
-      FromPort: 8080
-      ToPort: 8080
+      FromPort: !Ref ContainerPort
+      ToPort: !Ref ContainerPort
 
   ECSSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
@@ -152,8 +162,8 @@ Resources:
       Description: >-
         CIC Front ECS permits inbound from the CIC Front
         load balancer.
-      FromPort: 8080
-      ToPort: 8080
+      FromPort: !Ref ContainerPort
+      ToPort: !Ref ContainerPort
       GroupId: !GetAtt ECSSecurityGroup.GroupId
       SourceSecurityGroupId: !GetAtt LoadBalancerSG.GroupId
 
@@ -161,7 +171,7 @@ Resources:
     Condition: IsNotDevelopment
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub cic-front-${Environment}-access-logs
+      BucketName: !Sub cic-cri-front-${Environment}-access-logs
       VersioningConfiguration:
         Status: "Enabled"
       PublicAccessBlockConfiguration:
@@ -204,6 +214,8 @@ Resources:
             !Sub "${VpcStackName}-PrivateSubnetIdA"
         - Fn::ImportValue:
             !Sub "${VpcStackName}-PrivateSubnetIdB"
+        - Fn::ImportValue:
+            !Sub "${VpcStackName}-PrivateSubnetIdC"
       Type: application
       LoadBalancerAttributes: !If
         - IsNotDevelopment
@@ -213,7 +225,10 @@ Resources:
             Value: !Ref AccessLogsBucket
           - Key: access_logs.s3.prefix
             Value: !Sub cic-front-${Environment}
-        - !Ref AWS::NoValue
+          - Key: idle_timeout.timeout_seconds
+            Value: 60 # N.B, this is 1 second less than the nodeJS app is configured in server.ts
+        - - Key: idle_timeout.timeout_seconds
+            Value: 60 # N.B, this is 1 second less than the nodeJS app is configured in server.ts
 
   LoadBalancerListenerTargetGroupECS:
     Type: 'AWS::ElasticLoadBalancingV2::TargetGroup'
@@ -269,13 +284,12 @@ Resources:
         DeploymentCircuitBreaker:
           Enable: TRUE
           Rollback: TRUE
-      DesiredCount: 2
       EnableECSManagedTags: false
       HealthCheckGracePeriodSeconds: 60
       LaunchType: FARGATE
       LoadBalancers:
         - ContainerName: app
-          ContainerPort: 8080
+          ContainerPort: !Ref ContainerPort
           TargetGroupArn: !Ref LoadBalancerListenerTargetGroupECS
       NetworkConfiguration:
         AwsvpcConfiguration:
@@ -287,6 +301,8 @@ Resources:
                 !Sub "${VpcStackName}-PrivateSubnetIdA"
             - Fn::ImportValue:
                 !Sub "${VpcStackName}-PrivateSubnetIdB"
+            - Fn::ImportValue:
+                !Sub "${VpcStackName}-PrivateSubnetIdC"
       TaskDefinition: !Ref ECSServiceTaskDefinition
       Tags:
         - Key: Name
@@ -327,25 +343,18 @@ Resources:
           Name: app
           Environment:
             - Name: API_BASE_URL
-              Value: !Sub
-                - "https://${APIGatewayId}.execute-api.eu-west-2.amazonaws.com/${Environment}"
-                - APIGatewayId:
-                    # Fn::ImportValue: di-ipv-cri-cic-PrivateCICApiGatewayId
-                    Fn::ImportValue: cic-cri-api-CICApiGatewayId  #Hardcoded , needs to be updated to use a parameter for BE stack name
-                  Environment: !Ref Environment
+              Value: "app.review-c.dev.account.gov.uk"
             - Name: EXTERNAL_WEBSITE_HOST
-              Value: !GetAtt ApiGwHttpEndpoint.ApiEndpoint
+              Value: "www.review-c.dev.account.gov.uk"
             - Name: SESSION_TABLE_NAME
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, SESSIONTABLENAME ]
             - Name: FRONT_END_URL
-              Value: !Sub
-                - "https://${Url}"
-                - Url: !FindInMap [EnvironmentVariables, !Ref Environment, EXTERNALWEBSITEHOST ]
+              Value: "www.review-c.dev.account.gov.uk"
 
             #No backend api url available ????
             #            - Name: API_URL
             #              Value: !Sub
-            #                - "https://${Url}"
+            #                - "http://${Url}"
             #                - Url: !ImportValue backend-api-apigateway-url
             - Name: GTM_ID
               Value: !Sub
@@ -355,7 +364,7 @@ Resources:
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, ANALYTICSDOMAIN ]
 
           PortMappings:
-            - ContainerPort: 8080
+            - ContainerPort: !Ref ContainerPort
               Protocol: tcp
           LogConfiguration:
             LogDriver: awslogs
@@ -537,8 +546,8 @@ Resources:
     Condition: IsProduction
     Type: AWS::ApplicationAutoScaling::ScalableTarget
     Properties:
-      MaxCapacity: 3
-      MinCapacity: 1
+      MaxCapacity: !Ref MaxContainerCount
+      MinCapacity: 3  # minimum of 3 to ensure cross-AZ coverage for resiliency
       ResourceId: !Join
         - '/'
         - - "service"
@@ -565,7 +574,7 @@ Resources:
       TargetTrackingScalingPolicyConfiguration:
         PredefinedMetricSpecification:
           PredefinedMetricType: ECSServiceAverageCPUUtilization
-        TargetValue: 70.0
+        TargetValue: 50.0
 
   ### www domain
 
