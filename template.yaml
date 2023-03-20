@@ -72,32 +72,32 @@ Mappings:
     ### These environment variables are referenced further down the file.
     ### Please ensure that any variables defined for an environment are defined for _all_ environments.
     dev:
-      EXTERNALWEBSITEHOST: "www.review-c.dev.account.gov.uk"
-      APIBASEURL: "app.review-c.dev.account.gov.uk"
+      EXTERNALWEBSITEHOST: "https://review-c.dev.account.gov.uk"
+      APIBASEURL: "https://api.review-c.dev.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-dev"
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "dev.account.gov.uk"
     build:
-      EXTERNALWEBSITEHOST: "www.review-c.build.account.gov.uk"
-      APIBASEURL: "app.review-c.build.account.gov.uk"
+      EXTERNALWEBSITEHOST: "https://review-c.build.account.gov.uk"
+      APIBASEURL: "https://api.review-c.build.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-build"
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "build.account.gov.uk"
     staging:
-      EXTERNALWEBSITEHOST: "www.review-c.staging.account.gov.uk"
-      APIBASEURL: "app.review-c.staging.account.gov.uk"
+      EXTERNALWEBSITEHOST: "https://review-c.staging.account.gov.uk"
+      APIBASEURL: "https://api.review-c.staging.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-staging"
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "staging.account.gov.uk"
     integration:
-      EXTERNALWEBSITEHOST: "www.review-c.integration.account.gov.uk"
-      APIBASEURL: "app.review-c.integration.account.gov.uk"
+      EXTERNALWEBSITEHOST: "https://review-c.integration.account.gov.uk"
+      APIBASEURL: "https://api.review-c.integration.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-integration"
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
     production:
-      EXTERNALWEBSITEHOST: "www.review-c.account.gov.uk"
-      APIBASEURL: "app.review-c.account.gov.uk"
+      EXTERNALWEBSITEHOST: "https://review-c.account.gov.uk"
+      APIBASEURL: "https://api.review-c.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-production"
       GTMID: "TT5HDKV"
       ANALYTICSDOMAIN: "account.gov.uk"
@@ -284,9 +284,9 @@ Resources:
             - !GetAtt ECSSecurityGroup.GroupId
           Subnets:
             - Fn::ImportValue:
-                !Sub "${VpcStackName}-PrivateSubnetIdA"
+                !Sub "${VpcStackName}-ProtectedSubnetIdA"
             - Fn::ImportValue:
-                !Sub "${VpcStackName}-PrivateSubnetIdB"
+                !Sub "${VpcStackName}-ProtectedSubnetIdB"
       TaskDefinition: !Ref ECSServiceTaskDefinition
       Tags:
         - Key: Name
@@ -327,20 +327,13 @@ Resources:
           Name: app
           Environment:
             - Name: API_BASE_URL
-              Value: !Sub
-                - "https://${APIGatewayId}.execute-api.eu-west-2.amazonaws.com/${Environment}"
-                - APIGatewayId:
-                    # Fn::ImportValue: di-ipv-cri-cic-PrivateCICApiGatewayId
-                    Fn::ImportValue: cic-cri-api-CICApiGatewayId  #Hardcoded , needs to be updated to use a parameter for BE stack name
-                  Environment: !Ref Environment
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, APIBASEURL ]
             - Name: EXTERNAL_WEBSITE_HOST
-              Value: !GetAtt ApiGwHttpEndpoint.ApiEndpoint
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, EXTERNALWEBSITEHOST ]
             - Name: SESSION_TABLE_NAME
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, SESSIONTABLENAME ]
             - Name: FRONT_END_URL
-              Value: !Sub
-                - "https://${Url}"
-                - Url: !FindInMap [EnvironmentVariables, !Ref Environment, EXTERNALWEBSITEHOST ]
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, EXTERNALWEBSITEHOST ]
 
             #No backend api url available ????
             #            - Name: API_URL
