@@ -20,10 +20,10 @@ module.exports = {
     entryPoint: true,
     skip: true,
     controller: root,
-    next: "landingPage",
+    next: "nameEntry",
   },
   "/landingPage": {
-    next: "photoIdSelection",
+    next: "nameEntry",
   },
   "/photoIdSelection": {
     controller: photoIdSelect,

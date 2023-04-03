@@ -14,43 +14,43 @@ class CheckDetailsController extends DateController {
       }
 
       // Value for document expiry date depends on selected document
-      let expiryDate
-      switch(req.form.values.photoIdChoice) {
-        case APP.PHOTO_ID_OPTIONS.UK_PASSPORT: {
-          expiryDate = req.form.values.passportExpiryDate;
-          break;
-        }
-        case APP.PHOTO_ID_OPTIONS.BRP: {
-          expiryDate = req.form.values.brpExpiryDate;
-          break;
-        }
-        case APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL: {
-          expiryDate = req.form.values.photocardDlExpiryDate;
-          break;
-        }
-        case APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT: {
-          expiryDate = req.form.values.nonUKPassportExpiryDate;
-          break;
-        }
-        case APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL: {
-          expiryDate = req.form.values.euPhotocardDlExpiryDate;
-          break;
-        }
-        case APP.PHOTO_ID_OPTIONS.CITIZEN_CARD: {
-          expiryDate = req.form.values.citizenCardExpiryDate;
-          break;
-        }
-        case APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD: {
-          expiryDate = req.form.values.youngScotNationalEntitlementCardExpiryDate;
-          break;
-        }
-        case APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD: {
-          expiryDate = req.form.values.euIdCardExpiryDate;
-          break;
-        }
-      }
+      // let expiryDate
+      // switch(req.form.values.photoIdChoice) {
+      //   case APP.PHOTO_ID_OPTIONS.UK_PASSPORT: {
+      //     expiryDate = req.form.values.passportExpiryDate;
+      //     break;
+      //   }
+      //   case APP.PHOTO_ID_OPTIONS.BRP: {
+      //     expiryDate = req.form.values.brpExpiryDate;
+      //     break;
+      //   }
+      //   case APP.PHOTO_ID_OPTIONS.UK_PHOTOCARD_DL: {
+      //     expiryDate = req.form.values.photocardDlExpiryDate;
+      //     break;
+      //   }
+      //   case APP.PHOTO_ID_OPTIONS.OTHER_PASSPORT: {
+      //     expiryDate = req.form.values.nonUKPassportExpiryDate;
+      //     break;
+      //   }
+      //   case APP.PHOTO_ID_OPTIONS.EU_PHOTOCARD_DL: {
+      //     expiryDate = req.form.values.euPhotocardDlExpiryDate;
+      //     break;
+      //   }
+      //   case APP.PHOTO_ID_OPTIONS.CITIZEN_CARD: {
+      //     expiryDate = req.form.values.citizenCardExpiryDate;
+      //     break;
+      //   }
+      //   case APP.PHOTO_ID_OPTIONS.YOUNG_SCOT_NATIONAL_ENTITLEMENT_CARD: {
+      //     expiryDate = req.form.values.youngScotNationalEntitlementCardExpiryDate;
+      //     break;
+      //   }
+      //   case APP.PHOTO_ID_OPTIONS.EU_IDENTITY_CARD: {
+      //     expiryDate = req.form.values.euIdCardExpiryDate;
+      //     break;
+      //   }
+      // }
 
-      const idChoice = req.sessionModel.get("selectedDocument");
+      // const idChoice = req.sessionModel.get("selectedDocument");
       const dateOfBirth = req.form.values.dateOfBirth;
       const changeUrl = req.sessionModel.get("changeUrl");
       const firstName = req.sessionModel.get("firstName");
@@ -59,8 +59,8 @@ class CheckDetailsController extends DateController {
       const fullName = firstName + " " + middleName + " " + surname
 
       locals.formattedBirthDate = formatDate(dateOfBirth, "YYYY-MM-DD");
-      locals.formattedExpiryDate = formatDate(expiryDate, "YYYY-MM-DD");
-      locals.idChoice = idChoice;
+      // locals.formattedExpiryDate = formatDate(expiryDate, "YYYY-MM-DD");
+      // locals.idChoice = idChoice;
       locals.changeUrl = `/${changeUrl}`;
       locals.fullName = fullName
 
@@ -85,8 +85,8 @@ class CheckDetailsController extends DateController {
         given_names: `${givenNamesVal}`,
         family_names: req.sessionModel.get("surname"),
         date_of_birth: req.sessionModel.get("dateOfBirth"),
-        document_selected:  req.sessionModel.get("photoIdChoice"),
-        date_of_expiry: req.sessionModel.get("expiryDate")
+        // document_selected:  req.sessionModel.get("photoIdChoice"),
+        // date_of_expiry: req.sessionModel.get("expiryDate")
       }
       await this.saveCicData(req.axios, cicData, req);
       callback();
