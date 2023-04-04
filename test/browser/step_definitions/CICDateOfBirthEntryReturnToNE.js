@@ -21,7 +21,7 @@ Given(/^the user has navigated to the DoB Entry page$/, async function () {
   });
 
 
-  Then(/^the user is navigated back to the previous page - NI Card EEA Details$/, async function () {
+  Then(/^the user is navigated back to the screen that they came from - Name Entry$/, async function () {
     const nameEntry = new NameEntryPage(await this.page);
 
     expect(await nameEntry.isCurrentPage()).to.be.true;
