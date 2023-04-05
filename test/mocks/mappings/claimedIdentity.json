@@ -23,9 +23,7 @@
             "equalToJson": {
               "given_names": "${json-unit.any-string}",
               "family_names": "${json-unit.any-string}",
-              "date_of_birth": "${json-unit.any-string}",
-              "document_selected": "${json-unit.any-string}",
-              "date_of_expiry": "${json-unit.any-string}"
+              "date_of_birth": "${json-unit.any-string}"
             },
             "ignoreArrayOrder": true
           }
