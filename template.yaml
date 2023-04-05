@@ -331,7 +331,7 @@ Resources:
             - Name: EXTERNAL_WEBSITE_HOST
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, EXTERNALWEBSITEHOST ]
             - Name: SESSION_TABLE_NAME
-              Value: !FindInMap [EnvironmentVariables, !Ref Environment, SESSIONTABLENAME ]
+              Value: !Ref CicFrontSessionsTable
             - Name: FRONT_END_URL
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, EXTERNALWEBSITEHOST ]
 
@@ -626,7 +626,14 @@ Resources:
     Type: AWS::DynamoDB::Table
     Properties:
       # checkov:skip=CKV_AWS_28: Point in time recovery is not necessary for this table.
-      TableName: !Sub "cic-front-sessions-${Environment}"
+      TableName: !If
+        - IsNotDevelopment
+        - !Sub
+          - "${SESSIONTABLENAME}"
+          - SESSIONTABLENAME: !FindInMap [EnvironmentVariables, !Ref Environment, SESSIONTABLENAME]
+        - !Sub
+          - "${SESSIONTABLENAME}-${AWS::StackName}"
+          - SESSIONTABLENAME: !FindInMap [EnvironmentVariables, !Ref Environment, SESSIONTABLENAME]
       BillingMode: "PAY_PER_REQUEST"
       AttributeDefinitions:
         - AttributeName: "id"
@@ -655,3 +662,6 @@ Outputs:
     Export:
       Name: !Sub "${AWS::StackName}-CICFrontGatewayId"
     Value: !Ref ApiGwHttpEndpoint
+  CICFrontSessionsTableName:
+    Description: Table name for the FE sessions table
+    Value: !Ref CicFrontSessionsTable
