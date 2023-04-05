@@ -1,7 +1,7 @@
 const BaseController = require("hmpo-form-wizard").Controller;
 const DateControllerMixin = require("hmpo-components").mixins.Date;
 const { formatDate } = require("../utils")
-const { APP, API } = require("../../../lib/config");
+const { API } = require("../../../lib/config");
 
 const DateController = DateControllerMixin(BaseController);
 
@@ -63,10 +63,6 @@ class CheckDetailsController extends DateController {
       // locals.idChoice = idChoice;
       locals.changeUrl = `/${changeUrl}`;
       locals.fullName = fullName
-
-      if(locals.formattedExpiryDate){
-        req.sessionModel.set("expiryDate", expiryDate);
-      }
 
       callback(err, locals);
     });
