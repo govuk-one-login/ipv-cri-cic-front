@@ -1,6 +1,6 @@
 const { Given, Then, When } = require("@cucumber/cucumber");
 
-const { RelyingPartyPage, LandingPage } = require("../pages");
+const { RelyingPartyPage, LandingPage, NameEntryPage } = require("../pages");
 
 const { expect } = require("chai");
 
@@ -20,6 +20,12 @@ Then("they should be redirected to the landingPage", async function () {
   const landingPage = new LandingPage(await this.page);
 
   expect(await landingPage.isCurrentPage()).to.be.true;
+});
+
+Then("they should be redirected to the nameEntry", async function () {
+  const nameEntry = new NameEntryPage(await this.page);
+
+  expect(await nameEntry.isCurrentPage()).to.be.true;
 });
 
 

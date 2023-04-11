@@ -1,5 +1,6 @@
-@mock-api:f2f-cic-success @success @nonUK
+@mock-api:f2f-cic-success @success
 Feature: The user enters their date of birth to be used as part of their claimed identity
+
 
 Background:
     Given Authenticatable Anita is using the system
@@ -10,7 +11,12 @@ Background:
     When the user clicks the NameEntry continue button
     Then the user is routed to the next screen in the journey DOB Entry
 
-Scenario: Successful redirect from DoB Entry to previous page
-    Given the user has navigated to the DoB Entry page 
-    When the Back link is clicked on the DoB Entry page
-    Then the user is navigated back to the screen that they came from - Name Entry
+    Given the DOB fields are populated with valid values
+    When the user clicks the DoB continue button
+    Then they are routed to the Check My Answers Screen
+
+
+Scenario: Previously provided information successfully rendered on the page
+    Given the user has completed the previous CIC screens
+    When the user clicks the Check My Answers Submit button
+    Then they should be redirected as a success
