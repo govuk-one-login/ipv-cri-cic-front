@@ -1,5 +1,3 @@
-const { APP } = require("../../lib/config");
-
 module.exports = {
   surname: {
     type: "text",

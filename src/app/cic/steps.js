@@ -2,7 +2,6 @@ const nameEntry = require("./controllers/nameEntry");
 const dobEntry = require("./controllers/dateOfBirth");
 const checkDetails = require('./controllers/checkDetails');
 const root = require("./controllers/root");
-const { APP } = require("../../lib/config");
 
 module.exports = {
   "/": {
