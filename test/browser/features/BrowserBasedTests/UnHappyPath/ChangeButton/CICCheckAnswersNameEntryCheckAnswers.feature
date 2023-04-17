@@ -15,10 +15,16 @@ Feature: The user enters their date of birth to be used as part of their claimed
         When the user clicks the DoB continue button
         Then they are routed to the Check My Answers Screen
     
-    
+
     Scenario: Successful redirect from CMA screen back to name entry and back to CMA screen
         Given the user has navigated to Check My Answers Page
         When the name entry edit link is clicked
         Then the user is navigated back to the name entry page
         Then the user clicks continue on the Name Entry page
         Then the user navigates back to the Check My Answers Page from Name Entry
+
+
+    Scenario: Successful redirect to previous screen on “Back” button click
+        #Given  the user wishes to navigate to the previous screen
+        When the Back button is clicked
+        Then the user is routed to the screen they were previously on

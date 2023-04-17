@@ -14,10 +14,20 @@ Feature: The user enters their date of birth to be used as part of their claimed
       Given the DOB fields are populated with valid values
       When the user clicks the DoB continue button
       Then they are routed to the Check My Answers Screen
-  
+
   Scenario: Successful redirect from CMA screen back to DoB and back to CMA screen
       Given the user has navigated to Check my Answers page
       When the DoB edit link is clicked
       Then the user is navigated back to the DoB page
       Then the user clicks continue on the DoB page
       Then the user navigates back to the Check My Answers Page from DoB page
+
+  Scenario: Successful redirect to previous screen on “Back” button click
+    #Given  the user wishes to navigate to the previous screen
+    When the Back button is clicked on the page
+    Then the user is navigated back to the previous page
+
+  # Scenario: Button redirect fails
+  #   #Given the next screen in the journey is unavailable
+  #   When the user clicks the Continue or Back button
+  #   Then the appropriate error page is retrieved and shown

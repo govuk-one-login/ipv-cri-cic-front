@@ -1,3 +1,5 @@
+const { AfterAll } = require('@cucumber/cucumber');
+
 module.exports = class PlaywrightDevPage {
     /**
      * @param {import('@playwright/test').Page} page
@@ -19,12 +21,14 @@ module.exports = class PlaywrightDevPage {
       await this.page.locator("#surname").fill("Hartley");
     }
 
+  
     async enterFirstName(){
-      await this.page.locator("#firstName").fill("James");
+      await this.page.locator("#firstName").fill('');
+      await this.page.locator("#firstName").fill("Robert");
     }
 
     async enterMiddleName(){
-      await this.page.locator("#middleName").fill("Robert");
+      await this.page.locator("#middleName").fill('');
     }
 
     async back(){
