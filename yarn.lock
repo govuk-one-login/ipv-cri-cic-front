@@ -1554,7 +1554,7 @@ bytes@3.0.0:
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.0.0.tgz#d32815404d689699f85a4ea4fa8755dd13a96048"
   integrity sha512-pMhOfFDPiv9t5jjIXkHosWmkSyQbvsgEVNkz0ERHbuLh2T/7j4Mqqpz523Fe8MVY89KC6Sh/QfS2sM+SjgFDcw==
 
-bytes@3.1.2:
+bytes@3.1.2, bytes@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.1.2.tgz#8b0beeb98605adf1b128fa4386403c009e0221a5"
   integrity sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==
@@ -3164,11 +3164,12 @@ hmpo-app@2.4.0:
     underscore "^1.13.4"
     uuid "^8.3.2"
 
-hmpo-components@5.5.2:
-  version "5.5.2"
-  resolved "https://registry.yarnpkg.com/hmpo-components/-/hmpo-components-5.5.2.tgz#8835260992e1da2ed4e199b15482f303ab7cd9c8"
-  integrity sha512-czwG9p/aCL3msQg2nTAnhVKwGYX21138UvYCL5+8xYOAOfZ0kbXLL9+uH3uTRNCOWmqLzZqP+LvdQ0qfE7bwHg==
+hmpo-components@5.12.0:
+  version "5.12.0"
+  resolved "https://registry.yarnpkg.com/hmpo-components/-/hmpo-components-5.12.0.tgz#12c2798569e27a53ff9e6ca5f630c0f07db2ee4e"
+  integrity sha512-VBQ5oWu9W2wRpDun4ddbk5+03mXjC8hIjkNAGs5yi7eKc0twffPLMf8wEcoJswJPWAWmM2oIMM1z+KI09w7Pxg==
   dependencies:
+    bytes "^3.1.2"
     deep-clone-merge "^1.5.4"
     moment "^2.29.3"
     underscore "^1.13.4"
