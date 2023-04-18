@@ -31,9 +31,12 @@ jobs:
         run: yarn test:coverage
       - name: Run browser tests
         run: npm run test:browser:ci
-      # - name: Run sonarcloud scan
-      #   if: ${{ github.actor != 'dependabot[bot]' }}
-      #   uses: sonarsource/sonarcloud-github-action@master
-      #   env:
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # obtained from https://sonarcloud.io
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Run SonarCloud Scan"
+        if: ${{ success() }}
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      
