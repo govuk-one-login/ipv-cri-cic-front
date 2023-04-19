@@ -24,7 +24,7 @@ module.exports = class PlaywrightDevPage {
     const birthDay = new Date().getDate().toString()
     const month = new Date().getMonth() + 1
     const birthMonth = month.toString()
-    const year = new Date().getFullYear() - 35
+    const year = new Date().getFullYear() - 36
     const birthYear = year.toString()
     await this.page.locator("#dateOfBirth-day").fill(birthDay);
     await this.page.locator("#dateOfBirth-month").fill(birthMonth);
