@@ -25,6 +25,5 @@ Feature: The user enters their date of birth to be used as part of their claimed
 
 
     Scenario: Successful redirect to previous screen on “Back” button click
-        #Given  the user wishes to navigate to the previous screen
         When the Back button is clicked
         Then the user is routed to the screen they were previously on

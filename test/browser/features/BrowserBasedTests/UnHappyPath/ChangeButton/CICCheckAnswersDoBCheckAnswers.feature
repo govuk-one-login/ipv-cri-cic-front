@@ -23,11 +23,5 @@ Feature: The user enters their date of birth to be used as part of their claimed
       Then the user navigates back to the Check My Answers Page from DoB page
 
   Scenario: Successful redirect to previous screen on “Back” button click
-    #Given  the user wishes to navigate to the previous screen
     When the Back button is clicked on the page
     Then the user is navigated back to the previous page
-
-  # Scenario: Button redirect fails
-  #   #Given the next screen in the journey is unavailable
-  #   When the user clicks the Continue or Back button
-  #   Then the appropriate error page is retrieved and shown
