@@ -30,9 +30,6 @@ describe("RootController", () => {
     it("should save all values to sessionModel with full shared_claims object", async () => {
 
       req.session.shared_claims = {
-        passport: [
-          { expiryDate: "2024-03-01" }
-        ],
         name: [
           {
             nameParts: [
@@ -45,14 +42,10 @@ describe("RootController", () => {
       };
 
       await rootController.saveValues(req, res, next);
-      const passportExpiryDate = req.sessionModel.get("passportExpiryDate");
-      const nonUKPassportExpiryDate = req.sessionModel.get("nonUKPassportExpiryDate");
       const firstName = req.sessionModel.get("firstName");
       const surname = req.sessionModel.get("surname");
       const dateOfBirth = req.sessionModel.get("dateOfBirth");
 
-      expect(passportExpiryDate).to.equal("2024-03-01")
-      expect(nonUKPassportExpiryDate).to.equal("2024-03-01");
       expect(firstName).to.equal("First");
       expect(surname).to.equal("Last");
       expect(dateOfBirth).to.equal("1999-03-01");
@@ -62,7 +55,6 @@ describe("RootController", () => {
   it("should save appropriate values to sessionModel with partial shared_claims object", async () => {
 
     req.session.shared_claims = {
-      passport: [],
       name: [
         {
           nameParts: [
@@ -75,14 +67,10 @@ describe("RootController", () => {
     };
 
     await rootController.saveValues(req, res, next);
-    const passportExpiryDate = req.sessionModel.get("passportExpiryDate");
-    const nonUKPassportExpiryDate = req.sessionModel.get("nonUKPassportExpiryDate");
     const firstName = req.sessionModel.get("firstName");
     const surname = req.sessionModel.get("surname");
     const dateOfBirth = req.sessionModel.get("dateOfBirth");
 
-    expect(passportExpiryDate).to.equal(undefined);
-    expect(nonUKPassportExpiryDate).to.equal(undefined);
     expect(firstName).to.equal("First");
     expect(surname).to.equal("Last");
     expect(dateOfBirth).to.equal("1999-03-01");
@@ -91,20 +79,15 @@ describe("RootController", () => {
   it("should not update sessionModel if no shared_claims attributes present", async () => {
 
     req.session.shared_claims = {
-      passport: [],
       name: [],
       birthDate: []
     };
 
     await rootController.saveValues(req, res, next);
-    const passportExpiryDate = req.sessionModel.get("passportExpiryDate");
-    const nonUKPassportExpiryDate = req.sessionModel.get("nonUKPassportExpiryDate");
     const firstName = req.sessionModel.get("firstName");
     const surname = req.sessionModel.get("surname");
     const dateOfBirth = req.sessionModel.get("dateOfBirth");
 
-    expect(passportExpiryDate).to.equal(undefined);
-    expect(nonUKPassportExpiryDate).to.equal(undefined);
     expect(firstName).to.equal(undefined);
     expect(surname).to.equal(undefined);
     expect(dateOfBirth).to.equal(undefined);
