@@ -76,8 +76,6 @@ describe("CheckDetails controller", () => {
           given_names: `${givenNamesVal}`,
           family_names: req.sessionModel.get("surname"),
           date_of_birth: req.sessionModel.get("dateOfBirth")
-          // document_selected:  req.sessionModel.get("photoIdChoice"),
-          // date_of_expiry: req.sessionModel.get("expiryDate")
         }
 
         await checkDetailsController.saveValues(req, res, next);

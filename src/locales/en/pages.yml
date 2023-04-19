@@ -1,44 +1,4 @@
 # title is managed in default.yml
-
-passport:
-  title: "When does your UK passport expire?"
-  passportInformationContext: "We need this information to check that your photo ID is valid."
-
-nonUKPassport:
-  title: "When does your non-UK biometric passport expire?"
-  passportInformationContext: "We need this information to check that your photo ID is valid."
-
-brp:
-  title: "When does your biometric residence permit (BRP) expire?"
-  passportInformationContext: "We need this information to check that your photo ID is valid. "
-
-photocardDl:
-  title: "When does your UK photocard driving licence expire?"
-  photocardDlInformationContext: "We need this information to check that your photo ID is valid. "
-
-euPhotocardDl:
-  title: "When does your EU photocard driving licence expire?"
-  euPhotocardDlInformationContext: "We need this information to check that your photo ID is valid."
-
-citizenCard: 
-  title: "When does your CitizenCard expire?" 
-  content: "We need this information to check that your photo ID is valid." 
-
-youngScotNationalEntitlementCard:
-  title: "When does your Young Scot National Entitlement Card (NEC) expire?"
-  youngScotNationalEntitlementCardInformationContext: "We need this information to check that your photo ID is valid."
-  
-euIdentityCard: 
-  title: "When does your National Identity card from an EEA country expire?" 
-  content: "We need this information to check that your photo ID is valid."
-
-photoIdSelection:
-  title: "Choose a photo ID you can take to a Post Office"
-  h1: "Choose a photo ID you can take to a Post Office"
-  content: "Your photo ID must be an original - you cannot use photocopies.
-            <br><br>
-            You can use a UK passport up to 18 months after its expiry date. All other photo IDs must be in date.
-            <br><br>"
             
 landingPage:
   pageTitle: "Prove your identity in person"
@@ -52,14 +12,6 @@ landingPage:
   dataInfo:
     title: "What happens after the Post Office"
     body: "Once your identity has been proven, you must return online to your GOV.UK account to access the service you need."
-
-
-photoIdExpiry:
-  pageTitle: "Your photo ID has expired"
-  title: "Your photo ID has expired"
-  one: "We can only accept photo IDs that are currently in date. Expired UK passports are acceptable up to 18 months after the expiry date."
-  two: "If you entered the wrong expiry date, go back to enter the correct date."
-  three: "To select another valid photo ID, click Continue."
 
 nameEntry:
   title: "What is your name?"
@@ -76,8 +28,6 @@ dateOfBirth:
 
 checkDetails:
   title: "Check your details"
-  selectedId: "Chosen photo ID"
-  expiryDate: "Expiry date"
   name: "Name"
   dateOfBirth: "Date of birth"
   changeLink: "Change"
