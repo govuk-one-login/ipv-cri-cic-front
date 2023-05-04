@@ -33,7 +33,7 @@ jobs:
         with:
           cmd: install # will run `yarn install` command
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # if needed
+          NODE_AUTH_TOKEN: ${{ secrets.SH_CIC_PERSONAL_ACCESS_TOKEN }} # if needed
       - name: Build production bundle
         uses: borales/actions-yarn@v4
         with:
