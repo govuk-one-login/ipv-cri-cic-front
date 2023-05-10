@@ -19,6 +19,25 @@ yarn install
 - 'BASE_URL': Externally accessible base url of the webserver. Used to generate the callback url as part of credential issuer oauth flows
 - `PORT` - Default port to run webserver on. (Default to `5020`)
 
+# Deployment in own stack in DEV
+
+To deploy a copy of the frontend infra from a local branch as a separate isolated stack in DEV:
+
+- update the `Image:` tag in template.yaml to point to the container image to be deployed - this can be found by looking in ECR in the AWS Console for the latest image and tag.
+- the run:
+
+```shell
+sam build --parallel --no-cached
+sam deploy --resolve-s3 --stack-name "CUSTOM_STACK_NAME" --capabilities CAPABILITY_IAM --confirm-changeset --parameter-overrides \
+"Environment=\"dev\" PermissionsBoundary=\"none\" VpcStackName=\"vpc-cri\" EnableScalingInDev=0"
+```
+
+Note the following parameters can be used to specify whether or not to deploy the autoscaling infra:
+
+- `EnableScalingInDev` default to 0 which inhibits deployment of scaling infra in dev; set to 1 to deploy scaling infra
+- `MinContainerCount` default is 3
+- `MaxContainerCount` default is 12
+
 # Mock Data
 
 [Wiremock](https://wiremock.org/) has been used to create a [stateful mock](https://wiremock.org/docs/stateful-behaviour/) of the API, through the use of scenarios. These configuration files are stored as JSON files in the [./test/mocks/mappings](./test/mocks/mappings) directory.
