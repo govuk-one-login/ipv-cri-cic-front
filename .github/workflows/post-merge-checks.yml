@@ -1,0 +1,85 @@
+name: Post-merge Build, Test and Report
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  pull_request_target:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    continue-on-error: true
+  
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v3
+      # - name: Use Node.js 16.10.0
+        # uses: actions/setup-node@v3
+        # with:
+        #   node-version-file: '.node-version'
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'yarn'
+      - name: Build Test CIC Front Image
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install # will run `yarn install` command
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.SH_CIC_ACCESS_TOKEN }} # if needed
+      - name: Build production bundle
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: build # will run `yarn build` command
+      - name: Test the app
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: test:browser:ci # will run `yarn test` command
+
+      - name: Get Test Results history
+        uses: actions/checkout@v3
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Cucumber HTML Report action
+        uses: PavanMudigonda/html-reporter-github-pages@v1.1
+        id: test-report
+        if: always()
+        with:
+          test_results: ./report/cucumber-html-report
+          gh_pages: gh-pages
+          results_history: results-history
+
+      # - name: Deploy report to Github Pages
+      #   if: always()
+      #   uses: peaceiris/actions-gh-pages@v2
+      #   with:
+      #      deploy_key: ${{ secrets.SH_CIC_ACCESS_TOKEN }}
+      #   env:
+      #      PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #      PUBLISH_BRANCH: gh-pages
+      #      PUBLISH_DIR: results-history
+      #      KEEP_FILES: true
+     
+      - name: Publish Github Pages
+        if: ${{ github.actor != 'dependabot[bot]' }}
+        uses: peaceiris/actions-gh-pages@v3.8.0
+        with:
+          github_token: ${{ secrets.SH_CIC_ACCESS_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: results-history
+          keep_files: true
