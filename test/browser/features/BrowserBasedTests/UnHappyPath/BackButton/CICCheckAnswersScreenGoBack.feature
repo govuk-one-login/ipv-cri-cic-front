@@ -1,5 +1,5 @@
 @mock-api:f2f-cic-success @success
-Feature: The user enters their date of birth to be used as part of their claimed identity
+Feature: Successful navigation using the Back button on the CMA screen
 
 
 Background:

@@ -1,5 +1,5 @@
 @mock-api:f2f-cic-success @success @ukPass
-Feature: The user enters their name to be used as part of their claimed identity
+Feature: The user enters their Date of Birth as part of their claimed identity
 
 Background:
     Given Authenticatable Anita is using the system

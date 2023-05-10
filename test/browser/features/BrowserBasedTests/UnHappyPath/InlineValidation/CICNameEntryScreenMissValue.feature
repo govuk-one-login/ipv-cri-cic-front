@@ -1,5 +1,5 @@
 @mock-api:f2f-cic-success
-Feature: The user enters their name to be used as part of their claimed identity
+Feature:Error messgae is displayed when no name data is entered
 
 
     Background:
