@@ -332,12 +332,6 @@ Resources:
               Value: !Ref CicFrontSessionsTable
             - Name: FRONT_END_URL
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, EXTERNALWEBSITEHOST ]
-
-            #No backend api url available ????
-            #            - Name: API_URL
-            #              Value: !Sub
-            #                - "https://${Url}"
-            #                - Url: !ImportValue backend-api-apigateway-url
             - Name: GTM_ID
               Value: !Sub
                 - "GTM-${ContainerId}"
@@ -446,7 +440,10 @@ Resources:
   ApiGwHttpEndpoint:
     Type: 'AWS::ApiGatewayV2::Api'
     Properties:
-      Name: !Sub cic-front-${Environment}
+      Name: !If
+        - IsNotDevelopment
+        - !Sub "cic-front-${Environment}"
+        - !Sub "cic-front-${Environment}-${AWS::StackName}"
       ProtocolType: HTTP
 
   ApiGwHttpEndpointIntegration:
@@ -509,7 +506,7 @@ Resources:
     Properties:
       LogGroupName: !Sub /aws/apigateway/${AWS::StackName}-CICFront-API-GW-AccessLogs
       RetentionInDays: 14
-      
+
   CSLSAPIGWAccessSubscriptionFilter:
     Type: AWS::Logs::SubscriptionFilter
     Condition: IsNotDevelopment
