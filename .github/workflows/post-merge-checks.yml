@@ -33,7 +33,7 @@ jobs:
         with:
           cmd: install # will run `yarn install` command
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.SH_CIC_PERSONAL_ACCESS_TOKEN }} # if needed
+          NODE_AUTH_TOKEN: ${{ secrets.SH_CIC_ACCESS_TOKEN }} # if needed
       - name: Build production bundle
         uses: borales/actions-yarn@v4
         with:
@@ -64,18 +64,18 @@ jobs:
       #   if: always()
       #   uses: peaceiris/actions-gh-pages@v2
       #   with:
-      #      deploy_key: ${{ secrets.SH_CIC_PERSONAL_ACCESS_TOKEN }}
+      #      deploy_key: ${{ secrets.SH_CIC_ACCESS_TOKEN }}
       #   env:
       #      PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       #      PUBLISH_BRANCH: gh-pages
       #      PUBLISH_DIR: results-history
       #      KEEP_FILES: true
      
-      # - name: Publish Github Pages
-      #   if: ${{ github.actor != 'dependabot[bot]' }}
-      #   uses: peaceiris/actions-gh-pages@v3.8.0
-      #   with:
-      #     github_token: ${{ secrets.SH_CIC_PERSONAL_ACCESS_TOKEN }}
-      #     publish_branch: gh-pages
-      #     publish_dir: results-history
-      #     keep_files: true
+      - name: Publish Github Pages
+        if: ${{ github.actor != 'dependabot[bot]' }}
+        uses: peaceiris/actions-gh-pages@v3.8.0
+        with:
+          github_token: ${{ secrets.SH_CIC_ACCESS_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: results-history
+          keep_files: true
