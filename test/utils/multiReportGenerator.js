@@ -3,8 +3,8 @@ var date = new Date();
 var currentDate = date.getDate() + '_' +( date.getMonth()+1) + '_' + date.getFullYear() + '_' + date.getHours() + '_' + date.getMinutes() + '_' + date.getSeconds() + '_' + date.getMilliseconds();
 
 var options = {
-    jsonDir: 'test/reports',
-    reportPath: 'test/reports/cic-reports/cri-cic-report_'+currentDate + '.html',
+    jsonDir: 'test/report',
+    reportPath: 'test/report/cucumber-html-report',
     metadata: {
         browser: {
           name: "chrome",
@@ -17,7 +17,7 @@ var options = {
         },
       },
     disableLog: 'true',
-    openReportInBrowser: 'true',
+    // openReportInBrowser: 'true',
     customData: {
         title: "Run info",
         data: [
