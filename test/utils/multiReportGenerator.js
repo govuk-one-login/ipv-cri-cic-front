@@ -5,6 +5,7 @@ const reporter = require("multiple-cucumber-html-reporter");
 var options = {
     jsonDir: 'test/reports',
     reportPath: 'test/reports/cucumber-html-report',
+    ignoreBadJsonFile: true,
     metadata: {
         browser: {
           name: "chrome",
