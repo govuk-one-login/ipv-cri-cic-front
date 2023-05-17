@@ -3,8 +3,8 @@ const reporter = require("multiple-cucumber-html-reporter");
 // var currentDate = date.getDate() + '_' +( date.getMonth()+1) + '_' + date.getFullYear() + '_' + date.getHours() + '_' + date.getMinutes() + '_' + date.getSeconds() + '_' + date.getMilliseconds();
 
 var options = {
-    jsonDir: 'test/report',
-    reportPath: 'test/report/cucumber-html-report',
+    jsonDir: 'test/reports',
+    reportPath: 'test/reports/cucumber-html-report',
     metadata: {
         browser: {
           name: "chrome",
