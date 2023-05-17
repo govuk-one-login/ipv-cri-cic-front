@@ -93,6 +93,7 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-dev"
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "dev.account.gov.uk"
+      PROXYURL: "cic-cri-outbound-proxy-proxy.review-o.dev.account.gov.uk"
     build:
       EXTERNALWEBSITEHOST: "https://review-c.build.account.gov.uk"
       APIBASEURL: "https://api.review-c.build.account.gov.uk"
@@ -100,6 +101,7 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-build"
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "build.account.gov.uk"
+      PROXYURL: "proxy.review-c.build.account.gov.uk"
     staging:
       EXTERNALWEBSITEHOST: "https://review-c.staging.account.gov.uk"
       APIBASEURL: "https://api.review-c.staging.account.gov.uk"
@@ -107,6 +109,7 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-staging"
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "staging.account.gov.uk"
+      PROXYURL: "proxy.review-c.staging.account.gov.uk"
     integration:
       EXTERNALWEBSITEHOST: "https://review-c.integration.account.gov.uk"
       APIBASEURL: "https://api.review-c.integration.account.gov.uk"
@@ -114,6 +117,7 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-integration"
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
+      PROXYURL: "proxy.review-c.integration.account.gov.uk"
     production:
       EXTERNALWEBSITEHOST: "https://review-c.account.gov.uk"
       APIBASEURL: "https://api.review-c.account.gov.uk"
@@ -121,6 +125,7 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-production"
       GTMID: "TT5HDKV"
       ANALYTICSDOMAIN: "account.gov.uk"
+      PROXYURL: "proxy.review-c.account.gov.uk"
 
 Resources:
   # Security Groups for the ECS service and load balancer
@@ -583,47 +588,47 @@ Resources:
 
   ### Front End API Gateway Custom Domain definition
 
-   CICFrontCustomDomain:
-     Type: AWS::ApiGatewayV2::DomainName
-     Properties:
-       DomainName: !If
-        - IsNotDevelopment
-        - !Sub
-          - "www.${DNSSUFFIX}"
-          - DNSSUFFIX: !FindInMap [EnvironmentVariables, !Ref Environment, DNSSUFFIX]
-        - !Sub
-          - "${AWS::StackName}.${DNSSUFFIX}"
-          - DNSSUFFIX: !FindInMap [EnvironmentVariables, !Ref Environment, DNSSUFFIX]
-       DomainNameConfigurations:
-         - CertificateArn: !Sub "{{resolve:ssm:/${Environment}/Platform/ACM/PrimaryZoneWildcardCertificateARN}}"
-           EndpointType: REGIONAL
-           SecurityPolicy: TLS_1_2
+  CICFrontCustomDomain:
+    Type: AWS::ApiGatewayV2::DomainName
+    Properties:
+      DomainName: !If
+      - IsNotDevelopment
+      - !Sub
+        - "www.${DNSSUFFIX}"
+        - DNSSUFFIX: !FindInMap [EnvironmentVariables, !Ref Environment, DNSSUFFIX]
+      - !Sub
+        - "${AWS::StackName}.${DNSSUFFIX}"
+        - DNSSUFFIX: !FindInMap [EnvironmentVariables, !Ref Environment, DNSSUFFIX]
+      DomainNameConfigurations:
+        - CertificateArn: !Sub "{{resolve:ssm:/${Environment}/Platform/ACM/PrimaryZoneWildcardCertificateARN}}"
+          EndpointType: REGIONAL
+          SecurityPolicy: TLS_1_2
   
-   CICFrontApiRecord:
-     Type: AWS::Route53::RecordSet
-     Properties:
-       Name: !If
-        - IsNotDevelopment
-        - !Sub
-          - "www.${DNSSUFFIX}"
-          - DNSSUFFIX: !FindInMap [EnvironmentVariables, !Ref Environment, DNSSUFFIX]
-        - !Sub
-          - "${AWS::StackName}.${DNSSUFFIX}"
-          - DNSSUFFIX: !FindInMap [EnvironmentVariables, !Ref Environment, DNSSUFFIX]
-       Type: A
-      #  HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
-       HostedZoneId: !ImportValue PublicHostedZoneId
-       AliasTarget:
-         DNSName: !GetAtt FrontCustomDomain.RegionalDomainName
-         HostedZoneId: !GetAtt FrontCustomDomain.RegionalHostedZoneId
-         EvaluateTargetHealth: false
-  
-   CICFrontApiMapping:
-     Type: AWS::ApiGatewayV2::ApiMapping
-     Properties:
-       DomainName: !Ref CICFrontCustomDomain 
-       ApiId: !Ref ApiGwHttpEndpoint
-       Stage: !Ref APIStageDefault
+  CICFrontApiRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      Name: !If
+      - IsNotDevelopment
+      - !Sub
+        - "www.${DNSSUFFIX}"
+        - DNSSUFFIX: !FindInMap [EnvironmentVariables, !Ref Environment, DNSSUFFIX]
+      - !Sub
+        - "${AWS::StackName}.${DNSSUFFIX}"
+        - DNSSUFFIX: !FindInMap [EnvironmentVariables, !Ref Environment, DNSSUFFIX]
+      Type: A
+      HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
+    #  HostedZoneId: !ImportValue PublicHostedZoneId
+      AliasTarget:
+        DNSName: !GetAtt CICFrontCustomDomain.RegionalDomainName
+        HostedZoneId: !GetAtt CICFrontCustomDomain.RegionalHostedZoneId
+        EvaluateTargetHealth: false
+
+  CICFrontApiMapping:
+    Type: AWS::ApiGatewayV2::ApiMapping
+    Properties:
+      DomainName: !Ref CICFrontCustomDomain 
+      ApiId: !Ref ApiGwHttpEndpoint
+      Stage: !Ref APIStageDefault
 
 
   CicFrontSessionsTable:
