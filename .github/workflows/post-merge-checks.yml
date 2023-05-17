@@ -60,7 +60,7 @@ jobs:
         id: test-report
         if: always()
         with:
-          test_results: test/report/cucumber-html-report
+          test_results: test/report/cucumber-html-report/index.html
           gh_pages: gh-pages
           results_history: results-history
 
