@@ -75,11 +75,11 @@ jobs:
       #      PUBLISH_DIR: results-history
       #      KEEP_FILES: true
      
-      - name: Publish Github Pages
-        if: ${{ github.actor != 'dependabot[bot]' }}
+     - name: Publish Github Pages
+        if: always()
         uses: peaceiris/actions-gh-pages@v3.8.0
         with:
-          github_token: ${{ secrets.SH_CIC_ACCESS_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: results-history
           keep_files: true
