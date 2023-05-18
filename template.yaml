@@ -93,7 +93,7 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-dev"
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "dev.account.gov.uk"
-      PROXYURL: "cic-cri-outbound-proxy-proxy.review-o.dev.account.gov.uk"
+      PROXYURL: "cic-cri-outbound-proxy-proxy.review-c.dev.account.gov.uk"
     build:
       EXTERNALWEBSITEHOST: "https://review-c.build.account.gov.uk"
       APIBASEURL: "https://api.review-c.build.account.gov.uk"
