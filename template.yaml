@@ -93,7 +93,6 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-dev"
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "dev.account.gov.uk"
-      PROXYURL: "cic-cri-outbound-proxy-proxy.review-c.dev.account.gov.uk"
     build:
       EXTERNALWEBSITEHOST: "https://review-c.build.account.gov.uk"
       APIBASEURL: "https://api.review-c.build.account.gov.uk"
@@ -101,7 +100,6 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-build"
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "build.account.gov.uk"
-      PROXYURL: "proxy.review-c.build.account.gov.uk"
     staging:
       EXTERNALWEBSITEHOST: "https://review-c.staging.account.gov.uk"
       APIBASEURL: "https://api.review-c.staging.account.gov.uk"
@@ -109,7 +107,6 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-staging"
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "staging.account.gov.uk"
-      PROXYURL: "proxy.review-c.staging.account.gov.uk"
     integration:
       EXTERNALWEBSITEHOST: "https://review-c.integration.account.gov.uk"
       APIBASEURL: "https://api.review-c.integration.account.gov.uk"
@@ -117,7 +114,6 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-integration"
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
-      PROXYURL: "proxy.review-c.integration.account.gov.uk"
     production:
       EXTERNALWEBSITEHOST: "https://review-c.account.gov.uk"
       APIBASEURL: "https://api.review-c.account.gov.uk"
@@ -125,7 +121,6 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-production"
       GTMID: "TT5HDKV"
       ANALYTICSDOMAIN: "account.gov.uk"
-      PROXYURL: "proxy.review-c.account.gov.uk"
 
 Resources:
   # Security Groups for the ECS service and load balancer
@@ -353,8 +348,8 @@ Resources:
           Environment:
             - Name: API_BASE_URL
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, APIBASEURL ]
-            - Name: FRONT_END_CUSTOM_DOMAIN
-              Value: !Ref CICFrontCustomDomain
+            - Name: EXTERNAL_WEBSITE_HOST
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, EXTERNALWEBSITEHOST ]
             - Name: SESSION_TABLE_NAME
               Value: !Ref CicFrontSessionsTable
             - Name: FRONT_END_URL
@@ -365,8 +360,6 @@ Resources:
                 - ContainerId: !FindInMap [EnvironmentVariables, !Ref Environment, GTMID ]
             - Name: ANALYTICS_DOMAIN
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, ANALYTICSDOMAIN ]
-            - Name: PROXYURL
-              Value: !FindInMap [EnvironmentVariables, !Ref Environment, PROXYURL ]
 
           PortMappings:
             - ContainerPort: 8080
@@ -617,7 +610,6 @@ Resources:
         - DNSSUFFIX: !FindInMap [EnvironmentVariables, !Ref Environment, DNSSUFFIX]
       Type: A
       HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
-    #  HostedZoneId: !ImportValue PublicHostedZoneId
       AliasTarget:
         DNSName: !GetAtt CICFrontCustomDomain.RegionalDomainName
         HostedZoneId: !GetAtt CICFrontCustomDomain.RegionalHostedZoneId
