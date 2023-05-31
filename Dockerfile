@@ -33,4 +33,4 @@ EXPOSE $PORT
 
 ENTRYPOINT ["tini", "--"]
 
-CMD ["yarn", "start"]
+CMD ["yarn", "start:debug"]
