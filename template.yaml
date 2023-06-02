@@ -344,7 +344,6 @@ Resources:
       ContainerDefinitions:
         - Essential: true
           Image: CONTAINER-IMAGE-PLACEHOLDER
-          Name: app
           Environment:
             - Name: API_BASE_URL
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, APIBASEURL ]
@@ -519,11 +518,11 @@ Resources:
           "integrationLatency":"$context.integrationLatency"
           }
 
-  # WAFv2ACLAssociation:
-  #   Type: AWS::WAFv2::WebACLAssociation
-  #   Properties:
-  #     ResourceArn: !Ref LoadBalancer
-  #     WebACLArn: !Sub "{{resolve:ssm:/${Environment}/Platform/Security/WafArn}}"
+  WAFv2ACLAssociation:
+    Type: AWS::WAFv2::WebACLAssociation
+    Properties:
+      ResourceArn: !Ref LoadBalancer
+      WebACLArn: !Sub "{{resolve:ssm:/${Environment}/Platform/Security/WafArn}}"
 
   APIGWAccessLogsGroup:
     Type: AWS::Logs::LogGroup
