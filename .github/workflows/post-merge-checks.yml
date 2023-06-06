@@ -75,7 +75,7 @@ jobs:
       #      PUBLISH_DIR: results-history
       #      KEEP_FILES: true
      
-     - name: Publish Github Pages
+      - name: Publish Github Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3.8.0
         with:
