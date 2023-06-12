@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @success
+@mock-api:f2f-cic-success @success @only
 Feature: The user checks the answers they entered as part of their claimed identity
 
 

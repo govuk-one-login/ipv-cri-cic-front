@@ -4,7 +4,7 @@ const { expect } = require("chai");
 
 const { CheckDetailsPage }  = require("../pages");
 
-const {getSessionById}  = require("../support/cicDBChecks")
+const { getSessionById }  = require("../support/cicDBChecks")
 
 
 Given(/^the user has completed the previous CIC screens$/, async function () {

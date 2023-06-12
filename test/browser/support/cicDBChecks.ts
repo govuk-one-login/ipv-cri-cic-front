@@ -1,5 +1,4 @@
-import axios from "axios";
-import { DynamoDBDocument, GetCommand, QueryCommandInput, UpdateCommand, PutCommand } from "@aws-sdk/lib-dynamodb";
+import { GetCommand} from "@aws-sdk/lib-dynamodb";
 import { createDynamoDbClient } from "../../utils/DynamoDBFactory";
 import { ISessionItem } from "../../models/ISessionItem";
 
