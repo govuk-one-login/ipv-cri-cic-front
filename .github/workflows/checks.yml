@@ -33,10 +33,3 @@ jobs:
         run: npm run test:browser:ci
       - name: Run static infra template tests
         run: cd test/waf && npm install && npm run test:infra
-
-      # - name: Run sonarcloud scan
-      #   if: ${{ github.actor != 'dependabot[bot]' }}
-      #   uses: sonarsource/sonarcloud-github-action@master
-      #   env:
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # obtained from https://sonarcloud.io
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
