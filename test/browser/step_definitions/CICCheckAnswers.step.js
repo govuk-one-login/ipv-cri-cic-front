@@ -1,6 +1,6 @@
 const { Given, When, Then} = require("@cucumber/cucumber");
 
-const { expect, assert } = require("chai");
+const { expect } = require("chai");
 
 const { CheckDetailsPage }  = require("../pages");
 
