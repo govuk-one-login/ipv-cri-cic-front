@@ -17,7 +17,9 @@ $govuk-assets-path: "/public/";
   }
 
 .govuk-inset-text {
-  @include govuk-responsive-margin(6, "bottom")
+  @include govuk-responsive-margin(6, "bottom");
+  @include govuk-responsive-margin(2, "top"); 
+  @include govuk-responsive-padding(1, "top");
 }
 
 .govuk-body, main p, .govuk-body-m {
