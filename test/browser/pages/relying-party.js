@@ -15,14 +15,8 @@ module.exports = class PlaywrightDevPage {
     const claim = require("../support/shared_claim")
 
     const postRequest = await axios.post(`https://ipvstub.review-c.build.account.gov.uk/start`, claim);
-  
-    let url = postRequest.data.AuthorizeLocation.split("https://");
-    this.startingUrl = "https://" + "www." + url[1];
-      
-    // this.startingUrl =
-    //   "http://localhost:5020/oauth2/authorize?request=lorem&client_id=standalone";
 
-      await this.page.goto(this.startingUrl);
+    await this.page.goto(postRequest.data.AuthorizeLocation);
   }
 
  isRelyingPartyServer() {
