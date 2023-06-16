@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @success
+@mock-api:f2f-cic-success @success @only
 Feature: The user checks the answers they entered as part of their claimed identity
 
 
@@ -19,3 +19,4 @@ Background:
 Scenario: Previously provided information successfully rendered on the page
     Given the user has completed the previous CIC screens
     When the user clicks the Check My Answers Submit button
+    Then details are stored in DB
