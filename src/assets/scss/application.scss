@@ -16,8 +16,12 @@ $govuk-assets-path: "/public/";
   @include govuk-responsive-margin(3, "bottom")
   }
 
+.govuk-input {
+  @include govuk-responsive-margin(2, "top")
+}
+
 .govuk-inset-text {
-  @include govuk-responsive-margin(6, "bottom");
+  @include govuk-responsive-margin(0, "bottom");
   @include govuk-responsive-margin(2, "top"); 
   @include govuk-responsive-padding(1, "top");
 }
@@ -41,9 +45,11 @@ $govuk-assets-path: "/public/";
 }
 
 .govuk-summary-list .govuk-summary-list__key {
-  @include govuk-responsive-padding(6, "bottom");
   @include govuk-responsive-padding(7, "top");
+  color: govuk-colour("black");
+  font-weight: bold;
 }
+
 
 .govuk-warning-text {
   @include govuk-responsive-margin(0, "bottom")
@@ -58,3 +64,6 @@ $govuk-assets-path: "/public/";
   @include govuk-responsive-margin(0, "bottom");
 }
 
+.govuk-date-input {
+  margin-bottom: -30px;
+}

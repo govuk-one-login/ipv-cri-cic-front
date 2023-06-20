@@ -32,8 +32,9 @@
     "test:browser:ci:only": "npm-run-all -p -r start:ci mocks test:browser:only",
     "check-translation": "node node_modules/di-ipv-cri-common-express/scripts/checkTranslations.js",
     "test:browser:report": "node ./test/utils/multiReportGenerator.js",
-    "test:browser1": "wait-on tcp:8090 tcp:5020 && API_BASE_URL=http://127.0.0.1:8090 cucumber-js test/browser/features/**/*.feature --require test/browser/support/env.js  --require test/browser/support/setup.js --require test/browser/step_definitions/**/*.js -f json:./test/reports/cucumber_report.json --tags @only",
-    "test:browser1:ci": "npm-run-all -p -r start:ci mocks test:browser1"
+    "test:browser1:ci": "npm-run-all -p -r start:ci mocks test:browser1",
+    "test:browser1": "wait-on tcp:8090 tcp:5020 && API_BASE_URL=http://127.0.0.1:8090 cucumber-js test/browser/features/**/*.feature --require test/browser/support/env.js  --require test/browser/support/setup.js --require test/browser/step_definitions/**/*.js --tags @test",
+    "test:browser:ci1": "npm-run-all -p -r start:ci mocks test:browser1"
 
   },
   "repository": {

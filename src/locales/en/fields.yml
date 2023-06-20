@@ -8,7 +8,7 @@
   label: Year
 
 surname:
-  label: Surname
+  label: Last Name
   hint:
   validation:
     default: "Enter your last name as it appears on your photo ID"
@@ -49,4 +49,4 @@ checkDetails:
   label: ""
   legend: ""
   validation:
-    default: "Make sure your details are correct before you continue. You will not be able to change them later."
+    default: "Make sure the details you entered match the details on your photo ID."
