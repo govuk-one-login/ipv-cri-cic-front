@@ -21,7 +21,7 @@ When(/^the user clicks the Check My Answers Submit button$/, async function () {
 
 })
 
-When(/^details are stored in DB$/, async function () {
+Then(/^details are stored in DB$/, async function () {
   const dbConnection = new DynoDBConnection("b58b265b-7da8-4c2a-a24f-ea84dae7bd37","session-cic-cri-ddb");
   const dbData = await dbConnection.getDBDetails();
   console.log("Test data in DB is --------" + dbData);

@@ -14,20 +14,18 @@ landingPage:
     body: "Once your identity has been proven, you must return online to your GOV.UK account to access the service you need."
 
 nameEntry:
-  title: "What is your name?"
-  nameEntryContext: "Enter your full name as it appears on your photo ID."
-  surname: "Surname"
+  title: "Enter your name exactly as it appears on your photo ID"
+  surname: "Last name"
   givenNames: "Given names"
   firstName: "First name"
   middleName: "Middle names"
   middleNameHint: "Leave this blank if you do not have middle names"
 
 dateOfBirth:
-  title: "What is your date of birth?"
-  dobInformationContext: "Enter your date of birth as it appears on your photo ID."
+  title: "Enter your date of birth"
 
 checkDetails:
-  title: "Check your details"
+  title: "Confirm your details"
   name: "Name"
   dateOfBirth: "Date of birth"
   changeLink: "Change"
