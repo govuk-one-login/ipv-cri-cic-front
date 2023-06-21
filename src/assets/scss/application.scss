@@ -14,7 +14,7 @@ $govuk-assets-path: "/public/";
 
 .govuk-list--bullet>li, .govuk-list--number>li {
   @include govuk-responsive-margin(3, "bottom")
-  }
+}
 
 .govuk-input {
   @include govuk-responsive-margin(2, "top")
@@ -65,5 +65,5 @@ $govuk-assets-path: "/public/";
 }
 
 .govuk-date-input {
-  margin-bottom: -30px;
+  margin-bottom: govuk-spacing(-6);
 }
