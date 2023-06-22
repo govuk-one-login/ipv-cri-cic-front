@@ -25,7 +25,7 @@ When(/^the user clicks the Check My Answers Submit button$/, async function () {
 Given(/^I have retrieved the sessionTable data for my CIC session$/, { timeout: 2 * 50000 }, async function () {
   await new Promise(r => setTimeout(r, 10000));
   const sessionState = this.state;
-  const dbConnection = new DynoDBConnection(sessionState.replace("\"", ""), "session-cic-cri-ddb");
+  const dbConnection = new DynoDBConnection(sessionState.replace(/"/g, ""), "session-cic-cri-ddb");
   this.sessionId = await dbConnection.getCicSessionId();
   this.authSessionState = await dbConnection.getCicSessionAuthSessionState();
 })
