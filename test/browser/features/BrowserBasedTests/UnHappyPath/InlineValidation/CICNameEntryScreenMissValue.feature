@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success
+@mock-api:f2f-cic-success @browser
 Feature:Error messgae is displayed when no name data is entered
 
 
