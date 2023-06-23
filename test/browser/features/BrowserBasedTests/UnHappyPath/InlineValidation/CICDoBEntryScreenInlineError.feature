@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @success
+@mock-api:f2f-cic-success @success @browser
 Feature: Error Message displayed when wrong DoB is entered
 
 

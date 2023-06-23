@@ -3,7 +3,7 @@ const { Given, When, Then} = require("@cucumber/cucumber");
 const { expect } = require("chai");
 
 const { NameEntryPage, DateOfBirthPage }  = require("../pages");
-       
+
 Given(
   /^there has been an entry into the surname and first name fields$/,
   async function () {
@@ -18,7 +18,7 @@ Given(
 
 When(/^the user clicks the NameEntry continue button$/, async function () {
   const nameEntryPage = new NameEntryPage(await this.page);
-  
+
   await nameEntryPage.continue();
 
 });
@@ -29,6 +29,6 @@ Then(
     const dobPage = new DateOfBirthPage(await this.page);
 
     expect(await dobPage.isCurrentPage()).to.be.true;
-    
+
   }
 );

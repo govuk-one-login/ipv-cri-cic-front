@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @success
+@mock-api:f2f-cic-success @success @browser
 Feature: Successful navigation using the Back button on the CMA screen
 
 

@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @success
+@mock-api:f2f-cic-success @success @browser
 Feature: Successful navigation using Change and Back button - Name Entry
 
 
@@ -14,7 +14,7 @@ Feature: Successful navigation using Change and Back button - Name Entry
         Given the DOB fields are populated with valid values
         When the user clicks the DoB continue button
         Then they are routed to the Check My Answers Screen
-    
+
 
     Scenario: Successful redirect from CMA screen back to name entry and back to CMA screen
         Given the user has navigated to Check My Answers Page

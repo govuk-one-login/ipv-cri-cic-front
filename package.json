@@ -26,7 +26,7 @@
     "test:coverage": "nyc --reporter=lcov --reporter=text-summary yarn test",
     "test:watch": "mocha --watch",
     "mocks": "yarn run wiremock --verbose --port 8090 --root-dir test/mocks",
-    "test:browser": "wait-on tcp:8090 tcp:5020 && API_BASE_URL=http://127.0.0.1:8090 cucumber-js test/browser/features/**/*.feature --require test/browser/support/env.js  --require test/browser/support/setup.js --require test/browser/step_definitions/**/*.js -f json:./test/reports/cucumber_report.json",
+    "test:browser": "wait-on tcp:8090 tcp:5020 && API_BASE_URL=http://127.0.0.1:8090 cucumber-js test/browser/features/**/*.feature --require test/browser/support/env.js  --require test/browser/support/setup.js --require test/browser/step_definitions/**/*.js -f json:./test/reports/cucumber_report.json --tags @browser",
     "test:browser:only": "wait-on tcp:8090 tcp:5020 && cucumber-js test/browser/features/**/*.feature --require test/browser/support/env.js  --require test/browser/support/setup.js --require test/browser/step_definitions/**/*.js --tags @only",
     "test:browser:ci": "npm-run-all -p -r start:ci mocks test:browser; npm run test:browser:report",
     "test:browser:ci:only": "npm-run-all -p -r start:ci mocks test:browser:only",
@@ -75,6 +75,7 @@
   },
   "dependencies": {
     "aws-sdk": "^2.1296.0",
+    "@aws-sdk/lib-dynamodb": "3.150.0",
     "axios": "^0.27.2",
     "cfenv": "1.2.4",
     "connect-dynamodb": "^2.0.5",
