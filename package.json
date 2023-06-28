@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node src/app.js",
-    "start:ci": "API_BASE_URL=http://localhost:8090 REDIS_SESSION_URL= NODE_ENV=development node src/app.js",
+    "start:ci": "API_BASE_URL=http://127.0.0.1:8090 REDIS_SESSION_URL= NODE_ENV=development node src/app.js",
     "start:debug": "DEBUG=* node src/app.js",
     "dev": "nodemon src/app.js",
     "build": "yarn build-sass && yarn build-js && yarn copy-assets",
