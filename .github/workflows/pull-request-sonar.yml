@@ -20,7 +20,7 @@ jobs:
       - name: Use Node.js 18.x
         uses: actions/setup-node@v3
         with:
-          node-version: 18.12.1
+          node-version: 16
           cache: 'yarn'
       - name: Install dependencies
         run: yarn install
@@ -31,7 +31,7 @@ jobs:
       - name: Run test and write coverage
         run: yarn test:coverage
       - name: Run browser tests
-        run: yarn test:browser:ci
+        run: npm run test:browser:ci
       - name: "Run SonarCloud Scan"
         if: ${{ success() }}
         uses: SonarSource/sonarcloud-github-action@master
