@@ -23,8 +23,6 @@ jobs:
           cache: 'yarn'
       - name: Install dependencies
         run: yarn install
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
       - name: Run lint
         run: yarn lint
       - name: Run build

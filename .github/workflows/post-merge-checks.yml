@@ -41,8 +41,6 @@ jobs:
           cmd: install # will run `yarn install` command
         env:
           NODE_AUTH_TOKEN: ${{ secrets.SH_CIC_ACCESS_TOKEN }} # if needed
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
       - name: Build production bundle
         uses: borales/actions-yarn@v4
         with:
