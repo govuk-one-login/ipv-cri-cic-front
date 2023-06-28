@@ -19,3 +19,4 @@ Scenario: Claimed Identity Credential Issuer - E2E Happy Path and DB Validation
 
     Given I have retrieved the sessionTable data for my CIC session
     Then session details are correctly stored in DB
+    Then the Verifiable Credential is correctly returned by the userInfo endpoint

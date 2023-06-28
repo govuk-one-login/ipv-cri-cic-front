@@ -4,14 +4,17 @@ const { expect } = require("chai");
 
 const { NameEntryPage, DateOfBirthPage }  = require("../pages");
 
+const userData = require("../support/cicUserData.json")
+
+
 Given(
   /^there has been an entry into the surname and first name fields$/,
   async function () {
     const nameEntryPage = new NameEntryPage(await this.page);
 
-    await nameEntryPage.enterSurname();
-    await nameEntryPage.enterFirstName();
-    await nameEntryPage.enterMiddleName();
+    await nameEntryPage.enterSurname(userData.lastName);
+    await nameEntryPage.enterFirstName(userData.firstName);
+    await nameEntryPage.enterMiddleName(userData.middleName);
 
   }
 );
