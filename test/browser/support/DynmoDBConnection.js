@@ -5,7 +5,6 @@ const AWS = require('aws-sdk');
 module.exports = class DynamoDBConnection {
 
   constructor(state, tableName) {
-    console.log("state is: " + state);
     this.state = state;
     AWS.config.update(process.env.AWS_REGION);
     this.docClient = new AWS.DynamoDB.DocumentClient({ apiVersion: '2012-08-10' });
@@ -20,24 +19,32 @@ module.exports = class DynamoDBConnection {
     };
   }
 
-  async getCicSessionId() {
+  async getCicItem() {
     try {
       const res = await this.docClient.scan(this.params).promise();
-      const sessionId = res.Items[0].sessionId;
-      return sessionId;
+      this.sessionId = res.Items[0].sessionId;
+      this.authSessionState = res.Items[0].authSessionState;
+      this.authorizationCode = res.Items[0].authorizationCode;
+      this.redirectUri = res.Items[0].redirectUri;
     } catch (err) {
       return err;
     }
   }
 
   async getCicSessionAuthSessionState() {
-    try {
-      const res = await this.docClient.scan(this.params).promise();
-      const authSessionState = res.Items[0].authSessionState;
-      return authSessionState;
-    } catch (err) {
-      return err;
-    }
+    return this.authSessionState;
+  }
+
+  async getCicSessionId() {
+    return this.sessionId;
+  }
+
+  async getCicSessionAuthorizationCode() {
+    return this.authorizationCode;
+  }
+
+  async getCicSessionRedirectUri() {
+    return this.redirectUri;
   }
 }
 
