@@ -30,10 +30,10 @@ jobs:
         # uses: actions/setup-node@v3
         # with:
         #   node-version-file: '.node-version'
-      - name: Use Node.js 16.x
+      - name: Use Node.js 18.x
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18.12.1
           cache: 'yarn'
       - name: Build Test CIC Front Image
         uses: borales/actions-yarn@v4
