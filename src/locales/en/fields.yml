@@ -8,7 +8,7 @@
   label: Year
 
 surname:
-  label: Last Name
+  label: Last name
   hint:
   validation:
     default: "Enter your last name as it appears on your photo ID"
@@ -24,7 +24,7 @@ firstName:
     regexName: "Enter your first name as it appears on your photo ID"
 
 middleName:
-  label: Middle names
+  label: Middle name(s)
   hint: Leave this blank if you do not have any middle names
   regexName: "Enter your first name as it appears on your photo ID"
 

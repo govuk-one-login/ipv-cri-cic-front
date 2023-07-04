@@ -45,11 +45,18 @@ $govuk-assets-path: "/public/";
 }
 
 .govuk-summary-list .govuk-summary-list__key {
-  @include govuk-responsive-padding(7, "top");
   color: govuk-colour("black");
   font-weight: bold;
+  // font-size: 23px
 }
 
+// .govuk-summary-list .govuk-summary-list__value {
+//   font-size: 23px
+// }
+
+// .govuk-summary-list .govuk-summary-list__actions {
+//   font-size: 23px
+// }
 
 .govuk-warning-text {
   @include govuk-responsive-margin(0, "bottom")
@@ -66,4 +73,8 @@ $govuk-assets-path: "/public/";
 
 .govuk-date-input {
   margin-bottom: govuk-spacing(-6);
+}
+
+.govuk-error-summary {
+  width: 66.6666%;
 }
