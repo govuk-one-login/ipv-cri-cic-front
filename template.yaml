@@ -343,7 +343,7 @@ Resources:
     Properties:
       ContainerDefinitions:
         - Essential: true
-          Image: CONTAINER-IMAGE-PLACEHOLDER
+          Image: CONTAINER-IMAGE-PLACEHOLDER 
           Name: app
           Environment:
             - Name: API_BASE_URL
@@ -651,6 +651,435 @@ Resources:
         # checkov:skip=CKV_AWS_119: Implement Customer Managed Keys in PYIC-1391
         SSEEnabled: true
         SSEType: KMS
+
+# Alarms
+
+  FE5XXErrorAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub "${AWS::StackName}-FE5XXErrorAlarm"
+      AlarmDescription: Trigger the alarm if errorThreshold exceeds 10% with a minimum of 150 invocations and a minimum of 5 errors in 5 out of the last 5 minutes
+      ActionsEnabled: true
+      OKActions:
+        - !ImportValue platform-alarm-topic-slack-warning-alert
+      AlarmActions:
+        - !ImportValue platform-alarm-topic-slack-warning-alert
+      InsufficientDataActions: []
+      Dimensions: []
+      EvaluationPeriods: 5
+      DatapointsToAlarm: 5
+      Threshold: 1
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+      Metrics:
+        - Id: errorThreshold
+          Label: errorThreshold
+          ReturnData: true
+          Expression: IF(invocations<150 || error<5,0,errorPercentage)
+        - Id: invocations
+          ReturnData: false
+          MetricStat:
+            Metric:
+              Namespace: AWS/ApiGateway
+              MetricName: Count
+              Dimensions:
+                - Name: ApiId
+                  Value: !Ref ApiGwHttpEndpoint
+            Period: 60
+            Stat: Sum
+        - Id: error
+          ReturnData: false
+          MetricStat:
+            Metric:
+              Namespace: AWS/ApiGateway
+              MetricName: 5xx
+              Dimensions:
+                - Name: ApiId
+                  Value: !Ref ApiGwHttpEndpoint
+            Period: 60
+            Stat: Sum
+        - Id: errorPercentage
+          Label: errorPercentage
+          ReturnData: false
+          Expression: (error/invocations) * 100
+
+  FE4XXErrorAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub "${AWS::StackName}-FE4XXErrorAlarm"
+      AlarmDescription: Trigger the alarm if errorThreshold exceeds 5% with a minimum of 150 invocations and a minimum of 2 errors in 2 out of the last 5 minutes
+      ActionsEnabled: true
+      OKActions:
+        - !ImportValue platform-alarm-topic-slack-warning-alert
+      AlarmActions:
+        - !ImportValue platform-alarm-topic-slack-warning-alert
+      InsufficientDataActions: [ ]
+      Dimensions: [ ]
+      EvaluationPeriods: 5
+      DatapointsToAlarm: 2
+      Threshold: 5
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+      Metrics:
+        - Id: errorThreshold
+          Label: errorThreshold
+          ReturnData: true
+          Expression: IF(invocations<150 || error<2,0,errorPercentage)
+        - Id: invocations
+          ReturnData: false
+          MetricStat:
+            Metric:
+              Namespace: AWS/ApiGateway
+              MetricName: Count
+              Dimensions:
+                - Name: ApiId
+                  Value: !Ref ApiGwHttpEndpoint
+            Period: 60
+            Stat: Sum
+        - Id: error
+          ReturnData: false
+          MetricStat:
+            Metric:
+              Namespace: AWS/ApiGateway
+              MetricName: 4xx
+              Dimensions:
+                - Name: ApiId
+                  Value: !Ref ApiGwHttpEndpoint
+            Period: 60
+            Stat: Sum
+        - Id: errorPercentage
+          Label: errorPercentage
+          ReturnData: false
+          Expression: (error/invocations) * 100
+
+  FELatencyAlarmP95:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub "${AWS::StackName}-FELatencyAlarmP95"
+      AlarmDescription: Trigger the alarm if less than 95% of requests has a latency of less than 1 second with a minimum of 25 invocations in 2 out of the last 5 minutes
+      ActionsEnabled: false
+      OKActions:
+        - !ImportValue platform-alarm-topic-slack-warning-alert
+      AlarmActions:
+        - !ImportValue platform-alarm-topic-slack-warning-alert
+      InsufficientDataActions: [ ]
+      Dimensions: [ ]
+      EvaluationPeriods: 5
+      DatapointsToAlarm: 2
+      Threshold: 1000
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+      Metrics:
+        - Id: latencyThreshold
+          Label: latencyThreshold
+          ReturnData: true
+          Expression: IF(invocations<25,0,latency95Percentile)
+        - Id: invocations
+          ReturnData: false
+          MetricStat:
+            Metric:
+              Namespace: AWS/ApiGateway
+              MetricName: Count
+              Dimensions:
+                - Name: ApiId
+                  Value: !Ref ApiGwHttpEndpoint
+            Period: 60
+            Stat: Sum
+        - Id: latency95Percentile
+          ReturnData: false
+          MetricStat:
+            Metric:
+              Namespace: AWS/ApiGateway
+              MetricName: Latency
+              Dimensions:
+                - Name: ApiId
+                  Value: !Ref ApiGwHttpEndpoint
+            Period: 60
+            Stat: p95
+
+  FELatencyAlarmP99:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub "${AWS::StackName}-FELatencyAlarmP99"
+      AlarmDescription: Trigger the alarm if less than 99% of requests has a latency of less than 2.5 second with a minimum of 150 invocations in 2 out of the last 5 minutes
+      ActionsEnabled: false
+      OKActions:
+        - !ImportValue platform-alarm-topic-slack-warning-alert
+      AlarmActions:
+        - !ImportValue platform-alarm-topic-slack-warning-alert
+      InsufficientDataActions: [ ]
+      Dimensions: [ ]
+      EvaluationPeriods: 5
+      DatapointsToAlarm: 2
+      Threshold: 2500
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+      Metrics:
+        - Id: latencyThreshold
+          Label: latencyThreshold
+          ReturnData: true
+          Expression: IF(invocations<150,0,latency99Percentile)
+        - Id: invocations
+          ReturnData: false
+          MetricStat:
+            Metric:
+              Namespace: AWS/ApiGateway
+              MetricName: Count
+              Dimensions:
+                - Name: ApiId
+                  Value: !Ref ApiGwHttpEndpoint
+            Period: 60
+            Stat: Sum
+        - Id: latency99Percentile
+          ReturnData: false
+          MetricStat:
+            Metric:
+              Namespace: AWS/ApiGateway
+              MetricName: Latency
+              Dimensions:
+                - Name: ApiId
+                  Value: !Ref ApiGwHttpEndpoint
+            Period: 60
+            Stat: p99
+
+  FELowContainerTaskCountAlarm:
+    DependsOn:
+      - CICFrontEcsService
+      - CICFrontEcsCluster
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub "${AWS::StackName}-FELowContainerTaskCountAlarm"
+      AlarmDescription: Trigger a warning if the running container task count drops below 2
+      ActionsEnabled: true
+      AlarmActions:
+        - !ImportValue platform-alarm-topic-critical-alert
+      InsufficientDataActions: []
+      Dimensions: []
+      EvaluationPeriods: 1
+      DatapointsToAlarm: 1
+      Threshold: 1
+      ComparisonOperator: LessThanOrEqualToThreshold
+      TreatMissingData: breaching
+      Metrics:
+        - Id: containerTaskCount
+          ReturnData: true
+          MetricStat:
+            Metric:
+              Namespace: ECS/ContainerInsights
+              MetricName: RunningTaskCount
+              Dimensions:
+                - Name: ClusterName
+                  Value: !Ref CICFrontEcsCluster
+                - Name: ServiceName
+                  Value: !GetAtt CICFrontEcsService.Name
+            Period: 60
+            Stat: Minimum
+
+  FELowContainerTaskCountCriticalAlarm:
+    DependsOn:
+      - CICFrontEcsService
+      - CICFrontEcsCluster
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub "${AWS::StackName}-FELowContainerTaskCountCriticalAlarm"
+      AlarmDescription: Trigger a critical alert if the running container task count drops below 1
+      ActionsEnabled: false  # to be enabled once proved stable in production
+      AlarmActions:
+        - !ImportValue platform-alarm-topic-critical-alert
+      InsufficientDataActions: []
+      Dimensions: []
+      EvaluationPeriods: 1
+      DatapointsToAlarm: 1
+      Threshold: 0
+      ComparisonOperator: LessThanOrEqualToThreshold
+      TreatMissingData: breaching
+      Metrics:
+        - Id: containerTaskCount
+          ReturnData: true
+          MetricStat:
+            Metric:
+              Namespace: ECS/ContainerInsights
+              MetricName: RunningTaskCount
+              Dimensions:
+                - Name: ClusterName
+                  Value: !Ref CICFrontEcsCluster
+                - Name: ServiceName
+                  Value: !GetAtt CICFrontEcsService.Name
+            Period: 60
+            Stat: Maximum
+
+# This alarm was copied and needs to be configured
+  # FEMissingTranslationStringAlarm:
+  #   Type: AWS::CloudWatch::Alarm
+  #   Properties:
+  #     AlarmName: !Sub "${AWS::StackName}-FEMissingTranslationStringAlarm"
+  #     AlarmDescription: "????"
+  #     ActionsEnabled: false
+  #     OKActions:
+  #       - !ImportValue platform-alarm-topic-slack-warning-alert
+  #     AlarmActions:
+  #       - !ImportValue platform-alarm-topic-slack-warning-alert
+  #     InsufficientDataActions: [ ]
+  #     Dimensions: [ ]
+  #     EvaluationPeriods: 5
+  #     DatapointsToAlarm: 2
+  #     Threshold: 2500
+  #     ComparisonOperator: GreaterThanOrEqualToThreshold
+  #     TreatMissingData: notBreaching
+  #     Metrics:
+  #       - Id: latencyThreshold
+  #         Label: latencyThreshold
+  #         ReturnData: true
+  #         Expression: IF(invocations<150,0,latency99Percentile)
+  #       - Id: invocations
+  #         ReturnData: false
+  #         MetricStat:
+  #           Metric:
+  #             Namespace: AWS/ApiGateway
+  #             MetricName: Count
+  #             Dimensions:
+  #               - Name: ApiId
+  #                 Value: !Ref ApiGwHttpEndpoint
+  #           Period: 60
+  #           Stat: Sum
+  #       - Id: latency99Percentile
+  #         ReturnData: false
+  #         MetricStat:
+  #           Metric:
+  #             Namespace: AWS/ApiGateway
+  #             MetricName: Latency
+  #             Dimensions:
+  #               - Name: ApiId
+  #                 Value: !Ref ApiGwHttpEndpoint
+  #           Period: 60
+  #           Stat: p99
+
+  WarningAlarmDashboard:
+    Type: AWS::CloudWatch::Dashboard
+    Properties:
+      DashboardName: !Sub '${AWS::StackName}-Warning-Alarm-Overview'
+      DashboardBody:
+        Fn::Sub: >
+          {
+            "widgets": [
+              {
+                "height": 6,
+                "width": 12,
+                "y": 0,
+                "x": 0,
+                "type": "metric",
+                "properties": {
+                  "title": "CIC Front 5XX Error Alarm - ${AWS::StackName}",
+                  "annotations": {
+                    "alarms": ["${FE5XXErrorAlarm.Arn}"]
+                  },
+                  "view": "timeSeries",
+                  "stacked": false
+                }
+              },
+              {
+                "height": 6,
+                "width": 12,
+                "y": 0,
+                "x": 12,
+                "type": "metric",
+                "properties": {
+                  "title": "CIC Front 4XX Error Alarm - ${AWS::StackName}",
+                  "annotations": {
+                    "alarms": ["${FE4XXErrorAlarm.Arn}"]
+                  },
+                  "view": "timeSeries",
+                  "stacked": false
+                }
+              },
+              {
+                "height": 6,
+                "width": 12,
+                "y": 6,
+                "x": 0,
+                "type": "metric",
+                "properties": {
+                  "title": "CIC Front Latency Alarm P95 - ${AWS::StackName}",
+                  "annotations": {
+                    "alarms": ["${FELatencyAlarmP95.Arn}"]
+                  },
+                  "view": "timeSeries",
+                  "stacked": false
+                }
+              },
+              {
+                "height": 6,
+                "width": 12,
+                "y": 6,
+                "x": 12,
+                "type": "metric",
+                "properties": {
+                  "title": "CIC Front Latency Alarm P99 - ${AWS::StackName}",
+                  "annotations": {
+                    "alarms": ["${FELatencyAlarmP99.Arn}"]
+                  },
+                  "view": "timeSeries",
+                  "stacked": false
+                }
+              },
+              {
+                "height": 6,
+                "width": 12,
+                "y": 12,
+                "x": 12,
+                "type": "metric",
+                "properties": {
+                  "title": "CIC Front Low Container Task Count Warning - ${AWS::StackName}",
+                  "annotations": {
+                    "alarms": ["${FELowContainerTaskCountAlarm.Arn}"]
+                  },
+                  "view": "timeSeries",
+                  "stacked": false
+                }
+              },
+              {
+                "height": 6,
+                "width": 12,
+                "y": 18,
+                "x": 0,
+                "type": "metric",
+                "properties": {
+                  "title": "CIC Front Low Container Task Count Critical Alarm - ${AWS::StackName}",
+                  "annotations": {
+                    "alarms": ["${FELowContainerTaskCountCriticalAlarm.Arn}"]
+                  },
+                  "view": "timeSeries",
+                  "stacked": false
+                }
+              }
+            ]
+          }
+
+  CriticalAlarmDashboard:
+    Type: AWS::CloudWatch::Dashboard
+    Properties:
+      DashboardName: !Sub '${AWS::StackName}-Critical-Alarm-Overview'
+      DashboardBody:
+        Fn::Sub: >
+          {
+            "widgets": [
+              {
+                "height": 6,
+                "width": 12,
+                "y": 0,
+                "x": 0,
+                "type": "metric",
+                "properties": {
+                  "title": "CIC Front Low Container Task Count Critical - ${AWS::StackName}",
+                  "annotations": {
+                    "alarms": ["${FELowContainerTaskCountCriticalAlarm.Arn}"]
+                  },
+                  "view": "timeSeries",
+                  "stacked": false
+                }
+              }
+            ]
+          }
 
 Outputs:
   StackName:
