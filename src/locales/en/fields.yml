@@ -13,7 +13,7 @@ surname:
   validation:
     default: "Enter your last name as it appears on your photo ID"
     maxlength: "Enter your last name as it appears on your photo ID"
-    regexName: "Enter your last name as it appears on your photo ID"
+    regexName: "Your last name cannot include numbers"
 
 firstName:
   label: First name
@@ -21,12 +21,17 @@ firstName:
   validation:
     default: "Enter your first name as it appears on your photo ID"
     maxlength: "Enter your first name as it appears on your photo ID"
-    regexName: "Enter your first name as it appears on your photo ID"
+    regexName: "Your first name cannot include numbers"
 
 middleName:
   label: Middle name(s)
   hint: Leave this blank if you do not have any middle names
-  regexName: "Enter your first name as it appears on your photo ID"
+  validation:
+    default: "Enter your middle names as they appear on your photo ID"
+    maxlength: "Enter your first names as they appear on your photo ID"
+    regexName: "Your middle name cannot include numbers"
+    regexSpecialCharacters: "Enter your middle names as they appear on your photo ID"
+
 
 dateOfBirth:
   legend: ""

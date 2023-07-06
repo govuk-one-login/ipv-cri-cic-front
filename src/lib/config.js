@@ -13,9 +13,9 @@ module.exports = {
     BASE_URL: process.env.EXTERNAL_WEBSITE_HOST || "http://localhost:8000",
     PATHS: {
       CIC: "/",
-      NAME_ENTRY: "/nameEntry",
-      DATE_OF_BIRTH: "/dateOfBirth",
-      CHECK_DETAILS: "/checkDetails",
+      NAME_ENTRY: "/enter-name-photo-id",
+      DATE_OF_BIRTH: "/enter-date-birth",
+      CHECK_DETAILS: "/confirm-details",
     },
     ANALYTICS: {
       ID: process.env.GTM_ID,

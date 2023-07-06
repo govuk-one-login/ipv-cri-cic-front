@@ -19,6 +19,7 @@ module.exports = {
     type: "text",
     journeyKey: "middleName",
     validate: [
+      { type: "regexSpecialCharacters", fn: (value) => value.match(/^[A-Za-z0-9]*$/) },
       { type: "regexName", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) }
     ]
   },
