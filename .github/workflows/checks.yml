@@ -24,16 +24,14 @@ jobs:
         with:
           node-version: 18.12.1
           cache: 'yarn'
-      - name: Build Test CIC Front Image
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: install # will run `yarn install` command
+      - name: Install dependencies
+        run: yarn install
       - name: Run lint
         run: yarn lint
-      - name: Build production bundle
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: build # will run `yarn build` command
+      - name: Run build
+        run: yarn build
+      - name: Run test and write coverage
+        run: yarn test:coverage
       - name: Test the app
         uses: borales/actions-yarn@v4
         with:
