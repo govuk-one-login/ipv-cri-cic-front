@@ -10,6 +10,9 @@ on:
     branches:
       - main
 
+env: # Only adding the variables in that are required for
+  IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
+
 jobs:
   run-tests:
     runs-on: ubuntu-latest
