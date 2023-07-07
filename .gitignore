@@ -38,3 +38,5 @@ deploy/samconfig.toml
 wafv2/
 package-lock.json
 reports
+test/reports/
+.aws-sam/
