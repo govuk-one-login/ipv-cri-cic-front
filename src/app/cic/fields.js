@@ -4,7 +4,7 @@ module.exports = {
     journeyKey: "surname",
     validate: [
       "required",
-      { type: "regexName", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) }
+      { type: "regexName", fn: (value) => value.match(/^[a-zA-Z.'-]+( [a-zA-Z.'-]+)*$/) }
     ]
   },
   firstName: {
@@ -12,7 +12,7 @@ module.exports = {
     journeyKey: "firstName",
     validate: [
       "required",
-      { type: "regexName", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) }
+      { type: "regexName", fn: (value) => value.match(/^[a-zA-Z.'-]+( [a-zA-Z.'-]+)*$/) }
     ]
   },
   middleName: {

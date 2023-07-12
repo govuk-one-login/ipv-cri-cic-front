@@ -23,7 +23,6 @@ class CheckDetailsController extends DateController {
       locals.formattedBirthDate = formatDate(dateOfBirth, "YYYY-MM-DD");
       locals.changeUrl = `/${changeUrl}`;
       locals.fullName = fullName
-
       callback(err, locals);
     });
   }
