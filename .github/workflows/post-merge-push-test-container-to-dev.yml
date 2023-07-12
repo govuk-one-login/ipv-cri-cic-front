@@ -25,7 +25,7 @@ jobs:
       - name: Assume temporary AWS role
         uses: aws-actions/configure-aws-credentials@v1-node16
         with:
-          role-to-assume: ${{ secrets.DEV_CRI_CIC_GH_ACTIONS_ROLE_ARN }}
+          role-to-assume: ${{ secrets.DEV_ROLE_TO_ASSUME }}
           aws-region: ${{ env.AWS_REGION }}
 
       # ... Build and validate SAM application ...
