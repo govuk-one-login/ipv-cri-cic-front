@@ -14,6 +14,8 @@ surname:
     default: "Enter your last name as it appears on your photo ID"
     maxlength: "Enter your last name as it appears on your photo ID"
     regexName: "Your last name cannot include numbers"
+    regexSpecialCharacters: "Enter your last name as it appears on your photo ID"
+
 
 firstName:
   label: First name
@@ -22,6 +24,7 @@ firstName:
     default: "Enter your first name as it appears on your photo ID"
     maxlength: "Enter your first name as it appears on your photo ID"
     regexName: "Your first name cannot include numbers"
+    regexSpecialCharacters: "Enter your first name as it appears on your photo ID"
 
 middleName:
   label: Middle name(s)
