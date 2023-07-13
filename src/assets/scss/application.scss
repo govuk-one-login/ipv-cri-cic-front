@@ -14,7 +14,7 @@ $govuk-assets-path: "/public/";
 
 .govuk-list--bullet>li, .govuk-list--number>li {
   @include govuk-responsive-margin(3, "bottom")
-  }
+ }
 
 .govuk-inset-text {
   @include govuk-responsive-margin(6, "bottom");
@@ -45,6 +45,7 @@ $govuk-assets-path: "/public/";
   @include govuk-responsive-padding(7, "top");
 }
 
+
 .govuk-warning-text {
   @include govuk-responsive-margin(0, "bottom")
 }
@@ -57,4 +58,3 @@ $govuk-assets-path: "/public/";
 .govuk-warning-text {
   @include govuk-responsive-margin(0, "bottom");
 }
-
