@@ -10,17 +10,16 @@ module.exports = {
   firstName: {
     type: "text",
     journeyKey: "firstName",
-    validate: [
-      "required",
-      { type: "regexName", fn: (value) => value.match(/^[a-zA-Z.'-]+( [a-zA-Z.'-]+)*$/) }
-    ]
+		validate: [
+			{ type: 'regex', arguments: /^[a-zA-Z.'-]+( [a-zA-Z.'-]+)*$/ }
+		]
   },
   middleName: {
     type: "text",
     journeyKey: "middleName",
     validate: [
-      { type: "regexName", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) }
-    ]
+			{ type: 'regex', arguments: /^[a-zA-Z.'-]+( [a-zA-Z.'-]+)*$/ }
+		]
   },
   dateOfBirth: {
     type: "date",

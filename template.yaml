@@ -88,7 +88,7 @@ Mappings:
     ### Please ensure that any variables defined for an environment are defined for _all_ environments.
     dev:
       EXTERNALWEBSITEHOST: "https://cic-cri-front.review-c.dev.account.gov.uk"
-      APIBASEURL: "https://api-cic-cri-api.review-c.dev.account.gov.uk"
+      APIBASEURL: "https://api-cic-cri-api-joe.review-c.dev.account.gov.uk"
       DNSSUFFIX: "review-c.dev.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-dev"
       GTMID: "TK92W68"
