@@ -17,20 +17,20 @@ module.exports = class PlaywrightDevPage {
     await this.page.click("#continue");
   }
 
-  async enterSurname() {
-    await this.page.locator("#surname").fill("Hartley");
+  async enterSurname(lastName) {
+    await this.page.locator("#surname").fill(lastName);
   }
 
-  async enterFirstName() {
-    await this.page.locator("#firstName").fill("James");
+  async enterFirstName(firstName) {
+    await this.page.locator("#firstName").fill(firstName);
   }
 
   async returnFirstName() {
     return this.firstName;
   }
 
-  async enterMiddleName() {
-    await this.page.locator("#middleName").fill("Robert");
+  async enterMiddleName(middleName) {
+    await this.page.locator("#middleName").fill(middleName);
   }
 
   async back() {
@@ -42,7 +42,18 @@ module.exports = class PlaywrightDevPage {
     return errorText.trim();
   }
 
+  async checkFirstNameErrorText() {
+    const errorText = await this.page.locator('[href="#firstName"]').textContent();
+    return errorText.trim();
+  }
+
+  async checkLastNameErrorText() {
+    const errorText = await this.page.locator('[href="#surname"]').textContent();
+    return errorText.trim();
+  }
+
 };
+
 
 
 
