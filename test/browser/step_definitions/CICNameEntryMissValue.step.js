@@ -49,44 +49,6 @@ Given(/^a Numerical Value has been entered in the lastName field$/, async functi
 }
 );
 
-Given(/^a Double Space has been entered in the firstName field$/, async function () {
-  const nameEntryPage = new NameEntryPage(await this.page);
-
-  await nameEntryPage.enterFirstName("Billy  Joel");
-  await nameEntryPage.enterSurname("Walker");
-
-}
-);
-
-Given(/^a Double Space has been entered in the lastName field$/, async function () {
-  const nameEntryPage = new NameEntryPage(await this.page);
-
-  await nameEntryPage.enterFirstName("Kyle");
-  await nameEntryPage.enterSurname("Walker  Peters");
-
-}
-);
-
-
-Given(/^a space has been entered before the firstName field$/, async function () {
-  const nameEntryPage = new NameEntryPage(await this.page);
-
-  await nameEntryPage.enterFirstName(" Billy Joel");
-  await nameEntryPage.enterSurname("Walker");
-
-}
-);
-
-Given(/^a space has been entered after the lastName field$/, async function () {
-  const nameEntryPage = new NameEntryPage(await this.page);
-
-  await nameEntryPage.enterFirstName("Kyle");
-  await nameEntryPage.enterSurname("Walker ");
-
-}
-);
-
-
 When(
   /^the user clicks the continue button in the NameEntry screen$/, async function () {
   const nameEntryPage = new NameEntryPage(await this.page);
