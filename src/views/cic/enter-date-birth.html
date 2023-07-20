@@ -8,11 +8,6 @@
 {% from "hmpo-date/macro.njk" import hmpoDate %}
 {% from "govuk/components/header/macro.njk" import govukHeader %}
 
-{% block header %}
-  {{ govukHeader ({
-    serviceName: translate("govuk.serviceName")
-  }) }}
-{% endblock %}
 
 {% block mainContent %}
 <h1 id="header" data-page="{{hmpoPageKey}}" class="govuk-heading-l">

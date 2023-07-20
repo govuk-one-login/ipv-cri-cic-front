@@ -7,11 +7,6 @@
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
-{% block header %}
-  {{ govukHeader ({
-    serviceName: translate("govuk.serviceName")
-  }) }}
-{% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
@@ -63,7 +58,7 @@
       }) }}
 
        {% call hmpoForm(ctx) %}
-      {{ hmpoSubmit(ctx, {id: "continue", text: translate("checkDetails.buttonText")}) }}
+      {{ hmpoSubmit(ctx, {id: "confirmDetailsContinue", text: translate("checkDetails.buttonText")}) }}
          {% endcall %}
     </div>
   </div>
