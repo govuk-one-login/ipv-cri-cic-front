@@ -40,3 +40,4 @@ package-lock.json
 reports
 test/reports/
 .aws-sam/
+app

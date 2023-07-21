@@ -22,7 +22,6 @@ then
     echo TEST_ENVIRONMENT="$ENVIRONMENT" >> docker_vars.env
     echo ENVIRONMENT="$ENVIRONMENT" >> docker_vars.env
     echo SAM_STACK_NAME="$SAM_STACK" >> docker_vars.env
-    echo GITHUB_ACTIONS=true >> docker_vars.env
 
     #clean existing container and image before creating a new one
     echo "Removing existing containers and images for the test"

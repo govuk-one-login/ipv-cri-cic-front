@@ -46,6 +46,10 @@ Parameters:
     Type: Number
     Default: 0
     Description: Set to 1 to enable deployment of scaling infra in dev
+  IPVStubStackName:
+    Type: String
+    Default: "cic-ipv-stub"
+    Description: The name of the deployed IPV stub stack.
 
 Conditions:
   IsNotDevelopment: !Or
@@ -64,6 +68,12 @@ Conditions:
       - Fn::Equals:
           - !Ref PermissionsBoundary
           - "none"
+  IsProdLikeEnvironment: !Or
+    - !Equals [!Ref Environment, staging]
+    - !Equals [!Ref Environment, integration]
+    - !Equals [!Ref Environment, production]
+  IsNotProdLikeEnvironment: !Not
+    - !Condition IsProdLikeEnvironment
 
 Mappings:
   PlatformConfiguration:
@@ -343,7 +353,7 @@ Resources:
     Properties:
       ContainerDefinitions:
         - Essential: true
-          Image: CONTAINER-IMAGE-PLACEHOLDER 
+          Image: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/cic-cri-front-ecr-containerrepository-ymfhj103wnlw:e2fbc116092138a6e8e5e43fa7b1e5a8035a4248
           Name: app
           Environment:
             - Name: API_BASE_URL
@@ -1100,3 +1110,8 @@ Outputs:
   CICCustomDomain:
     Description: CIC Custom Domain API Gateway ID
     Value: !Ref CICFrontCustomDomain
+  CICIPVStubExecuteURL:
+    Condition: IsNotProdLikeEnvironment
+    Description: "CIC IPV Stub"
+    Value:
+      Fn::ImportValue: !Sub '${IPVStubStackName}-IPVStubExecuteUrl'
