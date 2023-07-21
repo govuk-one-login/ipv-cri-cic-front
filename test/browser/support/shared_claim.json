@@ -23,7 +23,7 @@
                 "value": "1960-02-02"
             }
         ],
-        "email": "zac.mohamoud@digital.cabinet-office.gov.uk"
+        "email": "test@email.com"
     },
     "target": "https://api.review-c.build.account.gov.uk"
 }
