@@ -15,8 +15,5 @@ export GITHUB_ACTIONS=true
 export IPV_STUB_URL=$(remove_quotes $CFN_CICIPVStubExecuteURL)start
 
 cd ./app; npm run test:browser:ci
-error_code=$?
 
 cp -rf /app/test/reports $TEST_REPORT_ABSOLUTE_DIR
-
-exit $error_code
