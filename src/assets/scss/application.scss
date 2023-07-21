@@ -9,78 +9,61 @@ $govuk-assets-path: "/public/";
 }
 
 .govuk-heading-m, .hmpo-auto-submit h1, h2 {
-  margin-bottom: 30px;
+  @include govuk-responsive-margin(6, "bottom")
 }
 
 .govuk-list--bullet>li, .govuk-list--number>li {
-  margin-bottom: 15px;
-  }
+  @include govuk-responsive-margin(3, "bottom")
+}
+
+.govuk-input {
+  @include govuk-responsive-margin(2, "top")
+}
 
 .govuk-inset-text {
-  margin-bottom: 30px;
+  @include govuk-responsive-margin(0, "bottom");
+  @include govuk-responsive-margin(2, "top"); 
+  @include govuk-responsive-padding(1, "top");
 }
 
 .govuk-body, main p, .govuk-body-m {
-  margin-bottom: 30px;
+  @include govuk-responsive-margin(6, "bottom")
 }
 
 .govuk-button {
-  margin-bottom: 30px;
-  margin-top: 30px;
+  @include govuk-responsive-margin(6, "bottom");
+  @include govuk-responsive-margin(6, "top")
 }
 
-.govuk-summary-list .govuk-summary-list__key {
-  color: black;
-  font-weight: bold;
-}
-
-.govuk-link:link, main a:link {
-  font-size: 19px;
-}
 
 .govuk-body, main p, .govuk-body-m {
-  margin-bottom: 3px;
+  @include govuk-responsive-margin(1, "top")
 }
 
 .hint-with-margin {
-  margin-top: 30px;
-}
-
-
-.govuk-radios__divider{
-  margin-bottom: 15px;
-  margin-top: -15px;
+  @include govuk-responsive-margin(6, "top")
 }
 
 .govuk-summary-list .govuk-summary-list__key {
-  color: #000;
+  @include govuk-responsive-padding(7, "top");
+  color: govuk-colour("black");
   font-weight: bold;
-  padding-bottom: 30px;
-  padding-top: 40px;
 }
 
+
 .govuk-warning-text {
-  margin-bottom: 0px;
+  @include govuk-responsive-margin(0, "bottom")
 }
 
 #details-btn {
-  margin-top: 0;
-  padding-top: 0;
-}
-
-
-.govuk-summary-list .govuk-summary-list__key {
-  color: #000;
-  font-weight: bold;
-  padding-bottom: 30px;
-  padding-top: 40px;
+  @include govuk-responsive-margin(0, "top");
+  @include govuk-responsive-padding(0, "top");
 }
 
 .govuk-warning-text {
-  margin-bottom: 0px;
+  @include govuk-responsive-margin(0, "bottom");
 }
 
-#details-btn {
-  margin-top: 0;
-  padding-top: 0;
+.govuk-date-input {
+  margin-bottom: govuk-spacing(-6);
 }

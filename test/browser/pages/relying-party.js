@@ -1,16 +1,22 @@
+
 module.exports = class PlaywrightDevPage {
   /**
    * @param {import('@playwright/test').Page} page
+   *
    */
+
   constructor(page) {
     this.page = page;
   }
 
   async goto() {
-    this.startingUrl =
-      "http://localhost:5020/oauth2/authorize?request=lorem&client_id=standalone";
 
-    await this.page.goto(this.startingUrl);
+    const axios = require("axios");
+    const claim = require("../support/shared_claim")
+
+    const postRequest = await axios.post(process.env.IPV_STUB_URL, claim);
+
+    await this.page.goto(postRequest.data.AuthorizeLocation);
   }
 
  isRelyingPartyServer() {

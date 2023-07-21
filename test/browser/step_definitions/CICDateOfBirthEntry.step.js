@@ -3,12 +3,15 @@ const { Given, When, Then} = require("@cucumber/cucumber");
 const { expect } = require("chai");
 
 const { DateOfBirthPage, CheckDetailsPage }  = require("../pages");
-       
+
+const userData = require("../support/cicUserData.json")
+
+
 
 Given(/^the DOB fields are populated with valid values$/, async function () {
    const dobPage = new DateOfBirthPage(await this.page);
 
-    await dobPage.dateOfBirth();
+    await dobPage.dateOfBirth(userData);
 
 });
 
