@@ -11,6 +11,6 @@ COPY . /app
 WORKDIR /app
 COPY run-tests.sh /
 RUN chmod +x /run-tests.sh
-RUN cd /app && npm ci
+RUN cd /app && yarn install
 
 ENTRYPOINT ["/run-tests.sh"]
