@@ -34,5 +34,5 @@ checkDetails:
 dateOfBirth:
   title: "Enter your date of birth"
   formLegend: "Enter your date of birth"
-  hintText: "For example, 22 4 1976"
+  hintText: "For example, 31 3 1980"
   
