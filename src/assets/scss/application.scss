@@ -12,12 +12,20 @@ $govuk-assets-path: "/public/";
   @include govuk-responsive-margin(6, "bottom")
 }
 
+.govuk-fieldset__heading {
+  @include govuk-responsive-margin(4, "bottom")
+}
+
 .govuk-list--bullet>li, .govuk-list--number>li {
   @include govuk-responsive-margin(3, "bottom")
- }
+}
+
+.govuk-input {
+  @include govuk-responsive-margin(2, "top")
+}
 
 .govuk-inset-text {
-  @include govuk-responsive-margin(6, "bottom");
+  @include govuk-responsive-margin(0, "bottom");
   @include govuk-responsive-margin(2, "top"); 
   @include govuk-responsive-padding(1, "top");
 }
@@ -41,10 +49,9 @@ $govuk-assets-path: "/public/";
 }
 
 .govuk-summary-list .govuk-summary-list__key {
-  @include govuk-responsive-padding(6, "bottom");
-  @include govuk-responsive-padding(7, "top");
+  color: govuk-colour("black");
+  font-weight: bold;
 }
-
 
 .govuk-warning-text {
   @include govuk-responsive-margin(0, "bottom")
@@ -57,4 +64,12 @@ $govuk-assets-path: "/public/";
 
 .govuk-warning-text {
   @include govuk-responsive-margin(0, "bottom");
+}
+
+.govuk-date-input {
+  margin-bottom: govuk-spacing(-6);
+}
+
+.govuk-error-summary {
+  width: 66.6666%;
 }
