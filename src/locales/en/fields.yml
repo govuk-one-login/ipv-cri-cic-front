@@ -21,9 +21,9 @@ firstName:
   label: First name
   hint:
   validation:
-    default: "Enter your first name as it appears on your photo ID"
-    maxlength: "Enter your first name as it appears on your photo ID"
-    regexNumber: "Your first name cannot include numbers"
+    default: "Enter your first names as they appear on your photo ID"
+    maxlength: "Enter your first names as they appear on your photo ID"
+    regexNumber: "Your first names cannot include numbers"
     regexSpecialCharacters: "Enter your first name as it appears on your photo ID"
 
 middleName:
@@ -31,7 +31,7 @@ middleName:
   hint: Leave this blank if you do not have any middle names
   validation:
     default: "Enter your middle names as they appear on your photo ID"
-    maxlength: "Enter your first names as they appear on your photo ID"
+    maxlength: "Enter your middle names as they appear on your photo ID"
     regexNumber: "Your middle name cannot include numbers"
     regexSpecialCharacters: "Enter your middle names as they appear on your photo ID"
 
