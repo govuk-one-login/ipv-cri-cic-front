@@ -1,7 +1,9 @@
-@mock-api:f2f-cic-success @success @only
+@mock-api:f2f-cic-success @success
+
+#Test Suspended - additional work is required to facilitate the validation of BE systems, designs and US to follow. When designed, reinstate the @browser tag
+
 Feature: Claimed Identity Credential Issuer - E2E
 
-@test
 Scenario: Claimed Identity Credential Issuer - E2E Happy Path and DB Validation
     Given Authenticatable Anita is using the system
     When they have provided their details
