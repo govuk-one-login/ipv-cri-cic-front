@@ -12,6 +12,10 @@ $govuk-assets-path: "/public/";
   @include govuk-responsive-margin(6, "bottom")
 }
 
+.govuk-fieldset__heading {
+  @include govuk-responsive-margin(4, "bottom")
+}
+
 .govuk-list--bullet>li, .govuk-list--number>li {
   @include govuk-responsive-margin(3, "bottom")
 }
@@ -69,4 +73,3 @@ $govuk-assets-path: "/public/";
 .govuk-error-summary {
   width: 66.6666%;
 }
-

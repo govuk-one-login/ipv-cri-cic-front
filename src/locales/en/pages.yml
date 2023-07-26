@@ -21,13 +21,15 @@ nameEntry:
   middleName: "Middle names"
   middleNameHint: "Leave this blank if you do not have middle names"
 
-dateOfBirth:
-  title: "Enter your date of birth"
-
 checkDetails:
   title: "Confirm your details"
   name: "Name"
   dateOfBirth: "Date of birth"
   changeLink: "Change"
   buttonText: "I confirm my details are correct"
+
+dateOfBirth:
+  title: "Enter your date of birth"
+  formLegend: "Enter your date of birth"
+  hintText: "For example, 31 3 1980"
   
