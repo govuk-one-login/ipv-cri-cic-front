@@ -10,23 +10,23 @@ module.exports = {
     entryPoint: true,
     skip: true,
     controller: root,
-    next: "nameEntry",
+    next: "enter-name-photo-id",
   },
-  "/nameEntry": {
+  "/enter-name-photo-id": {
     editable: true,
-    editBackStep: "checkDetails",
+    editBackStep: "confirm-details",
     fields: ["surname", "firstName", "middleName"],
     controller: nameEntry,
-    next: "dateOfBirth",
+    next: "enter-date-birth",
   },
-  "/dateOfBirth": {
+  "/enter-date-birth": {
     editable: true,
-    editBackStep: "checkDetails",
+    editBackStep: "confirm-details",
     fields: ["dateOfBirth"],
     controller: dobEntry,
-    next: "checkDetails",
+    next: "confirm-details",
   },
-  "/checkDetails": {
+  "/confirm-details": {
     controller: checkDetails,
     next: "done",
   },

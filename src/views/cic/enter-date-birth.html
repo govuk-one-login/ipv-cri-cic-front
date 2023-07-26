@@ -6,36 +6,30 @@
 {% from "hmpo-text/macro.njk" import hmpoText %}
 {% from "hmpo-form/macro.njk" import hmpoForm %}
 {% from "hmpo-date/macro.njk" import hmpoDate %}
-
 {% from "govuk/components/header/macro.njk" import govukHeader %}
 
+{% block header %}
+  {{ govukHeader ({
+    serviceName: translate("govuk.serviceName")
+  }) }}
+{% endblock %}
+
 {% block mainContent %}
-{% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
+<h1 id="header" data-page="{{hmpoPageKey}}" class="govuk-heading-l">
+        {{ translate("dateOfBirth.title") }}
+    </h1>
 
-{% set legendContent = translate("dateOfBirth.formLegend") %}
-{% set hintText = translate("dateOfBirth.hintText") %}
+    {% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
 
-<!-- start -->
+    <div class="hint-with-margin">
+    {{ hmpoDate(ctx, {
+        id: "dateOfBirth"
+    }) }}
+    </div>
 
-{{ hmpoDate(ctx, {
-id: "dateOfBirth",
-namePrefix: "dateOfBirth",
-fieldset: {
-legend: {
-text: legendContent,
-isPageHeading: true,
-classes: "govuk-fieldset__legend--l"
-}
-},
-hint: {
-html: formInstructions
-}
-}) }}
-<!-- end -->
+     {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
 
-{{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
-
-{% endcall %}
+    {% endcall %}
 
 {% endblock %}
 
@@ -43,5 +37,5 @@ html: formInstructions
 {% set footerNavItems = translate("govuk.footerNavItems") %}
 
 {% block footer %}
-{{ govukFooter( footerNavItems ) }}
+    {{ govukFooter( footerNavItems ) }}
 {% endblock %}

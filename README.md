@@ -17,6 +17,7 @@ yarn install
 ## Environment Variables
 
 - 'BASE_URL': Externally accessible base url of the webserver. Used to generate the callback url as part of credential issuer oauth flows
+- `IPV_STUB_URL`: Mocks being sent to/from IPV Core to enable browser testing
 - `PORT` - Default port to run webserver on. (Default to `5020`)
 
 # Deployment in own stack in DEV

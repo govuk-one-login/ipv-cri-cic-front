@@ -4,7 +4,7 @@ buttons:
   continue: Continue
 
 govuk:
-  serviceName: Prove your identity
+  serviceName:
   backLink: Back
   errorSummaryTitle: There is a problem
   error: Error

@@ -7,11 +7,6 @@
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
-{% block header %}
-  {{ govukHeader ({
-    serviceName: translate("govuk.serviceName")
-  }) }}
-{% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
@@ -35,7 +30,7 @@
             actions: {
               items: [
                 {
-                  href: "/nameEntry/edit",
+                  href: "/enter-name-photo-id/edit",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -52,7 +47,7 @@
             actions: {
               items: [
                 {
-                  href: "/dateOfBirth/edit",
+                  href: "/enter-date-birth/edit",
                   text: "Change",
                   visuallyHiddenText: "date of birth"
                 }
