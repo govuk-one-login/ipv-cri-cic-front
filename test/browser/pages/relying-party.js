@@ -14,7 +14,10 @@ module.exports = class PlaywrightDevPage {
     const axios = require("axios");
     const claim = require("../support/shared_claim")
 
+		console.log('IPVSTUBURL', process.env.IPV_STUB_URL);
+
     const postRequest = await axios.post(process.env.IPV_STUB_URL, claim);
+		console.log('postRequest', postRequest);
 
     await this.page.goto(postRequest.data.AuthorizeLocation);
   }
