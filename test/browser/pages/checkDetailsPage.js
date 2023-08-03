@@ -6,7 +6,7 @@ module.exports = class PlaywrightDevPage {
 
   constructor(page) {
     this.page = page;
-    this.path = "/checkDetails";
+    this.path = "/confirm-details";
     this.sessionState;
   }
 
@@ -39,7 +39,7 @@ module.exports = class PlaywrightDevPage {
   }
 
   get nameEntryLink() {
-    return this.page.locator('[href*="/nameEntry/edit"]')
+    return this.page.locator('[href*="/enter-name-photo-id/edit"]')
   }
 
   async changeName(){
@@ -47,7 +47,7 @@ module.exports = class PlaywrightDevPage {
   }
 
   get doBLink() {
-    return this.page.locator('[href*="/dateOfBirth/edit"]')
+    return this.page.locator('[href*="/enter-date-birth/edit"]')
   }
 
   async changeDoB(){
