@@ -6,7 +6,7 @@ module.exports = class PlaywrightDevPage {
      */
     constructor(page) {
       this.page = page;
-      this.path = "/nameEntry/edit";
+      this.path = "/enter-name-photo-id/edit";
     }
   
     async isCurrentPage() {  

@@ -4,7 +4,7 @@ module.exports = class PlaywrightDevPage {
    */
   constructor(page) {
     this.page = page;
-    this.path = "/nameEntry";
+    this.path = "/enter-name-photo-id";
     this.firstName;
   }
 
