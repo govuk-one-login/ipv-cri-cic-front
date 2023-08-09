@@ -73,3 +73,13 @@ $govuk-assets-path: "/public/";
 .govuk-error-summary {
   width: 66.6666%;
 }
+
+.govuk-cookie-banner h2, .govuk-cookie-banner p {
+  margin-top: 0; 
+  margin-bottom: 20px;
+}
+
+.govuk-cookie-banner .govuk-button {
+  margin-top: 0; 
+  margin-bottom: 20px;
+}
