@@ -13,7 +13,9 @@ export GITHUB_ACTIONS=true
 # shellcheck disable=SC2154
 export IPV_STUB_URL=$(remove_quotes $CFN_CICIPVStubExecuteURL)start
 export TEST_HARNESS_URL=$(remove_quotes "$CFN_CICTestHarnessURL")
+export CRI_F2F_API_URL=$(remove_quotes "$CFN_CICBackEndURL")
 export SESSION_TABLE=$(remove_quotes "$CFN_BackendSessionTableName")
+
 
 cd /app; yarn run test:browser:ci
 

@@ -32,6 +32,8 @@ Given(/^I have retrieved the sessionTable data for my CIC session$/, { timeout: 
   this.sessionId = authCodeDetails.sessionId
   const session = await testHarness.getSession(this.sessionId);
   this.authSessionState = session.authSessionState;
+  this.authorizationCode = session.authorizationCode;
+  this.redirectUri = session.redirectUri;
 })
 
 

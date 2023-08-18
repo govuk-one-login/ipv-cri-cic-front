@@ -104,6 +104,7 @@ Mappings:
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "dev.account.gov.uk"
       TESTHARNESSURL: "https://cic-test-harness-testharness.review-c.dev.account.gov.uk"
+      BACKENDURL: "https://api-cic-cri-api.review-c.dev.account.gov.uk"
       BACKENDSESSIONTABLE: "session-cic-cri-ddb"
     build:
       EXTERNALWEBSITEHOST: "https://review-c.build.account.gov.uk"
@@ -113,6 +114,7 @@ Mappings:
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "build.account.gov.uk"
       TESTHARNESSURL: "https://cic-test-harness-testharness.review-c.build.account.gov.uk"
+      BACKENDURL: "https://api.review-c.build.account.gov.uk"
       BACKENDSESSIONTABLE: "session-cic-cri-ddb"
     staging:
       EXTERNALWEBSITEHOST: "https://review-c.staging.account.gov.uk"
@@ -1193,6 +1195,10 @@ Outputs:
     Condition: IsNotProdLikeEnvironment
     Description: "CIC Test Harness"
     Value: !FindInMap [EnvironmentVariables, !Ref Environment, TESTHARNESSURL]
+  CICBackEndURL:
+    Condition: IsNotProdLikeEnvironment
+    Description: "CIC Back End"
+    Value: !FindInMap [EnvironmentVariables, !Ref Environment, BACKENDURL]
   CFN_BackendSessionTableName:
     Condition: IsNotProdLikeEnvironment
     Description: "CIC Test Harness"
