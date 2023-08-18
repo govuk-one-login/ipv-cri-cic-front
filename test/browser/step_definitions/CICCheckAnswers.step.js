@@ -25,16 +25,13 @@ When(/^the user clicks the Check My Answers Submit button$/, { timeout: 2 * 5000
 
 
 Given(/^I have retrieved the sessionTable data for my CIC session$/, { timeout: 2 * 50000 }, async function () {
-
   const testHarness = new TestHarness();
-
-  console.log(this.authCode);
   const authCodeDetails = await testHarness.getSessionByAuthCode(this.authCode);
-  // console.log(authCodeDetails);
-  // expect(authCodeDetails.authorizationCode).to.equal(this.authCode);
-  // this.sessionId = authCodeDetails.sessionId
-  // const session = await testHarness.getSession(this.sessionId);
-  // this.authSessionState = session.authSessionState;
+
+  expect(authCodeDetails.authorizationCode).to.equal(this.authCode);
+  this.sessionId = authCodeDetails.sessionId
+  const session = await testHarness.getSession(this.sessionId);
+  this.authSessionState = session.authSessionState;
 })
 
 
