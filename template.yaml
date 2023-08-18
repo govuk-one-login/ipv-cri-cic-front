@@ -103,6 +103,8 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-dev"
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "dev.account.gov.uk"
+      TESTHARNESSURL: "https://cic-test-harness-testharness.review-c.dev.account.gov.uk"
+      BACKENDSESSIONTABLE: "session-cic-cri-ddb"
     build:
       EXTERNALWEBSITEHOST: "https://review-c.build.account.gov.uk"
       APIBASEURL: "https://api.review-c.build.account.gov.uk"
@@ -110,6 +112,8 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-build"
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "build.account.gov.uk"
+      TESTHARNESSURL: "https://cic-test-harness-testharness.review-c.build.account.gov.uk"
+      BACKENDSESSIONTABLE: "session-cic-cri-ddb"
     staging:
       EXTERNALWEBSITEHOST: "https://review-c.staging.account.gov.uk"
       APIBASEURL: "https://api.review-c.staging.account.gov.uk"
@@ -678,7 +682,7 @@ Resources:
         - CertificateArn: !Sub "{{resolve:ssm:/${Environment}/Platform/ACM/PrimaryZoneWildcardCertificateARN}}"
           EndpointType: REGIONAL
           SecurityPolicy: TLS_1_2
-  
+
   CICFrontApiRecord:
     Type: AWS::Route53::RecordSet
     Properties:
@@ -700,7 +704,7 @@ Resources:
   CICFrontApiMapping:
     Type: AWS::ApiGatewayV2::ApiMapping
     Properties:
-      DomainName: !Ref CICFrontCustomDomain 
+      DomainName: !Ref CICFrontCustomDomain
       ApiId: !Ref ApiGwHttpEndpoint
       Stage: !Ref APIStageDefault
 
@@ -1185,3 +1189,11 @@ Outputs:
     Description: "CIC IPV Stub"
     Value:
       Fn::ImportValue: !Sub '${IPVStubStackName}-IPVStubExecuteUrl'
+  CICTestHarnessURL:
+    Condition: IsNotProdLikeEnvironment
+    Description: "CIC Test Harness"
+    Value: !FindInMap [EnvironmentVariables, !Ref Environment, TESTHARNESSURL]
+  CFN_BackendSessionTableName:
+    Condition: IsNotProdLikeEnvironment
+    Description: "CIC Test Harness"
+    Value: !FindInMap [EnvironmentVariables, !Ref Environment, BACKENDSESSIONTABLE]

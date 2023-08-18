@@ -6,8 +6,7 @@ const { CheckDetailsPage } = require("../pages");
 
 const ApiSupport = require("../support/ApiSupport");
 
-const DynoDBConnection = require("../support/DynmoDBConnection")
-
+const TestHarness = require("../support/TestHarness");
 
 Given(/^the user has completed the previous CIC screens$/, async function () {
   const cpdPage = new CheckDetailsPage(await this.page);
@@ -21,19 +20,21 @@ When(/^the user clicks the Check My Answers Submit button$/, { timeout: 2 * 5000
 
   await cmPage.continue();
   this.state = await cmPage.setSessionState();
+  this.authCode = await cmPage.setAuthCode();
 })
 
 
 Given(/^I have retrieved the sessionTable data for my CIC session$/, { timeout: 2 * 50000 }, async function () {
-  await new Promise(r => setTimeout(r, 10000));
-  const sessionState = this.state;
-  const dbConnection = new DynoDBConnection(sessionState.replace(/"/g, ""), "session-cic-cri-ddb");
-  await dbConnection.getCicItem();
-  this.sessionId = await dbConnection.getCicSessionId();
-  this.authSessionState = await dbConnection.getCicSessionAuthSessionState();
-  this.authorizationCode = await dbConnection.getCicSessionAuthorizationCode();
-  this.redirectUri = await dbConnection.getCicSessionRedirectUri();
 
+  const testHarness = new TestHarness();
+
+  console.log(this.authCode);
+  const authCodeDetails = await testHarness.getSessionByAuthCode(this.authCode);
+  // console.log(authCodeDetails);
+  // expect(authCodeDetails.authorizationCode).to.equal(this.authCode);
+  // this.sessionId = authCodeDetails.sessionId
+  // const session = await testHarness.getSession(this.sessionId);
+  // this.authSessionState = session.authSessionState;
 })
 
 

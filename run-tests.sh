@@ -2,7 +2,7 @@
 
 set -eu
 
-# The CFN variables seem to include quotes when used in tests these quotes must 
+# The CFN variables seem to include quotes when used in tests these quotes must
 # be removed before assigning these variable.
 remove_quotes () {
   echo "$1" | tr -d '"'
@@ -12,6 +12,8 @@ remove_quotes () {
 export GITHUB_ACTIONS=true
 # shellcheck disable=SC2154
 export IPV_STUB_URL=$(remove_quotes $CFN_CICIPVStubExecuteURL)start
+export TEST_HARNESS_URL=$(remove_quotes "$CFN_CICTestHarnessURL")
+export SESSION_TABLE=$(remove_quotes "$CFN_BackendSessionTableName")
 
 cd /app; yarn run test:browser:ci
 

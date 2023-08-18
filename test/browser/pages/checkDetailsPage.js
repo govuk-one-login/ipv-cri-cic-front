@@ -21,7 +21,12 @@ module.exports = class PlaywrightDevPage {
   }
 
   async setSessionState() {
-    const url = JSON.stringify(new URL(await this.page.url())).split("state=")
+    const url = await this.page.url().match(/state=([^&]*)/);
+    return url[1];
+  }
+
+  async setAuthCode() {
+    const url = await this.page.url().match(/code=([^&]*)/);
     return url[1];
   }
 

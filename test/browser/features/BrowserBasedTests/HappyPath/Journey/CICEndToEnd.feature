@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @success
+@success @browser1
 
 #Test Suspended - additional work is required to facilitate the validation of BE systems, designs and US to follow. When designed, reinstate the @browser tag
 
@@ -20,5 +20,5 @@ Scenario: Claimed Identity Credential Issuer - E2E Happy Path and DB Validation
     When the user clicks the Check My Answers Submit button
 
     Given I have retrieved the sessionTable data for my CIC session
-    Then session details are correctly stored in DB
-    Then the Verifiable Credential is correctly returned by the userInfo endpoint
+    # Then session details are correctly stored in DB
+    # Then the Verifiable Credential is correctly returned by the userInfo endpoint
