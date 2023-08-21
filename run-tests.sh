@@ -17,6 +17,6 @@ export CRI_F2F_API_URL=$(remove_quotes "$CFN_CICBackEndURL")
 export SESSION_TABLE=$(remove_quotes "$CFN_BackendSessionTableName")
 
 
-cd /app; yarn run test:browser:ci
+cd /app; yarn run test:e2e
 
 cp -rf /app/test/reports $TEST_REPORT_ABSOLUTE_DIR
