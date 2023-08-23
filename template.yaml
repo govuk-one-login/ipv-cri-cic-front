@@ -1199,7 +1199,7 @@ Outputs:
     Condition: IsNotProdLikeEnvironment
     Description: "CIC Back End"
     Value: !FindInMap [EnvironmentVariables, !Ref Environment, BACKENDURL]
-  CFN_BackendSessionTableName:
+  CICBackendSessionTableName:
     Condition: IsNotProdLikeEnvironment
     Description: "CIC Test Harness"
     Value: !FindInMap [EnvironmentVariables, !Ref Environment, BACKENDSESSIONTABLE]
