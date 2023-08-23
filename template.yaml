@@ -113,7 +113,7 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-build"
       GTMID: "TK92W68"
       ANALYTICSDOMAIN: "build.account.gov.uk"
-      TESTHARNESSURL: "https://cic-test-harness-testharness.review-c.build.account.gov.uk"
+      TESTHARNESSURL: "https://testharness.review-c.build.account.gov.uk"
       BACKENDURL: "https://api.review-c.build.account.gov.uk"
       BACKENDSESSIONTABLE: "session-cic-cri-ddb"
     staging:
