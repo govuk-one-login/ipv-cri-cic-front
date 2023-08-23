@@ -85,3 +85,18 @@ This scenario will be configured to send a `scenario-id` header of `question-err
 ### Code Owners
 
 This repo has a `CODEOWNERS` file in the root and is configured to require PRs to reviewed by Code Owners.
+
+## Create and upload a custom image to ECR
+
+Execute the following commands to create a custom image locally and push it up to ECR.
+You need to have AWS credentials in your shell via `aws-vault` or `gds-cli` or similar.
+`YOUR_REPO` needs to refer to an existing repo in ECR, you can create one in console if you don't have one already.
+
+```shell
+aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 060113405249.dkr.ecr.eu-west-2.amazonaws.com
+docker build --platform linux/amd64 -t di-ipv-cri-cic-front .
+docker tag di-ipv-cri-cic-front:latest 060113405249.dkr.ecr.eu-west-2.amazonaws.com/dev-images-ddunford
+docker push 060113405249.dkr.ecr.eu-west-2.amazonaws.com/dev-images-ddunford
+```
+
+Then to use this new image update the `Image:` tag in the template.yaml and redeploy your template locally in to your own stack in DEV.
