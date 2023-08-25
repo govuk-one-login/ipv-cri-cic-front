@@ -1,0 +1,240 @@
+[
+  {
+    "originalFile": "./pages.yml",
+    "landingPage": {
+      "pageTitle": "Prove your identity in person",
+      "title": "Proving your identity in person",
+      "body": "What you need to do",
+      "instructions": {
+        "steps": {
+          "one": "Complete an online form to provide your basic personal details and select a photo ID you can take to a Post Office. We will then send you a confirmation email.",
+          "two": "Take the confirmation email and your photo ID to a Post Office.",
+          "three": "A member of Post Office staff will process your photo ID and take a photo of your face to verify your identity."
+        }
+      },
+      "dataInfo": {
+        "title": "What happens after the Post Office",
+        "body": "Once your identity has been proven, you must return online to your GOV.UK account to access the service you need."
+      }
+    },
+    "nameEntry": {
+      "title": "Enter your name exactly as it appears on your photo ID",
+      "surname": "Last name",
+      "givenNames": "Given names",
+      "firstName": "First name",
+      "middleName": "Middle names",
+      "middleNameHint": "Leave this blank if you do not have middle names"
+    },
+    "checkDetails":{
+      "title": "Confirm your details",
+      "name": "Name",
+      "dateOfBirth": "Date of birth",
+      "changeLink": "Change",
+      "buttonText": "I confirm my details are correct"
+    },
+    "dateOfBirth":{
+      "title": "Enter your date of birth",
+      "formLegend": "Enter your date of birth",
+      "hintText": "For example, 31 3 1980"
+    }
+  },
+
+  {
+    "originalFile": "./pages.errors.yml",
+    "error": {
+      "unrecoverable": {
+        "title": "Sorry, there is a problem with the service",
+        "subTitle": "We cannot prove your identity right now.",
+        "subHeading": "What can you do",
+        "description": "Go back to the service you were trying to use and start again. You can look for the service using your search engine or find it from the GOV.UK homepage.",
+        "contactMeLink": "Contact the GOV.UK account team (opens in a new tab)",
+        "buttonText": "Go to the GOV.UK homepage",
+        "buttonLink": "https://www.gov.uk/"
+      }
+    },
+    "pageNotFound": {
+      "title": "Page not found",
+      "serviceNameRequired": false,
+      "content": [
+        "If you typed the web address, check it’s correct.",
+        "If you pasted the web address, check you copied the entire address.",
+        "You can also go back to the service you were trying to use and start again. You can look for the service using your search engine or find it from the GOV.UK homepage.",
+        "<a href=\"https://www.gov.uk/\" class=\"govuk-button\" data-module=\"govuk-button\">Go to the GOV.UK homepage</a>",
+        "<a href=\"https://signin.account.gov.uk/contact-us\" target=\"_blank\" class=\"govuk-link\">Contact the GOV.UK account team (opens in a new tab)</a>"
+      ]
+    },
+    "sessionEnded":{
+      "title": "Session expired"
+    }
+  },
+
+  {
+    "originalFile": "./fields/yml",
+    "date-day":{
+      "label": "Day"
+    },
+    "date-month":{
+      "label": "Month"
+    },
+    "date-year":{
+      "label": "Year"
+    },
+    "surname": {
+      "label": "Last name",
+      "hint": null,
+      "validation": {
+        "default": "Enter your last name as it appears on your photo ID",
+        "maxlength": "Enter your last name as it appears on your photo ID",
+        "regexNumber": "Your last name cannot include numbers",
+        "regexSpecialCharacters": "Enter your last name as it appears on your photo ID"
+      }
+    },
+    "firstName": {
+      "label": "First name",
+      "hint": null,
+      "validation": {
+        "default": "Enter your first name as it appears on your photo ID",
+        "maxlength": "Enter your first name as it appears on your photo ID",
+        "regexNumber": "Your first name cannot include numbers",
+        "regexSpecialCharacters": "Enter your first name as it appears on your photo ID"
+      }
+    },
+    "middleName": {
+      "label": "Middle name(s)",
+      "hint": "Leave this blank if you do not have any middle names",
+      "validation": {
+        "default": "Enter your middle name as it appears on your photo ID",
+        "maxlength": "Enter your middle name as it appears on your photo ID",
+        "regexNumber": "Your middle name cannot include numbers",
+        "regexSpecialCharacters": "Enter your middle name as it appears on your photo ID"
+      }
+    },
+    "dateOfBirth": {
+      "legend": "",
+      "label": "",
+      "hint": "For example, 31 3 1980",
+      "validation": {
+        "default": "Enter your date of birth",
+        "before": "Your date of birth must be in the past",
+        "after": "Enter a valid date of birth",
+        "numeric-day": "Your date of birth must include a day that contains numbers only",
+        "numeric-month": "Your date of birth must include a month that contains numbers only",
+        "numeric-year": "Your date of birth must include a year that contains numbers only",
+        "date-day": "Enter a valid day",
+        "date-month": "Your date of birth must include a month that is a number between 1 and 12",
+        "required-day": "Enter your full date of birth",
+        "required-month": "Enter your full date of birth",
+        "required-year": "Enter your full date of birth"
+      }
+    },
+    "checkDetails": {
+      "label": "",
+      "legend": "",
+      "validation": {
+        "default": "Make sure the details you entered match the details on your photo ID."
+      }
+    }
+  },
+
+  {
+    "originalFile": "./default.yml",
+    "buttons": {
+      "next": "Continue",
+      "cancel": "Cancel",
+      "continue": "Continue"
+    },
+    "govuk": {
+      "serviceName": null,
+      "backLink": "Back",
+      "errorSummaryTitle": "There is a problem",
+      "error": "Error",
+      "warning": "Warning",
+      "skipLink": "Skip to main content",
+      "cookie": {
+        "cookieBanner": {
+          "title": "Cookies on GOV.UK One Login",
+          "heading": "Cookies on GOV.UK One Login",
+          "paragraph1": "We use some essential cookies to make this service work.",
+          "paragraph2": "We'd like to set additional cookies so we can remember your settings, understand how people use the service and make improvements.",
+          "buttonAcceptText": "Accept analytics cookies",
+          "buttonRejectText": "Reject analytics cookies",
+          "linkViewCookiesText": "View cookies",
+          "cookieBannerHideLink": "Hide this message",
+          "cookieBannerAccept": {
+            "paragraph1": "You've accepted additional cookies. You can ",
+            "paragraph2": " at any time."
+          },
+          "cookieBannerReject": {
+            "paragraph1": "You've rejected additional cookies. You can ",
+            "paragraph2": " at any time."
+          },
+          "changeCookiePreferencesLink": "change your cookie settings"
+        },
+        "cookieText": "GOV.UK uses cookies to make the site simpler.",
+        "cookieLink": "#",
+        "cookieLinkText": "Find out more about cookies"
+      },
+      "phaseBanner": {
+        "tag": "beta",
+        "content": "This is a new service – your <a href=\"https://signin.account.gov.uk/contact-us\" target=\"_blank\" class=\"govuk-link\" rel=\"noopener\" target=\"_blank\">feedback (opens in new tab)</a> will help us to improve it."
+      },
+      "footerNavItems": {
+        "meta": {
+          "items": [
+            {
+              "href": "https://signin.account.gov.uk/accessibility-statement",
+              "text": "Accessibility statement"
+            },
+            {
+              "href": "https://signin.account.gov.uk/cookies",
+              "text": "Cookies"
+            },
+            {
+              "href": "https://signin.account.gov.uk/terms-and-conditions",
+              "text": "Terms and conditions"
+            },
+            {
+              "href": "https://signin.account.gov.uk/privacy-notice",
+              "text": "Privacy notice"
+            },
+            {
+              "href": "https://signin.account.gov.uk/contact-us",
+              "text": "Support"
+            }
+          ]
+        }
+      },
+      "copyright": {
+        "text": "© Crown copyright"
+      },
+      "contentLicence": {
+        "html": "All content is available under the <a class=\"govuk-footer__link\" href=\"https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/\" rel=\"licence\">Open Government Licence v3.0</a>, except where otherwise stated"
+      }
+    },
+    "error": {
+      "unrecoverable": {
+        "title": "Sorry, there is a problem with the service",
+        "subTitle": "We cannot prove your identity right now.",
+        "subHeading": "What can you do",
+        "description": "Go back to the service you were trying to use and start again. You can look for the service using your search engine or find it from the GOV.UK homepage.",
+        "contactMeLink": "Contact the GOV.UK account team (opens in a new tab)",
+        "buttonText": "Go to the GOV.UK homepage",
+        "buttonLink": "https://www.gov.uk/"
+      }
+    },
+    "common": {
+      "confirmIdentityAnotherWay": {
+        "confirmIdentity": "I want to prove my identity another way"
+      },
+      "postoffice": {
+        "service": "Not all Post Offices offer this service. You can ",
+        "postofficeLink": "find your nearest Post Office that offers in branch verification here (opens in new tab).",
+        "pathToPoBranchSearch": "https://www.postoffice.co.uk/identity/in-branch-verification-service"
+      },
+      "photoIdSelection": {
+        "noPhotoId": "I do not have any of these documents",
+        "linkToNoPhotoId": "https://signin.account.gov.uk/no-photo-id " 
+      }
+    }
+  }
+]
