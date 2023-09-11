@@ -20,6 +20,7 @@ module.exports = {
     ANALYTICS: {
       ID: process.env.GTM_ID,
       DOMAIN: process.env.ANALYTICS_DOMAIN || "localhost",
+      GTM_ID_GA4: process.env.GTM_ID_GA4
     },
   },
   PORT: process.env.PORT || 5020,
