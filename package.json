@@ -74,7 +74,7 @@
     "wiremock": "2.35.0"
   },
   "dependencies": {
-    "aws-sdk": "^2.1407.0",
+    "aws-sdk": "^2.1454.0",
     "@aws-sdk/lib-dynamodb": "3.363.0",
     "axios": "^1.4.0",
     "cfenv": "1.2.4",
