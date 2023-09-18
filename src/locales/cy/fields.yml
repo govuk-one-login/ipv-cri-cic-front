@@ -1,0 +1,60 @@
+"date-day":
+  label: Diwrnod
+
+"date-month":
+  label: Mis
+
+"date-year":
+  label: Blwyddyn
+
+surname:
+  label: Enw olaf
+  hint:
+  validation:
+    default: "Rhowch eich enw olaf fel y mae'n ymddangos ar eich ID gyda llun"
+    maxlength: "Rhowch eich enw olaf fel y mae'n ymddangos ar eich ID gyda llun"
+    regexNumber: "Ni all eich enw olaf gynnwys rhifau"
+    regexSpecialCharacters: "Rhowch eich enw olaf fel y mae'n ymddangos ar eich ID gyda llun"
+
+
+firstName:
+  label: Enw cyntaf
+  hint:
+  validation:
+    default: "Rhowch eich enw cyntaf fel y mae'n ymddangos ar eich ID gyda llun"
+    maxlength: "Rhowch eich enw cyntaf fel y mae'n ymddangos ar eich ID gyda llun"
+    regexNumber: "Ni all eich enw cyntaf gynnwys rhifau"
+    regexSpecialCharacters: "Rhowch eich enw cyntaf fel y mae'n ymddangos ar eich ID gyda llun"
+
+middleName:
+  label: Enw(au) canol
+  hint: Gadewch hwn yn wag os nad oes gennych unrhyw enwau canol
+  validation:
+    default: "Rhowch eich enw canol fel y mae'n ymddangos ar eich ID gyda llun"
+    maxlength: "Rhowch eich enw canol fel y mae'n ymddangos ar eich ID gyda llun"
+    regexNumber: "Ni all eich enw canol gynnwys rhifau"
+    regexSpecialCharacters: "Rhowch eich enw canol fel y mae'n ymddangos ar eich ID gyda llun"
+
+
+dateOfBirth:
+  legend: ""
+  label: ""
+  hint: "Er enghraifft, 31 3 1980"
+  validation: 
+    default: "Rhowch eich dyddiad geni"
+    before: "Mae'n rhaid i'ch dyddiad geni fod yn y gorffennol"
+    after: "Rhowch ddyddiad geni dilys"
+    "numeric-day": "Mae'n rhaid i'ch dyddiad geni gynnwys diwrnod sy'n cynnwys rhifau yn unig"
+    "numeric-month": "Mae'n rhaid i'ch dyddiad geni gynnwys mis sy'n cynnwys rhifau yn unig"
+    "numeric-year": "Mae'n rhaid i'ch dyddiad geni gynnwys blwyddyn sy'n cynnwys rhifau yn unig"
+    "date-day": "Rhowch ddiwrnod dilys"
+    "date-month": "Mae'n rhaid i'ch dyddiad geni gynnwys mis sy'n rhif rhwng 1 a 12"
+    "required-day": "Rhowch eich dyddiad geni llawn"
+    "required-month": "Rhowch eich dyddiad geni llawn"
+    "required-year": "Rhowch eich dyddiad geni llawn"
+
+checkDetails: 
+  label: ""
+  legend: ""
+  validation:
+    default: "Gwnewch yn siwr bod y manylion rydych wedi eu rhoi yn cyd-fynd â'r manylion ar eich ID gyda llun."
