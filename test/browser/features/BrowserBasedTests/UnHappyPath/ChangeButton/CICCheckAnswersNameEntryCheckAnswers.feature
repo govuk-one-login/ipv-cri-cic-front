@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @success @browser
+@mock-api:f2f-cic-success @success @browser @test
 Feature: Successful navigation using Change and Back button - Name Entry
 
 

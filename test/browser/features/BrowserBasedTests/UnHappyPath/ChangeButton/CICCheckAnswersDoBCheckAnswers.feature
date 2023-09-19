@@ -1,6 +1,5 @@
-@mock-api:f2f-cic-success @success @browser
+@mock-api:f2f-cic-success @success @browser @test
 Feature: Successful navigation using Change and Back button - Date of Birth
-
 
   Background:
       Given Authenticatable Anita is using the system

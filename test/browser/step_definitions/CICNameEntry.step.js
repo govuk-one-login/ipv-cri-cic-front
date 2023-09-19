@@ -6,7 +6,7 @@ const { NameEntryPage, DateOfBirthPage, EuDrivingLicenceDetailsPageValid }  = re
 
 const userData = require("../support/cicUserData.json")
 
-
+// all NE tests
 Given(
   /^there has been an entry into the surname and first name fields$/,
   async function () {

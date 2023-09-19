@@ -4,6 +4,7 @@ const { expect } = require("chai");
 
 const { CheckDetailsPage, DateOfBirthPageEdit, DateOfBirthPage, NameEntryPageEdit }  = require("../pages");
 
+//Merged DOB edit and NE edit
 Given(/^the user has navigated to Check my Answers page$/, async function () {
     const cdPage = new CheckDetailsPage(await this.page);
 
