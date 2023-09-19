@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @success @ukPass @browser
+@mock-api:f2f-cic-success @success @browser
 Feature: The user enters their name to be used as part of their claimed identity
 
 Background:

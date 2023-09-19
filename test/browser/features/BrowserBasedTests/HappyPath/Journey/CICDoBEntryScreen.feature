@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @success @ukPass @browser
+@mock-api:f2f-cic-success @success @browser @test
 Feature: The user enters their Date of Birth as part of their claimed identity
 
 Background:
