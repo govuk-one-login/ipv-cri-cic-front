@@ -4,7 +4,6 @@ const { expect } = require("chai");
 
 const { CheckDetailsPage, DateOfBirthPage, NameEntryPage }  = require("../pages");
 
-//Navigation forward and backward
 Given(/^the user has navigated to the Check My Answers page$/, async function () {
     const cdPage = new CheckDetailsPage(await this.page);
 

@@ -6,8 +6,6 @@ const { DateOfBirthPage, CheckDetailsPage }  = require("../pages");
 
 const userData = require("../support/cicUserData.json")
 
-//Combined DOB entry and error tests
-
 Given(/^the DOB fields are populated with valid values$/, async function () {
    const dobPage = new DateOfBirthPage(await this.page);
 
