@@ -17,11 +17,11 @@ Feature: Successful navigation using Change and Back button - Name Entry
 
 
     Scenario: Successful redirect from CMA screen back to name entry and back to CMA screen
-        Given the user has navigated to Check My Answers Page
+        Given the user has navigated to Check my Answers page
         When the name entry edit link is clicked
         Then the user is navigated back to the name entry page
         Then the user clicks continue on the Name Entry page
-        Then the user navigates back to the Check My Answers Page from Name Entry
+        Then the user navigates back to the Check My Answers Page
 
 
     Scenario: Successful redirect to previous screen on “Back” button click

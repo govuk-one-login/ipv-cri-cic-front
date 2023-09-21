@@ -1,7 +1,6 @@
 @mock-api:f2f-cic-success @success @browser
 Feature: Successful navigation using Change and Back button - Date of Birth
 
-
   Background:
       Given Authenticatable Anita is using the system
       When they have provided their details
@@ -20,8 +19,8 @@ Feature: Successful navigation using Change and Back button - Date of Birth
       When the DoB edit link is clicked
       Then the user is navigated back to the DoB page
       Then the user clicks continue on the DoB page
-      Then the user navigates back to the Check My Answers Page from DoB page
+      Then the user navigates back to the Check My Answers Page
 
   Scenario: Successful redirect to previous screen on “Back” button click
-    When the Back button is clicked on the page
+    When the Back button is clicked
     Then the user is navigated back to the previous page
