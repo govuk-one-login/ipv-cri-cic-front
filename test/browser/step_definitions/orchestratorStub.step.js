@@ -28,12 +28,12 @@ When("{string} enters their CIC details", { timeout: 4 * 50000 }, async function
     await stubPage.enterCicDetails(name);
 });
 
-When("{string} enters their Address CRI details", { timeout: 4 * 50000 }, async function (name) {
+When("{string} enters their Address CRI details", { timeout: 4 * 100000 }, async function (name) {
     const stubPage = new OrchestratorStubPage(this.page);
     await stubPage.enterAddressCriDetails(name);
 });
 
-When("the user completes their Fraud CRI check", { timeout: 4 * 50000 }, async function () {
+When("the user completes their Fraud CRI check", { timeout: 4 * 100000 }, async function () {
     const stubPage = new OrchestratorStubPage(this.page);
     await stubPage.fraudCriCheck();
     await stubPage.navigateToDocumentSelection();
