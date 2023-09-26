@@ -34,7 +34,7 @@
     "test:browser:report": "node ./test/utils/multiReportGenerator.js",
     "test:e2e:cd:cucumber": "wait-on tcp:8090 && cucumber-js test/browser/features/**/*.feature --require test/browser/support/env.js  --require test/browser/support/setup.js --require test/browser/step_definitions/**/*.js -f json:./test/reports/cucumber_report.json --tags \"@e2e or @browser\"",
     "test:e2e:cd": "npm-run-all -p -r mocks test:e2e:cd:cucumber && yarn run test:browser:report",
-    "test:e2e": "cucumber-js test/browser/features/**/*.feature --require test/browser/support/env.js  --require test/browser/support/setup.js --require test/browser/step_definitions/**/*.js -f json:./test/reports/cucumber_report.json --tags @e2e"
+    "test:e2e": "cucumber-js test/browser/features/**/*.feature --require test/browser/support/env.js  --require test/browser/support/setup.js --require test/browser/step_definitions/**/*.js -f json:./test/reports/cucumber_report.json --tags @stg"
   },
   "repository": {
     "type": "git",
@@ -95,6 +95,7 @@
     "jest": "^29.5.0",
     "jsonwebtoken": "9.0.0",
     "moment": "^2.29.4",
-    "nunjucks": "3.2.4"
+    "nunjucks": "3.2.4",
+    "uuid": "^9.0.1"
   }
 }
