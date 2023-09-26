@@ -6,6 +6,7 @@ module.exports = class PlaywrightDevPage {
       this.page = page;
       this.ORCHESTRATOR_STUB_URL = process.env.ORCHESTRATOR_STUB_URL;
       this.KENNETH_DECERQUIERA = require("../support/KennethDecerquiera.json");
+      this.ALEXANDRA_ELEGBA = require("../support/AlexandraElegba.json");
       this.handoff_path = "/ipv/page/page-face-to-face-handoff";
     }
   
@@ -34,6 +35,10 @@ module.exports = class PlaywrightDevPage {
         switch(name) {
             case "Kenneth Decerqueira": {
                 userData = this.KENNETH_DECERQUIERA;
+                break;
+            }
+            case "Alexandra Elegba": {
+                userData = this.ALEXANDRA_ELEGBA;
                 break;
             }
         }
@@ -68,10 +73,23 @@ module.exports = class PlaywrightDevPage {
         await this.page.locator("#continue").click();
     }
 
+    async navigateToDocumentSelection() {
+        await this.page.locator(".govuk-button.button").click();
+    }
+
+    async returnNumberOfDocuments() {
+        return await this.page.locator(".govuk-radios__input").count();
+    }
+
     async enterDocumentDetails(name) {
         const userData = this.getUserData(name);
-        await this.page.locator(".govuk-button.button").click();
-        await this.page.locator("#photoIdChoice").click();
+        if (await this.page.locator(".govuk-radios__input").count() < 4){
+            await this.page.locator("#photoIdChoiceThinFile").click();
+
+        } else {
+            await this.page.locator("#photoIdChoice").click();
+
+        }
         await this.page.locator("#continue").click();
         await this.page.locator("#ukPassportExpiryDate-day").fill(userData.expDay);
         await this.page.locator("#ukPassportExpiryDate-month").fill(userData.expMonth);
