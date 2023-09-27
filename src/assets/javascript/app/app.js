@@ -1,3 +1,5 @@
+//Don't think this file is ever used?
+
 /* global window document */
 window.GOVUKFrontend.initAll()
 window.onload = function () {
