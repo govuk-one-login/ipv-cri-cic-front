@@ -7,13 +7,6 @@
 {% from "hmpo-form/macro.njk" import hmpoForm %}
 {% from "hmpo-date/macro.njk" import hmpoDate %}
 
-{% from "govuk/components/header/macro.njk" import govukHeader %}
-
-{% block header %}
-{{ govukHeader ({
-serviceName: translate("govuk.serviceName")
-}) }}
-{% endblock %}
 
 {% block mainContent %}
 {% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
