@@ -15,7 +15,7 @@ window.DI = window.DI || {};
         window.DI.loadAnalytics(uaContainerId, ga4ContainerId)
       } else {
         // Existing analytics implementation (UA only)
-        const cookies = window.GOVUKFrontend.Cookies(uaContainerId, analyticsCookieDomain);
+        const cookies = window.GOVSignIn.Cookies(uaContainerId, analyticsCookieDomain);
         if (cookies.hasConsentForAnalytics()) {
           cookies.initAnalytics();
         }
