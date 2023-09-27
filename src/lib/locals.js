@@ -1,18 +1,19 @@
-const { APP } = require("./config");
-
 module.exports = {
-  setLocals: function (req, res, next) {
-    res.locals.uaContainerId = APP.ANALYTICS.ID;
-    res.locals.ga4ContainerId = APP.ANALYTICS.GTM_ID_GA4;
-    res.locals.analyticsCookieDomain = APP.ANALYTICS.DOMAIN;
 
-    // Patch the status code setter to make it available in locals as well
-    const setStatusCode = res.status;
-    res.status = function (code) {
-      res.locals.statusCode = code;
-      return setStatusCode.call(res, code);
-    };
-
-    next();
+  setGTM: ({ app, ga4ContainerId, uaContainerId, analyticsCookieDomain, isGa4Enabled }) => {
+    app.set("APP.GTM.GA4_ID", ga4ContainerId);
+    app.set("APP.GTM.UA_ID", uaContainerId);
+    app.set("APP.GTM.IS_GA4_ENABLED", isGa4Enabled);
+    app.set("APP.GTM.ANALYTICS_COOKIE_DOMAIN", analyticsCookieDomain);
   },
+
+  getGTM: function (req, res, next) {
+    res.locals.ga4ContainerId = req.app.get("APP.GTM.GA4_ID");
+    res.locals.uaContainerId = req.app.get("APP.GTM.UA_ID");
+    res.locals.isGa4Enabled = req.app.get("APP.GTM.IS_GA4_ENABLED");
+    res.locals.analyticsCookieDomain = req.app.get(
+      "APP.GTM.ANALYTICS_COOKIE_DOMAIN"
+    );
+    next();
+  }
 };

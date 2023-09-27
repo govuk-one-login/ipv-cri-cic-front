@@ -14,9 +14,9 @@ const setScenarioHeaders = commonExpress.lib.scenarioHeaders;
 const setAxiosDefaults = commonExpress.lib.axios;
 
 const { setAPIConfig, setOAuthPaths } = require("./lib/settings");
-const { setLocals } = require("./lib/locals");
-const { setGTM } = require("di-ipv-cri-common-express/src/lib/settings");
-const { getGTM } = require("di-ipv-cri-common-express/src/lib/locals");
+const { setGTM, getGTM } = require("./lib/locals");
+// const { setGTM } = require("di-ipv-cri-common-express/src/lib/settings");
+// const { getGTM } = require("di-ipv-cri-common-express/src/lib/locals");
 const { setI18n } = require("di-ipv-cri-common-express/src/lib/i18next");
 const steps = require("./app/cic/steps");
 const fields = require("./app/cic/fields");
@@ -56,7 +56,7 @@ const sessionConfig = {
   ...(SESSION_TABLE_NAME && { sessionStore: dynamoDBSessionStore }),
 };
 
-const helmetConfig = require("di-ipv-cri-common-express/src/lib/helmet");
+const helmetConfig = require("./lib/helmet.js");
 
 const { app, router } = setup({
   config: { APP_ROOT: __dirname },
@@ -87,9 +87,6 @@ const { app, router } = setup({
   dev: true,
 });
 
- app.use(setLocals);
-
-
 setI18n({
   router,
   config: {
@@ -116,7 +113,9 @@ setOAuthPaths({ app, entryPointPath: APP.PATHS.CIC });
 
 setGTM({
   app,
-  id: APP.ANALYTICS.ID,
+  ga4ContainerId: APP.ANALYTICS.GTM_ID_GA4,
+  uaContainerId: APP.ANALYTICS.ID,
+  isGa4Enabled: APP.ANALYTICS.GA4_ENABLED,
   analyticsCookieDomain: APP.ANALYTICS.DOMAIN,
 });
 

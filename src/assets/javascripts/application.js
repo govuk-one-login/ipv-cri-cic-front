@@ -9,7 +9,7 @@ window.DI = window.DI || {};
   
     function appInit({analyticsCookieDomain, uaContainerId, isGa4Enabled, ga4ContainerId}) {
   
-      if(isGa4Enabled === true) {
+      if(isGa4Enabled === 'true') {
         // New analytics implementation (UA and GA4)
         window.DI.cookieBannerInit(analyticsCookieDomain)
         window.DI.loadAnalytics(uaContainerId, ga4ContainerId)

@@ -41,60 +41,6 @@ window.DI.analyticsGa4 = window.DI.analyticsGa4 || {};
     }
   }
 
-  const getTrackingElements = function (document) {
-    const trackerSelector = '[ga4-trackers]'
-    const trackingElementsNodes = document.querySelectorAll(trackerSelector)
-    const trackingElements = []
-    // convert nodelist of trackers to array
-    for (const element of trackingElementsNodes) {
-      trackingElements.push(element)
-    }
-
-    return trackingElements
-  }
-
-  // eg form-tracker to FormTracker
-  const kebabCaseToPascalCase = function (string) {
-    const camelCase = function (string) {
-      return string.replace(/-([a-z])/g, function (g) {
-        return g.charAt(1).toUpperCase()
-      })
-    }
-
-    const capitaliseFirstLetter = function (string) {
-      return string.charAt(0).toUpperCase() + string.slice(1)
-    }
-
-    return capitaliseFirstLetter(camelCase(string))
-  }
-
-  // Initialise trackers for GA4 events which should be tracked on specific page elements, such as form_response events
-  const initGa4ElementTrackers = function (document) {
-
-    const elements = getTrackingElements(document)
-
-    for (const element of elements) {
-      const elementTrackers = element.getAttribute('ga4-trackers').split(' ')
-
-      for (const elementTracker of elementTrackers) {
-        const trackerName = kebabCaseToPascalCase(elementTracker)
-        const trackers = window.DI.analyticsGa4.trackers
-        if (Object.hasOwn(trackers, trackerName)) {
-          const tracker = trackers[trackerName]
-          if (typeof tracker === 'function' && typeof tracker.prototype.init === 'function') {
-            try {
-              new tracker(element).init()
-            } catch (e) {
-              // if there's a problem with the tracker, catch the error to allow other trackers to start
-              /* eslint-disable-next-line no-console */
-              console.warn('Error starting element tracker ' + tracker + ': ' + e.message, window.location)
-            }
-          }
-        }
-      }
-    }
-  }
-
   analytics.init = init
 
 })(window.DI.analyticsGa4)
