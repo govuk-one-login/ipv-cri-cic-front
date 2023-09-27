@@ -24,7 +24,7 @@ module.exports = {
       ],
       formAction: ["*"],
       objectSrc: ["'none'"],
-      connectSrc: ["'self'", "https://www.google-analytics.com"],
+      connectSrc: ["'self'", "*.google-analytics.com"],
     },
   },
   dnsPrefetchControl: {
