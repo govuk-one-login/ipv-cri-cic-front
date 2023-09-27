@@ -16,7 +16,6 @@ window.DI.analyticsGa4 = window.DI.analyticsGa4 || {};
       window.DI.core.load(window.DI.analytics.vars.ga4ContainerId)
 
       initGa4GlobalTrackers()
-      initGa4ElementTrackers(container ?? document)
     } else {
       window.addEventListener('cookie-consent', () => window.DI.analyticsGa4.init())
     }

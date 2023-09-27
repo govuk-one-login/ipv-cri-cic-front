@@ -1,3 +1,5 @@
+// This file is not being used
+
 /* global document window dataLayer ga */
 
 "use strict";
