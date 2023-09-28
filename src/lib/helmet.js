@@ -13,7 +13,7 @@ module.exports = {
           res.locals.cspNonce = res.locals.cspNonce || generateNonce();
           return `'nonce-${res.locals.cspNonce}'`;
         },
-        // pragma: allowlist secret
+        // pragma: allowlist nextline secret
         "'sha256-+6WnXIl4mbFTCARd8N3COQmT3bJJmo32N8q8ZSQAIcU='",
         "https://www.googletagmanager.com",
         "https://www.google-analytics.com",
