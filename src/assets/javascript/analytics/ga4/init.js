@@ -1,4 +1,4 @@
-/* global window document */
+/* global window */
 
 window.DI = window.DI || {}
 window.DI.analyticsGa4 = window.DI.analyticsGa4 || {};
@@ -7,8 +7,7 @@ window.DI.analyticsGa4 = window.DI.analyticsGa4 || {};
 
   'use strict'
 
-  // container is an optional parameter used for unit tests
-  const init = function(container) {
+  const init = function() {
 
     const consentGiven = window.DI.cookies.hasConsentForAnalytics()
 
