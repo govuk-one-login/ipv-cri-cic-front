@@ -134,7 +134,7 @@ Mappings:
       APIBASEURL: "https://api.review-c.integration.account.gov.uk"
       DNSSUFFIX: "review-c.integration.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-integration"
-      GTMID: "GTM-TK92W68"
+      GTM_ID_UA: "GTM-TK92W68"
       GTM_ID_GA4: "GTM-KD86CMZ"
       GA4ENABLED: "false"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
