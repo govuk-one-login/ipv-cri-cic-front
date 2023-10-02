@@ -404,7 +404,7 @@ Resources:
     Properties:
       ContainerDefinitions:
         - Essential: true
-          Image: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/di-cic-front:ga4-1
+          Image: CONTAINER-IMAGE-PLACEHOLDER
           Name: app
           Environment:
             - Name: API_BASE_URL
