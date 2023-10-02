@@ -101,8 +101,8 @@ Mappings:
       APIBASEURL: "https://api-cic-cri-api.review-c.dev.account.gov.uk"
       DNSSUFFIX: "review-c.dev.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-dev"
-      GTM_ID_UA: "GTM-TK92W68"
-      GTM_ID_GA4: "GTM-KD86CMZ"
+      GTMIDUA: "GTM-TK92W68"
+      GTMIDGA4: "GTM-KD86CMZ"
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "dev.account.gov.uk"
       TESTHARNESSURL: "https://cic-test-harness-testharness.review-c.dev.account.gov.uk"
@@ -113,8 +113,8 @@ Mappings:
       APIBASEURL: "https://api.review-c.build.account.gov.uk"
       DNSSUFFIX: "review-c.build.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-build"
-      GTM_ID_UA: "GTM-TK92W68"
-      GTM_ID_GA4: "GTM-KD86CMZ"
+      GTMIDUA: "GTM-TK92W68"
+      GTMIDGA4: "GTM-KD86CMZ"
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "build.account.gov.uk"
       TESTHARNESSURL: "https://testharness.review-c.build.account.gov.uk"
@@ -125,8 +125,8 @@ Mappings:
       APIBASEURL: "https://api.review-c.staging.account.gov.uk"
       DNSSUFFIX: "review-c.staging.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-staging"
-      GTM_ID_UA: "GTM-TK92W68"
-      GTM_ID_GA4: "GTM-KD86CMZ"
+      GTMIDUA: "GTM-TK92W68"
+      GTMIDGA4: "GTM-KD86CMZ"
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "staging.account.gov.uk"
     integration:
@@ -134,8 +134,8 @@ Mappings:
       APIBASEURL: "https://api.review-c.integration.account.gov.uk"
       DNSSUFFIX: "review-c.integration.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-integration"
-      GTM_ID_UA: "GTM-TK92W68"
-      GTM_ID_GA4: "GTM-KD86CMZ"
+      GTMIDUA: "GTM-TK92W68"
+      GTMIDGA4: "GTM-KD86CMZ"
       GA4ENABLED: "false"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
     production:
@@ -143,8 +143,8 @@ Mappings:
       APIBASEURL: "https://api.review-c.account.gov.uk"
       DNSSUFFIX: "review-c.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-production"
-      GTM_ID_UA: "GTM-TT5HDKV"
-      GTM_ID_GA4: "GTM-K4PBJH3"
+      GTMIDUA: "GTM-TT5HDKV"
+      GTMIDGA4: "GTM-K4PBJH3"
       GA4ENABLED: "false"
       ANALYTICSDOMAIN: "account.gov.uk"
 
@@ -404,7 +404,7 @@ Resources:
     Properties:
       ContainerDefinitions:
         - Essential: true
-          Image: CONTAINER-IMAGE-PLACEHOLDER
+          Image: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/di-cic-front:ga4-1
           Name: app
           Environment:
             - Name: API_BASE_URL
@@ -416,9 +416,9 @@ Resources:
             - Name: FRONT_END_URL
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, EXTERNALWEBSITEHOST ]
             - Name: UNIVERSAL_ANALYTICS_GTM_CONTAINER_ID
-              Value: !FindInMap [ EnvironmentVariables, !Ref Environment, GTM_ID_UA ]
+              Value: !FindInMap [ EnvironmentVariables, !Ref Environment, GTMIDUA ]
             - Name: GOOGLE_ANALYTICS_4_GTM_CONTAINER_ID
-              Value: !FindInMap [ EnvironmentVariables, !Ref Environment, GTM_ID_GA4 ]
+              Value: !FindInMap [ EnvironmentVariables, !Ref Environment, GTMIDGA4 ]
             - Name: GA4_ENABLED
               Value: !FindInMap [ EnvironmentVariables, !Ref Environment, GA4ENABLED ]
             - Name: ANALYTICS_DOMAIN
