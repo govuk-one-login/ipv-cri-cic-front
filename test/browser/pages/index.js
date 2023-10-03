@@ -6,4 +6,5 @@ module.exports = {
   DateOfBirthPage: require("./dateOfBirthPage"),
   DateOfBirthPageEdit: require("./dateOfBirthPageEdit"),
   CheckDetailsPage: require("./checkDetailsPage"),
+  OrchestratorStubPage: require("./orchestratorStub.js"),
 };
