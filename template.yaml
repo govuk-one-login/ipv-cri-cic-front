@@ -101,7 +101,9 @@ Mappings:
       APIBASEURL: "https://api-cic-cri-api.review-c.dev.account.gov.uk"
       DNSSUFFIX: "review-c.dev.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-dev"
-      GTMID: "TK92W68"
+      GTMIDUA: "GTM-TK92W68"
+      GTMIDGA4: "GTM-KD86CMZ"
+      GA4ENABLED: "true"
       ANALYTICSDOMAIN: "dev.account.gov.uk"
       TESTHARNESSURL: "https://cic-test-harness-testharness.review-c.dev.account.gov.uk"
       BACKENDURL: "https://api-cic-cri-api.review-c.dev.account.gov.uk"
@@ -111,7 +113,9 @@ Mappings:
       APIBASEURL: "https://api.review-c.build.account.gov.uk"
       DNSSUFFIX: "review-c.build.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-build"
-      GTMID: "TK92W68"
+      GTMIDUA: "GTM-TK92W68"
+      GTMIDGA4: "GTM-KD86CMZ"
+      GA4ENABLED: "true"
       ANALYTICSDOMAIN: "build.account.gov.uk"
       TESTHARNESSURL: "https://testharness.review-c.build.account.gov.uk"
       BACKENDURL: "https://api.review-c.build.account.gov.uk"
@@ -121,21 +125,27 @@ Mappings:
       APIBASEURL: "https://api.review-c.staging.account.gov.uk"
       DNSSUFFIX: "review-c.staging.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-staging"
-      GTMID: "TK92W68"
+      GTMIDUA: "GTM-TK92W68"
+      GTMIDGA4: "GTM-KD86CMZ"
+      GA4ENABLED: "true"
       ANALYTICSDOMAIN: "staging.account.gov.uk"
     integration:
       EXTERNALWEBSITEHOST: "https://review-c.integration.account.gov.uk"
       APIBASEURL: "https://api.review-c.integration.account.gov.uk"
       DNSSUFFIX: "review-c.integration.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-integration"
-      GTMID: "TK92W68"
+      GTMIDUA: "GTM-TK92W68"
+      GTMIDGA4: "GTM-KD86CMZ"
+      GA4ENABLED: "false"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
     production:
       EXTERNALWEBSITEHOST: "https://review-c.account.gov.uk"
       APIBASEURL: "https://api.review-c.account.gov.uk"
       DNSSUFFIX: "review-c.account.gov.uk"
       SESSIONTABLENAME: "cic-front-sessions-production"
-      GTMID: "TT5HDKV"
+      GTMIDUA: "GTM-TT5HDKV"
+      GTMIDGA4: "GTM-K4PBJH3"
+      GA4ENABLED: "false"
       ANALYTICSDOMAIN: "account.gov.uk"
 
 Resources:
@@ -405,10 +415,12 @@ Resources:
               Value: !Ref CicFrontSessionsTable
             - Name: FRONT_END_URL
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, EXTERNALWEBSITEHOST ]
-            - Name: GTM_ID
-              Value: !Sub
-                - "GTM-${ContainerId}"
-                - ContainerId: !FindInMap [EnvironmentVariables, !Ref Environment, GTMID ]
+            - Name: UNIVERSAL_ANALYTICS_GTM_CONTAINER_ID
+              Value: !FindInMap [ EnvironmentVariables, !Ref Environment, GTMIDUA ]
+            - Name: GOOGLE_ANALYTICS_4_GTM_CONTAINER_ID
+              Value: !FindInMap [ EnvironmentVariables, !Ref Environment, GTMIDGA4 ]
+            - Name: GA4_ENABLED
+              Value: !FindInMap [ EnvironmentVariables, !Ref Environment, GA4ENABLED ]
             - Name: ANALYTICS_DOMAIN
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, ANALYTICSDOMAIN ]
 
