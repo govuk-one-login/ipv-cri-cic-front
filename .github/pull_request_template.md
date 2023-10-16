@@ -1,6 +1,6 @@
 ## Proposed changes
 <!-- Provide a general summary of your changes in the Title above -->
-<!-- Include the Jira ticket number in square brackets as prefix, eg `[F2F-XXXX] PR Title` -->
+<!-- Include the Jira ticket number in square brackets as prefix, eg `[KIWI-XXXX] PR Title` -->
 
 ### What changed
 
@@ -15,7 +15,7 @@
 <!-- List any related ADRs or RFCs -->
 <!-- Delete/copy as appropriate -->
 
-- [KIWI-XXXX](https://govukverify.atlassian.net/browse/KIWI-XXX)
+- [KIWI-XXXX](https://govukverify.atlassian.net/browse/KIWI-XXXX)
 
 ## Checklists
 
