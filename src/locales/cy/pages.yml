@@ -1,17 +1,4 @@
 # title is managed in default.yml
-            
-landingPage:
-  pageTitle: "Prove your identity in person"
-  title: "Proving your identity in person"
-  body: "What you need to do"
-  instructions:
-    steps:
-      one: "Complete an online form to provide your basic personal details and select a photo ID you can take to a Post Office. We will then send you a confirmation email."
-      two: "Take the confirmation email and your photo ID to a Post Office."
-      three: "A member of Post Office staff will process your photo ID and take a photo of your face to verify your identity."
-  dataInfo:
-    title: "What happens after the Post Office"
-    body: "Once your identity has been proven, you must return online to your GOV.UK account to access the service you need."
 
 nameEntry:
   title: "Rhowch eich enw yn union fel y mae'n ymddangos ar eich ID gyda llun"
