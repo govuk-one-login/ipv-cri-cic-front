@@ -6,6 +6,7 @@ const session = require("express-session");
 const AWS = require("aws-sdk");
 const DynamoDBStore = require("connect-dynamodb")(session);
 const wizard = require('hmpo-form-wizard');
+const logger = require("hmpo-logger")
 
 const commonExpress = require("di-ipv-cri-common-express");
 
@@ -132,4 +133,13 @@ const wizardOptions = {
 
 router.use(wizard(steps, fields, wizardOptions));
 
-router.use(commonExpress.lib.errorHandling.redirectAsErrorToCallback);
+router.use((err, req, res, next) => {
+  logger.get().error("Error caught by Express handler - redirecting to Callback with server_error", {err});
+	const REDIRECT_URI = req.session?.authParams?.redirect_uri;
+	if (REDIRECT_URI) {
+		next(err);
+		router.use(commonExpress.lib.errorHandling.redirectAsErrorToCallback);
+	} else {
+		res.redirect("/error")
+	}
+});

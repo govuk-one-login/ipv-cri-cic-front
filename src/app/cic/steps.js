@@ -35,5 +35,8 @@ module.exports = {
     noPost: true,
     next: "/oauth2/callback",
   },
+	"/error": {
+    entryPoint: true,
+  }
 
 };
