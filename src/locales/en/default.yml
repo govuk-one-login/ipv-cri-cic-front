@@ -32,7 +32,7 @@ govuk:
     cookieLinkText: "Find out more about cookies"
   phaseBanner:
     tag: beta
-    content: This is a new service – your <a href="https://signin.account.gov.uk/contact-us" target="_blank" class="govuk-link" rel="noopener" target="_blank">feedback (opens in new tab)</a> will help us to improve it.
+    content: This is a new service – your <a href="https://home.account.gov.uk/contact-gov-uk-one-login?fromURL=https://www.review-c.account.gov.uk/enter-name-photo-id" target="_blank" class="govuk-link" rel="noopener" target="_blank">feedback (opens in new tab)</a> will help us to improve it.
   footerNavItems:
     meta:
       items:
@@ -44,7 +44,7 @@ govuk:
           text: Terms and conditions
         - href: https://signin.account.gov.uk/privacy-notice
           text: Privacy notice
-        - href: https://signin.account.gov.uk/contact-us
+        - href: https://home.account.gov.uk/contact-gov-uk-one-login?fromURL=https://www.review-c.account.gov.uk/enter-name-photo-id
           text: Support
   copyright:
     text: "© Crown copyright"
