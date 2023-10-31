@@ -23,6 +23,9 @@ then
     echo ENVIRONMENT="$ENVIRONMENT" >> docker_vars.env
     echo SAM_STACK_NAME="$SAM_STACK" >> docker_vars.env
     echo GITHUB_ACTIONS=true >> docker_vars.env
+    echo AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" >> docker_vars.env
+    echo AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" >> docker_vars.env
+    echo AWS_SESSION_TOKEN="$AWS_SESSION_TOKEN" >> docker_vars.env
 
     #clean existing container and image before creating a new one
     echo "Removing existing containers and images for the test"
