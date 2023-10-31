@@ -108,6 +108,7 @@ Mappings:
       TESTHARNESSURL: "https://cic-test-harness-testharness.review-c.dev.account.gov.uk"
       BACKENDURL: "https://api-cic-cri-api.review-c.dev.account.gov.uk"
       BACKENDSESSIONTABLE: "session-cic-cri-ddb"
+      LOGLEVEL: "debug"
     build:
       EXTERNALWEBSITEHOST: "https://review-c.build.account.gov.uk"
       APIBASEURL: "https://api.review-c.build.account.gov.uk"
@@ -120,6 +121,7 @@ Mappings:
       TESTHARNESSURL: "https://testharness.review-c.build.account.gov.uk"
       BACKENDURL: "https://api.review-c.build.account.gov.uk"
       BACKENDSESSIONTABLE: "session-cic-cri-ddb"
+      LOGLEVEL: "warn"
     staging:
       EXTERNALWEBSITEHOST: "https://review-c.staging.account.gov.uk"
       APIBASEURL: "https://api.review-c.staging.account.gov.uk"
@@ -129,6 +131,7 @@ Mappings:
       GTMIDGA4: "GTM-KD86CMZ"
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "staging.account.gov.uk"
+      LOGLEVEL: "warn"
     integration:
       EXTERNALWEBSITEHOST: "https://review-c.integration.account.gov.uk"
       APIBASEURL: "https://api.review-c.integration.account.gov.uk"
@@ -138,6 +141,7 @@ Mappings:
       GTMIDGA4: "GTM-KD86CMZ"
       GA4ENABLED: "false"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
+      LOGLEVEL: "warn"
     production:
       EXTERNALWEBSITEHOST: "https://review-c.account.gov.uk"
       APIBASEURL: "https://api.review-c.account.gov.uk"
@@ -147,6 +151,7 @@ Mappings:
       GTMIDGA4: "GTM-K4PBJH3"
       GA4ENABLED: "false"
       ANALYTICSDOMAIN: "account.gov.uk"
+      LOGLEVEL: "warn"
 
 Resources:
   # Security Groups for the ECS service and load balancer
@@ -423,7 +428,10 @@ Resources:
               Value: !FindInMap [ EnvironmentVariables, !Ref Environment, GA4ENABLED ]
             - Name: ANALYTICS_DOMAIN
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, ANALYTICSDOMAIN ]
-
+            - Name: ANALYTICS_DOMAIN
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, ANALYTICSDOMAIN ]
+            - Name: LOG_LEVEL
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, LOGLEVEL ]
           PortMappings:
             - ContainerPort: 8080
               Protocol: tcp
