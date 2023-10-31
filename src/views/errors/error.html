@@ -1,2 +1,28 @@
-<!-- Found in common folder -->
-{% extends "unrecoverable-error.njk" %}
+<!-- Copied from common express with contact link changed -->
+{% extends "base-page.njk" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set hmpoPageKey = "error.unrecoverable" %}
+
+{% block mainContent %}
+  <h1 data-id="error-title">{{ translate("error.unrecoverable.title") }}</h1>
+
+  <p>{{ translate("error.unrecoverable.subTitle") }}</p>
+
+  <h2>{{ translate("error.unrecoverable.subHeading") }}</h2>
+
+  <div class="govuk-text">
+    <p>{{ translate("error.unrecoverable.description") }}</p>
+  </div>
+
+  {{ govukButton({
+    text: translate("error.unrecoverable.buttonText"),
+    href: translate("error.unrecoverable.buttonLink")
+  }) }}
+
+  <div>
+      <p><a href="https://home.account.gov.uk/contact-gov-uk-one-login?fromURL=https://www.review-c.account.gov.uk/enter-name-photo-id\" class="govuk-link" rel="noreferrer noopener" target="_blank">{{ translate("error.unrecoverable.contactMeLink") }}</a></p>
+  </div>
+
+{% endblock %}
+
