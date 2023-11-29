@@ -30,7 +30,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Use Node.js 18.x
         uses: actions/setup-node@v3
@@ -56,7 +56,7 @@ jobs:
           cmd: test:browser:ci # will run `yarn test:browser:ci` command
 
       - name: Get Test Results history
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         if: always()
         continue-on-error: true
         with:
