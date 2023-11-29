@@ -46,7 +46,7 @@
     "url": "https://github.com/alphagov/di-cic-front/issues"
   },
   "homepage": "https://github.com/alphagov/di-cic-front#readme",
-  "packageManager": "yarn@2.4.3",
+  "packageManager": "yarn@1.22.21",
   "devDependencies": {
     "@cucumber/cucumber": "9.2.0",
     "aws4-axios": "^3.2.24",
