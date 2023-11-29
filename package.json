@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node src/app.js",
-    "start:ci": "API_BASE_URL=http://127.0.0.1:8090 REDIS_SESSION_URL= NODE_ENV=development node src/app.js",
+    "start:ci": "API_BASE_URL=http://localhost:8090 REDIS_SESSION_URL= NODE_ENV=development node src/app.js",
     "start:debug": "DEBUG=* node src/app.js",
     "dev": "nodemon src/app.js",
     "build": "yarn build-sass && yarn build-js && yarn copy-assets",
@@ -52,7 +52,7 @@
     "aws4-axios": "^3.2.24",
     "chai": "4.3.7",
     "chai-as-promised": "7.1.1",
-    "eslint": "8.43.0",
+    "eslint": "8.54.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-prettier": "4.2.1",
     "husky": "8.0.3",
