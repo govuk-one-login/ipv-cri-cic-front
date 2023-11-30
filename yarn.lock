@@ -4510,10 +4510,10 @@ hmpo-app@3.0.1:
   optionalDependencies:
     fsevents "~2.3.2"
 
-hmpo-components@6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/hmpo-components/-/hmpo-components-6.2.0.tgz#819493ebe41165342757a0b69e79cb9a0d9a847b"
-  integrity sha512-Isrb3edh88GXBWk3aDy2Qz1IMmRx5oi10Eqb6xF9KvSpmvrr6ceg5if4bYtJMZNk/TmGn9Rt+gZ3XatANUc6nA==
+hmpo-components@6.4.0:
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/hmpo-components/-/hmpo-components-6.4.0.tgz#67d94981e4cead715f9a6a814d891dd872b54281"
+  integrity sha512-iJqkD3qV8UY6SzJMAocRj3zgZv4MHCpMdHmxjmVOsVZZrwkfADy6RPEhKPm86WH79gEQ3gyYLhhpG1CHX4XNtw==
   dependencies:
     bytes "^3.1.2"
     deep-clone-merge "^1.5.5"
