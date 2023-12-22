@@ -100,7 +100,6 @@ Mappings:
       EXTERNALWEBSITEHOST: "https://cic-cri-front.review-c.dev.account.gov.uk"
       APIBASEURL: "https://api-cic-cri-api.review-c.dev.account.gov.uk"
       DNSSUFFIX: "review-c.dev.account.gov.uk"
-      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-dev"
       GTMIDUA: "GTM-TK92W68"
       GTMIDGA4: "GTM-KD86CMZ"
@@ -114,7 +113,6 @@ Mappings:
       EXTERNALWEBSITEHOST: "https://review-c.build.account.gov.uk"
       APIBASEURL: "https://api.review-c.build.account.gov.uk"
       DNSSUFFIX: "review-c.build.account.gov.uk"
-      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-build"
       GTMIDUA: "GTM-TK92W68"
       GTMIDGA4: "GTM-KD86CMZ"
@@ -128,7 +126,6 @@ Mappings:
       EXTERNALWEBSITEHOST: "https://review-c.staging.account.gov.uk"
       APIBASEURL: "https://api.review-c.staging.account.gov.uk"
       DNSSUFFIX: "review-c.staging.account.gov.uk"
-      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-staging"
       GTMIDUA: "GTM-TK92W68"
       GTMIDGA4: "GTM-KD86CMZ"
@@ -139,7 +136,6 @@ Mappings:
       EXTERNALWEBSITEHOST: "https://review-c.integration.account.gov.uk"
       APIBASEURL: "https://api.review-c.integration.account.gov.uk"
       DNSSUFFIX: "review-c.integration.account.gov.uk"
-      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-integration"
       GTMIDUA: "GTM-TK92W68"
       GTMIDGA4: "GTM-KD86CMZ"
@@ -150,7 +146,6 @@ Mappings:
       EXTERNALWEBSITEHOST: "https://review-c.account.gov.uk"
       APIBASEURL: "https://api.review-c.account.gov.uk"
       DNSSUFFIX: "review-c.account.gov.uk"
-      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-production"
       GTMIDUA: "GTM-TT5HDKV"
       GTMIDGA4: "GTM-K4PBJH3"
@@ -437,22 +432,6 @@ Resources:
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, ANALYTICSDOMAIN ]
             - Name: LOG_LEVEL
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, LOGLEVEL ]
-          Secrets:
-            - Name: DT_TENANT
-              ValueFrom: !Join
-                - ''
-                - - !FindInMap [ EnvironmentVariables, !Ref Environment, dynatraceSecretArn ]
-                  - ':DT_TENANT::'
-            - Name: DT_TENANTTOKEN
-              ValueFrom: !Join
-                - ''
-                - - !FindInMap [ EnvironmentVariables, !Ref Environment, dynatraceSecretArn ]
-                  - ':DT_TENANTTOKEN::'
-            - Name: DT_CONNECTION_POINT
-              ValueFrom: !Join
-              - ''
-              - - !FindInMap [ EnvironmentVariables, !Ref Environment, dynatraceSecretArn ]
-                - ':DT_CONNECTION_POINT::'
           PortMappings:
             - ContainerPort: 8080
               Protocol: tcp
@@ -508,26 +487,6 @@ Resources:
                 Resource:
                   - !GetAtt "ECSAccessLogsGroup.Arn"
                   - !Sub "${ECSAccessLogsGroup.Arn}:*"
-        - PolicyName: DynatraceGetSecrets
-          PolicyDocument:
-            Version: "2012-10-17"
-            Statement:
-              - Effect: Allow
-                Action:
-                  - "secretsmanager:GetSecretValue"
-                Resource:
-                  - "arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables*"
-                  - "arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceProductionVariables*"
-              - Effect: Allow
-                Action:
-                  - "secretsmanager:ListSecrets"
-                Resource:
-                  - "arn:aws:secretsmanager:eu-west-2:216552277552:secret:*"
-              - Effect: Allow
-                Action:
-                  - "kms:Decrypt"
-                Resource:
-                  - "arn:aws:kms:eu-west-2:216552277552:key/*"
       PermissionsBoundary: !If
         - UsePermissionsBoundary
         - !Ref PermissionsBoundary
@@ -561,26 +520,6 @@ Resources:
                   - "dynamodb:PutItem"
                 Resource:
                   - !GetAtt CicFrontSessionsTable.Arn
-        - PolicyName: DynatraceGetSecrets
-          PolicyDocument:
-            Version: "2012-10-17"
-            Statement:
-              - Effect: Allow
-                Action:
-                  - "secretsmanager:GetSecretValue"
-                Resource:
-                  - "arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables*"
-                  - "arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceProductionVariables*"
-              - Effect: Allow
-                Action:
-                  - "secretsmanager:ListSecrets"
-                Resource:
-                  - "arn:aws:secretsmanager:eu-west-2:216552277552:secret:*"
-              - Effect: Allow
-                Action:
-                  - "kms:Decrypt"
-                Resource:
-                  - "arn:aws:kms:eu-west-2:216552277552:key/*"
       PermissionsBoundary: !If
         - UsePermissionsBoundary
         - !Ref PermissionsBoundary
