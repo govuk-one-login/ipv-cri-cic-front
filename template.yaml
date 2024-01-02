@@ -52,10 +52,6 @@ Parameters:
     Description: The name of the deployed IPV stub stack.
 
 Conditions:
-  UseCodeSigning:
-    !Not [!Equals [none, !Ref CodeSigningConfigArn]]
-  IsProd:
-    !Equals [production, !Ref Environment]
   IsNotDevelopment: !Or
     - !Equals [ !Ref Environment, build ]
     - !Equals [ !Ref Environment, staging ]
