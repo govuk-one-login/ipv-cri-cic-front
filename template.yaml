@@ -143,7 +143,7 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-integration"
       GTMIDUA: "GTM-TK92W68"
       GTMIDGA4: "GTM-KD86CMZ"
-      GA4ENABLED: "false"
+      GA4ENABLED: "true"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
       LOGLEVEL: "warn"
     production:
@@ -154,7 +154,7 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-production"
       GTMIDUA: "GTM-TT5HDKV"
       GTMIDGA4: "GTM-K4PBJH3"
-      GA4ENABLED: "false"
+      GA4ENABLED: "true"
       ANALYTICSDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
 
