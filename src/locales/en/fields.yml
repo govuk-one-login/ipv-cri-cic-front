@@ -12,16 +12,17 @@ surname:
   hint:
   validation:
     default: "Enter your last name as it appears on your photo ID"
+    minlength: "Your last name must be more than one character"
     maxlength: "Enter your last name as it appears on your photo ID"
     regexNumber: "Your last name cannot include numbers"
     regexSpecialCharacters: "Enter your last name as it appears on your photo ID"
-
 
 firstName:
   label: First name
   hint:
   validation:
     default: "Enter your first name as it appears on your photo ID"
+    minlength: "Your first name must be more than one character"
     maxlength: "Enter your first name as it appears on your photo ID"
     regexNumber: "Your first name cannot include numbers"
     regexSpecialCharacters: "Enter your first name as it appears on your photo ID"
@@ -31,10 +32,10 @@ middleName:
   hint: Leave this blank if you do not have any middle names
   validation:
     default: "Enter your middle name as it appears on your photo ID"
+    minlength: "Your middle name must be more than one character"
     maxlength: "Enter your middle name as it appears on your photo ID"
     regexNumber: "Your middle name cannot include numbers"
     regexSpecialCharacters: "Enter your middle name as it appears on your photo ID"
-
 
 dateOfBirth:
   legend: ""
