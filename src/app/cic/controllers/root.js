@@ -3,7 +3,6 @@ const { API } = require("../../../lib/config");
 
 class RootController extends BaseController {
   async saveValues(req, res, next) {
-
     const sharedClaims = req.session?.shared_claims;
 
     if (sharedClaims) {
@@ -19,10 +18,9 @@ class RootController extends BaseController {
     try {
       const headers = {
         "x-govuk-signin-session-id": req.session.tokenId
-        // "x-govuk-signin-session-id": "d6ac1467-f2a0-49b7-b735-880c99ad888a"
       }
 
-      const { data } = await req.axios.get(`${API.PATHS.SESSION_CONFIG}`, { headers});
+      const { data } = await req.axios.get(`${API.PATHS.SESSION_CONFIG}`, { headers });
       req.sessionModel.set("journeyType", data.journey_type);
     } catch (error) {
       console.log("Error fetching journey type", error)
