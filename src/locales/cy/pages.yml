@@ -7,6 +7,8 @@ nameEntry:
   firstName: "Enw cyntaf"
   middleName: "Enwau canol"
   middleNameHint: "Gadewch hwn yn wag os nad oes gennych enwau canol"
+  FACE_TO_FACE:
+    title: "Rhowch eich enw yn union fel y mae'n ymddangos ar eich ID gyda llun"
 
 checkDetails:
   title: "Cadarnhewch eich manylion"
