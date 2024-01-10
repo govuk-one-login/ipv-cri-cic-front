@@ -23,7 +23,7 @@ class RootController extends BaseController {
       }
 
       const { data } = await req.axios.get(`${API.PATHS.SESSION_CONFIG}`, { headers});
-      req.sessionModel.set("journey_type", data.journey_type);
+      req.sessionModel.set("journeyType", data.journey_type);
     } catch (error) {
       console.log("Error fetching journey type", error)
       next(error)
