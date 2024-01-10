@@ -19,6 +19,14 @@
     </div>
   </div>
 
+  {% if journeyType === "NO_PHOTO_ID" %}
+    <p>{{ introText }}</p>
+    <div class="govuk-inset-text govuk-!-margin-bottom-6">
+      <p>{{ insetText1 }}</p>
+      <p>{{ insetText2 }}</p>
+    </div>
+  {% endif %}
+
   {% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
 
   {{ hmpoText(ctx, {
@@ -30,15 +38,15 @@
 
   <div class="govuk-inset-text">
 
-      {{ hmpoText(ctx, {
-          id: "firstName",
-          classes: "govuk-!-width-three-quarters"
-      })}}
+    {{ hmpoText(ctx, {
+        id: "firstName",
+        classes: "govuk-!-width-three-quarters"
+    })}}
 
-      {{ hmpoText(ctx, {
-          id: "middleName",
-          classes: "govuk-!-width-three-quarters"
-      })}}
+    {{ hmpoText(ctx, {
+        id: "middleName",
+        classes: "govuk-!-width-three-quarters"
+    })}}
 
   </div>
 
