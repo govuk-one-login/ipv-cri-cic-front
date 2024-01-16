@@ -7,6 +7,6 @@ Background:
     Then they should be redirected to the nameEntry
 
 Scenario: Error displayed for invalid name entry
-    Given there has been an invalid entry into the surname and first name fields
+    Given there has been an invalid entry into the surname, middle name and first name fields
     When the user clicks the NameEntry continue button
     Then the user is shown an error message for invalid names

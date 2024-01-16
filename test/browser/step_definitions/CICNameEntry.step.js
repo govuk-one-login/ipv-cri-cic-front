@@ -19,7 +19,7 @@ Given(
 );
 
 Given(
-  /^there has been an invalid entry into the surname and first name fields$/,
+  /^there has been an invalid entry into the surname, middle name and first name fields$/,
   async function () {
     const nameEntryPage = new NameEntryPage(await this.page);
 
