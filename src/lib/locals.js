@@ -10,6 +10,7 @@ module.exports = {
   },
 
   getGTM: function (req, res, next) {
+    res.locals.gtmId = req.app.get("APP.GTM.GA4_ID");
     res.locals.ga4ContainerId = req.app.get("APP.GTM.GA4_ID");
     res.locals.uaContainerId = req.app.get("APP.GTM.UA_ID");
     res.locals.isGa4Enabled = req.app.get("APP.GTM.IS_GA4_ENABLED");

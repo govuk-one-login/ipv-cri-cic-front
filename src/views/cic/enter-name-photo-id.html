@@ -61,14 +61,20 @@
 
 {% block footer %}
   {{ govukFooter( footerNavItems ) }}
+  <script type="text/javascript" src="/public/javascripts/all.js"></script>
+  <script {% if cspNonce %} nonce="{{ cspNonce }}"{%  endif %}>
+    window.addEventListener('load', function () {
+      window.DI.analyticsGa4.pageViewTracker.trackOnPageLoad({
+        statusCode: '200', // Access status code
+        englishPageTitle: '{{translate("nameEntry.title")}}',
+        taxonomy_level1: 'web cri', // Access taxonomy level 1
+        taxonomy_level2: 'cic', // Access taxonomy level 2
+        content_id: '001',
+        logged_in_status: true,
+        dynamic: false,
+      });
+    });
+  </script>
 {% endblock %}
-
-
-{% block bodyEnd %}
-  {% block scripts %}
-    <script type="text/javascript" src="/public/javascripts/analytics.js"></script>
-    <script type="text/javascript" src="/public/javascripts/all.js"></script>
-    <script type="text/javascript" src="/public/javascripts/application.js"></script>
-    <script type="text/javascript" nonce='{{cspNonce}}'>window.DI.appInit({uaContainerId: '{{uaContainerId}}', analyticsCookieDomain: '{{analyticsCookieDomain}}', isGa4Enabled: '{{isGa4Enabled}}', ga4ContainerId: '{{ga4ContainerId}}'})</script>
-  {% endblock %}
-{% endblock %}
+<!--<script type="text/javascript" src="/public/javascripts/application.js"></script>
+    <script type="text/javascript" nonce='{{cspNonce}}'>window.DI.appInit({uaContainerId: '{{uaContainerId}}', analyticsCookieDomain: '{{analyticsCookieDomain}}', isGa4Enabled: '{{isGa4Enabled}}', ga4ContainerId: '{{ga4ContainerId}}'})</script>-->
