@@ -33,7 +33,7 @@ module.exports = {
     journeyKey: "dateOfBirth",
     validate: [
       "required", "date",
-      { type: "before", arguments: [new Date().toISOString().split("T")[0]] },
+      { type: "before", arguments: [] },
       { type: "after", arguments: ["1904-02-12"] }
     ]
   }
