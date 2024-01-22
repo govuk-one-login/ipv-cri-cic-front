@@ -4,7 +4,6 @@ module.exports = {
     journeyKey: "surname",
     validate: [
       "required",
-      { type: "minlength", arguments: 2 },
       { type: "regexSpecialCharacters", fn: (value) => value.match(/^[A-Za-z0-9 .'-]*$/) },
       { type: "regexNumber", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) }
     ]
@@ -14,7 +13,6 @@ module.exports = {
     journeyKey: "firstName",
     validate: [
       "required",
-      { type: "minlength", arguments: 2 },
       { type: "regexSpecialCharacters", fn: (value) => value.match(/^[A-Za-z0-9 .'-]*$/) },
       { type: "regexNumber", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) }
     ]
@@ -23,7 +21,6 @@ module.exports = {
     type: "text",
     journeyKey: "middleName",
     validate: [
-      { type: "minlength", arguments: 2 },
       { type: "regexSpecialCharacters", fn: (value) => value.match(/^[A-Za-z0-9 .'-]*$/) },
       { type: "regexNumber", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) }
     ]
