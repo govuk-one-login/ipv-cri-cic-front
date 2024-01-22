@@ -6,7 +6,8 @@ module.exports = {
     PATHS: {
       SESSION: "/session",
       AUTHORIZATION: "/authorization",
-      SAVE_CICDATA: "/claimedIdentity"
+      SAVE_CICDATA: "/claimedIdentity",
+      SESSION_CONFIG: "/session-config"
     },
   },
   APP: {
