@@ -27,6 +27,7 @@ class RootController extends BaseController {
       next(error)
     }
 
+    console.log("saving values");
     super.saveValues(req, res, next);
   }
 }
