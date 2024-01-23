@@ -1,5 +1,5 @@
 const { Controller: BaseController } = require("hmpo-form-wizard");
-const { API } = require("../../../lib/config");
+//const { API } = require("../../../lib/config");
 
 class RootController extends BaseController {
   async saveValues(req, res, next) {
@@ -15,7 +15,7 @@ class RootController extends BaseController {
       }
     }
 
-    try {
+    /*try {
       const headers = {
         "x-govuk-signin-session-id": req.session.tokenId
       }
@@ -25,7 +25,7 @@ class RootController extends BaseController {
     } catch (error) {
       console.log("Error fetching journey type", error)
       next(error)
-    }
+    }*/
 
     super.saveValues(req, res, next);
   }
