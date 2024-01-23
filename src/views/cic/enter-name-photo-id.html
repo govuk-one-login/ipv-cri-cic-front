@@ -11,41 +11,48 @@
 
 {% block mainContent %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-three-quarters">
-    <h1 id="header" class="gov" data-page="{{hmpoPageKey}}" class="govuk-heading-l">
-        {{ translate("nameEntry.title") }}
-    </h1>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+      <h1 id="header" class="gov" data-page="{{hmpoPageKey}}" class="govuk-heading-l">
+          {{ title }}
+      </h1>
+    </div>
   </div>
-</div>
-    
-    {% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
+
+  {% if journeyType === "NO_PHOTO_ID" %}
+    <p>{{ introText }}</p>
+    <div class="govuk-inset-text govuk-!-margin-bottom-6">
+      <p>{{ insetText1 }}</p>
+      <p>{{ insetText2 }}</p>
+    </div>
+  {% endif %}
+
+  {% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
+
+  {{ hmpoText(ctx, {
+      id: "surname",
+      classes: "govuk-!-width-full"
+  })}}
+
+  <p> {{ translate("nameEntry.givenNames") }}</p>
+
+  <div class="govuk-inset-text">
 
     {{ hmpoText(ctx, {
-        id: "surname",
-        classes: "govuk-!-width-full"
+        id: "firstName",
+        classes: "govuk-!-width-three-quarters"
     })}}
 
-    <p> {{ translate("nameEntry.givenNames") }}</p>
+    {{ hmpoText(ctx, {
+        id: "middleName",
+        classes: "govuk-!-width-three-quarters"
+    })}}
 
-    <div class="govuk-inset-text">
+  </div>
 
-        {{ hmpoText(ctx, {
-            id: "firstName",
-            classes: "govuk-!-width-three-quarters"
-        })}}
+  {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
 
-
-        {{ hmpoText(ctx, {
-            id: "middleName",
-            classes: "govuk-!-width-three-quarters"
-        })}}
-
-    </div>
-
-    {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
-
-    {% endcall %}
+  {% endcall %}
 
 {% endblock %}
 
@@ -53,7 +60,7 @@
 {% set footerNavItems = translate("govuk.footerNavItems") %}
 
 {% block footer %}
-    {{ govukFooter( footerNavItems ) }}
+  {{ govukFooter( footerNavItems ) }}
 {% endblock %}
 
 
