@@ -1,12 +1,19 @@
 # title is managed in default.yml
-            
+
 nameEntry:
-  title: "Enter your name exactly as it appears on your photo ID"
+  title: "Enter your name"
   surname: "Last name"
   givenNames: "Given names"
   firstName: "First name"
   middleName: "Middle names"
   middleNameHint: "Leave this blank if you do not have middle names"
+  FACE_TO_FACE:
+    title: "Enter your name exactly as it appears on your photo ID"
+  NO_PHOTO_ID:
+    title: "Enter your name as it appears on your bank or building society account"
+    introText: "This needs to be the exact name registered to the account. If you're using joint account details, you do not need to enter the other person's name."
+    insetText1: "The name on your bank card might only use your initials."
+    insetText2: "Check your banking app, online bank account or bank statement for the full registered name."
 
 checkDetails:
   title: "Confirm your details"
@@ -19,4 +26,3 @@ dateOfBirth:
   title: "Enter your date of birth"
   formLegend: "Enter your date of birth"
   hintText: "For example, 31 3 1980"
-  

@@ -16,9 +16,19 @@ yarn install
 
 ## Environment Variables
 
-- 'BASE_URL': Externally accessible base url of the webserver. Used to generate the callback url as part of credential issuer oauth flows
+- `API_BASE_URL`: Externally accessible base url of the webserver. Used to generate the callback url as part of credential issuer oauth flows. See below to set this.
 - `IPV_STUB_URL`: Mocks being sent to/from IPV Core to enable browser testing
 - `PORT` - Default port to run webserver on. (Default to `5020`)
+
+```bash
+export API_BASE_URL=https://api-cic-cri-api.review-c.dev.account.gov.uk
+```
+
+## Run front-end locally against deployed back-end
+
+- Set `API_BASE_URL` as described above.
+- Replace all instances of `x-govuk-signin-session-id` with a valid session ID from the dev environment
+- Run `yarn build` followed by `yarn start`
 
 # Deployment in own stack in DEV
 
