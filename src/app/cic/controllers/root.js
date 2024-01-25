@@ -1,5 +1,4 @@
 const { Controller: BaseController } = require("hmpo-form-wizard");
-const { API } = require("../../../lib/config");
 
 class RootController extends BaseController {
   async saveValues(req, res, next) {
@@ -14,19 +13,7 @@ class RootController extends BaseController {
         req.sessionModel.set("dateOfBirth", sharedClaims.birthDate[0].value);
       }
     }
-
-    try {
-      const headers = {
-        "x-govuk-signin-session-id": req.session.tokenId,
-      }
-
-      const { data } = await req.axios.get(`${API.PATHS.SESSION_CONFIG}`, { headers });
-      req.sessionModel.set("journeyType", data.journey_type);
-      return next();
-    } catch (error) {
-      console.log("Error fetching journey type", error)
-      return next(error);
-    }
+    super.saveValues(req, res, next);
   }
 }
 

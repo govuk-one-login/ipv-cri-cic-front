@@ -2,6 +2,7 @@ const nameEntry = require("./controllers/nameEntry");
 const dobEntry = require("./controllers/dateOfBirth");
 const checkDetails = require('./controllers/checkDetails');
 const root = require("./controllers/root");
+const journeyType = require("./controllers/journeyType");
 
 module.exports = {
   "/": {
@@ -10,6 +11,12 @@ module.exports = {
     entryPoint: true,
     skip: true,
     controller: root,
+    next: "journey-type",
+  },
+  "/journey-type": {
+    entryPoint: true,
+    skip: true,
+    controller: journeyType,
     next: "enter-name-photo-id",
   },
   "/enter-name-photo-id": {
