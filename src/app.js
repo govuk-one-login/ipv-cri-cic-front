@@ -8,15 +8,18 @@ const DynamoDBStore = require("connect-dynamodb")(session);
 const wizard = require('hmpo-form-wizard');
 const logger = require("hmpo-logger")
 
-const commonExpress = require("di-ipv-cri-common-express");
+const commonExpress = require("@govuk-one-login/di-ipv-cri-common-express");
 
 const setHeaders = commonExpress.lib.headers;
 const setScenarioHeaders = commonExpress.lib.scenarioHeaders;
 const setAxiosDefaults = commonExpress.lib.axios;
 
 const { setAPIConfig, setOAuthPaths } = require("./lib/settings");
-const { setGTM, getGTM } = require("./lib/locals");
-const { setI18n } = require("di-ipv-cri-common-express/src/lib/i18next");
+
+const { setGTM } = commonExpress.lib.settings;
+const { getGTM } = commonExpress.lib.locals;
+
+const { setI18n } = require("@govuk-one-login/di-ipv-cri-common-express/src/lib/i18next");
 const steps = require("./app/cic/steps");
 const fields = require("./app/cic/fields");
 
@@ -70,7 +73,7 @@ const { app, router } = setup({
   publicDirs: ["../dist/public"],
   views: [
     path.resolve(
-      path.dirname(require.resolve("di-ipv-cri-common-express")),
+      path.dirname(require.resolve("@govuk-one-login/di-ipv-cri-common-express")),
       "components"
     ),
     "views",
@@ -90,7 +93,7 @@ setI18n({
   router,
   config: {
     secure: true,
-    cookieDomain: APP.ANALYTICS.DOMAIN,
+    cookieDomain: APP.GTM.DOMAIN,
   },
 });
 
@@ -112,10 +115,11 @@ setOAuthPaths({ app, entryPointPath: APP.PATHS.CIC });
 
 setGTM({
   app,
-  ga4ContainerId: APP.ANALYTICS.GTM_ID_GA4,
-  uaContainerId: APP.ANALYTICS.GTM_ID_UA,
-  isGa4Enabled: APP.ANALYTICS.GA4_ENABLED,
-  analyticsCookieDomain: APP.ANALYTICS.DOMAIN,
+  ga4ContainerId: APP.GTM.GA4_ID,
+  uaContainerId: APP.GTM.UA_ID,
+  analyticsCookieDomain: APP.GTM.ANALYTICS_COOKIE_DOMAIN,
+  ga4Disabled: APP.GTM.GA4_DISABLED,
+  uaDisabled: APP.GTM.UA_DISABLED,
 });
 
 router.use(getGTM);
