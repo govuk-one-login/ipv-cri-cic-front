@@ -94,6 +94,8 @@ setI18n({
   },
 });
 
+
+
 app.get("nunjucks").addGlobal("getContext", function () {
   return {
     keys: Object.keys(this.ctx),
@@ -142,4 +144,12 @@ router.use((err, req, res, next) => {
 	} else {
 		res.redirect("/error")
 	}
+});
+
+app.use((req, res, next) => {
+  if (req.i18n) {
+    console.log("---------------------------------------")
+    res.locals.htmlLang = req.i18n.language;
+    next();
+  }
 });

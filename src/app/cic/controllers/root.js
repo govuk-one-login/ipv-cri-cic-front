@@ -17,7 +17,7 @@ class RootController extends BaseController {
 
     try {
       const headers = {
-        "x-govuk-signin-session-id": req.session.tokenId,
+        "x-govuk-signin-session-id": "e99a79c9-1359-4651-b975-4911aac033c7",
       }
 
       const { data } = await req.axios.get(`${API.PATHS.SESSION_CONFIG}`, { headers });
