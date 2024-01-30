@@ -44,7 +44,7 @@ module.exports = class PlaywrightDevPage {
   }
 
   get nameEntryLink() {
-    return this.page.locator('[href*="/enter-name-photo-id/edit"]')
+    return this.page.locator('[href*="/enter-name/edit"]')
   }
 
   async changeName(){

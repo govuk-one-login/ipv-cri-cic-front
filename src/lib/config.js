@@ -2,7 +2,7 @@ require("dotenv").config();
 
 module.exports = {
   API: {
-    BASE_URL: process.env.API_BASE_URL || "http://localhost:8090",
+    BASE_URL: process.env.API_BASE_URL || "https://api-cic-cri-api.review-c.dev.account.gov.uk",
     PATHS: {
       SESSION: "/session",
       AUTHORIZATION: "/authorization",
@@ -14,7 +14,7 @@ module.exports = {
     BASE_URL: process.env.EXTERNAL_WEBSITE_HOST || "http://localhost:8000",
     PATHS: {
       CIC: "/",
-      NAME_ENTRY: "/enter-name-photo-id",
+      NAME_ENTRY: "/enter-name",
       DATE_OF_BIRTH: "/enter-date-birth",
       CHECK_DETAILS: "/confirm-details",
     },
