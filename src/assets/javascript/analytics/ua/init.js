@@ -9,7 +9,7 @@ window.DI.analyticsUa = window.DI.analyticsUa || {};
 
   function initGtm() {
 
-    const sendData = window.DI.core.sendData
+    const sendData = window.DI.analyticsGa4.pageViewTracker.pushToDataLayer
 
     sendData({
       "gtm.allowlist": ["google"],
@@ -105,10 +105,13 @@ window.DI.analyticsUa = window.DI.analyticsUa || {};
 
   const init = function() {
 
-    const consentGiven = window.DI.cookies.hasConsentForAnalytics()
+    const consentGiven = window.DI.analyticsGa4.cookie.hasConsentForAnalytics()
 
     if (consentGiven) {
-      window.DI.core.load(window.DI.analytics.vars.uaContainerId)
+      console.log("load UA script");
+      window.DI.analyticsGa4.loadGtmScript(
+        window.DI.analyticsGa4.uaContainerId
+      );
       initGtm()
       initLinkerHandlers()
     } else {
