@@ -12,14 +12,15 @@ class CheckDetailsController extends DateController {
       if (err) {
         return callback(err, locals);
       }
-
+      const journeyType = req.sessionModel.get("journeyType");
       const dateOfBirth = req.form.values.dateOfBirth;
       const changeUrl = req.sessionModel.get("changeUrl");
       const firstName = req.sessionModel.get("firstName");
       const middleName = req.sessionModel.get("middleName");
       const surname = req.sessionModel.get("surname")
       const fullName = firstName + " " + middleName + " " + surname
-
+      
+      locals.journeyType = journeyType;
       locals.formattedBirthDate = formatDate(dateOfBirth, "YYYY-MM-DD");
       locals.changeUrl = `/${changeUrl}`;
       locals.fullName = fullName
