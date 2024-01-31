@@ -5,7 +5,7 @@ class JourneyTypeController extends BaseController {
   async saveValues(req, res, next) {
     try {
       const headers = {
-        "x-govuk-signin-session-id": req.session.tokenId,
+        "x-govuk-signin-session-id": "ec2a7713-7f14-42d8-b8e2-93a85857b6aa",
       }
 
       const { data } = await req.axios.get(`${API.PATHS.SESSION_CONFIG}`, { headers });
