@@ -59,4 +59,4 @@ checkDetails:
   legend: ""
   validation:
     default: "Make sure the details you entered match the details on your photo ID."
-    noPhotoId: "You cannot change your name and date of birth once you continue to the next page"
+    noPhotoId: "You cannot change your name and date of birth once you continue to the next page."

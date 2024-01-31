@@ -12,54 +12,70 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
     <h1 class="govuk-heading-l">{{ translate("checkDetails.title") }}</h1>
-    {{ govukWarningText({
-      text: translate("checkDetails.validation.default"),
-      iconFallbackText: "Warning"
+
+    {% if (journeyType == "FACE_TO_FACE") %}
+      {{ govukWarningText({
+        text: translate("checkDetails.validation.default"),
+        iconFallbackText: "Warning"
+      }) }}
+    {% endif %}
+
+    {{ govukSummaryList({
+      classes: 'govuk-!-margin-bottom-0',
+      rows: [
+        {
+          key: {
+            text: translate("checkDetails.name")
+          },
+          value: {
+            html: translate("{{ fullName }}")
+          },
+          actions: {
+            items: [
+              {
+                href: "/enter-name/edit",
+                text: translate("checkDetails.changeLink"),
+                visuallyHiddenText: translate("checkDetails.name")
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: translate("checkDetails.dateOfBirth")
+          },
+          value: {
+            html: translate("{{ formattedBirthDate }}")
+          },
+          actions: {
+            items: [
+              {
+                href: "/enter-date-birth/edit",
+                text: translate("checkDetails.changeLink"),
+                visuallyHiddenText: translate("checkDetails.dateOfBirth")
+              }
+            ]
+          }
+        }
+      ]
     }) }}
 
-      {{ govukSummaryList({
-        classes: 'govuk-!-margin-bottom-0',
-        rows: [
-          {
-            key: {
-              text: translate("checkDetails.name")
-            },
-            value: {
-              html: translate("{{ fullName }}")
-            },
-            actions: {
-              items: [
-                {
-                  href: "/enter-name-photo-id/edit",
-                  text: translate("checkDetails.changeLink"),
-                  visuallyHiddenText: translate("checkDetails.name")
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: translate("checkDetails.dateOfBirth")
-            },
-            value: {
-              html: translate("{{ formattedBirthDate }}")
-            },
-            actions: {
-              items: [
-                {
-                  href: "/enter-date-birth/edit",
-									text: translate("checkDetails.changeLink"),
-                  visuallyHiddenText: translate("checkDetails.dateOfBirth")
-                }
-              ]
-            }
-          }
-        ]
+    {% if (journeyType == "NO_PHOTO_ID") %}
+      {{ govukWarningText({
+        text: translate("checkDetails.validation.noPhotoId"),
+        iconFallbackText: "Warning"
       }) }}
+    {% endif %}
 
-       {% call hmpoForm(ctx) %}
-      {{ hmpoSubmit(ctx, {id: "continue", text: translate("checkDetails.buttonText")}) }}
-         {% endcall %}
+    {% if (journeyType == "NO_PHOTO_ID") %}
+      {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx, {id: "confirmDetailsContinue", text: translate("checkDetails.noPidButtonText")}) }}
+      {% endcall %}
+    {% else %}
+      {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx, {id: "confirmDetailsContinue", text: translate("checkDetails.f2fButtonText")}) }}
+      {% endcall %}
+    {% endif %}
     </div>
   </div>
 
