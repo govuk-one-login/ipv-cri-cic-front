@@ -20,11 +20,13 @@
   </div>
 
   {% if journeyType === "NO_PHOTO_ID" %}
+  <div id="noPhotoIdInstructions">
     <p>{{ introText }}</p>
     <div class="govuk-inset-text govuk-!-margin-bottom-6">
       <p>{{ insetText1 }}</p>
       <p>{{ insetText2 }}</p>
     </div>
+  </div>
   {% endif %}
 
   {% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
@@ -52,7 +54,7 @@
 
   {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
 
-  <p> <a href={{ "nameEntry.contactSupport.link" | translate }}> {{ "nameEntry.contactSupport.text" | translate }}</a></p>
+  <p> <a href={{ "nameEntry.contactSupport.link" | translate }} id="contactSupport"> {{ "nameEntry.contactSupport.text" | translate }}</a></p>
 
   {% endcall %}
 
