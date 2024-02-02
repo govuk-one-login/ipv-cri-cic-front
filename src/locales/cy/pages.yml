@@ -9,6 +9,11 @@ nameEntry:
   middleNameHint: "Gadewch hwn yn wag os nad oes gennych enwau canol"
   FACE_TO_FACE:
     title: "Rhowch eich enw yn union fel y mae'n ymddangos ar eich ID gyda llun"
+  NO_PHOTO_ID:
+    title: "Rhowch eich enw fel y mae'n ymddangos ar eich cyfrif banc neu gymdeithas adeiladu"
+    introText: "Mae angen i hyn fod yr union enw sydd wedi'i gofrestru i'r cyfrif. Os ydych yn defnyddio manylion cyfrif ar y cyd, nid oes angen i chi nodi enw'r person arall."
+    insetText1: "Efallai y bydd yr enw ar eich cerdyn banc ond yn defnyddio llythrennau cyntaf eich enw."
+    insetText2: "Gwiriwch eich ap bancio, cyfrif banc ar-lein neu gyfriflen banc ar gyfer yr enw cofrestredig llawn."
 
 checkDetails:
   title: "Cadarnhewch eich manylion"
