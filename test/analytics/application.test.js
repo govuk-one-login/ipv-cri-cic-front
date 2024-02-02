@@ -33,7 +33,7 @@ describe("Init", () => {
   });
 
   describe("When GA4 is enabled", () => {
-    const isGa4Enabled = "true";
+    const isGa4Enabled = 'true';
 
     it("Initialises cookie banner and loads analytics per new implementation", () => {
       global.window.DI.appInit({

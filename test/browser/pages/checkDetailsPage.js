@@ -3,6 +3,7 @@ module.exports = class PlaywrightDevPage {
    * @param {import('@playwright/test').Page} page
    */
 
+
   constructor(page) {
     this.page = page;
     this.path = "/confirm-details";
@@ -16,6 +17,7 @@ module.exports = class PlaywrightDevPage {
 
   async continue() {
     await this.page.click("#continue");
+
   }
 
   async setSessionState() {
@@ -28,37 +30,37 @@ module.exports = class PlaywrightDevPage {
     return url[1];
   }
 
-  async back() {
+
+  async back(){
     await this.page.click("#back");
   }
 
-  async changeExpiryDate() {
+  async changeExpiryDate(){
     await this.expiryDateLink.click();
   }
 
-  async changeIdType() {
+  async changeIdType(){
     await this.idTypeLink.click();
   }
 
   get nameEntryLink() {
-    return this.page.locator('[href*="/enter-name/edit"]');
+    return this.page.locator('[href*="/enter-name/edit"]')
   }
 
-  async changeName() {
+  async changeName(){
     await this.nameEntryLink.click();
   }
 
   get doBLink() {
-    return this.page.locator('[href*="/enter-date-birth/edit"]');
+    return this.page.locator('[href*="/enter-date-birth/edit"]')
   }
 
-  async changeDoB() {
+  async changeDoB(){
     await this.doBLink.click();
   }
   async checkWarning() {
-    const warningText = await this.page
-      .locator(".govuk-warning-text__assistive")
-      .textContent();
-    return warningText.trim();
-  }
+    const warningText = await this.page.locator(".govuk-warning-text__assistive").textContent();
+      return warningText.trim();
+    }
 };
+

@@ -2,14 +2,12 @@ require("dotenv").config();
 
 module.exports = {
   API: {
-    BASE_URL:
-      process.env.API_BASE_URL ||
-      "https://api-cic-cri-api.review-c.dev.account.gov.uk",
+    BASE_URL: process.env.API_BASE_URL || "https://api-cic-cri-api.review-c.dev.account.gov.uk",
     PATHS: {
       SESSION: "/session",
       AUTHORIZATION: "/authorization",
       SAVE_CICDATA: "/claimedIdentity",
-      SESSION_CONFIG: "/session-config",
+      SESSION_CONFIG: "/session-config"
     },
   },
   APP: {
@@ -24,7 +22,7 @@ module.exports = {
       GTM_ID_UA: process.env.UNIVERSAL_ANALYTICS_GTM_CONTAINER_ID,
       DOMAIN: process.env.ANALYTICS_DOMAIN || "localhost",
       GA4_ENABLED: process.env.GA4_ENABLED,
-      GTM_ID_GA4: process.env.GOOGLE_ANALYTICS_4_GTM_CONTAINER_ID,
+      GTM_ID_GA4: process.env.GOOGLE_ANALYTICS_4_GTM_CONTAINER_ID
     },
   },
   PORT: process.env.PORT || 5020,

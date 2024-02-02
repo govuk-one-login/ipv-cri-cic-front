@@ -1,6 +1,6 @@
 const nameEntry = require("./controllers/nameEntry");
 const dobEntry = require("./controllers/dateOfBirth");
-const checkDetails = require("./controllers/checkDetails");
+const checkDetails = require('./controllers/checkDetails');
 const root = require("./controllers/root");
 const journeyType = require("./controllers/journeyType");
 
@@ -42,7 +42,8 @@ module.exports = {
     noPost: true,
     next: "/oauth2/callback",
   },
-  "/error": {
+	"/error": {
     entryPoint: true,
-  },
+  }
+
 };

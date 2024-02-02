@@ -8,16 +8,16 @@ const moment = require("moment");
  * @returns {string}
  */
 function formatDate(date, format) {
-  const isValid = moment(date, format, true).isValid();
+  const isValid = moment(date, format,true).isValid();
 
-  if (isValid) {
+  if(isValid){
     const check = moment(date, format);
-    const month = check.format("MM");
-    const day = check.format("DD");
-    const year = check.format("YYYY");
-    return day + " " + month + " " + year;
-  } else {
-    return "";
+    const month = check.format('MM');
+    const day   = check.format('DD');
+    const year  = check.format('YYYY');
+    return day + ' ' + month + ' ' + year;
+  } else{
+    return ""
   }
 }
 

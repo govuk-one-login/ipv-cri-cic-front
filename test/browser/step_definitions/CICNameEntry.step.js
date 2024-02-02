@@ -10,15 +10,13 @@ const {
 
 const userData = require("../support/cicUserData.json");
 
-Given(
-  /^there has been an entry into the surname and first name fields$/,
-  async function () {
+Given(/^there has been an entry into the surname and first name fields$/,async function () {
     const nameEntryPage = new NameEntryPage(await this.page);
 
     await nameEntryPage.enterSurname(userData.lastName);
     await nameEntryPage.enterFirstName(userData.firstName);
     await nameEntryPage.enterMiddleName(userData.middleName);
-  },
+  }
 );
 
 When(/^the user clicks the GOV UK support Link$/, async function () {
@@ -91,7 +89,8 @@ Given(/^the user has navigated to the Name Entry screen$/, async function () {
   const nameEntryPage = new NameEntryPage(await this.page);
 
   expect(await nameEntryPage.isCurrentPage()).to.be.true;
-});
+}
+);
 
 When(/^the Back link is clicked on the Name Entry screen$/, async function () {
   const nameEntryPage = new NameEntryPage(await this.page);

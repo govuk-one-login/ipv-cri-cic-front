@@ -84,7 +84,6 @@ They can be run by using:
 Any cucumber feature or scenario with a tag prefixed with `@mock-api:`
 
 e.g.
-
 ```
   @mock-api:question-error
   Scenario: API error

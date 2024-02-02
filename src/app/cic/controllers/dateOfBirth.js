@@ -4,4 +4,4 @@ const DateControllerMixin = require("hmpo-components").mixins.Date;
 const DateController = DateControllerMixin(BaseController);
 
 class DateOfBirthController extends DateController {}
-module.exports = DateOfBirthController;
+module.exports = DateOfBirthController; 

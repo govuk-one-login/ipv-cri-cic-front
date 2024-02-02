@@ -2,7 +2,7 @@ const { Before, BeforeAll, AfterAll, After } = require("@cucumber/cucumber");
 const { chromium } = require("playwright");
 const axios = require("axios");
 
-BeforeAll({ timeout: 2 * 5000 }, async function () {
+BeforeAll({timeout: 2 * 5000}, async function () {
   // Browsers are expensive in Playwright so only create 1
   global.browser = process.env.GITHUB_ACTIONS
     ? await chromium.launch()
@@ -10,7 +10,7 @@ BeforeAll({ timeout: 2 * 5000 }, async function () {
         // Not headless so we can watch test runs
         headless: false,
         // Slow so we can see things happening
-        //slowMo: 1000,
+      //slowMo: 1000,
       });
 });
 

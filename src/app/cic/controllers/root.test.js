@@ -1,12 +1,12 @@
 const BaseController = require("hmpo-form-wizard").Controller;
 const { expect } = require("chai");
 const { afterEach } = require("mocha");
-const RootController = require("./root.js");
+const RootController = require('./root.js');
 
 console.log = sinon.fake();
 
 describe("RootController", () => {
-  const rootController = new RootController({ route: "/test" });
+  const rootController = new RootController({ route: '/test' });
   let req;
   let res;
   let next;
@@ -30,17 +30,17 @@ describe("RootController", () => {
 
   describe("saveValues", () => {
     it("should save all values to sessionModel with full shared_claims object", async () => {
+
       req.session.shared_claims = {
         name: [
           {
             nameParts: [
               { value: "First" },
               { value: "Middle" },
-              { value: "Last" },
-            ],
-          },
-        ],
-        birthDate: [{ value: "1999-03-01" }],
+              { value: "Last" }
+            ]
+          }],
+        birthDate: [{ value: "1999-03-01" }]
       };
 
       await rootController.saveValues(req, res, next);
@@ -55,17 +55,17 @@ describe("RootController", () => {
   });
 
   it("should save appropriate values to sessionModel with partial shared_claims object", async () => {
+
     req.session.shared_claims = {
       name: [
         {
           nameParts: [
             { value: "First" },
             { value: "Middle" },
-            { value: "Last" },
-          ],
-        },
-      ],
-      birthDate: [{ value: "1999-03-01" }],
+            { value: "Last" }
+          ]
+        }],
+      birthDate: [{ value: "1999-03-01" }]
     };
 
     await rootController.saveValues(req, res, next);
@@ -79,9 +79,10 @@ describe("RootController", () => {
   });
 
   it("should not update sessionModel if no shared_claims attributes present", async () => {
+
     req.session.shared_claims = {
       name: [],
-      birthDate: [],
+      birthDate: []
     };
 
     await rootController.saveValues(req, res, next);
@@ -94,3 +95,4 @@ describe("RootController", () => {
     expect(dateOfBirth).to.equal(undefined);
   });
 });
+
