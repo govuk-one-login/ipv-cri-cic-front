@@ -4,7 +4,7 @@ const CheckDetailsController = require("./checkDetails");
 const {
   API: {
     PATHS: { SAVE_CICDATA },
-  }
+  },
 } = require("../../../lib/config");
 
 describe("CheckDetails controller", () => {
@@ -70,13 +70,16 @@ describe("CheckDetails controller", () => {
       it("should call claimedIdentity endpoint", async () => {
         req.axios.post = sinon.fake.resolves();
 
-        const givenNamesVal = req.sessionModel.get("middleName")? req.sessionModel.get("firstName") + " "+ req.sessionModel.get("middleName"):
-          req.sessionModel.get("firstName");
-        const cicData ={
+        const givenNamesVal = req.sessionModel.get("middleName")
+          ? req.sessionModel.get("firstName") +
+            " " +
+            req.sessionModel.get("middleName")
+          : req.sessionModel.get("firstName");
+        const cicData = {
           given_names: `${givenNamesVal}`,
           family_names: req.sessionModel.get("surname"),
-          date_of_birth: req.sessionModel.get("dateOfBirth")
-        }
+          date_of_birth: req.sessionModel.get("dateOfBirth"),
+        };
 
         await checkDetailsController.saveValues(req, res, next);
         expect(next).to.have.been.calledOnce;
@@ -85,12 +88,11 @@ describe("CheckDetails controller", () => {
           cicData,
           {
             headers: {
-              "x-govuk-signin-session-id": req.session.tokenId
+              "x-govuk-signin-session-id": req.session.tokenId,
             },
-          }
+          },
         );
       });
-
     });
   });
 });
