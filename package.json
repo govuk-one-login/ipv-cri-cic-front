@@ -4,7 +4,7 @@
   "description": "User interface for the Claimed Identity Collector (CIC) part of the Identity Proofing and Verification (IPV) system within the GDS digital identity platform, GOV.UK Sign In.",
   "main": "src/server.js",
   "engines": {
-    "node": "18.17.*",
+    "node": "18.*",
     "yarn": "1.22.*"
   },
   "scripts": {
