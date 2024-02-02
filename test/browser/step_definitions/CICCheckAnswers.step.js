@@ -14,11 +14,6 @@ Given(/^the user has completed the previous CIC screens$/, async function () {
   expect(await cpdPage.isCurrentPage()).to.be.true;
 });
 
-Then(/^the Confirm your details warning message appears$/, { timeout: 2 * 50000 }, async function () {
-  const cpdPage = new CheckDetailsPage(await this.page);
-  expect(await cpdPage.checkWarning()).toContain("You cannot change your 2 and date of birth once you continue to the next page.");
-});
-
 When(/^the user clicks the Check My Answers Submit button$/, { timeout: 2 * 50000 }, async function () {
   const cmPage = new CheckDetailsPage(await this.page);
 

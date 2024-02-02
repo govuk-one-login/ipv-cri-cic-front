@@ -16,6 +16,7 @@ module.exports = class PlaywrightDevPage {
   async continue() {
     await this.page.click("#continue");
   }
+  
   async clickSupportLink() {
     await this.page.locator("#contactSupport").click();
   }
@@ -44,17 +45,16 @@ module.exports = class PlaywrightDevPage {
     const errorText = await this.page.locator("#error-summary-title").textContent();
     return errorText.trim();
   }
-  async checkTitle(){
-  const titleText = await this.page.locator("#header").textContent();
+
+  async checkTitle() {
+    const titleText = await this.page.locator("#header").textContent();
     return titleText.trim();
   }
-  
+
   async checkSubTitleForBAV() {
     const subTitleText = await this.page.locator("#noPhotoIdInstructions").textContent();
-      return subTitleText.trim();
-    }
-
-
+    return subTitleText.trim();
+  }
 };
 
 

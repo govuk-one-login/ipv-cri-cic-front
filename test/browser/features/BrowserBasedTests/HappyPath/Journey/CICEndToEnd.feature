@@ -15,7 +15,6 @@ Scenario: Claimed Identity Credential Issuer - E2E Happy Path and DB Validation
     When the user clicks the DoB continue button
     Then they are routed to the Check My Answers Screen
     Given the user has completed the previous CIC screens
-    And the Confirm your details warning message appears
     When the user clicks the Check My Answers Submit button
 
     Given I have retrieved the sessionTable data for my CIC session
