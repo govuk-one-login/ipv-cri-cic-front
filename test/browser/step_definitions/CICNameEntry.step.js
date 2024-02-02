@@ -17,13 +17,25 @@ Given(
 
   }
 );
+When(/^the user clicks the GOV UK support Link$/, async function () {
+  const nameEntryPage = new NameEntryPage(await this.page);
 
+  await nameEntryPage.clickSupportLink();
+
+
+});
 When(/^the user clicks the NameEntry continue button$/, async function () {
   const nameEntryPage = new NameEntryPage(await this.page);
 
   await nameEntryPage.continue();
 
 });
+
+Then(/^they should be redirected to the GOV UK support page$/, async function () {
+  console.log("@@@@" + await this.page.url())
+ expect(await this.page.url()).to.contain("https://home.account.gov.uk/contact-gov-uk-one-login");
+});
+
 
 Then(
   /^the user is routed to the next screen in the journey DOB Entry$/,
