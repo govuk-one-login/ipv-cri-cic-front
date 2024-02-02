@@ -9,7 +9,7 @@
 
 surname:
   label: Enw olaf
-  hint:
+  hint: ""
   validation:
     default: "Rhowch eich enw olaf fel y mae'n ymddangos ar eich ID gyda llun"
     minlength: "Rhaid i'ch enw olaf fod yn fwy nag un nod"
@@ -20,7 +20,7 @@ surname:
 
 firstName:
   label: Enw cyntaf
-  hint:
+  hint: ""
   validation:
     default: "Rhowch eich enw cyntaf fel y mae'n ymddangos ar eich ID gyda llun"
     minlength: "Rhaid i'ch enw cyntaf fod yn fwy nag un nod"
