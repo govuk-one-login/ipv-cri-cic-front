@@ -58,4 +58,9 @@ module.exports = class PlaywrightDevPage {
   async changeDoB(){
     await this.doBLink.click();
   }
+  async checkWarning() {
+    const warningText = await this.page.locator(".govuk-warning-text__assistive").textContent();
+      return warningText.trim();
+    }
 };
+
