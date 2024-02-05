@@ -7,6 +7,9 @@ nameEntry:
   firstName: "Enw cyntaf"
   middleName: "Enwau canol"
   middleNameHint: "Gadewch hwn yn wag os nad oes gennych enwau canol"
+  contactSupport: 
+    text: "Cysylltwch â'r tîm GOV.UK One Login (agor mewn tab newydd)"
+    link: https://home.account.gov.uk/contact-gov-uk-one-login?fromURL=https://www.review-c.account.gov.uk/enter-name" target="_blank" class="govuk-link" rel="noopener" target="_blank
   FACE_TO_FACE:
     title: "Rhowch eich enw yn union fel y mae'n ymddangos ar eich ID gyda llun"
   NO_PHOTO_ID:
