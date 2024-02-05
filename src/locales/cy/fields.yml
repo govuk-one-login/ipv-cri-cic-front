@@ -61,4 +61,3 @@ checkDetails:
   legend: ""
   validation:
     default: "Gwnewch yn siwr bod y manylion rydych wedi eu rhoi yn cyd-fynd â'r manylion ar eich ID gyda llun."
-    noPhotoId: "Ni allwch newid eich enw a'ch dyddiad geni ar ôl i chi barhau i'r dudalen nesaf."
