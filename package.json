@@ -16,7 +16,7 @@
     "build-sass": "rm -rf dist/public/style.css && sass --no-source-map src/assets/scss/application.scss dist/public/stylesheets/application.css --style compressed",
     "copy-assets": "mkdir -p dist && copyfiles -u 1 src/**/*.njk dist/ src/locales/**/** dist/ && copyfiles -u 3 src/assets/javascripts/*.js dist/public/scripts && copyfiles -u 3 src/assets/images/* dist/public/images",
     "build-js": "yarn build-js:analytics && yarn build-js:all",
-    "build-js:analytics": "mkdir -p dist/public/javascripts; uglifyjs node_modules/@govuk-one-login/di-ipv-cri-common-express/src/assets/javascript/analytics.js src/assets/javascript/analytics/ua/init.js -o dist/public/javascripts/analytics.js",
+    "build-js:analytics": "mkdir -p dist/public/javascripts; uglifyjs node_modules/@govuk-one-login/one-login-analytics/lib/analytics.js src/assets/javascript/analytics/ua/init.js -o dist/public/javascripts/analytics.js",
     "build-js:all": "mkdir -p dist/public/javascripts; uglifyjs node_modules/govuk-frontend/govuk/all.js node_modules/hmpo-components/all.js --beautify -o dist/public/javascripts/all.js",
     "lint": "eslint .",
     "prepare": "husky install",
@@ -74,6 +74,7 @@
   "dependencies": {
     "@aws-sdk/credential-providers": "^3.438.0",
     "@aws-sdk/lib-dynamodb": "3.363.0",
+    "@govuk-one-login/one-login-analytics": "^0.0.6",
     "aws-sdk": "^2.1407.0",
     "axios": "^1.4.0",
     "cfenv": "1.2.4",
