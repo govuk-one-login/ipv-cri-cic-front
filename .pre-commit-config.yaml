@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: detect-private-key
       - id: detect-aws-credentials
@@ -13,9 +13,9 @@ repos:
     hooks:
       - id: detect-secrets
         args: ["--baseline", ".secrets.baseline"]
-        
+
   - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.3.1
+    rev: v1.5.4
     hooks:
       - id: remove-tabs
       - id: remove-crlf
@@ -25,36 +25,36 @@ repos:
       - id: search-and-replace
         stages: [commit-msg, commit]
   - repo: https://github.com/psf/black
-    rev: 22.12.0
+    rev: 24.1.0
     hooks:
       - id: black
         exclude: ^.*-hook/src/.*/models.py$
         additional_dependencies: ['click==8.0.4']
   - repo: https://github.com/pycqa/flake8
-    rev: '6.0.0'
+    rev: '7.0.0'
     hooks:
       - id: flake8
         exclude: ^.*\.aws-sam.*$
   - repo: https://github.com/pycqa/isort
-    rev: 5.11.2
+    rev: 5.13.2
     hooks:
       - id: isort
         name: isort (python)
         exclude: ^.*-hook/src/.*/models.py$
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
-    rev: v9.3.0
+    rev: v9.11.0
     hooks:
       - id: commitlint
         stages: [commit-msg]
         args: ['--verbose']
         verbose: true  # print warnings
   - repo: https://github.com/aws-cloudformation/cfn-python-lint
-    rev: v0.72.2
+    rev: v0.84.0
     hooks:
       - id: cfn-python-lint
         files: ^(?!\..*).*/template\.(json|yml|yaml)$
   - repo: https://github.com/bridgecrewio/checkov.git
-    rev: '2.2.157'
+    rev: '3.1.70'
     hooks:
       - id: checkov
         verbose: true
