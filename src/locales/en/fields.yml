@@ -9,7 +9,7 @@
 
 surname:
   label: Last name
-  hint:
+  hint: ""
   validation:
     default: "Enter your last name as it appears on your photo ID"
     minlength: "Your last name must be more than one character"
@@ -19,7 +19,7 @@ surname:
 
 firstName:
   label: First name
-  hint:
+  hint: ""
   validation:
     default: "Enter your first name as it appears on your photo ID"
     minlength: "Your first name must be more than one character"

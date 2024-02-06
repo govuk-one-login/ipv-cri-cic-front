@@ -1,6 +1,6 @@
 //Extracted from common-express and modified
 
-const { generateNonce } = require("di-ipv-cri-common-express/src/lib/strings.js");
+const { generateNonce } = require("@govuk-one-login/di-ipv-cri-common-express/src/lib/strings.js");
 
 module.exports = {
   contentSecurityPolicy: {

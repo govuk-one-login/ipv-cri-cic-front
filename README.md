@@ -105,8 +105,8 @@ You need to have AWS credentials in your shell via `aws-vault` or `gds-cli` or s
 ```shell
 aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 060113405249.dkr.ecr.eu-west-2.amazonaws.com
 docker build --platform linux/amd64 -t di-ipv-cri-cic-front .
-docker tag di-ipv-cri-cic-front:latest 060113405249.dkr.ecr.eu-west-2.amazonaws.com/dev-images-ddunford
-docker push 060113405249.dkr.ecr.eu-west-2.amazonaws.com/dev-images-ddunford
+docker tag di-ipv-cri-cic-front:latest 060113405249.dkr.ecr.eu-west-2.amazonaws.com/dev-images-viveakv
+docker push 060113405249.dkr.ecr.eu-west-2.amazonaws.com/dev-images-viveakv
 ```
 
 Then to use this new image update the `Image:` tag in the template.yaml and redeploy your template locally in to your own stack in DEV.
