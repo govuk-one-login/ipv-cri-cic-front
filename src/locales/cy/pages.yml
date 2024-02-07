@@ -16,7 +16,7 @@ checkDetails:
   dateOfBirth: "Dyddiad geni"
   changeLink: "Newid"
   f2fButtonText: "Rwy'n cadarnhau bod fy manylion yn gywir"
-  noPidButtonText: "Cadarnhau a pharhau"
+  noPidButtonText: "Rwy'n cadarnhau bod fy manylion yn gywir"
 
 dateOfBirth:
   title: "Rhowch eich dyddiad geni"
