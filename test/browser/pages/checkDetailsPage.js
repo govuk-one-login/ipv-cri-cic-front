@@ -44,7 +44,7 @@ module.exports = class PlaywrightDevPage {
   }
 
   get nameEntryLink() {
-    return this.page.locator('[href*="/enter-name-photo-id/edit"]')
+    return this.page.locator('[href*="/enter-name/edit"]')
   }
 
   async changeName(){
@@ -58,4 +58,9 @@ module.exports = class PlaywrightDevPage {
   async changeDoB(){
     await this.doBLink.click();
   }
+  async checkWarning() {
+    const warningText = await this.page.locator(".govuk-warning-text__assistive").textContent();
+      return warningText.trim();
+    }
 };
+

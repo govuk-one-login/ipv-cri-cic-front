@@ -17,9 +17,9 @@ module.exports = {
     entryPoint: true,
     skip: true,
     controller: journeyType,
-    next: "enter-name-photo-id",
+    next: "enter-name",
   },
-  "/enter-name-photo-id": {
+  "/enter-name": {
     editable: true,
     editBackStep: "confirm-details",
     fields: ["surname", "firstName", "middleName"],
