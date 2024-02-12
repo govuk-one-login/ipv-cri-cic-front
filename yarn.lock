@@ -389,12 +389,14 @@
     "@smithy/types" "^2.9.1"
     tslib "^2.5.0"
 
-"@aws-sdk/lib-dynamodb@3.363.0":
-  version "3.363.0"
-  resolved "https://registry.npmjs.org/@aws-sdk/lib-dynamodb/-/lib-dynamodb-3.363.0.tgz"
-  integrity sha512-6sa/dbZACurhjqV9GxM/iXOgV4hzOTd1/jlhzP7KLJW7UVoGXTBf0rRLpLUE0SxozML0jhDkqJ0hOUVY7Q1Xew==
+"@aws-sdk/lib-dynamodb@3.511.0":
+  version "3.511.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/lib-dynamodb/-/lib-dynamodb-3.511.0.tgz#f92a9ffcae8a073eded79528d673bc2276a6c29e"
+  integrity sha512-5xURF5gR8dY+pg50Y7GYfNZdPLcIGato02HouUauqs36ScfftfCXEOSbJNNYlyImrMspRlJtefdiWPhekHILhw==
   dependencies:
-    "@aws-sdk/util-dynamodb" "3.363.0"
+    "@aws-sdk/util-dynamodb" "3.511.0"
+    "@smithy/smithy-client" "^2.3.1"
+    "@smithy/types" "^2.9.1"
     tslib "^2.5.0"
 
 "@aws-sdk/middleware-host-header@3.502.0":
@@ -482,10 +484,10 @@
     "@smithy/types" "^2.9.1"
     tslib "^2.5.0"
 
-"@aws-sdk/util-dynamodb@3.363.0":
-  version "3.363.0"
-  resolved "https://registry.npmjs.org/@aws-sdk/util-dynamodb/-/util-dynamodb-3.363.0.tgz"
-  integrity sha512-zzY2PnNFxqJYIrbd/C2VMWhPMWP+XQG4C/V/yEfU2LY+HNAZ0aJPUwvXnMJTumZjcfYr+20qRiowsw8dnXEVgA==
+"@aws-sdk/util-dynamodb@3.511.0":
+  version "3.511.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/util-dynamodb/-/util-dynamodb-3.511.0.tgz#c43049d0a1a7db032e7181e90ea772b3dc83194a"
+  integrity sha512-VADCpPre14/KfXzZ45UHegeUbuefYR7AdfRrcTTjbOFBf1jTF9QUYlc+I2tYnDJ0kCBSSTjuO8XwjMAMqrtjQQ==
   dependencies:
     tslib "^2.5.0"
 
@@ -7277,6 +7279,7 @@ workerpool@6.2.1:
   integrity sha512-ILEIE97kDZvF9Wb9f6h5aXK4swSlKGUcOEGiIYb2OOu/IrDU9iwj0fD//SsA6E5ibwJxpEvhullJY4Sl4GcpAw==
 
 "wrap-ansi-cjs@npm:wrap-ansi@^7.0.0", wrap-ansi@^7.0.0:
+  name wrap-ansi-cjs
   version "7.0.0"
   resolved "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-7.0.0.tgz"
   integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
