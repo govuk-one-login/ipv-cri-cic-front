@@ -3,12 +3,20 @@
 nameEntry:
   title: "Rhowch eich enw yn union fel y mae'n ymddangos ar eich ID gyda llun"
   surname: "Enw olaf"
-  givenNames: "Enw olaf"
+  givenNames: "Enwau a roddwyd"
   firstName: "Enw cyntaf"
   middleName: "Enwau canol"
   middleNameHint: "Gadewch hwn yn wag os nad oes gennych enwau canol"
+  contactSupport: 
+    text: "Cysylltwch â'r tîm GOV.UK One Login (agor mewn tab newydd)"
+    link: https://home.account.gov.uk/contact-gov-uk-one-login?fromURL=https://www.review-c.account.gov.uk/enter-name" target="_blank" class="govuk-link" rel="noopener" target="_blank
   FACE_TO_FACE:
     title: "Rhowch eich enw yn union fel y mae'n ymddangos ar eich ID gyda llun"
+  NO_PHOTO_ID:
+    title: "Rhowch eich enw fel y mae'n ymddangos ar eich cyfrif banc neu gymdeithas adeiladu"
+    introText: "Mae angen i hyn fod yr union enw sydd wedi'i gofrestru i'r cyfrif. Os ydych yn defnyddio manylion cyfrif ar y cyd, nid oes angen i chi nodi enw'r person arall."
+    insetText1: "Efallai y bydd yr enw ar eich cerdyn banc ond yn defnyddio llythrennau cyntaf eich enw."
+    insetText2: "Gwiriwch eich ap bancio, cyfrif banc ar-lein neu gyfriflen banc ar gyfer yr enw cofrestredig llawn."
 
 checkDetails:
   title: "Cadarnhewch eich manylion"
@@ -16,7 +24,7 @@ checkDetails:
   dateOfBirth: "Dyddiad geni"
   changeLink: "Newid"
   f2fButtonText: "Rwy'n cadarnhau bod fy manylion yn gywir"
-  noPidButtonText: "Rwy'n cadarnhau bod fy manylion yn gywir"
+  noPidButtonText: "Cadarnhau a pharhau"
 
 dateOfBirth:
   title: "Rhowch eich dyddiad geni"
