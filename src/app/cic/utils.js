@@ -1,14 +1,17 @@
 function formatDate(dateOfBirth, language) {
-  const dateTransform = new Date(dateOfBirth);
-  let dateFormat = "en-GB";
-  if (language === "cy") {
-    dateFormat = "cy";
+  if (dateOfBirth) {
+    console.log("--------", dateOfBirth)
+    const dateTransform = new Date(dateOfBirth);
+    let dateFormat = "en-GB";
+      if (language === "cy") {
+        dateFormat = "cy";
+      }
+    return dateTransform.toLocaleDateString(dateFormat, {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
   }
-  return dateTransform.toLocaleDateString(dateFormat, {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
 };
 
 module.exports = { formatDate };
