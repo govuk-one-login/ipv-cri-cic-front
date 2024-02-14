@@ -1,6 +1,5 @@
 function formatDate(dateOfBirth, language) {
   if (dateOfBirth) {
-    console.log("--------", dateOfBirth)
     const dateTransform = new Date(dateOfBirth);
     let dateFormat = "en-GB";
       if (language === "cy") {
