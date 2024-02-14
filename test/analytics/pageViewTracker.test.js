@@ -1,8 +1,8 @@
 /* global window */
 
-const  chai  = require("chai");
-const  sinon  = require("sinon");
-const  sinonChai  = require ("sinon-chai");
+const chai = require("chai");
+const sinon = require("sinon");
+const sinonChai = require("sinon-chai");
 const { expect } = require("chai");
 
 chai.use(sinonChai);
@@ -54,7 +54,7 @@ describe("PageViewTracker", () => {
   afterEach(() => {
     delete require.cache[
       require.resolve(
-        "../../src/assets/javascript/analytics/ga4/pageViewTracker",
+        "../../src/assets/javascript/analytics/ga4/pageViewTracker"
       )
     ];
   });
