@@ -5,8 +5,8 @@ const path = require("path");
 const session = require("express-session");
 const AWS = require("aws-sdk");
 const DynamoDBStore = require("connect-dynamodb")(session);
-const wizard = require('hmpo-form-wizard');
-const logger = require("hmpo-logger")
+const wizard = require("hmpo-form-wizard");
+const logger = require("hmpo-logger");
 
 const commonExpress = require("@govuk-one-login/di-ipv-cri-common-express");
 
@@ -16,7 +16,9 @@ const setAxiosDefaults = commonExpress.lib.axios;
 
 const { setAPIConfig, setOAuthPaths } = require("./lib/settings");
 const { setGTM, getGTM } = require("./lib/locals");
-const { setI18n } = require("@govuk-one-login/di-ipv-cri-common-express/src/lib/i18next");
+const {
+  setI18n,
+} = require("@govuk-one-login/di-ipv-cri-common-express/src/lib/i18next");
 const steps = require("./app/cic/steps");
 const fields = require("./app/cic/fields");
 
@@ -70,7 +72,9 @@ const { app, router } = setup({
   publicDirs: ["../dist/public"],
   views: [
     path.resolve(
-      path.dirname(require.resolve("@govuk-one-login/di-ipv-cri-common-express")),
+      path.dirname(
+        require.resolve("@govuk-one-login/di-ipv-cri-common-express")
+      ),
       "components"
     ),
     "views",
@@ -134,12 +138,17 @@ const wizardOptions = {
 router.use(wizard(steps, fields, wizardOptions));
 
 router.use((err, req, res, next) => {
-  logger.get().error("Error caught by Express handler - redirecting to Callback with server_error", {err});
-	const REDIRECT_URI = req.session?.authParams?.redirect_uri;
-	if (REDIRECT_URI) {
-		next(err);
-		router.use(commonExpress.lib.errorHandling.redirectAsErrorToCallback);
-	} else {
-		res.redirect("/error")
-	}
+  logger
+    .get()
+    .error(
+      "Error caught by Express handler - redirecting to Callback with server_error",
+      { err }
+    );
+  const REDIRECT_URI = req.session?.authParams?.redirect_uri;
+  if (REDIRECT_URI) {
+    next(err);
+    router.use(commonExpress.lib.errorHandling.redirectAsErrorToCallback);
+  } else {
+    res.redirect("/error");
+  }
 });

@@ -1,8 +1,13 @@
 //Extracted from common-express and modified
 
 module.exports = {
-
-  setGTM: ({ app, ga4ContainerId, uaContainerId, analyticsCookieDomain, isGa4Enabled }) => {
+  setGTM: ({
+    app,
+    ga4ContainerId,
+    uaContainerId,
+    analyticsCookieDomain,
+    isGa4Enabled,
+  }) => {
     app.set("APP.GTM.GA4_ID", ga4ContainerId);
     app.set("APP.GTM.UA_ID", uaContainerId);
     app.set("APP.GTM.IS_GA4_ENABLED", isGa4Enabled);
@@ -17,5 +22,5 @@ module.exports = {
       "APP.GTM.ANALYTICS_COOKIE_DOMAIN"
     );
     next();
-  }
+  },
 };

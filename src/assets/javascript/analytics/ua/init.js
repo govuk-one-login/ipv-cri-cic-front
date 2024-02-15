@@ -1,20 +1,18 @@
 /* global window document ga */
 
-window.DI = window.DI || {}
+window.DI = window.DI || {};
 window.DI.analyticsUa = window.DI.analyticsUa || {};
 
 (function (analytics) {
-
-  'use strict'
+  "use strict";
 
   function initGtm() {
-
-    const sendData = window.DI.core.sendData
+    const sendData = window.DI.core.sendData;
 
     sendData({
       "gtm.allowlist": ["google"],
       "gtm.blocklist": ["adm", "awct", "sp", "gclidw", "gcs", "opt"],
-    })
+    });
 
     const gaDataElement = document.getElementById("gaData");
 
@@ -25,7 +23,7 @@ window.DI.analyticsUa = window.DI.analyticsUa || {};
     if (criJourney) {
       sendData(criJourney);
     }
-    
+
     //Unused code - see getJourneyMapping definition below
     // const sessionJourney = getJourneyMapping(window.location.pathname);
 
@@ -70,8 +68,6 @@ window.DI.analyticsUa = window.DI.analyticsUa || {};
     }
   }
 
-
-
   function criDataLayer(criJourney = "undefined") {
     // cri_journey is the only field to change at the moment
     // it is based off the docType cookie bound to a hidden element on specific pages, and so if that element isn't there, it will be 'undefined'. If it is there, the values will be boolean as a string
@@ -103,19 +99,17 @@ window.DI.analyticsUa = window.DI.analyticsUa || {};
   //   return JOURNEY_DATA_LAYER_PATHS[url];
   // }
 
-  const init = function() {
-
-    const consentGiven = window.DI.cookies.hasConsentForAnalytics()
+  const init = function () {
+    const consentGiven = window.DI.cookies.hasConsentForAnalytics();
 
     if (consentGiven) {
-      window.DI.core.load(window.DI.analytics.vars.uaContainerId)
-      initGtm()
-      initLinkerHandlers()
+      window.DI.core.load(window.DI.analytics.vars.uaContainerId);
+      initGtm();
+      initLinkerHandlers();
     } else {
-      window.addEventListener('cookie-consent', window.DI.analyticsUa.init)
+      window.addEventListener("cookie-consent", window.DI.analyticsUa.init);
     }
-  }
+  };
 
-  analytics.init = init
-
-})(window.DI.analyticsUa)
+  analytics.init = init;
+})(window.DI.analyticsUa);

@@ -10,7 +10,9 @@ const {
 
 const userData = require("../support/cicUserData.json");
 
-Given(/^there has been an entry into the surname and first name fields$/,async function () {
+Given(
+  /^there has been an entry into the surname and first name fields$/,
+  async function () {
     const nameEntryPage = new NameEntryPage(await this.page);
 
     await nameEntryPage.enterSurname(userData.lastName);
@@ -41,9 +43,9 @@ Then(
   /^they should be redirected to the GOV UK support page$/,
   async function () {
     expect(await this.supportTab.url()).to.contain(
-      "https://home.account.gov.uk/contact-gov-uk-one-login",
+      "https://home.account.gov.uk/contact-gov-uk-one-login"
     );
-  },
+  }
 );
 
 Then(
@@ -52,7 +54,7 @@ Then(
     const dobPage = new DateOfBirthPage(await this.page);
 
     expect(await dobPage.isCurrentPage()).to.be.true;
-  },
+  }
 );
 
 Given(/^only one mandatory name field has been entered$/, async function () {
@@ -67,7 +69,7 @@ When(
   async function () {
     const nameEntryPage = new NameEntryPage(await this.page);
     await nameEntryPage.continue();
-  },
+  }
 );
 
 Then(
@@ -82,15 +84,14 @@ Then(
     const error = await nameEntryPage.checkErrorText();
 
     expect(await error).to.equal(inlineError);
-  },
+  }
 );
 
 Given(/^the user has navigated to the Name Entry screen$/, async function () {
   const nameEntryPage = new NameEntryPage(await this.page);
 
   expect(await nameEntryPage.isCurrentPage()).to.be.true;
-}
-);
+});
 
 When(/^the Back link is clicked on the Name Entry screen$/, async function () {
   const nameEntryPage = new NameEntryPage(await this.page);
@@ -102,9 +103,9 @@ Then(
   /^the user is navigated back to the screen that they came from$/,
   async function () {
     const euDLDetailsPage = new EuDrivingLicenceDetailsPageValid(
-      await this.page,
+      await this.page
     );
 
     expect(await euDLDetailsPage.isCurrentPage()).to.be.true;
-  },
+  }
 );

@@ -20,5 +20,4 @@ describe("Core", () => {
     global.window.DI.core.sendData({ foo: "bar" });
     expect(window.dataLayer[0]).to.deep.equal({ foo: "bar" });
   });
-
 });

@@ -1,4 +1,4 @@
-const { formatDate } = require('./utils')
+const { formatDate } = require("./utils");
 const { expect } = require("chai");
 
 describe('formatDate', () => {
