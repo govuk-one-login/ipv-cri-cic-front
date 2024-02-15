@@ -8,10 +8,10 @@ class JourneyTypeController extends BaseController {
         "x-govuk-signin-session-id": req.session.tokenId,
       };
 
-      /*const { data } = await req.axios.get(`${API.PATHS.SESSION_CONFIG}`, {
+      const { data } = await req.axios.get(`${API.PATHS.SESSION_CONFIG}`, {
         headers,
       });
-      req.sessionModel.set("journeyType", data.journey_type);*/
+      req.sessionModel.set("journeyType", data.journey_type);
       return next();
     } catch (error) {
       console.log("Error fetching journey type", error);
