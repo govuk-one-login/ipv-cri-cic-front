@@ -36,5 +36,5 @@ then
     docker run --rm --env-file docker_vars.env -v $(pwd)/test/reports:/results $DockerImageName
 else    
     echo "Please ensure you've got a stack name as the first argument after ./run_tests_locally.sh..."
-    echo "E.g. ./run_tests_locally.sh cri-cic-api"
+    echo "E.g. ./run-tests-locally.sh cic-cri-api"
 fi
