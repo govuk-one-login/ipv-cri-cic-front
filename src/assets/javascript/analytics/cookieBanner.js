@@ -26,7 +26,7 @@ window.DI = window.DI || {};
       function (event) {
         event.preventDefault();
         setBannerCookieConsent(true, domain);
-      }.bind(this)
+      }.bind(this),
     );
 
     rejectCookies.addEventListener(
@@ -34,7 +34,7 @@ window.DI = window.DI || {};
       function (event) {
         event.preventDefault();
         setBannerCookieConsent(false, domain);
-      }.bind(this)
+      }.bind(this),
     );
 
     const hideButtons = Array.prototype.slice.call(hideCookieBanner);
@@ -44,12 +44,12 @@ window.DI = window.DI || {};
         function (event) {
           event.preventDefault();
           hideElement(cookieBannerContainer);
-        }.bind(this)
+        }.bind(this),
       );
     });
 
     const hasCookiesPolicy = window.DI.cookies.getCookie(
-      COOKIES_PREFERENCES_SET
+      COOKIES_PREFERENCES_SET,
     );
     if (!hasCookiesPolicy) {
       showElement(cookieBannerContainer);
@@ -61,7 +61,7 @@ window.DI = window.DI || {};
       COOKIES_PREFERENCES_SET,
       { analytics: analyticsConsent },
       { days: 365 },
-      domain
+      domain,
     );
 
     hideElement(cookieBanner);

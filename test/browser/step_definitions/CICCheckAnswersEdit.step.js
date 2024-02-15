@@ -43,7 +43,7 @@ Then(
     const cdPage = new CheckDetailsPage(await this.page);
 
     expect(await cdPage.isCurrentPage()).to.be.true;
-  }
+  },
 );
 
 When(/^the Back button is clicked$/, async function () {
@@ -58,7 +58,7 @@ Then(
     const doBPage = new DateOfBirthPage(await this.page);
 
     expect(await doBPage.isCurrentPage()).to.be.true;
-  }
+  },
 );
 
 When(/^the DoB edit link is clicked$/, async function () {

@@ -20,7 +20,7 @@ window.DI = window.DI || {};
       // Existing analytics implementation (UA only)
       const cookies = window.GOVSignIn.Cookies(
         uaContainerId,
-        analyticsCookieDomain
+        analyticsCookieDomain,
       );
       if (cookies.hasConsentForAnalytics()) {
         cookies.initAnalytics();

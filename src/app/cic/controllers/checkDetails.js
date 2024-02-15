@@ -16,10 +16,10 @@ class CheckDetailsController extends DateController {
       const changeUrl = req.sessionModel.get("changeUrl");
       const firstName = req.sessionModel.get("firstName");
       const middleName = req.sessionModel.get("middleName");
-      const surname = req.sessionModel.get("surname")
-      const fullName = firstName + " " + middleName + " " + surname
-      const language = req.lng
-      
+      const surname = req.sessionModel.get("surname");
+      const fullName = firstName + " " + middleName + " " + surname;
+      const language = req.lng;
+
       locals.journeyType = journeyType;
       locals.formattedBirthDate = formatDate(dateOfBirth, language);
       locals.changeUrl = `/${changeUrl}`;

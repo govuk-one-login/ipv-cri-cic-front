@@ -31,7 +31,7 @@ module.exports = class TestHarness {
         "/getRecordBySessionId/" +
           process.env["SESSION_TABLE"] +
           "/" +
-          sessionId
+          sessionId,
       );
       return unmarshall(getItemResponse.data.Item);
     } catch (error) {
@@ -43,7 +43,7 @@ module.exports = class TestHarness {
     try {
       const getItemResponse = await this.HARNESS_API_INSTANCE.get(
         "getSessionByAuthCode/" + process.env["SESSION_TABLE"] + "/" + authCode,
-        {}
+        {},
       );
       return unmarshall(getItemResponse.data.Items[0]);
     } catch (error) {

@@ -12,7 +12,7 @@ Given(
   async function () {
     const stubPage = new OrchestratorStubPage(this.page);
     await stubPage.goto();
-  }
+  },
 );
 
 When(
@@ -22,7 +22,7 @@ When(
     const stubPage = new OrchestratorStubPage(this.page);
     const uuid = v4();
     await stubPage.fullJourneyRoute(uuid);
-  }
+  },
 );
 
 When(
@@ -31,7 +31,7 @@ When(
   async function () {
     const stubPage = new OrchestratorStubPage(this.page);
     await stubPage.f2fPyicRoute();
-  }
+  },
 );
 
 When(
@@ -40,7 +40,7 @@ When(
   async function (name) {
     const stubPage = new OrchestratorStubPage(this.page);
     await stubPage.enterCicDetails(name);
-  }
+  },
 );
 
 When(
@@ -49,7 +49,7 @@ When(
   async function (name) {
     const stubPage = new OrchestratorStubPage(this.page);
     await stubPage.enterAddressCriDetails(name);
-  }
+  },
 );
 
 When(
@@ -59,7 +59,7 @@ When(
     const stubPage = new OrchestratorStubPage(this.page);
     await stubPage.fraudCriCheck();
     await stubPage.navigateToDocumentSelection();
-  }
+  },
 );
 
 Then(
@@ -70,7 +70,7 @@ Then(
     expect(await stubPage.returnNumberOfDocuments()).to.equal(7);
 
     await stubPage.navigateToDocumentSelection();
-  }
+  },
 );
 
 Then(
@@ -79,7 +79,7 @@ Then(
   async function () {
     const stubPage = new OrchestratorStubPage(this.page);
     expect(await stubPage.returnNumberOfDocuments()).to.equal(3);
-  }
+  },
 );
 
 When(
@@ -90,7 +90,7 @@ When(
     await stubPage.enterDocumentDetails(name);
     await stubPage.enterPostOfficeDetails(name);
     await stubPage.checkYourAnswers();
-  }
+  },
 );
 
 Then("the user should be shown the F2F handoff page", async function () {

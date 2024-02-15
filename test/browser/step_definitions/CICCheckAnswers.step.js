@@ -22,7 +22,7 @@ When(
     await cmPage.continue();
     this.state = await cmPage.setSessionState();
     this.authCode = await cmPage.setAuthCode();
-  }
+  },
 );
 
 Given(
@@ -31,7 +31,7 @@ Given(
   async function () {
     const testHarness = new TestHarness();
     const authCodeDetails = await testHarness.getSessionByAuthCode(
-      this.authCode
+      this.authCode,
     );
 
     expect(authCodeDetails.authorizationCode).to.equal(this.authCode);
@@ -40,7 +40,7 @@ Given(
     this.authSessionState = session.authSessionState;
     this.authorizationCode = session.authorizationCode;
     this.redirectUri = session.redirectUri;
-  }
+  },
 );
 
 Then(
@@ -49,7 +49,7 @@ Then(
   async function () {
     expect(this.sessionId).to.not.be.null;
     expect(this.authSessionState).to.equal("CIC_AUTH_CODE_ISSUED");
-  }
+  },
 );
 
 Then(
@@ -59,14 +59,14 @@ Then(
     const apiSupport = new ApiSupport(process.env.CRI_F2F_API_URL);
     const tokenRequest = await apiSupport.tokenPostRequest(
       this.authorizationCode,
-      this.redirectUri
+      this.redirectUri,
     );
     const userInfoRequest = await apiSupport.userInfoPostRequest(
-      tokenRequest.data.access_token
+      tokenRequest.data.access_token,
     );
     const jwtToken = await apiSupport.getJwtTokenUserInfo(
-      JSON.stringify(userInfoRequest.data)
+      JSON.stringify(userInfoRequest.data),
     );
     await apiSupport.validateJwtToken(jwtToken);
-  }
+  },
 );
