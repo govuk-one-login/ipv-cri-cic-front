@@ -16,7 +16,7 @@ env: # Only adding the variables in that are required for
 
 jobs:
   deploy-test-container-to-dev-ecr:
-    name: Validate & Deploy Test Container to Dev Envrionment ECR
+    name: Validate & Deploy Test Container to Dev Environment ECR
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code

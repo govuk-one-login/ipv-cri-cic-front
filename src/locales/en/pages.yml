@@ -7,6 +7,9 @@ nameEntry:
   firstName: "First name"
   middleName: "Middle names"
   middleNameHint: "Leave this blank if you do not have middle names"
+  contactSupport: 
+    text: "Contact the GOV.UK One Login team (opens in a new tab)"
+    link: https://home.account.gov.uk/contact-gov-uk-one-login?fromURL=https://www.review-c.account.gov.uk/enter-name" target="_blank" class="govuk-link" rel="noopener" target="_blank
   FACE_TO_FACE:
     title: "Enter your name exactly as it appears on your photo ID"
   NO_PHOTO_ID:
@@ -20,7 +23,8 @@ checkDetails:
   name: "Name"
   dateOfBirth: "Date of birth"
   changeLink: "Change"
-  buttonText: "I confirm my details are correct"
+  f2fButtonText: "I confirm my details are correct"
+  noPidButtonText: "Confirm and continue"
 
 dateOfBirth:
   title: "Enter your date of birth"

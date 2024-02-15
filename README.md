@@ -84,6 +84,7 @@ They can be run by using:
 Any cucumber feature or scenario with a tag prefixed with `@mock-api:`
 
 e.g.
+
 ```
   @mock-api:question-error
   Scenario: API error
@@ -105,8 +106,64 @@ You need to have AWS credentials in your shell via `aws-vault` or `gds-cli` or s
 ```shell
 aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 060113405249.dkr.ecr.eu-west-2.amazonaws.com
 docker build --platform linux/amd64 -t di-ipv-cri-cic-front .
-docker tag di-ipv-cri-cic-front:latest 060113405249.dkr.ecr.eu-west-2.amazonaws.com/dev-images-ddunford
-docker push 060113405249.dkr.ecr.eu-west-2.amazonaws.com/dev-images-ddunford
+docker tag di-ipv-cri-cic-front:latest 060113405249.dkr.ecr.eu-west-2.amazonaws.com/dev-images-viveakv
+docker push 060113405249.dkr.ecr.eu-west-2.amazonaws.com/dev-images-viveakv
 ```
 
 Then to use this new image update the `Image:` tag in the template.yaml and redeploy your template locally in to your own stack in DEV.
+
+### Dependency Installation
+
+To use this locally you will first need to install the dependencies, this can be done in 2 ways:
+
+#### Method 1 - Python pip
+
+Run the following in a terminal:
+
+```
+sudo -H pip3 install checkov pre-commit cfn-lint
+```
+
+this should work across platforms
+
+#### Method 2 - Brew
+
+If you have brew installed please run the following:
+
+```
+brew install pre-commit ;\
+brew install cfn-lint ;\
+brew install checkov
+```
+
+### Post Installation Configuration
+
+once installed run:
+
+```
+pre-commit install
+```
+
+To update the various versions of the pre-commit plugins, this can be done by running:
+
+```
+pre-commit autoupdate && pre-commit install
+```
+
+This will install / configure the pre-commit git hooks, if it detects an issue while committing it will produce an output like the following:
+
+```
+ git commit -a
+check json...........................................(no files to check)Skipped
+fix end of files.........................................................Passed
+trim trailing whitespace.................................................Passed
+detect aws credentials...................................................Passed
+detect private key.......................................................Passed
+AWS CloudFormation Linter................................................Failed
+- hook id: cfn-python-lint
+- exit code: 4
+W3011 Both UpdateReplacePolicy and DeletionPolicy are needed to protect Resources/PublicHostedZone from deletion
+core/deploy/dns-zones/template.yaml:20:3
+Checkov..............................................(no files to check)Skipped
+- hook id: checkov
+```

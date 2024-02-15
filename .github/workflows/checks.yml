@@ -33,9 +33,3 @@ jobs:
         run: npm run test:browser:ci
         env: 
             IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
-      # - name: Run sonarcloud scan
-      #   if: ${{ github.actor != 'dependabot[bot]' }}
-      #   uses: sonarsource/sonarcloud-github-action@master
-      #   env:
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # obtained from https://sonarcloud.io
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

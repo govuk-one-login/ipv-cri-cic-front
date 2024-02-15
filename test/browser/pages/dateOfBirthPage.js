@@ -7,7 +7,6 @@ module.exports = class PlaywrightDevPage {
     this.path = "/enter-date-birth";
   }
 
-
   async isCurrentPage() {
     const { pathname } = new URL(this.page.url());
     return pathname === this.path;
@@ -17,7 +16,7 @@ module.exports = class PlaywrightDevPage {
     await this.page.click("#continue");
   }
 
-  async back(){
+  async back() {
     await this.page.click("#back");
   }
 
@@ -25,11 +24,15 @@ module.exports = class PlaywrightDevPage {
     const dobArray = JSON.stringify(userData.dob).split("-");
     await this.page.locator("#dateOfBirth-day").fill(dobArray[2]);
     await this.page.locator("#dateOfBirth-month").fill(dobArray[1]);
-    await this.page.locator("#dateOfBirth-year").fill(dobArray[0].replace(/['"]+/g, ''));
+    await this.page
+      .locator("#dateOfBirth-year")
+      .fill(dobArray[0].replace(/['"]+/g, ""));
   }
 
-  async checkErrorText(){
-    const errorText = await this.page.locator("#error-summary-title").textContent();
+  async checkErrorText() {
+    const errorText = await this.page
+      .locator("#error-summary-title")
+      .textContent();
     return errorText.trim();
   }
 };

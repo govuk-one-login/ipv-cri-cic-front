@@ -4,7 +4,7 @@ module.exports = class PlaywrightDevPage {
    */
   constructor(page) {
     this.page = page;
-    this.path = "/enter-name-photo-id";
+    this.path = "/enter-name";
     this.firstName;
   }
 
@@ -17,20 +17,24 @@ module.exports = class PlaywrightDevPage {
     await this.page.click("#continue");
   }
 
-  async enterSurname(surname) {
-    await this.page.locator("#surname").fill(surname);
+  async clickSupportLink() {
+    await this.page.locator("#contactSupport").click();
   }
 
-  async enterFirstName(firstName) {
-    await this.page.locator("#firstName").fill(firstName);
+  async enterSurname() {
+    await this.page.locator("#surname").fill("Hartley");
   }
 
-  async enterMiddleName(middleName) {
-    await this.page.locator("#middleName").fill(middleName);
+  async enterFirstName() {
+    await this.page.locator("#firstName").fill("James");
   }
 
   async returnFirstName() {
     return this.firstName;
+  }
+
+  async enterMiddleName() {
+    await this.page.locator("#middleName").fill("Robert");
   }
 
   async back() {
@@ -38,23 +42,21 @@ module.exports = class PlaywrightDevPage {
   }
 
   async checkErrorText() {
-    const errorText = await this.page.locator("#error-summary-title").textContent();
+    const errorText = await this.page
+      .locator("#error-summary-title")
+      .textContent();
     return errorText.trim();
   }
 
-  async getInvalidFirstNameErrorText() {
-    const errorText = await this.page.locator("#firstName-error").textContent();
-    return errorText.trim();
+  async checkTitle() {
+    const titleText = await this.page.locator("#header").textContent();
+    return titleText.trim();
   }
 
-  async getInvalidMiddleNameErrorText() {
-    const errorText = await this.page.locator("#middleName-error").textContent();
-    return errorText.trim();
+  async checkSubTitleForBAV() {
+    const subTitleText = await this.page
+      .locator("#noPhotoIdInstructions")
+      .textContent();
+    return subTitleText.trim();
   }
-
-  async getInvalidLastNameErrorText() {
-    const errorText = await this.page.locator("#surname-error").textContent();
-    return errorText.trim();
-  }
-
 };

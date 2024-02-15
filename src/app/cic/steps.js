@@ -1,7 +1,8 @@
 const nameEntry = require("./controllers/nameEntry");
 const dobEntry = require("./controllers/dateOfBirth");
-const checkDetails = require('./controllers/checkDetails');
+const checkDetails = require("./controllers/checkDetails");
 const root = require("./controllers/root");
+const journeyType = require("./controllers/journeyType");
 
 module.exports = {
   "/": {
@@ -10,9 +11,15 @@ module.exports = {
     entryPoint: true,
     skip: true,
     controller: root,
-    next: "enter-name-photo-id",
+    next: "journey-type",
   },
-  "/enter-name-photo-id": {
+  "/journey-type": {
+    entryPoint: true,
+    skip: true,
+    controller: journeyType,
+    next: "enter-name",
+  },
+  "/enter-name": {
     editable: true,
     editBackStep: "confirm-details",
     fields: ["surname", "firstName", "middleName"],
@@ -35,8 +42,7 @@ module.exports = {
     noPost: true,
     next: "/oauth2/callback",
   },
-	"/error": {
+  "/error": {
     entryPoint: true,
-  }
-
+  },
 };
