@@ -1,6 +1,10 @@
-function formatDate(dateOfBirth, language) {
-  if (dateOfBirth) {
-    const dateTransform = new Date(dateOfBirth);
+const moment = require("moment");
+
+function formatDate(date, format, language) {
+  const isValid = moment(date, format, true).isValid();
+
+  if (isValid) {
+    const dateTransform = new Date(date);
     let dateFormat = "en-GB";
     if (language === "cy") {
       dateFormat = "cy";
@@ -10,6 +14,8 @@ function formatDate(dateOfBirth, language) {
       month: "long",
       year: "numeric",
     });
+  } else {
+    return "";
   }
 }
 
