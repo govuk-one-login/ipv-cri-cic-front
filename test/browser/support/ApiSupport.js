@@ -10,9 +10,9 @@ module.exports = class ApiSupport {
     return await axios.post(
       this.baseUrl + "/token",
       `code=${authorizationCode}&grant_type=authorization_code&redirect_uri=${encodeURIComponent(
-        redirectUri
+        redirectUri,
       )}`,
-      { headers: { "Content-Type": "text/plain" } }
+      { headers: { "Content-Type": "text/plain" } },
     );
   }
 
@@ -42,7 +42,7 @@ module.exports = class ApiSupport {
         .replace(/[[\]]/g, "");
     } catch (error) {
       console.log(
-        `Error response getting JWT Token from /userInfo endpoint: ${error}`
+        `Error response getting JWT Token from /userInfo endpoint: ${error}`,
       );
       return error.response;
     }
@@ -59,16 +59,16 @@ module.exports = class ApiSupport {
 
     const decodeRawBody = Buffer.from(rawBody, "base64");
     expect(
-      JSON.parse(decodeRawBody).vc.credentialSubject.name[0].nameParts[0].value
+      JSON.parse(decodeRawBody).vc.credentialSubject.name[0].nameParts[0].value,
     ).to.equal(userData.firstName);
     expect(
-      JSON.parse(decodeRawBody).vc.credentialSubject.name[0].nameParts[1].value
+      JSON.parse(decodeRawBody).vc.credentialSubject.name[0].nameParts[1].value,
     ).to.equal(userData.middleName);
     expect(
-      JSON.parse(decodeRawBody).vc.credentialSubject.name[0].nameParts[2].value
+      JSON.parse(decodeRawBody).vc.credentialSubject.name[0].nameParts[2].value,
     ).to.equal(userData.lastName);
     expect(
-      JSON.parse(decodeRawBody).vc.credentialSubject.birthDate[0].value
+      JSON.parse(decodeRawBody).vc.credentialSubject.birthDate[0].value,
     ).to.equal(userData.dob);
   }
 };

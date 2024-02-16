@@ -19,7 +19,7 @@ module.exports = {
     res.locals.uaContainerId = req.app.get("APP.GTM.UA_ID");
     res.locals.isGa4Enabled = req.app.get("APP.GTM.IS_GA4_ENABLED");
     res.locals.analyticsCookieDomain = req.app.get(
-      "APP.GTM.ANALYTICS_COOKIE_DOMAIN"
+      "APP.GTM.ANALYTICS_COOKIE_DOMAIN",
     );
     next();
   },

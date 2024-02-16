@@ -77,9 +77,9 @@ const { app, router } = setup({
   views: [
     path.resolve(
       path.dirname(
-        require.resolve("@govuk-one-login/di-ipv-cri-common-express")
+        require.resolve("@govuk-one-login/di-ipv-cri-common-express"),
       ),
-      "components"
+      "components",
     ),
     "views",
   ],
@@ -147,7 +147,7 @@ router.use((err, req, res, next) => {
     .get()
     .error(
       "Error caught by Express handler - redirecting to Callback with server_error",
-      { err }
+      { err },
     );
   const REDIRECT_URI = req.session?.authParams?.redirect_uri;
   if (REDIRECT_URI) {

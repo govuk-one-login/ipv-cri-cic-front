@@ -30,7 +30,7 @@ Given(
     const dobPage = new DateOfBirthPage(await this.page);
 
     await dobPage.continue();
-  }
+  },
 );
 
 Then(
@@ -45,5 +45,5 @@ Then(
     const error = await dobPage.checkErrorText();
 
     expect(await error).to.equal(inlineError);
-  }
+  },
 );

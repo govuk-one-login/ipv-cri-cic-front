@@ -14,7 +14,7 @@ Given(
     const cdPage = new CheckDetailsPage(await this.page);
 
     expect(await cdPage.isCurrentPage()).to.be.true;
-  }
+  },
 );
 
 When(
@@ -23,7 +23,7 @@ When(
     const cdPage = new CheckDetailsPage(await this.page);
 
     await cdPage.back();
-  }
+  },
 );
 
 Then(/^the user is navigated back to the DOB Entry page$/, async function () {
@@ -50,5 +50,5 @@ Then(
     const nameEntry = new NameEntryPage(await this.page);
 
     expect(await nameEntry.isCurrentPage()).to.be.true;
-  }
+  },
 );

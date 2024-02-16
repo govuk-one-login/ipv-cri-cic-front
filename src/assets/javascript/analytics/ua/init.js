@@ -18,7 +18,7 @@ window.DI.analyticsUa = window.DI.analyticsUa || {};
     const gaDataElement = document.getElementById("gaData");
 
     const criJourney = criDataLayer(
-      gaDataElement ? gaDataElement.value : "undefined"
+      gaDataElement ? gaDataElement.value : "undefined",
     );
 
     if (criJourney) {
