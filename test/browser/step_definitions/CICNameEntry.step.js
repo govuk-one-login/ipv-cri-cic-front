@@ -18,7 +18,7 @@ Given(
     await nameEntryPage.enterSurname(userData.lastName);
     await nameEntryPage.enterFirstName(userData.firstName);
     await nameEntryPage.enterMiddleName(userData.middleName);
-  }
+  },
 );
 
 When(/^the user clicks the GOV UK support Link$/, async function () {
@@ -43,9 +43,9 @@ Then(
   /^they should be redirected to the GOV UK support page$/,
   async function () {
     expect(await this.supportTab.url()).to.contain(
-      "https://home.account.gov.uk/contact-gov-uk-one-login"
+      "https://home.account.gov.uk/contact-gov-uk-one-login",
     );
-  }
+  },
 );
 
 Then(
@@ -54,7 +54,7 @@ Then(
     const dobPage = new DateOfBirthPage(await this.page);
 
     expect(await dobPage.isCurrentPage()).to.be.true;
-  }
+  },
 );
 
 Given(/^only one mandatory name field has been entered$/, async function () {
@@ -69,7 +69,7 @@ When(
   async function () {
     const nameEntryPage = new NameEntryPage(await this.page);
     await nameEntryPage.continue();
-  }
+  },
 );
 
 Then(
@@ -84,7 +84,7 @@ Then(
     const error = await nameEntryPage.checkErrorText();
 
     expect(await error).to.equal(inlineError);
-  }
+  },
 );
 
 Given(/^the user has navigated to the Name Entry screen$/, async function () {
@@ -103,9 +103,9 @@ Then(
   /^the user is navigated back to the screen that they came from$/,
   async function () {
     const euDLDetailsPage = new EuDrivingLicenceDetailsPageValid(
-      await this.page
+      await this.page,
     );
 
     expect(await euDLDetailsPage.isCurrentPage()).to.be.true;
-  }
+  },
 );

@@ -54,7 +54,7 @@ describe("PageViewTracker", () => {
   afterEach(() => {
     delete require.cache[
       require.resolve(
-        "../../src/assets/javascript/analytics/ga4/pageViewTracker"
+        "../../src/assets/javascript/analytics/ga4/pageViewTracker",
       )
     ];
   });

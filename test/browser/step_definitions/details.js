@@ -12,7 +12,7 @@ Given(
     const rpPage = new RelyingPartyPage(this.page);
 
     await rpPage.goto(claim);
-  }
+  },
 );
 
 When(
@@ -20,7 +20,7 @@ When(
   {
     timeout: 10 * 1000,
   },
-  async function () {}
+  async function () {},
 );
 
 Then("they should be redirected to the landingPage", async function () {
@@ -33,7 +33,7 @@ Then("they should be redirected to the F2F nameEntry", async function () {
   const nameEntryPage = new NameEntryPage(await this.page);
   expect(await nameEntryPage.isCurrentPage()).to.be.true;
   expect(await nameEntryPage.checkTitle()).to.contain(
-    "Enter your name exactly as it appears on your photo ID"
+    "Enter your name exactly as it appears on your photo ID",
   );
 });
 
@@ -41,11 +41,11 @@ Then("they should be redirected to the BAV nameEntry", async function () {
   const nameEntryPage = new NameEntryPage(await this.page);
   expect(await nameEntryPage.isCurrentPage()).to.be.true;
   expect(await nameEntryPage.checkTitle()).to.contain(
-    "Enter your name as it appears on your bank or building society account"
+    "Enter your name as it appears on your bank or building society account",
   );
   expect(await nameEntryPage.checkSubTitleForBAV()).to.contain(
     "Check your banking app, online bank account or bank statement for the full registered name." &&
-      "The name on your bank card might only use your initials."
+      "The name on your bank card might only use your initials.",
   );
 });
 
