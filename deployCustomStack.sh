@@ -77,3 +77,11 @@ aws cloudformation describe-stacks --stack-name "$STACK_NAME" --region $REGION -
 
 # Remind user to check the output URL and visit it with HTTPS
 echo "Deployment complete."
+
+export API_BASE_URL=https://api-cic-cri-api.review-c.dev.account.gov.uk
+
+export IPV_STUB_URL=https://erveje5km8.execute-api.eu-west-2.amazonaws.com/dev/start
+
+yarn test:browser:ci
+
+echo "Browser Tests complete."
