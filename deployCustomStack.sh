@@ -2,8 +2,8 @@
 
 # Variables
 REPOSITORY_NAME="your-ecr-repository-name"
-CUSTOM_IMAGE_NAME="viveak-test" # Change this to your custom name or ticket number
-STACK_NAME="frontend-985" # Change this to your preferred stack name
+CUSTOM_IMAGE_NAME="viveak-baqa" # Change this to your custom name or ticket number
+STACK_NAME="frontend-baqa" # Change this to your preferred stack name
 REGION="eu-west-2" # Change this if you are deploying to a different region
 IMAGE_TAG="latest" # You can make this dynamic based on your CI/CD pipeline
 AWS_ACCOUNT_ID="060113405249" # Your AWS account ID
@@ -47,12 +47,12 @@ echo "The Dockerfile has been updated."
 # Build and push Docker image
 docker build -t cic-cri-front-ecr-containerrepository-ymfhj103wnlw .
 
-docker tag cic-cri-front-ecr-containerrepository-ymfhj103wnlw:latest 060113405249.dkr.ecr.eu-west-2.amazonaws.com/cic-cri-front-ecr-containerrepository-ymfhj103wnlw:viveak-test
+docker tag cic-cri-front-ecr-containerrepository-ymfhj103wnlw:latest 060113405249.dkr.ecr.eu-west-2.amazonaws.com/cic-cri-front-ecr-containerrepository-ymfhj103wnlw:viveak-baqa
 
-docker push 060113405249.dkr.ecr.eu-west-2.amazonaws.com/cic-cri-front-ecr-containerrepository-ymfhj103wnlw:viveak-test
+docker push 060113405249.dkr.ecr.eu-west-2.amazonaws.com/cic-cri-front-ecr-containerrepository-ymfhj103wnlw:viveak-baqa
 
 # Fetch and display the URI of the pushed image
-IMAGE_URI="060113405249.dkr.ecr.eu-west-2.amazonaws.com/cic-cri-front-ecr-containerrepository-ymfhj103wnlw:viveak-test"
+IMAGE_URI="060113405249.dkr.ecr.eu-west-2.amazonaws.com/cic-cri-front-ecr-containerrepository-ymfhj103wnlw:viveak-baqa"
 echo "Image URI: $IMAGE_URI"
 
 # Path to the Template.yaml
