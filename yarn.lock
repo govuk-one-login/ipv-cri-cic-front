@@ -990,10 +990,10 @@
   resolved "https://registry.npmjs.org/@eslint/js/-/js-8.54.0.tgz"
   integrity sha512-ut5V+D+fOoWPgGGNj83GGjnntO39xDy6DWxO0wb7Jp3DcMX0TfIqdzHF85VTQkerdyGmuuMD9AKAo5KiNlf/AQ==
 
-"@govuk-one-login/di-ipv-cri-common-express@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.npmjs.org/@govuk-one-login/di-ipv-cri-common-express/-/di-ipv-cri-common-express-5.0.0.tgz"
-  integrity sha512-OYfU6g4TQ374wGIDIEMDhe1z9Y60nbMvTsuRxQRtqdr0uxOqLuwuBEXZopbe6DFctHwzU2IS+Fgmgl8i5WJRxA==
+"@govuk-one-login/di-ipv-cri-common-express@5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@govuk-one-login/di-ipv-cri-common-express/-/di-ipv-cri-common-express-5.1.0.tgz#37fe7c0bfd93c32bb9e4e673b274df6be820193f"
+  integrity sha512-13Rvmuj6yZnhAUybzyz6U6aqk9ieA2A9DG/Uo+Edn/SD7MfqCjMykpLIMaz9vhXjVVLo4Y7R5yEhzvf8KmB6NQ==
   dependencies:
     hmpo-logger "7.0.1"
     i18next "23.6.0"
@@ -2185,10 +2185,10 @@ available-typed-arrays@^1.0.5, available-typed-arrays@^1.0.6:
   resolved "https://registry.npmjs.org/available-typed-arrays/-/available-typed-arrays-1.0.6.tgz"
   integrity sha512-j1QzY8iPNPG4o4xmO3ptzpRxTciqD3MgEHtifP/YnJpIo58Xu+ne4BejlbkuaLfXn/nz6HFiw29bLpj2PNMdGg==
 
-aws-sdk@^2.1264.0, aws-sdk@^2.1407.0:
-  version "2.1549.0"
-  resolved "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.1549.0.tgz"
-  integrity sha512-SoVfrrV3A2mxH+NV2tA0eMtG301glhewvhL3Ob4107qLWjvwjy/CoWLclMLmfXniTGxbI8tsgN0r5mLZUKey3Q==
+aws-sdk@^2.1264.0, aws-sdk@^2.1561.0:
+  version "2.1561.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1561.0.tgz#cfe24c92818f9f4bd4a91a0f45aca26c8688faf6"
+  integrity sha512-YbYQOyvy9mfEGRI4JDZjw6J0zW6bjyV7H3WMWeq69qETvZlkq8koy5CTPMCjnL8i7boDjyW9FuhQzICBbeNgLg==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -7277,6 +7277,7 @@ workerpool@6.2.1:
   integrity sha512-ILEIE97kDZvF9Wb9f6h5aXK4swSlKGUcOEGiIYb2OOu/IrDU9iwj0fD//SsA6E5ibwJxpEvhullJY4Sl4GcpAw==
 
 "wrap-ansi-cjs@npm:wrap-ansi@^7.0.0", wrap-ansi@^7.0.0:
+  name wrap-ansi-cjs
   version "7.0.0"
   resolved "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-7.0.0.tgz"
   integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
