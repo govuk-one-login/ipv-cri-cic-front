@@ -17,6 +17,7 @@ export TEST_HARNESS_URL=$(remove_quotes "$CFN_CICTestHarnessURL")
 export CRI_F2F_API_URL=$(remove_quotes "$CFN_CICBackEndURL")
 export SESSION_TABLE=$(remove_quotes "$CFN_CICBackendSessionTableName")
 
+
 cd /app; yarn run test:e2e:cd
 
 cp -rf /app/test/reports $TEST_REPORT_ABSOLUTE_DIR
