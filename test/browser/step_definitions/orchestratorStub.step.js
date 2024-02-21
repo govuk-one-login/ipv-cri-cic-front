@@ -10,6 +10,7 @@ Given(
   "the user navigates to the Orchestrator Stub Page",
   { timeout: 4 * 50000 },
   async function () {
+    require('dotenv').config();
     const stubPage = new OrchestratorStubPage(this.page);
     await stubPage.goto();
   },

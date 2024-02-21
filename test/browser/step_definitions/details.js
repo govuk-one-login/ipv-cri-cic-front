@@ -8,6 +8,7 @@ Given(
   /^([^"]*) is using the system$/,
   { timeout: 2 * 5000 },
   async function (name) {
+    require('dotenv').config();
     const claim = this.allUserClaims[name];
     const rpPage = new RelyingPartyPage(this.page);
 
