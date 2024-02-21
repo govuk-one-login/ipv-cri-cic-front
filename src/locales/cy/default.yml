@@ -4,7 +4,7 @@ buttons:
   continue: Parhau
 
 govuk:
-  serviceName:
+  serviceName: ""
   backLink: Yn ôl
   errorSummaryTitle: Mae problem
   error: Gwall
