@@ -4,7 +4,7 @@ buttons:
   continue: Continue
 
 govuk:
-  serviceName:
+  serviceName: ""
   backLink: Back
   errorSummaryTitle: There is a problem
   error: Error
