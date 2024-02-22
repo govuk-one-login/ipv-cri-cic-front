@@ -1,6 +1,5 @@
 const { Before, BeforeAll, AfterAll, After } = require("@cucumber/cucumber");
 const { chromium } = require("playwright");
-const axios = require("axios");
 
 BeforeAll({ timeout: 2 * 5000 }, async function () {
   require("dotenv").config();
