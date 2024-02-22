@@ -56,7 +56,7 @@ Then(
   /^the Verifiable Credential is correctly returned by the userInfo endpoint$/,
   { timeout: 2 * 50000 },
   async function () {
-    const apiSupport = new ApiSupport(process.env.CRI_F2F_API_URL);
+    const apiSupport = new ApiSupport(process.env.API_BASE_URL);
     const tokenRequest = await apiSupport.tokenPostRequest(
       this.authorizationCode,
       this.redirectUri,

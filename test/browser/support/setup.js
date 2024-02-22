@@ -1,8 +1,8 @@
 const { Before, BeforeAll, AfterAll, After } = require("@cucumber/cucumber");
 const { chromium } = require("playwright");
-const axios = require("axios");
 
 BeforeAll({ timeout: 2 * 5000 }, async function () {
+  require("dotenv").config();
   // Browsers are expensive in Playwright so only create 1
   global.browser = process.env.GITHUB_ACTIONS
     ? await chromium.launch()
@@ -16,22 +16,6 @@ BeforeAll({ timeout: 2 * 5000 }, async function () {
 
 AfterAll(async function () {
   await global.browser.close();
-});
-
-// Add scenario header
-Before(async function ({ pickle } = {}) {
-  const tags = pickle.tags || [];
-  const tag = tags.find((tag) => tag.name.startsWith("@mock-api:"));
-
-  if (!tag) {
-    return;
-  }
-
-  const header = tag?.name.substring(10);
-
-  this.SCENARIO_ID_HEADER = header;
-
-  await axios.get(`${process.env.API_BASE_URL}/__reset/${header}`);
 });
 
 // Create a new test context and page per scenario
