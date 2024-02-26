@@ -24,5 +24,19 @@
       <p><a href="https://home.account.gov.uk/contact-gov-uk-one-login?fromURL=https://www.review-c.account.gov.uk/enter-name\" class="govuk-link" rel="noreferrer noopener" target="_blank">{{ translate("error.unrecoverable.contactMeLink") }}</a></p>
   </div>
 
+  <script {% if cspNonce %} nonce="{{ cspNonce }}"{%  endif %}>
+      window.addEventListener('load', function () {
+        window.DI.analyticsGa4.pageViewTracker.trackOnPageLoad({
+          statusCode: '500', // Access status code
+          englishPageTitle: '{{translate("error.unrecoverable.title")}}',
+          taxonomy_level1: 'web cri', // Access taxonomy level 1
+          taxonomy_level2: 'cic', // Access taxonomy level 2
+          content_id: '004',
+          logged_in_status: false,
+          dynamic: false,
+        });
+      });
+    </script>
+
 {% endblock %}
 

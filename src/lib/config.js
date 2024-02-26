@@ -20,11 +20,12 @@ module.exports = {
       DATE_OF_BIRTH: "/enter-date-birth",
       CHECK_DETAILS: "/confirm-details",
     },
-    ANALYTICS: {
-      GTM_ID_UA: process.env.UNIVERSAL_ANALYTICS_GTM_CONTAINER_ID,
-      DOMAIN: process.env.ANALYTICS_DOMAIN || "localhost",
-      GA4_ENABLED: process.env.GA4_ENABLED,
-      GTM_ID_GA4: process.env.GOOGLE_ANALYTICS_4_GTM_CONTAINER_ID,
+    GTM: {
+      GA4_ID: process.env.GOOGLE_ANALYTICS_4_GTM_CONTAINER_ID || "GTM-XXXXXXX",
+      UA_ID: process.env.UNIVERSAL_ANALYTICS_GTM_CONTAINER_ID || "UA-XXXXXXX",
+      ANALYTICS_COOKIE_DOMAIN: process.env.ANALYTICS_DOMAIN || "localhost",
+      GA4_DISABLED: process.env.GA4_DISABLED || false,
+      UA_DISABLED: process.env.UA_DISABLED || true,
     },
   },
   PORT: process.env.PORT || 5020,

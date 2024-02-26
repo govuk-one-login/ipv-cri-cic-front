@@ -33,7 +33,7 @@
           actions: {
             items: [
               {
-                href: "/enter-name/edit",
+                href: "/enter-name/edit?edit=true",
                 text: translate("checkDetails.changeLink"),
                 visuallyHiddenText: translate("checkDetails.name")
               }
@@ -50,7 +50,7 @@
           actions: {
             items: [
               {
-                href: "/enter-date-birth/edit",
+                href: "/enter-date-birth/edit?edit=true",
                 text: translate("checkDetails.changeLink"),
                 visuallyHiddenText: translate("checkDetails.dateOfBirth")
               }
@@ -87,13 +87,18 @@
 
 {% block footer %}
     {{ govukFooter( footerNavItems ) }}
-{% endblock %}
-
-{% block bodyEnd %}
-  {% block scripts %}
-    <script type="text/javascript" src="/public/javascripts/analytics.js"></script>
     <script type="text/javascript" src="/public/javascripts/all.js"></script>
-    <script type="text/javascript" src="/public/javascripts/application.js"></script>
-    <script type="text/javascript" nonce='{{cspNonce}}'>window.DI.appInit({uaContainerId: '{{uaContainerId}}', analyticsCookieDomain: '{{analyticsCookieDomain}}', isGa4Enabled: '{{isGa4Enabled}}', ga4ContainerId: '{{ga4ContainerId}}'})</script>
-  {% endblock %}
+    <script {% if cspNonce %} nonce="{{ cspNonce }}"{%  endif %}>
+      window.addEventListener('load', function () {
+        window.DI.analyticsGa4.pageViewTracker.trackOnPageLoad({
+          statusCode: '200', // Access status code
+          englishPageTitle: '{{translate("checkDetails.title")}}',
+          taxonomy_level1: 'web cri', // Access taxonomy level 1
+          taxonomy_level2: 'cic', // Access taxonomy level 2
+          content_id: '003',
+          logged_in_status: true,
+          dynamic: false,
+        });
+      });
+    </script>
 {% endblock %}
