@@ -8,8 +8,11 @@ module.exports = class PlaywrightDevPage {
     this.page = page;
   }
 
-  async goto(claim) {
+	async goto(claim) {
     const axios = require("axios");
+		
+		const frontendURL = "http://localhost:5020";
+		claim.frontendURL = frontendURL;
 
     const postRequest = await axios.post(process.env.IPV_STUB_URL, claim);
 

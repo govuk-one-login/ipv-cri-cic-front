@@ -1,0 +1,28 @@
+name: Docker Example
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - ready_for_review
+      - synchronize
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build the Docker image
+      run: |
+        docker build . -t my-docker-image
+
+    - name: Run the Docker image
+      run: |
+        docker run my-docker-image
