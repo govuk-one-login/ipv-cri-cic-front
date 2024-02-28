@@ -8,27 +8,15 @@ module.exports = class PlaywrightDevPage {
     this.page = page;
   }
 
-  async goto(claim) {
+	async goto(claim) {
     const axios = require("axios");
+		
+		const frontendURL = "http://localhost:5020";
+		claim.frontendURL = frontendURL;
 
     const postRequest = await axios.post(process.env.IPV_STUB_URL, claim);
 
-    // await this.page.goto(postRequest.data.AuthorizeLocation);
-
-		// Original URL from postRequest.data.AuthorizeLocation
-		const originalUrl = postRequest.data.AuthorizeLocation;
-
-		// Base URL to replace
-		const oldBaseUrl = "https://cic-cri-front.review-c.dev.account.gov.uk";
-
-		// New base URL
-		const newBaseUrl = "https://frontend-985.review-c.dev.account.gov.uk";
-
-		// Replace the old base URL with the new base URL
-		const newUrl = originalUrl.replace(oldBaseUrl, newBaseUrl);
-
-		// Use the new URL in the page.goto function
-		await this.page.goto(newUrl);
+    await this.page.goto(postRequest.data.AuthorizeLocation);
   }
 
   isRelyingPartyServer() {

@@ -50,8 +50,8 @@ sam deploy --resolve-s3 --stack-name "$STACK_NAME" --region "$REGION" --capabili
 aws cloudformation describe-stacks --stack-name "$STACK_NAME" --region "$REGION" --query 'Stacks[0].Outputs' --output table
 
 # Environment variables for testing (assuming they are used in the testing scripts)
-export API_BASE_URL=$API_BASE_URL
-export IPV_STUB_URL=$IPV_STUB_URL
+export API_BASE_URL="https://api-cic-cri-api.review-c.dev.account.gov.uk"
+export IPV_STUB_URL="https://erveje5km8.execute-api.eu-west-2.amazonaws.com/dev/start"
 
 # Run browser tests
 yarn test:browser:ci
