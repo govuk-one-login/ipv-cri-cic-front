@@ -73,15 +73,11 @@ In order to support consistent use of headers for API requests, [middleware](./s
 
 # Browser tests
 
-Browser based tests can be run against a deployed API stack using the CIC-IPV Stub. To run the tests make sure you have both the CRI_F2F_API_URL & IPV_STUB_URL params in your.env file and then run `npm run test:browser:ci:local`
+Browser based tests can be run against a deployed API stack using the CIC-IPV Stub. To run the tests make sure you have both the CRI_F2F_API_URL & IPV_STUB_URL params in your.env file and then run `npm run test:browser:local`
 
 This will run browser tets against your local changes
 
 These tests are written using [Cucumber](https://cucumber.io/docs/installation/javascript/) as the test runner and [Playwright](https://playwright.dev/) as the automation tool. They also follow the [Page Object Model](https://playwright.dev/docs/test-pom) for separation of concerns.
-
-They can be run by using:
-
-`yarn run test:browser`
 
 ## Using mocked scenario data
 
