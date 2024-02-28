@@ -28,7 +28,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'yarn'
       - run: yarn install
       - run: yarn lint
       - run: yarn build
@@ -44,7 +43,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'yarn'
       - run: yarn install
       - run: yarn build
       - if: ${{ success() && github.actor != 'dependabot[bot]' }}
