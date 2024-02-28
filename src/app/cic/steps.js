@@ -19,13 +19,6 @@ module.exports = {
     controller: journeyType,
     next: "enter-name",
   },
-  "/enter-name": {
-    editable: true,
-    editBackStep: "confirm-details",
-    fields: ["surname", "firstName", "middleName"],
-    controller: nameEntry,
-    next: "enter-date-birth",
-  },
   "/enter-date-birth": {
     editable: true,
     editBackStep: "confirm-details",
