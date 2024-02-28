@@ -32,6 +32,14 @@ jobs:
       - name: Checkout Project
         uses: actions/checkout@v4
 
+      - name: Install Python
+        uses: actions/setup-python@v5
+
+      - name: Detect Secrets
+        uses: pre-commit/action@v3.0.1
+        with:
+          extra_args: "detect-secrets --all-files"
+
       - name: Use Node.js 18.x
         uses: actions/setup-node@v4
         with:

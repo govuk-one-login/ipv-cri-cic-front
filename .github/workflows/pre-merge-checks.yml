@@ -1,0 +1,51 @@
+name: Pre-merge checks
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - ready_for_review
+      - synchronize
+  push:
+    branches:
+      - main
+
+env:
+  IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
+  LOCAL_FE_URL: http:/localhost:5020
+
+jobs:
+  all-in-one:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+      
+      - name: Detect Secrets
+        uses: pre-commit/action@v3.0.1
+        with:
+          extra_args: "detect-secrets --all-files"
+      
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'yarn'
+      
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Run Lint, Build, Test Coverage, and Browser Tests in Parallel
+        run: |
+          yarn lint & LINT_PID=$!
+          yarn build & BUILD_PID=$!
+          yarn test:coverage & TEST_COV_PID=$!
+          npm run test:browser:ci & TEST_BROWSER_PID=$!
+          wait $LINT_PID $BUILD_PID $TEST_COV_PID $TEST_BROWSER_PID
