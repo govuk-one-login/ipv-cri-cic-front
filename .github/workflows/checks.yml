@@ -30,6 +30,6 @@ jobs:
       - name: Run test and write coverage
         run: yarn test:coverage
       - name: Run browser tests
-        run: npm run test:browser:ci
+        run: npm run test:browser:ci:local
         env: 
             IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
