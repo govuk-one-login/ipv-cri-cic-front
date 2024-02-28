@@ -1,4 +1,4 @@
-name: Build Node server build and deploy
+name: API Build and Deploy - Build
 
 on:
   workflow_dispatch:
