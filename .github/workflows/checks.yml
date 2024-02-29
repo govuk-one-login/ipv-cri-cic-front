@@ -37,4 +37,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cic-code-coverage-report
-          path: output/test/code-coverage.html
+          path: test/reports/cic-reports/cri-cic-report.html
