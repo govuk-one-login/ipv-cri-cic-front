@@ -33,8 +33,3 @@ jobs:
         run: npm run test:browser:ci
         env: 
             IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
-      - name: Archive browser tests results
-        uses: actions/upload-artifact@v4
-        with:
-          name: cic-code-coverage-report
-          path: test/reports/cic-reports/

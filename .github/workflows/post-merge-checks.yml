@@ -54,9 +54,3 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: test:browser:ci # will run `yarn test:browser:ci` command
-
-      - name: Archive browser tests results
-        uses: actions/upload-artifact@v4
-        with:
-          name: cic-code-coverage-report
-          path: test/reports/cic-reports/
