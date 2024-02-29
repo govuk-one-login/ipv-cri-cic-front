@@ -1,4 +1,4 @@
-@successs @e2e
+@success @e2e
 
 Feature: Claimed Identity Credential Issuer - E2E
 
