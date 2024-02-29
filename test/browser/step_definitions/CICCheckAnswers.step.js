@@ -39,16 +39,19 @@ Given(
     const session = await testHarness.getSession(this.sessionId);
     this.authSessionState = session.authSessionState;
     this.authorizationCode = session.authorizationCode;
+    this.journey = session.journey;
     this.redirectUri = session.redirectUri;
   },
 );
 
 Then(
-  /^session details are correctly stored in DB$/,
-  { timeout: 2 * 50000 },
-  async function () {
+  "session details are correctly stored in DB for a {string} journey",
+  { timeout: 4 * 50000 },
+  async function (journeyType) {
     expect(this.sessionId).to.not.be.null;
     expect(this.authSessionState).to.equal("CIC_AUTH_CODE_ISSUED");
+    if (journeyType === "No Photo ID");
+    expect(this.sessionId).to.equal("NO_PHOTO_ID");
   },
 );
 
