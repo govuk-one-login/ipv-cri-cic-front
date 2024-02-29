@@ -1,5 +1,4 @@
 const reporter = require("multiple-cucumber-html-reporter");
-var date = new Date();
 
 var options = {
   jsonDir: "test/reports",
