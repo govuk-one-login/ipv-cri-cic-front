@@ -50,7 +50,7 @@ Then(
   async function (journeyType) {
     expect(this.sessionId).to.not.be.null;
     expect(this.authSessionState).to.equal("CIC_AUTH_CODE_ISSUED");
-    if (journeyType === "No Photo ID"){
+    if (journeyType === "No Photo ID") {
       expect(this.journey).to.equal("NO_PHOTO_ID");
     }
   },
