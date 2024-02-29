@@ -18,7 +18,7 @@ var currentDate =
 var options = {
   jsonDir: "test/reports",
   reportPath:
-    "test/reports/cic-reports/cri-cic-report_" + currentDate + ".html",
+    "test/reports/cic-reports/cri-cic-report.html",
   metadata: {
     browser: {
       name: "chrome",
