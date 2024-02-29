@@ -59,13 +59,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cic-code-coverage-report
-          path: test/reports/cic-reports/cri-cic-report.html
-
-      - name: Publish Github Pages
-        if: ${{ github.actor != 'dependabot[bot]' }}
-        uses: peaceiris/actions-gh-pages@v3.9.3
-        with:
-          github_token: ${{ secrets.SH_CIC_ACCESS_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: results-history
-          keep_files: true
+          path: test/reports/cic-reports/
