@@ -35,7 +35,7 @@ jobs:
       - name: Browser Tests
         uses: borales/actions-yarn@v4
         with:
-          cmd: test:browser:ci # will run `yarn test:browser:ci` command
+          cmd: test:browser:ci
         env: 
           IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
           CUSTOM_FE_URL: http:/localhost:5020
