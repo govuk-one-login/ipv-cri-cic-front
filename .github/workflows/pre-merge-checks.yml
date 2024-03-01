@@ -1,0 +1,58 @@
+name: Pre-merge checks
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - ready_for_review
+      - synchronize
+  push:
+    branches:
+      - main
+
+jobs:
+  detect-secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+      - uses: pre-commit/action@v3.0.1
+        with:
+          extra_args: "detect-secrets --all-files"
+
+  run-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - run: yarn install
+      - run: yarn lint
+      - run: yarn build
+      - run: yarn test:coverage
+      - run: npm run test:browser:ci
+        env: 
+          IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
+          CUSTOM_FE_URL: http:/localhost:5020 
+      - name: Archive browser tests results
+        uses: actions/upload-artifact@v4
+        with:
+          name: cic-code-coverage-report
+          path: test/reports/cic-reports/
+
+  sonar-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - run: yarn install
+      - run: yarn build
+      - if: ${{ success() && github.actor != 'dependabot[bot]' }}
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
