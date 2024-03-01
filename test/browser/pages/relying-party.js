@@ -13,11 +13,11 @@ module.exports = class PlaywrightDevPage {
         
 		if (process.env.CUSTOM_FE_URL) claim.frontendURL = process.env.CUSTOM_FE_URL;
 
-		console.log("CLAIM", claim);
-		console.log("process.env.IPV_STUB_URL", process.env.IPV_STUB_URL);
+		console.log("CLAIM1", claim);
+		console.log("process.env.IPV_STUB_URL1", process.env.IPV_STUB_URL);
     const postRequest = await axios.post(process.env.IPV_STUB_URL, claim);
 
-		console.log("postRequest.data.AuthorizeLocation", postRequest.data.AuthorizeLocation);
+		console.log("postRequest.data.AuthorizeLocation1", postRequest.data.AuthorizeLocation);
     await this.page.goto(postRequest.data.AuthorizeLocation);
 	}
 
