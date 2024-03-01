@@ -37,12 +37,6 @@ jobs:
         env: 
           IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
           CUSTOM_FE_URL: http:/localhost:5020
-        # uses: borales/actions-yarn run@v4
-        # with:
-        #   cmd: npm run test:browser:ci
-        # env: 
-        #   IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
-        #   CUSTOM_FE_URL: http:/localhost:5020
 
   sonar-checks:
     runs-on: ubuntu-latest
