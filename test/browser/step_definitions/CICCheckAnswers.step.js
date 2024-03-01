@@ -40,15 +40,18 @@ Given(
     this.authSessionState = session.authSessionState;
     this.authorizationCode = session.authorizationCode;
     this.redirectUri = session.redirectUri;
+    this.journey = session.journey;
   },
 );
 
 Then(
-  /^session details are correctly stored in DB$/,
-  { timeout: 2 * 50000 },
-  async function () {
+  "session details are correctly stored in DB for a {string} journey",
+  { timeout: 4 * 50000 },
+  async function (journeyType) {
     expect(this.sessionId).to.not.be.null;
+    console.log("Session ID:" + this.sessionId);
     expect(this.authSessionState).to.equal("CIC_AUTH_CODE_ISSUED");
+    expect(this.journey).to.equal(journeyType);
   },
 );
 
