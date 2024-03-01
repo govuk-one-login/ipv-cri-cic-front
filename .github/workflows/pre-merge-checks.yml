@@ -33,10 +33,9 @@ jobs:
       - run: npm run build
       - run: npm run test:coverage
       - name: Browser Tests
-      - run: npm run test:browser:ci
-        env: 
-          IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
-          CUSTOM_FE_URL: http:/localhost:5020
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: test:browser:ci # will run `yarn test:browser:ci` command
 
   sonar-checks:
     runs-on: ubuntu-latest
@@ -45,7 +44,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-      - run: npm install
+      - run: yarn install
       - run: npm run build
       - if: ${{ success() && github.actor != 'dependabot[bot]' }}
         uses: SonarSource/sonarcloud-github-action@master
