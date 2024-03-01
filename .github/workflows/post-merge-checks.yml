@@ -1,19 +1,10 @@
-name: Post-merge Build, Test and Report
+name: Post merge checks
 
-# Controls when the action will run. Workflow runs when manually triggered using the UI
-# or API.
 on:
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - ready_for_review
-      - synchronize
+  workflow_dispatch:
   push:
     branches:
       - main
-
-  workflow_dispatch:
 
 env: # Only adding the variables in that are required for
   IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}

@@ -16,19 +16,27 @@ yarn install
 
 ## Environment Variables
 
-- `API_BASE_URL`: Externally accessible base url of the webserver. Used to generate the callback url as part of credential issuer oauth flows. See below to set this.
-- `IPV_STUB_URL`: Mocks being sent to/from IPV Core to enable browser testing
-- `PORT` - Default port to run webserver on. (Default to `5020`)
+All the required Environment Variables are inside the .env.sample file. Copy the contents on this file to a .env file in the same location, using the API locations specific for the envrionment you wish to test against.
 
-```bash
-export API_BASE_URL=https://api-cic-cri-api.review-c.dev.account.gov.uk
-```
+`CUSTOM_FE_URL` only needs to be populated if you would like to test against a custom deployed FE stack or if you wish to run browser-test against your local stack in which case set the value to be `http:/localhost:5020`
 
 ## Run front-end locally against deployed back-end
 
 - Set `API_BASE_URL` as described above.
 - Replace all instances of `x-govuk-signin-session-id` with a valid session ID from the dev environment
 - Run `yarn build` followed by `yarn start`
+
+## Run front-end locally against deployed back-end
+
+- Setup `.env` file as mentioned above
+- Run `yarn build` followed by `yarn start`
+- Make a `POST` call to the IPV_STUB_URL with the following body payload 
+```
+{
+"frontendURL": "http://localhost:5020"
+}
+```
+- Start the journey from the but navigating to the `AuthorizeLocation` in the Stub response
 
 # Deployment in own stack in DEV
 
@@ -49,21 +57,6 @@ Note the following parameters can be used to specify whether or not to deploy th
 - `MinContainerCount` default is 3
 - `MaxContainerCount` default is 12
 
-# Mock Data
-
-[Wiremock](https://wiremock.org/) has been used to create a [stateful mock](https://wiremock.org/docs/stateful-behaviour/) of the API, through the use of scenarios. These configuration files are stored as JSON files in the [./test/mocks/mappings](./test/mocks/mappings) directory.
-
-This can be run by using:
-
-`yarn run mock`
-
-The frontend can be configured to use this mock server through two environment variables:
-
-- `NODE_ENV = development` - this enables a middleware that passes the `x-scenario-id` header from web requests through to the API
-- `API_BASE_URL = http://localhost:8090` - this points the frontend at the Wiremock instance
-
-A browser extension, such as [Mod Header](https://modheader.com/), can be used to set the value of this header in a web browser.
-
 # Request properties
 
 In order to support consistent use of headers for API requests, [middleware](./src/lib/axios) is applied to add an instance of
@@ -71,27 +64,11 @@ In order to support consistent use of headers for API requests, [middleware](./s
 
 # Browser tests
 
-Browser based tests can be run against the mock server, and should be able to be run against an instance of the API.
+Browser based tests can be run against a deployed API stack using the CIC-IPV Stub. To run the tests make sure you have urls pointing to the relevant envrionment filled out in your .env file and run `npm run test:browser`
+
+Adding `CUSTOM_FE_URL=http:/localhost:5020` will run browser tets against your local changes
 
 These tests are written using [Cucumber](https://cucumber.io/docs/installation/javascript/) as the test runner and [Playwright](https://playwright.dev/) as the automation tool. They also follow the [Page Object Model](https://playwright.dev/docs/test-pom) for separation of concerns.
-
-They can be run by using:
-
-`yarn run test:browser`
-
-## Using mocked scenario data
-
-Any cucumber feature or scenario with a tag prefixed with `@mock-api:`
-
-e.g.
-
-```
-  @mock-api:question-error
-  Scenario: API error
-...
-```
-
-This scenario will be configured to send a `scenario-id` header of `question-error` on every web browser request.
 
 ### Code Owners
 
