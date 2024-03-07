@@ -62,6 +62,8 @@ const sessionConfig = {
 };
 
 const helmetConfig = require("./lib/helmet.js");
+const { setLanguageToggle } = require("@govuk-one-login/di-ipv-cri-common-express/src/lib/settings.js");
+const { getLanguageToggle } = require("@govuk-one-login/di-ipv-cri-common-express/src/lib/locals.js");
 
 const { app, router } = setup({
   config: { APP_ROOT: __dirname },
@@ -81,6 +83,7 @@ const { app, router } = setup({
       ),
       "components",
     ),
+    path.resolve("node_modules/@govuk-one-login/"),
     "views",
   ],
   translation: {
@@ -126,8 +129,11 @@ setGTM({
   ga4Disabled: APP.GTM.GA4_DISABLED,
   uaDisabled: APP.GTM.UA_DISABLED,
 });
+setLanguageToggle({ app, showLanguageToggle: APP.LANGUAGE_TOGGLE_ENABLED });
 
 router.use(getGTM);
+
+router.use(getLanguageToggle);
 
 router.use(setScenarioHeaders);
 router.use(setAxiosDefaults);
