@@ -16,8 +16,8 @@ const setAxiosDefaults = commonExpress.lib.axios;
 
 const { setAPIConfig, setOAuthPaths } = require("./lib/settings");
 
-const { setGTM } = commonExpress.lib.settings;
-const { getGTM } = commonExpress.lib.locals;
+const { setGTM, setLanguageToggle } = commonExpress.lib.settings;
+const { getGTM, getLanguageToggle } = commonExpress.lib.locals;
 
 const {
   setI18n,
@@ -62,8 +62,6 @@ const sessionConfig = {
 };
 
 const helmetConfig = require("./lib/helmet.js");
-const { setLanguageToggle } = require("@govuk-one-login/di-ipv-cri-common-express/src/lib/settings.js");
-const { getLanguageToggle } = require("@govuk-one-login/di-ipv-cri-common-express/src/lib/locals.js");
 
 const { app, router } = setup({
   config: { APP_ROOT: __dirname },
