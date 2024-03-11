@@ -7,8 +7,7 @@ window.DI.analyticsUa = window.DI.analyticsUa || {};
   "use strict";
 
   function initGtm() {
-
-    const sendData = window.DI.analyticsGa4.pageViewTracker.pushToDataLayer
+    const sendData = window.DI.analyticsGa4.pageViewTracker.pushToDataLayer;
 
     sendData({
       "gtm.allowlist": ["google"],
@@ -100,16 +99,15 @@ window.DI.analyticsUa = window.DI.analyticsUa || {};
   //   return JOURNEY_DATA_LAYER_PATHS[url];
   // }
 
-  const init = function() {
-
-    const consentGiven = window.DI.analyticsGa4.cookie.hasConsentForAnalytics()
+  const init = function () {
+    const consentGiven = window.DI.analyticsGa4.cookie.hasConsentForAnalytics();
 
     if (consentGiven) {
       window.DI.analyticsGa4.loadGtmScript(
-        window.DI.analyticsGa4.uaContainerId
+        window.DI.analyticsGa4.uaContainerId,
       );
-      initGtm()
-      initLinkerHandlers()
+      initGtm();
+      initLinkerHandlers();
     } else {
       window.addEventListener("cookie-consent", window.DI.analyticsUa.init);
     }
