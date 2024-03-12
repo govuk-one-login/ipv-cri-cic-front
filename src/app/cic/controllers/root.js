@@ -2,6 +2,7 @@ const { Controller: BaseController } = require("hmpo-form-wizard");
 
 class RootController extends BaseController {
   async saveValues(req, res, next) {
+    console.log("Caitlin: we are in the root controller 🎉");
     const sharedClaims = req.session?.shared_claims;
 
     if (sharedClaims) {

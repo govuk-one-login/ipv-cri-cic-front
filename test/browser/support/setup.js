@@ -8,7 +8,7 @@ BeforeAll({ timeout: 2 * 5000 }, async function () {
     ? await chromium.launch()
     : await chromium.launch({
         // Not headless so we can watch test runs
-        headless: false,
+        // headless: false,
         // Slow so we can see things happening
         //slowMo: 1000,
       });
@@ -22,11 +22,15 @@ AfterAll(async function () {
 Before(async function () {
   this.context = await global.browser.newContext({});
 
-  if (this.SCENARIO_ID_HEADER) {
-    await this.context.setExtraHTTPHeaders({
-      "x-scenario-id": this.SCENARIO_ID_HEADER,
-    });
-  }
+  // if (this.SCENARIO_ID_HEADER) {
+  //   await this.context.setExtraHTTPHeaders({
+  //     "x-scenario-id": this.SCENARIO_ID_HEADER,
+  //   });
+  // }
+
+  await this.context.setExtraHTTPHeaders({
+    "X-Forwarded-For": "51.149.8.130"
+  });
 
   this.page = await this.context.newPage();
 });

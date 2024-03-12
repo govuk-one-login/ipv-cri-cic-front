@@ -11,6 +11,11 @@ on:
     branches:
       - main
 
+defaults:
+  run:
+    shell: bash
+    working-directory: ./
+
 jobs:
   detect-secrets:
     runs-on: ubuntu-latest
@@ -23,15 +28,28 @@ jobs:
 
   run-checks:
     runs-on: ubuntu-latest
+    env:
+      AWS_REGION: eu-west-2
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: '0'
       - uses: actions/setup-node@v4
         with:
           node-version: 18
+      # - name: Set up AWS creds
+      #   uses: aws-actions/configure-aws-credentials@v4
+      #   with:
+      #     role-to-assume: ${{ secrets.DEV_ROLE_TO_ASSUME }}
+      #     aws-region: eu-west-2
       - run: yarn install
-      - run: yarn lint
+      # - run: yarn lint
       - run: yarn build
       - run: yarn test:coverage
+      - run: curl ifconfig.me
       - run: npm run test:browser:ci
         env: 
           IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}

@@ -4,7 +4,7 @@ module.exports = {
   API: {
     BASE_URL:
       process.env.API_BASE_URL ||
-      "https://api-cic-cri-api.review-c.dev.account.gov.uk",
+      "https://api-cic-cri-api-ccooling.review-c.dev.account.gov.uk",
     PATHS: {
       SESSION: "/session",
       AUTHORIZATION: "/authorization",

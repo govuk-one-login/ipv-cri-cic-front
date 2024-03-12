@@ -11,10 +11,15 @@ module.exports = class PlaywrightDevPage {
   async goto(claim) {
     const axios = require("axios");
 
+    console.log("Caitlin: CUSTOM_FE_URL", process.env.CUSTOM_FE_URL);
+    console.log("Caitlin: IPV_STUB_URL length", process.env.IPV_STUB_URL.length);
+
     if (process.env.CUSTOM_FE_URL)
       claim.frontendURL = process.env.CUSTOM_FE_URL;
 
     const postRequest = await axios.post(process.env.IPV_STUB_URL, claim);
+
+    console.log("Caitlin: postRequest.data.AuthorizeLocation", postRequest.data.AuthorizeLocation);
 
     await this.page.goto(postRequest.data.AuthorizeLocation);
   }

@@ -9,6 +9,7 @@ Given(
   { timeout: 2 * 5000 },
   async function (name) {
     const claim = this.allUserClaims[name];
+
     const rpPage = new RelyingPartyPage(this.page);
 
     await rpPage.goto(claim);

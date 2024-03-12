@@ -7,6 +7,7 @@ module.exports = class ApiSupport {
   }
 
   async tokenPostRequest(authorizationCode, redirectUri) {
+    console.log("Caitlin: tokenPostRequest")
     return await axios.post(
       this.baseUrl + "/token",
       `code=${authorizationCode}&grant_type=authorization_code&redirect_uri=${encodeURIComponent(
@@ -17,6 +18,8 @@ module.exports = class ApiSupport {
   }
 
   async userInfoPostRequest(accessToken) {
+    console.log("Caitlin: userInfoPostRequest")
+
     return await axios.post(this.baseUrl + "/userinfo", null, {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
