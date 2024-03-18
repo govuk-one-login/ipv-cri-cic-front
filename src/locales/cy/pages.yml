@@ -7,8 +7,19 @@ nameEntry:
   firstName: "Enw cyntaf"
   middleName: "Enwau canol"
   middleNameHint: "Gadewch hwn yn wag os nad oes gennych enwau canol"
+  details:
+    summary: "Enwau a llythrennau na allwch eu cynnwys"
+    content: <p>Am resymau technegol, ni allwn dderbyn:</p>
+              <ul class="govuk-list govuk-list--bullet">
+                <li class="landingPageDetailBullets">enwau llythrennau sengl</li>
+                <li class="landingPageDetailBullets">enwau gyda nodau arbennig neu acenion</li>
+              </ul>
+             <p>Gallwch roi eich enw drwy ddefnyddio llythrennau heb nodau arbennig.</p>
+             <p>Defnyddiwch a, e, o, u in lle á, é, ó, ú. Er enghraifft, os mai Renée yw eich enw, rhowch ef fel Renee.</p>
+             <p>Gallwch gynnwys cysylltnod neu gollnod os ydynt yn eich enw.</p>
+             <p>Os ydych yn cael problemau wrth roi eich enw, gallwch hefyd <a href={{ "nameEntry.contactSupport.link" | translate }} id="contactSupport"> {{ "nameEntry.contactSupport.text" | translate }}</a></p>
   contactSupport: 
-    text: "Cysylltwch â'r tîm GOV.UK One Login (agor mewn tab newydd)"
+    text: "gysylltu â'r tîm GOV.UK One Login (agor mewn tab newydd)."
     link: https://home.account.gov.uk/contact-gov-uk-one-login?fromURL=https://www.review-c.account.gov.uk/enter-name" target="_blank" class="govuk-link" rel="noopener" target="_blank
   FACE_TO_FACE:
     title: "Rhowch eich enw yn union fel y mae'n ymddangos ar eich ID gyda llun"

@@ -11,8 +11,8 @@ nameEntry:
     summary: "Names and letters you cannot enter"
     content: <p>For technical reasons, we cannot accept:</p>
               <ul class="govuk-list govuk-list--bullet">
-                <li>single letter names</li>
-                <li>names with special characters or accent marks</li>
+                <li class="landingPageDetailBullets">single letter names</li>
+                <li class="landingPageDetailBullets">names with special characters or accent marks</li>
               </ul>
              <p>You can enter your name using letters without special characters.</p>
              <p>Use a, e, o, u instead of á, é, ó, ú. For example, if your name is Renée, enter it as Renee.</p>

@@ -14,8 +14,8 @@ surname:
     default: "Rhowch eich enw olaf fel y mae'n ymddangos ar eich ID gyda llun"
     minlength: "Rhaid i'ch enw olaf fod yn fwy nag un nod"
     maxlength: "Rhowch eich enw olaf fel y mae'n ymddangos ar eich ID gyda llun"
-    regexNumber: "Ni all eich enw olaf gynnwys rhifau"
-    regexSpecialCharacters: "Rhowch eich enw olaf fel y mae'n ymddangos ar eich ID gyda llun"
+    regexNumbersOrSpecialCharacters: "Ni all eich enw olaf gynnwys rhifau neu nodau arbennig"
+    regexAccents: "Ni all eich enw olaf gynnwys acenion"
 
 
 firstName:
@@ -25,8 +25,8 @@ firstName:
     default: "Rhowch eich enw cyntaf fel y mae'n ymddangos ar eich ID gyda llun"
     minlength: "Rhaid i'ch enw cyntaf fod yn fwy nag un nod"
     maxlength: "Rhowch eich enw cyntaf fel y mae'n ymddangos ar eich ID gyda llun"
-    regexNumber: "Ni all eich enw cyntaf gynnwys rhifau"
-    regexSpecialCharacters: "Rhowch eich enw cyntaf fel y mae'n ymddangos ar eich ID gyda llun"
+    regexNumbersOrSpecialCharacters: "Ni all eich enw cyntaf gynnwys rhifau neu nodau arbennig"
+    regexAccents: "Ni all eich enw cyntaf gynnwys acenion"
 
 middleName:
   label: Enw(au) canol
@@ -35,8 +35,8 @@ middleName:
     default: "Rhowch eich enw canol fel y mae'n ymddangos ar eich ID gyda llun"
     minlength: "Rhaid i'ch enw canol fod yn fwy nag un nod"
     maxlength: "Rhowch eich enw canol fel y mae'n ymddangos ar eich ID gyda llun"
-    regexNumber: "Ni all eich enw canol gynnwys rhifau"
-    regexSpecialCharacters: "Rhowch eich enw canol fel y mae'n ymddangos ar eich ID gyda llun"
+    regexNumbersOrSpecialCharacters: "Ni all eich enw canol gynnwys rhifau neu nodau arbennig"
+    regexAccents: "Ni all eich enw canol gynnwys acenion"
 
 
 dateOfBirth:

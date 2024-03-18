@@ -14,8 +14,8 @@ surname:
     default: "Enter your last name as it appears on your photo ID"
     minlength: "Your last name must be more than one character"
     maxlength: "Enter your last name as it appears on your photo ID"
-    regexNumber: "Your last name cannot include numbers"
-    regexSpecialCharacters: "Enter your last name as it appears on your photo ID"
+    regexNumbersOrSpecialCharacters: "Your last name cannot include numbers or special characters"
+    regexAccents: "Your last name cannot include accents"
 
 firstName:
   label: First name
@@ -24,8 +24,8 @@ firstName:
     default: "Enter your first name as it appears on your photo ID"
     minlength: "Your first name must be more than one character"
     maxlength: "Enter your first name as it appears on your photo ID"
-    regexNumber: "Your first name cannot include numbers"
-    regexSpecialCharacters: "Enter your first name as it appears on your photo ID"
+    regexNumbersOrSpecialCharacters: "Your first name cannot include numbers or special characters"
+    regexAccents: "Your first name cannot include accents"
 
 middleName:
   label: Middle name(s)
@@ -34,8 +34,8 @@ middleName:
     default: "Enter your middle name as it appears on your photo ID"
     minlength: "Your middle name must be more than one character"
     maxlength: "Enter your middle name as it appears on your photo ID"
-    regexNumber: "Your middle name cannot include numbers"
-    regexSpecialCharacters: "Enter your middle name as it appears on your photo ID"
+    regexNumbersOrSpecialCharacters: "Your middle name cannot include numbers or special characters"
+    regexAccents: "Your middle name cannot include accents"
 
 dateOfBirth:
   legend: ""
