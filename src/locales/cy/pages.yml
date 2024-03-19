@@ -9,6 +9,13 @@ nameEntry:
   middleNameHint: "Gadewch hwn yn wag os nad oes gennych enwau canol"
   details:
     summary: "Enwau a llythrennau na allwch eu cynnwys"
+    line1: "Am resymau technegol, ni allwn dderbyn:"
+    bullet1: "enwau llythrennau sengl"
+    bullet2: "enwau gyda nodau arbennig neu acenion"
+    line2: "Gallwch roi eich enw drwy ddefnyddio llythrennau heb nodau arbennig."
+    line3: "Defnyddiwch a, e, o, u in lle á, é, ó, ú. Er enghraifft, os mai Renée yw eich enw, rhowch ef fel Renee."
+    line4: "Gallwch gynnwys cysylltnod neu gollnod os ydynt yn eich enw."
+    line5: "Os ydych yn cael problemau wrth roi eich enw, gallwch hefyd "
     content: <p>Am resymau technegol, ni allwn dderbyn:</p>
               <ul class="govuk-list govuk-list--bullet">
                 <li class="govuk-!-margin-left-3">enwau llythrennau sengl</li>

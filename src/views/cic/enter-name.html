@@ -12,6 +12,21 @@
 
 {% block mainContent %}
 
+{% set detailsBody %}
+<div>
+  <p>{{ translate("nameEntry.details.line1") }}</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li class="govuk-!-margin-left-3">{{ translate("nameEntry.details.bullet1") }}</li>
+      <li class="govuk-!-margin-left-3">{{ translate("nameEntry.details.bullet2") }}</li>
+    </ul>
+    <p>{{ translate("nameEntry.details.line2") }}</p>
+    <p>{{ translate("nameEntry.details.line3") }}</p>
+    <p>{{ translate("nameEntry.details.line4") }}</p>
+    <p>{{ translate("nameEntry.details.line5") }}<a href={{ "nameEntry.contactSupport.link" | translate }} id="contactSupport"> {{ "nameEntry.contactSupport.text" | translate }}</a></p>
+</div>
+{% endset %}
+
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-three-quarters">
       <h1 id="header" class="gov" data-page="{{hmpoPageKey}}" class="govuk-heading-l">
@@ -58,7 +73,7 @@
 
     {{ govukDetails({
       summaryText: translate("nameEntry.details.summary"),
-      html: translate("nameEntry.details.content")
+      html: detailsBody
     }) }}
 
   </div>

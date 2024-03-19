@@ -9,15 +9,13 @@ nameEntry:
   middleNameHint: "Leave this blank if you do not have middle names"
   details:
     summary: "Names and letters you cannot enter"
-    content: <p>For technical reasons, we cannot accept:</p>
-              <ul class="govuk-list govuk-list--bullet">
-                <li class="govuk-!-margin-left-3">single letter names</li>
-                <li class="govuk-!-margin-left-3">names with special characters or accent marks</li>
-              </ul>
-             <p>You can enter your name using letters without special characters.</p>
-             <p>Use a, e, o, u instead of á, é, ó, ú. For example, if your name is Renée, enter it as Renee.</p>
-             <p>You can include hyphens or apostrophes if your name has them.</p>
-             <p>If you’re having problems entering your name, you can also <a href={{ "nameEntry.contactSupport.link" | translate }} id="contactSupport"> {{ "nameEntry.contactSupport.text" | translate }}</a></p>
+    line1: "For technical reasons, we cannot accept:"
+    bullet1: "single letter names"
+    bullet2: "names with special characters or accent marks"
+    line2: "You can enter your name using letters without special characters."
+    line3: "Use a, e, o, u instead of á, é, ó, ú. For example, if your name is Renée, enter it as Renee."
+    line4: "You can include hyphens or apostrophes if your name has them."
+    line5: "If you’re having problems entering your name, you can also "
   contactSupport: 
     text: "contact the GOV.UK One Login team (opens in new tab)."
     link: https://home.account.gov.uk/contact-gov-uk-one-login?fromURL=https://www.review-c.account.gov.uk/enter-name" target="_blank" class="govuk-link" rel="noopener" target="_blank
