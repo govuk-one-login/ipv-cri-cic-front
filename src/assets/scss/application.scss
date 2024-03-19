@@ -91,7 +91,3 @@ $govuk-assets-path: "/public/";
   margin-top: 0; 
   margin-bottom: 20px;
 }
-
-.govuk-details {
-  @include govuk-responsive-margin(7, "bottom")
-}
