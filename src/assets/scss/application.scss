@@ -92,10 +92,6 @@ $govuk-assets-path: "/public/";
   margin-bottom: 20px;
 }
 
-.landingPageDetailBullets {
-  @include govuk-responsive-margin(3, "left")
-}
-
 .govuk-details {
   @include govuk-responsive-margin(7, "bottom")
 }

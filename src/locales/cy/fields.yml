@@ -11,22 +11,19 @@ surname:
   label: Enw olaf
   hint: ""
   validation:
-    default: "Rhowch eich enw olaf fel y mae'n ymddangos ar eich ID gyda llun"
+    default: "Rhowch eich enw olaf"
     minlength: "Rhaid i'ch enw olaf fod yn fwy nag un nod"
     maxlength: "Rhowch eich enw olaf fel y mae'n ymddangos ar eich ID gyda llun"
     regexNumbersOrSpecialCharacters: "Ni all eich enw olaf gynnwys rhifau neu nodau arbennig"
-    regexAccents: "Ni all eich enw olaf gynnwys acenion"
-
 
 firstName:
   label: Enw cyntaf
   hint: ""
   validation:
-    default: "Rhowch eich enw cyntaf fel y mae'n ymddangos ar eich ID gyda llun"
+    default: "Rhowch eich enw cyntaf"
     minlength: "Rhaid i'ch enw cyntaf fod yn fwy nag un nod"
     maxlength: "Rhowch eich enw cyntaf fel y mae'n ymddangos ar eich ID gyda llun"
     regexNumbersOrSpecialCharacters: "Ni all eich enw cyntaf gynnwys rhifau neu nodau arbennig"
-    regexAccents: "Ni all eich enw cyntaf gynnwys acenion"
 
 middleName:
   label: Enw(au) canol
@@ -36,8 +33,6 @@ middleName:
     minlength: "Rhaid i'ch enw canol fod yn fwy nag un nod"
     maxlength: "Rhowch eich enw canol fel y mae'n ymddangos ar eich ID gyda llun"
     regexNumbersOrSpecialCharacters: "Ni all eich enw canol gynnwys rhifau neu nodau arbennig"
-    regexAccents: "Ni all eich enw canol gynnwys acenion"
-
 
 dateOfBirth:
   legend: ""

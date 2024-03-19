@@ -11,8 +11,8 @@ nameEntry:
     summary: "Enwau a llythrennau na allwch eu cynnwys"
     content: <p>Am resymau technegol, ni allwn dderbyn:</p>
               <ul class="govuk-list govuk-list--bullet">
-                <li class="landingPageDetailBullets">enwau llythrennau sengl</li>
-                <li class="landingPageDetailBullets">enwau gyda nodau arbennig neu acenion</li>
+                <li class="govuk-!-margin-left-3">enwau llythrennau sengl</li>
+                <li class="govuk-!-margin-left-3">enwau gyda nodau arbennig neu acenion</li>
               </ul>
              <p>Gallwch roi eich enw drwy ddefnyddio llythrennau heb nodau arbennig.</p>
              <p>Defnyddiwch a, e, o, u in lle á, é, ó, ú. Er enghraifft, os mai Renée yw eich enw, rhowch ef fel Renee.</p>

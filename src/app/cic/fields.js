@@ -7,12 +7,8 @@ module.exports = {
       { type: "minlength", arguments: 2 },
       {
         type: "regexNumbersOrSpecialCharacters",
-        fn: (value) => value.match(/^[A-Za-zÀ-ú .'-]*$/),
-      },
-      { 
-        type: "regexAccents", 
-        fn: (value) => value.match(/^[a-zA-Z .'-]*$/) 
-      },
+        fn: (value) => value.match(/^[A-Za-z .'-]*$/),
+      }
     ],
   },
   firstName: {
@@ -23,12 +19,8 @@ module.exports = {
       { type: "minlength", arguments: 2 },
       {
         type: "regexNumbersOrSpecialCharacters",
-        fn: (value) => value.match(/^[A-Za-zÀ-ú .'-]*$/),
-      },
-      { 
-        type: "regexAccents", 
-        fn: (value) => value.match(/^[a-zA-Z .'-]*$/) 
-      },
+        fn: (value) => value.match(/^[A-Za-z .'-]*$/),
+      }
     ],
   },
   middleName: {
@@ -38,12 +30,8 @@ module.exports = {
       { type: "minlength", arguments: 2 },
       {
         type: "regexNumbersOrSpecialCharacters",
-        fn: (value) => value.match(/^[A-Za-zÀ-ú .'-]*$/),
-      },
-      { 
-        type: "regexAccents", 
-        fn: (value) => value.match(/^[a-zA-Z .'-]*$/) 
-      },
+        fn: (value) => value.match(/^[A-Za-z .'-]*$/),
+      }
     ],
   },
   dateOfBirth: {
