@@ -39,6 +39,11 @@ When(/^the user clicks the NameEntry continue button$/, async function () {
   await nameEntryPage.continue();
 });
 
+Then(/^the user clicks the character Details Link$/, async function () {
+  const nameEntryPage = new NameEntryPage(await this.page);
+  await nameEntryPage.characterDetailsLink();
+});
+
 Then(
   /^they should be redirected to the GOV UK support page$/,
   async function () {
