@@ -6,10 +6,9 @@ module.exports = {
       "required",
       { type: "minlength", arguments: 2 },
       {
-        type: "regexSpecialCharacters",
-        fn: (value) => value.match(/^[A-Za-z0-9 .'-]*$/),
-      },
-      { type: "regexNumber", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) },
+        type: "regexNumbersOrSpecialCharacters",
+        fn: (value) => value.match(/^[A-Za-z .'-]*$/),
+      }
     ],
   },
   firstName: {
@@ -19,10 +18,9 @@ module.exports = {
       "required",
       { type: "minlength", arguments: 2 },
       {
-        type: "regexSpecialCharacters",
-        fn: (value) => value.match(/^[A-Za-z0-9 .'-]*$/),
-      },
-      { type: "regexNumber", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) },
+        type: "regexNumbersOrSpecialCharacters",
+        fn: (value) => value.match(/^[A-Za-z .'-]*$/),
+      }
     ],
   },
   middleName: {
@@ -31,10 +29,9 @@ module.exports = {
     validate: [
       { type: "minlength", arguments: 2 },
       {
-        type: "regexSpecialCharacters",
-        fn: (value) => value.match(/^[A-Za-z0-9 .'-]*$/),
-      },
-      { type: "regexNumber", fn: (value) => value.match(/^[a-zA-Z .'-]*$/) },
+        type: "regexNumbersOrSpecialCharacters",
+        fn: (value) => value.match(/^[A-Za-z .'-]*$/),
+      }
     ],
   },
   dateOfBirth: {

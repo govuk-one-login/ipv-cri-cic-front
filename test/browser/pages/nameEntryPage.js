@@ -21,6 +21,10 @@ module.exports = class PlaywrightDevPage {
     await this.page.locator("#contactSupport").click();
   }
 
+  async characterDetailsLink() {
+    await this.page.locator("#characterDetails").click();
+  }
+
   async enterSurname() {
     await this.page.locator("#surname").fill("Hartley");
   }

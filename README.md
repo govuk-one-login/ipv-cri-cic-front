@@ -30,12 +30,14 @@ All the required Environment Variables are inside the .env.sample file. Copy the
 
 - Setup `.env` file as mentioned above
 - Run `yarn build` followed by `yarn start`
-- Make a `POST` call to the IPV_STUB_URL with the following body payload 
+- Make a `POST` call to the IPV_STUB_URL with the following body payload
+
 ```
 {
 "frontendURL": "http://localhost:5020"
 }
 ```
+
 - Start the journey from the but navigating to the `AuthorizeLocation` in the Stub response
 
 # Deployment in own stack in DEV

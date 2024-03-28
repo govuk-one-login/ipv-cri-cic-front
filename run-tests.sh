@@ -16,7 +16,17 @@ export TEST_HARNESS_URL=$(remove_quotes "$CFN_CICTestHarnessURL")
 export API_BASE_URL=$(remove_quotes "$CFN_CICBackEndURL")
 export SESSION_TABLE=$(remove_quotes "$CFN_CICBackendSessionTableName")
 
+declare error_code
 
 cd /app; yarn run test:e2e:cd
+error_code=$?
 
 cp -rf /app/test/reports $TEST_REPORT_ABSOLUTE_DIR
+
+sleep 2m
+
+apt-get install jq -y
+cd /app; npm run test:pii
+error_code=$?
+
+exit $error_code
