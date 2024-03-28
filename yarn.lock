@@ -990,10 +990,10 @@
   resolved "https://registry.npmjs.org/@eslint/js/-/js-8.54.0.tgz"
   integrity sha512-ut5V+D+fOoWPgGGNj83GGjnntO39xDy6DWxO0wb7Jp3DcMX0TfIqdzHF85VTQkerdyGmuuMD9AKAo5KiNlf/AQ==
 
-"@govuk-one-login/di-ipv-cri-common-express@6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@govuk-one-login/di-ipv-cri-common-express/-/di-ipv-cri-common-express-6.0.0.tgz#13173600c7dc41e826c084f6901877f162cfdcf2"
-  integrity sha512-iEJIhUgBiOYtMv940vt/F7lC3CrAg4AV66gYZqepHIC7grrOrIai/uUQ8HNtf1MTE+ezthEDc0810kL9uaXmPA==
+"@govuk-one-login/di-ipv-cri-common-express@6.2.0":
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/@govuk-one-login/di-ipv-cri-common-express/-/di-ipv-cri-common-express-6.2.0.tgz#d1e50db124cedb56287d900886eb08deacea0b04"
+  integrity sha512-SsuFDzZOtaPvT/p/ItrDkDTrkCoREmlL1GL5r0jA5bn2DLwkvJ4Jfhf7YW1kiEVBtTK2kMcvO5M5Hdix1euNqQ==
   dependencies:
     hmpo-logger "7.0.1"
     i18next "23.8.1"
@@ -1006,6 +1006,11 @@
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/@govuk-one-login/one-login-analytics/-/one-login-analytics-0.0.9.tgz#e5746f75943e26e6c52d43f1292af139589688ed"
   integrity sha512-zsvmvDgkvMZyO5OGHAyjj3aYlIToOLEbORwjCXOB9+1kqBTe0HfXqhzy6TMxHg00UctbX8yy8Gw1muFHoe2C9A==
+
+"@govuk-one-login/one-login-language-toggle@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@govuk-one-login/one-login-language-toggle/-/one-login-language-toggle-2.0.0.tgz#75f7b7831afd0b13fc40305b3c6a4b24e48f73e4"
+  integrity sha512-2+XO0qFOLJFFnRLCBFQF6lSb/XsPMR8uw74Jtj27kTVfaoNUXMTSHu3t/Ojm6aQmKXmTp79+73dGPp5xWpBrUQ==
 
 "@hapi/hoek@^9.0.0", "@hapi/hoek@^9.3.0":
   version "9.3.0"
