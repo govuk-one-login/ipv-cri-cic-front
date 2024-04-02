@@ -27,7 +27,7 @@ module.exports = {
       GA4_DISABLED: process.env.GA4_DISABLED || false,
       UA_DISABLED: process.env.UA_DISABLED || true,
     },
-    LANGUAGE_TOGGLE_ENABLED: process.env.LANGUAGE_TOGGLE_ENABLED || "0",
+    LANGUAGE_TOGGLE_DISABLED: process.env.LANGUAGE_TOGGLE_DISABLED || "true",
   },
   PORT: process.env.PORT || 5020,
   SESSION_SECRET: process.env.SESSION_SECRET,

@@ -979,10 +979,10 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.54.0.tgz#4fab9a2ff7860082c304f750e94acd644cf984cf"
   integrity sha512-ut5V+D+fOoWPgGGNj83GGjnntO39xDy6DWxO0wb7Jp3DcMX0TfIqdzHF85VTQkerdyGmuuMD9AKAo5KiNlf/AQ==
 
-"@govuk-one-login/di-ipv-cri-common-express@6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@govuk-one-login/di-ipv-cri-common-express/-/di-ipv-cri-common-express-6.0.0.tgz#13173600c7dc41e826c084f6901877f162cfdcf2"
-  integrity sha512-iEJIhUgBiOYtMv940vt/F7lC3CrAg4AV66gYZqepHIC7grrOrIai/uUQ8HNtf1MTE+ezthEDc0810kL9uaXmPA==
+"@govuk-one-login/di-ipv-cri-common-express@6.2.0":
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/@govuk-one-login/di-ipv-cri-common-express/-/di-ipv-cri-common-express-6.2.0.tgz#d1e50db124cedb56287d900886eb08deacea0b04"
+  integrity sha512-SsuFDzZOtaPvT/p/ItrDkDTrkCoREmlL1GL5r0jA5bn2DLwkvJ4Jfhf7YW1kiEVBtTK2kMcvO5M5Hdix1euNqQ==
   dependencies:
     hmpo-logger "7.0.1"
     i18next "23.8.1"
@@ -7202,6 +7202,7 @@ workerpool@6.2.1:
   integrity sha512-ILEIE97kDZvF9Wb9f6h5aXK4swSlKGUcOEGiIYb2OOu/IrDU9iwj0fD//SsA6E5ibwJxpEvhullJY4Sl4GcpAw==
 
 "wrap-ansi-cjs@npm:wrap-ansi@^7.0.0", wrap-ansi@^7.0.0:
+  name wrap-ansi-cjs
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
   integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
