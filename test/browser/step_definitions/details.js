@@ -1,6 +1,6 @@
 const { Given, Then, When } = require("@cucumber/cucumber");
 
-const { RelyingPartyPage, LandingPage, NameEntryPage } = require("../pages");
+const { RelyingPartyPage, NameEntryPage } = require("../pages");
 
 const { expect } = require("chai");
 
