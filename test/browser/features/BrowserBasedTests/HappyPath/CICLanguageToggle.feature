@@ -1,8 +1,8 @@
 @browser
 
-Feature: Claimed Identity Credential Issuer - E2E
+Feature: Claimed Identity Credential Issuer Language Toggle
 
-    Scenario: Claimed Identity Credential Issuer - E2E Happy Path and DB Validation (Face to Face Journey)
+    Scenario: Claimed Identity Credential Issuer - Language Toggle Validation
         Given Authenticatable Anita is using the system
         When they have provided their details
         Then they should be redirected to the F2F nameEntry
