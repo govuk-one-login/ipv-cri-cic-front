@@ -35,16 +35,16 @@ jobs:
           extra_args: "detect-secrets --all-files"
 
       - name: Install dependencies
-        run: npm install
+        run: yarn install
 
       - name: Run lint
-        run: npm run lint
+        run: yarn lint
 
       - name: Run build
-        run: npm run build
+        run: yarn build
 
       - name: Run test and write coverage
-        run: npm run test
+        run: yarn test:coverage
         
       - name: "Run SonarCloud Scan"
         if: ${{ success() && github.actor != 'dependabot[bot]' }}
