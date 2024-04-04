@@ -61,9 +61,9 @@ Then(
   async function (languageAttribute) {
     const nameEntryPage = new NameEntryPage(await this.page);
     expect(await nameEntryPage.returnLanguageAttribute()).to.equal(
-      languageAttribute
+      languageAttribute,
     );
-  }
+  },
 );
 
 When("the user switches language to {string}", async function (language) {
@@ -76,5 +76,5 @@ When(
   async function (language) {
     const nameEntryPage = new NameEntryPage(await this.page);
     expect(await nameEntryPage.returnLanguageToggleHref(language)).to.be.null;
-  }
+  },
 );
