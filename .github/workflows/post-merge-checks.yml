@@ -29,6 +29,30 @@ jobs:
           node-version: 18
           cache: 'yarn'
 
+      - name: Checks if commiting secrets to repo
+        uses: pre-commit/action@v3.0.0
+        with:
+          extra_args: "detect-secrets --all-files"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Run build
+        run: npm run build
+
+      - name: Run test and write coverage
+        run: npm run test
+        
+      - name: "Run SonarCloud Scan"
+        if: ${{ success() && github.actor != 'dependabot[bot]' }}
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build Test CIC Front Image
         uses: borales/actions-yarn@v5
         with:
