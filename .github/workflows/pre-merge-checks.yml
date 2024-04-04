@@ -51,6 +51,7 @@ jobs:
           node-version: 18
       - run: yarn install
       - run: yarn build
+      - run: yarn test
       - if: ${{ success() && github.actor != 'dependabot[bot]' }}
         uses: SonarSource/sonarcloud-github-action@master
         env:
