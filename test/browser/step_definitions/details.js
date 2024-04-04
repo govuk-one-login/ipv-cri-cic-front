@@ -23,12 +23,6 @@ When(
   async function () {},
 );
 
-Then("they should be redirected to the landingPage", async function () {
-  const landingPage = new LandingPage(await this.page);
-
-  expect(await landingPage.isCurrentPage()).to.be.true;
-});
-
 Then("they should be redirected to the F2F nameEntry", async function () {
   const nameEntryPage = new NameEntryPage(await this.page);
   expect(await nameEntryPage.isCurrentPage()).to.be.true;
@@ -56,3 +50,31 @@ Then("they should be redirected as an error", function () {
 
   expect(rpPage.hasErrorQueryParams()).to.be.true;
 });
+
+Then("the language toggle is present on the screen", async function () {
+  const nameEntryPage = new NameEntryPage(await this.page);
+  await nameEntryPage.languageTogglePresent();
+});
+
+Then(
+  "The HTML Language Attribute is set to {string}",
+  async function (languageAttribute) {
+    const nameEntryPage = new NameEntryPage(await this.page);
+    expect(await nameEntryPage.returnLanguageAttribute()).to.equal(
+      languageAttribute
+    );
+  }
+);
+
+When("the user switches language to {string}", async function (language) {
+  const nameEntryPage = new NameEntryPage(await this.page);
+  await nameEntryPage.selectLanguageToggle(language);
+});
+
+When(
+  "the language toggle updates the {string} hyperlink",
+  async function (language) {
+    const nameEntryPage = new NameEntryPage(await this.page);
+    expect(await nameEntryPage.returnLanguageToggleHref(language)).to.be.null;
+  }
+);

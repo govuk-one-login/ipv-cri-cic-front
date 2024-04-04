@@ -15,6 +15,7 @@ export IPV_STUB_URL=$(remove_quotes $CFN_CICIPVStubExecuteURL)start
 export TEST_HARNESS_URL=$(remove_quotes "$CFN_CICTestHarnessURL")
 export API_BASE_URL=$(remove_quotes "$CFN_CICBackEndURL")
 export SESSION_TABLE=$(remove_quotes "$CFN_CICBackendSessionTableName")
+export LANGUAGE_TOGGLE_DISABLED=false
 
 declare error_code
 
