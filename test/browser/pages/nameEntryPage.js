@@ -63,4 +63,22 @@ module.exports = class PlaywrightDevPage {
       .textContent();
     return subTitleText.trim();
   }
+
+  async returnLanguageAttribute() {
+    const htmlElement = await this.page.locator("html");
+    return await htmlElement.getAttribute("lang");
+  }
+
+  async selectLanguageToggle(language) {
+    await this.page.getByText(language).click();
+  }
+
+  async returnLanguageToggleHref(language) {
+    const htmlElement = await this.page.getByText(language);
+    return await htmlElement.getAttribute("href");
+  }
+
+  async languageTogglePresent() {
+    await this.page.locator("div.govuk-width-container > nav").isVisible();
+  }
 };

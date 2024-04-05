@@ -8,7 +8,7 @@ module.exports = {
       {
         type: "regexNumbersOrSpecialCharacters",
         fn: (value) => value.match(/^[A-Za-z .'-]*$/),
-      }
+      },
     ],
   },
   firstName: {
@@ -20,7 +20,7 @@ module.exports = {
       {
         type: "regexNumbersOrSpecialCharacters",
         fn: (value) => value.match(/^[A-Za-z .'-]*$/),
-      }
+      },
     ],
   },
   middleName: {
@@ -31,7 +31,7 @@ module.exports = {
       {
         type: "regexNumbersOrSpecialCharacters",
         fn: (value) => value.match(/^[A-Za-z .'-]*$/),
-      }
+      },
     ],
   },
   dateOfBirth: {
