@@ -16,8 +16,8 @@ const setAxiosDefaults = commonExpress.lib.axios;
 
 const { setAPIConfig, setOAuthPaths } = require("./lib/settings");
 
-const { setGTM } = commonExpress.lib.settings;
-const { getGTM } = commonExpress.lib.locals;
+const { setGTM, setLanguageToggle } = commonExpress.lib.settings;
+const { getGTM, getLanguageToggle } = commonExpress.lib.locals;
 
 const {
   setI18n,
@@ -81,6 +81,7 @@ const { app, router } = setup({
       ),
       "components",
     ),
+    path.resolve("node_modules/@govuk-one-login/"),
     "views",
   ],
   translation: {
@@ -127,7 +128,13 @@ setGTM({
   uaDisabled: APP.GTM.UA_DISABLED,
 });
 
+// Common express relies on 0/1 strings
+const showLanguageToggle = APP.LANGUAGE_TOGGLE_DISABLED == "true" ? "0" : "1";
+setLanguageToggle({ app, showLanguageToggle: showLanguageToggle });
+
 router.use(getGTM);
+
+router.use(getLanguageToggle);
 
 router.use(setScenarioHeaders);
 router.use(setAxiosDefaults);
