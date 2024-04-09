@@ -33,7 +33,7 @@
     "check-translation": "node node_modules/@govuk-one-login/di-ipv-cri-common-express/scripts/checkTranslations.js '../../../../src/locales'",
     "test:browser:report": "node ./test/utils/multiReportGenerator.js",
     "test:e2e:cd:cucumber": "wait-on && cucumber-js test/browser/features/**/*.feature --require test/browser/support/env.js  --require test/browser/support/setup.js --require test/browser/step_definitions/**/*.js -f json:./test/reports/cucumber_report.json --tags \"@e2e or @browser\"",
-    "test:e2e:cd": "npm-run-all -p -r test:e2e:cd:cucumber && yarn run test:browser:report",
+    "test:e2e:cd": "npm-run-all -c test:e2e:cd:cucumber test:browser:report",
     "test:pii": "bash ./check-logs.sh",
     "test:e2e": "cucumber-js test/browser/features/**/*.feature --require test/browser/support/env.js  --require test/browser/support/setup.js --require test/browser/step_definitions/**/*.js -f json:./test/reports/cucumber_report.json --tags @e2e"
   },
