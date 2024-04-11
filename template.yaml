@@ -42,6 +42,10 @@ Parameters:
     Description: Minimum number of FE node/express container tasks to allow autoscaling to reach
     Type: Number
     Default: 3
+  SupportManualURL:
+    Description: "Link to the CIC support manual"
+    Type: String
+    Default: 'https://govukverify.atlassian.net/wiki/spaces/FTFCRI/pages/3623354496/CIC+FE+Metrics+Alerts'
   EnableScalingInDev:
     Type: Number
     Default: 0
@@ -404,7 +408,7 @@ Resources:
       - "ECSFatalErorMetricFilter"
     Type: AWS::CloudWatch::Alarm
     Properties:
-      AlarmName: !Sub "${AWS::StackName}-ECSFatalErrorAlarm"
+      AlarmName: !Sub "${AWS::StackName}-ECSFatalErrorAlarm ${SupportManualURL}"
       AlarmDescription: !Sub "Trigger an alarm when Fatal Error occurs"
       ActionsEnabled: true
       OKActions:
@@ -710,7 +714,7 @@ Resources:
     Type: AWS::CloudWatch::Alarm
     Properties:
       AlarmName: !Sub "${AWS::StackName}-APIGWFatalErrorAlarm"
-      AlarmDescription: !Sub "Trigger an alarm when Fatal Error occurs"
+      AlarmDescription: !Sub "Trigger an alarm when Fatal Error occurs ${SupportManualURL}"
       ActionsEnabled: true
       OKActions:
         - !ImportValue platform-alarm-topic-slack-warning-alert
@@ -846,7 +850,7 @@ Resources:
     Type: AWS::CloudWatch::Alarm
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FE5XXErrorAlarm"
-      AlarmDescription: Trigger the alarm if errorThreshold exceeds 10% with a minimum of 150 invocations and a minimum of 5 errors in 5 out of the last 5 minutes
+      AlarmDescription: !Sub "Trigger the warning alarm for Frontend 4xx Alarm ${SupportManualURL}"
       ActionsEnabled: true
       OKActions:
         - !ImportValue platform-alarm-topic-slack-warning-alert
@@ -895,7 +899,7 @@ Resources:
     Type: AWS::CloudWatch::Alarm
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FE4XXErrorAlarm"
-      AlarmDescription: Trigger the alarm if errorThreshold exceeds 5% with a minimum of 150 invocations and a minimum of 2 errors in 2 out of the last 5 minutes
+      AlarmDescription: !Sub "Trigger the warning alarm for Frontend 4xx Alarm ${SupportManualURL}"
       ActionsEnabled: true
       OKActions:
         - !ImportValue platform-alarm-topic-slack-warning-alert
@@ -944,7 +948,7 @@ Resources:
     Type: AWS::CloudWatch::Alarm
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FELatencyAlarmP95"
-      AlarmDescription: Trigger the alarm if less than 95% of requests has a latency of less than 1 second with a minimum of 25 invocations in 2 out of the last 5 minutes
+      AlarmDescription: !Sub "Trigger the warning alarm for Frontend P95 Latency ${SupportManualURL}"
       ActionsEnabled: false
       OKActions:
         - !ImportValue platform-alarm-topic-slack-warning-alert
@@ -989,7 +993,7 @@ Resources:
     Type: AWS::CloudWatch::Alarm
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FELatencyAlarmP99"
-      AlarmDescription: Trigger the alarm if less than 99% of requests has a latency of less than 2.5 second with a minimum of 150 invocations in 2 out of the last 5 minutes
+      AlarmDescription: !Sub "Trigger the warning alarm for Frontend P99 Latency ${SupportManualURL}"
       ActionsEnabled: false
       OKActions:
         - !ImportValue platform-alarm-topic-slack-warning-alert
@@ -1037,7 +1041,7 @@ Resources:
     Type: AWS::CloudWatch::Alarm
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FELowContainerTaskCountAlarm"
-      AlarmDescription: Trigger a warning if the running container task count drops below 2
+      AlarmDescription: !Sub "Trigger a warning if the running container task count drops below 2 ${SupportManualURL}"
       ActionsEnabled: true
       AlarmActions:
         - !ImportValue platform-alarm-topic-critical-alert
@@ -1070,7 +1074,7 @@ Resources:
     Type: AWS::CloudWatch::Alarm
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FELowContainerTaskCountCriticalAlarm"
-      AlarmDescription: Trigger a critical alert if the running container task count drops below 1
+      AlarmDescription: !Sub "Trigger a critical alert if the running container task count drops below 1 ${SupportManualURL}"
       ActionsEnabled: false  # to be enabled once proved stable in production
       AlarmActions:
         - !ImportValue platform-alarm-topic-critical-alert
