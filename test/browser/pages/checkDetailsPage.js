@@ -15,7 +15,7 @@ module.exports = class PlaywrightDevPage {
   }
 
   async continue() {
-    await this.page.click("#confirmDetailsContinue-btn");
+    await this.page.getByTestId("check-details-continue-btn").click();
   }
 
   async setSessionState() {
