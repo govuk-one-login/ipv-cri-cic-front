@@ -69,11 +69,11 @@
 
     {% if (journeyType == "NO_PHOTO_ID") %}
       {% call hmpoForm(ctx) %}
-        {{ hmpoSubmit(ctx, {id: "confirmDetailsContinue", text: translate("checkDetails.noPidButtonText")}) }}
+        {{ hmpoSubmit(ctx, {id: "confirmDetailsContinue-btn", text: translate("checkDetails.noPidButtonText")}) }}
       {% endcall %}
     {% else %}
       {% call hmpoForm(ctx) %}
-        {{ hmpoSubmit(ctx, {id: "confirmDetailsContinue", text: translate("checkDetails.f2fButtonText")}) }}
+        {{ hmpoSubmit(ctx, {id: "confirmDetailsContinue-btn", text: translate("checkDetails.f2fButtonText")}) }}
       {% endcall %}
     {% endif %}
     </div>

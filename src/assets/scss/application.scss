@@ -28,7 +28,6 @@ $govuk-assets-path: "/public/";
 }
 
 .govuk-inset-text {
-  @include govuk-responsive-margin(0, "bottom");
   @include govuk-responsive-margin(2, "top"); 
   @include govuk-responsive-padding(1, "top");
 }
@@ -61,21 +60,16 @@ $govuk-assets-path: "/public/";
   @include govuk-responsive-margin(3, "top");
 }
 
-#confirmDetailsContinue {
+#confirmDetailsContinue-btn {
   @include govuk-responsive-margin(6, "top");
 }
 
-#details-btn {
+#enterDetailsContinue-btn {
   @include govuk-responsive-margin(0, "top");
-  @include govuk-responsive-padding(0, "top");
 }
 
 .govuk-warning-text {
   @include govuk-responsive-margin(0, "bottom");
-}
-
-.govuk-date-input {
-  margin-bottom: govuk-spacing(-6);
 }
 
 .govuk-error-summary {
