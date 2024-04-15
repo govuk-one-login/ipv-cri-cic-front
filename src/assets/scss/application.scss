@@ -60,14 +60,6 @@ $govuk-assets-path: "/public/";
   @include govuk-responsive-margin(3, "top");
 }
 
-#confirmDetailsContinue-btn {
-  @include govuk-responsive-margin(6, "top");
-}
-
-#enterDetailsContinue-btn {
-  @include govuk-responsive-margin(0, "top");
-}
-
 .govuk-warning-text {
   @include govuk-responsive-margin(0, "bottom");
 }
