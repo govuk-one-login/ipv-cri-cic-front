@@ -20,6 +20,7 @@ Scenario: Claimed Identity Credential Issuer - E2E Happy Path and DB Validation 
     Given I have retrieved the sessionTable data for my CIC session
     Then session details are correctly stored in DB for a "FACE_TO_FACE" journey
     Then the Verifiable Credential is correctly returned by the userInfo endpoint
+    And all TxMA events are recorded as expected
 
 Scenario: Claimed Identity Credential Issuer - E2E Happy Path and DB Validation (No Photo ID Journey)
     Given Validating Valerie is using the system
