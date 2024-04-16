@@ -39,6 +39,25 @@
         },
         "component_id": {
             "type": "string"
+        },
+        "extensions": {
+            "type": "object",
+            "properties": {
+                "evidence": {
+                    "type": "object",
+                    "properties": {
+                        "context": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "context"
+                    ]
+                }
+            },
+            "required": [
+                "evidence"
+            ]
         }
     },
     "required": [
@@ -46,7 +65,8 @@
         "user",
         "timestamp",
         "event_timestamp_ms",
-        "component_id"
+        "component_id",
+        "extensions"
     ],
     "additionalProperties": false
 }
