@@ -15,7 +15,6 @@
 {% set hintText = translate("dateOfBirth.hintText") %}
 {% set formInstructions = "<p class=\"govuk-hint\">"+hintText+"</p>" %}
 
-{% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
 {{ hmpoDate(ctx, {
     id: "dateOfBirth",
     namePrefix: "dateOfBirth",
