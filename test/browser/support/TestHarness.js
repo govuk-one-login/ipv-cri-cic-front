@@ -91,7 +91,7 @@ module.exports = class TestHarness {
     return keyList;
   }
 
-  async validateTxMAEventData(keyList) {
+  async validateTxMAEventData(keyList, journeyType) {
     let i;
     let valid = Boolean;
     
@@ -110,19 +110,13 @@ module.exports = class TestHarness {
 
       switch (eventName) {
         case "CIC_CRI_START": {
-          const validate = ajv.compile(CIC_CRI_START);
-          valid = validate(getObjectResponse.data);
-          if (!valid) {
-            console.error(
-              getObjectResponse.data.event_name +
-                " Event Errors: " +
-                JSON.stringify(validate.errors)
-            );
+          let schema;
+          if (journeyType == "FACE_TO_FACE"){
+            schema = CIC_CRI_START;
+          } else {
+            schema = CIC_CRI_START_BANK_ACCOUNT;
           }
-          break;
-        }
-        case "CIC_CRI_START_BANK_ACCOUNT": {
-          const validate = ajv.compile(CIC_CRI_START_BANK_ACCOUNT);
+          const validate = ajv.compile(schema);
           valid = validate(getObjectResponse.data);
           if (!valid) {
             console.error(

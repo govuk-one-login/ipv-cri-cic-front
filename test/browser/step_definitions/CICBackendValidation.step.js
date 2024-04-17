@@ -44,21 +44,20 @@ Then(
   },
 );
 
-Then(
-    /^all TxMA events are recorded as expected$/,
-    { timeout: 2 * 50000 },
-    async function () {
-      const testHarness = new TestHarness();
-      let sqsMessage;
-      do {
-        sqsMessage = await testHarness.getSqsEventList(
-          "txma/",
-          this.sessionId,
-          4
-        );
-      } while (!sqsMessage);
-  
-      testHarness.validateTxMAEventData(sqsMessage);
-    }
-  );
-  
+Then('all TxMA events are recorded as expected for a {string} journey',
+  { timeout: 2 * 50000 },
+  async function (journeyType) {
+    const testHarness = new TestHarness();
+    let sqsMessage;
+    do {
+      sqsMessage = await testHarness.getSqsEventList(
+        "txma/",
+        this.sessionId,
+        4
+      );
+    } while (!sqsMessage);
+
+    testHarness.validateTxMAEventData(sqsMessage, journeyType);
+  }
+);
+
