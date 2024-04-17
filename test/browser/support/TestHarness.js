@@ -9,6 +9,21 @@ const { unmarshall } = require("@aws-sdk/util-dynamodb");
 const { fromNodeProviderChain } = require("@aws-sdk/credential-providers");
 const { XMLParser } = require("fast-xml-parser");
 const { expect } = require("chai");
+const Ajv = require("ajv").default;
+const AjvFormats = require("ajv-formats");
+const ajv = new Ajv({ strictTuples: false });
+ajv.addSchema(
+  CIC_CRI_AUTH_CODE_ISSUED_SCHEMA,
+  "CIC_CRI_AUTH_CODE_ISSUED_SCHEMA",
+);
+ajv.addSchema(CIC_CRI_END_SCHEMA, "CIC_CRI_END_SCHEMA");
+ajv.addSchema(
+  CIC_CRI_START_BANK_ACCOUNT_SCHEMA,
+  "CIC_CRI_START_BANK_ACCOUNT_SCHEMA",
+);
+ajv.addSchema(CIC_CRI_START_SCHEMA, "CIC_CRI_START_SCHEMA");
+ajv.addSchema(CIC_CRI_VC_ISSUED_SCHEMA, "CIC_CRI_VC_ISSUED_SCHEMA");
+AjvFormats(ajv);
 
 module.exports = class TestHarness {
   constructor() {
@@ -36,9 +51,9 @@ module.exports = class TestHarness {
     try {
       const getItemResponse = await this.HARNESS_API_INSTANCE.get(
         "/getRecordBySessionId/" +
-          process.env["SESSION_TABLE"] +
-          "/" +
-          sessionId,
+        process.env["SESSION_TABLE"] +
+        "/" +
+        sessionId,
       );
       return unmarshall(getItemResponse.data.Item);
     } catch (error) {
@@ -99,7 +114,6 @@ module.exports = class TestHarness {
         "/object/" + keyList[i],
         {},
       );
-      console.log(JSON.stringify(txmaEventBody.data, null, 2));
       const eventName = txmaEventBody.data.event_name;
       obj[eventName] = txmaEventBody.data;
     }
@@ -107,21 +121,7 @@ module.exports = class TestHarness {
   }
 
   async validateTxMAEventData(allTxmaEventBodies, eventName, schemaName) {
-    const Ajv = require("ajv").default;
-    const AjvFormats = require("ajv-formats");
-    const ajv = new Ajv({ strictTuples: false });
-    ajv.addSchema(
-      CIC_CRI_AUTH_CODE_ISSUED_SCHEMA,
-      "CIC_CRI_AUTH_CODE_ISSUED_SCHEMA",
-    );
-    ajv.addSchema(CIC_CRI_END_SCHEMA, "CIC_CRI_END_SCHEMA");
-    ajv.addSchema(
-      CIC_CRI_START_BANK_ACCOUNT_SCHEMA,
-      "CIC_CRI_START_BANK_ACCOUNT_SCHEMA",
-    );
-    ajv.addSchema(CIC_CRI_START_SCHEMA, "CIC_CRI_START_SCHEMA");
-    ajv.addSchema(CIC_CRI_VC_ISSUED_SCHEMA, "CIC_CRI_VC_ISSUED_SCHEMA");
-    AjvFormats(ajv);
+
 
     const currentEventBody = allTxmaEventBodies[eventName];
 
@@ -134,7 +134,7 @@ module.exports = class TestHarness {
           throw new Error(`Could not find schema ${schemaName}`);
         }
       } catch (error) {
-        console.error("Error validating event", error);
+        console.error('Error validating ${eventName} event', error);
         throw error;
       }
     } else {
