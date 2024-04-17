@@ -21,8 +21,6 @@ When(
   },
 );
 
-
-
 Then(
   "session details are correctly stored in DB for a {string} journey",
   { timeout: 4 * 50000 },

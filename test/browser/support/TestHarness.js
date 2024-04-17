@@ -36,9 +36,9 @@ module.exports = class TestHarness {
     try {
       const getItemResponse = await this.HARNESS_API_INSTANCE.get(
         "/getRecordBySessionId/" +
-        process.env["SESSION_TABLE"] +
-        "/" +
-        sessionId,
+          process.env["SESSION_TABLE"] +
+          "/" +
+          sessionId,
       );
       return unmarshall(getItemResponse.data.Item);
     } catch (error) {
@@ -70,11 +70,11 @@ module.exports = class TestHarness {
           params: {
             prefix: folder + prefix,
           },
-        }
+        },
       );
       const xmlParser = new XMLParser();
       const listObjectsParsedResponse = xmlParser.parse(
-        listObjectsResponse.data
+        listObjectsResponse.data,
       );
       if (!listObjectsParsedResponse?.ListBucketResult?.Contents) {
         return undefined;
@@ -84,7 +84,7 @@ module.exports = class TestHarness {
       keyList = [];
       for (i = 0; i < keys.length; i++) {
         keyList.push(
-          listObjectsParsedResponse?.ListBucketResult?.Contents.at(i).Key
+          listObjectsParsedResponse?.ListBucketResult?.Contents.at(i).Key,
         );
       }
     } while (keys.length < txmaEventSize);
@@ -97,7 +97,7 @@ module.exports = class TestHarness {
     for (i = 0; i < keyList.length; i++) {
       const txmaEventBody = await this.HARNESS_API_INSTANCE.get(
         "/object/" + keyList[i],
-        {}
+        {},
       );
       console.log(JSON.stringify(txmaEventBody.data, null, 2));
       const eventName = txmaEventBody.data.event_name;
@@ -110,9 +110,15 @@ module.exports = class TestHarness {
     const Ajv = require("ajv").default;
     const AjvFormats = require("ajv-formats");
     const ajv = new Ajv({ strictTuples: false });
-    ajv.addSchema(CIC_CRI_AUTH_CODE_ISSUED_SCHEMA, "CIC_CRI_AUTH_CODE_ISSUED_SCHEMA");
+    ajv.addSchema(
+      CIC_CRI_AUTH_CODE_ISSUED_SCHEMA,
+      "CIC_CRI_AUTH_CODE_ISSUED_SCHEMA",
+    );
     ajv.addSchema(CIC_CRI_END_SCHEMA, "CIC_CRI_END_SCHEMA");
-    ajv.addSchema(CIC_CRI_START_BANK_ACCOUNT_SCHEMA, "CIC_CRI_START_BANK_ACCOUNT_SCHEMA");
+    ajv.addSchema(
+      CIC_CRI_START_BANK_ACCOUNT_SCHEMA,
+      "CIC_CRI_START_BANK_ACCOUNT_SCHEMA",
+    );
     ajv.addSchema(CIC_CRI_START_SCHEMA, "CIC_CRI_START_SCHEMA");
     ajv.addSchema(CIC_CRI_VC_ISSUED_SCHEMA, "CIC_CRI_VC_ISSUED_SCHEMA");
     AjvFormats(ajv);
@@ -132,9 +138,9 @@ module.exports = class TestHarness {
         throw error;
       }
     } else {
-      throw new Error(`No event found in the test harness for ${eventName} event`);
+      throw new Error(
+        `No event found in the test harness for ${eventName} event`,
+      );
     }
   }
 };
-
-
