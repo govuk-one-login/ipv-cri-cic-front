@@ -20,7 +20,11 @@ Scenario: Claimed Identity Credential Issuer - E2E Happy Path and DB Validation 
     Given I have retrieved the sessionTable data for my CIC session
     Then session details are correctly stored in DB for a "FACE_TO_FACE" journey
     Then the Verifiable Credential is correctly returned by the userInfo endpoint
-    And all TxMA events are recorded as expected for a "FACE_TO_FACE" journey
+    When I get all TxMA events from Test Harness
+    Then the "CIC_CRI_START" event matches the "CIC_CRI_START_SCHEMA" Schema
+    And the "CIC_CRI_AUTH_CODE_ISSUED" event matches the "CIC_CRI_AUTH_CODE_ISSUED_SCHEMA" Schema
+    And the "CIC_CRI_VC_ISSUED" event matches the "CIC_CRI_VC_ISSUED_SCHEMA" Schema
+    And the "CIC_CRI_END" event matches the "CIC_CRI_END_SCHEMA" Schema
 
 Scenario: Claimed Identity Credential Issuer - E2E Happy Path and DB Validation (No Photo ID Journey)
     Given Validating Valerie is using the system
@@ -40,4 +44,8 @@ Scenario: Claimed Identity Credential Issuer - E2E Happy Path and DB Validation 
     Given I have retrieved the sessionTable data for my CIC session
     Then session details are correctly stored in DB for a "NO_PHOTO_ID" journey
     Then the Verifiable Credential is correctly returned by the userInfo endpoint
-    And all TxMA events are recorded as expected for a "NO_PHOTO_ID" journey
+    When I get all TxMA events from Test Harness
+    Then the "CIC_CRI_START" event matches the "CIC_CRI_START_BANK_ACCOUNT_SCHEMA" Schema
+    And the "CIC_CRI_AUTH_CODE_ISSUED" event matches the "CIC_CRI_AUTH_CODE_ISSUED_SCHEMA" Schema
+    And the "CIC_CRI_VC_ISSUED" event matches the "CIC_CRI_VC_ISSUED_SCHEMA" Schema
+    And the "CIC_CRI_END" event matches the "CIC_CRI_END_SCHEMA" Schema

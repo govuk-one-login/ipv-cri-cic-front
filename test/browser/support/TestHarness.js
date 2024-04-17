@@ -1,8 +1,8 @@
-const CIC_CRI_AUTH_CODE_ISSUED = require("../support/CIC_CRI_AUTH_CODE_ISSUED_SCHEMA.json");
-const CIC_CRI_END = require("../support/CIC_CRI_END_SCHEMA.json");
-const CIC_CRI_START_BANK_ACCOUNT = require("../support/CIC_CRI_START_BANK_ACCOUNT_SCHEMA.json");
-const CIC_CRI_START = require("../support/CIC_CRI_START_SCHEMA.json");
-const CIC_CRI_VC_ISSUED = require("../support/CIC_CRI_VC_ISSUED_SCHEMA.json");
+const CIC_CRI_AUTH_CODE_ISSUED_SCHEMA = require("../support/CIC_CRI_AUTH_CODE_ISSUED_SCHEMA.json");
+const CIC_CRI_END_SCHEMA = require("../support/CIC_CRI_END_SCHEMA.json");
+const CIC_CRI_START_BANK_ACCOUNT_SCHEMA = require("../support/CIC_CRI_START_BANK_ACCOUNT_SCHEMA.json");
+const CIC_CRI_START_SCHEMA = require("../support/CIC_CRI_START_SCHEMA.json");
+const CIC_CRI_VC_ISSUED_SCHEMA = require("../support/CIC_CRI_VC_ISSUED_SCHEMA.json");
 const axios = require("axios");
 const aws4Interceptor = require("aws4-axios").aws4Interceptor;
 const { unmarshall } = require("@aws-sdk/util-dynamodb");
@@ -36,9 +36,9 @@ module.exports = class TestHarness {
     try {
       const getItemResponse = await this.HARNESS_API_INSTANCE.get(
         "/getRecordBySessionId/" +
-          process.env["SESSION_TABLE"] +
-          "/" +
-          sessionId,
+        process.env["SESSION_TABLE"] +
+        "/" +
+        sessionId,
       );
       return unmarshall(getItemResponse.data.Item);
     } catch (error) {
@@ -91,82 +91,50 @@ module.exports = class TestHarness {
     return keyList;
   }
 
-  async validateTxMAEventData(keyList, journeyType) {
+  async getTxMAEventData(keyList) {
+    let obj = {};
     let i;
-    let valid = Boolean;
-    
     for (i = 0; i < keyList.length; i++) {
-      const getObjectResponse = await this.HARNESS_API_INSTANCE.get(
+      const txmaEventBody = await this.HARNESS_API_INSTANCE.get(
         "/object/" + keyList[i],
         {}
       );
-      console.log(JSON.stringify(getObjectResponse.data, null, 2));
-      const eventName = getObjectResponse.data.event_name;
-      const Ajv = require("ajv").default;
-      const AjvFormats = require("ajv-formats");
-      const ajv = new Ajv({ strictTuples: false });
-
-      AjvFormats(ajv);
-
-      switch (eventName) {
-        case "CIC_CRI_START": {
-          let schema;
-          if (journeyType == "FACE_TO_FACE"){
-            schema = CIC_CRI_START;
-          } else {
-            schema = CIC_CRI_START_BANK_ACCOUNT;
-          }
-          const validate = ajv.compile(schema);
-          valid = validate(getObjectResponse.data);
-          if (!valid) {
-            console.error(
-              getObjectResponse.data.event_name +
-                " Event Errors: " +
-                JSON.stringify(validate.errors)
-            );
-          }
-          break;
-        }
-        case "CIC_CRI_AUTH_CODE_ISSUED": {
-          const validate = ajv.compile(CIC_CRI_AUTH_CODE_ISSUED);
-          valid = validate(getObjectResponse.data);
-          if (!valid) {
-            console.error(
-              getObjectResponse.data.event_name +
-                " Event Errors: " +
-                JSON.stringify(validate.errors)
-            );
-          }
-          break;
-        }
-        case "CIC_CRI_VC_ISSUED": {
-          const validate = ajv.compile(CIC_CRI_VC_ISSUED);
-          valid = validate(getObjectResponse.data);
-          if (!valid) {
-            console.error(
-              getObjectResponse.data.event_name +
-                " Event Errors: " +
-                JSON.stringify(validate.errors)
-            );
-          }
-          break;
-        }
-        case "CIC_CRI_END": {
-          const validate = ajv.compile(CIC_CRI_END);
-          valid = validate(getObjectResponse.data);
-          if (!valid) {
-            console.error(
-              getObjectResponse.data.event_name +
-                " Event Errors: " +
-                JSON.stringify(validate.errors)
-            );
-          }
-          break;
-        }
-      }
-      expect(valid).to.be.true;
+      console.log(JSON.stringify(txmaEventBody.data, null, 2));
+      const eventName = txmaEventBody.data.event_name;
+      obj[eventName] = txmaEventBody.data;
     }
-  }  
+    return obj;
+  }
+
+  async validateTxMAEventData(allTxmaEventBodies, eventName, schemaName) {
+    const Ajv = require("ajv").default;
+    const AjvFormats = require("ajv-formats");
+    const ajv = new Ajv({ strictTuples: false });
+    ajv.addSchema(CIC_CRI_AUTH_CODE_ISSUED_SCHEMA, "CIC_CRI_AUTH_CODE_ISSUED_SCHEMA");
+    ajv.addSchema(CIC_CRI_END_SCHEMA, "CIC_CRI_END_SCHEMA");
+    ajv.addSchema(CIC_CRI_START_BANK_ACCOUNT_SCHEMA, "CIC_CRI_START_BANK_ACCOUNT_SCHEMA");
+    ajv.addSchema(CIC_CRI_START_SCHEMA, "CIC_CRI_START_SCHEMA");
+    ajv.addSchema(CIC_CRI_VC_ISSUED_SCHEMA, "CIC_CRI_VC_ISSUED_SCHEMA");
+    AjvFormats(ajv);
+
+    const currentEventBody = allTxmaEventBodies[eventName];
+
+    if (currentEventBody?.event_name) {
+      try {
+        const validate = ajv.getSchema(schemaName);
+        if (validate) {
+          expect(validate(currentEventBody)).to.be.true;
+        } else {
+          throw new Error(`Could not find schema ${schemaName}`);
+        }
+      } catch (error) {
+        console.error("Error validating event", error);
+        throw error;
+      }
+    } else {
+      throw new Error(`No event found in the test harness for ${eventName} event`);
+    }
+  }
 };
 
 

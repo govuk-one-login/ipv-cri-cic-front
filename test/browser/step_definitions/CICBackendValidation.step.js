@@ -1,4 +1,4 @@
-const { Given, Then } = require("@cucumber/cucumber");
+const { Given, Then, When } = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
@@ -44,9 +44,10 @@ Then(
   },
 );
 
-Then('all TxMA events are recorded as expected for a {string} journey',
+When(
+  /^I get all TxMA events from Test Harness$/,
   { timeout: 2 * 50000 },
-  async function (journeyType) {
+  async function () {
     const testHarness = new TestHarness();
     let sqsMessage;
     do {
@@ -57,7 +58,15 @@ Then('all TxMA events are recorded as expected for a {string} journey',
       );
     } while (!sqsMessage);
 
-    testHarness.validateTxMAEventData(sqsMessage, journeyType);
+    this.allTxmaEventBodies = await testHarness.getTxMAEventData(sqsMessage);
+  },
+);
+
+Then('the {string} event matches the {string} Schema',
+  { timeout: 2 * 50000 },
+  async function (eventName, schemaName) {
+    const testHarness = new TestHarness();
+    await testHarness.validateTxMAEventData(this.allTxmaEventBodies, eventName, schemaName);
   }
 );
 
