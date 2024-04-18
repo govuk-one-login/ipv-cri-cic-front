@@ -76,7 +76,7 @@
   "dependencies": {
     "@aws-sdk/credential-providers": "^3.438.0",
     "@aws-sdk/lib-dynamodb": "3.363.0",
-    "@govuk-one-login/di-ipv-cri-common-express": "6.2.0",
+    "@govuk-one-login/di-ipv-cri-common-express": "6.2.2",
     "@govuk-one-login/frontend-analytics": "1.0.3",
     "@govuk-one-login/one-login-language-toggle": "2.0.0",
     "ajv": "^8.12.0",
