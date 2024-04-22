@@ -64,10 +64,6 @@ $govuk-assets-path: "/public/";
   @include govuk-responsive-margin(0, "bottom");
 }
 
-.govuk-error-summary {
-  width: 66.6666%;
-}
-
 .govuk-cookie-banner h2, .govuk-cookie-banner p {
   margin-top: 0; 
   margin-bottom: 20px;
