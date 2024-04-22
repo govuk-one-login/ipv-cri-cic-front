@@ -13,7 +13,7 @@ module.exports = class PlaywrightDevPage {
   }
 
   async continue() {
-    await this.page.click("#continue");
+    await this.page.getByTestId("enter-dob-continue-btn").click();
   }
 
   async back() {

@@ -45,7 +45,7 @@
   </div>
   {% endif %}
 
-  {% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
+  {% call hmpoForm(ctx) %}
 
   {{ hmpoText(ctx, {
       id: "surname",
@@ -80,7 +80,7 @@
 
   </div>
 
-  {{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
+  {{ hmpoSubmit(ctx, {classes: "govuk-!-margin-top-0", attributes: {"data-testid": "enter-name-continue-btn"}, text: translate("buttons.next")}) }}
 
   {% endcall %}
 
