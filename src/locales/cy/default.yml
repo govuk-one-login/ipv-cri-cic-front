@@ -32,7 +32,7 @@ govuk:
     cookieLinkText: "Darganfyddwch fwy am gwcis"
   phaseBanner:
     tag: beta
-    content: Mae hwn yn wasanaeth newydd – bydd eich <a href=\"https://home.account.gov.uk/contact-gov-uk-one-login?fromURL=https://www.review-c.account.gov.uk/enter-name\" target=\"_blank\" class=\"govuk-link\" rel=\"noopener\" target=\"_blank\">adborth (agor mewn tab newydd)</a> yn ein helpu i'w wella.
+    content: Mae hwn yn wasanaeth newydd – bydd eich <a href="https://home.account.gov.uk/contact-gov-uk-one-login?fromURL=https://www.review-c.account.gov.uk/enter-name" target="_blank" class="govuk-link" rel="noopener" target="_blank">adborth (agor mewn tab newydd)</a> yn ein helpu i'w wella.
   languageToggle:
     ariaLabel: Dewis iaith
     englishLanguage: English
