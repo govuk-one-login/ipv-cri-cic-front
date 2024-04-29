@@ -12,7 +12,7 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
 RUN unzip awscliv2.zip
 RUN ./aws/install
 
-RUN apt install -y git jq openjdk-8-jdk fonts-liberation libappindicator1 procps libxkbcommon0 libgbm1
+RUN apt install -y git jq openjdk-8-jdk fonts-liberation procps libxkbcommon0 libgbm1
 
 COPY . /app
 WORKDIR /app
