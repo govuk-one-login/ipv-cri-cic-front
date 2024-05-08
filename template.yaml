@@ -820,6 +820,24 @@ Resources:
         HostedZoneId: !GetAtt CICFrontCustomDomain.RegionalHostedZoneId
         EvaluateTargetHealth: false
 
+  CICFrontApiOriginRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      Name: !If
+      - IsNotDevelopment
+      - !Sub
+        - "origin.${DNSSUFFIX}"
+        - DNSSUFFIX: !FindInMap [EnvironmentVariables, !Ref Environment, DNSSUFFIX]
+      - !Sub
+        - "origin.${AWS::StackName}.${DNSSUFFIX}"
+        - DNSSUFFIX: !FindInMap [EnvironmentVariables, !Ref Environment, DNSSUFFIX]
+      Type: A
+      HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
+      AliasTarget:
+        DNSName: !GetAtt CICFrontCustomDomain.RegionalDomainName
+        HostedZoneId: !GetAtt CICFrontCustomDomain.RegionalHostedZoneId
+        EvaluateTargetHealth: false
+
   CICFrontApiMapping:
     Type: AWS::ApiGatewayV2::ApiMapping
     Properties:
