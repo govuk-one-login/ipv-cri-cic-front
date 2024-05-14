@@ -114,6 +114,7 @@ Mappings:
       EXTERNALWEBSITEHOST: "https://cic-cri-front.review-c.dev.account.gov.uk"
       APIBASEURL: "https://api-cic-cri-api.review-c.dev.account.gov.uk"
       DNSSUFFIX: "review-c.dev.account.gov.uk"
+      CLOUDFRONTDOMAIN: "d2mffc7h0tnarj.cloudfront.net"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-dev"
       GTMIDUA: "GTM-TK92W68"
@@ -131,6 +132,7 @@ Mappings:
       EXTERNALWEBSITEHOST: "https://review-c.build.account.gov.uk"
       APIBASEURL: "https://api.review-c.build.account.gov.uk"
       DNSSUFFIX: "review-c.build.account.gov.uk"
+      CLOUDFRONTDOMAIN: ""
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-build"
       GTMIDUA: "GTM-TK92W68"
@@ -148,6 +150,7 @@ Mappings:
       EXTERNALWEBSITEHOST: "https://review-c.staging.account.gov.uk"
       APIBASEURL: "https://api.review-c.staging.account.gov.uk"
       DNSSUFFIX: "review-c.staging.account.gov.uk"
+      CLOUDFRONTDOMAIN: ""
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-staging"
       GTMIDUA: "GTM-TK92W68"
@@ -162,6 +165,7 @@ Mappings:
       EXTERNALWEBSITEHOST: "https://review-c.integration.account.gov.uk"
       APIBASEURL: "https://api.review-c.integration.account.gov.uk"
       DNSSUFFIX: "review-c.integration.account.gov.uk"
+      CLOUDFRONTDOMAIN: ""
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-integration"
       GTMIDUA: "GTM-TK92W68"
@@ -176,6 +180,7 @@ Mappings:
       EXTERNALWEBSITEHOST: "https://review-c.account.gov.uk"
       APIBASEURL: "https://api.review-c.account.gov.uk"
       DNSSUFFIX: "review-c.account.gov.uk"
+      CLOUDFRONTDOMAIN: ""
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-production"
       GTMIDUA: "GTM-TT5HDKV"
@@ -838,8 +843,12 @@ Resources:
         - DNSSUFFIX: !FindInMap [EnvironmentVariables, !Ref Environment, DNSSUFFIX]
       Type: A
       HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
-      AliasTarget:
-        DNSName: !GetAtt CICFrontCustomDomain.RegionalDomainName
+      AliasTarget: !If
+      - IsCloudFrontPilotTesting
+      - DNSName:  !FindInMap [EnvironmentVariables, !Ref Environment, CLOUDFRONTDOMAIN]
+        HostedZoneId: Z2FDTNDATAQYW2
+        EvaluateTargetHealth: false
+      - DNSName: !GetAtt CICFrontCustomDomain.RegionalDomainName
         HostedZoneId: !GetAtt CICFrontCustomDomain.RegionalHostedZoneId
         EvaluateTargetHealth: false
 
