@@ -88,6 +88,12 @@ Conditions:
   IsCloudFrontPilotTesting: !Equals
     - !Ref Environment
     - dev
+  # IsCloudFrontPilotTesting: !Or
+  #   - !Equals [ !Ref Environment, dev ]
+  #   - !Equals [ !Ref EnableScalingInDev, 1]
+  #   - !Equals [ !Ref Environment, build ]
+  #   - !Equals [ !Ref Environment, staging ]
+  #   - !Equals [ !Ref Environment, integration ]
 
 Mappings:
   PlatformConfiguration:
@@ -824,8 +830,12 @@ Resources:
         - DNSSUFFIX: !FindInMap [EnvironmentVariables, !Ref Environment, DNSSUFFIX]
       Type: A
       HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
-      AliasTarget:
-        DNSName: !GetAtt CICFrontCustomDomain.RegionalDomainName
+      AliasTarget: !If
+      - IsCloudFrontPilotTesting
+      - DNSName:  !FindInMap [EnvironmentVariables, !Ref Environment, CLOUDFRONTDOMAIN]
+        HostedZoneId: Z2FDTNDATAQYW2
+        EvaluateTargetHealth: false
+      - DNSName: !GetAtt CICFrontCustomDomain.RegionalDomainName
         HostedZoneId: !GetAtt CICFrontCustomDomain.RegionalHostedZoneId
         EvaluateTargetHealth: false
 
@@ -843,12 +853,8 @@ Resources:
         - DNSSUFFIX: !FindInMap [EnvironmentVariables, !Ref Environment, DNSSUFFIX]
       Type: A
       HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
-      AliasTarget: !If
-      - IsCloudFrontPilotTesting
-      - DNSName:  !FindInMap [EnvironmentVariables, !Ref Environment, CLOUDFRONTDOMAIN]
-        HostedZoneId: Z2FDTNDATAQYW2
-        EvaluateTargetHealth: false
-      - DNSName: !GetAtt CICFrontCustomDomain.RegionalDomainName
+      AliasTarget:
+        DNSName: !GetAtt CICFrontCustomDomain.RegionalDomainName
         HostedZoneId: !GetAtt CICFrontCustomDomain.RegionalHostedZoneId
         EvaluateTargetHealth: false
 
