@@ -85,9 +85,6 @@ Conditions:
   DeployAlarms: !Or
     - Condition: IsNotDevelopment
     - !Equals [!Ref DeployAlarmsInDev, true]
-  IsCloudFrontPilotTesting: !Equals
-    - !Ref Environment
-    - dev
 
 Mappings:
   PlatformConfiguration:
@@ -690,7 +687,6 @@ Resources:
 
   WAFv2ACLAssociation:
     Type: AWS::WAFv2::WebACLAssociation
-    Condition: IsNotDevelopment
     Properties:
       ResourceArn: !Ref LoadBalancer
       WebACLArn: !Sub "{{resolve:ssm:/${Environment}/Platform/Security/Block/WafArn}}"
@@ -826,7 +822,6 @@ Resources:
 
   CICFrontApiOriginRecord:
     Type: AWS::Route53::RecordSet
-    Condition: IsCloudFrontPilotTesting
     Properties:
       Name: !If
       - IsNotDevelopment
