@@ -15,7 +15,7 @@ module.exports = class PlaywrightDevPage {
   }
 
   async continue() {
-    await this.page.click("#continue");
+    await this.page.getByTestId("enter-name-continue-btn").click();
   }
 
   async enterSurname() {

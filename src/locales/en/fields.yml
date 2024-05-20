@@ -26,7 +26,7 @@ firstName:
     regexNumbersOrSpecialCharacters: "Your first name cannot include numbers or special characters"
 
 middleName:
-  label: Middle name(s)
+  label: Middle names
   hint: Leave this blank if you do not have any middle names
   validation:
     default: "Enter your middle name as it appears on your photo ID"
@@ -39,17 +39,27 @@ dateOfBirth:
   label: ""
   hint: "For example, 31 3 1980"
   validation: 
-    default: "Enter your date of birth"
+    default: "Enter a valid date of birth"
+    # All values missing
+    required: "Enter your full date of birth"
+    # Before today
     before: "Your date of birth must be in the past"
+    # After 1904-02-12
     after: "Enter a valid date of birth"
-    "numeric-day": "Your date of birth must include a day that contains numbers only"
-    "numeric-month": "Your date of birth must include a month that contains numbers only"
-    "numeric-year": "Your date of birth must include a year that contains numbers only"
-    "date-day": "Enter a valid day"
-    "date-month": "Your date of birth must include a month that is a number between 1 and 12"
-    "required-day": "Enter your full date of birth"
-    "required-month": "Enter your full date of birth"
-    "required-year": "Enter your full date of birth"
+    # Non-numeric input
+    numeric-day: "Your date of birth must include a day that contains numbers only"
+    numeric-month: "Your date of birth must include a month that contains numbers only"
+    numeric-year: "Your date of birth must include a year that contains numbers only"
+    # Invalid day e.g. >31 or non-leap year 29/2/2021
+    date-day: "Enter a valid day"
+    # Invalid month e.g. <1 or >12 
+    date-month: "Your date of birth must include a month that is a number between 1 and 12"
+    # Incomplete year e.g. "199"
+    date-year: "Enter a valid year using 4 digits (for example, 1973)"
+    # Required
+    required-day: "Your date of birth must include a day"
+    required-month: "Your date of birth must include a month"
+    required-year: "Your date of birth must include a year"
 
 checkDetails: 
   label: ""

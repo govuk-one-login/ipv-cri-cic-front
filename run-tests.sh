@@ -19,14 +19,19 @@ export LANGUAGE_TOGGLE_DISABLED=false
 
 declare error_code
 
+# disabling error_check to allow report generation for successful + failed tests
+set +e
 cd /app; yarn run test:e2e:cd
 error_code=$?
-
 cp -rf /app/test/reports $TEST_REPORT_ABSOLUTE_DIR
+if [ $error_code -ne 0 ]
+then
+  exit $error_code
+fi
 
 sleep 2m
 
-apt-get install jq -y
+set -eapt-get install jq -y
 cd /app; npm run test:pii
 error_code=$?
 
