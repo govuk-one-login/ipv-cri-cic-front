@@ -10,6 +10,9 @@
 {% from "hmpo-text/macro.njk" import hmpoText %}
 {% from "hmpo-form/macro.njk" import hmpoForm %}
 
+{% if journeyType === "NO_PHOTO_ID" %}
+  {% set hmpoPageKey = "nameEntry.NO_PHOTO_ID" %}
+{% endif %}
 
 {% block mainContent %}
 
