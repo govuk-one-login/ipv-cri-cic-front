@@ -1,7 +1,11 @@
 {% extends "base-form.njk" %}
 {# the content for this page is controlled by locales/en/default.yml #}
-{% set hmpoPageKey = "nameEntry" %}
 {% set gtmJourney = "cic - nameEntry" %}
+{% if journeyType === "NO_PHOTO_ID" %}
+  {% set hmpoPageKey = "nameEntry.NO_PHOTO_ID" %}
+{% else %}
+  {% set hmpoPageKey = "nameEntry.FACE_TO_FACE" %}
+{% endif %}
 
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 {% from "govuk/components/header/macro.njk" import govukHeader %}
@@ -9,10 +13,6 @@
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "hmpo-text/macro.njk" import hmpoText %}
 {% from "hmpo-form/macro.njk" import hmpoForm %}
-
-{% if journeyType === "NO_PHOTO_ID" %}
-  {% set hmpoPageKey = "nameEntry.NO_PHOTO_ID" %}
-{% endif %}
 
 {% block mainContent %}
 
