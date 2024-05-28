@@ -101,7 +101,7 @@ setI18n({
   router,
   config: {
     secure: true,
-    cookieDomain: APP.GTM.DOMAIN,
+    cookieDomain: APP.GTM.ANALYTICS_COOKIE_DOMAIN,
   },
 });
 
