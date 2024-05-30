@@ -30,7 +30,7 @@ jobs:
           cache: 'yarn'
 
       - name: Checks if commiting secrets to repo
-        uses: pre-commit/action@v3.0.1
+        uses: pre-commit/action@v3.0.0
         with:
           extra_args: "detect-secrets --all-files"
 
