@@ -69,11 +69,11 @@
 
     {% if (journeyType == "NO_PHOTO_ID") %}
       {% call hmpoForm(ctx) %}
-        {{ hmpoSubmit(ctx, {classes: "govuk-!-margin-top-6", attributes: {"data-testid": "confirm-details-continue-btn"}, text: translate("checkDetails.noPidButtonText")}) }}
+        {{ hmpoSubmit(ctx, {classes: "govuk-!-margin-top-6", attributes: {"data-testid": "confirm-details-continue-btn","data-nav":true,"data-link":"/oauth2/callback"}, text: translate("checkDetails.noPidButtonText")}) }}
       {% endcall %}
     {% else %}
       {% call hmpoForm(ctx) %}
-        {{ hmpoSubmit(ctx, {classes: "govuk-!-margin-top-6", attributes: {"data-testid": "confirm-details-continue-btn"}, text: translate("checkDetails.f2fButtonText")}) }}
+        {{ hmpoSubmit(ctx, {classes: "govuk-!-margin-top-6", attributes: {"data-testid": "confirm-details-continue-btn","data-nav":true,"data-link":"/oauth2/callback"}, text: translate("checkDetails.f2fButtonText")}) }}
       {% endcall %}
     {% endif %}
     </div>
