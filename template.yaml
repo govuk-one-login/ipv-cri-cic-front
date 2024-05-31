@@ -65,6 +65,7 @@ Conditions:
     - !Equals [ !Ref Environment, staging ]
     - !Equals [ !Ref Environment, integration ]
     - !Equals [ !Ref Environment, production ]
+  IsProduction: !Equals [!Ref Environment, production]
   EnableScaling: !Or
     - !Equals [ !Ref EnableScalingInDev, 1]
     - !Equals [ !Ref Environment, build ]
