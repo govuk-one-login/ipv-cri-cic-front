@@ -14,6 +14,13 @@ Description: >-
   CIC Front egress to CIC API's API Gateway is via a NAT Gateway which
   should have a route in the provided private subnets' route table.
 
+Metadata:
+  cfn-lint:
+    config:
+      ignore_checks:
+      - W3005
+      - W6001
+
 Parameters:
   Environment:
     Description: "The environment type"
@@ -86,6 +93,10 @@ Conditions:
   DeployAlarms: !Or
     - Condition: IsNotDevelopment
     - !Equals [!Ref DeployAlarmsInDev, true]
+  EnableCloudFront: !Or
+    - !Equals [ !Ref Environment, dev ]
+    - !Equals [ !Ref Environment, build ]
+  EnableWAFAssociation: !Equals [!Ref Environment, production]
 
 Mappings:
   PlatformConfiguration:
@@ -112,6 +123,7 @@ Mappings:
       EXTERNALWEBSITEHOST: "https://cic-cri-front.review-c.dev.account.gov.uk"
       APIBASEURL: "https://api-cic-cri-api.review-c.dev.account.gov.uk"
       DNSSUFFIX: "review-c.dev.account.gov.uk"
+      CLOUDFRONTDOMAIN: "d2mffc7h0tnarj.cloudfront.net"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-dev"
       GTMIDUA: "GTM-TK92W68"
@@ -129,6 +141,7 @@ Mappings:
       EXTERNALWEBSITEHOST: "https://review-c.build.account.gov.uk"
       APIBASEURL: "https://api.review-c.build.account.gov.uk"
       DNSSUFFIX: "review-c.build.account.gov.uk"
+      CLOUDFRONTDOMAIN: "d3h3ilw9ijq9hg.cloudfront.net"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-build"
       GTMIDUA: "GTM-TK92W68"
@@ -146,12 +159,16 @@ Mappings:
       EXTERNALWEBSITEHOST: "https://review-c.staging.account.gov.uk"
       APIBASEURL: "https://api.review-c.staging.account.gov.uk"
       DNSSUFFIX: "review-c.staging.account.gov.uk"
+      CLOUDFRONTDOMAIN: "d13b32us3mnyl9.cloudfront.net"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-staging"
       GTMIDUA: "GTM-TK92W68"
       GTMIDGA4: "GTM-KD86CMZ"
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "staging.account.gov.uk"
+      TESTHARNESSURL: ""
+      BACKENDURL: ""
+      BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
       GA4DISABLED: false
       UADISABLED: false
@@ -160,12 +177,16 @@ Mappings:
       EXTERNALWEBSITEHOST: "https://review-c.integration.account.gov.uk"
       APIBASEURL: "https://api.review-c.integration.account.gov.uk"
       DNSSUFFIX: "review-c.integration.account.gov.uk"
+      CLOUDFRONTDOMAIN: "d1jx9t5yl02x1a.cloudfront.net"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-integration"
       GTMIDUA: "GTM-TK92W68"
       GTMIDGA4: "GTM-KD86CMZ"
       GA4ENABLED: "false"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
+      TESTHARNESSURL: ""
+      BACKENDURL: ""
+      BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
       GA4DISABLED: true
       UADISABLED: false
@@ -174,12 +195,16 @@ Mappings:
       EXTERNALWEBSITEHOST: "https://review-c.account.gov.uk"
       APIBASEURL: "https://api.review-c.account.gov.uk"
       DNSSUFFIX: "review-c.account.gov.uk"
+      CLOUDFRONTDOMAIN: ""
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-production"
       GTMIDUA: "GTM-TT5HDKV"
       GTMIDGA4: "GTM-K4PBJH3"
       GA4ENABLED: "false"
       ANALYTICSDOMAIN: "account.gov.uk"
+      TESTHARNESSURL: ""
+      BACKENDURL: ""
+      BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
       GA4DISABLED: true
       UADISABLED: false
@@ -693,6 +718,7 @@ Resources:
 
   WAFv2ACLAssociation:
     Type: AWS::WAFv2::WebACLAssociation
+    Condition: EnableWAFAssociation
     Properties:
       ResourceArn: !Ref LoadBalancer
       WebACLArn: !Sub "{{resolve:ssm:/${Environment}/Platform/Security/Block/WafArn}}"
@@ -821,8 +847,12 @@ Resources:
         - DNSSUFFIX: !FindInMap [EnvironmentVariables, !Ref Environment, DNSSUFFIX]
       Type: A
       HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
-      AliasTarget:
-        DNSName: !GetAtt CICFrontCustomDomain.RegionalDomainName
+      AliasTarget: !If
+      - EnableCloudFront
+      - DNSName:  !FindInMap [EnvironmentVariables, !Ref Environment, CLOUDFRONTDOMAIN]
+        HostedZoneId: Z2FDTNDATAQYW2
+        EvaluateTargetHealth: false
+      - DNSName: !GetAtt CICFrontCustomDomain.RegionalDomainName
         HostedZoneId: !GetAtt CICFrontCustomDomain.RegionalHostedZoneId
         EvaluateTargetHealth: false
 
