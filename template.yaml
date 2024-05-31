@@ -166,7 +166,7 @@ Mappings:
       GA4ENABLED: "false"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
       LOGLEVEL: "warn"
-      GA4DISABLED: true
+      GA4DISABLED: false
       UADISABLED: false
       LANGUAGETOGGLEDISABLED: true
     production:
@@ -180,7 +180,7 @@ Mappings:
       GA4ENABLED: "false"
       ANALYTICSDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
-      GA4DISABLED: true
+      GA4DISABLED: false
       UADISABLED: false
       LANGUAGETOGGLEDISABLED: true
 
