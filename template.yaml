@@ -188,7 +188,7 @@ Mappings:
       BACKENDURL: ""
       BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
-      GA4DISABLED: true
+      GA4DISABLED: false
       UADISABLED: false
       LANGUAGETOGGLEDISABLED: true
     production:
@@ -206,7 +206,7 @@ Mappings:
       BACKENDURL: ""
       BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
-      GA4DISABLED: true
+      GA4DISABLED: false
       UADISABLED: false
       LANGUAGETOGGLEDISABLED: true
 
