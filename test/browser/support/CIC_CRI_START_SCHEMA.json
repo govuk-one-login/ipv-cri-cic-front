@@ -39,6 +39,25 @@
         },
         "component_id": {
             "type": "string"
+        },
+        "restricted": {
+            "type": "object",
+            "properties": {
+                "device_information": {
+                    "type": "object",
+                    "properties": {
+                        "encoded": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "encoded"
+                    ]
+                }
+            },
+            "required": [
+                "device_information"
+            ]
         }
     },
     "required": [
