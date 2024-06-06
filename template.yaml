@@ -192,7 +192,7 @@ Mappings:
       LOGLEVEL: "warn"
       GA4DISABLED: false
       UADISABLED: false
-      LANGUAGETOGGLEDISABLED: true
+      LANGUAGETOGGLEDISABLED: false
     production:
       EXTERNALWEBSITEHOST: "https://review-c.account.gov.uk"
       APIBASEURL: "https://api.review-c.account.gov.uk"
@@ -210,7 +210,7 @@ Mappings:
       LOGLEVEL: "warn"
       GA4DISABLED: false
       UADISABLED: false
-      LANGUAGETOGGLEDISABLED: true
+      LANGUAGETOGGLEDISABLED: false
 
 Resources:
   # Security Groups for the ECS service and load balancer
