@@ -93,6 +93,11 @@ Conditions:
   DeployAlarms: !Or
     - Condition: IsNotDevelopment
     - !Equals [!Ref DeployAlarmsInDev, true]
+  EnableCloudFront: !Or
+    - !Equals [ !Ref Environment, dev ]
+    - !Equals [ !Ref Environment, build ]
+    - !Equals [ !Ref Environment, staging ]
+    - !Equals [ !Ref Environment, integration ]
 
 Mappings:
   PlatformConfiguration:
@@ -714,6 +719,7 @@ Resources:
 
   CloudFrontWAFv2ACLAssociation:
     Type: AWS::WAFv2::WebACLAssociation
+    Condition: EnableCloudFront
     Properties:
       ResourceArn: !Ref LoadBalancer
       WebACLArn: !ImportValue cfront-origin-distrib-CloakingOriginWebACLArn
