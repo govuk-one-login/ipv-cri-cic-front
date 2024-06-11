@@ -98,7 +98,6 @@ Conditions:
     - !Equals [ !Ref Environment, build ]
     - !Equals [ !Ref Environment, staging ]
     - !Equals [ !Ref Environment, integration ]
-  EnableWAFAssociation: !Equals [!Ref Environment, production]
 
 Mappings:
   PlatformConfiguration:
@@ -197,7 +196,7 @@ Mappings:
       EXTERNALWEBSITEHOST: "https://review-c.account.gov.uk"
       APIBASEURL: "https://api.review-c.account.gov.uk"
       DNSSUFFIX: "review-c.account.gov.uk"
-      CLOUDFRONTDOMAIN: ""
+      CLOUDFRONTDOMAIN: "d2ekguv8wcjy54.cloudfront.net"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-production"
       GTMIDUA: "GTM-TT5HDKV"
@@ -718,13 +717,6 @@ Resources:
           "integrationLatency":"$context.integrationLatency"
           }
 
-  WAFv2ACLAssociation:
-    Type: AWS::WAFv2::WebACLAssociation
-    Condition: EnableWAFAssociation
-    Properties:
-      ResourceArn: !Ref LoadBalancer
-      WebACLArn: !Sub "{{resolve:ssm:/${Environment}/Platform/Security/Block/WafArn}}"
-
   CloudFrontWAFv2ACLAssociation:
     Type: AWS::WAFv2::WebACLAssociation
     Condition: EnableCloudFront
@@ -856,13 +848,9 @@ Resources:
         - DNSSUFFIX: !FindInMap [EnvironmentVariables, !Ref Environment, DNSSUFFIX]
       Type: A
       HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
-      AliasTarget: !If
-      - EnableCloudFront
-      - DNSName:  !FindInMap [EnvironmentVariables, !Ref Environment, CLOUDFRONTDOMAIN]
+      AliasTarget:
+        DNSName:  !FindInMap [EnvironmentVariables, !Ref Environment, CLOUDFRONTDOMAIN]
         HostedZoneId: Z2FDTNDATAQYW2
-        EvaluateTargetHealth: false
-      - DNSName: !GetAtt CICFrontCustomDomain.RegionalDomainName
-        HostedZoneId: !GetAtt CICFrontCustomDomain.RegionalHostedZoneId
         EvaluateTargetHealth: false
 
   CICFrontApiOriginRecord:
