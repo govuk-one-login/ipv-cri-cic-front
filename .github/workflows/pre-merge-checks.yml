@@ -12,15 +12,6 @@ on:
       - main
 
 jobs:
-  detect-secrets:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-      - uses: pre-commit/action@v3.0.1
-        with:
-          extra_args: "detect-secrets --all-files"
-
   run-checks:
     runs-on: ubuntu-latest
     steps:
@@ -28,15 +19,31 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-      - run: yarn install
-      - run: yarn lint
-      - run: yarn build
-      - run: yarn test:coverage
-      - run: npm run test:browser:ci
+      
+      - name: Checks if commiting secrets to repo
+        uses: pre-commit/action@v3.0.0
+        with:
+          extra_args: "detect-secrets --all-files"
+
+      - name: Install dependencies
+        run: yarn install
+        
+      - name: Run lint
+        run: yarn lint
+
+      - name: Run build
+        run: yarn build
+        
+      - name: Run test and write coverage
+        run: yarn test:coverage
+
+      - name: Run browser tests
+        run: npm run test:browser:ci
         env: 
           IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
           CUSTOM_FE_URL: http:/localhost:5020 
           LANGUAGE_TOGGLE_DISABLED: false
+
       - name: Archive browser tests results
         uses: actions/upload-artifact@v4
         with:
@@ -50,10 +57,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-      - run: yarn install
-      - run: yarn build
-      - run: yarn test
-      - if: ${{ success() && github.actor != 'dependabot[bot]' }}
+      
+      - name: Install dependencies
+        run: yarn install
+        
+      - name: Run lint
+        run: yarn lint
+      
+      - name: Run build
+        run: yarn build
+      
+      - name: "Run SonarCloud Scan"
+        if: ${{ success() && github.actor != 'dependabot[bot]' }}
         uses: SonarSource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
