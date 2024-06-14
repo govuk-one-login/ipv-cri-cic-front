@@ -1,13 +1,13 @@
 const BaseController = require("hmpo-form-wizard").Controller;
 const { expect } = require("chai");
 const { afterEach } = require("mocha");
-const RootController = require('./root.js');
-const { API } = require("../../../lib/config");
+const JourneyTypeController = require('./journeyType.js');
+const { API } = require("../../../lib/config.js");
 
 console.log = sinon.fake();
 
-describe("RootController", () => {
-  const rootController = new RootController({ route: '/test' });
+describe("JourneyTypeController", () => {
+  const journeyTypeController = new JourneyTypeController({ route: '/test' });
   let req;
   let res;
   let next;
@@ -26,14 +26,14 @@ describe("RootController", () => {
   });
 
   it("should be an instance of BaseController", () => {
-    expect(rootController).to.be.an.instanceOf(BaseController);
+    expect(journeyTypeController).to.be.an.instanceOf(BaseController);
   });
 
   describe("saveValues", () => {
     it("should fetch the journey type from the session config endpoint", async () => {
       req.axios.get = sinon.fake.resolves({ data: { journey_type: "FACE_TO_FACE" }});
 
-      await rootController.saveValues(req, res, next);
+      await journeyTypeController.saveValues(req, res, next);
 
       sinon.assert.calledWith(
         req.axios.get,
@@ -47,10 +47,10 @@ describe("RootController", () => {
     it("should handle error if call to session config endpoint fails", async () => {
       req.axios.get = sinon.fake.rejects("Error");
 
-      await rootController.saveValues(req, res, next);
+      await journeyTypeController.saveValues(req, res, next);
 
       sinon.assert.calledWith(console.log, "Error fetching journey type");
-      sinon.assert.called(next);
+      expect(next).to.have.been.calledOnce;
     });
   });
 });
