@@ -49,7 +49,7 @@
   "homepage": "https://github.com/alphagov/di-cic-front#readme",
   "packageManager": "yarn@1.22.21",
   "devDependencies": {
-    "@cucumber/cucumber": "9.2.0",
+    "@cucumber/cucumber": "10.8.0",
     "aws4-axios": "^3.2.24",
     "chai": "4.4.1",
     "chai-as-promised": "7.1.1",
