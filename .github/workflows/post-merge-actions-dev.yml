@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - IPS-228-arm-spot
 
 defaults:
   run:
@@ -24,6 +25,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: '0'
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
 
       - name: Set up AWS creds
         uses: aws-actions/configure-aws-credentials@v4
@@ -50,5 +53,6 @@ jobs:
           working-directory: .
           docker-build-path: .
           template-file: template.yaml
+          dockerfile: dev.Dockerfile
           role-to-assume-arn: ${{ secrets.DEV_ROLE_TO_ASSUME }}
           ecr-repo-name: ${{ secrets.DEV_ECR_REPOSITORY }}
