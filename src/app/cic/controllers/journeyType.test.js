@@ -1,13 +1,13 @@
 const BaseController = require("hmpo-form-wizard").Controller;
 const { expect } = require("chai");
 const { afterEach } = require("mocha");
-const JourneyTypeController = require('./journeyType.js');
-const { API } = require("../../../lib/config.js");
+const { API } = require("../../../lib/config");
+const JourneyTypeController = require('./journeyType.js')
 
 console.log = sinon.fake();
 
 describe("JourneyTypeController", () => {
-  const journeyTypeController = new JourneyTypeController({ route: '/test' });
+	const journeyTypeController = new JourneyTypeController({ route: '/test' });
   let req;
   let res;
   let next;
@@ -19,10 +19,13 @@ describe("JourneyTypeController", () => {
     req = setup.req;
     res = setup.res;
     next = setup.next;
+		req.session.tokenId = 123456;
+		sinon.stub(console, "error");
   });
 
   afterEach(() => {
-    sandbox.restore();
+		sandbox.restore();
+    console.error.restore();
   });
 
   it("should be an instance of BaseController", () => {
@@ -50,7 +53,17 @@ describe("JourneyTypeController", () => {
       await journeyTypeController.saveValues(req, res, next);
 
       sinon.assert.calledWith(console.log, "Error fetching journey type");
-      expect(next).to.have.been.calledOnce;
+      sinon.assert.called(next);
+    });
+
+		it("should redirect to /error if session token is missing", async () => {
+      req.session.tokenId = null;
+
+      await journeyTypeController.saveValues(req, res, next);
+
+      sinon.assert.calledWith(console.error, "Missing sessionID, redirecting to /error");
+      sinon.assert.calledWith(res.redirect, "/error");
+      sinon.assert.notCalled(next);
     });
   });
 });
