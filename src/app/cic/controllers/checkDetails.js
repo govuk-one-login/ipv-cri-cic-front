@@ -46,22 +46,27 @@ class CheckDetailsController extends DateController {
         family_names: req.sessionModel.get("surname"),
         date_of_birth: req.sessionModel.get("dateOfBirth"),
       };
-      await this.saveCicData(req.axios, cicData, req);
+      await this.saveCicData(req.axios, cicData, req, res);
       callback();
     } catch (err) {
       callback(err);
     }
   }
 
-  async saveCicData(axios, cicData, req) {
-    const headers = {
-      "x-govuk-signin-session-id": req.session.tokenId,
-    };
+  async saveCicData(axios, cicData, req, res) {
+		const tokenId = req.session.tokenId;
 
-    const resp = await axios.post(`${API.PATHS.SAVE_CICDATA}`, cicData, {
-      headers,
-    });
-    return resp.data;
+    if (tokenId) {
+			const resp = await axios.post(`${API.PATHS.SAVE_CICDATA}`, cicData, {
+				headers: {
+					"x-govuk-signin-session-id": tokenId,
+				},
+			});
+			return resp.data;
+    } else {
+			console.error("Missing sessionID, redirecting to /error");
+      res.redirect("/error");
+		}
   }
 }
 
