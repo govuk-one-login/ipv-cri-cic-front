@@ -1,3 +1,3 @@
 module.exports = {
-  default: "--publish-quiet",
+  default: "--publish=false",
 };
