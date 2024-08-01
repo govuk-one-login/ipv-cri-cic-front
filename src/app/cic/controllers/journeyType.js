@@ -3,7 +3,7 @@ const { API } = require("../../../lib/config");
 
 class JourneyTypeController extends BaseController {
   async saveValues(req, res, next) {
-    const tokenId = req.session.tokenId;
+    const tokenId = req.session.tokenId
 
     if (tokenId) {
 			try {
