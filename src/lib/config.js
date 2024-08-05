@@ -23,7 +23,7 @@ module.exports = {
     GTM: {
       GA4_ID: process.env.GOOGLE_ANALYTICS_4_GTM_CONTAINER_ID || "GTM-XXXXXXX",
       UA_ID: process.env.UNIVERSAL_ANALYTICS_GTM_CONTAINER_ID || "UA-XXXXXXX",
-			ANALYTICS_COOKIE_DOMAIN: process.env.ANALYTICS_DOMAIN || "localhost",
+      ANALYTICS_COOKIE_DOMAIN: process.env.ANALYTICS_DOMAIN || "localhost",
       GA4_DISABLED: process.env.GA4_DISABLED || false,
       UA_DISABLED: process.env.UA_DISABLED || true,
     },

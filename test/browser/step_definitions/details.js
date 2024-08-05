@@ -33,7 +33,7 @@ Then("they should be redirected to the F2F nameEntry", async function () {
 
 Then("they should be redirected to the BAV nameEntry", async function () {
   const nameEntryPage = new NameEntryPage(await this.page);
-  expect(await nameEntryPage.isCurrentPage()).to.be.true;
+  expect(await nameEntryPage.isCurrentPageNoPhotoID()).to.be.true;
   expect(await nameEntryPage.checkTitle()).to.contain(
     "Enter your name as it appears on your bank or building society account",
   );

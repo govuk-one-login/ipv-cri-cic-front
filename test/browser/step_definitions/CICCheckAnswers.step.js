@@ -9,6 +9,14 @@ Given(/^the user has completed the previous CIC screens$/, async function () {
   expect(await cpdPage.isCurrentPage()).to.be.true;
 });
 
+Given(
+  /^the user has completed the previous CIC No Photo ID screens$/,
+  async function () {
+    const cpdPage = new CheckDetailsPage(await this.page);
+    expect(await cpdPage.isCurrentPageNoPhotoID()).to.be.true;
+  },
+);
+
 When(
   /^the user clicks the Check My Answers Submit button$/,
   { timeout: 2 * 50000 },

@@ -24,6 +24,15 @@ Then(/^they are routed to the Check My Answers Screen$/, async function () {
   expect(await cdPage.isCurrentPage()).to.be.true;
 });
 
+Then(
+  /^they are routed to the No Photo ID Check My Answers Screen$/,
+  async function () {
+    const cdPage = new CheckDetailsPage(await this.page);
+
+    expect(await cdPage.isCurrentPageNoPhotoID()).to.be.true;
+  },
+);
+
 Given(
   /^the user clicks the continue button only on the DoBEntryPage$/,
   async function () {

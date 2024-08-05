@@ -21,8 +21,8 @@ describe("CheckDetails controller", () => {
     next = setup.next;
 
     checkDetailsController = new CheckDetailsController({ route: "/test" });
-		req.session.tokenId = 123456;
-		sinon.stub(console, "error");
+    req.session.tokenId = 123456;
+    sinon.stub(console, "error");
   });
 
   afterEach(() => {
@@ -100,14 +100,17 @@ describe("CheckDetails controller", () => {
         );
       });
 
-			it("should redirect to /error if session token is missing", async () => {
-				req.session.tokenId = null;
-	
-				await checkDetailsController.saveValues(req, res, next);
-	
-				sinon.assert.calledWith(console.error, "Missing sessionID, redirecting to /error");
-				sinon.assert.calledWith(res.redirect, "/error");
-			});
+      it("should redirect to /error if session token is missing", async () => {
+        req.session.tokenId = null;
+
+        await checkDetailsController.saveValues(req, res, next);
+
+        sinon.assert.calledWith(
+          console.error,
+          "Missing sessionID, redirecting to /error",
+        );
+        sinon.assert.calledWith(res.redirect, "/error");
+      });
     });
   });
 });
