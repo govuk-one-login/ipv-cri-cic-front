@@ -499,21 +499,21 @@ Resources:
       EnableECSManagedTags: false
       HealthCheckGracePeriodSeconds: 60
       LaunchType: FARGATE
-#      LoadBalancers:
-#        - ContainerName: app
-#          ContainerPort: 8080
-#          TargetGroupArn: !Ref LoadBalancerListenerTargetGroupECS
-#      NetworkConfiguration:
-#        AwsvpcConfiguration:
-#          AssignPublicIp: DISABLED
-#          SecurityGroups:
-#            - !GetAtt ECSSecurityGroup.GroupId
-#          Subnets:
-#            - Fn::ImportValue:
-#                !Sub "${VpcStackName}-ProtectedSubnetIdA"
-#            - Fn::ImportValue:
-#                !Sub "${VpcStackName}-ProtectedSubnetIdB"
-#      TaskDefinition: !Ref ECSServiceTaskDefinition
+      LoadBalancers:
+        - ContainerName: app
+          ContainerPort: 8080
+          TargetGroupArn: !Ref LoadBalancerListenerTargetGroupECS
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: DISABLED
+          SecurityGroups:
+            - !GetAtt ECSSecurityGroup.GroupId
+          Subnets:
+            - Fn::ImportValue:
+                !Sub "${VpcStackName}-ProtectedSubnetIdA"
+            - Fn::ImportValue:
+                !Sub "${VpcStackName}-ProtectedSubnetIdB"
+      TaskDefinition: !Ref ECSServiceTaskDefinition
       Tags:
         - Key: Name
           Value: !Sub "${AWS::StackName}-ECS"
