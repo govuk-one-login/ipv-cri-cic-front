@@ -734,7 +734,7 @@ Resources:
                   - "dynamodb:BatchGetItem"
                   - "dynamodb:DescribeTable"
                   - "dynamodb:GetItem"
-                  - "dynamodb:Query"
+                  # - "dynamodb:Query"
                   - "dynamodb:Scan"
                   - "dynamodb:BatchWriteItem"
                   - "dynamodb:DeleteItem"
