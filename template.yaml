@@ -109,6 +109,8 @@ Conditions:
     - Condition: IsNotDevelopment
     - !Equals [!Ref DeployAlarmsInDev, true]
   UseCodeSigning: !Not [!Equals [!Ref CodeSigningConfigArn, none]]
+  UseCanaryDeployment: !Not
+    - !Equals [!Ref DeploymentStrategy, "None"]
 
 Mappings:
   PlatformConfiguration:
@@ -373,6 +375,7 @@ Resources:
 
   ECSCanaryDeploymentStack:
     Type: AWS::CloudFormation::Stack
+    Condition: UseCanaryDeployment
     Properties:
       TemplateURL: https://template-storage-templatebucket-1upzyw6v9cs42.s3.amazonaws.com/ecs-canary-deployment/template.yaml
       Parameters:
@@ -488,13 +491,18 @@ Resources:
     Properties:
       Cluster: !Ref CICFrontEcsCluster
       DeploymentController:
-        Type: CODE_DEPLOY
-#      DeploymentConfiguration:
-#        MaximumPercent: 200
-#        MinimumHealthyPercent: 50
-#        DeploymentCircuitBreaker:
-#          Enable: TRUE
-#          Rollback: TRUE
+        Type: !If
+          - UseCanaryDeployment
+          - CODE_DEPLOY
+          - ECS
+      DeploymentConfiguration: !If
+        - UseCanaryDeployment
+        - !Ref AWS::NoValue
+        - MaximumPercent: 200
+          MinimumHealthyPercent: 50
+          DeploymentCircuitBreaker:
+            Enable: TRUE
+            Rollback: TRUE
       DesiredCount: !Ref MinContainerCount
       EnableECSManagedTags: false
       HealthCheckGracePeriodSeconds: 60
