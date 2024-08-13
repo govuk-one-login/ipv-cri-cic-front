@@ -1215,7 +1215,7 @@ Resources:
           MetricStat:
             Metric:
               Namespace: ECS/ContainerInsights
-              MetricName: RunningTaskCount
+              MetricName: TaskCount
               Dimensions:
                 - Name: ClusterName
                   Value: !Ref CICFrontEcsCluster
@@ -1247,7 +1247,7 @@ Resources:
           MetricStat:
             Metric:
               Namespace: ECS/ContainerInsights
-              MetricName: RunningTaskCount
+              MetricName: TaskCount
               Dimensions:
                 - Name: ClusterName
                   Value: !Ref CICFrontEcsCluster
