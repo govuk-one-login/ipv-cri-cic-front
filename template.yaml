@@ -1224,7 +1224,6 @@ Resources:
 
   FELowContainerTaskCountAlarm:
     DependsOn:
-      - CICFrontEcsService
       - CICFrontEcsCluster
     Type: AWS::CloudWatch::Alarm
     Condition: "DeployAlarms"
@@ -1251,8 +1250,6 @@ Resources:
               Dimensions:
                 - Name: ClusterName
                   Value: !Ref CICFrontEcsCluster
-                - Name: ServiceName
-                  Value: !GetAtt CICFrontEcsService.Name
             Period: 60
             Stat: Minimum
 
