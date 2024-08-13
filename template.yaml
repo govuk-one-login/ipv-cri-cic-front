@@ -386,7 +386,6 @@ Resources:
           - UseCodeSigning
           - !Ref CodeSigningConfigArn
           - !Ref AWS::NoValue
-        # Parameters below to be filled by developers
         ECSClusterName: !Ref CICFrontEcsCluster
         ECSServiceName: !GetAtt CICFrontEcsService.Name
         TargetGroupName: !GetAtt LoadBalancerListenerTargetGroupECS.TargetGroupName
@@ -394,10 +393,8 @@ Resources:
         LoadBalancerListenerARN: !Ref LoadBalancerListener
         ECSServiceTaskDefinition: !Ref ECSServiceTaskDefinition
         DeploymentStrategy: !Ref DeploymentStrategy
-        # Replace with values correspondent to your app container
         ContainerName: "app"
         ContainerPort: 8080
-        # Optional parameters
         Subnets: !Join
           - ","
           - - Fn::ImportValue:
@@ -1224,7 +1221,6 @@ Resources:
 
   FELowContainerTaskCountCriticalAlarm:
     DependsOn:
-      - CICFrontEcsService
       - CICFrontEcsCluster
     Type: AWS::CloudWatch::Alarm
     Condition: "DeployAlarms"
@@ -1251,8 +1247,6 @@ Resources:
               Dimensions:
                 - Name: ClusterName
                   Value: !Ref CICFrontEcsCluster
-                - Name: ServiceName
-                  Value: !GetAtt CICFrontEcsService.Name
             Period: 60
             Stat: Maximum
 
