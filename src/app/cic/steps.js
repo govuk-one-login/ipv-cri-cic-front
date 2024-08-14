@@ -21,7 +21,7 @@ module.exports = {
       {
         field: "journeyType",
         value: "FACE_TO_FACE",
-        next: "enter-name"
+        next: "enter-name",
       },
       {
         field: "journeyType",

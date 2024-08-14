@@ -5,11 +5,17 @@ module.exports = class PlaywrightDevPage {
   constructor(page) {
     this.page = page;
     this.path = "/enter-date-birth";
+    this.pathNoPhotoId = "/enter-date-birth-no-photo-id";
   }
 
   async isCurrentPage() {
     const { pathname } = new URL(this.page.url());
     return pathname === this.path;
+  }
+
+  async isCurrentPageNoPhotoID() {
+    const { pathname } = new URL(this.page.url());
+    return pathname === this.pathNoPhotoId;
   }
 
   async continue() {
