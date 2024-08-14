@@ -54,19 +54,19 @@ class CheckDetailsController extends DateController {
   }
 
   async saveCicData(axios, cicData, req, res) {
-		const tokenId = req.session.tokenId;
+    const tokenId = req.session.tokenId;
 
     if (tokenId) {
-			const resp = await axios.post(`${API.PATHS.SAVE_CICDATA}`, cicData, {
-				headers: {
-					"x-govuk-signin-session-id": tokenId,
-				},
-			});
-			return resp.data;
+      const resp = await axios.post(`${API.PATHS.SAVE_CICDATA}`, cicData, {
+        headers: {
+          "x-govuk-signin-session-id": tokenId,
+        },
+      });
+      return resp.data;
     } else {
-			console.error("Missing sessionID, redirecting to /error");
+      console.error("Missing sessionID, redirecting to /error");
       res.redirect("/error");
-		}
+    }
   }
 }
 
