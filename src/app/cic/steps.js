@@ -28,6 +28,11 @@ module.exports = {
         value: "NO_PHOTO_ID",
         next: "enter-name-no-photo-id",
       },
+      {
+        field: "journeyType",
+        value: "LOW_CONFIDENCE",
+        next: "enter-name-hmrc-check",
+      },
     ],
   },
   "/enter-name": {
@@ -44,6 +49,14 @@ module.exports = {
     controller: nameEntry,
     next: "enter-date-birth-no-photo-id",
   },
+  "/enter-name-hmrc-check": {
+    editable: true,
+    editBackStep: "confirm-details",
+    fields: ["surname", "firstName", "middleName"],
+    controller: nameEntry,
+    next: "enter-date-birth-hmrc-check",
+  },
+  // ------------------------------------------------//
   "/enter-date-birth": {
     editable: true,
     editBackStep: "confirm-details",
@@ -58,6 +71,14 @@ module.exports = {
     controller: dobEntry,
     next: "confirm-details-no-photo-id",
   },
+  "/enter-date-birth-hmrc-check": {
+    editable: true,
+    editBackStep: "confirm-details",
+    fields: ["dateOfBirth"],
+    controller: dobEntry,
+    next: "confirm-details-hmrc-check",
+  },
+  // ----------------------------------------------//
   "/confirm-details": {
     controller: checkDetails,
     next: "done",
@@ -66,6 +87,11 @@ module.exports = {
     controller: checkDetails,
     next: "done",
   },
+  "/confirm-details-hmrc-check": {
+    controller: checkDetails,
+    next: "done",
+  },
+  // ----------------------------------------------//
   "/done": {
     skip: true,
     noPost: true,

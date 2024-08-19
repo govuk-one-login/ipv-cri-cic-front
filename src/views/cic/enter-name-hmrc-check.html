@@ -2,7 +2,7 @@
 {# the content for this page is controlled by locales/en/default.yml #}
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 {% set gtmJourney = "cic - nameEntry" %}
-{% set hmpoPageKey = "nameEntry.FACE_TO_FACE" %}
+{% set hmpoPageKey = "nameEntry.LOW_CONFIDENCE" %}
 
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 {% from "govuk/components/header/macro.njk" import govukHeader %}
@@ -34,7 +34,12 @@
         {{ title }}
     </h1>
 
-  {% call hmpoForm(ctx) %}
+    <div>
+      <p>It should match how your name is shown on documents such as your payslip, P60 or benefits letters.</p>
+    </div>
+
+
+    {% call hmpoForm(ctx) %}
 
     {{ hmpoText(ctx, {
         id: "surname",

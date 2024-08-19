@@ -12,7 +12,7 @@ nameEntry:
     line3: "Use a, e, o, u instead of á, é, ó, ú. For example, if your name is Renée, enter it as Renee."
     line4: "You can include hyphens or apostrophes if your name has them."
     line5: "If you’re having problems entering your name, you can also "
-  contactSupport: 
+  contactSupport:
     text: "contact the GOV.UK One Login team (opens in new tab)."
     link: https://home.account.gov.uk/contact-gov-uk-one-login?fromURL=https://www.review-c.account.gov.uk/enter-name" target="_blank" class="govuk-link" rel="noopener" target="_blank
   FACE_TO_FACE:
@@ -21,7 +21,11 @@ nameEntry:
     title: "Enter your name as it appears on your bank or building society account"
     introText: "This needs to be the exact name registered to the account. If you're using joint account details, you do not need to enter the other person's name."
     insetText1: "The name on your bank card might only use your initials."
-    insetText2: "Check your banking app, online bank account or bank statement for the full registered name." 
+    insetText2: "Check your banking app, online bank account or bank statement for the full registered name."
+  LOW_CONFIDENCE:
+    title: "Enter your name as it appears on your HMRC record"
+    subtext: "It should match how your name is shown on documents such as your payslip. P60 or benefits letters."
+
 
 checkDetails:
   title: "Confirm your details"
