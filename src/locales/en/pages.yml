@@ -24,7 +24,8 @@ nameEntry:
     insetText2: "Check your banking app, online bank account or bank statement for the full registered name."
   LOW_CONFIDENCE:
     title: "Enter your name as it appears on your HMRC record"
-    subtext: "It should match how your name is shown on documents such as your payslip. P60 or benefits letters."
+    subtext: "It should match how your name is shown on documents such as your payslip, P60 or benefits letters."
+    validation: "You cannot change your name and date of birth once you continue to the next page."
 
 
 checkDetails:
