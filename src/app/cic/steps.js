@@ -56,7 +56,6 @@ module.exports = {
     controller: nameEntry,
     next: "enter-date-birth-hmrc-check",
   },
-  // ------------------------------------------------//
   "/enter-date-birth": {
     editable: true,
     editBackStep: "confirm-details",
@@ -78,7 +77,6 @@ module.exports = {
     controller: dobEntry,
     next: "confirm-details-hmrc-check",
   },
-  // ----------------------------------------------//
   "/confirm-details": {
     controller: checkDetails,
     next: "done",
@@ -91,7 +89,6 @@ module.exports = {
     controller: checkDetails,
     next: "done",
   },
-  // ----------------------------------------------//
   "/done": {
     skip: true,
     noPost: true,
