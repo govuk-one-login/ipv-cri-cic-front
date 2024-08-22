@@ -1,6 +1,6 @@
 {% extends "base-form.njk" %}
 {# the content for this page is controlled by locales/en/default.yml #}
-{% set hmpoPageKey = "checkDetails.NO_PHOTO_ID" %}
+{% set hmpoPageKey = "checkDetails.LOW_CONFIDENCE" %}
 {% set gtmJourney = "cic - checkYourDetails" %}
 
 {% from "govuk/components/header/macro.njk" import govukHeader %}
@@ -26,7 +26,7 @@
           actions: {
             items: [
               {
-                href: "/enter-name-no-photo-id/edit?edit=true",
+                href: "/enter-name-hmrc-check/edit?edit=true",
                 text: translate("checkDetails.changeLink"),
                 visuallyHiddenText: translate("checkDetails.name")
               }
@@ -43,7 +43,7 @@
           actions: {
             items: [
               {
-                href: "/enter-date-birth-no-photo-id/edit?edit=true",
+                href: "/enter-date-birth-hmrc-check/edit?edit=true",
                 text: translate("checkDetails.changeLink"),
                 visuallyHiddenText: translate("checkDetails.dateOfBirth")
               }
@@ -54,14 +54,14 @@
     }) }}
 
       {{ govukWarningText({
-        text: translate("checkDetails.validation.noPhotoId"),
+        text: translate("nameEntry.LOW_CONFIDENCE.validation"),
         iconFallbackText: "Warning"
       }) }}
 
       {% call hmpoForm(ctx) %}
-        {{ hmpoSubmit(ctx, {classes: "govuk-!-margin-top-6", attributes: {"data-testid": "confirm-details-continue-btn","data-nav":true,"data-link":"/oauth2/callback"}, text: translate("checkDetails.noPidButtonText")}) }}
+        {{ hmpoSubmit(ctx, {classes: "govuk-!-margin-top-6", attributes: {"data-testid": "confirm-details-continue-btn","data-nav":true,"data-link":"/oauth2/callback"}, text: translate("checkDetails.lowConfidenceText")}) }}
       {% endcall %}
-      </div>
+    </div>
   </div>
 
 
