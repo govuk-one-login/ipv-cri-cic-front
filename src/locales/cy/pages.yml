@@ -38,6 +38,7 @@ checkDetails:
   changeLink: "Newid"
   f2fButtonText: "Rwy'n cadarnhau bod fy manylion yn gywir"
   noPidButtonText: "Cadarnhau a pharhau"
+  lowConfidenceText: "Cadarnhau a pharhau"
 
 dateOfBirth:
   title: "Rhowch eich dyddiad geni"

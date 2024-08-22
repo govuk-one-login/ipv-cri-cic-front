@@ -1,7 +1,7 @@
 {% extends "base-form.njk" %}
 {# the content for this page is controlled by locales/en/default.yml #}
-{% set gtmJourney = "cic - checkYourDetails" %}
 {% set hmpoPageKey = "checkDetails.LOW_CONFIDENCE" %}
+{% set gtmJourney = "cic - checkYourDetails" %}
 
 {% from "govuk/components/header/macro.njk" import govukHeader %}
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
@@ -59,7 +59,7 @@
       }) }}
 
       {% call hmpoForm(ctx) %}
-        {{ hmpoSubmit(ctx, {classes: "govuk-!-margin-top-6", attributes: {"data-testid": "confirm-details-continue-btn","data-nav":true,"data-link":"/oauth2/callback"}, text: translate("checkDetails.noPidButtonText")}) }}
+        {{ hmpoSubmit(ctx, {classes: "govuk-!-margin-top-6", attributes: {"data-testid": "confirm-details-continue-btn","data-nav":true,"data-link":"/oauth2/callback"}, text: translate("checkDetails.lowConfidenceText")}) }}
       {% endcall %}
     </div>
   </div>

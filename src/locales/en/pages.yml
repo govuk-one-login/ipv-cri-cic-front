@@ -35,6 +35,7 @@ checkDetails:
   changeLink: "Change"
   f2fButtonText: "I confirm my details are correct"
   noPidButtonText: "Confirm and continue"
+  lowConfidenceText: "Confirm and continue"
 
 dateOfBirth:
   title: "Enter your date of birth"
