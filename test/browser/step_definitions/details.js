@@ -31,13 +31,16 @@ Then("they should be redirected to the F2F nameEntry", async function () {
   );
 });
 
-Then("they should be redirected to the Low Confidence nameEntry", async function () {
-  const nameEntryPage = new NameEntryPage(await this.page);
-  expect(await nameEntryPage.isCurrentPageLowConfidence()).to.be.true;
-  expect(await nameEntryPage.checkTitle()).to.contain(
-    "Enter your name as it appears on your HMRC record",
-  );
-});
+Then(
+  "they should be redirected to the Low Confidence nameEntry",
+  async function () {
+    const nameEntryPage = new NameEntryPage(await this.page);
+    expect(await nameEntryPage.isCurrentPageLowConfidence()).to.be.true;
+    expect(await nameEntryPage.checkTitle()).to.contain(
+      "Enter your name as it appears on your HMRC record",
+    );
+  },
+);
 
 Then("they should be redirected to the BAV nameEntry", async function () {
   const nameEntryPage = new NameEntryPage(await this.page);
