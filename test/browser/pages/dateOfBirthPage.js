@@ -6,6 +6,7 @@ module.exports = class PlaywrightDevPage {
     this.page = page;
     this.path = "/enter-date-birth";
     this.pathNoPhotoId = "/enter-date-birth-no-photo-id";
+    this.pathNoLowConfidence = "/enter-date-birth-hmrc-check";
   }
 
   async isCurrentPage() {
@@ -16,6 +17,11 @@ module.exports = class PlaywrightDevPage {
   async isCurrentPageNoPhotoID() {
     const { pathname } = new URL(this.page.url());
     return pathname === this.pathNoPhotoId;
+  }
+
+  async isCurrentPageLowConfidence() {
+    const { pathname } = new URL(this.page.url());
+    return pathname === this.pathNoLowConfidence;
   }
 
   async continue() {

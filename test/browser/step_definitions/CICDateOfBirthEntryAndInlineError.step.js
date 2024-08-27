@@ -33,6 +33,15 @@ Then(
   },
 );
 
+Then(
+  /^they are routed to the Low Confidence Check My Answers Screen$/,
+  async function () {
+    const cdPage = new CheckDetailsPage(await this.page);
+
+    expect(await cdPage.isCurrentPageLowConfidence()).to.be.true;
+  },
+);
+
 Given(
   /^the user clicks the continue button only on the DoBEntryPage$/,
   async function () {
