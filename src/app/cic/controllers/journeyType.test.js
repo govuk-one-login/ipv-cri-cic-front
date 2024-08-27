@@ -35,7 +35,7 @@ describe("JourneyTypeController", () => {
   describe("saveValues", () => {
     it("should fetch the journey type from the session config endpoint", async () => {
       req.axios.get = sinon.fake.resolves({
-        data: { journey_type: "FACE_TO_FACE" },
+        data: { journey_type: "f2f_input" },
       });
 
       await journeyTypeController.saveValues(req, res, next);
@@ -44,7 +44,7 @@ describe("JourneyTypeController", () => {
         headers: { "x-govuk-signin-session-id": req.session.tokenId },
       });
       const journeyType = req.sessionModel.get("journeyType");
-      expect(journeyType).to.equal("FACE_TO_FACE");
+      expect(journeyType).to.equal("f2f_input");
     });
 
     it("should handle error if call to session config endpoint fails", async () => {

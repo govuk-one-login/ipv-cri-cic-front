@@ -1,6 +1,6 @@
 {% extends "base-form.njk" %}
 {# the content for this page is controlled by locales/en/default.yml #}
-{% set hmpoPageKey = "checkDetails.LOW_CONFIDENCE" %}
+{% set hmpoPageKey = "checkDetails.hmrc_check" %}
 {% set gtmJourney = "cic - checkYourDetails" %}
 
 {% from "govuk/components/header/macro.njk" import govukHeader %}
@@ -54,7 +54,7 @@
     }) }}
 
       {{ govukWarningText({
-        text: translate("nameEntry.LOW_CONFIDENCE.validation"),
+        text: translate("nameEntry.hmrc_check.validation"),
         iconFallbackText: "Warning"
       }) }}
 

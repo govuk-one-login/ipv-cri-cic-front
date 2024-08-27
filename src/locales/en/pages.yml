@@ -15,14 +15,14 @@ nameEntry:
   contactSupport:
     text: "contact the GOV.UK One Login team (opens in new tab)."
     link: https://home.account.gov.uk/contact-gov-uk-one-login?fromURL=https://www.review-c.account.gov.uk/enter-name" target="_blank" class="govuk-link" rel="noopener" target="_blank
-  FACE_TO_FACE:
+  f2f_input:
     title: "Enter your name exactly as it appears on your photo ID"
-  NO_PHOTO_ID:
+  bank_account:
     title: "Enter your name as it appears on your bank or building society account"
     introText: "This needs to be the exact name registered to the account. If you're using joint account details, you do not need to enter the other person's name."
     insetText1: "The name on your bank card might only use your initials."
     insetText2: "Check your banking app, online bank account or bank statement for the full registered name."
-  LOW_CONFIDENCE:
+  hmrc_check:
     title: "Enter your name as it appears on your HMRC record"
     subtext: "It should match how your name is shown on documents such as your payslip, P60 or benefits letters."
     validation: "You cannot change your name and date of birth once you continue to the next page."

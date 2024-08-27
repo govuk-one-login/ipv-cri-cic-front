@@ -2,7 +2,7 @@
 {# the content for this page is controlled by locales/en/default.yml #}
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 {% set gtmJourney = "cic - nameEntry" %}
-{% set hmpoPageKey = "nameEntry.LOW_CONFIDENCE" %}
+{% set hmpoPageKey = "nameEntry.hmrc_check" %}
 
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 {% from "govuk/components/header/macro.njk" import govukHeader %}
@@ -35,7 +35,7 @@
     </h1>
 
     <div id="lowConfidenceSubtext">
-      <p>{{ translate("nameEntry.LOW_CONFIDENCE.subtext") }}</p>
+      <p>{{ translate("nameEntry.hmrc_check.subtext") }}</p>
     </div>
 
 
