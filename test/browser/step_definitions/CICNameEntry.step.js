@@ -71,6 +71,15 @@ Then(
   },
 );
 
+Then(
+  /^the user is routed to the next screen in the journey Low Confidence DOB Entry$/,
+  async function () {
+    const dobPage = new DateOfBirthPage(await this.page);
+
+    expect(await dobPage.isCurrentPageLowConfidence()).to.be.true;
+  },
+);
+
 Given(/^only one mandatory name field has been entered$/, async function () {
   const nameEntryPage = new NameEntryPage(await this.page);
 
