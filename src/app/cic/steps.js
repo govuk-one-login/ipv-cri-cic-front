@@ -20,7 +20,7 @@ module.exports = {
     next: [
       {
         field: "journeyType",
-        value: "f2f_input",
+        value: "f2f",
         next: "enter-name",
       },
       {
