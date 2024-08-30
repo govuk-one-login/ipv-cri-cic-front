@@ -18,7 +18,7 @@ Scenario: Claimed Identity Credential Issuer - E2E Happy Path and DB Validation 
     When the user clicks the Check My Answers Submit button
 
     Given I have retrieved the sessionTable data for my CIC session
-    Then session details are correctly stored in DB for a "FACE_TO_FACE" journey
+    Then session details are correctly stored in DB for a "f2f" journey
     Then the Verifiable Credential is correctly returned by the userInfo endpoint
     When I get all TxMA events from Test Harness
     Then the "CIC_CRI_START" event matches the "CIC_CRI_START_SCHEMA" Schema
@@ -42,7 +42,7 @@ Scenario: Claimed Identity Credential Issuer - E2E Happy Path and DB Validation 
     When the user clicks the Check My Answers Submit button
 
     Given I have retrieved the sessionTable data for my CIC session
-    Then session details are correctly stored in DB for a "NO_PHOTO_ID" journey
+    Then session details are correctly stored in DB for a "bank_account" journey
     Then the Verifiable Credential is correctly returned by the userInfo endpoint
     When I get all TxMA events from Test Harness
     Then the "CIC_CRI_START" event matches the "CIC_CRI_START_BANK_ACCOUNT_SCHEMA" Schema
