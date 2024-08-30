@@ -20,17 +20,17 @@ module.exports = {
     next: [
       {
         field: "journeyType",
-        value: "FACE_TO_FACE",
+        value: "f2f",
         next: "enter-name",
       },
       {
         field: "journeyType",
-        value: "NO_PHOTO_ID",
+        value: "bank_account",
         next: "enter-name-no-photo-id",
       },
       {
         field: "journeyType",
-        value: "LOW_CONFIDENCE",
+        value: "hmrc_check",
         next: "enter-name-hmrc-check",
       },
     ],
