@@ -40,23 +40,28 @@
         "component_id": {
             "type": "string"
         },
-        "restricted": {
+        "extensions": {
             "type": "object",
             "properties": {
-                "device_information": {
-                    "type": "object",
-                    "properties": {
-                        "encoded": {
-                            "type": "string"
+                "evidence": {
+                    "type": "array",
+                    "items": [
+                        {
+                            "type": "object",
+                            "properties": {
+                                "context": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "context"
+                            ]
                         }
-                    },
-                    "required": [
-                        "encoded"
                     ]
                 }
             },
             "required": [
-                "device_information"
+                "evidence"
             ]
         }
     },
@@ -65,7 +70,8 @@
         "user",
         "timestamp",
         "event_timestamp_ms",
-        "component_id"
+        "component_id",
+        "extensions"
     ],
     "additionalProperties": false
 }

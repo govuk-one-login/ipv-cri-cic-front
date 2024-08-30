@@ -17,6 +17,14 @@ Given(
   },
 );
 
+Given(
+  /^the user has completed the previous CIC Low Confidence screens$/,
+  async function () {
+    const cpdPage = new CheckDetailsPage(await this.page);
+    expect(await cpdPage.isCurrentPageLowConfidence()).to.be.true;
+  },
+);
+
 When(
   /^the user clicks the Check My Answers Submit button$/,
   { timeout: 2 * 50000 },
