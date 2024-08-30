@@ -44,38 +44,24 @@
             "type": "object",
             "properties": {
                 "evidence": {
-                    "type": "object",
-                    "properties": {
-                        "context": {
-                            "type": "string"
+                    "type": "array",
+                    "items": [
+                        {
+                            "type": "object",
+                            "properties": {
+                                "context": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "context"
+                            ]
                         }
-                    },
-                    "required": [
-                        "context"
                     ]
                 }
             },
             "required": [
                 "evidence"
-            ]
-        },
-        "restricted": {
-            "type": "object",
-            "properties": {
-                "device_information": {
-                    "type": "object",
-                    "properties": {
-                        "encoded": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "encoded"
-                    ]
-                }
-            },
-            "required": [
-                "device_information"
             ]
         }
     },
