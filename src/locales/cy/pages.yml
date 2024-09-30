@@ -19,14 +19,14 @@ nameEntry:
   contactSupport:
     text: "gysylltu â'r tîm GOV.UK One Login (agor mewn tab newydd)."
     link: https://home.account.gov.uk/contact-gov-uk-one-login?fromURL=https://www.review-c.account.gov.uk/enter-name" target="_blank" class="govuk-link" rel="noopener" target="_blank
-  FACE_TO_FACE:
+  f2f:
     title: "Rhowch eich enw yn union fel y mae'n ymddangos ar eich ID gyda llun"
-  NO_PHOTO_ID:
+  bank_account:
     title: "Rhowch eich enw fel y mae'n ymddangos ar eich cyfrif banc neu gymdeithas adeiladu"
     introText: "Mae angen i hyn fod yr union enw sydd wedi'i gofrestru i'r cyfrif. Os ydych yn defnyddio manylion cyfrif ar y cyd, nid oes angen i chi nodi enw'r person arall."
     insetText1: "Efallai y bydd yr enw ar eich cerdyn banc ond yn defnyddio llythrennau cyntaf eich enw."
     insetText2: "Gwiriwch eich ap bancio, cyfrif banc ar-lein neu gyfriflen banc ar gyfer yr enw cofrestredig llawn."
-  LOW_CONFIDENCE:
+  hmrc_check:
     title: "Rhowch eich enw fel y mae'n ymddangos ar eich cofnod CThEF"
     subtext: "Dylai gyfateb ir ffordd y dangosir eich enw ar ddogfennau fel eich slip cyflog, P60 neu lythyrau budd-daliadau."
     validation: "Ni allwch newid eich enw a'ch dyddiad geni ar ôl i chi barhau i'r dudalen nesaf."
