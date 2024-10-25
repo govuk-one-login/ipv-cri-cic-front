@@ -1304,7 +1304,7 @@ Resources:
 
   WarningAlarmDashboard:
     Type: AWS::CloudWatch::Dashboard
-    Condition: "DeployAlarms"
+    Condition: IsNotDevelopment
     Properties:
       DashboardName: !Sub '${AWS::StackName}-Warning-Alarm-Overview'
       DashboardBody:
