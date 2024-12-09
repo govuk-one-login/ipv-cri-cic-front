@@ -64,7 +64,7 @@ Note the following parameters can be used to specify whether or not to deploy th
 In order to support consistent use of headers for API requests, [middleware](./src/lib/axios) is applied to add an instance of
 [axios](https://axios-http.com/) on each request onto `req.axios`. This is then reused in any code that uses the API.
 
-# Browser tests 
+# Browser tests
 
 Browser based tests can be run against a deployed API stack using the CIC-IPV Stub. To run the tests make sure you have urls pointing to the relevant envrionment filled out in your .env file and run `npm run test:browser`
 

@@ -5,12 +5,24 @@ module.exports = class PlaywrightDevPage {
   constructor(page) {
     this.page = page;
     this.path = "/enter-name";
+    this.pathNoPhotoId = "/enter-name-no-photo-id";
+    this.pathLowConfidence = "/enter-name-hmrc-check";
     this.firstName;
   }
 
   async isCurrentPage() {
     const { pathname } = new URL(this.page.url());
     return pathname === this.path;
+  }
+
+  async isCurrentPageLowConfidence() {
+    const { pathname } = new URL(this.page.url());
+    return pathname === this.pathLowConfidence;
+  }
+
+  async isCurrentPageNoPhotoID() {
+    const { pathname } = new URL(this.page.url());
+    return pathname === this.pathNoPhotoId;
   }
 
   async continue() {

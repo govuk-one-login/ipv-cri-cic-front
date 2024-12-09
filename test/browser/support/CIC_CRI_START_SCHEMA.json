@@ -40,6 +40,30 @@
         "component_id": {
             "type": "string"
         },
+        "extensions": {
+            "type": "object",
+            "properties": {
+                "evidence": {
+                    "type": "array",
+                    "items": [
+                        {
+                            "type": "object",
+                            "properties": {
+                                "context": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "context"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "evidence"
+            ]
+        },
         "restricted": {
             "type": "object",
             "properties": {
@@ -65,7 +89,9 @@
         "user",
         "timestamp",
         "event_timestamp_ms",
-        "component_id"
+        "component_id",
+        "extensions",
+        "restricted"
     ],
     "additionalProperties": false
 }

@@ -1,0 +1,30 @@
+{
+    "shared_claims": {
+        "name": [
+            {
+                "nameParts": [
+                    {
+                        "value": "API",
+                        "type": "GivenName"
+                    },
+                    {
+                        "value": "Automation",
+                        "type": "GivenName"
+                    },
+                    {
+                        "value": "Test",
+                        "type": "FamilyName"
+                    }
+                ]
+            }
+        ],
+        "birthDate": [
+            {
+                "value": "1960-02-02"
+            }
+        ],
+        "email": "zac.mohamoud@digital.cabinet-office.gov.uk"
+    },
+
+    "context": "hmrc_check"
+}
