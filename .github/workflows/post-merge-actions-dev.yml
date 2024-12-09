@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-      - IPS-228-arm-spot
 
 defaults:
   run:
@@ -56,3 +55,4 @@ jobs:
           dockerfile: dev.Dockerfile
           role-to-assume-arn: ${{ secrets.DEV_ROLE_TO_ASSUME }}
           ecr-repo-name: ${{ secrets.DEV_ECR_REPOSITORY }}
+
