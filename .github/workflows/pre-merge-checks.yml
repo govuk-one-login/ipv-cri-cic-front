@@ -27,15 +27,15 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
       - run: yarn install
       - run: yarn lint
       - run: yarn build
       - run: yarn test:coverage
       - run: npm run test:browser:ci
-        env: 
+        env:
           IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
-          CUSTOM_FE_URL: http:/localhost:5020 
+          CUSTOM_FE_URL: http:/localhost:5020
           LANGUAGE_TOGGLE_DISABLED: false
       - name: Archive browser tests results
         uses: actions/upload-artifact@v4
