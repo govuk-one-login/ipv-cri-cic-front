@@ -49,7 +49,7 @@ Then("they should be redirected to the BAV nameEntry", async function () {
     "Enter your name as it appears on your bank or building society account",
   );
   expect(await nameEntryPage.checkSubTitleForBAV()).to.contain(
-    "Check your banking app, online bank account or bank statement for the full registered name." &&
+    "Check your banking app, online bank account or bank statement for the full registered name." && // eslint-disable-line
       "The name on your bank card might only use your initials.",
   );
 });
