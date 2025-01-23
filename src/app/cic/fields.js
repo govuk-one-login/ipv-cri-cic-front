@@ -5,6 +5,7 @@ module.exports = {
     validate: [
       "required",
       { type: "minlength", arguments: 2 },
+      { type: "maxlength", arguments: 40 },
       {
         type: "regexNumbersOrSpecialCharacters",
         fn: (value) => value.match(/^[A-Za-z .'-]*$/),
@@ -17,6 +18,7 @@ module.exports = {
     validate: [
       "required",
       { type: "minlength", arguments: 2 },
+      { type: "maxlength", arguments: 40 },
       {
         type: "regexNumbersOrSpecialCharacters",
         fn: (value) => value.match(/^[A-Za-z .'-]*$/),
@@ -28,6 +30,7 @@ module.exports = {
     journeyKey: "middleName",
     validate: [
       { type: "minlength", arguments: 2 },
+      { type: "maxlength", arguments: 40 },
       {
         type: "regexNumbersOrSpecialCharacters",
         fn: (value) => value.match(/^[A-Za-z .'-]*$/),
@@ -40,6 +43,7 @@ module.exports = {
     validate: [
       "required",
       "date",
+      { type: "maxlength", arguments: 18 },
       { type: "before", arguments: [] },
       { type: "after", arguments: ["1904-02-12"] },
     ],
