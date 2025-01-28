@@ -4,7 +4,7 @@
   "description": "User interface for the Claimed Identity Collector (CIC) part of the Identity Proofing and Verification (IPV) system within the GDS digital identity platform, GOV.UK Sign In.",
   "main": "src/server.js",
   "engines": {
-    "node": "18.*",
+    "node": "20.*",
     "yarn": "1.22.*"
   },
   "scripts": {
@@ -47,15 +47,15 @@
     "url": "https://github.com/alphagov/di-cic-front/issues"
   },
   "homepage": "https://github.com/alphagov/di-cic-front#readme",
-  "packageManager": "yarn@1.22.21",
+  "packageManager": "yarn@1.22.22",
   "devDependencies": {
     "@cucumber/cucumber": "9.2.0",
     "aws4-axios": "^3.2.24",
     "chai": "4.4.1",
     "chai-as-promised": "7.1.1",
-    "eslint": "8.54.0",
-    "eslint-config-prettier": "8.8.0",
-    "eslint-plugin-prettier": "4.2.1",
+    "eslint": "9.17.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-prettier": "5.2.1",
     "husky": "8.0.3",
     "mocha": "10.2.0",
     "multiple-cucumber-html-reporter": "^3.4.0",
