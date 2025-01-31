@@ -16,10 +16,16 @@ jobs:
         uses: aws-actions/sustainability-scanner@v1
         id: scanner
         with:
-          stack_name: "*template.yaml"
+          file: "template.yaml"
+          
+      - name: wafv2 cloudformation Scan
+        uses: aws-actions/sustainability-scanner@v1
+        id: scannerWaf
+        with:
+          file: "wafv2_template.yaml"
 
 
-      - name: Comment on pull request
+      - name: Comment on pull request for front template
         uses: actions/github-script@v7
         with:
           script: |
@@ -28,9 +34,9 @@ jobs:
             const number_failed_rules = result.failed_rules.length
 
             if (score === 0) {
-              body = `✅ Your current sustainability score is **${score}**. Sustainability scanner did not find any improvements to apply to your template.`
+              body = `✅ Your current sustainability score is **${score}**. Sustainability scanner did not find any improvements to apply to fronend template.`
             } else {
-              body = `❌ Your current sustainability score is **${score}**. Sustainability scanner suggests **${number_failed_rules}** improvements to apply to your template.\nCheck out the details of the sustainability scanner here: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}`
+              body = `❌ Your current sustainability score is **${score}**. Sustainability scanner suggests **${number_failed_rules}** improvements to apply to frontend template.\nCheck out the details of the sustainability scanner here: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}`
             }
             
             github.rest.issues.createComment({
@@ -39,3 +45,26 @@ jobs:
               repo: context.repo.repo,
               body: body
             })
+
+      - name: Comment on pull request for wafv2 template
+        uses: actions/github-script@v7
+        with:
+          script: |
+            result=${{ (steps.scannerWaf.outputs.results) }}
+            const score = result.sustainability_score
+            const number_failed_rules = result.failed_rules.length
+
+            if (score === 0) {
+              body = `✅ Your current sustainability score is **${score}**. Sustainability scanner did not find any improvements to apply to wafv2 template.`
+            } else {
+              body = `❌ Your current sustainability score is **${score}**. Sustainability scanner suggests **${number_failed_rules}** improvements to apply to wafv2 template.\nCheck out the details of the sustainability scanner here: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}`
+            }
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            })
+
+            
