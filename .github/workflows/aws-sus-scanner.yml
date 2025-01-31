@@ -16,7 +16,7 @@ jobs:
         uses: aws-actions/sustainability-scanner@v1
         id: scanner
         with:
-          file: "*template.yaml"
+          stack_name: "*template.yaml"
 
 
       - name: Comment on pull request
