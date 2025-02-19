@@ -50,6 +50,6 @@ jobs:
           working-directory: .
           docker-build-path: .
           template-file: template.yaml
-          dockerfile: Dockerfile.dev
+          dockerfile: dev.Dockerfile
           role-to-assume-arn: ${{ secrets.DEV_ROLE_TO_ASSUME }}
           ecr-repo-name: ${{ secrets.DEV_ECR_REPOSITORY }}
