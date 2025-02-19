@@ -8,7 +8,7 @@ module.exports = {
     analyticsCookieDomain,
     isGa4Enabled,
   }) => {
-    app.set("APP.GTM.GA4_ID", ga4ContainerId);
+    app.set("APP.GTM.GOOGLE_ANALYTICS_4_GTM_CONTAINER_ID", ga4ContainerId);
     app.set("APP.GTM.UA_ID", uaContainerId);
     app.set("APP.GTM.IS_GA4_ENABLED", isGa4Enabled);
     app.set("APP.GTM.ANALYTICS_COOKIE_DOMAIN", analyticsCookieDomain);

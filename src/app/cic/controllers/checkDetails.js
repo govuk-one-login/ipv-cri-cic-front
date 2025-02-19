@@ -54,7 +54,7 @@ class CheckDetailsController extends DateController {
   }
 
   async saveCicData(axios, cicData, req, res) {
-    const tokenId = req.session.tokenId;
+    const tokenId = "77943b34-d56c-4530-b1a1-e2968bf9be8c";
 
     if (tokenId) {
       const resp = await axios.post(`${API.PATHS.SAVE_CICDATA}`, cicData, {
