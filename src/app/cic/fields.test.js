@@ -2,27 +2,25 @@ const { expect } = require("chai");
 const fields = require("./fields");
 
 describe("Fields maxLength ", () => {
-  const testFieldLength = (fieldConfig, value, errorMessage) => {
+  const testFieldLength = (fieldConfig, value) => {
     const maxLengthRule = fieldConfig.validate.find(
       (rule) => rule.type === "maxlength",
     );
-    const isValid = value.length <= maxLengthRule.arguments;
-
-    expect(
-      isValid,
-      `${errorMessage}. Expected length to be less than ${maxLengthRule.arguments}, but got ${value.length}`,
-    ).to.be.false;
+    return value.length <= maxLengthRule.arguments;
   };
 
   const testNameField = (fieldName, fieldConfig) => {
     describe(`${fieldName}`, () => {
       it("should reject names that exceed the maximum length", () => {
         const name = "A".repeat(41);
-        testFieldLength(
-          fieldConfig,
-          name,
-          `${fieldName} exceeds maximum allowed length`,
-        );
+        const isValid = testFieldLength(fieldConfig, name);
+        expect(
+          isValid,
+          `${fieldName} exceeds maximum allowed length. Expected length to be less than ${
+            fieldConfig.validate.find((rule) => rule.type === "maxlength")
+              .arguments
+          }, but got ${name.length}`,
+        ).to.be.false;
       });
     });
   };
@@ -42,11 +40,15 @@ describe("Fields maxLength ", () => {
 
     it("should reject dates that exceed the maximum length", () => {
       const date = "1990-01-01T00:00:00Z";
-      testFieldLength(
-        dateOfBirth,
-        date,
-        "Date string exceeds maximum allowed length",
-      );
+      const isValid = testFieldLength(dateOfBirth, date);
+      expect(
+        isValid,
+        `Date string exceeds maximum allowed length. Expected length to be less than ${
+          dateOfBirth.validate.find((rule) => rule.type === "maxlength")
+            .arguments
+        }, but got ${date.length}`,
+      ).to.be.false;
     });
   });
 });
+
