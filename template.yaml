@@ -678,7 +678,7 @@ Resources:
             Statement:
               - Effect: Allow
                 Action:
-                  - "secretsmanager:GetSecretValue"
+                  - "secretsmanager:GetSecretValue"  # pragma: allowlist secret
                 Resource:
                   - "arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables*" # pragma: allowlist secret
                   - "arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceProductionVariables*" # pragma: allowlist secret
