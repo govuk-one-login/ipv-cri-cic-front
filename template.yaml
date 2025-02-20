@@ -138,7 +138,7 @@ Mappings:
       APIBASEURL: "https://api-cic-cri-api.review-c.dev.account.gov.uk"
       DNSSUFFIX: "review-c.dev.account.gov.uk"
       CLOUDFRONTDOMAIN: "d2mffc7h0tnarj.cloudfront.net"
-      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
+      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables # pragma: allowlist secret
       SESSIONTABLENAME: "cic-front-sessions-dev"
       GTMIDUA: "GTM-TK92W68"
       GTMIDGA4: "GTM-KD86CMZ"
@@ -156,7 +156,7 @@ Mappings:
       APIBASEURL: "https://api.review-c.build.account.gov.uk"
       DNSSUFFIX: "review-c.build.account.gov.uk"
       CLOUDFRONTDOMAIN: "d3h3ilw9ijq9hg.cloudfront.net"
-      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
+      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables # pragma: allowlist secret
       SESSIONTABLENAME: "cic-front-sessions-build"
       GTMIDUA: "GTM-TK92W68"
       GTMIDGA4: "GTM-KD86CMZ"
@@ -174,7 +174,7 @@ Mappings:
       APIBASEURL: "https://api.review-c.staging.account.gov.uk"
       DNSSUFFIX: "review-c.staging.account.gov.uk"
       CLOUDFRONTDOMAIN: "d13b32us3mnyl9.cloudfront.net"
-      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
+      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables # pragma: allowlist secret
       SESSIONTABLENAME: "cic-front-sessions-staging"
       GTMIDUA: "GTM-TK92W68"
       GTMIDGA4: "GTM-KD86CMZ"
@@ -192,7 +192,7 @@ Mappings:
       APIBASEURL: "https://api.review-c.integration.account.gov.uk"
       DNSSUFFIX: "review-c.integration.account.gov.uk"
       CLOUDFRONTDOMAIN: "d1jx9t5yl02x1a.cloudfront.net"
-      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
+      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables # pragma: allowlist secret
       SESSIONTABLENAME: "cic-front-sessions-integration"
       GTMIDUA: "GTM-TK92W68"
       GTMIDGA4: "GTM-KD86CMZ"
@@ -210,7 +210,7 @@ Mappings:
       APIBASEURL: "https://api.review-c.account.gov.uk"
       DNSSUFFIX: "review-c.account.gov.uk"
       CLOUDFRONTDOMAIN: "d2ekguv8wcjy54.cloudfront.net"
-      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceProductionVariables
+      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceProductionVariables # pragma: allowlist secret
       SESSIONTABLENAME: "cic-front-sessions-production"
       GTMIDUA: "GTM-TT5HDKV"
       GTMIDGA4: "GTM-K4PBJH3"
@@ -680,13 +680,13 @@ Resources:
                 Action:
                   - "secretsmanager:GetSecretValue"
                 Resource:
-                  - "arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables*"
-                  - "arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceProductionVariables*"
+                  - "arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables*" # pragma: allowlist secret
+                  - "arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceProductionVariables*" # pragma: allowlist secret
               - Effect: Allow
                 Action:
-                  - "secretsmanager:ListSecrets"
+                  - "secretsmanager:ListSecrets" # pragma: allowlist secret
                 Resource:
-                  - "arn:aws:secretsmanager:eu-west-2:216552277552:secret:*"
+                  - "arn:aws:secretsmanager:eu-west-2:216552277552:secret:*" # pragma: allowlist secret
               - Effect: Allow
                 Action:
                   - "kms:Decrypt"
@@ -731,15 +731,15 @@ Resources:
             Statement:
               - Effect: Allow
                 Action:
-                  - "secretsmanager:GetSecretValue"
+                  - "secretsmanager:GetSecretValue" # pragma: allowlist secret
                 Resource:
-                  - "arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables*"
-                  - "arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceProductionVariables*"
+                  - "arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables*" # pragma: allowlist secret
+                  - "arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceProductionVariables*" # pragma: allowlist secret
               - Effect: Allow
                 Action:
-                  - "secretsmanager:ListSecrets"
+                  - "secretsmanager:ListSecrets" # pragma: allowlist secret
                 Resource:
-                  - "arn:aws:secretsmanager:eu-west-2:216552277552:secret:*"
+                  - "arn:aws:secretsmanager:eu-west-2:216552277552:secret:*" # pragma: allowlist secret
               - Effect: Allow
                 Action:
                   - "kms:Decrypt"
