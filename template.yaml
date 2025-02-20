@@ -555,7 +555,7 @@ Resources:
     Properties:
       ContainerDefinitions:
         - Essential: true
-          Image: 060113405249.dkr.ecr.eu-west-2.amazonaws.com/cic-cri-front-ecr-containerrepository-ymfhj103wnlw:2172
+          Image: CONTAINER-IMAGE-PLACEHOLDER
           Name: app
           Environment:
             - Name: API_BASE_URL
