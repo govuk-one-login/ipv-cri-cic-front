@@ -19,7 +19,7 @@ yarn install
 All the required Environment Variables are inside the .env.sample file. Copy the contents on this file to a .env file in the same location, using the API locations specific for the envrionment you wish to test against.
 
 - `CUSTOM_FE_URL` only needs to be populated if you would like to test against a custom deployed FE stack or if you wish to run browser-test against your local stack in which case set the value to be `http://localhost:5020`
-- `API_BASE_URL` - URL to the cri-driving-licence-back api.
+- `API_BASE_URL` - URL to the ipv-cri-cic-api CRI back-end.
 - `PORT` - Default port to run webserver on. (Default to `5020`)
 - `SESSION_SECRET` - Secret used when configuring the HMPO session.
 - `GOOGLE_ANALYTICS_4_GTM_CONTAINER_ID` - Container ID for GA4 tracking.
