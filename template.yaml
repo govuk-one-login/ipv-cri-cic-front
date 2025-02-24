@@ -148,8 +148,6 @@ Mappings:
       BACKENDURL: "https://api-cic-cri-api.review-c.dev.account.gov.uk"
       BACKENDSESSIONTABLE: "session-cic-cri-ddb"
       LOGLEVEL: "debug"
-      GA4DISABLED: false
-      UADISABLED: false
       LANGUAGETOGGLEDISABLED: false
     build:
       EXTERNALWEBSITEHOST: "https://review-c.build.account.gov.uk"
@@ -166,8 +164,6 @@ Mappings:
       BACKENDURL: "https://api.review-c.build.account.gov.uk"
       BACKENDSESSIONTABLE: "session-cic-cri-ddb"
       LOGLEVEL: "warn"
-      GA4DISABLED: false
-      UADISABLED: false
       LANGUAGETOGGLEDISABLED: false
     staging:
       EXTERNALWEBSITEHOST: "https://review-c.staging.account.gov.uk"
@@ -184,8 +180,6 @@ Mappings:
       BACKENDURL: ""
       BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
-      GA4DISABLED: false
-      UADISABLED: false
       LANGUAGETOGGLEDISABLED: false
     integration:
       EXTERNALWEBSITEHOST: "https://review-c.integration.account.gov.uk"
@@ -202,8 +196,6 @@ Mappings:
       BACKENDURL: ""
       BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
-      GA4DISABLED: false
-      UADISABLED: false
       LANGUAGETOGGLEDISABLED: false
     production:
       EXTERNALWEBSITEHOST: "https://review-c.account.gov.uk"
@@ -220,8 +212,6 @@ Mappings:
       BACKENDURL: ""
       BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
-      GA4DISABLED: false
-      UADISABLED: false
       LANGUAGETOGGLEDISABLED: false
 
 Resources:
@@ -591,10 +581,6 @@ Resources:
                 ]
             - Name: LOG_LEVEL
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, LOGLEVEL ]
-            - Name: GA4_DISABLED
-              Value: !FindInMap [EnvironmentVariables, !Ref Environment, GA4DISABLED ]
-            - Name: UA_DISABLED
-              Value: !FindInMap [EnvironmentVariables, !Ref Environment, UADISABLED ]
             - Name: LANGUAGE_TOGGLE_DISABLED
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, LANGUAGETOGGLEDISABLED ]
           Secrets:

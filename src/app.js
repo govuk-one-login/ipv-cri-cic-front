@@ -37,7 +37,8 @@ const {
   SESSION_TTL,
 } = require("./lib/config");
 
-const { setup } = require("hmpo-app");
+const { setup } =
+  require("@govuk-one-login/di-ipv-cri-common-express").bootstrap;
 
 const loggerConfig = {
   console: true,
@@ -126,8 +127,15 @@ setGTM({
   ga4ContainerId: APP.GTM.GA4_ID,
   uaContainerId: APP.GTM.UA_ID,
   analyticsCookieDomain: APP.GTM.ANALYTICS_COOKIE_DOMAIN,
-  ga4Disabled: APP.GTM.GA4_DISABLED,
-  uaDisabled: APP.GTM.UA_DISABLED,
+  ga4Enabled: APP.GTM.GA4_ENABLED,
+  uaEnabled: APP.GTM.UA_ENABLED,
+  ga4PageViewEnabled: APP.GTM.GA4_PAGE_VIEW_ENABLED,
+  ga4FormResponseEnabled: APP.GTM.GA4_FORM_RESPONSE_ENABLED,
+  ga4FormErrorEnabled: APP.GTM.GA4_FORM_ERROR_ENABLED,
+  ga4FormChangeEnabled: APP.GTM.GA4_FORM_CHANGE_ENABLED,
+  ga4NavigationEnabled: APP.GTM.GA4_NAVIGATION_ENABLED,
+  ga4SelectContentEnabled: APP.GTM.GA4_SELECT_CONTENT_ENABLED,
+  analyticsDataSensitive: APP.GTM.ANALYTICS_DATA_SENSITIVE
 });
 
 // Common express relies on 0/1 strings

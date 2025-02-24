@@ -18,7 +18,22 @@ yarn install
 
 All the required Environment Variables are inside the .env.sample file. Copy the contents on this file to a .env file in the same location, using the API locations specific for the envrionment you wish to test against.
 
-`CUSTOM_FE_URL` only needs to be populated if you would like to test against a custom deployed FE stack or if you wish to run browser-test against your local stack in which case set the value to be `http://localhost:5020`
+- `CUSTOM_FE_URL` only needs to be populated if you would like to test against a custom deployed FE stack or if you wish to run browser-test against your local stack in which case set the value to be `http://localhost:5020`
+- `API_BASE_URL` - URL to the ipv-cri-cic-api CRI back-end.
+- `PORT` - Default port to run webserver on. (Default to `5020`)
+- `SESSION_SECRET` - Secret used when configuring the HMPO session.
+- `GOOGLE_ANALYTICS_4_GTM_CONTAINER_ID` - Container ID for GA4 tracking.
+- `UNIVERSAL_ANALYTICS_GTM_CONTAINER_ID` - Container ID for UA tracking.
+- `GA4_ENABLED` - Feature flag to enable GA4, defaulted to `"true"`
+- `UA_ENABLED` - Feature flag to enable UA, defaulted to `"false"`
+- `ANALYTICS_DATA_SENSITIVE` - Redacts all form response data, defaulted to `"true"`. Only to be set to `"false"` if a journey section contains no PII in none text based form controls
+- `GA4_PAGE_VIEW_ENABLED`- Feature flag to enable GA4 page view tracking, defaulted to `"true"`
+- `GA4_FORM_RESPONSE_ENABLED`- Feature flag to enable GA4 form response tracking, defaulted to `"true"`
+- `GA4_FORM_ERROR_ENABLED`- Feature flag to enable GA4 form error tracking, defaulted to `"true"`
+- `GA4_FORM_CHANGE_ENABLED`- Feature flag to enable GA4 form change tracking, defaulted to `"true"`
+- `GA4_NAVIGATION_ENABLED`- Feature flag to enable GA4 navigation tracking, defaulted to `"true"`
+- `GA4_SELECT_CONTENT_ENABLED`- Feature flag to enable GA4 select content tracking, defaulted to `"true"`
+- `LANGUAGE_TOGGLE_DISABLED` - Feature flag to disable Language Toggle, defaulted to `true`
 
 ## Run front-end locally against deployed back-end
 
