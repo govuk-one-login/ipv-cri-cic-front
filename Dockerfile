@@ -16,7 +16,7 @@ RUN yarn install --production --frozen-lockfile
 FROM node:20.18.1-alpine3.19@sha256:50209a555b1016096a415de2c055bc88dffb31b5afbca0ac237f027a41cbbe6e AS final
 
 RUN ["apk", "--no-cache", "upgrade"]
-RUN ["apk", "add", "--no-cache", "tini"]
+RUN ["apk", "add", "--no-cache", "tini", "curl"]
 
 WORKDIR /app
 
@@ -33,6 +33,10 @@ ENV LD_PRELOAD /opt/dynatrace/oneagent/agent/lib64/liboneagentproc.so
 
 
 ENV PORT 8080
+
+HEALTHCHECK --interval=5s --timeout=2s --retries=10 \
+  CMD curl -f http://localhost:8080/healthcheck || exit 1
+
 EXPOSE $PORT
 
 ENTRYPOINT ["tini", "--"]
