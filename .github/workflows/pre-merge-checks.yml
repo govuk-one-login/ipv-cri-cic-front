@@ -54,7 +54,7 @@ jobs:
       - run: yarn build
       - run: yarn test
       - if: ${{ success() && github.actor != 'dependabot[bot]' }}
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarqube-scan-action@v5.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
