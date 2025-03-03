@@ -55,7 +55,7 @@ Parameters:
     Default: 'https://govukverify.atlassian.net/wiki/spaces/FTFCRI/pages/3623354496/CIC+FE+Metrics+Alerts'
   EnableScalingInDev:
     Type: Number
-    Default: 0
+    Default: 1
     Description: Set to 1 to enable deployment of scaling infra in dev
   IPVStubStackName:
     Type: String
@@ -897,6 +897,105 @@ Resources:
         TargetValue: 50.0
         ScaleInCooldown: 0
         ScaleOutCooldown: 0
+
+  StepScaleOutPolicy:
+    Condition: EnableScaling
+    DependsOn: ECSAutoScalingTarget
+    Type: AWS::ApplicationAutoScaling::ScalingPolicy
+    Properties:
+      PolicyName: StepScalingOutPolicy
+      PolicyType: StepScaling
+      ResourceId: !Join
+        - '/'
+        - - "service"
+          - !Ref CICFrontEcsCluster
+          - !GetAtt CICFrontEcsService.Name
+      ScalableDimension: ecs:service:DesiredCount
+      ServiceNamespace: ecs
+      StepScalingPolicyConfiguration:
+        AdjustmentType: PercentChangeInCapacity
+        Cooldown: 120
+        MinAdjustmentMagnitude: 5
+        StepAdjustments:
+          - MetricIntervalLowerBound: 20
+            MetricIntervalUpperBound: 30
+            ScalingAdjustment: 200
+          - MetricIntervalLowerBound: 30
+            MetricIntervalUpperBound: 35
+            ScalingAdjustment: 300
+          - MetricIntervalLowerBound: 35
+            ScalingAdjustment: 500
+
+  StepScaleInPolicy:
+    Condition: EnableScaling
+    DependsOn: ECSAutoScalingTarget
+    Type: AWS::ApplicationAutoScaling::ScalingPolicy
+    Properties:
+      PolicyName: StepScalingInPolicy
+      PolicyType: StepScaling
+      ResourceId: !Join
+        - '/'
+        - - "service"
+          - !Ref CICFrontEcsCluster
+          - !GetAtt CICFrontEcsService.Name
+      ScalableDimension: ecs:service:DesiredCount
+      ServiceNamespace: ecs
+      StepScalingPolicyConfiguration:
+        AdjustmentType: PercentChangeInCapacity
+        Cooldown: 420
+        StepAdjustments:
+          - MetricIntervalUpperBound: -40
+            ScalingAdjustment: -50
+
+  StepScaleOutAlarm:
+    Condition: EnableScaling
+    DependsOn: ECSAutoScalingTarget
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub "${AWS::StackName}-StepScaleOutAlarm"
+      ActionsEnabled: true
+      AlarmActions:
+        - !Ref StepScaleOutPolicy
+      AlarmDescription: "CICFrontEcsClusterOver60PercentCPU"
+      ComparisonOperator: "GreaterThanThreshold"
+      DatapointsToAlarm: "2"
+      Dimensions:
+        - Name: ClusterName
+          Value: !Ref CICFrontEcsCluster
+        - Name: ServiceName
+          Value: !GetAtt CICFrontEcsService.Name
+      Unit: "Percent"
+      EvaluationPeriods: "2"
+      MetricName: "CPUUtilization"
+      Namespace: "AWS/ECS"
+      Statistic: "Average"
+      Period: "60"
+      Threshold: "60"
+
+  StepScaleInAlarm:
+    Condition: EnableScaling
+    DependsOn: ECSAutoScalingTarget
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub "${AWS::StackName}-StepScaleInAlarm"
+      ActionsEnabled: true
+      AlarmActions:
+        - !Ref StepScaleInPolicy
+      AlarmDescription: "CICFrontEcsClusterUnder60PercentCPU"
+      ComparisonOperator: "LessThanThreshold"
+      DatapointsToAlarm: "5"
+      Dimensions:
+        - Name: ClusterName
+          Value: !Ref CICFrontEcsCluster
+        - Name: ServiceName
+          Value: !GetAtt CICFrontEcsService.Name
+      Unit: "Percent"
+      EvaluationPeriods: "5"
+      MetricName: "CPUUtilization"
+      Namespace: "AWS/ECS"
+      Statistic: "Average"
+      Period: "60"
+      Threshold: "60"
 
   ### Front End API Gateway Custom Domain definition
 
