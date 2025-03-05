@@ -22,6 +22,10 @@ const { getGTM, getLanguageToggle } = commonExpress.lib.locals;
 const addLanguageParam = require("@govuk-one-login/frontend-language-toggle/build/cjs/language-param-setter.cjs");
 
 const {
+  frontendVitalSignsInitFromApp,
+} = require("@govuk-one-login/frontend-vital-signs");
+
+const {
   setI18n,
 } = require("@govuk-one-login/di-ipv-cri-common-express/src/lib/i18next");
 
@@ -93,6 +97,25 @@ const { app, router } = setup({
     cookie: { name: "lng" },
   },
   middlewareSetupFn: (app) => {
+    frontendVitalSignsInitFromApp(app, {
+      interval: 60000,
+      logLevel: "info",
+      metrics: [
+        "requestsPerSecond",
+        "avgResponseTime",
+        "maxConcurrentConnections",
+        "eventLoopDelay",
+        "eventLoopUtilization",
+      ],
+      staticPaths: [
+        /^\/assets\/.*/,
+        "/ga4-assets",
+        "/javascript",
+        "/javascripts",
+        "/images",
+        "/stylesheets",
+      ],
+    });
     app.use(setHeaders);
   },
   dev: true,
