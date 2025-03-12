@@ -994,7 +994,7 @@ Resources:
     Condition: IsNotDevelopment
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FE5XXErrorAlarm"
-      AlarmDescription: !Sub "Trigger the warning alarm for Frontend 4xx Alarm ${SupportManualURL}"
+      AlarmDescription: !Sub "Trigger the warning alarm for Frontend 5XX Alarm ${SupportManualURL}"
       ActionsEnabled: true
       OKActions:
         - !ImportValue platform-alarm-pagerduty-alert-topic
@@ -1030,7 +1030,7 @@ Resources:
           MetricStat:
             Metric:
               Namespace: AWS/ApiGateway
-              MetricName: 5xx
+              MetricName: 5XXError
               Dimensions:
                 - Name: ApiId
                   Value: !Ref ApiGwHttpEndpoint
@@ -1040,6 +1040,57 @@ Resources:
           Label: errorPercentage
           ReturnData: false
           Expression: (error/invocations) * 100
+
+  FE5XXErrorCriticalAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub "${AWS::StackName}-FE5XXErrorCriticalAlarm"
+      AlarmDescription: >
+        Trigger the 5XX cricical alarm if errorThreshold exceeds 80% with 10 or more invocations
+        and a minimum of 2 errors in 5 out of the last 5 minutes
+      ActionsEnabled: true
+      OKActions:
+        - !ImportValue platform-alarm-pagerduty-alert-topic
+        - !ImportValue platform-alarm-topic-critical-alert
+      AlarmActions:
+        - !ImportValue platform-alarm-pagerduty-alert-topic
+        - !ImportValue platform-alarm-topic-critical-alert
+      EvaluationPeriods: 5
+      DatapointsToAlarm: 2
+      Threshold: 80
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+      Metrics:
+        - Id: errorThreshold
+          Label: errorThreshold
+          ReturnData: true
+          Expression: IF(invocations<10,0,errorPercentage)
+        - Id: invocations
+          ReturnData: false
+          MetricStat:
+            Metric:
+              Namespace: AWS/ApiGateway
+              MetricName: Count
+              Dimensions:
+                - Name: ApiId
+                  Value: !Ref ApiGwHttpEndpoint
+            Period: 60
+            Stat: Sum
+        - Id: error
+          ReturnData: false
+          MetricStat:
+            Metric:
+              Namespace: AWS/ApiGateway
+              MetricName: 5XXError
+              Dimensions:
+                - Name: ApiId
+                  Value: !GetAtt ApiGwHttpEndpoint
+            Period: 60
+            Stat: Sum
+        - Id: errorPercentage
+          Label: errorPercentage
+          ReturnData: false
+          Expression: (error/invocations)*100
 
   FE4XXErrorAlarm:
     Type: AWS::CloudWatch::Alarm
