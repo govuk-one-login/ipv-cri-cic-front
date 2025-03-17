@@ -1081,11 +1081,9 @@ Resources:
       AlarmDescription: !Sub "Trigger the warning alarm for Frontend 5xx Alarm ${SupportManualURL}"
       ActionsEnabled: true
       OKActions:
-        - !ImportValue platform-alarm-pagerduty-alert-topic
-        - !ImportValue platform-alarm-topic-critical-alert
+        - !ImportValue platform-alarm-topic-slack-warning-alert
       AlarmActions:
-        - !ImportValue platform-alarm-pagerduty-alert-topic
-        - !ImportValue platform-alarm-topic-critical-alert
+        - !ImportValue platform-alarm-topic-slack-warning-alert
       InsufficientDataActions: []
       Dimensions: []
       EvaluationPeriods: 5
@@ -1127,6 +1125,7 @@ Resources:
   
   FE5XXErrorCriticalAlarm:
     Type: AWS::CloudWatch::Alarm
+    Condition: "DeployAlarms"
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FE5XXErrorCriticalAlarm"
       AlarmDescription: >
@@ -1134,10 +1133,8 @@ Resources:
         and a minimum of 2 errors in 5 out of the last 5 minutes
       ActionsEnabled: true
       OKActions:
-        - !ImportValue platform-alarm-pagerduty-alert-topic
         - !ImportValue platform-alarm-topic-critical-alert
       AlarmActions:
-        - !ImportValue platform-alarm-pagerduty-alert-topic
         - !ImportValue platform-alarm-topic-critical-alert
       EvaluationPeriods: 5
       DatapointsToAlarm: 2
@@ -1168,7 +1165,7 @@ Resources:
               MetricName: 5xx
               Dimensions:
                 - Name: ApiId
-                  Value: !GetAtt ApiGwHttpEndpoint
+                  Value: !Ref ApiGwHttpEndpoint
             Period: 60
             Stat: Sum
         - Id: errorPercentage
