@@ -1125,7 +1125,7 @@ Resources:
   
   FE5XXErrorCriticalAlarm:
     Type: AWS::CloudWatch::Alarm
-    Condition: "DeployAlarms"
+    Condition: IsNotDevelopment
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FE5XXErrorCriticalAlarm"
       AlarmDescription: >
