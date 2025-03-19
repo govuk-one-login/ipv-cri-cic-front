@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 module.exports = {
+  PACKAGE_NAME: "di-ipv-cri-cic-front",
   API: {
     BASE_URL:
       process.env.API_BASE_URL ||
