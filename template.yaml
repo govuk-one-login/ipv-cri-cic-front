@@ -41,14 +41,6 @@ Parameters:
     Description: "The ARN of the permissions boundary to apply when creating IAM roles"
     Type: String
     Default: "none"
-  MaxContainerCount:
-    Description: Maximum number of FE node/express container tasks to allow autoscaling to reach
-    Type: Number
-    Default: 12
-  MinContainerCount:
-    Description: Minimum number of FE node/express container tasks to allow autoscaling to reach
-    Type: Number
-    Default: 3
   SupportManualURL:
     Description: "Link to the CIC support manual"
     Type: String
@@ -475,7 +467,7 @@ Resources:
           DeploymentCircuitBreaker:
             Enable: TRUE
             Rollback: TRUE
-      DesiredCount: !Ref MinContainerCount
+      DesiredCount: !FindInMap [EnvironmentVariables, !Ref Environment, minECSCount]
       EnableECSManagedTags: false
       HealthCheckGracePeriodSeconds: 60
       LaunchType: FARGATE
