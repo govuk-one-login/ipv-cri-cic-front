@@ -124,32 +124,6 @@ Mappings:
       CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
     production:
       CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
-  EnvironmentConfiguration:
-    dev:
-      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
-      minECSCount: 1
-      maxECSCount: 4
-      logLevel: "info"
-    build:
-      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
-      minECSCount: 6
-      maxECSCount: 60
-      logLevel: "info"
-    staging:
-      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
-      minECSCount: 2
-      maxECSCount: 4
-      logLevel: "warn"
-    integration:
-      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
-      minECSCount: 2
-      maxECSCount: 4
-      logLevel: "warn"
-    production:
-      dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceProductionVariables
-      minECSCount: 6
-      maxECSCount: 60
-      logLevel: "warn"
 # see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
   ElasticLoadBalancerAccountIds:
     eu-west-2:
@@ -986,9 +960,9 @@ Resources:
     Type: AWS::ApplicationAutoScaling::ScalableTarget
     Properties:
       MinCapacity:
-        !FindInMap [EnvironmentConfiguration, !Ref Environment, minECSCount]
+        !FindInMap [EnvironmentVariables, !Ref Environment, minECSCount]
       MaxCapacity:
-        !FindInMap [EnvironmentConfiguration, !Ref Environment, maxECSCount]
+        !FindInMap [EnvironmentVariables, !Ref Environment, maxECSCount]
       ResourceId: !Join
         - '/'
         - - "service"
