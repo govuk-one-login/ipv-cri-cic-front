@@ -32,7 +32,8 @@ module.exports = {
       GA4_FORM_ERROR_ENABLED: process.env.GA4_FORM_ERROR_ENABLED || true,
       GA4_FORM_CHANGE_ENABLED: process.env.GA4_FORM_CHANGE_ENABLED || true,
       GA4_NAVIGATION_ENABLED: process.env.GA4_NAVIGATION_ENABLED || true,
-      GA4_SELECT_CONTENT_ENABLED: process.env.GA4_SELECT_CONTENT_ENABLED || true
+      GA4_SELECT_CONTENT_ENABLED:
+        process.env.GA4_SELECT_CONTENT_ENABLED || true,
     },
     LANGUAGE_TOGGLE_DISABLED: process.env.LANGUAGE_TOGGLE_DISABLED || "true",
   },
