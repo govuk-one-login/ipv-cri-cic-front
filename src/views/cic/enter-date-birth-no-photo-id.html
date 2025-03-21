@@ -32,7 +32,7 @@ html: formInstructions
 }) }}
 
 
-{{ hmpoSubmit(ctx, {classes: "govuk-!-margin-top-0", attributes: {"data-testid": "enter-dob-continue-btn"}, text: translate("buttons.next")}) }}
+{{ hmpoSubmit(ctx, {classes: "govuk-!-margin-top-0", attributes: {"data-testid": "enter-dob-continue-btn", "data-nav":true,"data-link":"/confirm-details-no-photo-id"}, text: translate("buttons.next")}) }}
 
 {% endcall %}
 
