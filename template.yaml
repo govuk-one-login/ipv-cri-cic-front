@@ -41,14 +41,6 @@ Parameters:
     Description: "The ARN of the permissions boundary to apply when creating IAM roles"
     Type: String
     Default: "none"
-  MaxContainerCount:
-    Description: Maximum number of FE node/express container tasks to allow autoscaling to reach
-    Type: Number
-    Default: 12
-  MinContainerCount:
-    Description: Minimum number of FE node/express container tasks to allow autoscaling to reach
-    Type: Number
-    Default: 3
   SupportManualURL:
     Description: "Link to the CIC support manual"
     Type: String
@@ -124,7 +116,6 @@ Mappings:
       CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
     production:
       CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
-
 # see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
   ElasticLoadBalancerAccountIds:
     eu-west-2:
@@ -149,6 +140,8 @@ Mappings:
       BACKENDSESSIONTABLE: "session-cic-cri-ddb"
       LOGLEVEL: "debug"
       LANGUAGETOGGLEDISABLED: false
+      minECSCount: 1
+      maxECSCount: 4
     build:
       EXTERNALWEBSITEHOST: "https://review-c.build.account.gov.uk"
       APIBASEURL: "https://api.review-c.build.account.gov.uk"
@@ -165,6 +158,8 @@ Mappings:
       BACKENDSESSIONTABLE: "session-cic-cri-ddb"
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
+      minECSCount: 6
+      maxECSCount: 60
     staging:
       EXTERNALWEBSITEHOST: "https://review-c.staging.account.gov.uk"
       APIBASEURL: "https://api.review-c.staging.account.gov.uk"
@@ -181,6 +176,8 @@ Mappings:
       BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
+      minECSCount: 2
+      maxECSCount: 4
     integration:
       EXTERNALWEBSITEHOST: "https://review-c.integration.account.gov.uk"
       APIBASEURL: "https://api.review-c.integration.account.gov.uk"
@@ -197,6 +194,8 @@ Mappings:
       BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
+      minECSCount: 2
+      maxECSCount: 4
     production:
       EXTERNALWEBSITEHOST: "https://review-c.account.gov.uk"
       APIBASEURL: "https://api.review-c.account.gov.uk"
@@ -213,6 +212,8 @@ Mappings:
       BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
+      minECSCount: 6
+      maxECSCount: 60
 
 Resources:
   # Security Groups for the ECS service and load balancer
@@ -466,7 +467,7 @@ Resources:
           DeploymentCircuitBreaker:
             Enable: TRUE
             Rollback: TRUE
-      DesiredCount: !Ref MinContainerCount
+      DesiredCount: !FindInMap [EnvironmentVariables, !Ref Environment, minECSCount]
       EnableECSManagedTags: false
       HealthCheckGracePeriodSeconds: 60
       LaunchType: FARGATE
@@ -950,8 +951,10 @@ Resources:
     Condition: EnableScaling
     Type: AWS::ApplicationAutoScaling::ScalableTarget
     Properties:
-      MaxCapacity: !Ref MaxContainerCount
-      MinCapacity: !Ref MinContainerCount
+      MinCapacity:
+        !FindInMap [EnvironmentVariables, !Ref Environment, minECSCount]
+      MaxCapacity:
+        !FindInMap [EnvironmentVariables, !Ref Environment, maxECSCount]
       ResourceId: !Join
         - '/'
         - - "service"
