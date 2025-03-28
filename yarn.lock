@@ -1339,10 +1339,10 @@
     "@eslint/core" "^0.10.0"
     levn "^0.4.1"
 
-"@govuk-one-login/di-ipv-cri-common-express@10.3.0":
-  version "10.3.0"
-  resolved "https://registry.yarnpkg.com/@govuk-one-login/di-ipv-cri-common-express/-/di-ipv-cri-common-express-10.3.0.tgz#083833c18f8a33d5d7b0c76a5a9626a0f163af25"
-  integrity sha512-sxZKnKo8pyuga3a+v1FkPkNh0kqFXWEG2hsy2unWNH97g8Og+pkzLJILQU/pVw5EI640OjbunejiBi/FNNcdNw==
+"@govuk-one-login/di-ipv-cri-common-express@10.6.0":
+  version "10.6.0"
+  resolved "https://registry.yarnpkg.com/@govuk-one-login/di-ipv-cri-common-express/-/di-ipv-cri-common-express-10.6.0.tgz#9bc2e394edae53d2622a8ae33178c99349752320"
+  integrity sha512-/IxHuAIjeQiPQaLhpZsCzov5Jqw0p0HotXND3wiI5ckuiQGyI0mKm1mb+9+QX7nYoePnnKhRn7J32xvpnyNT7w==
   dependencies:
     async "^3.2.6"
     compression "^1.7.5"
@@ -1358,6 +1358,7 @@
     lodash.differencewith "4.5.0"
     lodash.frompairs "4.0.1"
     nocache "^3.0.4"
+    overload-protection "1.2.3"
     redis "^4.7.0"
 
 "@govuk-one-login/frontend-analytics@3.1.0":
@@ -2700,10 +2701,10 @@ available-typed-arrays@^1.0.7:
   dependencies:
     possible-typed-array-names "^1.0.0"
 
-aws-sdk@^2.1264.0, aws-sdk@^2.1407.0:
-  version "2.1654.0"
-  resolved "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.1654.0.tgz"
-  integrity sha512-b5ryvXipBJod9Uh1GUfQNgi5tIIiluxJbyqr/hZ/mr5U8WxrrfjVq3nGnx5JjevFKYRqXIywhumsVyanfACzFA==
+aws-sdk@^2.1264.0, aws-sdk@^2.1692.0:
+  version "2.1692.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1692.0.tgz#9dac5f7bfcc5ab45825cc8591b12753aa7d2902c"
+  integrity sha512-x511uiJ/57FIsbgUe5csJ13k3uzu25uWQE+XqfBis/sB0SFoiElJWXRkgEAUh0U6n40eT3ay5Ue4oPkRMu1LYw==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -4903,12 +4904,12 @@ iconv-lite@0.4.24:
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
-ieee754@1.1.13, ieee754@^1.1.4:
+ieee754@1.1.13:
   version "1.1.13"
   resolved "https://registry.npmjs.org/ieee754/-/ieee754-1.1.13.tgz"
   integrity sha512-4vf7I2LYV/HaWerSo3XmlMkp5eZ83i+/CDluXi/IGTs/O1sejBNhTtnxzmRZfvOUqj7lZjqHkeTvpgSFDlWZTg==
 
-ieee754@^1.2.1:
+ieee754@^1.1.4, ieee754@^1.2.1:
   version "1.2.1"
   resolved "https://registry.npmjs.org/ieee754/-/ieee754-1.2.1.tgz"
   integrity sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==
@@ -5928,6 +5929,13 @@ lolex@^5.0.1:
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+loopbench@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/loopbench/-/loopbench-1.2.0.tgz#7601b73f57097c73f426a05ebf781ab7ea4917ff"
+  integrity sha512-ft2PmuZnDw+DJQfT5mpEWudEBRzlpImh7mU7OcPGmefsKlW8Ck0U6nrCCdcwYF+z9zc0SVBzGZA1F1gUfHZuJw==
+  dependencies:
+    xtend "^4.0.1"
+
 loupe@^2.3.6:
   version "2.3.7"
   resolved "https://registry.npmjs.org/loupe/-/loupe-2.3.7.tgz"
@@ -6475,6 +6483,13 @@ optionator@^0.9.3:
     prelude-ls "^1.2.1"
     type-check "^0.4.0"
     word-wrap "^1.2.5"
+
+overload-protection@1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/overload-protection/-/overload-protection-1.2.3.tgz#a0e75845a1ccbc9ec9c6039936454ba35500b1ad"
+  integrity sha512-b7XZbmhujnqNoK0Z6NPzA/nhfQnE08ZTHSzzjTMwegb5N9oBAAApx3f9u2R/f3VGaACTQj6QJnGUfX1oFttqfg==
+  dependencies:
+    loopbench "^1.2.0"
 
 p-cancelable@^2.0.0:
   version "2.1.1"
@@ -8271,9 +8286,9 @@ xmlbuilder@~11.0.0:
   resolved "https://registry.npmjs.org/xmlbuilder/-/xmlbuilder-11.0.1.tgz"
   integrity sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA==
 
-xtend@~4.0.1:
+xtend@^4.0.1, xtend@~4.0.1:
   version "4.0.2"
-  resolved "https://registry.npmjs.org/xtend/-/xtend-4.0.2.tgz"
+  resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
   integrity sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==
 
 y18n@^4.0.0:
