@@ -1079,7 +1079,7 @@ Resources:
       Namespace: "AWS/ECS"
       Statistic: "Average"
       Period: "60"
-      Threshold: "60"
+      Threshold: "20"
 
   ### Front End API Gateway Custom Domain definition
 
