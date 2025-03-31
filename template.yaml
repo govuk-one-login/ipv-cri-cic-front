@@ -469,7 +469,10 @@ Resources:
             Rollback: TRUE
       DesiredCount: !FindInMap [EnvironmentVariables, !Ref Environment, minECSCount]
       EnableECSManagedTags: false
-      HealthCheckGracePeriodSeconds: 60
+      HealthCheckGracePeriodSeconds: !If
+        - UseCanaryDeployment
+        - !Ref AWS::NoValue
+        - 60
       LaunchType: FARGATE
 #      LoadBalancers:
 #        - ContainerName: app
