@@ -223,7 +223,7 @@ setLanguageToggle({ app, showLanguageToggle: showLanguageToggle });
 
 setDeviceIntelligence({
   app,
-  useDeviceIntelligence: APP.USE_DEVICE_INTELLIGENCE,
+  deviceIntelligenceEnabled: APP.DEVICE_INTELLIGENCE_ENABLED,
   deviceIntelligenceDomain: APP.DEVICE_INTELLIGENCE_DOMAIN,
 });
 
