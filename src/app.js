@@ -21,6 +21,8 @@ const { setGTM, setLanguageToggle, setDeviceIntelligence } =
 const { getGTM, getLanguageToggle, getDeviceIntelligence } =
   commonExpress.lib.locals;
 
+const overloadProtectionConfigService = require("./lib/overload-protection-config.js");
+
 const addLanguageParam = require("@govuk-one-login/frontend-language-toggle/build/cjs/language-param-setter.cjs");
 
 const {
@@ -70,6 +72,8 @@ const sessionConfig = {
   cookieOptions: { maxAge: SESSION_TTL },
   ...(SESSION_TABLE_NAME && { sessionStore: dynamoDBSessionStore }),
 };
+
+const overloadProtectionConfig = overloadProtectionConfigService.init();
 
 const helmetConfig = require("./lib/helmet.js");
 
@@ -121,6 +125,7 @@ const { app, router } = setup({
     });
     app.use(setHeaders);
   },
+  overloadProtection: overloadProtectionConfig,
   dev: true,
 });
 
