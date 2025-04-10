@@ -16,8 +16,10 @@ const setAxiosDefaults = commonExpress.lib.axios;
 
 const { setAPIConfig, setOAuthPaths } = require("./lib/settings");
 
-const { setGTM, setLanguageToggle } = commonExpress.lib.settings;
-const { getGTM, getLanguageToggle } = commonExpress.lib.locals;
+const { setGTM, setLanguageToggle, setDeviceIntelligence } =
+  commonExpress.lib.settings;
+const { getGTM, getLanguageToggle, getDeviceIntelligence } =
+  commonExpress.lib.locals;
 
 const addLanguageParam = require("@govuk-one-login/frontend-language-toggle/build/cjs/language-param-setter.cjs");
 
@@ -187,7 +189,7 @@ process.on("SIGTERM", () => {
   server.close((err) => {
     if (err) {
       console.log(
-        `Error while calling server.close() occurred: ${err.message}`
+        `Error while calling server.close() occurred: ${err.message}`,
       );
 
       exitCode = 1;
@@ -214,11 +216,19 @@ process.on("SIGTERM", () => {
 const showLanguageToggle = APP.LANGUAGE_TOGGLE_DISABLED == "true" ? "0" : "1";
 setLanguageToggle({ app, showLanguageToggle: showLanguageToggle });
 
+setDeviceIntelligence({
+  app,
+  useDeviceIntelligence: APP.USE_DEVICE_INTELLIGENCE,
+  deviceIntelligenceDomain: APP.DEVICE_INTELLIGENCE_DOMAIN,
+});
+
 app.get("nunjucks").addGlobal("addLanguageParam", addLanguageParam);
 
 router.use(getGTM);
 
 router.use(getLanguageToggle);
+
+router.use(getDeviceIntelligence);
 
 router.use(setScenarioHeaders);
 router.use(setAxiosDefaults);
