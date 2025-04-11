@@ -140,6 +140,7 @@ Mappings:
       BACKENDSESSIONTABLE: "session-cic-cri-ddb"
       LOGLEVEL: "debug"
       LANGUAGETOGGLEDISABLED: false
+      DEVICEINTELLIGENCEENABLED: true
       minECSCount: 1
       maxECSCount: 4
     build:
@@ -158,6 +159,7 @@ Mappings:
       BACKENDSESSIONTABLE: "session-cic-cri-ddb"
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
+      DEVICEINTELLIGENCEENABLED: true
       minECSCount: 6
       maxECSCount: 60
     staging:
@@ -176,6 +178,7 @@ Mappings:
       BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
+      DEVICEINTELLIGENCEENABLED: true
       minECSCount: 2
       maxECSCount: 4
     integration:
@@ -194,6 +197,7 @@ Mappings:
       BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
+      DEVICEINTELLIGENCEENABLED: false
       minECSCount: 2
       maxECSCount: 4
     production:
@@ -212,6 +216,7 @@ Mappings:
       BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
+      DEVICEINTELLIGENCEENABLED: false
       minECSCount: 6
       maxECSCount: 60
 
@@ -653,7 +658,7 @@ Resources:
               Value: !FindInMap [ EnvironmentVariables, !Ref Environment, GTMIDGA4 ]
             - Name: GA4_ENABLED
               Value: !FindInMap [ EnvironmentVariables, !Ref Environment, GA4ENABLED ]
-            - Name: ANALYTICS_DOMAIN
+            - Name: FRONTEND_DOMAIN
               Value:
                 !If [
                   IsProduction,
@@ -664,6 +669,8 @@ Resources:
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, LOGLEVEL ]
             - Name: LANGUAGE_TOGGLE_DISABLED
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, LANGUAGETOGGLEDISABLED ]
+            - Name: DEVICE_INTELLIGENCE_ENABLED
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, DEVICEINTELLIGENCEENABLED ]
           Secrets:
             - Name: DT_TENANT
               ValueFrom: !Join
