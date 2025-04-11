@@ -230,9 +230,7 @@ setDeviceIntelligence({
 app.get("nunjucks").addGlobal("addLanguageParam", addLanguageParam);
 
 router.use(getGTM);
-
 router.use(getLanguageToggle);
-
 router.use(getDeviceIntelligence);
 
 router.use(setScenarioHeaders);
