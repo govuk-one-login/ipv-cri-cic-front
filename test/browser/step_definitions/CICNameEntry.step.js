@@ -2,6 +2,8 @@ const { Given, When, Then } = require("@cucumber/cucumber");
 
 const { expect } = require("chai");
 
+const { injectAxe } = require("axe-playwright");
+
 const {
   NameEntryPage,
   DateOfBirthPage,
@@ -18,6 +20,20 @@ Given(
     await nameEntryPage.enterSurname(userData.lastName);
     await nameEntryPage.enterFirstName(userData.firstName);
     await nameEntryPage.enterMiddleName(userData.middleName);
+  },
+);
+
+Given(
+  /^the page should conform to WCAG 2.2 AA guidelines$/,
+  async function () {
+    await injectAxe(this.page);
+    // Run Axe for WCAG 2.2 AA rules
+    const wcagResults = await this.page.evaluate(() => {
+      return axe.run({
+        runOnly: ["wcag2aa"]
+      });
+    });
+    expect(wcagResults.violations, "WCAG 2.2 AAA violations found").to.be.empty;
   },
 );
 
