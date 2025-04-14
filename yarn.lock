@@ -1339,10 +1339,10 @@
     "@eslint/core" "^0.10.0"
     levn "^0.4.1"
 
-"@govuk-one-login/di-ipv-cri-common-express@10.7.1":
-  version "10.7.1"
-  resolved "https://registry.yarnpkg.com/@govuk-one-login/di-ipv-cri-common-express/-/di-ipv-cri-common-express-10.7.1.tgz#f6e6a894f4861b20ce6c3af81554d0319ba6ef5d"
-  integrity sha512-vFtecSTm/k81qQBmOJmf3xgZLvANf228IT8ThRF8rJHBZ5aC8MA/bxcojooy0ggYDUgOP23VD2AaXLwSRoO3Pw==
+"@govuk-one-login/di-ipv-cri-common-express@10.6.0":
+  version "10.6.0"
+  resolved "https://registry.yarnpkg.com/@govuk-one-login/di-ipv-cri-common-express/-/di-ipv-cri-common-express-10.6.0.tgz#9bc2e394edae53d2622a8ae33178c99349752320"
+  integrity sha512-/IxHuAIjeQiPQaLhpZsCzov5Jqw0p0HotXND3wiI5ckuiQGyI0mKm1mb+9+QX7nYoePnnKhRn7J32xvpnyNT7w==
   dependencies:
     async "^3.2.6"
     compression "^1.7.5"
@@ -1358,6 +1358,7 @@
     lodash.differencewith "4.5.0"
     lodash.frompairs "4.0.1"
     nocache "^3.0.4"
+    overload-protection "1.2.3"
     overload-protection "1.2.3"
     redis "^4.7.0"
 
@@ -2391,6 +2392,11 @@
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.15.tgz"
   integrity sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==
 
+"@types/junit-report-builder@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@types/junit-report-builder/-/junit-report-builder-3.0.2.tgz#17cc131d14ceff59dcf14e5847bd971b96f2cbe0"
+  integrity sha512-R5M+SYhMbwBeQcNXYWNCZkl09vkVfAtcPIaCGdzIkkbeaTrVbGQ7HVgi4s+EmM/M1K4ZuWQH0jGcvMvNePfxYA==
+
 "@types/keyv@^3.1.4":
   version "3.1.4"
   resolved "https://registry.npmjs.org/@types/keyv/-/keyv-3.1.4.tgz"
@@ -2734,6 +2740,29 @@ aws4@^1.12.0:
   version "1.13.0"
   resolved "https://registry.npmjs.org/aws4/-/aws4-1.13.0.tgz"
   integrity sha512-3AungXC4I8kKsS9PuS4JH2nc+0bVY/mjgrephHTIi8fpEeGsTHBUJeosp0Wc1myYMElmD0B3Oc4XL/HVJ4PV2g==
+
+axe-core@^4.10.1:
+  version "4.10.3"
+  resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.10.3.tgz#04145965ac7894faddbac30861e5d8f11bfd14fc"
+  integrity sha512-Xm7bpRXnDSX2YE2YFfBk2FnF0ep6tmG7xPh8iHee8MIcrgq762Nkce856dYtJYLkuIoYZvGfTs/PbZhideTcEg==
+
+axe-html-reporter@2.2.11:
+  version "2.2.11"
+  resolved "https://registry.yarnpkg.com/axe-html-reporter/-/axe-html-reporter-2.2.11.tgz#749a4d5836f6aebb6780049933c2f6030e06c7d0"
+  integrity sha512-WlF+xlNVgNVWiM6IdVrsh+N0Cw7qupe5HT9N6Uyi+aN7f6SSi92RDomiP1noW8OWIV85V6x404m5oKMeqRV3tQ==
+  dependencies:
+    mustache "^4.0.1"
+
+axe-playwright@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/axe-playwright/-/axe-playwright-2.1.0.tgz#1391d65acc72c79ca9268d15ccecce095df376bb"
+  integrity sha512-tY48SX56XaAp16oHPyD4DXpybz8Jxdz9P7exTjF/4AV70EGUavk+1fUPWirM0OYBR+YyDx6hUeDvuHVA6fB9YA==
+  dependencies:
+    "@types/junit-report-builder" "^3.0.2"
+    axe-core "^4.10.1"
+    axe-html-reporter "2.2.11"
+    junit-report-builder "^5.1.1"
+    picocolors "^1.1.1"
 
 axios@^0.27.2:
   version "0.27.2"
@@ -5703,6 +5732,15 @@ jsonwebtoken@9.0.0:
     ms "^2.1.1"
     semver "^7.3.8"
 
+junit-report-builder@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/junit-report-builder/-/junit-report-builder-5.1.1.tgz#e4f34cc78515554b06d1132ce4bf5cb2b6244d39"
+  integrity sha512-ZNOIIGMzqCGcHQEA2Q4rIQQ3Df6gSIfne+X9Rly9Bc2y55KxAZu8iGv+n2pP0bLf0XAOctJZgeloC54hWzCahQ==
+  dependencies:
+    lodash "^4.17.21"
+    make-dir "^3.1.0"
+    xmlbuilder "^15.1.1"
+
 just-extend@^4.0.2:
   version "4.2.1"
   resolved "https://registry.npmjs.org/just-extend/-/just-extend-4.2.1.tgz"
@@ -5868,6 +5906,13 @@ loopbench@^1.2.0:
   dependencies:
     xtend "^4.0.1"
 
+loopbench@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/loopbench/-/loopbench-1.2.0.tgz#7601b73f57097c73f426a05ebf781ab7ea4917ff"
+  integrity sha512-ft2PmuZnDw+DJQfT5mpEWudEBRzlpImh7mU7OcPGmefsKlW8Ck0U6nrCCdcwYF+z9zc0SVBzGZA1F1gUfHZuJw==
+  dependencies:
+    xtend "^4.0.1"
+
 loupe@^2.3.6:
   version "2.3.7"
   resolved "https://registry.npmjs.org/loupe/-/loupe-2.3.7.tgz"
@@ -5916,7 +5961,7 @@ luxon@^3.4.4:
   resolved "https://registry.npmjs.org/luxon/-/luxon-3.4.4.tgz"
   integrity sha512-zobTr7akeGHnv7eBOXcRgMeCP6+uyYsczwmeRCauvpvaAltgNyTbLH/+VaEAPUeWBT+1GuNmz4wC/6jtQzbbVA==
 
-make-dir@^3.0.0, make-dir@^3.0.2:
+make-dir@^3.0.0, make-dir@^3.0.2, make-dir@^3.1.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/make-dir/-/make-dir-3.1.0.tgz"
   integrity sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==
@@ -6122,6 +6167,11 @@ multiple-cucumber-html-reporter@^3.4.0:
     luxon "^3.4.4"
     open "^8.4.2"
     uuid "^9.0.1"
+
+mustache@^4.0.1:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/mustache/-/mustache-4.2.0.tgz#e5892324d60a12ec9c2a73359edca52972bf6f64"
+  integrity sha512-71ippSywq5Yb7/tVYyGbkBggbU8H3u5Rz56fH60jGFgr8uHwxs+aSKeqmluIVzM0m0kB7xQjKS6qPfd0b2ZoqQ==
 
 mz@^2.7.0:
   version "2.7.0"
@@ -6418,6 +6468,13 @@ overload-protection@1.2.3:
   dependencies:
     loopbench "^1.2.0"
 
+overload-protection@1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/overload-protection/-/overload-protection-1.2.3.tgz#a0e75845a1ccbc9ec9c6039936454ba35500b1ad"
+  integrity sha512-b7XZbmhujnqNoK0Z6NPzA/nhfQnE08ZTHSzzjTMwegb5N9oBAAApx3f9u2R/f3VGaACTQj6QJnGUfX1oFttqfg==
+  dependencies:
+    loopbench "^1.2.0"
+
 p-cancelable@^2.0.0:
   version "2.1.1"
   resolved "https://registry.npmjs.org/p-cancelable/-/p-cancelable-2.1.1.tgz"
@@ -6582,7 +6639,7 @@ pathval@^1.1.1:
   resolved "https://registry.npmjs.org/pathval/-/pathval-1.1.1.tgz"
   integrity sha512-Dp6zGqpTdETdR63lehJYPeIOqpiNBNtc7BpWSLrOje7UaIsE5aY92r/AunQA7rsXvet3lrJ3JnZX29UPTKXyKQ==
 
-picocolors@^1.0.0, picocolors@^1.1.0:
+picocolors@^1.0.0, picocolors@^1.1.0, picocolors@^1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/picocolors/-/picocolors-1.1.1.tgz"
   integrity sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==
@@ -8170,7 +8227,9 @@ xmlbuilder@~11.0.0:
   integrity sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA==
 
 xtend@^4.0.1, xtend@~4.0.1:
+xtend@^4.0.1, xtend@~4.0.1:
   version "4.0.2"
+  resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
   integrity sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==
 
