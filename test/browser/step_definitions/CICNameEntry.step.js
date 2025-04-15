@@ -26,6 +26,7 @@ Given(
 Given(
   /^the page should conform to WCAG 2.2 AA guidelines$/,
   async function () {
+    import axe from 'axe-core';
     await injectAxe(this.page);
     // Run Axe for WCAG 2.2 AA rules
     const wcagResults = await this.page.evaluate(() => {
