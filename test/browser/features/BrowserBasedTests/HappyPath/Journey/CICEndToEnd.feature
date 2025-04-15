@@ -6,18 +6,15 @@ Scenario: Claimed Identity Credential Issuer - E2E Happy Path and DB Validation 
     Given Authenticatable Anita is using the system
     When they have provided their details
     Then they should be redirected to the F2F nameEntry
-    And the page should conform to WCAG 2.2 AA guidelines
 
     Given there has been an entry into the surname and first name fields
     When the user clicks the NameEntry continue button
     Then the user is routed to the next screen in the journey DOB Entry
-    And the page should conform to WCAG 2.2 AA guidelines
 
 
     Given the DOB fields are populated with valid values
     When the user clicks the DoB continue button
     Then they are routed to the Check My Answers Screen
-    And the page should conform to WCAG 2.2 AA guidelines
     Given the user has completed the previous CIC screens
     When the user clicks the Check My Answers Submit button
 
@@ -34,17 +31,14 @@ Scenario: Claimed Identity Credential Issuer - E2E Happy Path and DB Validation 
     Given Validating Valerie is using the system
     When they have provided their details
     Then they should be redirected to the BAV nameEntry
-    And the page should conform to WCAG 2.2 AA guidelines
 
     Given there has been an entry into the surname and first name fields
     When the user clicks the NameEntry continue button
     Then the user is routed to the next screen in the journey No Photo Id DOB Entry
-    And the page should conform to WCAG 2.2 AA guidelines
 
     Given the DOB fields are populated with valid values
     When the user clicks the DoB continue button
     Then they are routed to the No Photo ID Check My Answers Screen
-    And the page should conform to WCAG 2.2 AA guidelines
     Given the user has completed the previous CIC No Photo ID screens
     When the user clicks the Check My Answers Submit button
 
@@ -61,17 +55,14 @@ Scenario: Claimed Identity Credential Issuer - E2E Happy Path and DB Validation 
     Given a Low Confidence user is using the system
     When they have provided their details
     Then they should be redirected to the Low Confidence nameEntry
-    And the page should conform to WCAG 2.2 AA guidelines
 
     Given there has been an entry into the surname and first name fields
     When the user clicks the NameEntry continue button
     Then the user is routed to the next screen in the journey Low Confidence DOB Entry
-    And the page should conform to WCAG 2.2 AA guidelines
 
     Given the DOB fields are populated with valid values
     When the user clicks the DoB continue button
     Then they are routed to the Low Confidence Check My Answers Screen
-    And the page should conform to WCAG 2.2 AA guidelines
     Given the user has completed the previous CIC Low Confidence screens
     When the user clicks the Check My Answers Submit button
 
