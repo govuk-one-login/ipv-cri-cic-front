@@ -11,6 +11,7 @@ Scenario: Claimed Identity Credential Issuer - E2E Happy Path and DB Validation 
     When the user clicks the NameEntry continue button
     Then the user is routed to the next screen in the journey DOB Entry
 
+
     Given the DOB fields are populated with valid values
     When the user clicks the DoB continue button
     Then they are routed to the Check My Answers Screen
