@@ -1339,10 +1339,10 @@
     "@eslint/core" "^0.10.0"
     levn "^0.4.1"
 
-"@govuk-one-login/di-ipv-cri-common-express@10.7.0":
-  version "10.7.0"
-  resolved "https://registry.yarnpkg.com/@govuk-one-login/di-ipv-cri-common-express/-/di-ipv-cri-common-express-10.7.0.tgz#e6b79ba90611f18dc400ffbe9e56b44c46683767"
-  integrity sha512-BjkXKhI0+z2/Vww1t90j1n6xasHzXq4dwHswrq3ltLOU1g27PnVZe8ladgQ0cXWUKlwL3F0vY8ClC+0SGU+HnA==
+"@govuk-one-login/di-ipv-cri-common-express@10.7.1":
+  version "10.7.1"
+  resolved "https://registry.yarnpkg.com/@govuk-one-login/di-ipv-cri-common-express/-/di-ipv-cri-common-express-10.7.1.tgz#f6e6a894f4861b20ce6c3af81554d0319ba6ef5d"
+  integrity sha512-vFtecSTm/k81qQBmOJmf3xgZLvANf228IT8ThRF8rJHBZ5aC8MA/bxcojooy0ggYDUgOP23VD2AaXLwSRoO3Pw==
   dependencies:
     async "^3.2.6"
     compression "^1.7.5"
