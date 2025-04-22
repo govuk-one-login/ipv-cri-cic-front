@@ -12,6 +12,7 @@ module.exports = class PlaywrightDevPage {
 
   async isCurrentPage() {
     const { pathname } = new URL(this.page.url());
+    console.log("Expected Pathname: " + this.path + ". Actual Pathname: " + pathname)''
     return pathname === this.path;
   }
 
