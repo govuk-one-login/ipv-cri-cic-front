@@ -95,3 +95,9 @@ Then("the {string} cookie has been set", async function(cookieName) {
   const expectedCookie = cookies.find(cookie => cookie.name === cookieName);
   expect(expectedCookie).to.exist;
 });
+
+Then("the {string} cookie has not been set", async function(cookieName) {
+  const cookies = await this.page.context().cookies();
+  const expectedCookie = cookies.find(cookie => cookie.name === cookieName);
+  expect(expectedCookie).to.not.exist;
+});

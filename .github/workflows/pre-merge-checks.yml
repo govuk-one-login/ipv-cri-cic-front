@@ -37,6 +37,7 @@ jobs:
           IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
           CUSTOM_FE_URL: http://localhost:5020
           LANGUAGE_TOGGLE_DISABLED: false
+      - run: npm run test:browser:no_di
       - name: Archive browser tests results
         uses: actions/upload-artifact@v4
         with:
