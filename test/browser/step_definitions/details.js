@@ -20,7 +20,7 @@ When(
   {
     timeout: 10 * 1000,
   },
-  async function () {},
+  async function () { },
 );
 
 Then("they should be redirected to the F2F nameEntry", async function () {
@@ -50,7 +50,7 @@ Then("they should be redirected to the BAV nameEntry", async function () {
   );
   expect(await nameEntryPage.checkSubTitleForBAV()).to.contain(
     "Check your banking app, online bank account or bank statement for the full registered name." && // eslint-disable-line
-      "The name on your bank card might only use your initials.",
+    "The name on your bank card might only use your initials.",
   );
 });
 
@@ -90,8 +90,14 @@ When(
   },
 );
 
-Then("the {string} cookie has been set", async function(cookieName) {
+Then("the {string} cookie has been set", async function (cookieName) {
   const cookies = await this.page.context().cookies();
   const expectedCookie = cookies.find(cookie => cookie.name === cookieName);
   expect(expectedCookie).to.exist;
+});
+
+Then("the {string} cookie has not been set", async function (cookieName) {
+  const cookies = await this.page.context().cookies();
+  const expectedCookie = cookies.find(cookie => cookie.name === cookieName);
+  expect(expectedCookie).to.not.exist;
 });
