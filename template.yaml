@@ -178,7 +178,7 @@ Mappings:
       BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
-      DEVICEINTELLIGENCEENABLED: true
+      DEVICEINTELLIGENCEENABLED: false
       minECSCount: 2
       maxECSCount: 4
     integration:
