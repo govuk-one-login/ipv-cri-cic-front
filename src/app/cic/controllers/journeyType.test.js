@@ -41,7 +41,10 @@ describe("JourneyTypeController", () => {
       await journeyTypeController.saveValues(req, res, next);
 
       sinon.assert.calledWith(req.axios.get, `${API.PATHS.SESSION_CONFIG}`, {
-        headers: { "x-govuk-signin-session-id": req.session.tokenId },
+        headers: {
+          "txma-audit-encoded":"dummy-txma-header",
+          "x-govuk-signin-session-id": req.session.tokenId 
+        },
       });
       const journeyType = req.sessionModel.get("journeyType");
       expect(journeyType).to.equal("f2f");

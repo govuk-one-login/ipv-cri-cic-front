@@ -1,5 +1,8 @@
 const { Controller: BaseController } = require("hmpo-form-wizard");
 const { API } = require("../../../lib/config");
+const {
+  createPersonalDataHeaders,
+} = require("@govuk-one-login/frontend-passthrough-headers");
 
 class JourneyTypeController extends BaseController {
   async saveValues(req, res, next) {
@@ -10,6 +13,7 @@ class JourneyTypeController extends BaseController {
         const { data } = await req.axios.get(`${API.PATHS.SESSION_CONFIG}`, {
           headers: {
             "x-govuk-signin-session-id": tokenId,
+            ...createPersonalDataHeaders(`${API.BASE_URL}${API.PATHS.SESSION_CONFIG}`, req),
           },
         });
         req.sessionModel.set("journeyType", data.journey_type);
