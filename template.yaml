@@ -135,6 +135,7 @@ Mappings:
       GTMIDGA4: "GTM-KD86CMZ"
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "dev.account.gov.uk"
+      DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       TESTHARNESSURL: "https://cic-test-harness-testharness.review-c.dev.account.gov.uk"
       BACKENDURL: "https://api-cic-cri-api.review-c.dev.account.gov.uk"
       BACKENDSESSIONTABLE: "session-cic-cri-ddb"
@@ -154,6 +155,7 @@ Mappings:
       GTMIDGA4: "GTM-KD86CMZ"
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "build.account.gov.uk"
+      DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       TESTHARNESSURL: "https://testharness.review-c.build.account.gov.uk"
       BACKENDURL: "https://api.review-c.build.account.gov.uk"
       BACKENDSESSIONTABLE: "session-cic-cri-ddb"
@@ -173,6 +175,7 @@ Mappings:
       GTMIDGA4: "GTM-KD86CMZ"
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "staging.account.gov.uk"
+      DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       TESTHARNESSURL: ""
       BACKENDURL: ""
       BACKENDSESSIONTABLE: ""
@@ -192,6 +195,7 @@ Mappings:
       GTMIDGA4: "GTM-KD86CMZ"
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
+      DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       TESTHARNESSURL: ""
       BACKENDURL: ""
       BACKENDSESSIONTABLE: ""
@@ -211,6 +215,7 @@ Mappings:
       GTMIDGA4: "GTM-K4PBJH3"
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "account.gov.uk"
+      DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       TESTHARNESSURL: ""
       BACKENDURL: ""
       BACKENDSESSIONTABLE: ""
@@ -665,6 +670,8 @@ Resources:
                   "account.gov.uk",
                   !Sub "${Environment}.account.gov.uk"
                 ]
+            - Name: DEVICE_INTELLIGENCE_DOMAIN
+              Value: !FindInMap [ EnvironmentVariables, !Ref Environment, DEVICEINTELLIGENCEDOMAIN ]
             - Name: LOG_LEVEL
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, LOGLEVEL ]
             - Name: LANGUAGE_TOGGLE_DISABLED
