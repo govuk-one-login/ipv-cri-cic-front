@@ -181,7 +181,7 @@ Mappings:
       BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
-      DEVICEINTELLIGENCEENABLED: false
+      DEVICEINTELLIGENCEENABLED: true
       minECSCount: 2
       maxECSCount: 4
     integration:
@@ -201,7 +201,7 @@ Mappings:
       BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
-      DEVICEINTELLIGENCEENABLED: false
+      DEVICEINTELLIGENCEENABLED: true
       minECSCount: 2
       maxECSCount: 4
     production:
@@ -221,7 +221,7 @@ Mappings:
       BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
-      DEVICEINTELLIGENCEENABLED: false
+      DEVICEINTELLIGENCEENABLED: true
       minECSCount: 6
       maxECSCount: 60
 
