@@ -105,7 +105,7 @@
 {% set footerNavItems = translate("govuk.footerNavItems") %}
 
 {% block footer %}
-  {{ govukFooter( footerNavItems ) }}
+  {{ super() }}
   <script type="text/javascript" src="/public/javascripts/all.js"></script>
   <script {% if cspNonce %} nonce="{{ cspNonce }}"{%  endif %}>
     window.addEventListener('load', function () {
