@@ -29,6 +29,7 @@ Then("they should be redirected to the F2F nameEntry", async function () {
   expect(await nameEntryPage.checkTitle()).to.contain(
     "Enter your name exactly as it appears on your photo ID",
   );
+  await this.page.waitForLoadState("networkidle");
 });
 
 Then(
