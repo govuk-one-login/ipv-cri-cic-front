@@ -13,6 +13,7 @@ Given(/^the user has navigated to Check my Answers page$/, async function () {
   const cdPage = new CheckDetailsPage(await this.page);
 
   expect(await cdPage.isCurrentPage()).to.be.true;
+  await this.page.waitForLoadState("networkidle");
 });
 
 When(/^the name entry edit link is clicked$/, async function () {

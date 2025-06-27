@@ -77,6 +77,7 @@ Then(
     const dobPage = new DateOfBirthPage(await this.page);
 
     expect(await dobPage.isCurrentPage()).to.be.true;
+    await this.page.waitForLoadState("networkidle");
   },
 );
 
@@ -86,6 +87,7 @@ Then(
     const dobPage = new DateOfBirthPage(await this.page);
 
     expect(await dobPage.isCurrentPageNoPhotoID()).to.be.true;
+    await this.page.waitForLoadState("networkidle");
   },
 );
 
@@ -95,6 +97,7 @@ Then(
     const dobPage = new DateOfBirthPage(await this.page);
 
     expect(await dobPage.isCurrentPageLowConfidence()).to.be.true;
+    await this.page.waitForLoadState("networkidle");
   },
 );
 

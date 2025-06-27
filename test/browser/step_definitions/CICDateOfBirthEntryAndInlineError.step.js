@@ -22,6 +22,7 @@ Then(/^they are routed to the Check My Answers Screen$/, async function () {
   const cdPage = new CheckDetailsPage(await this.page);
 
   expect(await cdPage.isCurrentPage()).to.be.true;
+  await this.page.waitForLoadState("networkidle");
 });
 
 Then(
@@ -30,6 +31,7 @@ Then(
     const cdPage = new CheckDetailsPage(await this.page);
 
     expect(await cdPage.isCurrentPageNoPhotoID()).to.be.true;
+    await this.page.waitForLoadState("networkidle");
   },
 );
 
@@ -39,6 +41,7 @@ Then(
     const cdPage = new CheckDetailsPage(await this.page);
 
     expect(await cdPage.isCurrentPageLowConfidence()).to.be.true;
+    await this.page.waitForLoadState("networkidle");
   },
 );
 

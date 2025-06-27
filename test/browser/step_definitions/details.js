@@ -29,6 +29,7 @@ Then("they should be redirected to the F2F nameEntry", async function () {
   expect(await nameEntryPage.checkTitle()).to.contain(
     "Enter your name exactly as it appears on your photo ID",
   );
+  await this.page.waitForLoadState("networkidle");
 });
 
 Then(
@@ -39,6 +40,7 @@ Then(
     expect(await nameEntryPage.checkTitle()).to.contain(
       "Enter your name as it appears on your HMRC record",
     );
+    await this.page.waitForLoadState("networkidle");
   },
 );
 
@@ -52,6 +54,7 @@ Then("they should be redirected to the BAV nameEntry", async function () {
     "Check your banking app, online bank account or bank statement for the full registered name." && // eslint-disable-line
     "The name on your bank card might only use your initials.",
   );
+  await this.page.waitForLoadState("networkidle");
 });
 
 Then("they should be redirected as an error", function () {

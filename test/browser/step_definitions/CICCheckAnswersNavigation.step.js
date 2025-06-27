@@ -14,6 +14,7 @@ Given(
     const cdPage = new CheckDetailsPage(await this.page);
 
     expect(await cdPage.isCurrentPage()).to.be.true;
+    await this.page.waitForLoadState("networkidle");
   },
 );
 
@@ -30,12 +31,14 @@ Then(/^the user is navigated back to the DOB Entry page$/, async function () {
   const doBPage = new DateOfBirthPage(await this.page);
 
   expect(await doBPage.isCurrentPage()).to.be.true;
+  await this.page.waitForLoadState("networkidle");
 });
 
 Given(/^the user has navigated to the DoB Entry page$/, async function () {
   const dobPage = new DateOfBirthPage(await this.page);
 
   expect(await dobPage.isCurrentPage()).to.be.true;
+  await this.page.waitForLoadState("networkidle");
 });
 
 When(/^the Back link is clicked on the DoB Entry page$/, async function () {
@@ -50,5 +53,6 @@ Then(
     const nameEntry = new NameEntryPage(await this.page);
 
     expect(await nameEntry.isCurrentPage()).to.be.true;
+    await this.page.waitForLoadState("networkidle");
   },
 );

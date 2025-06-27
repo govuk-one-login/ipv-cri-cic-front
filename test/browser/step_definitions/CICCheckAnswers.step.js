@@ -7,6 +7,7 @@ const { CheckDetailsPage } = require("../pages");
 Given(/^the user has completed the previous CIC screens$/, async function () {
   const cpdPage = new CheckDetailsPage(await this.page);
   expect(await cpdPage.isCurrentPage()).to.be.true;
+  await this.page.waitForLoadState("networkidle");
 });
 
 Given(
@@ -14,6 +15,7 @@ Given(
   async function () {
     const cpdPage = new CheckDetailsPage(await this.page);
     expect(await cpdPage.isCurrentPageNoPhotoID()).to.be.true;
+    await this.page.waitForLoadState("networkidle");
   },
 );
 
@@ -22,6 +24,7 @@ Given(
   async function () {
     const cpdPage = new CheckDetailsPage(await this.page);
     expect(await cpdPage.isCurrentPageLowConfidence()).to.be.true;
+    await this.page.waitForLoadState("networkidle");
   },
 );
 

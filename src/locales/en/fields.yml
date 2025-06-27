@@ -10,6 +10,7 @@
 surname:
   label: Last name
   hint: ""
+  prefix: ""
   validation:
     default: "Enter your last name"
     minlength: "Your last name must be more than one character"
@@ -19,6 +20,7 @@ surname:
 firstName:
   label: First name
   hint: ""
+  prefix: ""
   validation:
     default: "Enter your first name"
     minlength: "Your first name must be more than one character"
@@ -28,6 +30,7 @@ firstName:
 middleName:
   label: Middle names
   hint: Leave this blank if you do not have any middle names
+  prefix: ""
   validation:
     default: "Enter your middle name as it appears on your photo ID"
     minlength: "Your middle name must be more than one character"

@@ -10,6 +10,7 @@
 surname:
   label: Enw olaf
   hint: ""
+  prefix: ""
   validation:
     default: "Rhowch eich enw olaf"
     minlength: "Rhaid i'ch enw olaf fod yn fwy nag un nod"
@@ -19,6 +20,7 @@ surname:
 firstName:
   label: Enw cyntaf
   hint: ""
+  prefix: ""
   validation:
     default: "Rhowch eich enw cyntaf"
     minlength: "Rhaid i'ch enw cyntaf fod yn fwy nag un nod"
@@ -28,6 +30,7 @@ firstName:
 middleName:
   label: Enw(au) canol
   hint: Gadewch hwn yn wag os nad oes gennych unrhyw enwau canol
+  prefix: ""
   validation:
     default: "Rhowch eich enw canol fel y mae'n ymddangos ar eich ID gyda llun"
     minlength: "Rhaid i'ch enw canol fod yn fwy nag un nod"

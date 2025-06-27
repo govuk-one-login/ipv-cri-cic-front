@@ -74,3 +74,5 @@ $govuk-assets-path: "/public/";
   margin-top: 0; 
   margin-bottom: 20px;
 }
+
+@import "../../../node_modules/@govuk-one-login/frontend-ui/build/all";
