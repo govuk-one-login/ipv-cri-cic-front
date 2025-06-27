@@ -13,7 +13,7 @@
     "start:debug": "DEBUG=* node src/app.js",
     "dev": "nodemon src/app.js",
     "build": "yarn build-sass && yarn build-js && yarn copy-assets",
-    "build-sass": "rm -rf dist/public/stylesheets/application.css && sass --no-source-map src/assets/scss/application.scss dist/public/stylesheets/application.css --style compressed && sass --no-source-map node_modules/@govuk-one-login/frontend-ui/build/all.css dist/public/stylesheets/frontend-ui.css --style compressed",
+    "build-sass": "rm -rf dist/public/stylesheets/application.css && sass --no-source-map src/assets/scss/application.scss dist/public/stylesheets/application.css --style compressed",
     "copy-assets": "mkdir -p dist && copyfiles -u 1 src/**/*.njk dist/ src/locales/**/** dist/ && copyfiles -u 3 src/assets/images/* dist/public/images && cp -R node_modules/@govuk-one-login/frontend-ui/build/frontendUiAssets dist/public/",
     "build-js": "yarn build-js:analytics && yarn build-js:all && yarn build-js:device-intelligence",
     "build-js:analytics": "mkdir -p dist/public/javascripts; uglifyjs node_modules/@govuk-one-login/frontend-analytics/lib/analytics.js src/assets/javascript/analytics/ua/init.js -o dist/public/javascripts/analytics.js",
