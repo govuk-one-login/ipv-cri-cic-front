@@ -1057,9 +1057,9 @@
     pino "^8.20.0"
 
 "@govuk-one-login/frontend-ui@^1.2.0":
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/@govuk-one-login/frontend-ui/-/frontend-ui-1.3.2.tgz#0efa90a25284c352a4e90e0698e03978eb5f2624"
-  integrity sha512-xWV7IvhN6MJDv4jDaZfUTX+cFOD1liilAIOBsjuhjuJ0kTH0lx+JXWMtjBChvBdQYhFTyc4wVIBZea3Hk4PTrg==
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/@govuk-one-login/frontend-ui/-/frontend-ui-1.3.3.tgz#1a23c2deed7b100c6f364d0a97de7685ab413f6d"
+  integrity sha512-8+ccUvMAktUzyDziWV1OS4sODy9d9t+ThOidx99ExaCpYQwFTJS0quhjB9r4HA60/D25Kd0PnYRDSTBA61Vpcg==
   dependencies:
     js-yaml "^4.1.0"
     pino "8.20.0"
