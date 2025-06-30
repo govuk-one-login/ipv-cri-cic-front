@@ -102,7 +102,7 @@
     "hmpo-app": "3.0.1",
     "hmpo-components": "^7.1.0",
     "hmpo-config": "4.0.0",
-    "hmpo-form-wizard": "13.0.0",
+    "hmpo-form-wizard": "15.0.1",
     "hmpo-i18n": "6.0.1",
     "hmpo-logger": "7.0.1",
     "jest": "^29.7.0",
