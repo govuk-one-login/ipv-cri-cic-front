@@ -142,6 +142,7 @@ Mappings:
       LOGLEVEL: "debug"
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
+      MAY2025REBRANDENABLED: true
       minECSCount: 1
       maxECSCount: 4
     build:
@@ -162,6 +163,7 @@ Mappings:
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
+      MAY2025REBRANDENABLED: true
       minECSCount: 6
       maxECSCount: 60
     staging:
@@ -182,6 +184,7 @@ Mappings:
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
+      MAY2025REBRANDENABLED: true
       minECSCount: 2
       maxECSCount: 4
     integration:
@@ -202,6 +205,7 @@ Mappings:
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
+      MAY2025REBRANDENABLED: false
       minECSCount: 2
       maxECSCount: 4
     production:
@@ -222,6 +226,7 @@ Mappings:
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
+      MAY2025REBRANDENABLED: false
       minECSCount: 6
       maxECSCount: 60
 
@@ -678,6 +683,8 @@ Resources:
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, LANGUAGETOGGLEDISABLED ]
             - Name: DEVICE_INTELLIGENCE_ENABLED
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, DEVICEINTELLIGENCEENABLED ]
+            - Name: MAY_2025_REBRAND_ENABLED
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, MAY2025REBRANDENABLED ]
           Secrets:
             - Name: DT_TENANT
               ValueFrom: !Join
