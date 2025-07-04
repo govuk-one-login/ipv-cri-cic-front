@@ -75,7 +75,7 @@
     "wait-on": "8.0.3",
     "wiremock": "2.35.0",
     "jest": "29.7.0",
-    "axe-playwright": "^2.1.0"
+    "axe-playwright": "2.1.0"
   },
   "dependencies": {
     "@aws-sdk/credential-providers": "^3.438.0",
