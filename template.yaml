@@ -205,7 +205,7 @@ Mappings:
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
-      MAY2025REBRANDENABLED: false
+      MAY2025REBRANDENABLED: true
       minECSCount: 2
       maxECSCount: 4
     production:
