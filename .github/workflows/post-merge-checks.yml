@@ -86,6 +86,7 @@ jobs:
           test_results: ./report/cucumber-html-report
           gh_pages: gh-pages
           results_history: results-history
+          workflow_name: post-merge-checks
 
       - name: Publish Github Pages
         if: ${{ github.actor != 'dependabot[bot]' }}
