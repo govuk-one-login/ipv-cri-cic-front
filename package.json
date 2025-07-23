@@ -109,6 +109,7 @@
     "uuid": "^9.0.1"
   },
   "resolutions": {
-    "string-width": "^4.2.2"
+    "string-width": "^4.2.2",
+    "form-data": ">=4.0.4"
   }
 }
