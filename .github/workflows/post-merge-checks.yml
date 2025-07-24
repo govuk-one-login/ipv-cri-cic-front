@@ -92,7 +92,7 @@ jobs:
         if: ${{ github.actor != 'dependabot[bot]' }}
         uses: peaceiris/actions-gh-pages@v4.0.0
         with:
-          github_token: ${{ secrets.SH_CIC_ACCESS_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: gh-pages/test-reports/post-merge-checks/QA
+          publish_dir: results-history
           keep_files: true
