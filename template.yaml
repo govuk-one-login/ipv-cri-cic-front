@@ -44,7 +44,7 @@ Parameters:
   SupportManualURL:
     Description: "Link to the CIC support manual"
     Type: String
-    Default: 'https://govukverify.atlassian.net/wiki/spaces/FTFCRI/pages/3623354496/CIC+FE+Metrics+Alerts'
+    Default: 'https://govukverify.atlassian.net/wiki/spaces/Kiwi/pages/4371939527/6.3+CIC+CRI+Support+Documentation'
   EnableScalingInDev:
     Type: Number
     Default: 0
