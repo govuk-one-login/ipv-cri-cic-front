@@ -1,0 +1,7 @@
+{
+    // Support for Cucumber (Gherkin) Full Support extension (https://marketplace.visualstudio.com/items?itemName=alexkrechik.cucumberautocomplete)
+    "cucumberautocomplete.steps": [
+        "test/browser/step_definitions/*.js"
+    ],
+    "cucumberautocomplete.syncfeatures": "test/browser/features/**/*.feature"
+}
