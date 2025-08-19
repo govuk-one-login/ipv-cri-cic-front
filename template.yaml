@@ -550,8 +550,9 @@ Resources:
     Condition: IsNotDevelopment
     Properties:
       AlarmName: !Sub "${AWS::StackName}-ECSFatalErrorAlarm"
-      AlarmDescription: !Sub "Trigger an alarm when Fatal Error occurs ${RunbookUrl}"
-      RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
+      AlarmDescription: !Sub 
+        - "Trigger an alarm when Fatal Error occurs ${RunbookUrl}"
+        - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: true
       OKActions:
         - !ImportValue platform-alarm-pagerduty-alert-topic
@@ -947,8 +948,9 @@ Resources:
     Condition: IsNotDevelopment
     Properties:
       AlarmName: !Sub "${AWS::StackName}-APIGWFatalErrorAlarm"
-      AlarmDescription: !Sub "Trigger an alarm when Fatal Error occurs ${RunbookUrl}"
-      RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
+      AlarmDescription: !Sub 
+        - "Trigger an alarm when Fatal Error occurs ${RunbookUrl}"
+        - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: true
       OKActions:
         - !ImportValue platform-alarm-pagerduty-alert-topic
@@ -1203,8 +1205,9 @@ Resources:
     Condition: IsNotDevelopment
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FE5XXErrorAlarm"
-      AlarmDescription: !Sub "Trigger the warning alarm for Frontend 5xx Alarm ${RunbookUrl}"
-      RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
+      AlarmDescription: !Sub 
+      - "Trigger the warning alarm for Frontend 5xx Alarm ${RunbookUrl}"
+      - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: true
       OKActions:
         - !ImportValue platform-alarm-topic-slack-warning-alert
@@ -1307,8 +1310,9 @@ Resources:
     Condition: "DeployAlarms"
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FE4XXErrorAlarm"
-      AlarmDescription: !Sub "Trigger the warning alarm for Frontend 4xx Alarm ${RunbookUrl}"
-      RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
+      AlarmDescription: !Sub 
+        - "Trigger the warning alarm for Frontend 4xx Alarm ${RunbookUrl}"
+        - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: true
       OKActions:
         - !ImportValue platform-alarm-topic-slack-warning-alert
@@ -1358,8 +1362,9 @@ Resources:
     Condition: "DeployAlarms"
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FELatencyAlarmP95"
-      AlarmDescription: !Sub "Trigger the warning alarm for Frontend P95 Latency ${RunbookUrl}"
-      RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
+      AlarmDescription: !Sub 
+        - "Trigger the warning alarm for Frontend P95 Latency ${RunbookUrl}"
+        - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: false
       OKActions:
         - !ImportValue platform-alarm-topic-slack-warning-alert
@@ -1405,8 +1410,9 @@ Resources:
     Condition: "DeployAlarms"
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FELatencyAlarmP99"
-      AlarmDescription: !Sub "Trigger the warning alarm for Frontend P99 Latency ${RunbookUrl}"
-      RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
+      AlarmDescription: !Sub 
+        - "Trigger the warning alarm for Frontend P99 Latency ${RunbookUrl}"
+        - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: false
       OKActions:
         - !ImportValue platform-alarm-topic-slack-warning-alert
@@ -1454,8 +1460,9 @@ Resources:
     Condition: "DeployAlarms"
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FELowContainerTaskCountAlarm"
-      AlarmDescription: !Sub "Trigger a warning if the running container task count drops below 2 ${RunbookUrl}"
-      RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
+      AlarmDescription: !Sub 
+        - "Trigger a warning if the running container task count drops below 2 ${RunbookUrl}"
+        - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: true
       AlarmActions:
         - !ImportValue platform-alarm-topic-critical-alert
@@ -1486,8 +1493,9 @@ Resources:
     Condition: "DeployAlarms"
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FELowContainerTaskCountCriticalAlarm"
-      AlarmDescription: !Sub "Trigger a critical alert if the running container task count drops below 1 ${RunbookUrl}"
-      RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
+      AlarmDescription: !Sub 
+        - "Trigger a critical alert if the running container task count drops below 1 ${RunbookUrl}"
+        - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: false  # to be enabled once proved stable in production
       AlarmActions:
         - !ImportValue platform-alarm-topic-critical-alert
