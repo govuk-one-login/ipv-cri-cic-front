@@ -11,6 +11,10 @@ updates:
     ignore:
       - dependency-name: "node"
         versions: ["14.x","15.x","16.x","17.x","18.x","20.x","24.x"]
+    groups:
+      awssdk:
+        patterns:
+            - "@aws-sdk/*"
     commit-message:
       prefix: BAU
   - package-ecosystem: docker
