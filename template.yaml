@@ -1206,8 +1206,8 @@ Resources:
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FE5XXErrorAlarm"
       AlarmDescription: !Sub 
-      - "Trigger the warning alarm for Frontend 5xx Alarm ${RunbookUrl}"
-      - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
+        - "Trigger the warning alarm for Frontend 5xx Alarm ${RunbookUrl}"
+        - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: true
       OKActions:
         - !ImportValue platform-alarm-topic-slack-warning-alert
