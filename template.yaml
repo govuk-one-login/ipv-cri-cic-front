@@ -929,7 +929,6 @@ Resources:
 
   APIGWFatalErorMetricFilter:
     Type: AWS::Logs::MetricFilter
-    Condition: IsNotDevelopment
     Properties:
       LogGroupName: !Ref APIGWAccessLogsGroup
       FilterPattern: '{ $.level = "FATAL" || $.message = "Unhandled Exception:*" }'
@@ -943,16 +942,15 @@ Resources:
     DependsOn:
       - "APIGWFatalErorMetricFilter"
     Type: AWS::CloudWatch::Alarm
-    Condition: IsNotDevelopment
     Properties:
       AlarmName: !Sub "${AWS::StackName}-APIGWFatalErrorAlarm"
       AlarmDescription: !Sub "Trigger an alarm when Fatal Error occurs ${SupportManualURL}"
       ActionsEnabled: true
       OKActions:
-        - !ImportValue platform-alarm-pagerduty-alert-topic
+        # - !ImportValue platform-alarm-pagerduty-alert-topic
         - !ImportValue platform-alarm-topic-critical-alert
       AlarmActions:
-        - !ImportValue platform-alarm-pagerduty-alert-topic
+        # - !ImportValue platform-alarm-pagerduty-alert-topic
         - !ImportValue platform-alarm-topic-critical-alert
       InsufficientDataActions: [ ]
       MetricName: APIGWFatalerror-message
