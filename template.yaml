@@ -1307,6 +1307,7 @@ Resources:
 
   FE4XXErrorAlarm:
     Type: AWS::CloudWatch::Alarm
+    Condition: "DeployAlarms"
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FE4XXErrorAlarm"
       AlarmDescription: !Sub 
@@ -1356,7 +1357,7 @@ Resources:
           ReturnData: false
           Expression: (error/invocations) * 100
 
-  FELatencyAlarmP95SKTest:
+  FELatencyAlarmP95:
     Type: AWS::CloudWatch::Alarm
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FELatencyAlarmP95"
