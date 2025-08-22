@@ -6,6 +6,10 @@
 {% set contentId = "27a5a22a-0f3d-4019-977a-4046bcc1cfa4" %}
 {% set isPageDataSensitive = false %}
 {% set taxonomyLevel2 = "cic" %}
+{% set statusCode = "200" %}
+{% set englishPageTitle = "{{translate("nameEntry.title")}}" %}
+{% set loggedInStatus = true %}
+{% set dynamic = false %}
 
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 {% from "govuk/components/header/macro.njk" import govukHeader %}
@@ -108,17 +112,4 @@
 {% block footer %}
   {{ super() }}
   <script type="text/javascript" src="/public/javascripts/all.js"></script>
-  <script {% if cspNonce %} nonce="{{ cspNonce }}"{%  endif %}>
-    window.addEventListener('load', function () {
-      window.DI.analyticsGa4.pageViewTracker.trackOnPageLoad({
-        statusCode: '200', // Access status code
-        englishPageTitle: '{{translate("nameEntry.title")}}',
-        taxonomy_level1: 'web cri', // Access taxonomy level 1
-        taxonomy_level2: 'cic', // Access taxonomy level 2
-        content_id: '001',
-        logged_in_status: true,
-        dynamic: false,
-      });
-    });
-  </script>
 {% endblock %}

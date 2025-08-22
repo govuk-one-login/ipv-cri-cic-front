@@ -6,7 +6,10 @@
 {% set contentId = "d94bdd45-ef75-427f-a2a1-a95c0f609956" %}
 {% set isPageDataSensitive = false %}
 {% set taxonomyLevel2 = "cic" %}
-
+{% set statusCode = "200" %}
+{% set loggedInStatus = true %}
+{% set englishPageTitle = "{{translate("dateOfBirth.title")}}" %}
+{% set dynamic = false %}
 
 {% from "hmpo-text/macro.njk" import hmpoText %}
 {% from "hmpo-form/macro.njk" import hmpoForm %}
@@ -47,17 +50,4 @@ html: formInstructions
 {% block footer %}
 {{ super() }}
 <script type="text/javascript" src="/public/javascripts/all.js"></script>
-  <script {% if cspNonce %} nonce="{{ cspNonce }}"{%  endif %}>
-    window.addEventListener('load', function () {
-      window.DI.analyticsGa4.pageViewTracker.trackOnPageLoad({
-        statusCode: '200', // Access status code
-        englishPageTitle: '{{translate("dateOfBirth.title")}}',
-        taxonomy_level1: 'web cri', // Access taxonomy level 1
-        taxonomy_level2: 'cic', // Access taxonomy level 2
-        content_id: '002',
-        logged_in_status: true,
-        dynamic: false,
-      });
-    });
-  </script>
 {% endblock %}
