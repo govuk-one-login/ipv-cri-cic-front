@@ -10,7 +10,11 @@ updates:
     - dependabot
     ignore:
       - dependency-name: "node"
-        versions: ["14.x","15.x","16.x","17.x","18.x"]
+        versions: ["14.x","15.x","16.x","17.x","18.x","20.x","24.x"]
+    groups:
+      awssdk:
+        patterns:
+            - "@aws-sdk/*"
     commit-message:
       prefix: BAU
   - package-ecosystem: docker
@@ -21,6 +25,9 @@ updates:
     target-branch: main
     labels:
     - dependabot
+    ignore:
+      - dependency-name: "node"
+        versions: ["24.x"]
     commit-message:
       prefix: BAU
   - package-ecosystem: "github-actions"
