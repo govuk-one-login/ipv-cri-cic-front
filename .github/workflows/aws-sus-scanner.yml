@@ -26,7 +26,7 @@ jobs:
 
 
       - name: Comment on pull request for front template
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             result=${{ (steps.scanner.outputs.results) }}
@@ -47,7 +47,7 @@ jobs:
             })
 
       - name: Comment on pull request for wafv2 template
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             result=${{ (steps.scannerWaf.outputs.results) }}
