@@ -1080,12 +1080,12 @@
     "@eslint/core" "^0.13.0"
     levn "^0.4.1"
 
-"@govuk-one-login/di-ipv-cri-common-express@11.2.0":
-  version "11.2.0"
-  resolved "https://registry.npmjs.org/@govuk-one-login/di-ipv-cri-common-express/-/di-ipv-cri-common-express-11.2.0.tgz"
-  integrity sha512-68xbQMnGRAbHeqp5Cn0eKZs2gKWmHXWeiZTn+2oVy5r0qpz1CVCb9Z0RG7uCjmxUNs4dvi42eRz3xXuZw3biGQ==
+"@govuk-one-login/di-ipv-cri-common-express@12.0.0":
+  version "12.0.0"
+  resolved "https://registry.npmjs.org/@govuk-one-login/di-ipv-cri-common-express/-/di-ipv-cri-common-express-12.0.0.tgz"
+  integrity sha512-3hwWxps0X9JLCYYW5iJUgBS65nR9bwrihSAKxW09BjdmrNeT6lSEIqniUXAwGtbusJN0PT/Y4qEI/6S3wom7Tw==
   dependencies:
-    "@govuk-one-login/frontend-ui" "^1.2.0"
+    "@govuk-one-login/frontend-ui" "^2.0.0"
     async "^3.2.6"
     compression "^1.7.5"
     connect-redis "6.1.3"
@@ -1103,7 +1103,7 @@
     overload-protection "1.2.3"
     redis "^4.7.0"
 
-"@govuk-one-login/frontend-analytics@^4.0.1", "@govuk-one-login/frontend-analytics@^4.0.3":
+"@govuk-one-login/frontend-analytics@^4.0.3":
   version "4.0.3"
   resolved "https://registry.npmjs.org/@govuk-one-login/frontend-analytics/-/frontend-analytics-4.0.3.tgz"
   integrity sha512-r/16f7Q5Vf4cjqoLS0V791M2H5+jBEkI7NdMJjUsqlUEwzM/jx+l75jcQkRuoCQnTC2WQ9M6HzOWpNkdOrI7Hg==
@@ -1131,15 +1131,15 @@
     forwarded-parse "^2.1.2"
     pino "^8.20.0"
 
-"@govuk-one-login/frontend-ui@^1.2.0":
-  version "1.4.3"
-  resolved "https://registry.npmjs.org/@govuk-one-login/frontend-ui/-/frontend-ui-1.4.3.tgz"
-  integrity sha512-N7b2RtoHM8jR/v6wEVJoZ4RcBhLFDILUKJEDzqklrgfC0DwXnlVMu4fextGtyRmzXcWFm7+z4I3It8KYf9UzZA==
+"@govuk-one-login/frontend-ui@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/@govuk-one-login/frontend-ui/-/frontend-ui-2.0.0.tgz"
+  integrity sha512-WPLqJo/sjKoa5tPMXJcOqR7SIq0RUAm6Msrv5DunXwELk4PMkh/ovzGiLnEz9p4FD3qZ2fNE0ZuB5lKVnNCTrA==
   dependencies:
     js-yaml "^4.1.0"
     pino "8.20.0"
   optionalDependencies:
-    "@govuk-one-login/frontend-analytics" "^4.0.1"
+    "@govuk-one-login/frontend-analytics" "^4.0.3"
     hmpo-components "^7.1.0"
 
 "@govuk-one-login/frontend-vital-signs@0.1.3":

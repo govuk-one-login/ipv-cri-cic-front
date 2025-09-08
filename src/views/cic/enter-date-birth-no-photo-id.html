@@ -3,12 +3,16 @@
 {% set hmpoPageKey = "dateOfBirth" %}
 {% set gtmJourney = "cic - dateOfBirth" %}
 
+{% if query.edit == "true" %}
+  {% set contentID = "d901e9c4-effd-4a2f-b720-18ce840296d7" %}
+{% else %}
 {% set contentID = "d94bdd45-ef75-427f-a2a1-a95c0f609956" %}
+{% endif %}
 {% set isPageDataSensitive = false %}
 {% set taxLevel2 = "cic" %}
 {% set statusCode = "200" %}
 {% set loggedInStatus = true %}
-{% set pageTitleKey = "{{translate("dateOfBirth.title")}}" %}
+{% set pageTitleKey = "pages.dateOfBirth.title" %}
 {% set isPageDynamic = false %}
 
 {% from "hmpo-text/macro.njk" import hmpoText %}

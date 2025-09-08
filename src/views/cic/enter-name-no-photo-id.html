@@ -3,11 +3,15 @@
 {% set gtmJourney = "cic - nameEntry" %}
 {% set hmpoPageKey = "nameEntry.bank_account" %}
   
+{% if query.edit == "true" %}
+  {% set contentID = "446ea9f3-04b0-4b67-9c08-72fcd2a33edb" %}
+{% else %}
 {% set contentID = "27a5a22a-0f3d-4019-977a-4046bcc1cfa4" %}
+{% endif %}
 {% set isPageDataSensitive = false %}
 {% set taxLevel2 = "cic" %}
 {% set statusCode = "200" %}
-{% set pageTitleKey = "{{translate("nameEntry.title")}}" %}
+{% set pageTitleKey = "pages.nameEntry.title" %}
 {% set loggedInStatus = true %}
 {% set isPageDynamic = false %}
 
