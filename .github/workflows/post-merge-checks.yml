@@ -35,7 +35,7 @@ jobs:
           extra_args: "detect-secrets --all-files"
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install
 
       - name: Run lint
         run: yarn lint
@@ -56,7 +56,7 @@ jobs:
       - name: Build Test CIC Front Image
         uses: borales/actions-yarn@v5
         with:
-          cmd: install # will run `yarn install --immutable` command
+          cmd: install # will run `yarn install` command
         env:
           NODE_AUTH_TOKEN: ${{ secrets.SH_CIC_ACCESS_TOKEN }} # if needed
 

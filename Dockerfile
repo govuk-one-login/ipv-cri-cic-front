@@ -5,13 +5,13 @@ WORKDIR /app
 COPY package.json yarn.lock ./
 COPY /src ./src
 
-RUN yarn install --immutable
+RUN yarn install
 RUN yarn build
 
-# 'yarn install --immutable --production' does not prune test packages which are necessary
+# 'yarn install --production' does not prune test packages which are necessary
 # to build the app. So delete nod_modules and reinstall only production packages.
 RUN [ "rm", "-rf", "node_modules" ]
-RUN yarn install --immutable --production --frozen-lockfile
+RUN yarn install --production --frozen-lockfile
 
 FROM node:22.16.0-alpine3.21@sha256:4437d7c27c4b9306c577caa17577dc7b367fc320fb7469dbe2c994e23b11d11c AS final
 
