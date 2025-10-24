@@ -59,6 +59,7 @@ jobs:
           node-version: 22
       - run: yarn install
       - run: yarn build
+      - run: yarn test:coverage
       - run: yarn test
       - if: ${{ success() && github.actor != 'dependabot[bot]' }}
         uses: SonarSource/sonarqube-scan-action@v6
