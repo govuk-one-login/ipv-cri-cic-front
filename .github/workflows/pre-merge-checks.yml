@@ -58,6 +58,7 @@ jobs:
           node-version: 22
       - run: yarn install
       - run: yarn build
+      - run: yarn test:coverage
       - run: yarn test
       - run: yarn test:coverage
       - if: ${{ success() && github.actor != 'dependabot[bot]' }}
