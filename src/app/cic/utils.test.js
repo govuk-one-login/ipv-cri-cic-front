@@ -8,6 +8,12 @@ describe("formatDate", () => {
     );
   });
 
+  it("returns a YYYY-MM-DD date with language set to en as DD Month(English) YYYY", () => {
+    expect(formatDate("1989-03-31", "YYYY-MM-DD", "en")).to.equal(
+      "31 March 1989",
+    );
+  });
+
   it("returns a YYYY-MM-DD date with language set to cy as DD Month(Welsh) YYYY", () => {
     expect(formatDate("1989-03-31", "YYYY-MM-DD", "cy")).to.equal(
       "31 Mawrth 1989",
