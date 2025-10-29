@@ -31,7 +31,6 @@ jobs:
       - run: yarn install
       - run: yarn lint
       - run: yarn build
-      - run: yarn test:coverage
       - run: npm run test:browser:ci
         env:
           IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
@@ -60,8 +59,9 @@ jobs:
       - run: yarn install
       - run: yarn build
       - run: yarn test
+      - run: yarn test:coverage
       - if: ${{ success() && github.actor != 'dependabot[bot]' }}
-        uses: SonarSource/sonarqube-scan-action@v5.3.1
+        uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
