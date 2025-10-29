@@ -25,6 +25,22 @@ describe("Fields maxLength ", () => {
     });
   };
 
+  const testNameField = (fieldName, fieldConfig) => {
+    describe(`${fieldName}`, () => {
+      it("should reject names that exceed the maximum length", () => {
+        const name = "A".repeat(41);
+        const isValid = testFieldLength(fieldConfig, name);
+        expect(
+          isValid,
+          `${fieldName} exceeds maximum allowed length. Expected length to be less than ${
+            fieldConfig.validate.find((rule) => rule.type === "maxlength")
+              .arguments
+          }, but got ${name.length}`,
+        ).to.be.false;
+      });
+    });
+  };
+
   const nameFields = {
     surname: fields.surname,
     firstName: fields.firstName,
