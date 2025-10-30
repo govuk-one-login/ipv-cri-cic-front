@@ -1714,6 +1714,7 @@ Outputs:
   CICCustomDomain:
     Description: CIC Custom Domain API Gateway ID
     Value: !Ref CICFrontCustomDomain
+  # Below outputs are only used for E2E tests - hardcoded to always point to relevant main stacks
   CICIPVStubExecuteURL:
     Condition: IsNotProdLikeEnvironment
     Description: "CIC IPV Stub"
