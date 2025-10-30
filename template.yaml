@@ -45,10 +45,6 @@ Parameters:
     Type: Number
     Default: 0
     Description: Set to 1 to enable deployment of scaling infra in dev
-  IPVStubStackName:
-    Type: String
-    Default: "cic-ipv-stub"
-    Description: The name of the deployed IPV stub stack.
   DeployAlarmsInDev:
     Description: "Set to the string value `true` to deploy alarms in a DEV environment"
     Type: String
@@ -1718,11 +1714,6 @@ Outputs:
   CICCustomDomain:
     Description: CIC Custom Domain API Gateway ID
     Value: !Ref CICFrontCustomDomain
-  CICIPVStubExecuteURL:
-    Condition: IsNotProdLikeEnvironment
-    Description: "CIC IPV Stub"
-    Value:
-      Fn::ImportValue: !Sub '${IPVStubStackName}-IPVStubExecuteUrl'
   CICIPVStubExecuteURL:
     Condition: IsNotProdLikeEnvironment
     Description: "CIC IPV Stub"
