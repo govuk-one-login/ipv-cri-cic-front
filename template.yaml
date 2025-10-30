@@ -136,7 +136,7 @@ Mappings:
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "dev.account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
-      IPVSTUBURL: "https://f2f-ipv-stub-ipvstub.review-o.dev.account.gov.uk/"
+      IPVSTUBURL: "https://cic-ipv-stub-ipvstub.review-c.dev.account.gov.uk/"
       TESTHARNESSURL: "https://cic-test-harness-testharness.review-c.dev.account.gov.uk"
       BACKENDURL: "https://api-cic-cri-api.review-c.dev.account.gov.uk"
       BACKENDSESSIONTABLE: "session-cic-cri-ddb"
