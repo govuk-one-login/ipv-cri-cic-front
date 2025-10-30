@@ -136,6 +136,7 @@ Mappings:
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "dev.account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
+      IPVSTUBURL: "https://f2f-ipv-stub-ipvstub.review-o.dev.account.gov.uk/"
       TESTHARNESSURL: "https://cic-test-harness-testharness.review-c.dev.account.gov.uk"
       BACKENDURL: "https://api-cic-cri-api.review-c.dev.account.gov.uk"
       BACKENDSESSIONTABLE: "session-cic-cri-ddb"
@@ -157,6 +158,7 @@ Mappings:
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "build.account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
+      IPVSTUBURL: "https://ipvstub.review-c.build.account.gov.uk/"
       TESTHARNESSURL: "https://testharness.review-c.build.account.gov.uk"
       BACKENDURL: "https://api.review-c.build.account.gov.uk"
       BACKENDSESSIONTABLE: "session-cic-cri-ddb"
@@ -178,6 +180,7 @@ Mappings:
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "staging.account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
+      IPVSTUBURL: ""
       TESTHARNESSURL: ""
       BACKENDURL: ""
       BACKENDSESSIONTABLE: ""
@@ -199,6 +202,7 @@ Mappings:
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
+      IPVSTUBURL: ""
       TESTHARNESSURL: ""
       BACKENDURL: ""
       BACKENDSESSIONTABLE: ""
@@ -220,6 +224,7 @@ Mappings:
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
+      IPVSTUBURL: ""
       TESTHARNESSURL: ""
       BACKENDURL: ""
       BACKENDSESSIONTABLE: ""
@@ -1718,6 +1723,10 @@ Outputs:
     Description: "CIC IPV Stub"
     Value:
       Fn::ImportValue: !Sub '${IPVStubStackName}-IPVStubExecuteUrl'
+  CICIPVStubExecuteURL:
+    Condition: IsNotProdLikeEnvironment
+    Description: "CIC IPV Stub"
+    Value: !FindInMap [EnvironmentVariables, !Ref Environment, IPVSTUBURL]
   CICTestHarnessURL:
     Condition: IsNotProdLikeEnvironment
     Description: "CIC Test Harness"
