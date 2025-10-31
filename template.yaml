@@ -45,10 +45,6 @@ Parameters:
     Type: Number
     Default: 0
     Description: Set to 1 to enable deployment of scaling infra in dev
-  IPVStubStackName:
-    Type: String
-    Default: "cic-ipv-stub"
-    Description: The name of the deployed IPV stub stack.
   DeployAlarmsInDev:
     Description: "Set to the string value `true` to deploy alarms in a DEV environment"
     Type: String
@@ -136,6 +132,7 @@ Mappings:
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "dev.account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
+      IPVSTUBURL: "https://cic-ipv-stub-ipvstub.review-c.dev.account.gov.uk/"
       TESTHARNESSURL: "https://cic-test-harness-testharness.review-c.dev.account.gov.uk"
       BACKENDURL: "https://api-cic-cri-api.review-c.dev.account.gov.uk"
       BACKENDSESSIONTABLE: "session-cic-cri-ddb"
@@ -157,6 +154,7 @@ Mappings:
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "build.account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
+      IPVSTUBURL: "https://ipvstub.review-c.build.account.gov.uk/"
       TESTHARNESSURL: "https://testharness.review-c.build.account.gov.uk"
       BACKENDURL: "https://api.review-c.build.account.gov.uk"
       BACKENDSESSIONTABLE: "session-cic-cri-ddb"
@@ -178,6 +176,7 @@ Mappings:
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "staging.account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
+      IPVSTUBURL: ""
       TESTHARNESSURL: ""
       BACKENDURL: ""
       BACKENDSESSIONTABLE: ""
@@ -199,6 +198,7 @@ Mappings:
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
+      IPVSTUBURL: ""
       TESTHARNESSURL: ""
       BACKENDURL: ""
       BACKENDSESSIONTABLE: ""
@@ -220,6 +220,7 @@ Mappings:
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
+      IPVSTUBURL: ""
       TESTHARNESSURL: ""
       BACKENDURL: ""
       BACKENDSESSIONTABLE: ""
@@ -1713,11 +1714,11 @@ Outputs:
   CICCustomDomain:
     Description: CIC Custom Domain API Gateway ID
     Value: !Ref CICFrontCustomDomain
+  # Below outputs are only used for E2E tests - hardcoded to always point to relevant main stacks
   CICIPVStubExecuteURL:
     Condition: IsNotProdLikeEnvironment
     Description: "CIC IPV Stub"
-    Value:
-      Fn::ImportValue: !Sub '${IPVStubStackName}-IPVStubExecuteUrl'
+    Value: !FindInMap [EnvironmentVariables, !Ref Environment, IPVSTUBURL]
   CICTestHarnessURL:
     Condition: IsNotProdLikeEnvironment
     Description: "CIC Test Harness"
