@@ -119,7 +119,6 @@ Mappings:
 
   EnvironmentVariables:
     ### These environment variables are referenced further down the file.
-    ### Please ensure that any variables defined for an environment are defined for _all_ environments.
     dev:
       EXTERNALWEBSITEHOST: "https://cic-cri-front.review-c.dev.account.gov.uk"
       APIBASEURL: "https://api-cic-cri-api.review-c.dev.account.gov.uk"
@@ -176,10 +175,6 @@ Mappings:
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "staging.account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
-      IPVSTUBURL: ""
-      TESTHARNESSURL: ""
-      BACKENDURL: ""
-      BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
@@ -198,10 +193,6 @@ Mappings:
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
-      IPVSTUBURL: ""
-      TESTHARNESSURL: ""
-      BACKENDURL: ""
-      BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
@@ -220,10 +211,6 @@ Mappings:
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
-      IPVSTUBURL: ""
-      TESTHARNESSURL: ""
-      BACKENDURL: ""
-      BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
