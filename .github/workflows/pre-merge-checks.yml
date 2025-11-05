@@ -31,7 +31,10 @@ jobs:
       - run: yarn install
       - run: yarn lint
       - run: yarn build
-      - run: yarn test:coverage
+      - name: Install Playwright browsers
+        uses: microsoft/playwright-github-action@v1
+        with:
+          version: 1.55.1
       - run: npm run test:browser:ci
         env:
           IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
