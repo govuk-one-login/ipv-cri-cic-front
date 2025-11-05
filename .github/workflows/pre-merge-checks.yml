@@ -55,14 +55,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v5
         with:
           node-version: 22
       - run: yarn install
       - run: yarn build
-      - run: yarn test
-      - run: yarn test:coverage
-      - if: ${{ success() && github.actor != 'dependabot[bot]' }}
+      - run: yarn test:coverage   # generates coverage/lcov.info in THIS job
+      - name: Show coverage & assert
+        run: |
+          ls -lah coverage || true
+          test -f coverage/lcov.info || { echo "coverage/lcov.info is missing"; exit 1; }
+      - name: Sonar scan (v6)
+        if: ${{ success() && github.actor != 'dependabot[bot]' }}
         uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
