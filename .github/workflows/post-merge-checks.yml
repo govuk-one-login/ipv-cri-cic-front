@@ -47,6 +47,7 @@ jobs:
 
       - name: Run test and write coverage
         run: yarn test:coverage
+
       - name: Build Test CIC Front Image
         uses: borales/actions-yarn@v5
         with:
