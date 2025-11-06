@@ -4,7 +4,7 @@ Feature: Successful navigation using Change and Back button - Date of Birth
   Background:
       Given Authenticatable Anita is using the system
       When they have provided their details
-      Then they should be redirected to the F2F nameEntry
+      Then they should be redirected to the CIC nameEntry
 
       Given there has been an entry into the surname and first name fields
       When the user clicks the NameEntry continue button
