@@ -47,17 +47,6 @@ jobs:
 
       - name: Run test and write coverage
         run: yarn test:coverage
-
-      - name: "Run SonarCloud Scan"
-        if: ${{ github.actor != 'dependabot[bot]' }}
-        uses: SonarSource/sonarqube-scan-action@v6
-        with:
-          args: >
-            -Dsonar.branch.name=main
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Build Test CIC Front Image
         uses: borales/actions-yarn@v5
         with:
@@ -101,3 +90,20 @@ jobs:
           publish_branch: gh-pages
           publish_dir: results-history
           keep_files: true
+          
+  sonar-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: yarn install
+      - run: yarn build
+      - run: yarn test
+      - run: yarn test:coverage
+      - if: ${{ success() && github.actor != 'dependabot[bot]' }}
+        uses: SonarSource/sonarqube-scan-action@v6
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
