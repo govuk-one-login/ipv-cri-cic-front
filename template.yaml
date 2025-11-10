@@ -119,7 +119,6 @@ Mappings:
 
   EnvironmentVariables:
     ### These environment variables are referenced further down the file.
-    ### Please ensure that any variables defined for an environment are defined for _all_ environments.
     dev:
       EXTERNALWEBSITEHOST: "https://cic-cri-front.review-c.dev.account.gov.uk"
       APIBASEURL: "https://api-cic-cri-api.review-c.dev.account.gov.uk"
@@ -132,16 +131,16 @@ Mappings:
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "dev.account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
-      IPVSTUBURL: "https://cic-ipv-stub-ipvstub.review-c.dev.account.gov.uk/"
-      TESTHARNESSURL: "https://cic-test-harness-testharness.review-c.dev.account.gov.uk"
-      BACKENDURL: "https://api-cic-cri-api.review-c.dev.account.gov.uk"
-      BACKENDSESSIONTABLE: "session-cic-cri-ddb"
       LOGLEVEL: "debug"
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
       MAY2025REBRANDENABLED: true
       minECSCount: 1
       maxECSCount: 4
+      # Hardcoded variables used to generate stack outputs for tests in Dev. Referenced in Outputs section of this template file. Only present in Dev + Build
+      IPVSTUBURL: "https://cic-ipv-stub-ipvstub.review-c.dev.account.gov.uk/"
+      TESTHARNESSURL: "https://cic-test-harness-testharness.review-c.dev.account.gov.uk"
+      BACKENDSESSIONTABLE: "session-cic-cri-ddb"
     build:
       EXTERNALWEBSITEHOST: "https://review-c.build.account.gov.uk"
       APIBASEURL: "https://api.review-c.build.account.gov.uk"
@@ -154,16 +153,16 @@ Mappings:
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "build.account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
-      IPVSTUBURL: "https://ipvstub.review-c.build.account.gov.uk/"
-      TESTHARNESSURL: "https://testharness.review-c.build.account.gov.uk"
-      BACKENDURL: "https://api.review-c.build.account.gov.uk"
-      BACKENDSESSIONTABLE: "session-cic-cri-ddb"
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
       MAY2025REBRANDENABLED: true
       minECSCount: 6
       maxECSCount: 60
+      # Hardcoded variables used to generate stack outputs for tests in Build. Referenced in Outputs section of this template file. Only present in Dev + Build
+      IPVSTUBURL: "https://ipvstub.review-c.build.account.gov.uk/"
+      TESTHARNESSURL: "https://testharness.review-c.build.account.gov.uk"
+      BACKENDSESSIONTABLE: "session-cic-cri-ddb"
     staging:
       EXTERNALWEBSITEHOST: "https://review-c.staging.account.gov.uk"
       APIBASEURL: "https://api.review-c.staging.account.gov.uk"
@@ -176,10 +175,6 @@ Mappings:
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "staging.account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
-      IPVSTUBURL: ""
-      TESTHARNESSURL: ""
-      BACKENDURL: ""
-      BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
@@ -198,10 +193,6 @@ Mappings:
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
-      IPVSTUBURL: ""
-      TESTHARNESSURL: ""
-      BACKENDURL: ""
-      BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
@@ -220,10 +211,6 @@ Mappings:
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
-      IPVSTUBURL: ""
-      TESTHARNESSURL: ""
-      BACKENDURL: ""
-      BACKENDSESSIONTABLE: ""
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
@@ -1726,7 +1713,7 @@ Outputs:
   CICBackEndURL:
     Condition: IsNotProdLikeEnvironment
     Description: "CIC Back End"
-    Value: !FindInMap [EnvironmentVariables, !Ref Environment, BACKENDURL]
+    Value: !FindInMap [EnvironmentVariables, !Ref Environment, APIBASEURL]
   CICBackendSessionTableName:
     Condition: IsNotProdLikeEnvironment
     Description: "CIC Test Harness"
