@@ -1,4 +1,4 @@
-name: API Build and Deploy - Build
+name: Frontend Build and Deploy - Build
 
 on:
   workflow_dispatch:

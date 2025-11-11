@@ -23,7 +23,7 @@ When(
   async function () { },
 );
 
-Then("they should be redirected to the F2F nameEntry", async function () {
+Then("they should be redirected to the CIC nameEntry", async function () {
   const nameEntryPage = new NameEntryPage(await this.page);
   expect(await nameEntryPage.isCurrentPage()).to.be.true;
   expect(await nameEntryPage.checkTitle()).to.contain(

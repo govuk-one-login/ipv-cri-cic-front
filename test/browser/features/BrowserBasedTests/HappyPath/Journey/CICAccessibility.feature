@@ -5,7 +5,7 @@ Feature: Claimed Identity Credential Issuer - Accessibility
 Scenario: Claimed Identity Credential Issuer - Accessibility Validation (Face to Face Journey)
     Given Authenticatable Anita is using the system
     When they have provided their details
-    Then they should be redirected to the F2F nameEntry
+    Then they should be redirected to the CIC nameEntry
     And the page should conform to WCAG 2.2 AA guidelines
 
     Given there has been an entry into the surname and first name fields
