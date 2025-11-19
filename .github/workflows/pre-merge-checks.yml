@@ -47,7 +47,7 @@ jobs:
           LANGUAGE_TOGGLE_DISABLED: false
           DEVICE_INTELLIGENCE_ENABLED: false
       - name: Archive browser tests results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: cic-code-coverage-report
           path: test/reports/cic-reports/
@@ -62,8 +62,9 @@ jobs:
       - run: yarn install
       - run: yarn build
       - run: yarn test
+      - run: yarn test:coverage
       - if: ${{ success() && github.actor != 'dependabot[bot]' }}
-        uses: SonarSource/sonarqube-scan-action@v5.3.1
+        uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

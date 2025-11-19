@@ -17,11 +17,12 @@ jobs:
       packages: write
     continue-on-error: true
 
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Checkout Project
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Use Node.js 22.x
         uses: actions/setup-node@v5
@@ -46,29 +47,15 @@ jobs:
       - name: Run test and write coverage
         run: yarn test:coverage
 
-      - name: "Run SonarCloud Scan"
+      - name: Run sonar post merge check
         if: ${{ success() && github.actor != 'dependabot[bot]' }}
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build Test CIC Front Image
-        uses: borales/actions-yarn@v5
-        with:
-          cmd: install # will run `yarn install` command
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.SH_CIC_ACCESS_TOKEN }} # if needed
-
-      - name: Build production bundle
-        uses: borales/actions-yarn@v5
-        with:
-          cmd: build # will run `yarn build` command
-
       - name: Test the app
-        uses: borales/actions-yarn@v5
-        with:
-          cmd: test:browser:ci # will run `yarn test:browser:ci` command
+        run: yarn test:browser:ci
 
       - name: Get Test Results history
         uses: actions/checkout@v5
@@ -96,3 +83,4 @@ jobs:
           publish_branch: gh-pages
           publish_dir: results-history
           keep_files: true
+        
