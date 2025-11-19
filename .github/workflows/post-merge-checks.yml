@@ -46,7 +46,17 @@ jobs:
       - name: Unit tests + coverage (LCOV)
         run: yarn test:coverage
 
-      - name: Run sonar post merge check
+      # --- debug safety net before Sonar ---
+      - name: Show branch context
+        run: |
+          echo "event=${{ github.event_name }}"
+          echo "ref=${{ github.ref }}"
+          echo "ref_name=${{ github.ref_name }}"
+          git rev-parse --is-shallow-repository || true
+      - name: Ensure repo is not shallow (just in case)
+        run: git fetch --unshallow || true
+
+      - name: Run SonarCloud scan (post-merge)
         if: ${{ success() && github.actor != 'dependabot[bot]' }}
         uses: SonarSource/sonarqube-scan-action@v6
         with:
