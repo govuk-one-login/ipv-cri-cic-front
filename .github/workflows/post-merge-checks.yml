@@ -61,8 +61,8 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v6
         with:
           args: >
-            -Dsonar.branch.name=${{ github.ref_name }}
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            "-Dsonar.branch.name=${{ github.ref_name }}"
+            "-Dsonar.javascript.lcov.reportPaths=coverage/lcov.info"
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
