@@ -6,7 +6,7 @@ on:
     branches:
       - main
 
-env: # Only adding the variables in that are required for
+env:
   IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
 
 jobs:
@@ -17,9 +17,8 @@ jobs:
       packages: write
     continue-on-error: true
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout Project
+      - name: Checkout Project (full history)
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
@@ -30,7 +29,7 @@ jobs:
           node-version: 22
           cache: 'yarn'
 
-      - name: Checks if commiting secrets to repo
+      - name: Pre-commit (secrets)
         uses: pre-commit/action@v3.0.1
         with:
           extra_args: "detect-secrets --all-files"
@@ -38,23 +37,37 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Run lint
+      - name: Lint
         run: yarn lint
 
-      - name: Run build
+      - name: Build
         run: yarn build
 
-      - name: Run test and write coverage
+      - name: Unit tests + coverage (LCOV)
         run: yarn test:coverage
 
-      - name: Run sonar post merge check
+      # --- debug safety net before Sonar ---
+      - name: Show branch context
+        run: |
+          echo "event=${{ github.event_name }}"
+          echo "ref=${{ github.ref }}"
+          echo "ref_name=${{ github.ref_name }}"
+          git rev-parse --is-shallow-repository || true
+      - name: Ensure repo is not shallow (just in case)
+        run: git fetch --unshallow || true
+
+      - name: Run SonarCloud scan (post-merge)
         if: ${{ success() && github.actor != 'dependabot[bot]' }}
         uses: SonarSource/sonarqube-scan-action@v6
+        with:
+          args: >
+            -Dsonar.branch.name=${{ github.ref_name }}
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Test the app
+      - name: Browser tests (CI)
         run: yarn test:browser:ci
 
       - name: Get Test Results history
