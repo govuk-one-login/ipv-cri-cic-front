@@ -32,8 +32,6 @@ jobs:
       - run: yarn lint
       - run: yarn build
       - run: yarn test:coverage
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps
       - run: npm run test:browser:ci
         env:
           IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
