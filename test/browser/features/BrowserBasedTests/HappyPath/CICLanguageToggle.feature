@@ -1,4 +1,4 @@
-@browser
+@browser2
 
 Feature: Claimed Identity Credential Issuer Language Toggle
 
