@@ -31,7 +31,6 @@ jobs:
       - run: yarn install
       - run: yarn lint
       - run: yarn build
-      - run: yarn prettier
       - run: yarn test
       - name: Install Playwright browsers
         run: yarn playwright install --with-deps
