@@ -34,7 +34,7 @@ jobs:
       - run: yarn prettier
       - run: yarn test
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps
+        run: yarn playwright install --with-deps
       - name: Run browser tests
         run: npm run test:browser:ci
         env:
