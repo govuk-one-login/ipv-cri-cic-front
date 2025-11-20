@@ -8,14 +8,16 @@ module.exports = class ApiSupport {
 
   async generateTokenPostRequest() {
     return await axios.post(
-      process.env.IPV_STUB_URL + "generate-token-request");
+      process.env.IPV_STUB_URL + "generate-token-request",
+    );
   }
 
   async tokenPostRequest(authorizationCode, redirectUri, clientAssertionJwt) {
     return await axios.post(
       this.baseUrl + "/token",
       `code=${authorizationCode}&grant_type=authorization_code&redirect_uri=${encodeURIComponent(
-        redirectUri)}&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=${clientAssertionJwt}`,
+        redirectUri,
+      )}&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=${clientAssertionJwt}`,
       { headers: { "Content-Type": "text/plain" } },
     );
   }

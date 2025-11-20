@@ -63,7 +63,10 @@ class CheckDetailsController extends DateController {
       const resp = await axios.post(`${API.PATHS.SAVE_CICDATA}`, cicData, {
         headers: {
           "x-govuk-signin-session-id": tokenId,
-          ...createPersonalDataHeaders(`${API.BASE_URL}${API.PATHS.SAVE_CICDATA}`, req),
+          ...createPersonalDataHeaders(
+            `${API.BASE_URL}${API.PATHS.SAVE_CICDATA}`,
+            req,
+          ),
         },
       });
       return resp.data;

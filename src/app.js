@@ -96,7 +96,7 @@ const { app, router } = setup({
       ),
       "components",
     ),
-    path.resolve('node_modules/@govuk-one-login/'),
+    path.resolve("node_modules/@govuk-one-login/"),
     "views",
   ],
   translation: {

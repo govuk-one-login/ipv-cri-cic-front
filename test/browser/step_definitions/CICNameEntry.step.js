@@ -4,7 +4,7 @@ const { expect } = require("chai");
 
 const { injectAxe } = require("axe-playwright");
 
-const axe = require('axe-core');
+const axe = require("axe-core");
 
 const {
   NameEntryPage,
@@ -25,19 +25,16 @@ Given(
   },
 );
 
-Given(
-  /^the page should conform to WCAG 2.2 AA guidelines$/,
-  async function () {
-    await injectAxe(this.page);
-    // Run Axe for WCAG 2.2 AA rules
-    const wcagResults = await this.page.evaluate(() => {
-      return axe.run({
-        runOnly: ["wcag2aa"]
-      });
+Given(/^the page should conform to WCAG 2.2 AA guidelines$/, async function () {
+  await injectAxe(this.page);
+  // Run Axe for WCAG 2.2 AA rules
+  const wcagResults = await this.page.evaluate(() => {
+    return axe.run({
+      runOnly: ["wcag2aa"],
     });
-    expect(wcagResults.violations, "WCAG 2.2 AAA violations found").to.be.empty;
-  },
-);
+  });
+  expect(wcagResults.violations, "WCAG 2.2 AAA violations found").to.be.empty;
+});
 
 When(/^the user clicks the GOV UK support Link$/, async function () {
   const nameEntryPage = new NameEntryPage(await this.page);

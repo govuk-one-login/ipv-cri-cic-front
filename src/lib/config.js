@@ -37,8 +37,10 @@ module.exports = {
         process.env.GA4_SELECT_CONTENT_ENABLED || true,
     },
     LANGUAGE_TOGGLE_DISABLED: process.env.LANGUAGE_TOGGLE_DISABLED || "true",
-    DEVICE_INTELLIGENCE_ENABLED: process.env.DEVICE_INTELLIGENCE_ENABLED || "true",
-    DEVICE_INTELLIGENCE_DOMAIN: process.env.DEVICE_INTELLIGENCE_DOMAIN || "localhost",
+    DEVICE_INTELLIGENCE_ENABLED:
+      process.env.DEVICE_INTELLIGENCE_ENABLED || "true",
+    DEVICE_INTELLIGENCE_DOMAIN:
+      process.env.DEVICE_INTELLIGENCE_DOMAIN || "localhost",
   },
   PORT: process.env.PORT || 5020,
   SESSION_SECRET: process.env.SESSION_SECRET,

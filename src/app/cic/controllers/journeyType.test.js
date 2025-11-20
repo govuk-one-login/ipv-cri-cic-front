@@ -42,8 +42,8 @@ describe("JourneyTypeController", () => {
 
       sinon.assert.calledWith(req.axios.get, `${API.PATHS.SESSION_CONFIG}`, {
         headers: {
-          "txma-audit-encoded":"dummy-txma-header",
-          "x-govuk-signin-session-id": req.session.tokenId 
+          "txma-audit-encoded": "dummy-txma-header",
+          "x-govuk-signin-session-id": req.session.tokenId,
         },
       });
       const journeyType = req.sessionModel.get("journeyType");

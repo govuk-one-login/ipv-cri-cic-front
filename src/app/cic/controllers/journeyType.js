@@ -13,7 +13,10 @@ class JourneyTypeController extends BaseController {
         const { data } = await req.axios.get(`${API.PATHS.SESSION_CONFIG}`, {
           headers: {
             "x-govuk-signin-session-id": tokenId,
-            ...createPersonalDataHeaders(`${API.BASE_URL}${API.PATHS.SESSION_CONFIG}`, req),
+            ...createPersonalDataHeaders(
+              `${API.BASE_URL}${API.PATHS.SESSION_CONFIG}`,
+              req,
+            ),
           },
         });
         req.sessionModel.set("journeyType", data.journey_type);
