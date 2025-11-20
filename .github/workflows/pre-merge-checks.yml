@@ -31,12 +31,15 @@ jobs:
       - run: yarn install
       - run: yarn lint
       - run: yarn build
-      - run: yarn test:coverage
+      - run: yarn prettier
+      - run: yarn test
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
+      - name: Run browser tests
       - run: npm run test:browser:ci
         env:
           IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
           CUSTOM_FE_URL: http://localhost:5020
           LANGUAGE_TOGGLE_DISABLED: false
           DEVICE_INTELLIGENCE_ENABLED: true
