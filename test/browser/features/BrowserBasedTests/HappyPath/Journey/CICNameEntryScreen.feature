@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @success @browser
+@mock-api:f2f-cic-success @success @browser2
 Feature: The user enters their name to be used as part of their claimed identity
 
 Scenario: Successful validation of Surname and First name fields
