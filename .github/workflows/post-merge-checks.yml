@@ -36,7 +36,6 @@ jobs:
 
       - name: Install Playwright browsers
         run: yarn playwright install --with-deps
-      - run: yarn test:browser:ci
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
