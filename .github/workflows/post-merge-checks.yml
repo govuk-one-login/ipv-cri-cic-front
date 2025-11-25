@@ -34,11 +34,11 @@ jobs:
         with:
           extra_args: "detect-secrets --all-files"
 
-      - name: Install Playwright browsers
-        run: yarn playwright install --with-deps
-
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+      
+      - name: Install Playwright browsers
+        run: yarn playwright install --with-deps
 
       - name: Lint
         run: yarn lint
