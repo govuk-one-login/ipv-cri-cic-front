@@ -18,6 +18,6 @@ COPY . /app
 WORKDIR /app
 COPY run-tests.sh /
 RUN chmod +x /run-tests.sh
-RUN yarn install && yarn playwright install --with-deps
+RUN yarn install --frozen-lockfile && yarn playwright install --with-deps
 
 ENTRYPOINT ["/run-tests.sh"]
