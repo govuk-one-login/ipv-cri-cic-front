@@ -28,19 +28,19 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
-      - run: yarn install
+      - run: yarn install --frozen-lockfile
       - run: yarn lint
       - run: yarn build
       - run: yarn test:coverage
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps
-      - run: npm run test:browser:ci
+        run: yarn playwright install --with-deps
+      - run: yarn test:browser:ci
         env:
           IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
           CUSTOM_FE_URL: http://localhost:5020
           LANGUAGE_TOGGLE_DISABLED: false
           DEVICE_INTELLIGENCE_ENABLED: true
-      - run: npm run test:browser:no_di:ci
+      - run: yarn test:browser:no_di:ci
         env:
           IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
           CUSTOM_FE_URL: http://localhost:5020
@@ -59,7 +59,7 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
-      - run: yarn install
+      - run: yarn install --frozen-lockfile
       - run: yarn build
       - run: yarn test
       - run: yarn test:coverage

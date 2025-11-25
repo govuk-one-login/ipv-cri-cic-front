@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package.json yarn.lock ./
 COPY /src ./src
 
-RUN yarn install
+RUN yarn install --frozen-lockfile
 RUN yarn build
 
 # 'yarn install --production' does not prune test packages which are necessary
