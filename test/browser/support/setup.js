@@ -7,8 +7,8 @@ BeforeAll({ timeout: 2 * 5000 }, async function () {
   global.browser = process.env.GITHUB_ACTIONS
     ? await chromium.launch()
     : await chromium.launch({
-        // Not headless so we can watch test runs
-        headless: false,
+        // Set headless to false to watch test runs
+        headless: true,
         // Slow so we can see things happening
         //slowMo: 1000,
       });
