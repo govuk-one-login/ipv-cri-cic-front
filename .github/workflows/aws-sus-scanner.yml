@@ -18,13 +18,6 @@ jobs:
         with:
           file: "template.yaml"
           
-      - name: wafv2 cloudformation Scan
-        uses: aws-actions/sustainability-scanner@v1
-        id: scannerWaf
-        with:
-          file: "wafv2_template.yaml"
-
-
       - name: Comment on pull request for front template
         uses: actions/github-script@v8
         with:
