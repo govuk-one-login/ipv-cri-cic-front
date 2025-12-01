@@ -69,6 +69,9 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Show sonar reports
+        run: cat .scannerwork/report-task.txt
+
       - name: Browser tests (CI)
         run: yarn test:browser:ci
 

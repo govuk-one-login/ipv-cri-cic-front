@@ -1,10 +1,10 @@
-name: Post merge checks
+name: Post merge branch checks
 
 on:
   workflow_dispatch:
   push:
     branches:
-      - KIWI_2484-branch-test
+      - KIWI_2484-branch-test-2
 
 env:
   IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
@@ -52,8 +52,10 @@ jobs:
         with:
           args: >
             "-Dsonar.branch.name=${{ github.ref_name }}"
-            "-Dsonar.javascript.lcov.reportPaths=coverage/lcov.info"
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Show sonar reports
+        run: cat .scannerwork/report-task.txt
         
