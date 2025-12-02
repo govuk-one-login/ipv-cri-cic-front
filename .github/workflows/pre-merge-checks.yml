@@ -7,9 +7,6 @@ on:
       - reopened
       - ready_for_review
       - synchronize
-  push:
-    branches:
-      - main
 
 jobs:
   detect-secrets:
