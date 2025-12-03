@@ -15,4 +15,4 @@ jobs:
     - name: Check ignore-scripts
       run: |
         echo "ignore-scripts?"
-        npm config get ignore-scripts
+        yarn config get ignore-scripts
