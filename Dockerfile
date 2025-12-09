@@ -42,6 +42,4 @@ HEALTHCHECK --interval=5s --timeout=2s --retries=10 \
 EXPOSE $PORT
 
 ENTRYPOINT ["sh", "-c", "export DT_HOST_ID=CIC-FRONT-$RANDOM && tini npm start"]
-RUN echo "IGNORE_SCRIPTS4?"
-RUN yarn config get ignore-scripts
 CMD ["yarn", "start"]
