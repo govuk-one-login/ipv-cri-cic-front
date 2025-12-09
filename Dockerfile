@@ -2,6 +2,7 @@ FROM node:22.16.0-alpine3.21@sha256:4437d7c27c4b9306c577caa17577dc7b367fc320fb74
 
 WORKDIR /app
 
+COPY .yarnrc ./
 COPY package.json yarn.lock ./
 COPY /src ./src
 
@@ -20,6 +21,7 @@ RUN ["apk", "add", "--no-cache", "tini", "curl"]
 
 WORKDIR /app
 
+COPY .yarnrc ./
 # Copy in compile assets and deps from build container
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
@@ -40,5 +42,6 @@ HEALTHCHECK --interval=5s --timeout=2s --retries=10 \
 EXPOSE $PORT
 
 ENTRYPOINT ["sh", "-c", "export DT_HOST_ID=CIC-FRONT-$RANDOM && tini npm start"]
-
+RUN echo "IGNORE_SCRIPTS4?"
+RUN yarn config get ignore-scripts
 CMD ["yarn", "start"]
