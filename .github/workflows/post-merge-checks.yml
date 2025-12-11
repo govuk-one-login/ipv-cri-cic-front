@@ -51,7 +51,7 @@ jobs:
         
       - name: Run SonarCloud scan (post-merge)
         if: ${{ success() && github.actor != 'dependabot[bot]' }}
-        uses: SonarSource/sonarqube-scan-action@v6
+        uses: SonarSource/sonarqube-scan-action@v7
         with:
           args: >
             "-Dsonar.branch.name=${{ github.ref_name }}"
