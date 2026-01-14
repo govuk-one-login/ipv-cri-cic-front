@@ -2,11 +2,28 @@
 {% set hmpoPageKey = "pageNotFound" %}
 
 {% block mainContent %}
-<h1 id="header" data-page="{{hmpoPageKey}}" class="govuk-heading-l">
-{{ translate(hmpoPageKey+'.title', { default: [] }) | safe }}
-</h1>
+    <h1 id="header" data-page="{{hmpoPageKey}}" class="govuk-heading-l">
+        {{ translate(hmpoPageKey+'.title', { default: [] }) | safe }}
+    </h1>
 
-{% from "hmpo-html/macro.njk" import hmpoHtml %}
+    {% from "hmpo-html/macro.njk" import hmpoHtml %}
     {{ hmpoHtml(translate(hmpoPageKey + ".content", { default: [] })) }}
 
 {% endblock %}
+<script {% if cspNonce %} nonce="{{ cspNonce }}"{%  endif %}>
+    window.addEventListener('load', function () {
+        window
+            .DI
+            .analyticsGa4
+            .pageViewTracker
+            .trackOnPageLoad({
+                statusCode: '404', // Access status code
+                englishPageTitle: '{{translate("pageNotFound.title")}}',
+                taxonomy_level1: 'web cri', // Access taxonomy level 1
+                taxonomy_level2: 'cic', // Access taxonomy level 2
+                content_id: '005',
+                logged_in_status: true,
+                dynamic: false
+            });
+    });
+</script>

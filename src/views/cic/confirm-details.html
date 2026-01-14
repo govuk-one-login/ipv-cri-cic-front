@@ -12,72 +12,71 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
     <h1 class="govuk-heading-l">{{ translate("checkDetails.title") }}</h1>
-    {{ govukWarningText({
-      text: translate("checkDetails.validation.default"),
-      iconFallbackText: "Warning"
+
+    {{ govukSummaryList({
+      classes: 'govuk-!-margin-bottom-0',
+      rows: [
+        {
+          key: {
+            text: translate("checkDetails.name")
+          },
+          value: {
+            html: translate("{{ fullName }}")
+          },
+          actions: {
+            items: [
+              {
+                href: "/enter-name/edit?edit=true",
+                text: translate("checkDetails.changeLink"),
+                visuallyHiddenText: translate("checkDetails.name")
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: translate("checkDetails.dateOfBirth")
+          },
+          value: {
+            html: translate("{{ formattedBirthDate }}")
+          },
+          actions: {
+            items: [
+              {
+                href: "/enter-date-birth/edit?edit=true",
+                text: translate("checkDetails.changeLink"),
+                visuallyHiddenText: translate("checkDetails.dateOfBirth")
+              }
+            ]
+          }
+        }
+      ]
     }) }}
 
-      {{ govukSummaryList({
-        classes: 'govuk-!-margin-bottom-0',
-        rows: [
-          {
-            key: {
-              text: translate("checkDetails.name")
-            },
-            value: {
-              html: translate("{{ fullName }}")
-            },
-            actions: {
-              items: [
-                {
-                  href: "/enter-name-photo-id/edit",
-                  text: translate("checkDetails.changeLink"),
-                  visuallyHiddenText: translate("checkDetails.name")
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: translate("checkDetails.dateOfBirth")
-            },
-            value: {
-              html: translate("{{ formattedBirthDate }}")
-            },
-            actions: {
-              items: [
-                {
-                  href: "/enter-date-birth/edit",
-									text: translate("checkDetails.changeLink"),
-                  visuallyHiddenText: translate("checkDetails.dateOfBirth")
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
-
-       {% call hmpoForm(ctx) %}
-      {{ hmpoSubmit(ctx, {id: "continue", text: translate("checkDetails.buttonText")}) }}
-         {% endcall %}
+      {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx, {classes: "govuk-!-margin-top-6", attributes: {"data-testid": "confirm-details-continue-btn","data-nav":true,"data-link":"/oauth2/callback"}, text: translate("checkDetails.f2fButtonText")}) }}
+      {% endcall %}
     </div>
   </div>
 
 
 {% endblock %}
 
-{# generate the specific footer items required for the PYI flows #}
-{% set footerNavItems = translate("govuk.footerNavItems") %}
 
 {% block footer %}
-    {{ govukFooter( footerNavItems ) }}
-{% endblock %}
-
-{% block bodyEnd %}
-  {% block scripts %}
-    <script type="text/javascript" src="/public/javascripts/analytics.js"></script>
+    {{ super() }}
     <script type="text/javascript" src="/public/javascripts/all.js"></script>
-    <script type="text/javascript" src="/public/javascripts/application.js"></script>
-    <script type="text/javascript" nonce='{{cspNonce}}'>window.DI.appInit({uaContainerId: '{{uaContainerId}}', analyticsCookieDomain: '{{analyticsCookieDomain}}', isGa4Enabled: '{{isGa4Enabled}}', ga4ContainerId: '{{ga4ContainerId}}'})</script>
-  {% endblock %}
+    <script {% if cspNonce %} nonce="{{ cspNonce }}"{%  endif %}>
+      window.addEventListener('load', function () {
+        window.DI.analyticsGa4.pageViewTracker.trackOnPageLoad({
+          statusCode: '200', // Access status code
+          englishPageTitle: '{{translate("checkDetails.title")}}',
+          taxonomy_level1: 'web cri', // Access taxonomy level 1
+          taxonomy_level2: 'cic', // Access taxonomy level 2
+          content_id: '003',
+          logged_in_status: true,
+          dynamic: false,
+        });
+      });
+    </script>
 {% endblock %}

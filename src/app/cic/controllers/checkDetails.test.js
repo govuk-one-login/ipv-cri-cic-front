@@ -4,7 +4,7 @@ const CheckDetailsController = require("./checkDetails");
 const {
   API: {
     PATHS: { SAVE_CICDATA },
-  }
+  },
 } = require("../../../lib/config");
 
 describe("CheckDetails controller", () => {
@@ -21,6 +21,12 @@ describe("CheckDetails controller", () => {
     next = setup.next;
 
     checkDetailsController = new CheckDetailsController({ route: "/test" });
+    req.session.tokenId = 123456;
+    sinon.stub(console, "error");
+  });
+
+  afterEach(() => {
+    console.error.restore();
   });
 
   it("should be an instance of BaseController", () => {
@@ -70,13 +76,16 @@ describe("CheckDetails controller", () => {
       it("should call claimedIdentity endpoint", async () => {
         req.axios.post = sinon.fake.resolves();
 
-        const givenNamesVal = req.sessionModel.get("middleName")? req.sessionModel.get("firstName") + " "+ req.sessionModel.get("middleName"):
-          req.sessionModel.get("firstName");
-        const cicData ={
+        const givenNamesVal = req.sessionModel.get("middleName")
+          ? req.sessionModel.get("firstName") +
+            " " +
+            req.sessionModel.get("middleName")
+          : req.sessionModel.get("firstName");
+        const cicData = {
           given_names: `${givenNamesVal}`,
           family_names: req.sessionModel.get("surname"),
-          date_of_birth: req.sessionModel.get("dateOfBirth")
-        }
+          date_of_birth: req.sessionModel.get("dateOfBirth"),
+        };
 
         await checkDetailsController.saveValues(req, res, next);
         expect(next).to.have.been.calledOnce;
@@ -85,12 +94,24 @@ describe("CheckDetails controller", () => {
           cicData,
           {
             headers: {
-              "x-govuk-signin-session-id": req.session.tokenId
+              "txma-audit-encoded":"dummy-txma-header",
+              "x-govuk-signin-session-id":req.session.tokenId,
             },
-          }
+          },
         );
       });
 
+      it("should redirect to /error if session token is missing", async () => {
+        req.session.tokenId = null;
+
+        await checkDetailsController.saveValues(req, res, next);
+
+        sinon.assert.calledWith(
+          console.error,
+          "Missing sessionID, redirecting to /error",
+        );
+        sinon.assert.calledWith(res.redirect, "/error");
+      });
     });
   });
 });

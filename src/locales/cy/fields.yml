@@ -10,34 +10,32 @@
 surname:
   label: Enw olaf
   hint: ""
+  prefix: ""
   validation:
-    default: "Rhowch eich enw olaf fel y mae'n ymddangos ar eich ID gyda llun"
+    default: "Rhowch eich enw olaf"
     minlength: "Rhaid i'ch enw olaf fod yn fwy nag un nod"
     maxlength: "Rhowch eich enw olaf fel y mae'n ymddangos ar eich ID gyda llun"
-    regexNumber: "Ni all eich enw olaf gynnwys rhifau"
-    regexSpecialCharacters: "Rhowch eich enw olaf fel y mae'n ymddangos ar eich ID gyda llun"
-
+    regexNumbersOrSpecialCharacters: "Ni all eich enw olaf gynnwys rhifau neu nodau arbennig"
 
 firstName:
   label: Enw cyntaf
   hint: ""
+  prefix: ""
   validation:
-    default: "Rhowch eich enw cyntaf fel y mae'n ymddangos ar eich ID gyda llun"
+    default: "Rhowch eich enw cyntaf"
     minlength: "Rhaid i'ch enw cyntaf fod yn fwy nag un nod"
     maxlength: "Rhowch eich enw cyntaf fel y mae'n ymddangos ar eich ID gyda llun"
-    regexNumber: "Ni all eich enw cyntaf gynnwys rhifau"
-    regexSpecialCharacters: "Rhowch eich enw cyntaf fel y mae'n ymddangos ar eich ID gyda llun"
+    regexNumbersOrSpecialCharacters: "Ni all eich enw cyntaf gynnwys rhifau neu nodau arbennig"
 
 middleName:
   label: Enw(au) canol
   hint: Gadewch hwn yn wag os nad oes gennych unrhyw enwau canol
+  prefix: ""
   validation:
     default: "Rhowch eich enw canol fel y mae'n ymddangos ar eich ID gyda llun"
     minlength: "Rhaid i'ch enw canol fod yn fwy nag un nod"
     maxlength: "Rhowch eich enw canol fel y mae'n ymddangos ar eich ID gyda llun"
-    regexNumber: "Ni all eich enw canol gynnwys rhifau"
-    regexSpecialCharacters: "Rhowch eich enw canol fel y mae'n ymddangos ar eich ID gyda llun"
-
+    regexNumbersOrSpecialCharacters: "Ni all eich enw canol gynnwys rhifau neu nodau arbennig"
 
 dateOfBirth:
   legend: ""
@@ -61,3 +59,4 @@ checkDetails:
   legend: ""
   validation:
     default: "Gwnewch yn siwr bod y manylion rydych wedi eu rhoi yn cyd-fynd â'r manylion ar eich ID gyda llun."
+    noPhotoId: "Ni allwch newid eich enw a'ch dyddiad geni ar ôl i chi barhau i'r dudalen nesaf."

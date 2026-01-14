@@ -1,4 +1,3 @@
-
 module.exports = class PlaywrightDevPage {
   /**
    * @param {import('@playwright/test').Page} page
@@ -9,17 +8,18 @@ module.exports = class PlaywrightDevPage {
     this.page = page;
   }
 
-  async goto() {
-
+  async goto(claim) {
     const axios = require("axios");
-    const claim = require("../support/shared_claim")
 
-    const postRequest = await axios.post(process.env.IPV_STUB_URL, claim);
+    if (process.env.CUSTOM_FE_URL)
+      claim.frontendURL = process.env.CUSTOM_FE_URL;
+
+    const postRequest = await axios.post(process.env.IPV_STUB_URL + "start", claim);
 
     await this.page.goto(postRequest.data.AuthorizeLocation);
   }
 
- isRelyingPartyServer() {
+  isRelyingPartyServer() {
     return new URL(this.page.url()).origin === "http://example.net";
   }
 

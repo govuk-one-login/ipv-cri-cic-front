@@ -18,7 +18,7 @@ then
     eval $(awk '{ printf("export CFN_%s=\"%s\"\n", $1, $2) }' cf-output.txt)
     awk '{ printf("CFN_%s=\"%s\"\n", $1, $2) }' cf-output.txt > docker_vars.env
     echo TEST_REPORT_DIR="$TEST_REPORT_DIR" >> docker_vars.env
-    echo TEST_REPORT_ABSOLUTE_DIR="$TEST_REPORT_DIR" >> docker_vars.env
+    echo TEST_REPORT_ABSOLUTE_DIR="/$TEST_REPORT_DIR" >> docker_vars.env
     echo TEST_ENVIRONMENT="$ENVIRONMENT" >> docker_vars.env
     echo ENVIRONMENT="$ENVIRONMENT" >> docker_vars.env
     echo SAM_STACK_NAME="$SAM_STACK" >> docker_vars.env
@@ -33,8 +33,8 @@ then
     docker images $DockerImageName -q |xargs docker rmi
 
     docker build -f Dockerfile.test -t $DockerImageName .
-    docker run --rm --env-file docker_vars.env -v $(pwd)/test/reports:/results $DockerImageName
+    docker run --rm --env-file docker_vars.env -v $(pwd)/reports:/results $DockerImageName
 else    
     echo "Please ensure you've got a stack name as the first argument after ./run_tests_locally.sh..."
-    echo "E.g. ./run_tests_locally.sh cri-cic-api"
+    echo "E.g. ./run-tests-locally.sh cic-cri-api"
 fi

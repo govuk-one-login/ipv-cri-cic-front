@@ -5,22 +5,40 @@ const path = require("path");
 const session = require("express-session");
 const AWS = require("aws-sdk");
 const DynamoDBStore = require("connect-dynamodb")(session);
-const wizard = require('hmpo-form-wizard');
-const logger = require("hmpo-logger")
+const wizard = require("hmpo-form-wizard");
+const logger = require("hmpo-logger");
 
 const commonExpress = require("@govuk-one-login/di-ipv-cri-common-express");
+const frontendUi = require("@govuk-one-login/frontend-ui");
 
 const setHeaders = commonExpress.lib.headers;
 const setScenarioHeaders = commonExpress.lib.scenarioHeaders;
 const setAxiosDefaults = commonExpress.lib.axios;
 
 const { setAPIConfig, setOAuthPaths } = require("./lib/settings");
-const { setGTM, getGTM } = require("./lib/locals");
-const { setI18n } = require("@govuk-one-login/di-ipv-cri-common-express/src/lib/i18next");
+
+const { setGTM, setLanguageToggle, setDeviceIntelligence } =
+  commonExpress.lib.settings;
+const { getGTM, getLanguageToggle, getDeviceIntelligence } =
+  commonExpress.lib.locals;
+
+const overloadProtectionConfigService = require("./lib/overload-protection-config.js");
+
+const addLanguageParam = require("@govuk-one-login/frontend-language-toggle/build/cjs/language-param-setter.cjs");
+
+const {
+  frontendVitalSignsInitFromApp,
+} = require("@govuk-one-login/frontend-vital-signs");
+
+const {
+  setI18n,
+} = require("@govuk-one-login/di-ipv-cri-common-express/src/lib/i18next");
+
 const steps = require("./app/cic/steps");
 const fields = require("./app/cic/fields");
 
 const {
+  PACKAGE_NAME,
   API,
   APP,
   PORT,
@@ -29,7 +47,8 @@ const {
   SESSION_TTL,
 } = require("./lib/config");
 
-const { setup } = require("hmpo-app");
+const { setup } =
+  require("@govuk-one-login/di-ipv-cri-common-express").bootstrap;
 
 const loggerConfig = {
   console: true,
@@ -55,11 +74,13 @@ const sessionConfig = {
   ...(SESSION_TABLE_NAME && { sessionStore: dynamoDBSessionStore }),
 };
 
+const overloadProtectionConfig = overloadProtectionConfigService.init();
+
 const helmetConfig = require("./lib/helmet.js");
 
 const { app, router } = setup({
   config: { APP_ROOT: __dirname },
-  port: PORT,
+  port: false,
   logs: loggerConfig,
   session: sessionConfig,
   helmet: helmetConfig,
@@ -70,19 +91,42 @@ const { app, router } = setup({
   publicDirs: ["../dist/public"],
   views: [
     path.resolve(
-      path.dirname(require.resolve("@govuk-one-login/di-ipv-cri-common-express")),
-      "components"
+      path.dirname(
+        require.resolve("@govuk-one-login/di-ipv-cri-common-express"),
+      ),
+      "components",
     ),
+    path.resolve('node_modules/@govuk-one-login/'),
     "views",
   ],
   translation: {
-    allowedLangs: ["en"],
+    allowedLangs: ["en", "cy"],
     fallbackLang: ["en"],
     cookie: { name: "lng" },
   },
   middlewareSetupFn: (app) => {
+    frontendVitalSignsInitFromApp(app, {
+      interval: 60000,
+      logLevel: "info",
+      metrics: [
+        "requestsPerSecond",
+        "avgResponseTime",
+        "maxConcurrentConnections",
+        "eventLoopDelay",
+        "eventLoopUtilization",
+      ],
+      staticPaths: [
+        /^\/assets\/.*/,
+        "/ga4-assets",
+        "/javascript",
+        "/javascripts",
+        "/images",
+        "/stylesheets",
+      ],
+    });
     app.use(setHeaders);
   },
+  overloadProtection: overloadProtectionConfig,
   dev: true,
 });
 
@@ -90,7 +134,7 @@ setI18n({
   router,
   config: {
     secure: true,
-    cookieDomain: APP.ANALYTICS.DOMAIN,
+    cookieDomain: APP.GTM.ANALYTICS_COOKIE_DOMAIN,
   },
 });
 
@@ -112,13 +156,84 @@ setOAuthPaths({ app, entryPointPath: APP.PATHS.CIC });
 
 setGTM({
   app,
-  ga4ContainerId: APP.ANALYTICS.GTM_ID_GA4,
-  uaContainerId: APP.ANALYTICS.GTM_ID_UA,
-  isGa4Enabled: APP.ANALYTICS.GA4_ENABLED,
-  analyticsCookieDomain: APP.ANALYTICS.DOMAIN,
+  ga4ContainerId: APP.GTM.GA4_ID,
+  uaContainerId: APP.GTM.UA_ID,
+  analyticsCookieDomain: APP.GTM.ANALYTICS_COOKIE_DOMAIN,
+  ga4Enabled: APP.GTM.GA4_ENABLED,
+  uaEnabled: APP.GTM.UA_ENABLED,
+  ga4PageViewEnabled: APP.GTM.GA4_PAGE_VIEW_ENABLED,
+  ga4FormResponseEnabled: APP.GTM.GA4_FORM_RESPONSE_ENABLED,
+  ga4FormErrorEnabled: APP.GTM.GA4_FORM_ERROR_ENABLED,
+  ga4FormChangeEnabled: APP.GTM.GA4_FORM_CHANGE_ENABLED,
+  ga4NavigationEnabled: APP.GTM.GA4_NAVIGATION_ENABLED,
+  ga4SelectContentEnabled: APP.GTM.GA4_SELECT_CONTENT_ENABLED,
+  analyticsDataSensitive: APP.GTM.ANALYTICS_DATA_SENSITIVE,
 });
 
+/* Server configuration */
+const server = app.listen(PORT);
+
+// AWS recommends the keep-alive duration of the target is longer than the idle timeout value of the load balancer (default 60s)
+// to prevent possible 502 errors where the target connection has already been closed
+// https://docs.aws.amazon.com/elast
+server.keepAliveTimeout = 65000;
+
+// Handles graceful shutdown of the NODE service, so that if the container is killed by a SIGTERM, it finishes processing existing connections before the server shuts down.
+let serverAlreadyExiting = false;
+let exitCode = 0;
+const MAX_EXIT_WAIT = 30000;
+process.on("SIGTERM", () => {
+  if (serverAlreadyExiting) {
+    console.log("SIGTERM signal received: Server close already called");
+    return;
+  }
+  serverAlreadyExiting = true;
+
+  console.log("SIGTERM signal received: closing HTTP server");
+
+  // Stop accepting new connections
+  server.close((err) => {
+    if (err) {
+      console.log(
+        `Error while calling server.close() occurred: ${err.message}`,
+      );
+
+      exitCode = 1;
+    } else {
+      console.log("HTTP server closed");
+    }
+  });
+
+  // There maybe active timers in the event loop preventing a clean exit.
+  // Give remaining active connections some time to compelte
+  // Then exit, this also closes any connection with keep-alive set
+  setTimeout(() => {
+    console.log(`Waiting ${MAX_EXIT_WAIT}ms for before exiting fully`);
+
+    // Close any active connections that have not closed (KeepAlives/Idle etc)
+    server.closeAllConnections();
+
+    console.log(`Calling process exit ${exitCode}`);
+    process.exit(exitCode);
+  }, MAX_EXIT_WAIT);
+});
+
+// Common express relies on 0/1 strings
+const showLanguageToggle = APP.LANGUAGE_TOGGLE_DISABLED == "true" ? "0" : "1";
+setLanguageToggle({ app, showLanguageToggle: showLanguageToggle });
+
+setDeviceIntelligence({
+  app,
+  deviceIntelligenceEnabled: APP.DEVICE_INTELLIGENCE_ENABLED,
+  deviceIntelligenceDomain: APP.DEVICE_INTELLIGENCE_DOMAIN,
+});
+
+app.get("nunjucks").addGlobal("addLanguageParam", addLanguageParam);
+
 router.use(getGTM);
+router.use(getLanguageToggle);
+router.use(frontendUi.frontendUiMiddlewareIdentityBypass);
+router.use(getDeviceIntelligence);
 
 router.use(setScenarioHeaders);
 router.use(setAxiosDefaults);
@@ -134,12 +249,17 @@ const wizardOptions = {
 router.use(wizard(steps, fields, wizardOptions));
 
 router.use((err, req, res, next) => {
-  logger.get().error("Error caught by Express handler - redirecting to Callback with server_error", {err});
-	const REDIRECT_URI = req.session?.authParams?.redirect_uri;
-	if (REDIRECT_URI) {
-		next(err);
-		router.use(commonExpress.lib.errorHandling.redirectAsErrorToCallback);
-	} else {
-		res.redirect("/error")
-	}
+  logger
+    .get(PACKAGE_NAME)
+    .error(
+      "Error caught by Express handler - redirecting to Callback with server_error",
+      { err },
+    );
+  const REDIRECT_URI = req.session?.authParams?.redirect_uri;
+  if (REDIRECT_URI) {
+    next(err);
+    router.use(commonExpress.lib.errorHandling.redirectAsErrorToCallback);
+  } else {
+    res.redirect("/error");
+  }
 });

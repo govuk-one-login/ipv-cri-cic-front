@@ -9,14 +9,13 @@
 
 
 {% block mainContent %}
-{% call hmpoForm(ctx, {attributes: {onsubmit: 'window.disableFormSubmit()'} }) %}
 
 {% set legendContent = translate("dateOfBirth.formLegend") %}
 {% set introductoryCopy = translate("dateOfBirth.dobInformationContext") %}
 {% set hintText = translate("dateOfBirth.hintText") %}
 {% set formInstructions = "<p class=\"govuk-hint\">"+hintText+"</p>" %}
 
-
+{% call hmpoForm(ctx) %}
 {{ hmpoDate(ctx, {
     id: "dateOfBirth",
     namePrefix: "dateOfBirth",
@@ -33,24 +32,27 @@ html: formInstructions
 }) }}
 
 
-{{ hmpoSubmit(ctx, {id: "continue", text: translate("buttons.next")}) }}
+{{ hmpoSubmit(ctx, {classes: "govuk-!-margin-top-0", attributes: {"data-testid": "enter-dob-continue-btn", "data-nav":true,"data-link":"/confirm-details"}, text: translate("buttons.next")}) }}
 
 {% endcall %}
 
 {% endblock %}
 
-{# generate the specific footer items required for the PYI flows #}
-{% set footerNavItems = translate("govuk.footerNavItems") %}
 
 {% block footer %}
-{{ govukFooter( footerNavItems ) }}
-{% endblock %}
-
-{% block bodyEnd %}
-  {% block scripts %}
-    <script type="text/javascript" src="/public/javascripts/analytics.js"></script>
-    <script type="text/javascript" src="/public/javascripts/all.js"></script>
-    <script type="text/javascript" src="/public/javascripts/application.js"></script>
-    <script type="text/javascript" nonce='{{cspNonce}}'>window.DI.appInit({uaContainerId: '{{uaContainerId}}', analyticsCookieDomain: '{{analyticsCookieDomain}}', isGa4Enabled: '{{isGa4Enabled}}', ga4ContainerId: '{{ga4ContainerId}}'})</script>
-  {% endblock %}
+{{ super() }}
+<script type="text/javascript" src="/public/javascripts/all.js"></script>
+  <script {% if cspNonce %} nonce="{{ cspNonce }}"{%  endif %}>
+    window.addEventListener('load', function () {
+      window.DI.analyticsGa4.pageViewTracker.trackOnPageLoad({
+        statusCode: '200', // Access status code
+        englishPageTitle: '{{translate("dateOfBirth.title")}}',
+        taxonomy_level1: 'web cri', // Access taxonomy level 1
+        taxonomy_level2: 'cic', // Access taxonomy level 2
+        content_id: '002',
+        logged_in_status: true,
+        dynamic: false,
+      });
+    });
+  </script>
 {% endblock %}

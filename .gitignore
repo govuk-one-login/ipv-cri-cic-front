@@ -17,7 +17,6 @@ lerna-debug.log*
 # Additional ignores
 .env
 .idea
-.vscode
 public
 .DS_Store
 dump.rdb
@@ -37,7 +36,6 @@ docker_vars.env
 deploy/.aws-sam/
 deploy/samconfig.toml
 wafv2/
-package-lock.json
 .aws-sam/
 test/reports/cic-reports/
 test/reports/cucumber_report.json

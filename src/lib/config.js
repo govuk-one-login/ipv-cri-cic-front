@@ -1,29 +1,44 @@
 require("dotenv").config();
 
 module.exports = {
+  PACKAGE_NAME: "di-ipv-cri-cic-front",
   API: {
-    BASE_URL: process.env.API_BASE_URL || "http://localhost:8090",
+    BASE_URL:
+      process.env.API_BASE_URL ||
+      "https://api-cic-cri-api.review-c.dev.account.gov.uk",
     PATHS: {
       SESSION: "/session",
       AUTHORIZATION: "/authorization",
       SAVE_CICDATA: "/claimedIdentity",
-      SESSION_CONFIG: "/session-config"
+      SESSION_CONFIG: "/session-config",
     },
   },
   APP: {
     BASE_URL: process.env.EXTERNAL_WEBSITE_HOST || "http://localhost:8000",
     PATHS: {
       CIC: "/",
-      NAME_ENTRY: "/enter-name-photo-id",
+      NAME_ENTRY: "/enter-name",
       DATE_OF_BIRTH: "/enter-date-birth",
       CHECK_DETAILS: "/confirm-details",
     },
-    ANALYTICS: {
-      GTM_ID_UA: process.env.UNIVERSAL_ANALYTICS_GTM_CONTAINER_ID,
-      DOMAIN: process.env.ANALYTICS_DOMAIN || "localhost",
-      GA4_ENABLED: process.env.GA4_ENABLED,
-      GTM_ID_GA4: process.env.GOOGLE_ANALYTICS_4_GTM_CONTAINER_ID
+    GTM: {
+      GA4_ID: process.env.GOOGLE_ANALYTICS_4_GTM_CONTAINER_ID || "GTM-XXXXXXX",
+      UA_ID: process.env.UNIVERSAL_ANALYTICS_GTM_CONTAINER_ID || "UA-XXXXXXX",
+      ANALYTICS_COOKIE_DOMAIN: process.env.FRONTEND_DOMAIN || "localhost",
+      GA4_ENABLED: process.env.GA4_ENABLED || true,
+      UA_ENABLED: process.env.UA_ENABLED || false,
+      ANALYTICS_DATA_SENSITIVE: process.env.ANALYTICS_DATA_SENSITIVE || true,
+      GA4_PAGE_VIEW_ENABLED: process.env.GA4_PAGE_VIEW_ENABLED || true,
+      GA4_FORM_RESPONSE_ENABLED: process.env.GA4_FORM_RESPONSE_ENABLED || true,
+      GA4_FORM_ERROR_ENABLED: process.env.GA4_FORM_ERROR_ENABLED || true,
+      GA4_FORM_CHANGE_ENABLED: process.env.GA4_FORM_CHANGE_ENABLED || true,
+      GA4_NAVIGATION_ENABLED: process.env.GA4_NAVIGATION_ENABLED || true,
+      GA4_SELECT_CONTENT_ENABLED:
+        process.env.GA4_SELECT_CONTENT_ENABLED || true,
     },
+    LANGUAGE_TOGGLE_DISABLED: process.env.LANGUAGE_TOGGLE_DISABLED || "true",
+    DEVICE_INTELLIGENCE_ENABLED: process.env.DEVICE_INTELLIGENCE_ENABLED || "true",
+    DEVICE_INTELLIGENCE_DOMAIN: process.env.DEVICE_INTELLIGENCE_DOMAIN || "localhost",
   },
   PORT: process.env.PORT || 5020,
   SESSION_SECRET: process.env.SESSION_SECRET,

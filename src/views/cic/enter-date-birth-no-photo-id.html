@@ -1,0 +1,58 @@
+{% extends "base-form.njk" %}
+{# the content for this page is controlled by locales/en/default.yml #}
+{% set hmpoPageKey = "dateOfBirth" %}
+{% set gtmJourney = "cic - dateOfBirth" %}
+
+{% from "hmpo-text/macro.njk" import hmpoText %}
+{% from "hmpo-form/macro.njk" import hmpoForm %}
+{% from "hmpo-date/macro.njk" import hmpoDate %}
+
+
+{% block mainContent %}
+
+{% set legendContent = translate("dateOfBirth.formLegend") %}
+{% set introductoryCopy = translate("dateOfBirth.dobInformationContext") %}
+{% set hintText = translate("dateOfBirth.hintText") %}
+{% set formInstructions = "<p class=\"govuk-hint\">"+hintText+"</p>" %}
+
+{% call hmpoForm(ctx) %}
+{{ hmpoDate(ctx, {
+    id: "dateOfBirth",
+    namePrefix: "dateOfBirth",
+      fieldset: {
+        legend: {
+            text: legendContent,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+    }
+},
+hint: {
+html: formInstructions
+}
+}) }}
+
+
+{{ hmpoSubmit(ctx, {classes: "govuk-!-margin-top-0", attributes: {"data-testid": "enter-dob-continue-btn", "data-nav":true,"data-link":"/confirm-details-no-photo-id"}, text: translate("buttons.next")}) }}
+
+{% endcall %}
+
+{% endblock %}
+
+
+{% block footer %}
+{{ super() }}
+<script type="text/javascript" src="/public/javascripts/all.js"></script>
+  <script {% if cspNonce %} nonce="{{ cspNonce }}"{%  endif %}>
+    window.addEventListener('load', function () {
+      window.DI.analyticsGa4.pageViewTracker.trackOnPageLoad({
+        statusCode: '200', // Access status code
+        englishPageTitle: '{{translate("dateOfBirth.title")}}',
+        taxonomy_level1: 'web cri', // Access taxonomy level 1
+        taxonomy_level2: 'cic', // Access taxonomy level 2
+        content_id: '002',
+        logged_in_status: true,
+        dynamic: false,
+      });
+    });
+  </script>
+{% endblock %}

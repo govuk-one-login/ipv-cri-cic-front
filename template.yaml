@@ -14,6 +14,13 @@ Description: >-
   CIC Front egress to CIC API's API Gateway is via a NAT Gateway which
   should have a route in the provided private subnets' route table.
 
+Metadata:
+  cfn-lint:
+    config:
+      ignore_checks:
+      - W3005
+      - W6001
+
 Parameters:
   Environment:
     Description: "The environment type"
@@ -34,22 +41,29 @@ Parameters:
     Description: "The ARN of the permissions boundary to apply when creating IAM roles"
     Type: String
     Default: "none"
-  MaxContainerCount:
-    Description: Maximum number of FE node/express container tasks to allow autoscaling to reach
-    Type: Number
-    Default: 12
-  MinContainerCount:
-    Description: Minimum number of FE node/express container tasks to allow autoscaling to reach
-    Type: Number
-    Default: 3
   EnableScalingInDev:
     Type: Number
     Default: 1
     Description: Set to 1 to enable deployment of scaling infra in dev
-  IPVStubStackName:
+  DeployAlarmsInDev:
+    Description: "Set to the string value `true` to deploy alarms in a DEV environment"
     Type: String
-    Default: "cic-ipv-stub"
-    Description: The name of the deployed IPV stub stack.
+    Default: false
+  CodeSigningConfigArn:
+    Description: The ARN of the Code Signing Config to use, provided by the deployment pipeline
+    Type: String
+    Default: none
+  DeploymentStrategy:
+    Description: "Predefined deployment configuration for ECS application"
+    Type: String
+    Default: "None"
+    AllowedValues:
+      - None
+      - CodeDeployDefault.ECSCanary10Percent5Minutes
+      - CodeDeployDefault.ECSCanary10Percent15Minutes
+      - CodeDeployDefault.ECSAllAtOnce
+      - CodeDeployDefault.ECSLinear10PercentEvery1Minutes
+      - CodeDeployDefault.ECSLinear10PercentEvery3Minutes
 
 Conditions:
   IsNotDevelopment: !Or
@@ -57,6 +71,7 @@ Conditions:
     - !Equals [ !Ref Environment, staging ]
     - !Equals [ !Ref Environment, integration ]
     - !Equals [ !Ref Environment, production ]
+  IsProduction: !Equals [!Ref Environment, production]
   EnableScaling: !Or
     - !Equals [ !Ref EnableScalingInDev, 1]
     - !Equals [ !Ref Environment, build ]
@@ -74,6 +89,12 @@ Conditions:
     - !Equals [!Ref Environment, production]
   IsNotProdLikeEnvironment: !Not
     - !Condition IsProdLikeEnvironment
+  DeployAlarms: !Or
+    - Condition: IsNotDevelopment
+    - !Equals [!Ref DeployAlarmsInDev, true]
+  UseCodeSigning: !Not [!Equals [!Ref CodeSigningConfigArn, none]]
+  UseCanaryDeployment: !Not
+    - !Equals [!Ref DeploymentStrategy, "None"]
 
 Mappings:
   PlatformConfiguration:
@@ -87,76 +108,115 @@ Mappings:
       CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
     production:
       CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
-
 # see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
   ElasticLoadBalancerAccountIds:
     eu-west-2:
       AccountId: 652711504416
 
+  StaticVariables:
+    urls:
+      CICSupportManual: "https://govukverify.atlassian.net/wiki/spaces/Kiwi/pages/4371939527/6.3+CIC+CRI+Support+Documentation"
+
   EnvironmentVariables:
     ### These environment variables are referenced further down the file.
-    ### Please ensure that any variables defined for an environment are defined for _all_ environments.
     dev:
       EXTERNALWEBSITEHOST: "https://cic-cri-front.review-c.dev.account.gov.uk"
       APIBASEURL: "https://api-cic-cri-api.review-c.dev.account.gov.uk"
       DNSSUFFIX: "review-c.dev.account.gov.uk"
+      CLOUDFRONTDOMAIN: "d2mffc7h0tnarj.cloudfront.net"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-dev"
       GTMIDUA: "GTM-TK92W68"
       GTMIDGA4: "GTM-KD86CMZ"
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "dev.account.gov.uk"
-      TESTHARNESSURL: "https://cic-test-harness-testharness.review-c.dev.account.gov.uk"
-      BACKENDURL: "https://api-cic-cri-api.review-c.dev.account.gov.uk"
-      BACKENDSESSIONTABLE: "session-cic-cri-ddb"
+      DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "debug"
+      LANGUAGETOGGLEDISABLED: false
+      DEVICEINTELLIGENCEENABLED: true
+      MAY2025REBRANDENABLED: true
+      minECSCount: 1
+      maxECSCount: 4
+      # Hardcoded variables used to generate stack outputs for tests in Dev. Referenced in Outputs section of this template file. Only present in Dev + Build
+      IPVSTUBURL: "https://cic-ipv-stub-ipvstub.review-c.dev.account.gov.uk/"
+      TESTHARNESSURL: "https://cic-test-harness-testharness.review-c.dev.account.gov.uk"
+      BACKENDSESSIONTABLE: "session-cic-cri-ddb"
     build:
       EXTERNALWEBSITEHOST: "https://review-c.build.account.gov.uk"
       APIBASEURL: "https://api.review-c.build.account.gov.uk"
       DNSSUFFIX: "review-c.build.account.gov.uk"
+      CLOUDFRONTDOMAIN: "d3h3ilw9ijq9hg.cloudfront.net"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-build"
       GTMIDUA: "GTM-TK92W68"
       GTMIDGA4: "GTM-KD86CMZ"
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "build.account.gov.uk"
-      TESTHARNESSURL: "https://testharness.review-c.build.account.gov.uk"
-      BACKENDURL: "https://api.review-c.build.account.gov.uk"
-      BACKENDSESSIONTABLE: "session-cic-cri-ddb"
+      DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
+      LANGUAGETOGGLEDISABLED: false
+      DEVICEINTELLIGENCEENABLED: true
+      MAY2025REBRANDENABLED: true
+      minECSCount: 6
+      maxECSCount: 60
+      # Hardcoded variables used to generate stack outputs for tests in Build. Referenced in Outputs section of this template file. Only present in Dev + Build
+      IPVSTUBURL: "https://ipvstub.review-c.build.account.gov.uk/"
+      TESTHARNESSURL: "https://testharness.review-c.build.account.gov.uk"
+      BACKENDSESSIONTABLE: "session-cic-cri-ddb"
     staging:
       EXTERNALWEBSITEHOST: "https://review-c.staging.account.gov.uk"
       APIBASEURL: "https://api.review-c.staging.account.gov.uk"
       DNSSUFFIX: "review-c.staging.account.gov.uk"
+      CLOUDFRONTDOMAIN: "d13b32us3mnyl9.cloudfront.net"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-staging"
       GTMIDUA: "GTM-TK92W68"
       GTMIDGA4: "GTM-KD86CMZ"
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "staging.account.gov.uk"
+      DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
+      LANGUAGETOGGLEDISABLED: false
+      DEVICEINTELLIGENCEENABLED: true
+      MAY2025REBRANDENABLED: true
+      minECSCount: 2
+      maxECSCount: 4
     integration:
       EXTERNALWEBSITEHOST: "https://review-c.integration.account.gov.uk"
       APIBASEURL: "https://api.review-c.integration.account.gov.uk"
       DNSSUFFIX: "review-c.integration.account.gov.uk"
+      CLOUDFRONTDOMAIN: "d1jx9t5yl02x1a.cloudfront.net"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-integration"
       GTMIDUA: "GTM-TK92W68"
       GTMIDGA4: "GTM-KD86CMZ"
-      GA4ENABLED: "false"
+      GA4ENABLED: "true"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
+      DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
+      LANGUAGETOGGLEDISABLED: false
+      DEVICEINTELLIGENCEENABLED: true
+      MAY2025REBRANDENABLED: true
+      minECSCount: 2
+      maxECSCount: 4
     production:
       EXTERNALWEBSITEHOST: "https://review-c.account.gov.uk"
       APIBASEURL: "https://api.review-c.account.gov.uk"
       DNSSUFFIX: "review-c.account.gov.uk"
+      CLOUDFRONTDOMAIN: "d2ekguv8wcjy54.cloudfront.net"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-production"
       GTMIDUA: "GTM-TT5HDKV"
       GTMIDGA4: "GTM-K4PBJH3"
-      GA4ENABLED: "false"
+      GA4ENABLED: "true"
       ANALYTICSDOMAIN: "account.gov.uk"
+      DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
+      LANGUAGETOGGLEDISABLED: false
+      DEVICEINTELLIGENCEENABLED: true
+      MAY2025REBRANDENABLED: true
+      minECSCount: 6
+      maxECSCount: 60
 
 Resources:
   # Security Groups for the ECS service and load balancer
@@ -228,7 +288,7 @@ Resources:
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
-              SSEAlgorithm: AES256
+              SSEAlgorithm: aws:kms
 
   CICFrontAccessLogsBucketPolicy:
     Condition: IsNotDevelopment
@@ -247,6 +307,16 @@ Resources:
               - s3:PutObject
             Resource:
               - !Sub arn:aws:s3:::${AccessLogsBucket}/cic-front-${Environment}/AWSLogs/${AWS::AccountId}/*
+          - Effect: Deny
+            Resource:
+              - !GetAtt AccessLogsBucket.Arn
+              - !Sub "${AccessLogsBucket.Arn}/*"
+            Principal: "*"
+            Action:
+              - "s3:*"
+            Condition:
+              Bool:
+                "aws:SecureTransport": false
 
   # Private Application Load Balancer
   LoadBalancer:
@@ -272,8 +342,32 @@ Resources:
           - Key: routing.http.drop_invalid_header_fields.enabled
             Value: true
         - !Ref AWS::NoValue
+      Tags:
+        - Key: FMSRegionalPolicy
+          Value: false
 
   LoadBalancerListenerTargetGroupECS:
+    Type: 'AWS::ElasticLoadBalancingV2::TargetGroup'
+    Properties:
+      HealthCheckEnabled: TRUE
+      HealthCheckProtocol: HTTP
+      HealthCheckPath: /healthcheck
+      HealthCheckTimeoutSeconds: 2
+      HealthCheckIntervalSeconds: 5
+      HealthyThresholdCount: 2
+      Matcher:
+        HttpCode: 200-499
+      Port: 80
+      Protocol: HTTP
+      TargetType: ip
+      VpcId:
+        Fn::ImportValue:
+          !Sub "${VpcStackName}-VpcId"
+      TargetGroupAttributes:
+        - Key: deregistration_delay.timeout_seconds
+          Value: 60
+
+  GreenTargetGroupECS:
     Type: 'AWS::ElasticLoadBalancingV2::TargetGroup'
     Properties:
       HealthCheckEnabled: TRUE
@@ -289,6 +383,58 @@ Resources:
       TargetGroupAttributes:
         - Key: deregistration_delay.timeout_seconds
           Value: 60
+
+  ECSCanaryDeploymentStack:
+    Type: AWS::CloudFormation::Stack
+    Condition: UseCanaryDeployment
+    Properties:
+      TemplateURL: https://template-storage-templatebucket-1upzyw6v9cs42.s3.amazonaws.com/ecs-canary-deployment/template.yaml
+      Parameters:
+        VpcId: !Sub ${VpcStackName}-VpcId
+        PermissionsBoundary:
+          Fn::ImportValue: !Sub "${AWS::StackName}-ECSCanaryPermissionsBoundaryArn"
+        CodeSigningConfigArn: !If
+          - UseCodeSigning
+          - !Ref CodeSigningConfigArn
+          - !Ref AWS::NoValue
+        ECSClusterName: !Ref CICFrontEcsCluster
+        ECSServiceName: !GetAtt CICFrontEcsService.Name
+        TargetGroupName: !GetAtt LoadBalancerListenerTargetGroupECS.TargetGroupName
+        GreenTargetGroupName: !GetAtt GreenTargetGroupECS.TargetGroupName
+        LoadBalancerListenerARN: !Ref LoadBalancerListener
+        ECSServiceTaskDefinition: !Ref ECSServiceTaskDefinition
+        DeploymentStrategy: !Ref DeploymentStrategy
+        ContainerName: "app"
+        ContainerPort: 8080
+        Subnets: !Join
+          - ","
+          - - Fn::ImportValue:
+                !Sub "${VpcStackName}-ProtectedSubnetIdA"
+            - Fn::ImportValue:
+                !Sub "${VpcStackName}-ProtectedSubnetIdB"
+        SecurityGroups: !GetAtt ECSSecurityGroup.GroupId
+        CloudWatchAlarms: !Sub
+          - "${ELB5XXAlarm}"
+          - ELB5XXAlarm: !Ref ELB5XXAlarm
+
+  ELB5XXAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: >
+        The number of HTTP 5XX server error codes that originate from the load balancer.
+        This count does not include any response codes generated by the targets.
+      MetricName: HTTPCode_ELB_5XX_Count
+      Namespace: AWS/ApplicationELB
+      Statistic: Sum
+      Dimensions:
+        - Name: LoadBalancer
+          Value: !Ref LoadBalancer
+      Period: 60
+      EvaluationPeriods: 2
+      DatapointsToAlarm: 2
+      Threshold: 2
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
 
   LoadBalancerListener:
     Type: 'AWS::ElasticLoadBalancingV2::Listener'
@@ -311,7 +457,7 @@ Resources:
         - Key: Name
           Value: !Sub "${AWS::StackName}-ECSCluster"
         - Key: Product
-          Value: "GOV.UK sign in"
+          Value: "GOV.UK One login"
         - Key: System
           Value: "CIC"
         - Key: Environment
@@ -321,36 +467,46 @@ Resources:
     Type: 'AWS::ECS::Service'
     Properties:
       Cluster: !Ref CICFrontEcsCluster
-      DeploymentConfiguration:
-        MaximumPercent: 200
-        MinimumHealthyPercent: 50
-        DeploymentCircuitBreaker:
-          Enable: TRUE
-          Rollback: TRUE
-      DesiredCount: !Ref MinContainerCount
+      DeploymentController:
+        Type: !If
+          - UseCanaryDeployment
+          - CODE_DEPLOY
+          - ECS
+      DeploymentConfiguration: !If
+        - UseCanaryDeployment
+        - !Ref AWS::NoValue
+        - MaximumPercent: 200
+          MinimumHealthyPercent: 50
+          DeploymentCircuitBreaker:
+            Enable: TRUE
+            Rollback: TRUE
+      DesiredCount: !FindInMap [EnvironmentVariables, !Ref Environment, minECSCount]
       EnableECSManagedTags: false
-      HealthCheckGracePeriodSeconds: 60
+      HealthCheckGracePeriodSeconds: !If
+        - UseCanaryDeployment
+        - !Ref AWS::NoValue
+        - 60
       LaunchType: FARGATE
-      LoadBalancers:
-        - ContainerName: app
-          ContainerPort: 8080
-          TargetGroupArn: !Ref LoadBalancerListenerTargetGroupECS
-      NetworkConfiguration:
-        AwsvpcConfiguration:
-          AssignPublicIp: DISABLED
-          SecurityGroups:
-            - !GetAtt ECSSecurityGroup.GroupId
-          Subnets:
-            - Fn::ImportValue:
-                !Sub "${VpcStackName}-ProtectedSubnetIdA"
-            - Fn::ImportValue:
-                !Sub "${VpcStackName}-ProtectedSubnetIdB"
-      TaskDefinition: !Ref ECSServiceTaskDefinition
+#      LoadBalancers:
+#        - ContainerName: app
+#          ContainerPort: 8080
+#          TargetGroupArn: !Ref LoadBalancerListenerTargetGroupECS
+#      NetworkConfiguration:
+#        AwsvpcConfiguration:
+#          AssignPublicIp: DISABLED
+#          SecurityGroups:
+#            - !GetAtt ECSSecurityGroup.GroupId
+#          Subnets:
+#            - Fn::ImportValue:
+#                !Sub "${VpcStackName}-ProtectedSubnetIdA"
+#            - Fn::ImportValue:
+#                !Sub "${VpcStackName}-ProtectedSubnetIdB"
+#      TaskDefinition: !Ref ECSServiceTaskDefinition
       Tags:
         - Key: Name
           Value: !Sub "${AWS::StackName}-ECS"
         - Key: Product
-          Value: "GOV.UK sign in"
+          Value: "GOV.UK One login"
         - Key: System
           Value: "CIC"
         - Key: Environment
@@ -362,7 +518,7 @@ Resources:
     Type: AWS::Logs::LogGroup
     Properties:
       LogGroupName: !Sub /aws/ecs/${AWS::StackName}-CICFront-ECS
-      RetentionInDays: 14
+      RetentionInDays: 30
 
   CSLSECSAccessSubscriptionFilter:
     Type: AWS::Logs::SubscriptionFilter
@@ -375,6 +531,7 @@ Resources:
 
   ECSFatalErorMetricFilter:
     Type: AWS::Logs::MetricFilter
+    Condition: IsNotDevelopment
     Properties:
       LogGroupName: !Ref ECSAccessLogsGroup
       FilterPattern: '{ $.level = "FATAL" || $.message = "Unhandled Exception:*" }'
@@ -388,14 +545,19 @@ Resources:
     DependsOn:
       - "ECSFatalErorMetricFilter"
     Type: AWS::CloudWatch::Alarm
+    Condition: IsNotDevelopment
     Properties:
       AlarmName: !Sub "${AWS::StackName}-ECSFatalErrorAlarm"
-      AlarmDescription: !Sub "Trigger an alarm when Fatal Error occurs"
+      AlarmDescription: !Sub 
+        - "Trigger an alarm when Fatal Error occurs ${RunbookUrl}"
+        - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: true
       OKActions:
-        - !ImportValue platform-alarm-topic-slack-warning-alert
+        - !ImportValue platform-alarm-pagerduty-alert-topic
+        - !ImportValue platform-alarm-topic-critical-alert
       AlarmActions:
-        - !ImportValue platform-alarm-topic-slack-warning-alert
+        - !ImportValue platform-alarm-pagerduty-alert-topic
+        - !ImportValue platform-alarm-topic-critical-alert
       InsufficientDataActions: [ ]
       MetricName: ECSFatalerror-message
       Namespace: !Sub "${AWS::StackName}/LogMessages"
@@ -408,6 +570,79 @@ Resources:
       ComparisonOperator: GreaterThanOrEqualToThreshold
       TreatMissingData: notBreaching
 
+  EventLoopDelayMetricFilter:
+    Type: AWS::Logs::MetricFilter
+    Properties:
+      LogGroupName: !Ref ECSAccessLogsGroup
+      FilterPattern: "{($.eventLoopDelay = *)}"
+      MetricTransformations:
+        - MetricValue: $.eventLoopDelay
+          MetricName: EventLoopDelay
+          MetricNamespace: !Sub ${AWS::StackName}/LogMessages
+
+  EventLoopUtilizationIdleMetricFilter:
+    Type: AWS::Logs::MetricFilter
+    Properties:
+      LogGroupName: !Ref ECSAccessLogsGroup
+      FilterPattern: "{ $.eventLoopUtilization.idle = * }"
+      MetricTransformations:
+        - MetricValue: $.eventLoopUtilization.idle
+          MetricName: EventLoopUtilizationIdle
+          MetricNamespace: !Sub ${AWS::StackName}/LogMessages
+
+  EventLoopUtilizationActiveMetricFilter:
+    Type: AWS::Logs::MetricFilter
+    Properties:
+      LogGroupName: !Ref ECSAccessLogsGroup
+      FilterPattern: "{ $.eventLoopUtilization.active = * }"
+      MetricTransformations:
+        - MetricValue: $.eventLoopUtilization.active
+          MetricName: EventLoopUtilizationActive
+          MetricNamespace: !Sub ${AWS::StackName}/LogMessages
+
+  EventLoopUtilizationUtilizationMetricFilter:
+    Type: AWS::Logs::MetricFilter
+    Properties:
+      LogGroupName: !Ref ECSAccessLogsGroup
+      FilterPattern: "{ $.eventLoopUtilization.utilization = * }"
+      MetricTransformations:
+        - MetricValue: $.eventLoopUtilization.utilization
+          MetricName: EventLoopUtilizationUtilization
+          MetricNamespace: !Sub ${AWS::StackName}/LogMessages
+
+  RequestsPerSecondMetricFilter:
+    Type: AWS::Logs::MetricFilter
+    Properties:
+      LogGroupName: !Ref ECSAccessLogsGroup
+      FilterPattern: "{ $.requestsPerSecond.dynamic = * }"
+      MetricTransformations:
+        - MetricValue: $.requestsPerSecond.dynamic
+          MetricName: RequestsPerSecond
+          MetricNamespace: !Sub ${AWS::StackName}/LogMessages
+          Unit: Count/Second
+
+  AvgResponseTimeMetricFilter:
+    Type: AWS::Logs::MetricFilter
+    Properties:
+      LogGroupName: !Ref ECSAccessLogsGroup
+      FilterPattern: "{ $.avgResponseTime.dynamic = * }"
+      MetricTransformations:
+        - MetricValue: $.avgResponseTime.dynamic
+          MetricName: AvgResponseTime
+          MetricNamespace: !Sub ${AWS::StackName}/LogMessages
+          Unit: Count/Second
+
+  MaxConcurrentConnectionsMetricFilter:
+    Type: AWS::Logs::MetricFilter
+    Properties:
+      LogGroupName: !Ref ECSAccessLogsGroup
+      FilterPattern: "{ $.maxConcurrentConnections = * }"
+      MetricTransformations:
+        - MetricValue: $.maxConcurrentConnections
+          MetricName: MaxConcurrentConnections
+          MetricNamespace: !Sub ${AWS::StackName}/LogMessages
+          Unit: Count
+
   #
   # Fargate tasks
   #
@@ -418,6 +653,7 @@ Resources:
         - Essential: true
           Image: CONTAINER-IMAGE-PLACEHOLDER
           Name: app
+          ReadonlyRootFilesystem: true
           Environment:
             - Name: API_BASE_URL
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, APIBASEURL ]
@@ -433,10 +669,23 @@ Resources:
               Value: !FindInMap [ EnvironmentVariables, !Ref Environment, GTMIDGA4 ]
             - Name: GA4_ENABLED
               Value: !FindInMap [ EnvironmentVariables, !Ref Environment, GA4ENABLED ]
-            - Name: ANALYTICS_DOMAIN
-              Value: !FindInMap [EnvironmentVariables, !Ref Environment, ANALYTICSDOMAIN ]
+            - Name: FRONTEND_DOMAIN
+              Value:
+                !If [
+                  IsProduction,
+                  "account.gov.uk",
+                  !Sub "${Environment}.account.gov.uk"
+                ]
+            - Name: DEVICE_INTELLIGENCE_DOMAIN
+              Value: !FindInMap [ EnvironmentVariables, !Ref Environment, DEVICEINTELLIGENCEDOMAIN ]
             - Name: LOG_LEVEL
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, LOGLEVEL ]
+            - Name: LANGUAGE_TOGGLE_DISABLED
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, LANGUAGETOGGLEDISABLED ]
+            - Name: DEVICE_INTELLIGENCE_ENABLED
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, DEVICEINTELLIGENCEENABLED ]
+            - Name: MAY_2025_REBRAND_ENABLED
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, MAY2025REBRANDENABLED ]
           Secrets:
             - Name: DT_TENANT
               ValueFrom: !Join
@@ -456,6 +705,13 @@ Resources:
           PortMappings:
             - ContainerPort: 8080
               Protocol: tcp
+          HealthCheck:
+            Command:
+              - "CMD-SHELL"
+              - "curl -f http://localhost:8080/healthcheck || exit 1"
+            Interval: 5
+            Retries: 10
+            Timeout: 2
           LogConfiguration:
             LogDriver: awslogs
             Options:
@@ -473,7 +729,7 @@ Resources:
         - Key: Name
           Value: !Sub "${AWS::StackName}-TaskDefinition"
         - Key: Product
-          Value: "GOV.UK sign in"
+          Value: "GOV.UK One login"
         - Key: System
           Value: "CIC"
         - Key: Environment
@@ -651,17 +907,17 @@ Resources:
           "integrationLatency":"$context.integrationLatency"
           }
 
-  WAFv2ACLAssociation:
+  CloudFrontWAFv2ACLAssociation:
     Type: AWS::WAFv2::WebACLAssociation
     Properties:
       ResourceArn: !Ref LoadBalancer
-      WebACLArn: !Sub "{{resolve:ssm:/${Environment}/Platform/Security/Block/WafArn}}"
+      WebACLArn: !ImportValue cfront-origin-distrib-CloakingOriginWebACLArn
 
   APIGWAccessLogsGroup:
     Type: AWS::Logs::LogGroup
     Properties:
       LogGroupName: !Sub /aws/apigateway/${AWS::StackName}-CICFront-API-GW-AccessLogs
-      RetentionInDays: 14
+      RetentionInDays: 30
 
   CSLSAPIGWAccessSubscriptionFilter:
     Type: AWS::Logs::SubscriptionFilter
@@ -674,6 +930,7 @@ Resources:
 
   APIGWFatalErorMetricFilter:
     Type: AWS::Logs::MetricFilter
+    Condition: IsNotDevelopment
     Properties:
       LogGroupName: !Ref APIGWAccessLogsGroup
       FilterPattern: '{ $.level = "FATAL" || $.message = "Unhandled Exception:*" }'
@@ -687,14 +944,19 @@ Resources:
     DependsOn:
       - "APIGWFatalErorMetricFilter"
     Type: AWS::CloudWatch::Alarm
+    Condition: IsNotDevelopment
     Properties:
       AlarmName: !Sub "${AWS::StackName}-APIGWFatalErrorAlarm"
-      AlarmDescription: !Sub "Trigger an alarm when Fatal Error occurs"
+      AlarmDescription: !Sub 
+        - "Trigger an alarm when Fatal Error occurs ${RunbookUrl}"
+        - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: true
       OKActions:
-        - !ImportValue platform-alarm-topic-slack-warning-alert
+        - !ImportValue platform-alarm-pagerduty-alert-topic
+        - !ImportValue platform-alarm-topic-critical-alert
       AlarmActions:
-        - !ImportValue platform-alarm-topic-slack-warning-alert
+        - !ImportValue platform-alarm-pagerduty-alert-topic
+        - !ImportValue platform-alarm-topic-critical-alert
       InsufficientDataActions: [ ]
       MetricName: APIGWFatalerror-message
       Namespace: !Sub "${AWS::StackName}/LogMessages"
@@ -713,11 +975,12 @@ Resources:
   # Scaling down will occur after 15 minutes of 90% utilization of the configured CPU utilization.
 
   ECSAutoScalingTarget:
-    Condition: EnableScaling
     Type: AWS::ApplicationAutoScaling::ScalableTarget
     Properties:
-      MaxCapacity: !Ref MaxContainerCount
-      MinCapacity: !Ref MinContainerCount
+      MinCapacity:
+        !FindInMap [EnvironmentVariables, !Ref Environment, minECSCount]
+      MaxCapacity:
+        !FindInMap [EnvironmentVariables, !Ref Environment, maxECSCount]
       ResourceId: !Join
         - '/'
         - - "service"
@@ -727,26 +990,123 @@ Resources:
       ScalableDimension: ecs:service:DesiredCount
       ServiceNamespace: ecs
 
-  ECSAutoScalingPolicy:
-    Condition: EnableScaling
+  EcsStepScaleOutPolicy:
     DependsOn: ECSAutoScalingTarget
     Type: AWS::ApplicationAutoScaling::ScalingPolicy
     Properties:
-      PolicyName: ECSAutoScalingPolicy
-      PolicyType: TargetTrackingScaling
+      PolicyName: EcsStepScalingOutPolicy
+      PolicyType: StepScaling
       ResourceId: !Join
-        - '/'
+        - "/"
         - - "service"
-          - !Ref   CICFrontEcsCluster
+          - !Ref CICFrontEcsCluster
           - !GetAtt CICFrontEcsService.Name
       ScalableDimension: ecs:service:DesiredCount
       ServiceNamespace: ecs
-      TargetTrackingScalingPolicyConfiguration:
-        PredefinedMetricSpecification:
-          PredefinedMetricType: ECSServiceAverageCPUUtilization
-        TargetValue: 50.0
-        ScaleInCooldown: 0
-        ScaleOutCooldown: 0
+      StepScalingPolicyConfiguration:
+        AdjustmentType: PercentChangeInCapacity
+        Cooldown:
+          180 # The policy will continue to respond to additional alarm breaches,
+          # even while a scaling activity is in progress. This means Application
+        # Auto Scaling will evaluate all alarm breaches as they occur.
+        # A cooldown period is used to protect against over-scaling due to
+        # multiple alarm breaches occurring in rapid succession.
+        MinAdjustmentMagnitude: 1
+        StepAdjustments:
+          - MetricIntervalUpperBound: 0 # 60%
+            ScalingAdjustment: 100 # Scale by 100% of containers if the metric is breached
+            # with <60% utilisation
+          - MetricIntervalLowerBound: 0 # 60%
+            MetricIntervalUpperBound: 30 # 90%
+            ScalingAdjustment: 200 # Scale by 200% of containers if the metric is breached
+            # with 80-90% utilisation
+          - MetricIntervalLowerBound: 30 # 90%
+            MetricIntervalUpperBound: 35 # 95%
+            ScalingAdjustment: 300 # Scale by 300% of containers if the metric is breached
+            # with 90-95% utilisation
+          - MetricIntervalLowerBound: 35 # 95%
+            ScalingAdjustment:
+              500 # Scale by 500% of containers if the metric is breached
+            # with >95% utilisation
+            # Note: CPU can scale greater than 100% in a burst mode
+            # on Fargate, so leave the upper bound open
+
+  EcsStepScaleInPolicy:
+    DependsOn: ECSAutoScalingTarget
+    Type: AWS::ApplicationAutoScaling::ScalingPolicy
+    Properties:
+      PolicyName: EcsStepScalingInPolicy
+      PolicyType: StepScaling
+      ResourceId: !Join
+        - "/"
+        - - "service"
+          - !Ref CICFrontEcsCluster
+          - !GetAtt CICFrontEcsService.Name
+      ScalableDimension: ecs:service:DesiredCount
+      ServiceNamespace: ecs
+      StepScalingPolicyConfiguration:
+        AdjustmentType: PercentChangeInCapacity
+        Cooldown:
+          180 # The policy will continue to respond to additional alarm breaches,
+          # even while a scaling activity is in progress. This means Application
+        # Auto Scaling will evaluate all alarm breaches as they occur.
+        # A cooldown period is used to protect against under-scaling due to
+        # multiple alarm breaches occurring in rapid succession.
+        StepAdjustments:
+          - MetricIntervalUpperBound: -15 # 5%
+            ScalingAdjustment: -90 # Scale down by 90% of containers if the metric is breached
+            # with <5% utilisation
+          - MetricIntervalLowerBound: -15 # 5%
+            MetricIntervalUpperBound: 0 # 20%
+            ScalingAdjustment:
+              -50 # Scale down 50% of containers if the metric is breached
+            # with <20% utilisation
+
+  EcsStepScaleOutAlarm:
+    DependsOn: ECSAutoScalingTarget
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      ActionsEnabled: true
+      AlarmActions:
+        - !Ref EcsStepScaleOutPolicy
+      AlarmDescription: "EcsClusterOver60PercentCPU"
+      ComparisonOperator: "GreaterThanThreshold"
+      DatapointsToAlarm: "1"
+      Dimensions:
+        - Name: ClusterName
+          Value: !Ref CICFrontEcsCluster
+        - Name: ServiceName
+          Value: !GetAtt CICFrontEcsService.Name
+      Unit: "Percent"
+      EvaluationPeriods: "2"
+      MetricName: "CPUUtilization"
+      Namespace: "AWS/ECS"
+      Statistic: "Average"
+      Period: "60"
+      Threshold: "60"
+
+  EcsStepScaleInAlarm:
+    DependsOn: ECSAutoScalingTarget
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      ActionsEnabled: true
+      AlarmActions:
+        - !Ref EcsStepScaleInPolicy
+      AlarmDescription: "EcsClusterUnder60PercentCPU"
+      ComparisonOperator: "LessThanThreshold"
+      DatapointsToAlarm: "5"
+      Dimensions:
+        - Name: ClusterName
+          Value: !Ref CICFrontEcsCluster
+        - Name: ServiceName
+          Value: !GetAtt CICFrontEcsService.Name
+      Unit: "Percent"
+      EvaluationPeriods: "5"
+      MetricName: "CPUUtilization"
+      Namespace: "AWS/ECS"
+      Statistic: "Average"
+      Period: "60"
+      Threshold: "20"
 
   StepScaleOutPolicy:
     Condition: EnableScaling
@@ -879,6 +1239,24 @@ Resources:
       Type: A
       HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
       AliasTarget:
+        DNSName:  !FindInMap [EnvironmentVariables, !Ref Environment, CLOUDFRONTDOMAIN]
+        HostedZoneId: Z2FDTNDATAQYW2
+        EvaluateTargetHealth: false
+
+  CICFrontApiOriginRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      Name: !If
+      - IsNotDevelopment
+      - !Sub
+        - "origin.${DNSSUFFIX}"
+        - DNSSUFFIX: !FindInMap [EnvironmentVariables, !Ref Environment, DNSSUFFIX]
+      - !Sub
+        - "origin.${AWS::StackName}.${DNSSUFFIX}"
+        - DNSSUFFIX: !FindInMap [EnvironmentVariables, !Ref Environment, DNSSUFFIX]
+      Type: A
+      HostedZoneId: !Sub "{{resolve:ssm:/${Environment}/Platform/Route53/PrimaryZoneID}}"
+      AliasTarget:
         DNSName: !GetAtt CICFrontCustomDomain.RegionalDomainName
         HostedZoneId: !GetAtt CICFrontCustomDomain.RegionalHostedZoneId
         EvaluateTargetHealth: false
@@ -922,14 +1300,18 @@ Resources:
 
   FE5XXErrorAlarm:
     Type: AWS::CloudWatch::Alarm
+    Condition: IsNotDevelopment
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FE5XXErrorAlarm"
-      AlarmDescription: Trigger the alarm if errorThreshold exceeds 10% with a minimum of 150 invocations and a minimum of 5 errors in 5 out of the last 5 minutes
+      AlarmDescription: !Sub 
+        - "Trigger the warning alarm for Frontend 5xx Alarm ${RunbookUrl}"
+        - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: true
       OKActions:
         - !ImportValue platform-alarm-topic-slack-warning-alert
       AlarmActions:
         - !ImportValue platform-alarm-topic-slack-warning-alert
+      # Invocation count to be reviewed
       InsufficientDataActions: []
       Dimensions: []
       EvaluationPeriods: 5
@@ -968,12 +1350,67 @@ Resources:
           Label: errorPercentage
           ReturnData: false
           Expression: (error/invocations) * 100
+  
+  FE5XXErrorCriticalAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Condition: IsNotDevelopment
+    Properties:
+      AlarmName: !Sub "${AWS::StackName}-FE5XXErrorCriticalAlarm"
+      AlarmDescription: >
+        Trigger the 5XX cricical alarm if errorThreshold exceeds 80% with 10 or more invocations
+        and a minimum of 2 errors in 5 out of the last 5 minutes
+      ActionsEnabled: true
+      OKActions:
+        - !ImportValue platform-alarm-pagerduty-alert-topic
+        - !ImportValue platform-alarm-topic-critical-alert
+      AlarmActions:
+        - !ImportValue platform-alarm-pagerduty-alert-topic
+        - !ImportValue platform-alarm-topic-critical-alert
+      EvaluationPeriods: 5
+      DatapointsToAlarm: 2
+      Threshold: 80
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+      Metrics:
+        - Id: errorThreshold
+          Label: errorThreshold
+          ReturnData: true
+          Expression: IF(invocations<10,0,errorPercentage)
+        - Id: invocations
+          ReturnData: false
+          MetricStat:
+            Metric:
+              Namespace: AWS/ApiGateway
+              MetricName: Count
+              Dimensions:
+                - Name: ApiId
+                  Value: !Ref ApiGwHttpEndpoint
+            Period: 60
+            Stat: Sum
+        - Id: error
+          ReturnData: false
+          MetricStat:
+            Metric:
+              Namespace: AWS/ApiGateway
+              MetricName: 5xx
+              Dimensions:
+                - Name: ApiId
+                  Value: !Ref ApiGwHttpEndpoint
+            Period: 60
+            Stat: Sum
+        - Id: errorPercentage
+          Label: errorPercentage
+          ReturnData: false
+          Expression: (error/invocations)*100
 
   FE4XXErrorAlarm:
     Type: AWS::CloudWatch::Alarm
+    Condition: "DeployAlarms"
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FE4XXErrorAlarm"
-      AlarmDescription: Trigger the alarm if errorThreshold exceeds 5% with a minimum of 150 invocations and a minimum of 2 errors in 2 out of the last 5 minutes
+      AlarmDescription: !Sub 
+        - "Trigger the warning alarm for Frontend 4xx Alarm ${RunbookUrl}"
+        - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: true
       OKActions:
         - !ImportValue platform-alarm-topic-slack-warning-alert
@@ -1020,9 +1457,12 @@ Resources:
 
   FELatencyAlarmP95:
     Type: AWS::CloudWatch::Alarm
+    Condition: "DeployAlarms"
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FELatencyAlarmP95"
-      AlarmDescription: Trigger the alarm if less than 95% of requests has a latency of less than 1 second with a minimum of 25 invocations in 2 out of the last 5 minutes
+      AlarmDescription: !Sub 
+        - "Trigger the warning alarm for Frontend P95 Latency ${RunbookUrl}"
+        - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: false
       OKActions:
         - !ImportValue platform-alarm-topic-slack-warning-alert
@@ -1065,9 +1505,12 @@ Resources:
 
   FELatencyAlarmP99:
     Type: AWS::CloudWatch::Alarm
+    Condition: "DeployAlarms"
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FELatencyAlarmP99"
-      AlarmDescription: Trigger the alarm if less than 99% of requests has a latency of less than 2.5 second with a minimum of 150 invocations in 2 out of the last 5 minutes
+      AlarmDescription: !Sub 
+        - "Trigger the warning alarm for Frontend P99 Latency ${RunbookUrl}"
+        - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: false
       OKActions:
         - !ImportValue platform-alarm-topic-slack-warning-alert
@@ -1110,12 +1553,14 @@ Resources:
 
   FELowContainerTaskCountAlarm:
     DependsOn:
-      - CICFrontEcsService
       - CICFrontEcsCluster
     Type: AWS::CloudWatch::Alarm
+    Condition: "DeployAlarms"
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FELowContainerTaskCountAlarm"
-      AlarmDescription: Trigger a warning if the running container task count drops below 2
+      AlarmDescription: !Sub 
+        - "Trigger a warning if the running container task count drops below 2 ${RunbookUrl}"
+        - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: true
       AlarmActions:
         - !ImportValue platform-alarm-topic-critical-alert
@@ -1132,23 +1577,23 @@ Resources:
           MetricStat:
             Metric:
               Namespace: ECS/ContainerInsights
-              MetricName: RunningTaskCount
+              MetricName: TaskCount
               Dimensions:
                 - Name: ClusterName
                   Value: !Ref CICFrontEcsCluster
-                - Name: ServiceName
-                  Value: !GetAtt CICFrontEcsService.Name
             Period: 60
             Stat: Minimum
 
   FELowContainerTaskCountCriticalAlarm:
     DependsOn:
-      - CICFrontEcsService
       - CICFrontEcsCluster
     Type: AWS::CloudWatch::Alarm
+    Condition: "DeployAlarms"
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FELowContainerTaskCountCriticalAlarm"
-      AlarmDescription: Trigger a critical alert if the running container task count drops below 1
+      AlarmDescription: !Sub 
+        - "Trigger a critical alert if the running container task count drops below 1 ${RunbookUrl}"
+        - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: false  # to be enabled once proved stable in production
       AlarmActions:
         - !ImportValue platform-alarm-topic-critical-alert
@@ -1165,12 +1610,10 @@ Resources:
           MetricStat:
             Metric:
               Namespace: ECS/ContainerInsights
-              MetricName: RunningTaskCount
+              MetricName: TaskCount
               Dimensions:
                 - Name: ClusterName
                   Value: !Ref CICFrontEcsCluster
-                - Name: ServiceName
-                  Value: !GetAtt CICFrontEcsService.Name
             Period: 60
             Stat: Maximum
 
@@ -1222,6 +1665,7 @@ Resources:
 
   WarningAlarmDashboard:
     Type: AWS::CloudWatch::Dashboard
+    Condition: IsNotDevelopment
     Properties:
       DashboardName: !Sub '${AWS::StackName}-Warning-Alarm-Overview'
       DashboardBody:
@@ -1323,6 +1767,7 @@ Resources:
 
   CriticalAlarmDashboard:
     Type: AWS::CloudWatch::Dashboard
+    Condition: "DeployAlarms"
     Properties:
       DashboardName: !Sub '${AWS::StackName}-Critical-Alarm-Overview'
       DashboardBody:
@@ -1366,11 +1811,11 @@ Outputs:
   CICCustomDomain:
     Description: CIC Custom Domain API Gateway ID
     Value: !Ref CICFrontCustomDomain
+  # Below outputs are only used for E2E tests - hardcoded to always point to relevant main stacks
   CICIPVStubExecuteURL:
     Condition: IsNotProdLikeEnvironment
     Description: "CIC IPV Stub"
-    Value:
-      Fn::ImportValue: !Sub '${IPVStubStackName}-IPVStubExecuteUrl'
+    Value: !FindInMap [EnvironmentVariables, !Ref Environment, IPVSTUBURL]
   CICTestHarnessURL:
     Condition: IsNotProdLikeEnvironment
     Description: "CIC Test Harness"
@@ -1378,7 +1823,7 @@ Outputs:
   CICBackEndURL:
     Condition: IsNotProdLikeEnvironment
     Description: "CIC Back End"
-    Value: !FindInMap [EnvironmentVariables, !Ref Environment, BACKENDURL]
+    Value: !FindInMap [EnvironmentVariables, !Ref Environment, APIBASEURL]
   CICBackendSessionTableName:
     Condition: IsNotProdLikeEnvironment
     Description: "CIC Test Harness"

@@ -1,21 +1,12 @@
-name: Post-merge Build, Test and Report
+name: Post merge checks
 
-# Controls when the action will run. Workflow runs when manually triggered using the UI
-# or API.
 on:
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - ready_for_review
-      - synchronize
+  workflow_dispatch:
   push:
     branches:
       - main
 
-  workflow_dispatch:
-
-env: # Only adding the variables in that are required for
+env:
   IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
 
 jobs:
@@ -26,37 +17,56 @@ jobs:
       packages: write
     continue-on-error: true
 
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout Project
-        uses: actions/checkout@v4
-
-      - name: Use Node.js 18.x
-        uses: actions/setup-node@v4
+      - name: Checkout Project (full history)
+        uses: actions/checkout@v6
         with:
-          node-version: 18
+          fetch-depth: 0
+
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
           cache: 'yarn'
 
-      - name: Build Test CIC Front Image
-        uses: borales/actions-yarn@v4
+      - name: Pre-commit (secrets)
+        uses: pre-commit/action@v3.0.1
         with:
-          cmd: install # will run `yarn install` command
+          extra_args: "detect-secrets --all-files"
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      
+      - name: Install Playwright browsers
+        run: yarn playwright install --with-deps
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Build
+        run: yarn build
+
+      - name: Unit tests + coverage (LCOV)
+        run: yarn test:coverage
+        
+      - name: Run SonarCloud scan (post-merge)
+        if: ${{ success() && github.actor != 'dependabot[bot]' }}
+        uses: SonarSource/sonarqube-scan-action@v6
+        with:
+          args: >
+            "-Dsonar.branch.name=${{ github.ref_name }}"
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.SH_CIC_ACCESS_TOKEN }} # if needed
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build production bundle
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: build # will run `yarn build` command
+      - name: Show sonar reports
+        run: cat .scannerwork/report-task.txt
 
-      - name: Test the app
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: test:browser:ci # will run `yarn test:browser:ci` command
+      - name: Browser tests (CI)
+        run: yarn test:browser:ci
 
       - name: Get Test Results history
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         if: always()
         continue-on-error: true
         with:
@@ -64,30 +74,21 @@ jobs:
           path: gh-pages
 
       - name: Cucumber HTML Report action
-        uses: PavanMudigonda/html-reporter-github-pages@v1.1
+        uses: PavanMudigonda/html-reporter-github-pages@v1.5
         id: test-report
         if: always()
         with:
           test_results: ./report/cucumber-html-report
           gh_pages: gh-pages
           results_history: results-history
-
-      # - name: Deploy report to Github Pages
-      #   if: always()
-      #   uses: peaceiris/actions-gh-pages@v2
-      #   with:
-      #      deploy_key: ${{ secrets.SH_CIC_ACCESS_TOKEN }}
-      #   env:
-      #      PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #      PUBLISH_BRANCH: gh-pages
-      #      PUBLISH_DIR: results-history
-      #      KEEP_FILES: true
+          workflow_name: post-merge-checks
 
       - name: Publish Github Pages
         if: ${{ github.actor != 'dependabot[bot]' }}
-        uses: peaceiris/actions-gh-pages@v3.8.0
+        uses: peaceiris/actions-gh-pages@v4.0.0
         with:
-          github_token: ${{ secrets.SH_CIC_ACCESS_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: results-history
           keep_files: true
+        

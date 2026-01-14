@@ -1,0 +1,117 @@
+{% extends "base-form.njk" %}
+{# the content for this page is controlled by locales/en/default.yml #}
+{% set gtmJourney = "cic - nameEntry" %}
+{% set hmpoPageKey = "nameEntry.f2f" %}
+
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "hmpo-text/macro.njk" import hmpoText %}
+{% from "hmpo-form/macro.njk" import hmpoForm %}
+
+{% block mainContent %}
+
+{% set detailsBody %}
+<div>
+  <p>{{ translate("nameEntry.details.line1") }}</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li class="govuk-!-margin-left-3">{{ translate("nameEntry.details.bullet1") }}</li>
+    <li class="govuk-!-margin-left-3">{{ translate("nameEntry.details.bullet2") }}</li>
+  </ul>
+  <p>{{ translate("nameEntry.details.line2") }}</p>
+  <p>{{ translate("nameEntry.details.line3") }}</p>
+  <p>{{ translate("nameEntry.details.line4") }}</p>
+  <p>{{ translate("nameEntry.details.line5") }}<a href={{ "nameEntry.contactSupport.link" | translate }} id="contactSupport"> {{ "nameEntry.contactSupport.text" | translate }}</a></p>
+</div>
+{% endset %}
+
+
+<div>
+  <h1 id="header" class="gov" data-page="{{hmpoPageKey}}" class="govuk-heading-l">
+    {{ title }}
+  </h1>
+
+  {% call hmpoForm(ctx) %}
+
+  {{ hmpoText(ctx, {
+  id: "surname",
+  autocomplete: "family-name",
+  classes: "govuk-!-width-full"
+  })}}
+
+  {%- set firstNameError = hmpoGetError(ctx, {id: 'firstName'}) %}
+  {%- set middleNameError = hmpoGetError(ctx, {id: 'middleName'}) %}
+
+  {% if firstNameError and middleNameError %}
+  <div class="govuk-form-group govuk-form-group--error">
+    {% else %}
+    <div class="govuk-form-group ">
+      {% endif %}
+
+      {% call govukFieldset({
+      legend: {
+      text: translate("nameEntry.givenNames"),
+      classes: "govuk-!-margin-0"
+      }
+      }) %}
+      <div class="govuk-inset-text govuk-!-margin-top-2 govuk-!-padding-top-1">
+        {{ hmpoText(ctx, {
+        id: "firstName",
+        label: {
+        classes: "govuk-label"
+        },
+        classes: "govuk-input",
+        autocomplete: "given-name"
+        }) }}
+
+        {{ hmpoText(ctx, {
+        id: "middleName",
+        label: {
+        classes: "govuk-label"
+        },
+        classes: "govuk-input",
+        autocomplete: "additional-name"
+        }) }}
+      </div>
+      {% endcall %}
+    </div>
+
+    <div>
+      {{ govukDetails({
+      id: "characterDetails",
+      classes: "govuk-!-margin-bottom-7",
+      summaryText: translate("nameEntry.details.summary"),
+      html: detailsBody
+      }) }}
+    </div>
+
+    {{ hmpoSubmit(ctx, {classes: "govuk-!-margin-top-0", attributes: {"data-testid": "enter-name-continue-btn", "data-nav":true,"data-link":"/enter-date-birth"}, text: translate("buttons.next")}) }}
+
+    {% endcall %}
+
+    <div>
+      <p><a href="https://home.account.gov.uk/contact-gov-uk-one-login?fromURL=https://www.review-c.account.gov.uk/enter-name" class="govuk-link" rel="noreferrer noopener" target="_blank">{{ "error.unrecoverable.contactMeLink" | translate }}</a></p>
+    </div>
+
+  </div>
+  {% endblock %}
+
+
+  {% block footer %}
+  {{ super() }}
+  <script type="text/javascript" src="/public/javascripts/all.js"></script>
+  <script {% if cspNonce %} nonce="{{ cspNonce }}"{%  endif %}>
+    window.addEventListener('load', function () {
+      window.DI.analyticsGa4.pageViewTracker.trackOnPageLoad({
+        statusCode: '200', // Access status code
+        englishPageTitle: '{{translate("nameEntry.title")}}',
+        taxonomy_level1: 'web cri', // Access taxonomy level 1
+        taxonomy_level2: 'cic', // Access taxonomy level 2
+        content_id: '001',
+        logged_in_status: true,
+        dynamic: false,
+      });
+    });
+  </script>
+  {% endblock %}

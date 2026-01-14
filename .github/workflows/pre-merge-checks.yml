@@ -1,0 +1,67 @@
+name: Pre-merge checks
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - ready_for_review
+      - synchronize
+
+jobs:
+  detect-secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+      - uses: pre-commit/action@v3.0.1
+        with:
+          extra_args: "detect-secrets --all-files"
+
+  run-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: yarn install --frozen-lockfile
+      - run: yarn lint
+      - run: yarn build
+      - run: yarn test:coverage
+      - name: Install Playwright browsers
+        run: yarn playwright install --with-deps
+      - run: yarn test:browser:ci
+        env:
+          IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
+          CUSTOM_FE_URL: http://localhost:5020
+          LANGUAGE_TOGGLE_DISABLED: false
+          DEVICE_INTELLIGENCE_ENABLED: true
+      - run: yarn test:browser:no_di:ci
+        env:
+          IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
+          CUSTOM_FE_URL: http://localhost:5020
+          LANGUAGE_TOGGLE_DISABLED: false
+          DEVICE_INTELLIGENCE_ENABLED: false
+      - name: Archive browser tests results
+        uses: actions/upload-artifact@v5
+        with:
+          name: cic-code-coverage-report
+          path: test/reports/cic-reports/
+
+  sonar-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: yarn install --frozen-lockfile
+      - run: yarn build
+      - run: yarn test
+      - run: yarn test:coverage
+      - if: ${{ success() && github.actor != 'dependabot[bot]' }}
+        uses: SonarSource/sonarqube-scan-action@v6
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

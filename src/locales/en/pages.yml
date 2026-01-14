@@ -2,25 +2,40 @@
 
 nameEntry:
   title: "Enter your name"
-  surname: "Last name"
   givenNames: "Given names"
-  firstName: "First name"
-  middleName: "Middle names"
-  middleNameHint: "Leave this blank if you do not have middle names"
-  FACE_TO_FACE:
+  details:
+    summary: "Names and letters you cannot enter"
+    line1: "For technical reasons, we cannot accept:"
+    bullet1: "single letter names"
+    bullet2: "names with special characters or accent marks"
+    line2: "You can enter your name using letters without special characters."
+    line3: "Use a, e, o, u instead of á, é, ó, ú. For example, if your name is Renée, enter it as Renee."
+    line4: "You can include hyphens or apostrophes if your name has them."
+    line5: "If you’re having problems entering your name, you can also "
+  contactSupport:
+    text: "contact the GOV.UK One Login team (opens in new tab)."
+    link: https://home.account.gov.uk/contact-gov-uk-one-login?fromURL=https://www.review-c.account.gov.uk/enter-name" target="_blank" class="govuk-link" rel="noopener" target="_blank
+  f2f:
     title: "Enter your name exactly as it appears on your photo ID"
-  NO_PHOTO_ID:
+  bank_account:
     title: "Enter your name as it appears on your bank or building society account"
     introText: "This needs to be the exact name registered to the account. If you're using joint account details, you do not need to enter the other person's name."
     insetText1: "The name on your bank card might only use your initials."
     insetText2: "Check your banking app, online bank account or bank statement for the full registered name."
+  hmrc_check:
+    title: "Enter your name as it appears on your HMRC record"
+    subtext: "It should match how your name is shown on documents such as your payslip, P60 or benefits letters."
+    validation: "You cannot change your name and date of birth once you continue to the next page."
+
 
 checkDetails:
   title: "Confirm your details"
   name: "Name"
   dateOfBirth: "Date of birth"
   changeLink: "Change"
-  buttonText: "I confirm my details are correct"
+  f2fButtonText: "I confirm my details are correct"
+  noPidButtonText: "Confirm and continue"
+  lowConfidenceText: "Confirm and continue"
 
 dateOfBirth:
   title: "Enter your date of birth"

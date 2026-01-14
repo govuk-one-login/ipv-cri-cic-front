@@ -2,16 +2,15 @@ const { setWorldConstructor } = require("@cucumber/cucumber");
 
 require("playwright");
 
-const users = {
-  "Authenticatable Anita": {},
-  "Erroring Ethem": {},
-  "Not Authenticatable Neil": {},
-  "Validating Valerie": {},
+const userClaims = {
+  "Authenticatable Anita": require("../support/shared_claim_f2f"),
+  "Validating Valerie": require("../support/shared_claim_bav"),
+  "a Low Confidence user": require("../support/shared_claim_low_confidence"),
 };
 
 class CustomWorld {
   constructor() {
-    this.allUsers = users;
+    this.allUserClaims = userClaims;
   }
 }
 
