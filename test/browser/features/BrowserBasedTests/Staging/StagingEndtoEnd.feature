@@ -1,4 +1,4 @@
-@success @stg
+@success @stg @QualityGateIntegrationTest @QualityGateRegressionTest
 
 Feature: F2F Journey Staging
 
