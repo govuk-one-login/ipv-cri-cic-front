@@ -1,4 +1,4 @@
-@success @e2e @QualityGateIntegrationTest @QualityGateRegressionTest
+@success @e2e @QualityGateIntegrationTest @QualityGateRegressionTest @QualityGateStackTest
 
 Feature: Claimed Identity Credential Issuer Device Intelligence Cookie
 
