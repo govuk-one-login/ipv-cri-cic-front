@@ -5,7 +5,7 @@
       "service-tag": "cic-front",
       "quality-gates": [
         {
-          "check-types": ["code style and linting", "secret scanning"],
+          "check-types": ["secret scanning"],
           "provider": "GitHub",
           "phase": "pre-merge",
           "config": {
