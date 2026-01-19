@@ -5,7 +5,7 @@
       "service-tag": "cic-front",
       "quality-gates": [
         {
-          "check-types": ["code style and linting"],
+          "check-types": ["code style and linting", "secret scanning"],
           "provider": "GitHub",
           "phase": "pre-merge",
           "config": {
@@ -23,7 +23,7 @@
           }
         },
         {
-          "check-types": ["code style and linting", "unit", "unit test coverage", "new feature", "regression", "visual regression"],
+          "check-types": ["code style and linting", "unit", "unit test coverage", "accessibility", "integration", "regression", "visual regression"],
           "provider": "GitHub",
           "phase": "pre-merge",
           "config": {
@@ -38,6 +38,15 @@
           "config": {
             "file": ".github/workflows/pre-merge-checks.yml",
             "path": "jobs.sonar-checks"
+          }
+        },
+        {
+          "check-types": ["code quality", "vulnerability detection"],
+          "provider": "GitHub",
+          "phase": "pre-merge",
+          "config": {
+            "file": ".github/workflows/codeql.yml",
+            "path": "jobs.analyze"
           }
         }
       ]
