@@ -14,16 +14,7 @@
           }
         },
         {
-          "check-types": ["secret scanning"],
-          "provider": "GitHub",
-          "phase": "pre-merge",
-          "config": {
-            "file": ".github/workflows/pre-merge-checks.yml",
-            "path": "jobs.detect-secrets"
-          }
-        },
-        {
-          "check-types": ["code style and linting", "unit", "unit test coverage", "accessibility", "integration", "regression", "visual regression"],
+          "check-types": ["code style and linting", "unit", "unit test coverage", "accessibility", "integration", "regression"],
           "provider": "GitHub",
           "phase": "pre-merge",
           "config": {
@@ -32,7 +23,7 @@
           }
         },
         {
-          "check-types": ["code style and linting", "unit"],
+          "check-types": ["code style and linting", "unit", "unit test coverage"],
           "provider": "GitHub",
           "phase": "pre-merge",
           "config": {
@@ -41,12 +32,20 @@
           }
         },
         {
-          "check-types": ["code quality", "vulnerability detection"],
+          "check-types": ["code quality"],
           "provider": "GitHub",
           "phase": "pre-merge",
           "config": {
             "file": ".github/workflows/codeql.yml",
             "path": "jobs.analyze"
+          }
+        },
+        {
+          "check-types": ["vulnerability detection"],
+          "provider": "GitHub",
+          "phase": "pre-merge",
+          "config": {
+            "file": ".github/dependabot.yml"
           }
         }
       ]
