@@ -44,7 +44,7 @@ jobs:
           LANGUAGE_TOGGLE_DISABLED: false
           DEVICE_INTELLIGENCE_ENABLED: false
       - name: Archive browser tests results
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: cic-code-coverage-report
           path: test/reports/cic-reports/
