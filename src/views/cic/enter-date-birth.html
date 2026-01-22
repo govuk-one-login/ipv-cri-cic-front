@@ -26,13 +26,37 @@
             classes: "govuk-fieldset__legend--l"
     }
 },
-hint: {
-html: formInstructions
-}
+hint: { html: formInstructions },
+items: [
+    {
+      name: "day",
+      classes: "govuk-input--width-2",
+      attributes: { autocomplete: "bday-day" }
+    },
+    {
+      name: "month",
+      classes: "govuk-input--width-2",
+      attributes: { autocomplete: "bday-month" }
+    },
+    {
+      name: "year",
+      classes: "govuk-input--width-4",
+      attributes: { autocomplete: "bday-year" }
+    }
+  ]
 }) }}
 
 
-{{ hmpoSubmit(ctx, {classes: "govuk-!-margin-top-0", attributes: {"data-testid": "enter-dob-continue-btn", "data-nav":true,"data-link":"/confirm-details"}, text: translate("buttons.next")}) }}
+{{ hmpoSubmit(ctx, {
+  classes: "govuk-!-margin-top-0",
+  attributes: {
+    "data-testid": "enter-dob-continue-btn",
+    "data-prevent-double-click": "true",
+    "data-nav": true,
+    "data-link": "/confirm-details"
+  },
+  text: translate("buttons.next")
+}) }}
 
 {% endcall %}
 
