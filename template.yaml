@@ -72,6 +72,9 @@ Conditions:
     - !Equals [ !Ref Environment, integration ]
     - !Equals [ !Ref Environment, production ]
   IsProduction: !Equals [!Ref Environment, production]
+  IsProductionOrIntegration: !Or
+    - !Equals [!Ref Environment, production]
+    - !Equals [!Ref Environment, integration]
   EnableScaling: !Or
     - !Equals [ !Ref EnableScalingInDev, 1]
     - !Equals [ !Ref Environment, build ]
@@ -669,6 +672,8 @@ Resources:
               Value: !FindInMap [ EnvironmentVariables, !Ref Environment, GTMIDGA4 ]
             - Name: GA4_ENABLED
               Value: !FindInMap [ EnvironmentVariables, !Ref Environment, GA4ENABLED ]
+            - Name: ANALYTICS_DATA_SENSITIVE
+              Value: !If [IsProductionOrIntegration, true, false]
             - Name: FRONTEND_DOMAIN
               Value:
                 !If [
