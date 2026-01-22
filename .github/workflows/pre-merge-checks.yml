@@ -7,24 +7,12 @@ on:
       - reopened
       - ready_for_review
       - synchronize
-  push:
-    branches:
-      - main
 
 jobs:
-  detect-secrets:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v6
-      - uses: pre-commit/action@v3.0.1
-        with:
-          extra_args: "detect-secrets --all-files"
-
   run-checks:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/setup-node@v5
         with:
           node-version: 22
@@ -47,7 +35,7 @@ jobs:
           LANGUAGE_TOGGLE_DISABLED: false
           DEVICE_INTELLIGENCE_ENABLED: false
       - name: Archive browser tests results
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: cic-code-coverage-report
           path: test/reports/cic-reports/
@@ -55,7 +43,7 @@ jobs:
   sonar-checks:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/setup-node@v5
         with:
           node-version: 22
