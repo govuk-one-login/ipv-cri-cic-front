@@ -9,12 +9,6 @@ describe("Fields maxLength ", () => {
     return value.length <= maxLengthRule.arguments;
   };
 
-  const nameFields = {
-    surname: fields.surname,
-    firstName: fields.firstName,
-    middleName: fields.middleName,
-  };
-
   describe("Date of Birth", () => {
     const { dateOfBirth } = fields;
 
