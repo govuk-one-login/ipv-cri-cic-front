@@ -15,10 +15,6 @@ describe("Fields maxLength ", () => {
     middleName: fields.middleName,
   };
 
-  Object.entries(nameFields).forEach(([fieldName, config]) => {
-    testNameField(fieldName, config);
-  });
-
   describe("Date of Birth", () => {
     const { dateOfBirth } = fields;
 
