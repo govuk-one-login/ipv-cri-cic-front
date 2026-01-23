@@ -25,6 +25,7 @@ const { getGTM, getLanguageToggle, getDeviceIntelligence } =
 const overloadProtectionConfigService = require("./lib/overload-protection-config.js");
 
 const addLanguageParam = require("@govuk-one-login/frontend-language-toggle/build/cjs/language-param-setter.cjs");
+const customValidators = require("./app/cic/validators/customValidators");
 
 const {
   frontendVitalSignsInitFromApp,
@@ -90,14 +91,12 @@ const { app, router } = setup({
   },
   publicDirs: ["../dist/public"],
   views: [
+    path.resolve(__dirname, "views"),
     path.resolve(
-      path.dirname(
-        require.resolve("@govuk-one-login/di-ipv-cri-common-express"),
-      ),
+      path.dirname(require.resolve("@govuk-one-login/di-ipv-cri-common-express")),
       "components",
     ),
     path.resolve('node_modules/@govuk-one-login/'),
-    "views",
   ],
   translation: {
     allowedLangs: ["en", "cy"],
