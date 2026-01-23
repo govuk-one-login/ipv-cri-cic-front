@@ -96,7 +96,7 @@ const { app, router } = setup({
       path.dirname(require.resolve("@govuk-one-login/di-ipv-cri-common-express")),
       "components",
     ),
-    path.resolve('node_modules/@govuk-one-login/'),
+    path.resolve("node_modules/@govuk-one-login/"),
   ],
   translation: {
     allowedLangs: ["en", "cy"],

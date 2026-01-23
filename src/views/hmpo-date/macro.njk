@@ -77,6 +77,6 @@
     {%- endif %}
 
     {% if args.errorMessage %}{{errorMessage.message}}{% endif %}
-    {%- from "./govuk-date.njk" import govukDateInput %}
+    {%- from "govuk/components/date-input/macro.njk" import govukDateInput %}
     {{- govukDateInput(args) }}
 {% endmacro %}
