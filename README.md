@@ -2,24 +2,24 @@
 
 Frontend for the Claimed Identity Collector (CIC) journey within GOV.UK One Login IPV.
 
-> Public repository: do not commit secrets, credentials, internal URLs, account identifiers, template IDs, or sensitive configuration values. Use placeholders in examples.
+> [!IMPORTANT]
+> This repository is **public**. Do **not** commit secrets, credentials, internal URLs, account identifiers, template IDs, or sensitive configuration values. Document **names** and **purposes** only and use placeholders in examples. Localhost examples are permitted.
 
 ---
-
-## Table of contents---
 
 ## Table of contents
 - [Quick links](#quick-links)
-- [Installation](#installation)
-- [Environment Variables](#environment-variables)
-- [Run front-end locally against deployed back-end](#run-front-end-locally-against-deployed-back-end)
-- [Deployment in your own stack](#deployment-in-your-own-stack)
-- [Request properties](#request-properties)
+- [What this service does](#what-this-service-does)
+- [Getting started](#getting-started)
+- [Environment file (.env)](#environment-file-env)
+- [Running locally against a deployed back end](#running-locally-against-a-deployed-back-end)
 - [Browser tests](#browser-tests)
-- [Code Owners](#code-owners)
-- [Create and upload a custom image to ECR](#create-and-upload-a-custom-image-to-ecr)
-- [Dependency Installation](#dependency-installation)
-- [Post Installation Configuration](#post-installation-configuration)
+- [Deployment](#deployment)
+  - [Deploying a personal stack (exceptional)](#deploying-a-personal-stack-exceptional)
+  - [Custom FE image build and push (optional)](#custom-fe-image-build-and-push-optional)
+- [Request properties](#request-properties)
+- [Code owners](#code-owners)
+- [Pre-commit checks](#pre-commit-checks)
 - [Licence](#licence)
 
 ---
@@ -28,71 +28,71 @@ Frontend for the Claimed Identity Collector (CIC) journey within GOV.UK One Logi
 - **Environment sample:** `.env.sample`
 - **App source:** `src/`
 - **Infra template:** `template.yaml`
-- **IPV stub:** documented via `IPV_STUB_URL` in `.env.sample` (use placeholders; do not add real URLs)
-- **Axios middleware:** `src/lib/axios/`
-- **Code owners:** `CODEOWNERS` (if present)
-
-- [Quick links](#quick-links)
-- [Installation](#installation)
-- [Environment Variables](#environment-variables)
-- [Run front-end locally against deployed back-end](#run-front-end-locally-against-deployed-back-end)
-- [Deployment in your own stack](#deployment-in-your-own-stack)
-- [Request properties](#request-properties)
-- [Browser tests](#browser-tests)
-- [Code Owners](#code-owners)
-- [Create and upload a custom image to ECR](#create-and-upload-a-custom-image-to-ecr)
-- [Dependency Installation](#dependency-installation)
-- [Post Installation Configuration](#post-installation-configuration)
-- [Licence](#licence)
-
----
-
-## Quick links
-- **Environment sample:** `.env.sample`
-- **App source:** `src/`
-- **Infra template:** `template.yaml`
-- **IPV stub:** documented via `IPV_STUB_URL` in `.env.sample` (use placeholders; do not add real URLs)
 - **Axios middleware:** `src/lib/axios/`
 - **Code owners:** `CODEOWNERS` (if present)
 
 ---
 
-## Installation
+## What this service does
+This service provides the user interface for the Claimed Identity Collector (CIC) journey. It:
+- Integrates with the corresponding backend API (`ipv-cri-cic-api`) using `API_BASE_URL`.
+- Supports browser-based end-to-end testing using an IPV stub to start journeys (configured via `IPV_STUB_URL`).
 
-Clone this repository and then run:
+---
 
-```bash
+## Getting started
+
+### Prerequisites
+- Node.js version per `package.json`/tooling used by the repo
+- yarn
+
+### Install and build
+```sh
 yarn install --frozen-lockfile
 yarn build
 ```
 
-## Environment Variables
+## Environment file (.env)
+All required environment variables are listed in `.env.sample`. Copy it to `.env` and set values for the environment you are testing against.
 
-All required environment variables are inside the `.env.sample` file. Copy its contents to a `.env` file in the same location. Do not commit `.env`, and do not add real values to this README.
+```sh
+cp .env.sample .env
+```
 
-- `CUSTOM_FE_URL` only needs to be populated if you would like to test against a custom deployed FE stack or if you wish to run browser tests against your local stack (default port `5020`).
-- `API_BASE_URL` - URL to the ipv-cri-cic-api CRI back-end.
-- `IPV_STUB_URL` - URL of the IPV stub used to start journeys (test-only).
-- `PORT` - Default port to run webserver on (defaults to `5020`).
-- `SESSION_SECRET` - Secret used when configuring the HMPO session.
-- `GOOGLE_ANALYTICS_4_GTM_CONTAINER_ID` - Container ID for GA4 tracking.
-- `UNIVERSAL_ANALYTICS_GTM_CONTAINER_ID` - Container ID for UA tracking.
-- `GA4_ENABLED` - Feature flag to enable GA4, defaulted to `"true"`.
-- `UA_ENABLED` - Feature flag to enable UA, defaulted to `"false"`.
-- `ANALYTICS_DATA_SENSITIVE` - Redacts all form response data, defaulted to `"true"`. Only set to `"false"` if a journey section contains no PII in non-text-based form controls.
-- `GA4_PAGE_VIEW_ENABLED` - Feature flag to enable GA4 page view tracking, defaulted to `"true"`.
-- `GA4_FORM_RESPONSE_ENABLED` - Feature flag to enable GA4 form response tracking, defaulted to `"true"`.
-- `GA4_FORM_ERROR_ENABLED` - Feature flag to enable GA4 form error tracking, defaulted to `"true"`.
-- `GA4_FORM_CHANGE_ENABLED` - Feature flag to enable GA4 form change tracking, defaulted to `"true"`.
-- `GA4_NAVIGATION_ENABLED` - Feature flag to enable GA4 navigation tracking, defaulted to `"true"`.
-- `GA4_SELECT_CONTENT_ENABLED` - Feature flag to enable GA4 select content tracking, defaulted to `"true"`.
-- `LANGUAGE_TOGGLE_DISABLED` - Feature flag to disable Language Toggle, defaulted to `true`.
+> [!IMPORTANT]
+> Do not commit `.env` and do not add real environment hostnames, tokens, or secret values to this README.
 
-## Run front-end locally against deployed back-end
+Common variables (see `.env.sample` for the full list):
 
-- Set up `.env` as described above.
-- Run `yarn build` followed by `yarn start`.
-- Make a `POST` call to the `IPV_STUB_URL` (from .env) with the following body payload:
+- `API_BASE_URL` – base URL for the CIC backend API.
+- `IPV_STUB_URL` – IPV stub URL used to start test journeys.
+- `PORT` – local port (default 5020).
+- `SESSION_SECRET` – session secret (treat as sensitive; do not commit).
+- `CUSTOM_FE_URL` – optional; set to `http://localhost:5020` to run browser tests against local changes.
+
+Analytics flags/IDs:
+
+- `GOOGLE_ANALYTICS_4_GTM_CONTAINER_ID`
+- `UNIVERSAL_ANALYTICS_GTM_CONTAINER_ID`
+- `GA4_ENABLED`, `UA_ENABLED`
+- `ANALYTICS_DATA_SENSITIVE`
+- `GA4_PAGE_VIEW_ENABLED`, `GA4_FORM_RESPONSE_ENABLED`, `GA4_FORM_ERROR_ENABLED`, `GA4_FORM_CHANGE_ENABLED`
+- `GA4_NAVIGATION_ENABLED`, `GA4_SELECT_CONTENT_ENABLED`
+- `LANGUAGE_TOGGLE_DISABLED`
+
+## Running locally against a deployed back end
+Set up your `.env` based on `.env.sample` (ensure `API_BASE_URL` and `IPV_STUB_URL` are set).
+
+Build and start the app:
+
+```sh
+yarn build
+yarn start
+```
+
+Start a journey via the IPV stub:
+
+Make a POST call to `IPV_STUB_URL` with the following payload:
 
 ```json
 {
@@ -100,116 +100,90 @@ All required environment variables are inside the `.env.sample` file. Copy its c
 }
 ```
 
-- Start the journey by navigating to the `AuthorizeLocation` in the stub response.
+Navigate to the `AuthorizeLocation` returned in the stub response.
 
-## Deployment in your own stack
+> [!NOTE]
+> IPV stub request/response shapes are owned by the stub service. Use your team’s internal documentation for environment-specific URLs and details.
 
-This is an exceptional workflow; default deployments are via the pipeline/team process.
+## Browser tests
+Browser-based tests can be run against a deployed backend API stack, starting the journey using an IPV stub.
 
-To deploy a copy of the frontend infrastructure from a local branch as a separate isolated stack:
+Ensure `.env` points at the environment you are testing against (do not commit values).
 
-- Update the `Image:` tag in `template.yaml` to point to the container image to be deployed.
-- Then run:
+Run:
 
-```shell
+```sh
+npm run test:browser
+```
+
+To run browser tests against local FE changes, set:
+
+```sh
+CUSTOM_FE_URL=http://localhost:5020
+```
+
+Tests use:
+
+- Cucumber as the test runner
+- Playwright for browser automation
+- A Page Object Model approach (see Playwright docs)
+
+## Deployment
+The standard deployment route is via the CI/CD pipeline for this repository. Use local deployments only when explicitly required by your team/process.
+
+### Deploying a personal stack (exceptional)
+If you must deploy an isolated FE stack (for example for testing an infra change), use a custom stack name (include your initials) to avoid overwriting shared stacks.
+
+> [!IMPORTANT]
+> Do not document environment-specific parameter values, account identifiers, or internal hostnames in this public repository. Use your organisation’s internal runbooks for those details.
+
+A typical deployment shape (placeholders only):
+
+```sh
 sam build --parallel --no-cached
 sam deploy --resolve-s3 --stack-name "<stack-name>" --capabilities CAPABILITY_IAM --confirm-changeset --parameter-overrides \
 "Environment=\"<environment>\" PermissionsBoundary=\"<permissions-boundary>\" VpcStackName=\"<vpc-stack-name>\" EnableScalingInDev=0"
 ```
 
-The following parameters can be used to specify whether or not to deploy the autoscaling infrastructure:
+Autoscaling-related parameters (if supported by the template):
 
-- `EnableScalingInDev` defaults to 0 which inhibits deployment of scaling infrastructure; set to 1 to deploy scaling infrastructure.
-- `MinContainerCount` default is 3.
-- `MaxContainerCount` default is 12.
+- `EnableScalingInDev` – default 0; set 1 to deploy scaling resources.
+- `MinContainerCount` – default 3.
+- `MaxContainerCount` – default 12.
 
-## Request properties
+### Custom FE image build and push (optional)
+Only follow this if your team supports building and deploying a custom FE image (otherwise, deployments are via the pipeline).
 
-A shared [axios](https://axios-http.com/) middleware is used for API calls; see [src/lib/axios](./src/lib/axios).
-
-## Browser tests
-
-Browser based tests can be run against a deployed API stack using an IPV stub. To run the tests make sure your `.env` points at the relevant environment. Do not add environment URLs to this README and do not commit `.env` values. Then run `npm run test:browser`.
-
-Adding `CUSTOM_FE_URL=<http://localhost:5020>` will run browser tests against your local changes.
-
-These tests are written using [Cucumber](https://cucumber.io/docs/installation/javascript/) as the test runner and [Playwright](https://playwright.dev/) as the automation tool. They also follow the [Page Object Model](https://playwright.dev/docs/test-pom) for separation of concerns.
-
-### Code Owners
-
-This repo has a `CODEOWNERS` file in the root and is configured to require PRs to be reviewed by Code Owners.
-
-## Create and upload a custom image to ECR
-
-Execute the following commands to create a custom image locally and push it up to ECR.
-You need to have AWS credentials in your shell via `aws-vault` or `gds-cli` or similar.
-`<ecr-repo>` needs to refer to an existing repo in ECR, you can create one in the AWS console if you do not have one already.
-
-```shell
+```sh
 aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws-account-id>.dkr.ecr.<region>.amazonaws.com
 docker build --platform linux/amd64 -t di-ipv-cri-cic-front:<image-tag> .
 docker tag di-ipv-cri-cic-front:<image-tag> <aws-account-id>.dkr.ecr.<region>.amazonaws.com/<ecr-repo>:<image-tag>
 docker push <aws-account-id>.dkr.ecr.<region>.amazonaws.com/<ecr-repo>:<image-tag>
 ```
 
-Then to use this new image update the `Image:` tag in `template.yaml` and redeploy your template locally into your own stack.
+If deploying a custom image, update the `Image:` reference in `template.yaml` and deploy via your team-approved approach.
 
-### Dependency Installation
+## Request properties
+A shared axios middleware is used for API calls; see `src/lib/axios/`. This attaches an axios instance to each request (e.g. `req.axios`) to promote consistent header use and request behaviour.
 
-To use this locally you will first need to install the dependencies, this can be done in two ways:
+## Code owners
+If a `CODEOWNERS` file is present at the repo root, PRs require review by code owners.
 
-#### Method 1 - Python pip
+## Pre-commit checks
+If this repo includes `.pre-commit-config.yaml`, you can enable hooks locally:
 
-Run the following in a terminal:
-
-```
-sudo -H pip3 install checkov pre-commit cfn-lint
-```
-
-This should work across platforms.
-
-#### Method 2 - Brew
-
-If you have brew installed please run the following:
-
-```
-brew install pre-commit ;\
-brew install cfn-lint ;\
-brew install checkov
-```
-
-### Post Installation Configuration
-
-Once installed run:
-
-```
+```sh
 pre-commit install
 ```
 
-To update the various versions of the pre-commit plugins, this can be done by running:
+Run hooks manually (optional):
 
-```
-pre-commit autoupdate && pre-commit install
+```sh
+pre-commit run --all-files
 ```
 
-This will install and configure the pre-commit git hooks. If it detects an issue while committing it will produce an output like the following:
-
-```
-git commit -a
-check json...........................................(no files to check)Skipped
-fix end of files.........................................................Passed
-trim trailing whitespace.................................................Passed
-detect aws credentials...................................................Passed
-detect private key.......................................................Passed
-AWS CloudFormation Linter................................................Failed
-- hook id: cfn-python-lint
-- exit code: 4
-W3011 Both UpdateReplacePolicy and DeletionPolicy are needed to protect Resources/PublicHostedZone from deletion
-core/deploy/dns-zones/template.yaml:20:3
-Checkov..............................................(no files to check)Skipped
-- hook id: checkov
-```
+> [!NOTE]
+> Tool installation methods vary by environment. Use your team’s standard developer setup guidance.
 
 ## Licence
-
-This repository does not currently publish a LICENSE/LICENCE file.
+This repository does not currently publish a LICENSE/LICENCE file. If you need reuse/distribution terms, consult the owning organisation’s guidance before redistributing.
