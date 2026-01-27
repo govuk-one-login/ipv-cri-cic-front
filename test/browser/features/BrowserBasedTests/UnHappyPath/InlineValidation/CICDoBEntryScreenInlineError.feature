@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @success @browser
+@mock-api:f2f-cic-success @success @browser @QualityGateIntegrationTest @QualityGateRegressionTest
 Feature: Error Message displayed when wrong DoB is entered
 
 
