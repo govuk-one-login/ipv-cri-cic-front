@@ -130,6 +130,7 @@ Mappings:
       GTMIDGA4: "GTM-KD86CMZ"
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "dev.account.gov.uk"
+      ANALYTICSDATASENSITIVE: false
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "debug"
       LANGUAGETOGGLEDISABLED: false
@@ -152,6 +153,7 @@ Mappings:
       GTMIDGA4: "GTM-KD86CMZ"
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "build.account.gov.uk"
+      ANALYTICSDATASENSITIVE: false
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
@@ -174,6 +176,7 @@ Mappings:
       GTMIDGA4: "GTM-KD86CMZ"
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "staging.account.gov.uk"
+      ANALYTICSDATASENSITIVE: false
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
@@ -192,6 +195,7 @@ Mappings:
       GTMIDGA4: "GTM-KD86CMZ"
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
+      ANALYTICSDATASENSITIVE: true
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
@@ -210,6 +214,7 @@ Mappings:
       GTMIDGA4: "GTM-K4PBJH3"
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "account.gov.uk"
+      ANALYTICSDATASENSITIVE: true
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
@@ -669,6 +674,8 @@ Resources:
               Value: !FindInMap [ EnvironmentVariables, !Ref Environment, GTMIDGA4 ]
             - Name: GA4_ENABLED
               Value: !FindInMap [ EnvironmentVariables, !Ref Environment, GA4ENABLED ]
+            - Name: ANALYTICS_DATA_SENSITIVE
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, ANALYTICSDATASENSITIVE ]
             - Name: FRONTEND_DOMAIN
               Value:
                 !If [

@@ -1,4 +1,4 @@
-@device_intelligence_unhappy
+@device_intelligence_unhappy @QualityGateIntegrationTest @QualityGateRegressionTest
 
 Feature: Claimed Identity Credential Issuer Device Intelligence Cookie - Negative Path
 

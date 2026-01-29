@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0
 
       - name: Use Node.js 22.x
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: 'yarn'
@@ -51,7 +51,7 @@ jobs:
         
       - name: Run SonarCloud scan (post-merge)
         if: ${{ success() && github.actor != 'dependabot[bot]' }}
-        uses: SonarSource/sonarqube-scan-action@v6
+        uses: SonarSource/sonarqube-scan-action@v7
         with:
           args: >
             "-Dsonar.branch.name=${{ github.ref_name }}"
