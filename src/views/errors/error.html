@@ -3,6 +3,15 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
 {% set hmpoPageKey = "error.unrecoverable" %}
+{% set contentID = "25409193-e1e9-4b8f-8864-d98ee85d311d" %}
+{% set isPageDataSensitive = false %}
+{% set taxLevel2 = "cic" %}
+{% set statusCode = "500" %}
+{% set pageTitleKey = "error.unrecoverable.title"%}
+{% set loggedInStatus = false %}
+{% set isPageDynamic = false %}
+
+
 
 {% block mainContent %}
   <h1 data-id="error-title">{{ translate("error.unrecoverable.title") }}</h1>
@@ -23,20 +32,6 @@
   <div>
       <p><a href="https://home.account.gov.uk/contact-gov-uk-one-login?fromURL=https://www.review-c.account.gov.uk/enter-name\" class="govuk-link" rel="noreferrer noopener" target="_blank">{{ translate("error.unrecoverable.contactMeLink") }}</a></p>
   </div>
-
-  <script {% if cspNonce %} nonce="{{ cspNonce }}"{%  endif %}>
-      window.addEventListener('load', function () {
-        window.DI.analyticsGa4.pageViewTracker.trackOnPageLoad({
-          statusCode: '500', // Access status code
-          englishPageTitle: '{{translate("error.unrecoverable.title")}}',
-          taxonomy_level1: 'web cri', // Access taxonomy level 1
-          taxonomy_level2: 'cic', // Access taxonomy level 2
-          content_id: '004',
-          logged_in_status: false,
-          dynamic: false,
-        });
-      });
-    </script>
 
 {% endblock %}
 
