@@ -13,15 +13,10 @@ describe("RootController", () => {
   let sandbox;
 
   beforeEach(() => {
-    sandbox = sinon.createSandbox();
     const setup = setupDefaultMocks();
     req = setup.req;
     res = setup.res;
     next = setup.next;
-  });
-
-  afterEach(() => {
-    sandbox.restore();
   });
 
   it("should be an instance of BaseController", () => {

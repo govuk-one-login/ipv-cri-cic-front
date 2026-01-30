@@ -11,10 +11,8 @@ describe("JourneyTypeController", () => {
   let req;
   let res;
   let next;
-  let sandbox;
 
   beforeEach(() => {
-    sandbox = sinon.createSandbox();
     const setup = setupDefaultMocks();
     req = setup.req;
     res = setup.res;
@@ -24,7 +22,6 @@ describe("JourneyTypeController", () => {
   });
 
   afterEach(() => {
-    sandbox.restore();
     console.error.restore();
   });
 
