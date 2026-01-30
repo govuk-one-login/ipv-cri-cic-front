@@ -14,7 +14,7 @@ surname:
   validation:
     default: "Enter your last name"
     minlength: "Your last name must be more than one character"
-    maxlength: "Enter your last name as it appears on your photo ID"
+    nameMaxLength: "Your last name must be less than forty characters"
     regexNumbersOrSpecialCharacters: "Your last name cannot include numbers or special characters"
 
 firstName:
@@ -24,7 +24,7 @@ firstName:
   validation:
     default: "Enter your first name"
     minlength: "Your first name must be more than one character"
-    maxlength: "Enter your first name as it appears on your photo ID"
+    nameMaxLength: "Your first name must be less than forty characters"
     regexNumbersOrSpecialCharacters: "Your first name cannot include numbers or special characters"
 
 middleName:
@@ -34,7 +34,7 @@ middleName:
   validation:
     default: "Enter your middle name as it appears on your photo ID"
     minlength: "Your middle name must be more than one character"
-    maxlength: "Enter your middle name as it appears on your photo ID"
+    nameMaxLength: "Your middle name must be less than forty characters"
     regexNumbersOrSpecialCharacters: "Your middle name cannot include numbers or special characters"
 
 dateOfBirth:
