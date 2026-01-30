@@ -1,6 +1,5 @@
 const BaseController = require("hmpo-form-wizard").Controller;
 const { expect } = require("chai");
-const { afterEach } = require("mocha");
 const RootController = require("./root.js");
 
 console.log = sinon.fake();
