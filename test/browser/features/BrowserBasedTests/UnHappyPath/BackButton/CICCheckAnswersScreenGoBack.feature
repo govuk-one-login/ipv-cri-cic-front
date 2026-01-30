@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @success @browser
+@mock-api:f2f-cic-success @success @browser @QualityGateIntegrationTest @QualityGateRegressionTest
 Feature: Successful navigation using the Back button on the CMA screen
 
 

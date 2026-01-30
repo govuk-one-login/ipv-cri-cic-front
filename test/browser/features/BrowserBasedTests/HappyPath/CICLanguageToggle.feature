@@ -1,4 +1,4 @@
-@browser
+@browser @QualityGateIntegrationTest @QualityGateRegressionTest
 
 Feature: Claimed Identity Credential Issuer Language Toggle
 

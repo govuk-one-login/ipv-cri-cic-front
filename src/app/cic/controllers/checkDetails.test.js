@@ -8,8 +8,7 @@ const {
 } = require("../../../lib/config");
 
 describe("CheckDetails controller", () => {
-  let checkDetailsController;
-
+  const checkDetailsController = new CheckDetailsController({ route: "/test" });
   let req;
   let res;
   let next;
@@ -20,7 +19,6 @@ describe("CheckDetails controller", () => {
     res = setup.res;
     next = setup.next;
 
-    checkDetailsController = new CheckDetailsController({ route: "/test" });
     req.session.tokenId = 123456;
     sinon.stub(console, "error");
   });
@@ -74,7 +72,6 @@ describe("CheckDetails controller", () => {
   describe("#saveValues", () => {
     context("on journey save cic data", () => {
       it("should call claimedIdentity endpoint", async () => {
-        req.axios.post = sinon.fake.resolves();
 
         const givenNamesVal = req.sessionModel.get("middleName")
           ? req.sessionModel.get("firstName") +
@@ -103,7 +100,6 @@ describe("CheckDetails controller", () => {
 
       it("should redirect to /error if session token is missing", async () => {
         req.session.tokenId = null;
-
         await checkDetailsController.saveValues(req, res, next);
 
         sinon.assert.calledWith(

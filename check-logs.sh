@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+@QualityGateSensitiveDataScanning
+
 test_data="./test/browser/support/cicUserData.json"
 firstName=$(jq -r '.firstName' "$test_data")
 middleName=$(jq -r '.middleName' "$test_data")

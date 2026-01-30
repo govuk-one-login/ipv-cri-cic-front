@@ -1,4 +1,4 @@
-@mock-api:f2f-cic-success @browser
+@mock-api:f2f-cic-success @browser @QualityGateIntegrationTest @QualityGateRegressionTest
 Feature:Error messgae is displayed when no name data is entered
 
 

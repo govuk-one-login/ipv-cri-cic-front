@@ -1,4 +1,4 @@
-@success @browser
+@success @browser @QualityGateAccessibilityTest @QualityGateIntegrationTest @QualityGateRegressionTest
 
 Feature: Claimed Identity Credential Issuer - Accessibility 
 

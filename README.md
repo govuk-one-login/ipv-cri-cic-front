@@ -187,3 +187,12 @@ pre-commit run --all-files
 
 ## Licence
 This repository does not currently publish a LICENSE/LICENCE file. If you need reuse/distribution terms, consult the owning organisation’s guidance before redistributing.
+
+### Quality Gate Tags
+
+All browser tests should be tagged with `@QualityGateIntegrationTest`. If a test runs in our pipelines (ie in Build), and tests live features, we should tag them with `@QualityGateRegressionTest`.
+If the test is for an in-development feature, we should tag it with `@QualityGateNewFeatureTest`.
+
+Once a feature goes live, `@QualityGateNewFeatureTest` tags need to be updated to `@QualityGateRegressionTest`.
+To facilitate this update, browser tests for in-development work should be placed in their own feature files, if possible, so the tests can be tagged at the Feature level rather than the Scenario level.
+Ideally, tests tagged with `@QualityGateNewFeatureTest` should be marked with a TODO and reference a post-go-live clean-up ticket so they can be easily identified and updated.
