@@ -124,6 +124,10 @@ const { app, router } = setup({
       ],
     });
     app.use(setHeaders);
+    app.use((req, res, next) => {
+      res.locals.query = req.query; // Makes ?edit=true available as query.edit
+      next();
+    });
   },
   overloadProtection: overloadProtectionConfig,
   dev: true,

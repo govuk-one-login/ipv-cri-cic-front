@@ -3,6 +3,18 @@
 {% set hmpoPageKey = "dateOfBirth" %}
 {% set gtmJourney = "cic - dateOfBirth" %}
 
+{% if query.edit == "true" %}
+  {% set contentID = "d901e9c4-effd-4a2f-b720-18ce840296d7" %}
+{% else %}
+{% set contentID = "d94bdd45-ef75-427f-a2a1-a95c0f609956" %}
+{% endif %}
+{% set isPageDataSensitive = false %}
+{% set taxLevel2 = "cic" %}
+{% set statusCode = "200" %}
+{% set loggedInStatus = true %}
+{% set pageTitleKey = "pages.dateOfBirth.title" %}
+{% set isPageDynamic = false %}
+
 {% from "hmpo-text/macro.njk" import hmpoText %}
 {% from "hmpo-form/macro.njk" import hmpoForm %}
 {% from "hmpo-date/macro.njk" import hmpoDate %}
@@ -50,17 +62,4 @@ html: formInstructions
 {% block footer %}
 {{ super() }}
 <script type="text/javascript" src="/public/javascripts/all.js"></script>
-  <script {% if cspNonce %} nonce="{{ cspNonce }}"{%  endif %}>
-    window.addEventListener('load', function () {
-      window.DI.analyticsGa4.pageViewTracker.trackOnPageLoad({
-        statusCode: '200', // Access status code
-        englishPageTitle: '{{translate("dateOfBirth.title")}}',
-        taxonomy_level1: 'web cri', // Access taxonomy level 1
-        taxonomy_level2: 'cic', // Access taxonomy level 2
-        content_id: '002',
-        logged_in_status: true,
-        dynamic: false,
-      });
-    });
-  </script>
 {% endblock %}
