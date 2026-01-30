@@ -6,7 +6,7 @@
 {% if query.edit == "true" %}
   {% set contentID = "d901e9c4-effd-4a2f-b720-18ce840296d7" %}
 {% else %}
-{% set contentID = "d94bdd45-ef75-427f-a2a1-a95c0f609956" %}
+  {% set contentID = "d94bdd45-ef75-427f-a2a1-a95c0f609956" %}
 {% endif %}
 {% set isPageDataSensitive = false %}
 {% set taxLevel2 = "cic" %}
@@ -15,51 +15,14 @@
 {% set pageTitleKey = "pages.dateOfBirth.title" %}
 {% set isPageDynamic = false %}
 
-{% from "hmpo-text/macro.njk" import hmpoText %}
-{% from "hmpo-form/macro.njk" import hmpoForm %}
-{% from "hmpo-date/macro.njk" import hmpoDate %}
-
+{# per-page next link #}
+{% set nextLink = "/confirm-details-no-photo-id" %}
 
 {% block mainContent %}
-
-{% set legendContent = translate("dateOfBirth.formLegend") %}
-{% set introductoryCopy = translate("dateOfBirth.dobInformationContext") %}
-{% set hintText = translate("dateOfBirth.hintText") %}
-{% set formInstructions = "<p class=\"govuk-hint\">"+hintText+"</p>" %}
-
-{% call hmpoForm(ctx) %}
-{{ hmpoDate(ctx, {
-    id: "dateOfBirth",
-    namePrefix: "dateOfBirth",
-      fieldset: {
-        legend: {
-            text: legendContent,
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--l"
-    }
-},
-hint: {
-html: formInstructions
-}
-}) }}
-
-{{ hmpoSubmit(ctx, {
-  classes: "govuk-!-margin-top-0",
-  attributes: {
-    "data-testid": "enter-dob-continue-btn",
-    "data-prevent-double-click": "true",
-    "data-nav": true,
-    "data-link": "/confirm-details-no-photo-id"
-  },
-  text: translate("buttons.next")
-}) }}
-
-{% endcall %}
-
+  {% include "cic/partials/dob-form.njk" %}
 {% endblock %}
 
-
 {% block footer %}
-{{ super() }}
-<script type="text/javascript" src="/public/javascripts/all.js"></script>
+  {{ super() }}
+  <script type="text/javascript" src="/public/javascripts/all.js"></script>
 {% endblock %}
