@@ -43,25 +43,22 @@ describe("Fields validation", () => {
     ["surname", "firstName", "middleName"].forEach(assertNameMaxLength);
   });
 
-  describe("Fields maxLength", () => {
-    const testFieldLength = (fieldConfig, value) => {
-      const maxLengthRule = getRule(fieldConfig, "maxlength");
-      return value.length <= maxLengthRule.arguments;
-    };
+  describe("Date of Birth - no maxlength restriction", () => {
+    const { dateOfBirth } = fields;
 
-    describe("Date of Birth", () => {
-      const { dateOfBirth } = fields;
+    it("should not have a maxlength validator (avoid truncation while typing)", () => {
+      const rule = getRule(dateOfBirth, "maxlength");
+      expect(rule).to.not.exist;
+    });
 
-      it("should reject dates that exceed the maximum length", () => {
-        const date = "1990-01-01T00:00:00Z";
-        const isValid = testFieldLength(dateOfBirth, date);
-        expect(
-          isValid,
-          `Date string exceeds maximum allowed length. Expected length to be less than ${
-            getRule(dateOfBirth, "maxlength").arguments
-          }, but got ${date.length}`,
-        ).to.be.false;
-      });
+    it("should still have required + date validators", () => {
+      expect(dateOfBirth.validate.includes("required")).to.equal(true);
+      expect(dateOfBirth.validate.includes("date")).to.equal(true);
+    });
+
+    it("should still have before + after validators", () => {
+      expect(!!getRule(dateOfBirth, "before")).to.equal(true);
+      expect(!!getRule(dateOfBirth, "after")).to.equal(true);
     });
   });
 });
