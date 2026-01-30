@@ -10,7 +10,6 @@ describe("RootController", () => {
   let req;
   let res;
   let next;
-  let sandbox;
 
   beforeEach(() => {
     const setup = setupDefaultMocks();
