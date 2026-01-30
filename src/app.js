@@ -25,7 +25,6 @@ const { getGTM, getLanguageToggle, getDeviceIntelligence } =
 const overloadProtectionConfigService = require("./lib/overload-protection-config.js");
 
 const addLanguageParam = require("@govuk-one-login/frontend-language-toggle/build/cjs/language-param-setter.cjs");
-const customValidators = require("./app/cic/validators/customValidators");
 
 const {
   frontendVitalSignsInitFromApp,
