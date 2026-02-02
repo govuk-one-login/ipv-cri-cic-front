@@ -51,6 +51,8 @@
   "homepage": "https://github.com/alphagov/di-cic-front#readme",
   "packageManager": "yarn@1.22.22",
   "devDependencies": {
+    "@aws-sdk/credential-providers": "3.980.0",
+    "@aws-sdk/util-dynamodb": "3.980.0",
     "@cucumber/cucumber": "12.6.0",
     "aws4-axios": "3.4.0",
     "axe-core": "4.10.3",
@@ -77,8 +79,6 @@
     "wiremock": "2.35.0"
   },
   "dependencies": {
-    "@aws-sdk/credential-providers": "3.980.0",
-    "@aws-sdk/lib-dynamodb": "3.980.0",
     "@govuk-one-login/di-ipv-cri-common-express": "12.0.2",
     "@govuk-one-login/frontend-analytics": "4.0.5",
     "@govuk-one-login/frontend-device-intelligence": "1.2.0",
