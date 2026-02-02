@@ -580,18 +580,6 @@
     mnemonist "0.38.3"
     tslib "^2.6.2"
 
-"@aws-sdk/lib-dynamodb@3.980.0":
-  version "3.980.0"
-  resolved "https://registry.npmjs.org/@aws-sdk/lib-dynamodb/-/lib-dynamodb-3.980.0.tgz"
-  integrity sha512-rot+9bSIUCjCJCh+BnH++ZYHCEUtTDVKkrBpN+WxbrEEGUvU1RNhkQEPXcLaf57UobRjoTI4m3LNBJCH7E6MCw==
-  dependencies:
-    "@aws-sdk/core" "^3.973.5"
-    "@aws-sdk/util-dynamodb" "3.980.0"
-    "@smithy/core" "^3.22.0"
-    "@smithy/smithy-client" "^4.11.1"
-    "@smithy/types" "^4.12.0"
-    tslib "^2.6.2"
-
 "@aws-sdk/middleware-endpoint-discovery@^3.972.3":
   version "3.972.3"
   resolved "https://registry.npmjs.org/@aws-sdk/middleware-endpoint-discovery/-/middleware-endpoint-discovery-3.972.3.tgz"
