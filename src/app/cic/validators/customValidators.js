@@ -5,10 +5,14 @@
  * Return true when valid- false when invalid (HMPO will attach an error).
  */
 function nameMaxLength(value, length) {
-  if (value === undefined || value === null) return true;
+  if (value === undefined || value === null) {
+    return true;
+  }
 
   const str = String(value).trim();
-  if (str.length === 0) return true;
+  if (str.length === 0) {
+    return true;
+  }
 
   const max = Number(length);
   return str.length <= max;
