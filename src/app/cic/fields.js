@@ -42,26 +42,12 @@ module.exports = {
   dateOfBirth: {
     type: "date",
     journeyKey: "dateOfBirth",
+    autocomplete: "bday",
     validate: [
       "required",
       "date",
       { type: "before", arguments: [] },
       { type: "after", arguments: ["1904-02-12"] },
     ],
-  },
-  "dateOfBirth-day": {
-    type: "text",
-    validate: [],
-    autocomplete: "bday-day",
-  },
-  "dateOfBirth-month": {
-    type: "text",
-    validate: [],
-    autocomplete: "bday-month",
-  },
-  "dateOfBirth-year": {
-    type: "text",
-    validate: [],
-    autocomplete: "bday-year",
   },
 };
