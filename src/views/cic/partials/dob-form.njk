@@ -1,0 +1,36 @@
+{# src/views/cic/partials/dob-form.njk #}
+
+{% from "hmpo-form/macro.njk" import hmpoForm %}
+{% from "hmpo-date/macro.njk" import hmpoDate %}
+
+{% set legendContent = translate("dateOfBirth.formLegend") %}
+{% set hintText = translate("dateOfBirth.hintText") %}
+{% set formInstructions = "<p class=\"govuk-hint\">" + hintText + "</p>" %}
+
+{% call hmpoForm(ctx) %}
+
+  {{ hmpoDate(ctx, {
+    id: "dateOfBirth",
+    namePrefix: "dateOfBirth",
+    fieldset: {
+      legend: {
+        text: legendContent,
+        isPageHeading: true,
+        classes: "govuk-fieldset__legend--l"
+      }
+    },
+    hint: { html: formInstructions }
+  }) }}
+
+  {{ hmpoSubmit(ctx, {
+    classes: "govuk-!-margin-top-0",
+    attributes: {
+      "data-testid": "enter-dob-continue-btn",
+      "data-prevent-double-click": "true",
+      "data-nav": true,
+      "data-link": nextLink
+    },
+    text: translate("buttons.next")
+  }) }}
+
+{% endcall %}
