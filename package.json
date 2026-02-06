@@ -88,7 +88,6 @@
     "ajv": "8.17.1",
     "ajv-formats": "3.0.1",
     "axios": "1.13.2",
-    "cfenv": "1.2.5",
     "connect-dynamodb": "2.0.6",
     "copyfiles": "2.4.1",
     "dotenv": "16.3.1",
