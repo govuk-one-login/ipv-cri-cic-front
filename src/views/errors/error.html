@@ -2,12 +2,6 @@
 {% extends "base-page.njk" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
-
-
-
-
-{% block mainContent %}
-
 {% set hmpoPageKey = "error.unrecoverable" %}
 {% set contentID = "25409193-e1e9-4b8f-8864-d98ee85d311d" %}
 {% set isPageDataSensitive = false %}
@@ -16,6 +10,12 @@
 {% set pageTitleKey = "error.unrecoverable.title"%}
 {% set loggedInStatus = false %}
 {% set isPageDynamic = false %}
+
+
+
+{% block mainContent %}
+
+{% set isPageDataSensitive = false %}
 
   <h1 data-id="error-title">{{ translate("error.unrecoverable.title") }}</h1>
 
