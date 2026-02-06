@@ -51,8 +51,8 @@
   "homepage": "https://github.com/alphagov/di-cic-front#readme",
   "packageManager": "yarn@1.22.22",
   "devDependencies": {
-    "@aws-sdk/credential-providers": "3.980.0",
-    "@aws-sdk/util-dynamodb": "3.980.0",
+    "@aws-sdk/credential-providers": "3.984.0",
+    "@aws-sdk/util-dynamodb": "3.984.0",
     "@cucumber/cucumber": "12.6.0",
     "aws4-axios": "3.4.0",
     "axe-core": "4.10.3",
@@ -88,7 +88,6 @@
     "ajv": "8.17.1",
     "ajv-formats": "3.0.1",
     "axios": "1.13.2",
-    "cfenv": "1.2.5",
     "connect-dynamodb": "2.0.6",
     "copyfiles": "2.4.1",
     "dotenv": "16.3.1",
