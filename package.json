@@ -18,7 +18,7 @@
     "build-js": "yarn build-js:analytics && yarn build-js:all && yarn build-js:device-intelligence",
     "build-js:analytics": "mkdir -p dist/public/javascripts; uglifyjs node_modules/@govuk-one-login/frontend-analytics/lib/analytics.js src/assets/javascript/analytics/ua/init.js -o dist/public/javascripts/analytics.js",
     "build-js:device-intelligence": "mkdir -p dist/public/javascripts; uglifyjs node_modules/@govuk-one-login/frontend-device-intelligence/build/esm/index.js -o dist/public/javascripts/deviceIntelligence.js",
-    "build-js:all": "mkdir -p dist/public/javascripts; uglifyjs node_modules/govuk-frontend/dist/govuk/index.js node_modules/hmpo-components/all.js --beautify -o dist/public/javascripts/all.js",
+    "build-js:all": "mkdir -p dist/public/javascripts; uglifyjs node_modules/govuk-frontend/dist/govuk/all.mjs node_modules/hmpo-components/all.js --beautify -o dist/public/javascripts/all.js",
     "lint": "eslint .",
     "prettier": "prettier \"**/*.{js,md}\" --check",
     "prettier:fix": "yarn prettier --write",
