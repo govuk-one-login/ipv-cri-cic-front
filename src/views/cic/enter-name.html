@@ -10,9 +10,6 @@
 {% from "hmpo-text/macro.njk" import hmpoText %}
 {% from "hmpo-form/macro.njk" import hmpoForm %}
 
-{% block mainContent %}
-
-{% set detailsBody %}
 {% if query.edit == "true" %}
   {% set contentID = "9a945fe9-bfbd-405b-a1c3-a5147465d004" %}
 {% else %}
@@ -24,6 +21,12 @@
 {% set statusCode = "200" %}
 {% set isPageDynamic = false %}
 {% set pageTitleKey = "pages.nameEntry.title" %}
+
+{% block mainContent %}
+
+{% set isPageDataSensitive = false %}
+
+{% set detailsBody %}
 
 <div>
   <p>{{ translate("nameEntry.details.line1") }}</p>
