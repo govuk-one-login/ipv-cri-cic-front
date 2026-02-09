@@ -101,7 +101,6 @@
     "hmpo-config": "4.0.0",
     "hmpo-form-wizard": "15.0.1",
     "hmpo-i18n": "7.0.1",
-    "hmpo-logger": "8.0.3",
     "moment": "2.30.1",
     "nunjucks": "3.2.4",
     "uuid": "9.0.1"
