@@ -9,9 +9,6 @@
 {% from "hmpo-form/macro.njk" import hmpoForm %}
 {% from "hmpo-date/macro.njk" import hmpoDate %}
 
-
-{% block mainContent %}
-
 {% if query.edit == "true" %}
   {% set contentID = "9a8abae5-1b76-4bf5-97b5-aff98de0642e" %}
 {% else %}
@@ -23,6 +20,8 @@
 {% set pageTitleKey = "pages.dateOfBirth.title" %}
 {% set loggedInStatus = true %}
 {% set isPageDynamic = false %}
+
+{% block mainContent %}
 
 {% set legendContent = translate("dateOfBirth.formLegend") %}
 {% set introductoryCopy = translate("dateOfBirth.dobInformationContext") %}
