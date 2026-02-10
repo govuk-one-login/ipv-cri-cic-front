@@ -89,14 +89,12 @@ const { app, router } = setup({
   },
   publicDirs: ["../dist/public"],
   views: [
+    path.resolve(__dirname, "views"),
     path.resolve(
-      path.dirname(
-        require.resolve("@govuk-one-login/di-ipv-cri-common-express"),
-      ),
+      path.dirname(require.resolve("@govuk-one-login/di-ipv-cri-common-express")),
       "components",
     ),
-    path.resolve('node_modules/@govuk-one-login/'),
-    "views",
+    path.resolve("node_modules/@govuk-one-login/"),
   ],
   translation: {
     allowedLangs: ["en", "cy"],
