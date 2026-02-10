@@ -3,6 +3,11 @@
 {% set hmpoPageKey = "checkDetails" %}
 {% set gtmJourney = "cic - checkYourDetails" %}
 
+
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
 {% set contentID = "b7de99b5-b49a-47a6-a821-87bca7affb9a" %}
 {% set isPageDataSensitive = false %}
 {% set taxLevel2 = "cic" %}
@@ -11,12 +16,8 @@
 {% set loggedInStatus = true %}
 {% set isPageDynamic = false %}
 
-{% from "govuk/components/header/macro.njk" import govukHeader %}
-{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
-
-
 {% block content %}
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
     <h1 class="govuk-heading-l">{{ translate("checkDetails.title") }}</h1>

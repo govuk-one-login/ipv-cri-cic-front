@@ -3,6 +3,11 @@
 {% set hmpoPageKey = "dateOfBirth" %}
 {% set gtmJourney = "cic - dateOfBirth" %}
 
+
+{% from "hmpo-text/macro.njk" import hmpoText %}
+{% from "hmpo-form/macro.njk" import hmpoForm %}
+{% from "hmpo-date/macro.njk" import hmpoDate %}
+
 {% if query.edit == "true" %}
   {% set contentID = "d901e9c4-effd-4a2f-b720-18ce840296d7" %}
 {% else %}
@@ -14,11 +19,6 @@
 {% set loggedInStatus = true %}
 {% set pageTitleKey = "pages.dateOfBirth.title" %}
 {% set isPageDynamic = false %}
-
-{% from "hmpo-text/macro.njk" import hmpoText %}
-{% from "hmpo-form/macro.njk" import hmpoForm %}
-{% from "hmpo-date/macro.njk" import hmpoDate %}
-
 
 {% block mainContent %}
 
