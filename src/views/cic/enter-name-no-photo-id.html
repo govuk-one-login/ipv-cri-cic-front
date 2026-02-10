@@ -3,6 +3,15 @@
 {% set gtmJourney = "cic - nameEntry" %}
 {% set hmpoPageKey = "nameEntry.bank_account" %}
   
+
+
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "hmpo-text/macro.njk" import hmpoText %}
+{% from "hmpo-form/macro.njk" import hmpoForm %}
+
 {% if query.edit == "true" %}
   {% set contentID = "446ea9f3-04b0-4b67-9c08-72fcd2a33edb" %}
 {% else %}
@@ -14,13 +23,6 @@
 {% set pageTitleKey = "pages.nameEntry.title" %}
 {% set loggedInStatus = true %}
 {% set isPageDynamic = false %}
-
-{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
-{% from "govuk/components/header/macro.njk" import govukHeader %}
-{% from "govuk/components/details/macro.njk" import govukDetails %}
-{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
-{% from "hmpo-text/macro.njk" import hmpoText %}
-{% from "hmpo-form/macro.njk" import hmpoForm %}
 
 {% block mainContent %}
 
