@@ -14,7 +14,7 @@ surname:
   validation:
     default: "Rhowch eich enw olaf"
     minlength: "Rhaid i'ch enw olaf fod yn fwy nag un nod"
-    maxlength: "Rhaid i'ch cyfenw fod yn llai na deugain nod"
+    maxlength: "Rhowch eich enw olaf fel y mae'n ymddangos ar eich ID gyda llun"
     regexNumbersOrSpecialCharacters: "Ni all eich enw olaf gynnwys rhifau neu nodau arbennig"
 
 firstName:
@@ -24,7 +24,7 @@ firstName:
   validation:
     default: "Rhowch eich enw cyntaf"
     minlength: "Rhaid i'ch enw cyntaf fod yn fwy nag un nod"
-    maxlength: "Rhaid i'ch enw cyntaf fod yn llai na deugain nod"
+    maxlength: "Rhowch eich enw cyntaf fel y mae'n ymddangos ar eich ID gyda llun"
     regexNumbersOrSpecialCharacters: "Ni all eich enw cyntaf gynnwys rhifau neu nodau arbennig"
 
 middleName:
@@ -34,7 +34,7 @@ middleName:
   validation:
     default: "Rhowch eich enw canol fel y mae'n ymddangos ar eich ID gyda llun"
     minlength: "Rhaid i'ch enw canol fod yn fwy nag un nod"
-    maxlength: "Rhaid i'ch enw canol fod yn llai na deugain nod"
+    maxlength: "Rhowch eich enw canol fel y mae'n ymddangos ar eich ID gyda llun"
     regexNumbersOrSpecialCharacters: "Ni all eich enw canol gynnwys rhifau neu nodau arbennig"
 
 dateOfBirth:
