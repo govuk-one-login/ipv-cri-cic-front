@@ -30,7 +30,7 @@
     "test:browser:no_di": "wait-on tcp:127.0.0.1:5020 && cucumber-js test/browser/features/**/*.feature --require test/browser/support/env.js --require test/browser/support/setup.js --require test/browser/step_definitions/**/*.js -f json:./test/reports/cucumber_report.json --tags @device_intelligence_unhappy",
     "test:browser:only": "wait-on tcp:5020 && cucumber-js test/browser/features/**/*.feature --require test/browser/support/env.js  --require test/browser/support/setup.js --require test/browser/step_definitions/**/*.js --tags @only",
     "test:browser:ci": "npm run start:ci & npm run test:browser && kill $! && npm run test:browser:report",
-    "test:browser:no_di:ci": "npm run start:ci & npm run test:browser:no_di && kill $!",
+    "test:browser:no_di:ci": "DEVICE_INTELLIGENCE_ENABLED=false npm run start:ci & npm run test:browser:no_di && kill $!",
     "test:browser:ci:only": "npm run start:ci & npm run test:browser:only && kill $!",
     "check-translation": "node node_modules/@govuk-one-login/di-ipv-cri-common-express/scripts/checkTranslations.js '../../../../src/locales'",
     "test:browser:report": "node ./test/utils/multiReportGenerator.js",
