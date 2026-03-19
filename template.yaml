@@ -159,7 +159,7 @@ Mappings:
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
       MAY2025REBRANDENABLED: true
-      minECSCount: 6
+      minECSCount: 3
       maxECSCount: 60
       # Hardcoded variables used to generate stack outputs for tests in Build. Referenced in Outputs section of this template file. Only present in Dev + Build
       IPVSTUBURL: "https://ipvstub.review-c.build.account.gov.uk/"
@@ -553,7 +553,7 @@ Resources:
     Condition: IsNotDevelopment
     Properties:
       AlarmName: !Sub "${AWS::StackName}-ECSFatalErrorAlarm"
-      AlarmDescription: !Sub 
+      AlarmDescription: !Sub
         - "Trigger an alarm when Fatal Error occurs ${RunbookUrl}"
         - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: true
@@ -954,7 +954,7 @@ Resources:
     Condition: IsNotDevelopment
     Properties:
       AlarmName: !Sub "${AWS::StackName}-APIGWFatalErrorAlarm"
-      AlarmDescription: !Sub 
+      AlarmDescription: !Sub
         - "Trigger an alarm when Fatal Error occurs ${RunbookUrl}"
         - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: true
@@ -1211,7 +1211,7 @@ Resources:
     Condition: IsNotDevelopment
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FE5XXErrorAlarm"
-      AlarmDescription: !Sub 
+      AlarmDescription: !Sub
         - "Trigger the warning alarm for Frontend 5xx Alarm ${RunbookUrl}"
         - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: true
@@ -1258,7 +1258,7 @@ Resources:
           Label: errorPercentage
           ReturnData: false
           Expression: (error/invocations) * 100
-  
+
   FE5XXErrorCriticalAlarm:
     Type: AWS::CloudWatch::Alarm
     Condition: IsNotDevelopment
@@ -1316,7 +1316,7 @@ Resources:
     Condition: "DeployAlarms"
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FE4XXErrorAlarm"
-      AlarmDescription: !Sub 
+      AlarmDescription: !Sub
         - "Trigger the warning alarm for Frontend 4xx Alarm ${RunbookUrl}"
         - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: true
@@ -1368,7 +1368,7 @@ Resources:
     Condition: "DeployAlarms"
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FELatencyAlarmP95"
-      AlarmDescription: !Sub 
+      AlarmDescription: !Sub
         - "Trigger the warning alarm for Frontend P95 Latency ${RunbookUrl}"
         - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: false
@@ -1416,7 +1416,7 @@ Resources:
     Condition: "DeployAlarms"
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FELatencyAlarmP99"
-      AlarmDescription: !Sub 
+      AlarmDescription: !Sub
         - "Trigger the warning alarm for Frontend P99 Latency ${RunbookUrl}"
         - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: false
@@ -1466,7 +1466,7 @@ Resources:
     Condition: "DeployAlarms"
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FELowContainerTaskCountAlarm"
-      AlarmDescription: !Sub 
+      AlarmDescription: !Sub
         - "Trigger a warning if the running container task count drops below 2 ${RunbookUrl}"
         - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: true
@@ -1499,7 +1499,7 @@ Resources:
     Condition: "DeployAlarms"
     Properties:
       AlarmName: !Sub "${AWS::StackName}-FELowContainerTaskCountCriticalAlarm"
-      AlarmDescription: !Sub 
+      AlarmDescription: !Sub
         - "Trigger a critical alert if the running container task count drops below 1 ${RunbookUrl}"
         - RunbookUrl: !FindInMap [StaticVariables, urls, CICSupportManual]
       ActionsEnabled: false  # to be enabled once proved stable in production
