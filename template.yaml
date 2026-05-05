@@ -195,7 +195,7 @@ Mappings:
       GTMIDGA4: "GTM-KD86CMZ"
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
-      ANALYTICSDATASENSITIVE: true
+      ANALYTICSDATASENSITIVE: false
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
@@ -214,7 +214,7 @@ Mappings:
       GTMIDGA4: "GTM-K4PBJH3"
       GA4ENABLED: "true"
       ANALYTICSDOMAIN: "account.gov.uk"
-      ANALYTICSDATASENSITIVE: true
+      ANALYTICSDATASENSITIVE: false
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
