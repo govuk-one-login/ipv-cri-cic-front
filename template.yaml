@@ -159,7 +159,7 @@ Mappings:
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
       MAY2025REBRANDENABLED: true
-      minECSCount: 6
+      minECSCount: 3
       maxECSCount: 60
       # Hardcoded variables used to generate stack outputs for tests in Build. Referenced in Outputs section of this template file. Only present in Dev + Build
       IPVSTUBURL: "https://ipvstub.review-c.build.account.gov.uk/"
@@ -1024,14 +1024,14 @@ Resources:
             ScalingAdjustment: 100 # Scale by 100% of containers if the metric is breached
             # with <60% utilisation
           - MetricIntervalLowerBound: 0 # 60%
-            MetricIntervalUpperBound: 30 # 90%
+            MetricIntervalUpperBound: 15 # 90%
             ScalingAdjustment: 200 # Scale by 200% of containers if the metric is breached
             # with 80-90% utilisation
-          - MetricIntervalLowerBound: 30 # 90%
-            MetricIntervalUpperBound: 35 # 95%
-            ScalingAdjustment: 300 # Scale by 300% of containers if the metric is breached
-            # with 90-95% utilisation
-          - MetricIntervalLowerBound: 35 # 95%
+          - MetricIntervalLowerBound: 15 # 90%
+#            MetricIntervalUpperBound: 35 # 95%
+#            ScalingAdjustment: 300 # Scale by 300% of containers if the metric is breached
+#            # with 90-95% utilisation
+#          - MetricIntervalLowerBound: 35 # 95%
             ScalingAdjustment:
               500 # Scale by 500% of containers if the metric is breached
             # with >95% utilisation
@@ -1076,7 +1076,7 @@ Resources:
       ActionsEnabled: true
       AlarmActions:
         - !Ref EcsStepScaleOutPolicy
-      AlarmDescription: "EcsClusterOver60PercentCPU"
+      AlarmDescription: "EcsClusterOver30PercentCPU"
       ComparisonOperator: "GreaterThanThreshold"
       DatapointsToAlarm: "1"
       Dimensions:
@@ -1090,7 +1090,7 @@ Resources:
       Namespace: "AWS/ECS"
       Statistic: "Average"
       Period: "60"
-      Threshold: "60"
+      Threshold: "30"
 
   EcsStepScaleInAlarm:
     DependsOn: ECSAutoScalingTarget
