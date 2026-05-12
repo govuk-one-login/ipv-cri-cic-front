@@ -19,7 +19,7 @@ jobs:
           file: "template.yaml"
           
       - name: Comment on pull request for front template
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             result=${{ (steps.scanner.outputs.results) }}
