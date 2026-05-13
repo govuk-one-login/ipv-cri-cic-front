@@ -554,10 +554,10 @@
   dependencies:
     tslib "^2.6.2"
 
-"@aws-sdk/util-dynamodb@3.996.1":
-  version "3.996.1"
-  resolved "https://registry.yarnpkg.com/@aws-sdk/util-dynamodb/-/util-dynamodb-3.996.1.tgz#fb09f702690807fb2c3c926f923b407e92a7283b"
-  integrity sha512-5Vle00DrIcao9x5UuhkEprIQiMuhVvrxSLQwEhTb1sfWvdrLphcW4LqAtOkWSHpWF9ZdQQVKXvAOjKNV8LSlrw==
+"@aws-sdk/util-dynamodb@3.996.2":
+  version "3.996.2"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/util-dynamodb/-/util-dynamodb-3.996.2.tgz#9521dfe84c031809f8cf2e32f03c58fd8a4bb84f"
+  integrity sha512-ddpwaZmjBzcApYN7lgtAXjk+u+GO8fiPsxzuc59UqP+zqdxI1gsenPvkyiHiF9LnYnyRGijz6oN2JylnN561qQ==
   dependencies:
     tslib "^2.6.2"
 
@@ -1158,14 +1158,7 @@
     pino-http "11.0.0"
     redis "4.7.1"
 
-"@govuk-one-login/frontend-analytics@4.0.5":
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/@govuk-one-login/frontend-analytics/-/frontend-analytics-4.0.5.tgz#6f4bbd3e8a7ecd45936fb8cdd64decc5419b1d88"
-  integrity sha512-6JU8TQIXByxYQqV2b2sEy9eqM59Fwin3GqFXXSemtE7knxQ76YBJsVOgSTBrgCsjQ3DAbcZAUNLLopD9qBioYg==
-  dependencies:
-    loglevel "^1.9.2"
-
-"@govuk-one-login/frontend-analytics@^4.0.7":
+"@govuk-one-login/frontend-analytics@4.0.8", "@govuk-one-login/frontend-analytics@^4.0.7":
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/@govuk-one-login/frontend-analytics/-/frontend-analytics-4.0.8.tgz#6e699be2bfd8b64cbf9cd35364cb4147206d937e"
   integrity sha512-ZyEDONMbUStEOJzHnPiejGqbYqrc/KQ6fZjnyCvTtjdATjDACNRwBGkl/i8UXmhROkzvG9yaQjaOGXe0Mg0Etg==
