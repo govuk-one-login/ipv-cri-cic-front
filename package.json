@@ -55,7 +55,7 @@
     "aws4-axios": "3.4.0",
     "axe-core": "4.10.3",
     "axe-playwright": "2.1.0",
-    "chai": "4.4.1",
+    "chai": "4.5.0",
     "chai-as-promised": "7.1.1",
     "eslint": "10.0.2",
     "eslint-config-prettier": "10.1.8",
