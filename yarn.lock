@@ -4095,16 +4095,16 @@ hmpo-config@4.0.2:
     js-yaml "^4.1.0"
     json5 "^2.2.3"
 
-hmpo-form-wizard@15.0.6:
-  version "15.0.6"
-  resolved "https://registry.yarnpkg.com/hmpo-form-wizard/-/hmpo-form-wizard-15.0.6.tgz#850418c4437143f509c001cc1fd4647a119ec8fe"
-  integrity sha512-lRsdlLZaWOQhxK08Es5MJVPdKS2zoy0C7cDWNZx/Efs0GrJRJEIBQFTAs2hNrhoYQI89QCih665RWiWKuoF3hw==
+hmpo-form-wizard@17.0.1:
+  version "17.0.1"
+  resolved "https://registry.yarnpkg.com/hmpo-form-wizard/-/hmpo-form-wizard-17.0.1.tgz#cb99e4bb189f6efbf0649f8a87020896a39ddd38"
+  integrity sha512-SelNaRJ9wiPLuU15iPYLKkOXKlXMSjF0KKTslQpM/KMjPlWuNTdvnGwml6ircrEJPFzIeDc4HLNKx/uuUqm2hg==
   dependencies:
     body-parser "^1.20.3"
     csrf "^3.1.0"
     debug "4.3.7"
     deep-clone-merge "^1.5.5"
-    hmpo-model "^6.0.2"
+    hmpo-model "^7.0.1"
     moment "^2.30.1"
     underscore "^1.13.7"
 
@@ -4148,10 +4148,10 @@ hmpo-logger@8.0.3:
     on-headers "^1.0.2"
     sort-object-keys "^1.1.3"
 
-hmpo-model@^6.0.2:
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/hmpo-model/-/hmpo-model-6.0.3.tgz#24975e58d22e9d64b17581fe104f4906410c0c37"
-  integrity sha512-/1vOagr0Y3pSyroEd8T2ZR/T+pQwIG0ODlqteOrdasI6o/IQrf74YbqYDvj+b8arevf+giiEQ3ZjWPTSzSz4eQ==
+hmpo-model@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/hmpo-model/-/hmpo-model-7.0.1.tgz#9f8dbae023e67b55d67a1fa911db00bbdf92856e"
+  integrity sha512-/zRZn3i/PVTEzJs//8k9wMyXfOErL5cC1VDF8eJAkrnn0C81eVvIrNfObT+iR7KfdgMPePSPvXIgLd9cVZ4JNQ==
   dependencies:
     debug "^4.3.7"
     got "<12"
