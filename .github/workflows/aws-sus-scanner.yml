@@ -10,7 +10,7 @@ jobs:
     permissions: write-all
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Frontend cloudformation Scan
         uses: aws-actions/sustainability-scanner@v1
