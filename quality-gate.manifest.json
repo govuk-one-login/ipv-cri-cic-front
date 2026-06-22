@@ -1,49 +1,67 @@
 {
-  "$schema": "https://raw.githubusercontent.com/govuk-one-login/quality-gates/refs/tags/v0.2.0/schemas/schema.json",
+  "$schema": "https://raw.githubusercontent.com/govuk-one-login/quality-gates/refs/tags/v0.11.0/schemas/schema.json",
   "services": [
     {
-      "service-tag": "cic-front",
-      "quality-gates": [
+      "serviceTag": "cic-front",
+      "promotionType": "securePipelines",
+      "checks": [
         {
-          "check-types": ["secret scanning"],
-          "provider": "GitHub",
+          "checkTypes": [
+            "secret scanning"
+          ],
           "phase": "pre-merge",
+          "provider": "GitHub",
           "config": {
             "file": ".github/workflows/pre-commit.yml",
-            "path": "jobs.pre-commit"
+            "path": "$.jobs.pre-commit"
           }
         },
         {
-          "check-types": ["code style and linting", "unit", "unit test coverage", "accessibility", "integration", "regression"],
-          "provider": "GitHub",
+          "checkTypes": [
+            "code style and linting",
+            "unit",
+            "unit test coverage",
+            "accessibility",
+            "integration",
+            "regression"
+          ],
           "phase": "pre-merge",
+          "provider": "GitHub",
           "config": {
             "file": ".github/workflows/pre-merge-checks.yml",
-            "path": "jobs.run-checks"
+            "path": "$.jobs.run-checks"
           }
         },
         {
-          "check-types": ["code style and linting", "unit", "unit test coverage"],
-          "provider": "GitHub",
+          "checkTypes": [
+            "code style and linting",
+            "unit",
+            "unit test coverage"
+          ],
           "phase": "pre-merge",
+          "provider": "GitHub",
           "config": {
             "file": ".github/workflows/pre-merge-checks.yml",
-            "path": "jobs.sonar-checks"
+            "path": "$.jobs.sonar-checks"
           }
         },
         {
-          "check-types": ["code quality"],
-          "provider": "GitHub",
+          "checkTypes": [
+            "code quality"
+          ],
           "phase": "pre-merge",
+          "provider": "GitHub",
           "config": {
             "file": ".github/workflows/codeql.yml",
-            "path": "jobs.analyze"
+            "path": "$.jobs.analyze"
           }
         },
         {
-          "check-types": ["vulnerability detection"],
-          "provider": "GitHub",
+          "checkTypes": [
+            "vulnerability detection"
+          ],
           "phase": "pre-merge",
+          "provider": "GitHub",
           "config": {
             "file": ".github/dependabot.yml"
           }
