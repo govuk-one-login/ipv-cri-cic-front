@@ -98,7 +98,7 @@
     "govuk-frontend": "5.14.0",
     "hmpo-components": "8.0.6",
     "hmpo-config": "4.0.2",
-    "hmpo-form-wizard": "15.0.6",
+    "hmpo-form-wizard": "17.0.1",
     "hmpo-i18n": "7.0.1",
     "hmpo-logger": "8.0.3",
     "moment": "2.30.1",
