@@ -33,12 +33,12 @@ module.exports = class PlaywrightDevPage {
   }
 
   async dateOfBirth(userData) {
-    const dobArray = JSON.stringify(userData.dob).split("-");
-    await this.page.locator("#dateOfBirth-day").fill(dobArray[2]);
-    await this.page.locator("#dateOfBirth-month").fill(dobArray[1]);
-    await this.page
-      .locator("#dateOfBirth-year")
-      .fill(dobArray[0].replace(/['"]+/g, ""));
+    const dob = String(userData.dob).replace(/['"]/g, "").trim();
+    const [year, month, day] = dob.split("-");
+
+    await this.page.locator("#dateOfBirth-day").fill(day);
+    await this.page.locator("#dateOfBirth-month").fill(month);
+    await this.page.locator("#dateOfBirth-year").fill(year);
   }
 
   async checkErrorText() {

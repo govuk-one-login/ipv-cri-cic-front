@@ -3,7 +3,7 @@ require("express-async-errors");
 
 const path = require("path");
 const session = require("express-session");
-const AWS = require("aws-sdk");
+const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
 const DynamoDBStore = require("connect-dynamodb")(session);
 const wizard = require("hmpo-form-wizard");
 const {
@@ -59,10 +59,9 @@ const loggerConfig = {
   app: false,
 };
 
-AWS.config.update({
+const dynamodb = new DynamoDBClient({
   region: "eu-west-2",
 });
-const dynamodb = new AWS.DynamoDB();
 
 const dynamoDBSessionStore = new DynamoDBStore({
   client: dynamodb,
@@ -92,14 +91,12 @@ const { app, router } = setup({
   },
   publicDirs: ["../dist/public"],
   views: [
+    path.resolve(__dirname, "views"),
     path.resolve(
-      path.dirname(
-        require.resolve("@govuk-one-login/di-ipv-cri-common-express"),
-      ),
+      path.dirname(require.resolve("@govuk-one-login/di-ipv-cri-common-express")),
       "components",
     ),
     path.resolve("node_modules/@govuk-one-login/"),
-    "views",
   ],
   translation: {
     allowedLangs: ["en", "cy"],

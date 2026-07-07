@@ -1,3 +1,5 @@
+const { nameMaxLength } = require("./validators/customValidators");
+
 module.exports = {
   surname: {
     type: "text",
@@ -5,7 +7,7 @@ module.exports = {
     validate: [
       "required",
       { type: "minlength", arguments: 2 },
-      { type: "maxlength", arguments: 40 },
+      { type: "maxlength", fn: nameMaxLength, arguments: 40 },
       {
         type: "regexNumbersOrSpecialCharacters",
         fn: (value) => value.match(/^[A-Za-z .'-]*$/),
@@ -18,7 +20,7 @@ module.exports = {
     validate: [
       "required",
       { type: "minlength", arguments: 2 },
-      { type: "maxlength", arguments: 40 },
+      { type: "maxlength", fn: nameMaxLength, arguments: 40 },
       {
         type: "regexNumbersOrSpecialCharacters",
         fn: (value) => value.match(/^[A-Za-z .'-]*$/),
@@ -30,7 +32,7 @@ module.exports = {
     journeyKey: "middleName",
     validate: [
       { type: "minlength", arguments: 2 },
-      { type: "maxlength", arguments: 40 },
+      { type: "maxlength", fn: nameMaxLength, arguments: 40 },
       {
         type: "regexNumbersOrSpecialCharacters",
         fn: (value) => value.match(/^[A-Za-z .'-]*$/),
@@ -40,10 +42,10 @@ module.exports = {
   dateOfBirth: {
     type: "date",
     journeyKey: "dateOfBirth",
+    autocomplete: "bday",
     validate: [
       "required",
       "date",
-      { type: "maxlength", arguments: 18 },
       { type: "before", arguments: [] },
       { type: "after", arguments: ["1904-02-12"] },
     ],
