@@ -136,6 +136,7 @@ Mappings:
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
       MAY2025REBRANDENABLED: true
+      USEPINOLOGGER: true
       minECSCount: 1
       maxECSCount: 4
       # Hardcoded variables used to generate stack outputs for tests in Dev. Referenced in Outputs section of this template file. Only present in Dev + Build
@@ -159,6 +160,7 @@ Mappings:
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
       MAY2025REBRANDENABLED: true
+      USEPINOLOGGER: true
       minECSCount: 6
       maxECSCount: 60
       # Hardcoded variables used to generate stack outputs for tests in Build. Referenced in Outputs section of this template file. Only present in Dev + Build
@@ -182,6 +184,7 @@ Mappings:
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
       MAY2025REBRANDENABLED: true
+      USEPINOLOGGER: true
       minECSCount: 2
       maxECSCount: 4
     integration:
@@ -201,6 +204,7 @@ Mappings:
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
       MAY2025REBRANDENABLED: true
+      USEPINOLOGGER: false
       minECSCount: 2
       maxECSCount: 4
     production:
@@ -219,7 +223,8 @@ Mappings:
       LOGLEVEL: "warn"
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
-      MAY2025REBRANDENABLED: true
+      MAY2025REBRANDENABLED: false
+      USEPINOLOGGER: true
       minECSCount: 6
       maxECSCount: 60
 
@@ -693,6 +698,8 @@ Resources:
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, DEVICEINTELLIGENCEENABLED ]
             - Name: MAY_2025_REBRAND_ENABLED
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, MAY2025REBRANDENABLED ]
+            - Name: USE_PINO_LOGGER
+              Value: !FindInMap [EnvironmentVariables, !Ref Environment, USEPINOLOGGER ]
           Secrets:
             - Name: DT_TENANT
               ValueFrom: !Join
