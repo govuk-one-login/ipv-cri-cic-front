@@ -184,7 +184,7 @@ Mappings:
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
       MAY2025REBRANDENABLED: true
-      USEPINOLOGGER: true
+      USEPINOLOGGER: false
       minECSCount: 2
       maxECSCount: 4
     integration:
@@ -224,7 +224,7 @@ Mappings:
       LANGUAGETOGGLEDISABLED: false
       DEVICEINTELLIGENCEENABLED: true
       MAY2025REBRANDENABLED: false
-      USEPINOLOGGER: true
+      USEPINOLOGGER: false
       minECSCount: 6
       maxECSCount: 60
 
