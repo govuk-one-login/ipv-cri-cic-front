@@ -126,16 +126,9 @@ Mappings:
       CLOUDFRONTDOMAIN: "d2mffc7h0tnarj.cloudfront.net"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-dev"
-      GTMIDUA: "GTM-TK92W68"
       GTMIDGA4: "GTM-KD86CMZ"
-      GA4ENABLED: "true"
       ANALYTICSDOMAIN: "dev.account.gov.uk"
-      ANALYTICSDATASENSITIVE: false
-      DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "debug"
-      LANGUAGETOGGLEDISABLED: false
-      DEVICEINTELLIGENCEENABLED: true
-      MAY2025REBRANDENABLED: true
       USEPINOLOGGER: true
       minECSCount: 1
       maxECSCount: 4
@@ -150,16 +143,9 @@ Mappings:
       CLOUDFRONTDOMAIN: "d3h3ilw9ijq9hg.cloudfront.net"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-build"
-      GTMIDUA: "GTM-TK92W68"
       GTMIDGA4: "GTM-KD86CMZ"
-      GA4ENABLED: "true"
       ANALYTICSDOMAIN: "build.account.gov.uk"
-      ANALYTICSDATASENSITIVE: false
-      DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
-      LANGUAGETOGGLEDISABLED: false
-      DEVICEINTELLIGENCEENABLED: true
-      MAY2025REBRANDENABLED: true
       USEPINOLOGGER: true
       minECSCount: 6
       maxECSCount: 60
@@ -174,16 +160,9 @@ Mappings:
       CLOUDFRONTDOMAIN: "d13b32us3mnyl9.cloudfront.net"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-staging"
-      GTMIDUA: "GTM-TK92W68"
       GTMIDGA4: "GTM-KD86CMZ"
-      GA4ENABLED: "true"
       ANALYTICSDOMAIN: "staging.account.gov.uk"
-      ANALYTICSDATASENSITIVE: false
-      DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
-      LANGUAGETOGGLEDISABLED: false
-      DEVICEINTELLIGENCEENABLED: true
-      MAY2025REBRANDENABLED: true
       USEPINOLOGGER: false
       minECSCount: 2
       maxECSCount: 4
@@ -194,16 +173,9 @@ Mappings:
       CLOUDFRONTDOMAIN: "d1jx9t5yl02x1a.cloudfront.net"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceNonProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-integration"
-      GTMIDUA: "GTM-TK92W68"
       GTMIDGA4: "GTM-KD86CMZ"
-      GA4ENABLED: "true"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
-      ANALYTICSDATASENSITIVE: false
-      DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
-      LANGUAGETOGGLEDISABLED: false
-      DEVICEINTELLIGENCEENABLED: true
-      MAY2025REBRANDENABLED: true
       USEPINOLOGGER: false
       minECSCount: 2
       maxECSCount: 4
@@ -214,16 +186,9 @@ Mappings:
       CLOUDFRONTDOMAIN: "d2ekguv8wcjy54.cloudfront.net"
       dynatraceSecretArn: arn:aws:secretsmanager:eu-west-2:216552277552:secret:DynatraceProductionVariables
       SESSIONTABLENAME: "cic-front-sessions-production"
-      GTMIDUA: "GTM-TT5HDKV"
       GTMIDGA4: "GTM-K4PBJH3"
-      GA4ENABLED: "true"
       ANALYTICSDOMAIN: "account.gov.uk"
-      ANALYTICSDATASENSITIVE: false
-      DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
-      LANGUAGETOGGLEDISABLED: false
-      DEVICEINTELLIGENCEENABLED: true
-      MAY2025REBRANDENABLED: false
       USEPINOLOGGER: false
       minECSCount: 6
       maxECSCount: 60
@@ -673,14 +638,8 @@ Resources:
               Value: !Ref CicFrontSessionsTable
             - Name: FRONT_END_URL
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, EXTERNALWEBSITEHOST ]
-            - Name: UNIVERSAL_ANALYTICS_GTM_CONTAINER_ID
-              Value: !FindInMap [ EnvironmentVariables, !Ref Environment, GTMIDUA ]
             - Name: GOOGLE_ANALYTICS_4_GTM_CONTAINER_ID
               Value: !FindInMap [ EnvironmentVariables, !Ref Environment, GTMIDGA4 ]
-            - Name: GA4_ENABLED
-              Value: !FindInMap [ EnvironmentVariables, !Ref Environment, GA4ENABLED ]
-            - Name: ANALYTICS_DATA_SENSITIVE
-              Value: !FindInMap [EnvironmentVariables, !Ref Environment, ANALYTICSDATASENSITIVE ]
             - Name: FRONTEND_DOMAIN
               Value:
                 !If [
@@ -688,16 +647,8 @@ Resources:
                   "account.gov.uk",
                   !Sub "${Environment}.account.gov.uk"
                 ]
-            - Name: DEVICE_INTELLIGENCE_DOMAIN
-              Value: !FindInMap [ EnvironmentVariables, !Ref Environment, DEVICEINTELLIGENCEDOMAIN ]
             - Name: LOG_LEVEL
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, LOGLEVEL ]
-            - Name: LANGUAGE_TOGGLE_DISABLED
-              Value: !FindInMap [EnvironmentVariables, !Ref Environment, LANGUAGETOGGLEDISABLED ]
-            - Name: DEVICE_INTELLIGENCE_ENABLED
-              Value: !FindInMap [EnvironmentVariables, !Ref Environment, DEVICEINTELLIGENCEENABLED ]
-            - Name: MAY_2025_REBRAND_ENABLED
-              Value: !FindInMap [EnvironmentVariables, !Ref Environment, MAY2025REBRANDENABLED ]
             - Name: USE_PINO_LOGGER
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, USEPINOLOGGER ]
           Secrets:
