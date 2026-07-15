@@ -1029,10 +1029,10 @@
     pino-http "11.0.0"
     redis "4.7.1"
 
-"@govuk-one-login/frontend-analytics@4.0.8":
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/@govuk-one-login/frontend-analytics/-/frontend-analytics-4.0.8.tgz#6e699be2bfd8b64cbf9cd35364cb4147206d937e"
-  integrity sha512-ZyEDONMbUStEOJzHnPiejGqbYqrc/KQ6fZjnyCvTtjdATjDACNRwBGkl/i8UXmhROkzvG9yaQjaOGXe0Mg0Etg==
+"@govuk-one-login/frontend-analytics@4.2.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@govuk-one-login/frontend-analytics/-/frontend-analytics-4.2.0.tgz#63fa085b89e0abde1e8fa009ca3254ccf2ef9d5f"
+  integrity sha512-6CnKHdzZkgtFLnHe0NQM1atgq6oV1KMKF8eBewuG5hvW2Lio0+otr/18pw0uXimyJs0uz0nPdvdM2Fh+9WYrRw==
   dependencies:
     loglevel "^1.9.2"
 
