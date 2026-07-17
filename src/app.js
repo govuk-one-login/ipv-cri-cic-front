@@ -220,8 +220,7 @@ process.on("SIGTERM", () => {
 });
 
 // Common express relies on 0/1 strings
-const showLanguageToggle = "1";
-setLanguageToggle({ app, showLanguageToggle: showLanguageToggle });
+setLanguageToggle({ app, showLanguageToggle: "1" });
 
 setDeviceIntelligence({
   app,
