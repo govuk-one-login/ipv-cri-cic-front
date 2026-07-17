@@ -649,6 +649,8 @@ Resources:
                 ]
             - Name: LOG_LEVEL
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, LOGLEVEL ]
+            - Name: MAY_2025_REBRAND_ENABLED
+              Value: true
             - Name: USE_PINO_LOGGER
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, USEPINOLOGGER ]
           Secrets:
