@@ -189,12 +189,6 @@ Mappings:
       GTMIDGA4: "GTM-K4PBJH3"
       ANALYTICSDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
-<<<<<<< KIWI-2466
-=======
-      LANGUAGETOGGLEDISABLED: false
-      DEVICEINTELLIGENCEENABLED: true
-      MAY2025REBRANDENABLED: true
->>>>>>> main
       USEPINOLOGGER: false
       minECSCount: 6
       maxECSCount: 60
