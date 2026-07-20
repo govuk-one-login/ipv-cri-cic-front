@@ -160,7 +160,6 @@ setOAuthPaths({ app, entryPointPath: APP.PATHS.CIC });
 setGTM({
   app,
   ga4ContainerId: APP.GTM.GA4_ID,
-  uaContainerId: APP.GTM.UA_ID,
   analyticsCookieDomain: APP.GTM.ANALYTICS_COOKIE_DOMAIN,
   ga4Enabled: APP.GTM.GA4_ENABLED,
   uaEnabled: APP.GTM.UA_ENABLED,
