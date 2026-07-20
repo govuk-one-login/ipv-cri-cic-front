@@ -162,7 +162,6 @@ setGTM({
   ga4ContainerId: APP.GTM.GA4_ID,
   analyticsCookieDomain: APP.GTM.ANALYTICS_COOKIE_DOMAIN,
   ga4Enabled: APP.GTM.GA4_ENABLED,
-  uaEnabled: APP.GTM.UA_ENABLED,
   ga4PageViewEnabled: APP.GTM.GA4_PAGE_VIEW_ENABLED,
   ga4FormResponseEnabled: APP.GTM.GA4_FORM_RESPONSE_ENABLED,
   ga4FormErrorEnabled: APP.GTM.GA4_FORM_ERROR_ENABLED,
