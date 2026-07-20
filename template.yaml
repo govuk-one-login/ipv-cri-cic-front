@@ -128,6 +128,7 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-dev"
       GTMIDGA4: "GTM-KD86CMZ"
       ANALYTICSDOMAIN: "dev.account.gov.uk"
+      DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "debug"
       USEPINOLOGGER: true
       minECSCount: 1
@@ -145,6 +146,7 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-build"
       GTMIDGA4: "GTM-KD86CMZ"
       ANALYTICSDOMAIN: "build.account.gov.uk"
+      DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
       USEPINOLOGGER: true
       minECSCount: 6
@@ -162,6 +164,7 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-staging"
       GTMIDGA4: "GTM-KD86CMZ"
       ANALYTICSDOMAIN: "staging.account.gov.uk"
+      DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
       USEPINOLOGGER: false
       minECSCount: 2
@@ -175,6 +178,7 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-integration"
       GTMIDGA4: "GTM-KD86CMZ"
       ANALYTICSDOMAIN: "integration.account.gov.uk"
+      DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
       USEPINOLOGGER: false
       minECSCount: 2
@@ -188,6 +192,7 @@ Mappings:
       SESSIONTABLENAME: "cic-front-sessions-production"
       GTMIDGA4: "GTM-K4PBJH3"
       ANALYTICSDOMAIN: "account.gov.uk"
+      DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
       USEPINOLOGGER: false
       minECSCount: 6
@@ -647,6 +652,8 @@ Resources:
                   "account.gov.uk",
                   !Sub "${Environment}.account.gov.uk"
                 ]
+            - Name: DEVICE_INTELLIGENCE_DOMAIN
+              Value: !FindInMap [ EnvironmentVariables, !Ref Environment, DEVICEINTELLIGENCEDOMAIN ]
             - Name: LOG_LEVEL
               Value: !FindInMap [EnvironmentVariables, !Ref Environment, LOGLEVEL ]
             - Name: MAY_2025_REBRAND_ENABLED
