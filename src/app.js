@@ -160,16 +160,17 @@ setOAuthPaths({ app, entryPointPath: APP.PATHS.CIC });
 setGTM({
   app,
   ga4ContainerId: APP.GTM.GA4_ID,
+  uaContainerId: "",
   analyticsCookieDomain: APP.GTM.ANALYTICS_COOKIE_DOMAIN,
-  ga4Enabled: APP.GTM.GA4_ENABLED,
-  uaEnabled: APP.GTM.UA_ENABLED,
+  ga4Enabled: true,
+  uaEnabled: false,
   ga4PageViewEnabled: APP.GTM.GA4_PAGE_VIEW_ENABLED,
   ga4FormResponseEnabled: APP.GTM.GA4_FORM_RESPONSE_ENABLED,
   ga4FormErrorEnabled: APP.GTM.GA4_FORM_ERROR_ENABLED,
   ga4FormChangeEnabled: APP.GTM.GA4_FORM_CHANGE_ENABLED,
   ga4NavigationEnabled: APP.GTM.GA4_NAVIGATION_ENABLED,
   ga4SelectContentEnabled: APP.GTM.GA4_SELECT_CONTENT_ENABLED,
-  analyticsDataSensitive: APP.GTM.ANALYTICS_DATA_SENSITIVE,
+  analyticsDataSensitive: false,
 });
 
 /* Server configuration */
@@ -225,7 +226,7 @@ setLanguageToggle({ app, showLanguageToggle: "1" });
 
 setDeviceIntelligence({
   app,
-  deviceIntelligenceEnabled: APP.DEVICE_INTELLIGENCE_ENABLED,
+  deviceIntelligenceEnabled: true,
   deviceIntelligenceDomain: APP.DEVICE_INTELLIGENCE_DOMAIN,
 });
 
