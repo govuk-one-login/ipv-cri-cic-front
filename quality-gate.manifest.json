@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/govuk-one-login/quality-gates/refs/tags/v0.14.0/schemas/schema.json",
+  "$schema": "https://raw.githubusercontent.com/govuk-one-login/quality-gates/refs/tags/v0.15.0/schemas/schema.json",
   "services": [
     {
       "product": "Claimed-Identity-Collector-CRI",
@@ -7,65 +7,89 @@
       "promotionType": "securePipelines",
       "automated": [
         {
-          "checkTypes": [
-            "secret scanning"
-          ],
           "phase": "pre-merge",
           "provider": "GitHub",
           "config": {
             "file": ".github/workflows/pre-commit.yml",
             "path": "$.jobs.pre-commit"
-          }
+          },
+          "checks": [
+            {
+              "name": "secret scanning"
+            }
+          ]
         },
         {
-          "checkTypes": [
-            "code style and linting",
-            "unit",
-            "unit test coverage",
-            "accessibility",
-            "integration",
-            "regression"
-          ],
           "phase": "pre-merge",
           "provider": "GitHub",
           "config": {
             "file": ".github/workflows/pre-merge-checks.yml",
             "path": "$.jobs.run-checks"
-          }
+          },
+          "checks": [
+            {
+              "name": "code style and linting"
+            },
+            {
+              "name": "unit"
+            },
+            {
+              "name": "unit test coverage"
+            },
+            {
+              "name": "accessibility"
+            },
+            {
+              "name": "integration"
+            },
+            {
+              "name": "regression"
+            }
+          ]
         },
         {
-          "checkTypes": [
-            "code style and linting",
-            "unit",
-            "unit test coverage"
-          ],
           "phase": "pre-merge",
           "provider": "GitHub",
           "config": {
             "file": ".github/workflows/pre-merge-checks.yml",
             "path": "$.jobs.sonar-checks"
-          }
+          },
+          "checks": [
+            {
+              "name": "code style and linting"
+            },
+            {
+              "name": "unit"
+            },
+            {
+              "name": "unit test coverage"
+            }
+          ]
         },
         {
-          "checkTypes": [
-            "code quality"
-          ],
           "phase": "pre-merge",
           "provider": "GitHub",
           "config": {
             "file": ".github/workflows/codeql.yml",
             "path": "$.jobs.analyze"
-          }
+          },
+          "checks": [
+            {
+              "name": "code quality"
+            }
+          ]
         },
         {
-          "checkTypes": [
-            "vulnerability detection"
-          ],
           "phase": "pre-merge",
           "provider": "GitHub",
           "config": {
             "file": ".github/dependabot.yml"
-          }
+          },
+          "checks": [
+            {
+              "name": "vulnerability detection"
+            }
+          ]
         }
       ]
     }
