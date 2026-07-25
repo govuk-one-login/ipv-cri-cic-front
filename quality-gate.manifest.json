@@ -24,12 +24,22 @@
           "provider": "GitHub",
           "config": {
             "file": ".github/workflows/pre-merge-checks.yml",
-            "path": "$.jobs.run-checks"
+            "path": "$.jobs.run-checks.steps[?@.run=='yarn lint']"
           },
           "checks": [
             {
               "name": "code style and linting"
-            },
+            }
+          ]
+        },
+        {
+          "phase": "pre-merge",
+          "provider": "GitHub",
+          "config": {
+            "file": ".github/workflows/pre-merge-checks.yml",
+            "path": "$.jobs.run-checks.steps[?@.run=='yarn test:coverage']"
+          },
+          "checks": [
             {
               "name": "unit"
             },
@@ -37,10 +47,23 @@
               "name": "unit test coverage"
             },
             {
-              "name": "accessibility"
-            },
+              "name": "regression"
+            }
+          ]
+        },
+        {
+          "phase": "pre-merge",
+          "provider": "GitHub",
+          "config": {
+            "file": ".github/workflows/pre-merge-checks.yml",
+            "path": "$.jobs.run-checks.steps[?@.run=='yarn test:browser:ci']"
+          },
+          "checks": [
             {
               "name": "integration"
+            },
+            {
+              "name": "accessibility"
             },
             {
               "name": "regression"
