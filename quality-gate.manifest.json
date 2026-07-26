@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/govuk-one-login/quality-gates/refs/tags/v0.16.0/schemas/schema.json",
+  "$schema": "https://raw.githubusercontent.com/govuk-one-login/quality-gates/refs/tags/v0.17.0/schemas/schema.json",
   "services": [
     {
       "product": "Claimed-Identity-Collector-CRI",
@@ -9,36 +9,28 @@
         {
           "phase": "pre-merge",
           "provider": "GitHub",
-          "config": {
-            "file": ".github/workflows/pre-commit.yml",
-            "path": "$.jobs.pre-commit"
-          },
           "checks": [
             {
               "name": "secret scanning"
             }
-          ]
+          ],
+          "file": ".github/workflows/pre-commit.yml",
+          "path": "$.jobs.pre-commit"
         },
         {
           "phase": "pre-merge",
           "provider": "GitHub",
-          "config": {
-            "file": ".github/workflows/pre-merge-checks.yml",
-            "path": "$.jobs.run-checks.steps[?@.run=='yarn lint']"
-          },
           "checks": [
             {
               "name": "code style and linting"
             }
-          ]
+          ],
+          "file": ".github/workflows/pre-merge-checks.yml",
+          "path": "$.jobs.run-checks.steps[?@.run=='yarn lint']"
         },
         {
           "phase": "pre-merge",
           "provider": "GitHub",
-          "config": {
-            "file": ".github/workflows/pre-merge-checks.yml",
-            "path": "$.jobs.run-checks.steps[?@.run=='yarn test:coverage']"
-          },
           "checks": [
             {
               "name": "unit",
@@ -49,15 +41,13 @@
             {
               "name": "unit test coverage"
             }
-          ]
+          ],
+          "file": ".github/workflows/pre-merge-checks.yml",
+          "path": "$.jobs.run-checks.steps[?@.run=='yarn test:coverage']"
         },
         {
           "phase": "pre-merge",
           "provider": "GitHub",
-          "config": {
-            "file": ".github/workflows/pre-merge-checks.yml",
-            "path": "$.jobs.run-checks.steps[?@.run=='yarn test:browser:ci']"
-          },
           "checks": [
             {
               "name": "integration",
@@ -68,15 +58,13 @@
             {
               "name": "accessibility"
             }
-          ]
+          ],
+          "file": ".github/workflows/pre-merge-checks.yml",
+          "path": "$.jobs.run-checks.steps[?@.run=='yarn test:browser:ci']"
         },
         {
           "phase": "pre-merge",
           "provider": "GitHub",
-          "config": {
-            "file": ".github/workflows/pre-merge-checks.yml",
-            "path": "$.jobs.sonar-checks"
-          },
           "checks": [
             {
               "name": "code style and linting"
@@ -87,32 +75,30 @@
             {
               "name": "unit test coverage"
             }
-          ]
+          ],
+          "file": ".github/workflows/pre-merge-checks.yml",
+          "path": "$.jobs.sonar-checks"
         },
         {
           "phase": "pre-merge",
           "provider": "GitHub",
-          "config": {
-            "file": ".github/workflows/codeql.yml",
-            "path": "$.jobs.analyze"
-          },
           "checks": [
             {
               "name": "code quality"
             }
-          ]
+          ],
+          "file": ".github/workflows/codeql.yml",
+          "path": "$.jobs.analyze"
         },
         {
           "phase": "pre-merge",
           "provider": "GitHub",
-          "config": {
-            "file": ".github/dependabot.yml"
-          },
           "checks": [
             {
               "name": "vulnerability detection"
             }
-          ]
+          ],
+          "file": ".github/dependabot.yml"
         }
       ]
     }
