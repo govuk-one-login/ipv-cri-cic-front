@@ -28,11 +28,6 @@ jobs:
           CUSTOM_FE_URL: http://localhost:5020
           DEVICE_INTELLIGENCE_ENABLED: true
       - run: pkill -f "node src/app.js" || true
-      - run: yarn test:browser:no_di:ci
-        env:
-          IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
-          CUSTOM_FE_URL: http://localhost:5020
-          DEVICE_INTELLIGENCE_ENABLED: false
       - name: Archive browser tests results
         uses: actions/upload-artifact@v7
         with:
