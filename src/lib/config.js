@@ -23,11 +23,7 @@ module.exports = {
     },
     GTM: {
       GA4_ID: process.env.GOOGLE_ANALYTICS_4_GTM_CONTAINER_ID || "GTM-XXXXXXX",
-      UA_ID: process.env.UNIVERSAL_ANALYTICS_GTM_CONTAINER_ID || "UA-XXXXXXX",
       ANALYTICS_COOKIE_DOMAIN: process.env.FRONTEND_DOMAIN || "localhost",
-      GA4_ENABLED: process.env.GA4_ENABLED || true,
-      UA_ENABLED: process.env.UA_ENABLED || false,
-      ANALYTICS_DATA_SENSITIVE: process.env.ANALYTICS_DATA_SENSITIVE || true,
       GA4_PAGE_VIEW_ENABLED: process.env.GA4_PAGE_VIEW_ENABLED || true,
       GA4_FORM_RESPONSE_ENABLED: process.env.GA4_FORM_RESPONSE_ENABLED || true,
       GA4_FORM_ERROR_ENABLED: process.env.GA4_FORM_ERROR_ENABLED || true,
@@ -36,8 +32,6 @@ module.exports = {
       GA4_SELECT_CONTENT_ENABLED:
         process.env.GA4_SELECT_CONTENT_ENABLED || true,
     },
-    LANGUAGE_TOGGLE_DISABLED: process.env.LANGUAGE_TOGGLE_DISABLED || "true",
-    DEVICE_INTELLIGENCE_ENABLED: process.env.DEVICE_INTELLIGENCE_ENABLED || "true",
     DEVICE_INTELLIGENCE_DOMAIN: process.env.DEVICE_INTELLIGENCE_DOMAIN || "localhost",
   },
   PORT: process.env.PORT || 5020,

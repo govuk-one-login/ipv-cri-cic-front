@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
       - run: yarn install --frozen-lockfile
@@ -26,14 +26,12 @@ jobs:
         env:
           IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
           CUSTOM_FE_URL: http://localhost:5020
-          LANGUAGE_TOGGLE_DISABLED: false
           DEVICE_INTELLIGENCE_ENABLED: true
       - run: pkill -f "node src/app.js" || true
       - run: yarn test:browser:no_di:ci
         env:
           IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
           CUSTOM_FE_URL: http://localhost:5020
-          LANGUAGE_TOGGLE_DISABLED: false
           DEVICE_INTELLIGENCE_ENABLED: false
       - name: Archive browser tests results
         uses: actions/upload-artifact@v7
@@ -45,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v67
         with:
           node-version: 22
       - run: yarn install --frozen-lockfile
