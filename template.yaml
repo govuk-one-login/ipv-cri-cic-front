@@ -166,7 +166,7 @@ Mappings:
       ANALYTICSDOMAIN: "staging.account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
-      USEPINOLOGGER: false
+      USEPINOLOGGER: true
       minECSCount: 2
       maxECSCount: 4
     integration:
@@ -180,7 +180,7 @@ Mappings:
       ANALYTICSDOMAIN: "integration.account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
-      USEPINOLOGGER: false
+      USEPINOLOGGER: true
       minECSCount: 2
       maxECSCount: 4
     production:
@@ -194,7 +194,7 @@ Mappings:
       ANALYTICSDOMAIN: "account.gov.uk"
       DEVICEINTELLIGENCEDOMAIN: "account.gov.uk"
       LOGLEVEL: "warn"
-      USEPINOLOGGER: false
+      USEPINOLOGGER: true
       minECSCount: 6
       maxECSCount: 60
 
