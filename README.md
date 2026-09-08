@@ -120,10 +120,6 @@ yarn test:coverage
 yarn test:pii
 ```
 
-### E2E tests
-```sh
-yarn test:e2e
-```
 ---
 
 ## Browser tests
