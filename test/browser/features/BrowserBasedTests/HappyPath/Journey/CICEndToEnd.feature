@@ -1,4 +1,4 @@
-@success @e2e @QualityGateIntegrationTest @QualityGateRegressionTest @QualityGateStackTest
+@e2e @QualityGateIntegrationTest @QualityGateRegressionTest @QualityGateStackTest
 
 Feature: Claimed Identity Credential Issuer - E2E
 
