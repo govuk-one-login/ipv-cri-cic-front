@@ -43,6 +43,7 @@ dateOfBirth:
   hint: "Er enghraifft, 31 3 1980"
   validation: 
     default: "Rhowch eich dyddiad geni"
+    required: "Rhowch eich dyddiad geni llawn"
     before: "Mae'n rhaid i'ch dyddiad geni fod yn y gorffennol"
     after: "Rhowch ddyddiad geni dilys"
     "numeric-day": "Mae'n rhaid i'ch dyddiad geni gynnwys diwrnod sy'n cynnwys rhifau yn unig"
@@ -50,6 +51,7 @@ dateOfBirth:
     "numeric-year": "Mae'n rhaid i'ch dyddiad geni gynnwys blwyddyn sy'n cynnwys rhifau yn unig"
     "date-day": "Rhowch ddiwrnod dilys"
     "date-month": "Mae'n rhaid i'ch dyddiad geni gynnwys mis sy'n rhif rhwng 1 a 12"
+    "date-year": "Rhowch flwyddyn ddilys gan ddefnyddio 4 digid (er enghraifft, 1973)"
     "required-day": "Rhowch eich dyddiad geni llawn"
     "required-month": "Rhowch eich dyddiad geni llawn"
     "required-year": "Rhowch eich dyddiad geni llawn"
