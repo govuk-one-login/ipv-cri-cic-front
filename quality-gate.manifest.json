@@ -39,14 +39,6 @@
             "file": ".github/workflows/codeql.yml",
             "path": "jobs.analyze"
           }
-        },
-        {
-          "check-types": ["vulnerability detection"],
-          "provider": "GitHub",
-          "phase": "pre-merge",
-          "config": {
-            "file": ".github/dependabot.yml"
-          }
         }
       ]
     }
