@@ -120,9 +120,14 @@ yarn test:coverage
 yarn test:pii
 ```
 
-### E2E browser tests (all tags)
+### E2E tests
 ```sh
-yarn test:e2e:browser
+yarn test:e2e
+```
+
+### E2E test report
+```sh
+yarn test:e2e:report
 ```
 ---
 
@@ -152,6 +157,11 @@ Tests use:
 ### Example Browser Test
 ```sh
 yarn test:browser
+```
+
+### Browser test report
+```sh
+yarn test:browser:report
 ```
 
 ### Example Browser Test CI-Style

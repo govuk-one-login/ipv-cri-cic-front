@@ -20,7 +20,7 @@ declare error_code
 
 # disabling error_check to allow report generation for successful + failed tests
 set +e
-cd /app; yarn run test:e2e:cd
+cd /app; yarn run test:e2e:report
 error_code=$?
 cp -rf /app/test/reports $TEST_REPORT_ABSOLUTE_DIR
 if [ $error_code -ne 0 ]
