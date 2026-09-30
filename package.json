@@ -33,7 +33,7 @@
     "test:e2e:report": "npm run test:e2e && npm run test:report",
     "test:browser": "cucumber-js test/browser/features/**/*.feature --require test/browser/support/env.js  --require test/browser/support/setup.js --require test/browser/step_definitions/**/*.js -f json:./test/reports/cucumber_report.json --tags @browser",
     "test:browser:report": "npm run test:browser && npm run test:report",
-    "test:browser:e2e": "cucumber-js test/browser/features/**/*.feature --require test/browser/support/env.js  --require test/browser/support/setup.js --require test/browser/step_definitions/**/*.js -f json:./test/reports/cucumber_report.json --tags @browser or @e2e",
+    "test:browser:e2e": "cucumber-js test/browser/features/**/*.feature --require test/browser/support/env.js  --require test/browser/support/setup.js --require test/browser/step_definitions/**/*.js -f json:./test/reports/cucumber_report.json --tags \"@e2e or @browser\"",
     "test:browser:e2e:report": "npm run test:browser:e2e && npm test:report"
   },
   "repository": {
