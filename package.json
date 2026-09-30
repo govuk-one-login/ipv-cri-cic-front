@@ -25,14 +25,15 @@
     "format": "yarn prettier:fix && yarn lint",
     "test": "mocha",
     "test:coverage": "nyc --reporter=lcov --reporter=text-summary yarn test",
+    "test:pii": "bash ./check-logs.sh",
     "test:watch": "mocha --watch",
     "check-translation": "node node_modules/@govuk-one-login/di-ipv-cri-common-express/scripts/checkTranslations.js '../../../../src/locales'",
     "test:report": "node ./test/utils/multiReportGenerator.js",
+    "test:browser:ci": "npm run start:ci & wait-on tcp:127.0.0.1:5020 && npm run test:browser && kill $! && npm run test:report",
     "test:e2e": "cucumber-js test/browser/features/**/*.feature --require test/browser/support/env.js --require test/browser/support/setup.js --require test/browser/step_definitions/**/*.js -f json:./test/reports/cucumber_report.json --tags @e2e",
     "test:e2e:report": "npm run test:e2e && npm run test:report",
-    "test:browser": "wait-on tcp:127.0.0.1:5020 && cucumber-js test/browser/features/**/*.feature --require test/browser/support/env.js  --require test/browser/support/setup.js --require test/browser/step_definitions/**/*.js -f json:./test/reports/cucumber_report.json --tags @browser",
-    "test:browser:ci": "npm run start:ci & npm run test:browser && kill $! && npm run test:report",
-    "test:pii": "bash ./check-logs.sh"
+    "test:browser": "cucumber-js test/browser/features/**/*.feature --require test/browser/support/env.js  --require test/browser/support/setup.js --require test/browser/step_definitions/**/*.js -f json:./test/reports/cucumber_report.json --tags @browser",
+    "test:browser:report": "npm run test:browser && npm run test:report"
   },
   "repository": {
     "type": "git",

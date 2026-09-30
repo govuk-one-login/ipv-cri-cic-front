@@ -22,7 +22,7 @@ declare error_code
 set +e
 cd /app;
 echo "--- Running Browser tests ---"
-yarn run test:e2e:report
+yarn run test:e2e:browser
 error_code=$?
 cp -rf /app/test/reports $TEST_REPORT_ABSOLUTE_DIR/browser
 if [ $error_code -ne 0 ]
@@ -30,8 +30,6 @@ then
   exit $error_code
 fi
 
-# disabling error_check to allow report generation for successful + failed tests
-set +e
 cd /app;
 echo "--- Running E2E tests ---"
 yarn run test:e2e:report
