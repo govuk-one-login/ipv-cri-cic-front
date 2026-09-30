@@ -122,13 +122,9 @@ yarn test:pii
 
 ### E2E tests
 ```sh
-yarn test:e2e
-```
-
-### E2E test report
-```sh
 yarn test:e2e:report
 ```
+
 ---
 
 ## Browser tests
@@ -153,16 +149,6 @@ Tests use:
 - Cucumber as the test runner
 - Playwright for browser automation
 - A Page Object Model approach
-
-### Example Browser Test
-```sh
-yarn test:browser
-```
-
-### Browser test report
-```sh
-yarn test:browser:report
-```
 
 ### Example Browser Test CI-Style
 ```sh
