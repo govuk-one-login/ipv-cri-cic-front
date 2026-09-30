@@ -57,14 +57,6 @@ Then("they should be redirected to the BAV nameEntry", async function () {
   await this.page.waitForLoadState("networkidle");
 });
 
-Then("they should be redirected as an error", function () {
-  const rpPage = new RelyingPartyPage(this.page);
-
-  expect(rpPage.isRelyingPartyServer()).to.be.true;
-
-  expect(rpPage.hasErrorQueryParams()).to.be.true;
-});
-
 Then("the language toggle is present on the screen", async function () {
   const nameEntryPage = new NameEntryPage(await this.page);
   await nameEntryPage.languageTogglePresent();

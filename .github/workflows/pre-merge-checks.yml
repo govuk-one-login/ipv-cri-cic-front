@@ -34,6 +34,17 @@ jobs:
           name: cic-code-coverage-report
           path: test/reports/cic-reports/
 
+  translation-checks:
+    name: i18n
+    runs-on: ubuntu-latest
+    steps:
+      - name: Translation checks
+        uses: govuk-one-login/github-actions/node/run-script@c8eefadf581d2087ce2af48b7060c1329cfa5251
+        with:
+          node-version: 22
+          package-manager: yarn
+          script: yarn check-translation
+
   sonar-checks:
     runs-on: ubuntu-latest
     steps:
