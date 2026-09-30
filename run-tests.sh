@@ -21,8 +21,8 @@ declare error_code
 # disabling error_check to allow report generation for successful + failed tests
 set +e
 cd /app;
--echo "--- Running Browser & E2E tests ---"
- yarn run test:browser:e2e:report
+echo "--- Running Browser & E2E tests ---"
+yarn run test:browser:e2e:report
 error_code=$?
 cp -rf /app/test/reports $TEST_REPORT_ABSOLUTE_DIR
 if [ $error_code -ne 0 ]
@@ -32,7 +32,8 @@ fi
 
 sleep 2m
 
-set -eapt-get install jq -y
+set -e
+apt-get install jq -y
 cd /app; npm run test:pii
 error_code=$?
 
