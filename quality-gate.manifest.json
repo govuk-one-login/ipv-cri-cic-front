@@ -100,6 +100,13 @@
           ],
           "file": ".github/dependabot.yml"
         }
+      ],
+      "notApplicable": [
+        {
+          "checks": [
+            {"name": "contract", "details": ["Not a Phase 1 API"]}
+          ]
+        }
       ]
     }
   ]
