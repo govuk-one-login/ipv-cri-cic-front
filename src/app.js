@@ -252,8 +252,8 @@ router.use(wizard(steps, fields, wizardOptions));
 
 router.use((err, req, res, next) => {
   logger.error(
-    "Error caught by Express handler - redirecting to Callback with server_error",
     { err },
+    "Error caught by Express handler - redirecting to Callback with server_error"
   );
   const REDIRECT_URI = req.session?.authParams?.redirect_uri;
   if (REDIRECT_URI) {
