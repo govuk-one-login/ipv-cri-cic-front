@@ -97,17 +97,6 @@ Conditions:
     - !Equals [!Ref DeploymentStrategy, "None"]
 
 Mappings:
-  PlatformConfiguration:
-    dev:
-      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
-    build:
-      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
-    staging:
-      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
-    integration:
-      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
-    production:
-      CSLSEGRESS: arn:aws:logs:eu-west-2:885513274347:destination:csls_cw_logs_destination_prodpython
 # see https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html
   ElasticLoadBalancerAccountIds:
     eu-west-2:
@@ -500,15 +489,6 @@ Resources:
       LogGroupName: !Sub /aws/ecs/${AWS::StackName}-CICFront-ECS
       RetentionInDays: 365
 
-  CSLSECSAccessSubscriptionFilter:
-    Type: AWS::Logs::SubscriptionFilter
-    # Condition: IsNotDevelopment
-    Properties:
-      DestinationArn:
-        !FindInMap [PlatformConfiguration, !Ref Environment, CSLSEGRESS]
-      FilterPattern: ""
-      LogGroupName: !Ref ECSAccessLogsGroup
-
   ECSFatalErorMetricFilter:
     Type: AWS::Logs::MetricFilter
     Condition: IsNotDevelopment
@@ -892,15 +872,6 @@ Resources:
     Properties:
       LogGroupName: !Sub /aws/apigateway/${AWS::StackName}-CICFront-API-GW-AccessLogs
       RetentionInDays: 365
-
-  CSLSAPIGWAccessSubscriptionFilter:
-    Type: AWS::Logs::SubscriptionFilter
-    Condition: IsNotDevelopment
-    Properties:
-      DestinationArn:
-        !FindInMap [PlatformConfiguration, !Ref Environment, CSLSEGRESS]
-      FilterPattern: ""
-      LogGroupName: !Ref APIGWAccessLogsGroup
 
   APIGWFatalErorMetricFilter:
     Type: AWS::Logs::MetricFilter
