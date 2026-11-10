@@ -38,8 +38,8 @@ middleName:
     regexNumbersOrSpecialCharacters: "Ni all eich enw canol gynnwys rhifau neu nodau arbennig"
 
 dateOfBirth:
-  legend: ""
-  label: ""
+  legend: Dyddiad geni
+  label: Dyddiad geni
   hint: "Er enghraifft, 31 3 1980"
   validation: 
     default: "Rhowch eich dyddiad geni"
@@ -57,8 +57,8 @@ dateOfBirth:
     "required-year": "Rhowch eich dyddiad geni llawn"
 
 checkDetails: 
-  label: ""
-  legend: ""
+  label: Gwiriwch eich manylion
+  legend: Gwiriwch eich manylion
   validation:
     default: "Gwnewch yn siwr bod y manylion rydych wedi eu rhoi yn cyd-fynd â'r manylion ar eich ID gyda llun."
     noPhotoId: "Ni allwch newid eich enw a'ch dyddiad geni ar ôl i chi barhau i'r dudalen nesaf."

@@ -9,8 +9,9 @@
 {% from "govuk/components/header/macro.njk" import govukHeader %}
 {% from "govuk/components/details/macro.njk" import govukDetails %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
-{% from "hmpo-text/macro.njk" import hmpoText %}
-{% from "hmpo-form/macro.njk" import hmpoForm %}
+{% from "frontend-ui/build/components/text/macro.njk" import text %}
+{% from "frontend-ui/build/components/form/macro.njk" import form %}
+{% from "frontend-ui/build/components/submit/macro.njk" import submit %}
 
 {% if query.edit == "true" %}
   {% set contentID = "446ea9f3-04b0-4b67-9c08-72fcd2a33edb" %}
@@ -53,9 +54,9 @@
         </div>
       </div>
 
-  {% call hmpoForm(ctx) %}
+  {% call form(ctx) %}
 
-    {{ hmpoText(ctx, {
+    {{ text(ctx, {
         id: "surname",
         autocomplete: "family-name",
         classes: "govuk-!-width-full"
@@ -77,7 +78,7 @@
       }
     }) %}
         <div class="govuk-inset-text govuk-!-margin-top-2 govuk-!-padding-top-1">
-            {{ hmpoText(ctx, {
+            {{ text(ctx, {
               id: "firstName",
               label: {
               classes: "govuk-label"
@@ -86,7 +87,7 @@
               autocomplete: "given-name"
               }) }}
 
-            {{ hmpoText(ctx, {
+            {{ text(ctx, {
               id: "middleName",
               label: {
               classes: "govuk-label"
@@ -107,7 +108,7 @@
       }) }}
     </div>
 
-    {{ hmpoSubmit(ctx, {classes: "govuk-!-margin-top-0", attributes: {"data-testid": "enter-name-continue-btn", "data-nav":true,"data-link":"/enter-date-birth-no-photo-id"}, text: translate("buttons.next")}) }}
+    {{ submit(ctx, {classes: "govuk-!-margin-top-0", attributes: {"data-testid": "enter-name-continue-btn", "data-nav":true,"data-link":"/enter-date-birth-no-photo-id"}, text: translate("buttons.next")}) }}
 
   {% endcall %}
 

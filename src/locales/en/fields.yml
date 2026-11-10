@@ -38,8 +38,8 @@ middleName:
     regexNumbersOrSpecialCharacters: "Your middle name cannot include numbers or special characters"
 
 dateOfBirth:
-  legend: ""
-  label: ""
+  legend: Date of birth
+  label: Date of birth
   hint: "For example, 31 3 1980"
   validation: 
     default: "Enter a valid date of birth"
@@ -65,8 +65,8 @@ dateOfBirth:
     required-year: "Your date of birth must include a year"
 
 checkDetails: 
-  label: ""
-  legend: ""
+  label: Check your details
+  legend: Check your details
   validation:
     default: "Make sure the details you entered match the details on your photo ID."
     noPhotoId: "You cannot change your name and date of birth once you continue to the next page."

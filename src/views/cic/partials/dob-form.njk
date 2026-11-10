@@ -1,15 +1,16 @@
 {# src/views/cic/partials/dob-form.njk #}
 
-{% from "hmpo-form/macro.njk" import hmpoForm %}
-{% from "hmpo-date/macro.njk" import hmpoDate %}
+{% from "frontend-ui/build/components/form/macro.njk" import form %}
+{% from "frontend-ui/build/components/date/macro.njk" import date %}
+{% from "frontend-ui/build/components/submit/macro.njk" import submit %}
 
 {% set legendContent = translate("dateOfBirth.formLegend") %}
 {% set hintText = translate("dateOfBirth.hintText") %}
 {% set formInstructions = "<p class=\"govuk-hint\">" + hintText + "</p>" %}
 
-{% call hmpoForm(ctx) %}
+{% call form(ctx) %}
 
-  {{ hmpoDate(ctx, {
+  {{ date(ctx, {
     id: "dateOfBirth",
     namePrefix: "dateOfBirth",
     fieldset: {
@@ -22,7 +23,7 @@
     hint: { html: formInstructions }
   }) }}
 
-  {{ hmpoSubmit(ctx, {
+  {{ submit(ctx, {
     classes: "govuk-!-margin-top-0",
     attributes: {
       "data-testid": "enter-dob-continue-btn",
