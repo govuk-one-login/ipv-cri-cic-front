@@ -16,13 +16,13 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: 22
-      - run: yarn install --frozen-lockfile
-      - run: yarn lint
-      - run: yarn build
-      - run: yarn test:coverage
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+      - run: npm run test:coverage
       - name: Install Playwright browsers
-        run: yarn playwright install --with-deps
-      - run: yarn test:browser:ci
+        run: npm exec -- playwright install --with-deps
+      - run: npm run test:browser:ci
         env:
           IPV_STUB_URL: ${{ secrets.IPV_STUB_URL }}
           CUSTOM_FE_URL: http://localhost:5020
@@ -42,8 +42,8 @@ jobs:
         uses: govuk-one-login/github-actions/node/run-script@c8eefadf581d2087ce2af48b7060c1329cfa5251
         with:
           node-version: 22
-          package-manager: yarn
-          script: yarn check-translation
+          package-manager: npm
+          script: npm run check-translation
 
   sonar-checks:
     runs-on: ubuntu-latest
@@ -52,10 +52,10 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: 22
-      - run: yarn install --frozen-lockfile
-      - run: yarn build
-      - run: yarn test
-      - run: yarn test:coverage
+      - run: npm ci
+      - run: npm run build
+      - run: npm run test
+      - run: npm run test:coverage
       - if: ${{ success() && github.actor != 'dependabot[bot]' }}
         uses: SonarSource/sonarqube-scan-action@v8
         env:
