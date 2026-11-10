@@ -2,17 +2,16 @@ FROM node:22.23.4-alpine@sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc6
 
 WORKDIR /app
 
-COPY .yarnrc ./
-COPY package.json yarn.lock ./
+COPY package.json package-lock.json ./
 COPY /src ./src
 
-RUN yarn install --frozen-lockfile
-RUN yarn build
+RUN npm ci
+RUN npm run build
 
-# 'yarn install --production' does not prune test packages which are necessary
-# to build the app. So delete nod_modules and reinstall only production packages.
+# The build requires development dependencies, so remove them afterwards and
+# reinstall only production dependencies.
 RUN [ "rm", "-rf", "node_modules" ]
-RUN yarn install --production --frozen-lockfile
+RUN npm ci --omit=dev
 
 FROM node:22.23.4-alpine@sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914 AS final
 
@@ -21,12 +20,11 @@ RUN ["apk", "add", "--no-cache", "tini", "curl"]
 
 WORKDIR /app
 
-COPY .yarnrc ./
 # Copy in compile assets and deps from build container
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package.json ./
-COPY --from=builder /app/yarn.lock ./
+COPY --from=builder /app/package-lock.json ./
 COPY --from=builder /app/src ./src
 
 # Add in dynatrace layer
@@ -42,4 +40,4 @@ HEALTHCHECK --interval=5s --timeout=2s --retries=10 \
 EXPOSE $PORT
 
 ENTRYPOINT ["sh", "-c", "export DT_HOST_ID=CIC-FRONT-$RANDOM && tini npm start"]
-CMD ["yarn", "start"]
+CMD ["npm", "start"]

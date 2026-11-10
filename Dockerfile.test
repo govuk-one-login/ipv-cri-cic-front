@@ -4,9 +4,7 @@ RUN apt update -y && apt upgrade -y
 RUN apt install -y curl unzip
 
 RUN curl -sL https://deb.nodesource.com/setup_22.x | bash -
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update -qq && apt-get install -y yarn nodejs
+RUN apt-get update -qq && apt-get install -y nodejs
 
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 RUN unzip awscliv2.zip
@@ -18,6 +16,6 @@ COPY . /app
 WORKDIR /app
 COPY run-tests.sh /
 RUN chmod +x /run-tests.sh
-RUN yarn install --frozen-lockfile && yarn playwright install --with-deps
+RUN npm ci && npm exec -- playwright install --with-deps
 
 ENTRYPOINT ["/run-tests.sh"]

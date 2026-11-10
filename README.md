@@ -45,12 +45,11 @@ This service provides the user interface for the Claimed Identity Collector (CIC
 
 ### Prerequisites
 - Node.js version per `package.json`/tooling used by the repo
-- yarn
 
 ### Install and build
 ```sh
-yarn install --frozen-lockfile
-yarn build
+npm ci
+npm run build
 ```
 ---
 
@@ -74,8 +73,8 @@ Set up your `.env` based on `.env.example` (ensure `API_BASE_URL` and `IPV_STUB_
 Build and start the app:
 
 ```sh
-yarn build
-yarn start
+npm run build
+npm start
 ```
 
 Start a journey via the IPV stub:
@@ -97,32 +96,32 @@ All scripts are defined in `package.json`.
 
 ### Lint
 ```sh
-yarn lint
+npm run lint
 ```
 
 ### Formatting check (Prettier)
 ```sh
-yarn prettier
+npm run prettier
 ```
 
 ### Unit tests
 ```sh
-yarn test
+npm run test
 ```
 
 ### Test coverage
 ```sh
-yarn test:coverage
+npm run test:coverage
 ```
 
 ### Log and PII checks
 ```sh
-yarn test:pii
+npm run test:pii
 ```
 
 ### E2E tests
 ```sh
-yarn test:e2e:report
+npm run test:e2e:report
 ```
 
 ---
@@ -152,7 +151,7 @@ Tests use:
 
 ### Example Browser Test CI-Style
 ```sh
-yarn test:browser:ci
+npm run test:browser:ci
 ```
 
 ---

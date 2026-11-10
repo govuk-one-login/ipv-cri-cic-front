@@ -5,7 +5,7 @@ applications:
       - session-cache
     memory: 128M
     buildpack: nodejs_buildpack
-    command: yarn start
+    command: npm start
     env:
       API_BASE_URL: ((api-gateway-url))
       DEBUG: "hmpo*"

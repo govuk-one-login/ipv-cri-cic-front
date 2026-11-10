@@ -27,7 +27,7 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: 22
-          cache: 'yarn'
+          cache: 'npm'
 
       - name: Pre-commit (secrets)
         uses: pre-commit/action@v3.0.1
@@ -35,19 +35,19 @@ jobs:
           extra_args: "detect-secrets --all-files"
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci
       
       - name: Install Playwright browsers
-        run: yarn playwright install --with-deps
+        run: npm exec -- playwright install --with-deps
 
       - name: Lint
-        run: yarn lint
+        run: npm run lint
 
       - name: Build
-        run: yarn build
+        run: npm run build
 
       - name: Unit tests + coverage (LCOV)
-        run: yarn test:coverage
+        run: npm run test:coverage
         
       - name: Run SonarCloud scan (post-merge)
         if: ${{ success() && github.actor != 'dependabot[bot]' }}
@@ -63,7 +63,7 @@ jobs:
         run: cat .scannerwork/report-task.txt
 
       - name: Browser tests (CI)
-        run: yarn test:browser:ci
+        run: npm run test:browser:ci
 
       - name: Get Test Results history
         uses: actions/checkout@v7
@@ -91,4 +91,3 @@ jobs:
           publish_branch: gh-pages
           publish_dir: results-history
           keep_files: true
-        
