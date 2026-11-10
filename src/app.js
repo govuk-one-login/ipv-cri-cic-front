@@ -104,6 +104,11 @@ const { app, router } = setup({
     cookie: { name: "lng" },
   },
   middlewareSetupFn: (app) => {
+    const nunjucksEnv = app.get("nunjucks");
+    if (nunjucksEnv) {
+      frontendUi.addFrontendUiGlobals(nunjucksEnv);
+      app.use(frontendUi.localsMiddleware(app, nunjucksEnv));
+    }
     frontendVitalSignsInitFromApp(app, {
       interval: 60000,
       logLevel: "info",

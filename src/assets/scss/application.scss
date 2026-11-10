@@ -1,8 +1,14 @@
 $govuk-assets-path: "/public/";
 
 @import "../../../node_modules/govuk-frontend/dist/govuk/all";
-@import "../../../node_modules/hmpo-components/all";
 @import "../../../node_modules/@govuk-one-login/frontend-language-toggle/stylesheet/styles";
+
+// Typography rules previously provided by hmpo-components.
+h1 { @extend .govuk-heading-l; }
+h2 { @extend .govuk-heading-m; }
+h3 { @extend .govuk-heading-s; }
+main p { @extend .govuk-body; }
+main a { @extend .govuk-link; }
 
 .govuk-radios__item {
   @include govuk-responsive-margin(6, $direction: "bottom", $important: false, $adjustment: false);

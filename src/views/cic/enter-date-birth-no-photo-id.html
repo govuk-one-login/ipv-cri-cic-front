@@ -4,9 +4,10 @@
 {% set gtmJourney = "cic - dateOfBirth" %}
 
 
-{% from "hmpo-text/macro.njk" import hmpoText %}
-{% from "hmpo-form/macro.njk" import hmpoForm %}
-{% from "hmpo-date/macro.njk" import hmpoDate %}
+{% from "frontend-ui/build/components/text/macro.njk" import text %}
+{% from "frontend-ui/build/components/form/macro.njk" import form %}
+{% from "frontend-ui/build/components/date/macro.njk" import date %}
+{% from "frontend-ui/build/components/submit/macro.njk" import submit %}
 
 {% if query.edit == "true" %}
   {% set contentID = "d901e9c4-effd-4a2f-b720-18ce840296d7" %}

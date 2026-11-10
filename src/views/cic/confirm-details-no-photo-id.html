@@ -8,6 +8,9 @@
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
+{% from "frontend-ui/build/components/form/macro.njk" import form %}
+{% from "frontend-ui/build/components/submit/macro.njk" import submit %}
+
 {% set contentID = "b7de99b5-b49a-47a6-a821-87bca7affb9a" %}
 {% set isPageDataSensitive = false %}
 {% set taxLevel2 = "cic" %}
@@ -67,8 +70,8 @@
         iconFallbackText: "Warning"
       }) }}
 
-      {% call hmpoForm(ctx) %}
-        {{ hmpoSubmit(ctx, {classes: "govuk-!-margin-top-6", attributes: {"data-testid": "confirm-details-continue-btn","data-nav":true,"data-link":"/oauth2/callback"}, text: translate("checkDetails.noPidButtonText")}) }}
+      {% call form(ctx) %}
+        {{ submit(ctx, {classes: "govuk-!-margin-top-6", attributes: {"data-testid": "confirm-details-continue-btn","data-nav":true,"data-link":"/oauth2/callback"}, text: translate("checkDetails.noPidButtonText")}) }}
       {% endcall %}
       </div>
   </div>

@@ -6,6 +6,8 @@
 {% from "govuk/components/header/macro.njk" import govukHeader %}
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+{% from "frontend-ui/build/components/form/macro.njk" import form %}
+{% from "frontend-ui/build/components/submit/macro.njk" import submit %}
 
 
 {% block content %}
@@ -58,8 +60,8 @@
         iconFallbackText: "Warning"
       }) }}
 
-      {% call hmpoForm(ctx) %}
-        {{ hmpoSubmit(ctx, {classes: "govuk-!-margin-top-6", attributes: {"data-testid": "confirm-details-continue-btn","data-nav":true,"data-link":"/oauth2/callback"}, text: translate("checkDetails.lowConfidenceText")}) }}
+      {% call form(ctx) %}
+        {{ submit(ctx, {classes: "govuk-!-margin-top-6", attributes: {"data-testid": "confirm-details-continue-btn","data-nav":true,"data-link":"/oauth2/callback"}, text: translate("checkDetails.lowConfidenceText")}) }}
       {% endcall %}
     </div>
   </div>
