@@ -6,7 +6,7 @@ on:
 
 jobs:
   sustainability-scan:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     permissions: write-all
 
     steps:
