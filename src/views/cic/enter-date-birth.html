@@ -3,13 +3,6 @@
 {% set hmpoPageKey = "dateOfBirth" %}
 {% set gtmJourney = "cic - dateOfBirth" %}
 
-
-
-{% from "frontend-ui/build/components/text/macro.njk" import text %}
-{% from "frontend-ui/build/components/form/macro.njk" import form %}
-{% from "frontend-ui/build/components/date/macro.njk" import date %}
-{% from "frontend-ui/build/components/submit/macro.njk" import submit %}
-
 {% if query.edit == "true" %}
   {% set contentID = "9a8abae5-1b76-4bf5-97b5-aff98de0642e" %}
 {% else %}

@@ -4,8 +4,6 @@
 {% set gtmJourney = "cic - nameEntry" %}
 {% set hmpoPageKey = "nameEntry.hmrc_check" %}
 
-{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
-{% from "govuk/components/header/macro.njk" import govukHeader %}
 {% from "govuk/components/details/macro.njk" import govukDetails %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "frontend-ui/build/components/text/macro.njk" import text %}
@@ -109,17 +107,4 @@
     {% block footer %}
     {{ super() }}
     <script type="text/javascript" src="/public/javascripts/all.js"></script>
-    <script {% if cspNonce %} nonce="{{ cspNonce }}"{%  endif %}>
-      window.addEventListener('load', function () {
-        window.DI.analyticsGa4.pageViewTracker.trackOnPageLoad({
-          statusCode: '200', // Access status code
-          englishPageTitle: '{{translate("nameEntry.title")}}',
-          taxonomy_level1: 'web cri', // Access taxonomy level 1
-          taxonomy_level2: 'cic', // Access taxonomy level 2
-          content_id: '001',
-          logged_in_status: true,
-          dynamic: false,
-        });
-      });
-    </script>
     {% endblock %}

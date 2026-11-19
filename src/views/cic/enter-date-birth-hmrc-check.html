@@ -13,17 +13,4 @@
 {% block footer %}
   {{ super() }}
   <script type="text/javascript" src="/public/javascripts/all.js"></script>
-  <script {% if cspNonce %} nonce="{{ cspNonce }}"{%  endif %}>
-    window.addEventListener('load', function () {
-      window.DI.analyticsGa4.pageViewTracker.trackOnPageLoad({
-        statusCode: '200',
-        englishPageTitle: '{{translate("dateOfBirth.title")}}',
-        taxonomy_level1: 'web cri',
-        taxonomy_level2: 'cic',
-        content_id: '002',
-        logged_in_status: true,
-        dynamic: false,
-      });
-    });
-  </script>
 {% endblock %}
