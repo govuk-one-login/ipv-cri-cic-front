@@ -38,8 +38,8 @@ middleName:
     regexNumbersOrSpecialCharacters: "Your middle name cannot include numbers or special characters"
 
 dateOfBirth:
-  legend: ""
-  label: ""
+  legend: "Enter your date of birth"
+  label: "Enter your date of birth"
   hint: "For example, 31 3 1980"
   validation: 
     default: "Enter a valid date of birth"

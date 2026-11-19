@@ -38,8 +38,8 @@ middleName:
     regexNumbersOrSpecialCharacters: "Ni all eich enw canol gynnwys rhifau neu nodau arbennig"
 
 dateOfBirth:
-  legend: ""
-  label: ""
+  legend: "Rhowch eich dyddiad geni"
+  label: "Rhowch eich dyddiad geni"
   hint: "Er enghraifft, 31 3 1980"
   validation: 
     default: "Rhowch eich dyddiad geni"
