@@ -1,5 +1,5 @@
 const BaseController = require("hmpo-form-wizard").Controller;
-const DateControllerMixin = require("hmpo-components").mixins.Date;
+const DateControllerMixin = require("@govuk-one-login/frontend-ui").mixins.Date;
 
 const DateController = DateControllerMixin(BaseController);
 

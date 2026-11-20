@@ -6,8 +6,8 @@
         {{ translate(hmpoPageKey+'.title', { default: [] }) | safe }}
     </h1>
 
-    {% from "hmpo-html/macro.njk" import hmpoHtml %}
-    {{ hmpoHtml(translate(hmpoPageKey + ".content", { default: [] })) }}
+    {% from "frontend-ui/build/components/html/macro.njk" import html %}
+    {{ html(translate(hmpoPageKey + ".content", { default: [] })) }}
 
 {% endblock %}
 <script {% if cspNonce %} nonce="{{ cspNonce }}"{%  endif %}>
