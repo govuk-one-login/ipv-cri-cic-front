@@ -101,6 +101,6 @@
     "moment": "2.31.0",
     "nunjucks": "3.2.4",
     "uuid": "14.0.0",
-    "fast-xml-parser": "5.7.2"
+    "fast-xml-parser": "5.12.1"
   }
 }
