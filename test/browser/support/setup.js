@@ -1,8 +1,9 @@
-const { Before, BeforeAll, AfterAll, After } = require("@cucumber/cucumber");
-const { chromium } = require("playwright");
+import { Before, BeforeAll, AfterAll, After } from "@cucumber/cucumber";
+import { chromium } from "playwright";
+import { config as dotenvConfig } from "dotenv";
 
 BeforeAll({ timeout: 2 * 5000 }, async function () {
-  require("dotenv").config();
+  dotenvConfig();
   // Browsers are expensive in Playwright so only create 1
   global.browser = process.env.GITHUB_ACTIONS
     ? await chromium.launch()

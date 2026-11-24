@@ -1,4 +1,4 @@
-module.exports = class PlaywrightDevPage {
+export class CheckDetailsPage {
   /**
    * @param {import('@playwright/test').Page} page
    */
@@ -73,4 +73,4 @@ module.exports = class PlaywrightDevPage {
       .textContent();
     return warningText.trim();
   }
-};
+}

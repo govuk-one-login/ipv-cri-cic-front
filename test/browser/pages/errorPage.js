@@ -1,4 +1,4 @@
-module.exports = class PlaywrightDevPage {
+export class ErrorPage {
   /**
    * @param {import('@playwright/test').Page} page
    */
@@ -25,4 +25,4 @@ module.exports = class PlaywrightDevPage {
   isCurrentPage() {
     return this.page.url() === this.url;
   }
-};
+}

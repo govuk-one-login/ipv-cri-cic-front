@@ -1,10 +1,7 @@
-const { Given, Then, When } = require("@cucumber/cucumber");
-
-const { expect } = require("chai");
-
-const ApiSupport = require("../support/ApiSupport");
-
-const TestHarness = require("../support/TestHarness");
+import { Given, Then, When } from "@cucumber/cucumber";
+import { expect } from "chai";
+import { ApiSupport } from "../support/ApiSupport.js";
+import { TestHarness } from "../support/TestHarness.js";
 
 Given(
   /^I have retrieved the sessionTable data for my CIC session$/,
@@ -30,11 +27,11 @@ Then(
   { timeout: 2 * 50000 },
   async function () {
     const apiSupport = new ApiSupport(process.env.API_BASE_URL);
-    const generateTokenRequest = await apiSupport.generateTokenPostRequest()
+    const generateTokenRequest = await apiSupport.generateTokenPostRequest();
     const tokenRequest = await apiSupport.tokenPostRequest(
       this.authorizationCode,
       this.redirectUri,
-      generateTokenRequest.data
+      generateTokenRequest.data,
     );
     const userInfoRequest = await apiSupport.userInfoPostRequest(
       tokenRequest.data.access_token,

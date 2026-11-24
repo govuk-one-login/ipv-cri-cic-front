@@ -1,10 +1,8 @@
-const { Given, When, Then } = require("@cucumber/cucumber");
-
-const { expect } = require("chai");
-
-const { DateOfBirthPage, CheckDetailsPage } = require("../pages");
-
-const userData = require("../support/cicUserData.json");
+import { Given, When, Then } from "@cucumber/cucumber";
+import { expect } from "chai";
+import userData from "../support/cicUserData.json" with { type: "json" };
+import { DateOfBirthPage } from "../pages/dateOfBirthPage.js";
+import { CheckDetailsPage } from "../pages/checkDetailsPage.js";
 
 Given(/^the DOB fields are populated with valid values$/, async function () {
   const dobPage = new DateOfBirthPage(await this.page);

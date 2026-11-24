@@ -1,8 +1,7 @@
-const { Given, Then, When } = require("@cucumber/cucumber");
-
-const { RelyingPartyPage, NameEntryPage } = require("../pages");
-
-const { expect } = require("chai");
+import { Given, Then, When } from "@cucumber/cucumber";
+import { expect } from "chai";
+import { RelyingPartyPage } from "../pages/relyingPartyPage.js";
+import { NameEntryPage } from "../pages/nameEntryPage.js";
 
 Given(
   /^([^"]*) is using the system$/,
@@ -20,7 +19,7 @@ When(
   {
     timeout: 10 * 1000,
   },
-  async function () { },
+  async function () {},
 );
 
 Then("they should be redirected to the CIC nameEntry", async function () {
@@ -52,7 +51,7 @@ Then("they should be redirected to the BAV nameEntry", async function () {
   );
   expect(await nameEntryPage.checkSubTitleForBAV()).to.contain(
     "Check your banking app, online bank account or bank statement for the full registered name." && // eslint-disable-line
-    "The name on your bank card might only use your initials.",
+      "The name on your bank card might only use your initials.",
   );
   await this.page.waitForLoadState("networkidle");
 });
@@ -89,6 +88,6 @@ Then("the {string} cookie has been set", async function (cookieName) {
   // Wait for the page to fully load
   await this.page.waitForLoadState("networkidle", { timeout: 5000 });
   const cookies = await this.page.context().cookies();
-  const expectedCookie = cookies.find(cookie => cookie.name === cookieName);
+  const expectedCookie = cookies.find((cookie) => cookie.name === cookieName);
   expect(expectedCookie).to.exist;
 });

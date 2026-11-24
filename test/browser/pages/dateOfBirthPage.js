@@ -1,4 +1,4 @@
-module.exports = class PlaywrightDevPage {
+export class DateOfBirthPage {
   /**
    * @param {import('@playwright/test').Page} page
    */
@@ -47,4 +47,4 @@ module.exports = class PlaywrightDevPage {
       .textContent();
     return errorText.trim();
   }
-};
+}

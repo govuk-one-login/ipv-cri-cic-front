@@ -1,8 +1,6 @@
-const { Given, When, Then } = require("@cucumber/cucumber");
-
-const { expect } = require("chai");
-
-const { CheckDetailsPage } = require("../pages");
+import { Given, When, Then } from "@cucumber/cucumber";
+import { expect } from "chai";
+import { CheckDetailsPage } from "../pages/checkDetailsPage.js";
 
 Given(/^the user has completed the previous CIC screens$/, async function () {
   const cpdPage = new CheckDetailsPage(await this.page);

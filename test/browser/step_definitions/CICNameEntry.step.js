@@ -1,18 +1,10 @@
-const { Given, When, Then } = require("@cucumber/cucumber");
-
-const { expect } = require("chai");
-
-const { injectAxe } = require("axe-playwright");
-
-const axe = require('axe-core');
-
-const {
-  NameEntryPage,
-  DateOfBirthPage,
-  EuDrivingLicenceDetailsPageValid,
-} = require("../pages");
-
-const userData = require("../support/cicUserData.json");
+import { Given, When, Then } from "@cucumber/cucumber";
+import { expect } from "chai";
+import { injectAxe } from "axe-playwright";
+import axe from "axe-core";
+import userData from "../support/cicUserData.json" with { type: "json" };
+import { NameEntryPage } from "../pages/nameEntryPage.js";
+import { DateOfBirthPage } from "../pages/dateOfBirthPage.js";
 
 Given(
   /^there has been an entry into the surname and first name fields$/,
@@ -25,19 +17,16 @@ Given(
   },
 );
 
-Given(
-  /^the page should conform to WCAG 2.2 AA guidelines$/,
-  async function () {
-    await injectAxe(this.page);
-    // Run Axe for WCAG 2.2 AA rules
-    const wcagResults = await this.page.evaluate(() => {
-      return axe.run({
-        runOnly: ["wcag2aa"]
-      });
+Given(/^the page should conform to WCAG 2.2 AA guidelines$/, async function () {
+  await injectAxe(this.page);
+  // Run Axe for WCAG 2.2 AA rules
+  const wcagResults = await this.page.evaluate(() => {
+    return axe.run({
+      runOnly: ["wcag2aa"],
     });
-    expect(wcagResults.violations, "WCAG 2.2 AAA violations found").to.be.empty;
-  },
-);
+  });
+  expect(wcagResults.violations, "WCAG 2.2 AAA violations found").to.be.empty;
+});
 
 When(/^the user clicks the GOV UK support Link$/, async function () {
   const nameEntryPage = new NameEntryPage(await this.page);
@@ -142,14 +131,3 @@ When(/^the Back link is clicked on the Name Entry screen$/, async function () {
 
   await nameEntryPage.back();
 });
-
-Then(
-  /^the user is navigated back to the screen that they came from$/,
-  async function () {
-    const euDLDetailsPage = new EuDrivingLicenceDetailsPageValid(
-      await this.page,
-    );
-
-    expect(await euDLDetailsPage.isCurrentPage()).to.be.true;
-  },
-);
