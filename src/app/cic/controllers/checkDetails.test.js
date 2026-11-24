@@ -1,11 +1,7 @@
-const BaseController = require("hmpo-form-wizard").Controller;
-const { expect } = require("chai");
-const CheckDetailsController = require("./checkDetails");
-const {
-  API: {
-    PATHS: { SAVE_CICDATA },
-  },
-} = require("../../../lib/config");
+import wizard from "hmpo-form-wizard";
+import { expect } from "chai";
+import { config } from "../../../lib/config.js";
+import { CheckDetailsController } from "./checkDetails.js";
 
 describe("CheckDetails controller", () => {
   const checkDetailsController = new CheckDetailsController({ route: "/test" });
@@ -28,15 +24,15 @@ describe("CheckDetails controller", () => {
   });
 
   it("should be an instance of BaseController", () => {
-    expect(checkDetailsController).to.be.an.instanceOf(BaseController);
+    expect(checkDetailsController).to.be.an.instanceOf(wizard.Controller);
   });
 
   describe("#locals", () => {
     let prototypeSpy;
 
     beforeEach(() => {
-      prototypeSpy = sinon.stub(BaseController.prototype, "locals");
-      BaseController.prototype.locals.callThrough();
+      prototypeSpy = sinon.stub(wizard.Controller.prototype, "locals");
+      wizard.Controller.prototype.locals.callThrough();
     });
 
     afterEach(() => {
@@ -58,7 +54,7 @@ describe("CheckDetails controller", () => {
           key: "value",
         };
         res.locals = locals;
-        BaseController.prototype.locals.yields(error, superLocals);
+        wizard.Controller.prototype.locals.yields(error, superLocals);
 
         await checkDetailsController.locals(req, res, next);
       });
@@ -72,7 +68,6 @@ describe("CheckDetails controller", () => {
   describe("#saveValues", () => {
     context("on journey save cic data", () => {
       it("should call claimedIdentity endpoint", async () => {
-
         const givenNamesVal = req.sessionModel.get("middleName")
           ? req.sessionModel.get("firstName") +
             " " +
@@ -87,12 +82,12 @@ describe("CheckDetails controller", () => {
         await checkDetailsController.saveValues(req, res, next);
         expect(next).to.have.been.calledOnce;
         expect(req.axios.post).to.have.been.calledWithExactly(
-          SAVE_CICDATA,
+          config.API.PATHS.SAVE_CICDATA,
           cicData,
           {
             headers: {
-              "txma-audit-encoded":"dummy-txma-header",
-              "x-govuk-signin-session-id":req.session.tokenId,
+              "txma-audit-encoded": "dummy-txma-header",
+              "x-govuk-signin-session-id": req.session.tokenId,
             },
           },
         );

@@ -1,5 +1,5 @@
-const { formatDate } = require("./utils");
-const { expect } = require("chai");
+import { formatDate } from "./utils.js";
+import { expect } from "chai";
 
 describe("formatDate", () => {
   it("returns a YYYY-MM-DD date with language set to en as DD Month(English) YYYY", () => {
