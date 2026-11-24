@@ -1,6 +1,6 @@
 //Extracted from common-express and modified
 
-module.exports = {
+export const helmetConfig = {
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],

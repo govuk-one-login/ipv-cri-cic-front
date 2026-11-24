@@ -1,6 +1,7 @@
-const reporter = require("multiple-cucumber-html-reporter");
-var date = new Date();
-var currentDate =
+import reporter from "multiple-cucumber-html-reporter";
+
+const date = new Date();
+const currentDate =
   date.getDate() +
   "_" +
   (date.getMonth() + 1) +
@@ -15,7 +16,7 @@ var currentDate =
   "_" +
   date.getMilliseconds();
 
-var options = {
+const options = {
   jsonDir: "test/reports",
   reportPath:
     "test/reports/cic-reports/cri-cic-report_" + currentDate + ".html",

@@ -1,6 +1,6 @@
-const BaseController = require("hmpo-form-wizard").Controller;
+import wizard from "hmpo-form-wizard";
 
-class NameEntryController extends BaseController {
+export class NameEntryController extends wizard.Controller {
   locals(req, res, callback) {
     super.locals(req, res, (err, locals) => {
       const journeyType = req.sessionModel.get("journeyType");
@@ -15,5 +15,3 @@ class NameEntryController extends BaseController {
     });
   }
 }
-
-module.exports = NameEntryController;

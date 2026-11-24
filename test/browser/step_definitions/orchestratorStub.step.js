@@ -1,10 +1,7 @@
-const { Given, Then, When } = require("@cucumber/cucumber");
-
-const { OrchestratorStubPage } = require("../pages");
-
-const { v4 } = require("uuid");
-
-const { expect } = require("chai");
+import { Given, Then, When } from "@cucumber/cucumber";
+import { randomUUID } from "node:crypto";
+import { expect } from "chai";
+import { OrchestratorStubPage } from "../pages/orchestratorStubPage.js";
 
 Given(
   "the user navigates to the Orchestrator Stub Page",
@@ -20,7 +17,7 @@ When(
   { timeout: 4 * 50000 },
   async function () {
     const stubPage = new OrchestratorStubPage(this.page);
-    const uuid = v4();
+    const uuid = randomUUID();
     await stubPage.fullJourneyRoute(uuid);
   },
 );

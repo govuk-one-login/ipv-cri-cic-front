@@ -4,7 +4,7 @@
  * Submit-time length check that does NOT generate an HTML maxlength attribute.
  * Return true when valid- false when invalid (HMPO will attach an error).
  */
-function nameMaxLength(value, length) {
+export function nameMaxLength(value, length) {
   if (value === undefined || value === null) {
     return true;
   }
@@ -17,7 +17,3 @@ function nameMaxLength(value, length) {
   const max = Number(length);
   return str.length <= max;
 }
-
-module.exports = {
-  nameMaxLength,
-};

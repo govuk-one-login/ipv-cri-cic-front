@@ -1,56 +1,36 @@
-require("express");
-require("express-async-errors");
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+import expressSession from "express-session";
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import connectDynamoDB from "connect-dynamodb";
+import wizard from "hmpo-form-wizard";
+import { config } from "./lib/config.js";
+import commonExpress from "@govuk-one-login/di-ipv-cri-common-express";
+import {
+  addFrontendUiGlobals,
+  localsMiddleware,
+  frontendUiMiddlewareIdentityBypass,
+} from "@govuk-one-login/frontend-ui";
+import { setAPIConfig, setOAuthPaths } from "./lib/settings.js";
+import { overloadProtectionConfig } from "./lib/overload-protection-config.js";
+import addLanguageParam from "@govuk-one-login/frontend-language-toggle";
+import { frontendVitalSignsInitFromApp } from "@govuk-one-login/frontend-vital-signs";
+import { steps } from "./app/cic/steps.js";
+import { fields } from "./app/cic/fields.js";
+import { helmetConfig } from "./lib/helmet.js";
 
-const path = require("path");
-const session = require("express-session");
-const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
-const DynamoDBStore = require("connect-dynamodb")(session);
-const wizard = require("hmpo-form-wizard");
-const {
-  PACKAGE_NAME,
-  API,
-  APP,
-  PORT,
-  SESSION_SECRET,
-  SESSION_TABLE_NAME,
-  SESSION_TTL,
-} = require("./lib/config");
-const logger =
-  require("@govuk-one-login/di-ipv-cri-common-express/src/bootstrap/lib/logger").get(
-    PACKAGE_NAME,
-  );
-
-const commonExpress = require("@govuk-one-login/di-ipv-cri-common-express");
-const frontendUi = require("@govuk-one-login/frontend-ui");
-
+const logger = commonExpress.bootstrap.logger.get(config.PACKAGE_NAME);
 const setHeaders = commonExpress.lib.headers;
 const setScenarioHeaders = commonExpress.lib.scenarioHeaders;
 const setAxiosDefaults = commonExpress.lib.axios;
-
-const { setAPIConfig, setOAuthPaths } = require("./lib/settings");
-
 const { setGTM, setLanguageToggle, setDeviceIntelligence } =
   commonExpress.lib.settings;
 const { getGTM, getLanguageToggle, getDeviceIntelligence } =
   commonExpress.lib.locals;
+const { setI18n } = commonExpress.lib.i18n;
+const { setup } = commonExpress.bootstrap;
 
-const overloadProtectionConfigService = require("./lib/overload-protection-config.js");
-
-const addLanguageParam = require("@govuk-one-login/frontend-language-toggle/build/cjs/language-param-setter.cjs");
-
-const {
-  frontendVitalSignsInitFromApp,
-} = require("@govuk-one-login/frontend-vital-signs");
-
-const {
-  setI18n,
-} = require("@govuk-one-login/di-ipv-cri-common-express/src/lib/i18next");
-
-const steps = require("./app/cic/steps");
-const fields = require("./app/cic/fields");
-
-const { setup } =
-  require("@govuk-one-login/di-ipv-cri-common-express").bootstrap;
+const DynamoDBStore = connectDynamoDB(expressSession);
 
 const loggerConfig = {
   console: true,
@@ -65,35 +45,35 @@ const dynamodb = new DynamoDBClient({
 
 const dynamoDBSessionStore = new DynamoDBStore({
   client: dynamodb,
-  table: SESSION_TABLE_NAME,
+  table: config.SESSION_TABLE_NAME,
 });
 
 const sessionConfig = {
   cookieName: "service_session",
-  secret: SESSION_SECRET,
-  cookieOptions: { maxAge: SESSION_TTL },
-  ...(SESSION_TABLE_NAME && { sessionStore: dynamoDBSessionStore }),
+  secret: config.SESSION_SECRET,
+  cookieOptions: { maxAge: config.SESSION_TTL },
+  ...(config.SESSION_TABLE_NAME && { sessionStore: dynamoDBSessionStore }),
 };
 
-const overloadProtectionConfig = overloadProtectionConfigService.init();
-
-const helmetConfig = require("./lib/helmet.js");
-
 const { app, router } = setup({
-  config: { APP_ROOT: __dirname },
+  config: { APP_ROOT: import.meta.dirname },
   port: false,
   logs: loggerConfig,
   session: sessionConfig,
   helmet: helmetConfig,
-  redis: SESSION_TABLE_NAME ? false : commonExpress.lib.redis(),
+  redis: config.SESSION_TABLE_NAME ? false : commonExpress.lib.redis(),
   urls: {
     public: "/public",
   },
   publicDirs: ["../dist/public"],
   views: [
-    path.resolve(__dirname, "views"),
+    path.resolve(import.meta.dirname, "views"),
     path.resolve(
-      path.dirname(require.resolve("@govuk-one-login/di-ipv-cri-common-express")),
+      path.dirname(
+        fileURLToPath(
+          import.meta.resolve("@govuk-one-login/di-ipv-cri-common-express"),
+        ),
+      ),
       "components",
     ),
     path.resolve("node_modules/@govuk-one-login/"),
@@ -106,8 +86,8 @@ const { app, router } = setup({
   middlewareSetupFn: (app) => {
     const nunjucksEnv = app.get("nunjucks");
     if (nunjucksEnv) {
-      frontendUi.addFrontendUiGlobals(nunjucksEnv);
-      app.use(frontendUi.localsMiddleware(app, nunjucksEnv));
+      addFrontendUiGlobals(nunjucksEnv);
+      app.use(localsMiddleware(app, nunjucksEnv));
     }
     frontendVitalSignsInitFromApp(app, {
       interval: 60000,
@@ -142,7 +122,7 @@ setI18n({
   router,
   config: {
     secure: true,
-    cookieDomain: APP.GTM.ANALYTICS_COOKIE_DOMAIN,
+    cookieDomain: config.APP.GTM.ANALYTICS_COOKIE_DOMAIN,
   },
 });
 
@@ -155,31 +135,31 @@ app.get("nunjucks").addGlobal("getContext", function () {
 
 setAPIConfig({
   app,
-  baseUrl: API.BASE_URL,
-  sessionPath: API.PATHS.SESSION,
-  authorizationPath: API.PATHS.AUTHORIZATION,
+  baseUrl: config.API.BASE_URL,
+  sessionPath: config.API.PATHS.SESSION,
+  authorizationPath: config.API.PATHS.AUTHORIZATION,
 });
 
-setOAuthPaths({ app, entryPointPath: APP.PATHS.CIC });
+setOAuthPaths({ app, entryPointPath: config.APP.PATHS.CIC });
 
 setGTM({
   app,
-  ga4ContainerId: APP.GTM.GA4_ID,
+  ga4ContainerId: config.APP.GTM.GA4_ID,
   uaContainerId: "",
-  analyticsCookieDomain: APP.GTM.ANALYTICS_COOKIE_DOMAIN,
+  analyticsCookieDomain: config.APP.GTM.ANALYTICS_COOKIE_DOMAIN,
   ga4Enabled: true,
   uaEnabled: false,
-  ga4PageViewEnabled: APP.GTM.GA4_PAGE_VIEW_ENABLED,
-  ga4FormResponseEnabled: APP.GTM.GA4_FORM_RESPONSE_ENABLED,
-  ga4FormErrorEnabled: APP.GTM.GA4_FORM_ERROR_ENABLED,
-  ga4FormChangeEnabled: APP.GTM.GA4_FORM_CHANGE_ENABLED,
-  ga4NavigationEnabled: APP.GTM.GA4_NAVIGATION_ENABLED,
-  ga4SelectContentEnabled: APP.GTM.GA4_SELECT_CONTENT_ENABLED,
+  ga4PageViewEnabled: config.APP.GTM.GA4_PAGE_VIEW_ENABLED,
+  ga4FormResponseEnabled: config.APP.GTM.GA4_FORM_RESPONSE_ENABLED,
+  ga4FormErrorEnabled: config.APP.GTM.GA4_FORM_ERROR_ENABLED,
+  ga4FormChangeEnabled: config.APP.GTM.GA4_FORM_CHANGE_ENABLED,
+  ga4NavigationEnabled: config.APP.GTM.GA4_NAVIGATION_ENABLED,
+  ga4SelectContentEnabled: config.APP.GTM.GA4_SELECT_CONTENT_ENABLED,
   analyticsDataSensitive: false,
 });
 
 /* Server configuration */
-const server = app.listen(PORT);
+const server = app.listen(config.PORT);
 
 // AWS recommends the keep-alive duration of the target is longer than the idle timeout value of the load balancer (default 60s)
 // to prevent possible 502 errors where the target connection has already been closed
@@ -232,14 +212,14 @@ setLanguageToggle({ app, showLanguageToggle: "1" });
 setDeviceIntelligence({
   app,
   deviceIntelligenceEnabled: "true",
-  deviceIntelligenceDomain: APP.DEVICE_INTELLIGENCE_DOMAIN,
+  deviceIntelligenceDomain: config.APP.DEVICE_INTELLIGENCE_DOMAIN,
 });
 
 app.get("nunjucks").addGlobal("addLanguageParam", addLanguageParam);
 
 router.use(getGTM);
 router.use(getLanguageToggle);
-router.use(frontendUi.frontendUiMiddlewareIdentityBypass);
+router.use(frontendUiMiddlewareIdentityBypass);
 router.use(getDeviceIntelligence);
 
 router.use(setScenarioHeaders);

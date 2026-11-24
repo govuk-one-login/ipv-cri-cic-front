@@ -1,8 +1,8 @@
-const BaseController = require("hmpo-form-wizard").Controller;
-const { expect } = require("chai");
-const { afterEach } = require("mocha");
-const { API } = require("../../../lib/config");
-const JourneyTypeController = require("./journeyType.js");
+import wizard from "hmpo-form-wizard";
+import { expect } from "chai";
+import { afterEach } from "mocha";
+import { config } from "../../../lib/config.js";
+import { JourneyTypeController } from "./journeyType.js";
 
 console.log = sinon.fake();
 
@@ -26,7 +26,7 @@ describe("JourneyTypeController", () => {
   });
 
   it("should be an instance of BaseController", () => {
-    expect(journeyTypeController).to.be.an.instanceOf(BaseController);
+    expect(journeyTypeController).to.be.an.instanceOf(wizard.Controller);
   });
 
   describe("saveValues", () => {
@@ -37,12 +37,16 @@ describe("JourneyTypeController", () => {
 
       await journeyTypeController.saveValues(req, res, next);
 
-      sinon.assert.calledWith(req.axios.get, `${API.PATHS.SESSION_CONFIG}`, {
-        headers: {
-          "txma-audit-encoded":"dummy-txma-header",
-          "x-govuk-signin-session-id": req.session.tokenId 
+      sinon.assert.calledWith(
+        req.axios.get,
+        `${config.API.PATHS.SESSION_CONFIG}`,
+        {
+          headers: {
+            "txma-audit-encoded": "dummy-txma-header",
+            "x-govuk-signin-session-id": req.session.tokenId,
+          },
         },
-      });
+      );
       const journeyType = req.sessionModel.get("journeyType");
       expect(journeyType).to.equal("f2f");
     });

@@ -1,13 +1,9 @@
-const { Given, When, Then } = require("@cucumber/cucumber");
-
-const { expect } = require("chai");
-
-const {
-  CheckDetailsPage,
-  DateOfBirthPageEdit,
-  DateOfBirthPage,
-  NameEntryPageEdit,
-} = require("../pages");
+import { Given, When, Then } from "@cucumber/cucumber";
+import { expect } from "chai";
+import { CheckDetailsPage } from "../pages/checkDetailsPage.js";
+import { NameEntryEditPage } from "../pages/nameEntryEditPage.js";
+import { DateOfBirthPage } from "../pages/dateOfBirthPage.js";
+import { DateOfBirthEditPage } from "../pages/dateOfBirthEditPage.js";
 
 Given(/^the user has navigated to Check my Answers page$/, async function () {
   const cdPage = new CheckDetailsPage(await this.page);
@@ -23,7 +19,7 @@ When(/^the name entry edit link is clicked$/, async function () {
 });
 
 Then(/^the user is navigated back to the name entry page$/, async function () {
-  const nameEntryPage = new NameEntryPageEdit(await this.page);
+  const nameEntryPage = new NameEntryEditPage(await this.page);
 
   expect(await nameEntryPage.isCurrentPage()).to.be.true;
 
@@ -33,7 +29,7 @@ Then(/^the user is navigated back to the name entry page$/, async function () {
 });
 
 Then(/^the user clicks continue on the Name Entry page$/, async function () {
-  const nameEntryPage = new NameEntryPageEdit(await this.page);
+  const nameEntryPage = new NameEntryEditPage(await this.page);
 
   await nameEntryPage.continue();
 });
@@ -69,7 +65,7 @@ When(/^the DoB edit link is clicked$/, async function () {
 });
 
 Then(/^the user is navigated back to the DoB page$/, async function () {
-  const doBPage = new DateOfBirthPageEdit(await this.page);
+  const doBPage = new DateOfBirthEditPage(await this.page);
 
   expect(await doBPage.isCurrentPage()).to.be.true;
 
@@ -77,7 +73,7 @@ Then(/^the user is navigated back to the DoB page$/, async function () {
 });
 
 Then(/^the user clicks continue on the DoB page$/, async function () {
-  const doBPage = new DateOfBirthPageEdit(await this.page);
+  const doBPage = new DateOfBirthEditPage(await this.page);
 
   await doBPage.continue();
 });

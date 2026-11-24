@@ -1,6 +1,6 @@
-const BaseController = require("hmpo-form-wizard").Controller;
-const { expect } = require("chai");
-const RootController = require("./root.js");
+import wizard from "hmpo-form-wizard";
+import { expect } from "chai";
+import { RootController } from "./root.js";
 
 console.log = sinon.fake();
 
@@ -18,7 +18,7 @@ describe("RootController", () => {
   });
 
   it("should be an instance of BaseController", () => {
-    expect(rootController).to.be.an.instanceOf(BaseController);
+    expect(rootController).to.be.an.instanceOf(wizard.Controller);
   });
 
   describe("saveValues", () => {

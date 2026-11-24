@@ -1,5 +1,5 @@
-const { expect } = require("chai");
-const fields = require("./fields");
+import { expect } from "chai";
+import { fields } from "./fields.js";
 
 const getRule = (fieldConfig, type) =>
   fieldConfig.validate.find((rule) => rule && rule.type === type);
@@ -12,7 +12,8 @@ describe("Fields validation", () => {
 
       it(`${fieldKey} should have a maxlength validator`, () => {
         expect(rule, `${fieldKey} missing maxlength rule`).to.exist;
-        expect(rule.arguments, `${fieldKey} maxlength rule missing arguments`).to.exist;
+        expect(rule.arguments, `${fieldKey} maxlength rule missing arguments`)
+          .to.exist;
         expect(rule.arguments).to.equal(40);
       });
     };

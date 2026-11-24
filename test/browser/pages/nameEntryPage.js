@@ -1,4 +1,4 @@
-module.exports = class PlaywrightDevPage {
+export class NameEntryPage {
   /**
    * @param {import('@playwright/test').Page} page
    */
@@ -93,4 +93,4 @@ module.exports = class PlaywrightDevPage {
   async languageTogglePresent() {
     await this.page.locator("div.govuk-width-container > nav").isVisible();
   }
-};
+}

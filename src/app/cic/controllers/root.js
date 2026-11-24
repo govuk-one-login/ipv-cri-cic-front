@@ -1,6 +1,6 @@
-const { Controller: BaseController } = require("hmpo-form-wizard");
+import wizard from "hmpo-form-wizard";
 
-class RootController extends BaseController {
+export class RootController extends wizard.Controller {
   async saveValues(req, res, next) {
     const sharedClaims = req.session?.shared_claims;
 
@@ -22,5 +22,3 @@ class RootController extends BaseController {
     super.saveValues(req, res, next);
   }
 }
-
-module.exports = RootController;
