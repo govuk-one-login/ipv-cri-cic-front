@@ -1,4 +1,4 @@
-import { expect } from "chai";
+import { describe, it, expect } from "vitest";
 import { fields } from "./fields.js";
 
 const getRule = (fieldConfig, type) =>
@@ -6,19 +6,20 @@ const getRule = (fieldConfig, type) =>
 
 describe("Fields validation", () => {
   describe("Name fields - maxlength", () => {
-    const assertMaxLength = (fieldKey) => {
-      const fieldConfig = fields[fieldKey];
-      const rule = getRule(fieldConfig, "maxlength");
+    it.each(["surname", "firstName", "middleName"])(
+      `%s should have a maxlength validator`,
+      (fieldKey) => {
+        const fieldConfig = fields[fieldKey];
+        const rule = getRule(fieldConfig, "maxlength");
 
-      it(`${fieldKey} should have a maxlength validator`, () => {
-        expect(rule, `${fieldKey} missing maxlength rule`).to.exist;
-        expect(rule.arguments, `${fieldKey} maxlength rule missing arguments`)
-          .to.exist;
-        expect(rule.arguments).to.equal(40);
-      });
-    };
-
-    ["surname", "firstName", "middleName"].forEach(assertMaxLength);
+        expect(rule, `${fieldKey} missing maxlength rule`).not.toBeFalsy();
+        expect(
+          rule.arguments,
+          `${fieldKey} maxlength rule missing arguments`,
+        ).not.toBeFalsy();
+        expect(rule.arguments).toEqual(40);
+      },
+    );
   });
 
   describe("Date of Birth - no maxlength restriction", () => {
@@ -26,17 +27,17 @@ describe("Fields validation", () => {
 
     it("should not have a maxlength validator (avoid truncation while typing)", () => {
       const rule = getRule(dateOfBirth, "maxlength");
-      expect(rule).to.not.exist;
+      expect(rule).toBeFalsy();
     });
 
     it("should still have required + date validators", () => {
-      expect(dateOfBirth.validate.includes("required")).to.equal(true);
-      expect(dateOfBirth.validate.includes("date")).to.equal(true);
+      expect(dateOfBirth.validate.includes("required")).toEqual(true);
+      expect(dateOfBirth.validate.includes("date")).toEqual(true);
     });
 
     it("should still have before + after validators", () => {
-      expect(!!getRule(dateOfBirth, "before")).to.equal(true);
-      expect(!!getRule(dateOfBirth, "after")).to.equal(true);
+      expect(!!getRule(dateOfBirth, "before")).toEqual(true);
+      expect(!!getRule(dateOfBirth, "after")).toEqual(true);
     });
   });
 });

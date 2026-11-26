@@ -1,27 +1,15 @@
-import chai from "chai";
-import sinon from "sinon";
-import sinonChai from "sinon-chai";
-import chaiAsPromised from "chai-as-promised";
+import { vi } from "vitest";
 
 import JourneyModel from "hmpo-form-wizard/lib/journey-model.js";
 import WizardModel from "hmpo-form-wizard/lib/wizard-model.js";
-
-chai.should();
-chai.use(sinonChai);
-chai.use(chaiAsPromised);
-
-const expect = chai.expect;
-
-global.sinon = sinon;
-global.expect = expect;
 
 global.setupDefaultMocks = () => {
   const req = {
     form: { values: {} },
     headers: { "txma-audit-encoded": "dummy-txma-header" },
     axios: {
-      get: sinon.fake(),
-      post: sinon.fake(),
+      get: vi.fn(),
+      post: vi.fn(),
     },
     session: {
       "hmpo-wizard-previous": {},
@@ -40,10 +28,10 @@ global.setupDefaultMocks = () => {
   });
 
   const res = {
-    redirect: sinon.fake(),
+    redirect: vi.fn(),
   };
 
-  const next = sinon.fake();
+  const next = vi.fn();
 
   return {
     req,

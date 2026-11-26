@@ -1,10 +1,9 @@
 import wizard from "hmpo-form-wizard";
-import { expect } from "chai";
-import { afterEach } from "mocha";
+import { vi, describe, beforeEach, afterEach, it, expect } from "vitest";
 import { config } from "../../../lib/config.js";
 import { JourneyTypeController } from "./journeyType.js";
 
-console.log = sinon.fake();
+vi.spyOn(console, "log");
 
 describe("JourneyTypeController", () => {
   const journeyTypeController = new JourneyTypeController({ route: "/test" });
@@ -18,27 +17,26 @@ describe("JourneyTypeController", () => {
     res = setup.res;
     next = setup.next;
     req.session.tokenId = 123456;
-    sinon.stub(console, "error");
+    vi.spyOn(console, "error");
   });
 
   afterEach(() => {
-    console.error.restore();
+    vi.mocked(console.error).mockRestore();
   });
 
   it("should be an instance of BaseController", () => {
-    expect(journeyTypeController).to.be.an.instanceOf(wizard.Controller);
+    expect(journeyTypeController).toBeInstanceOf(wizard.Controller);
   });
 
   describe("saveValues", () => {
     it("should fetch the journey type from the session config endpoint", async () => {
-      req.axios.get = sinon.fake.resolves({
+      vi.spyOn(req.axios, "get").mockResolvedValue({
         data: { journey_type: "f2f" },
       });
 
       await journeyTypeController.saveValues(req, res, next);
 
-      sinon.assert.calledWith(
-        req.axios.get,
+      expect(req.axios.get).toHaveBeenCalledWith(
         `${config.API.PATHS.SESSION_CONFIG}`,
         {
           headers: {
@@ -48,16 +46,19 @@ describe("JourneyTypeController", () => {
         },
       );
       const journeyType = req.sessionModel.get("journeyType");
-      expect(journeyType).to.equal("f2f");
+      expect(journeyType).toEqual("f2f");
     });
 
     it("should handle error if call to session config endpoint fails", async () => {
-      req.axios.get = sinon.fake.rejects("Error");
+      vi.spyOn(req.axios, "get").mockRejectedValue("Request error");
 
       await journeyTypeController.saveValues(req, res, next);
 
-      sinon.assert.calledWith(console.log, "Error fetching journey type");
-      sinon.assert.called(next);
+      expect(console.log).toHaveBeenCalledWith(
+        "Error fetching journey type",
+        "Request error",
+      );
+      expect(next).toHaveBeenCalled();
     });
 
     it("should redirect to /error if session token is missing", async () => {
@@ -65,12 +66,11 @@ describe("JourneyTypeController", () => {
 
       await journeyTypeController.saveValues(req, res, next);
 
-      sinon.assert.calledWith(
-        console.error,
+      expect(console.error).toHaveBeenCalledWith(
         "Missing sessionID, redirecting to /error",
       );
-      sinon.assert.calledWith(res.redirect, "/error");
-      sinon.assert.notCalled(next);
+      expect(res.redirect).toHaveBeenCalledWith("/error");
+      expect(next).not.toHaveBeenCalled();
     });
   });
 });

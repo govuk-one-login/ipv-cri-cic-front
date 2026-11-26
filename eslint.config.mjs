@@ -18,9 +18,6 @@ export default [{
     languageOptions: {
         globals: {
             ...globals.node,
-            ...globals.mocha,
-            sinon: true,
-            expect: true,
             setupDefaultMocks: "readonly",
         },
     },

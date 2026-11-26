@@ -1,8 +1,8 @@
 import wizard from "hmpo-form-wizard";
-import { expect } from "chai";
+import { vi, describe, beforeEach, it, expect } from "vitest";
 import { RootController } from "./root.js";
 
-console.log = sinon.fake();
+vi.spyOn(console, "log");
 
 describe("RootController", () => {
   const rootController = new RootController({ route: "/test" });
@@ -18,7 +18,7 @@ describe("RootController", () => {
   });
 
   it("should be an instance of BaseController", () => {
-    expect(rootController).to.be.an.instanceOf(wizard.Controller);
+    expect(rootController).toBeInstanceOf(wizard.Controller);
   });
 
   describe("saveValues", () => {
@@ -41,13 +41,13 @@ describe("RootController", () => {
       const surname = req.sessionModel.get("surname");
       const dateOfBirth = req.sessionModel.get("dateOfBirth");
 
-      expect(firstName).to.equal("First");
-      expect(surname).to.equal("Last");
-      expect(dateOfBirth).to.equal("1999-03-01");
+      expect(firstName).toEqual("First");
+      expect(surname).toEqual("Last");
+      expect(dateOfBirth).toEqual("1999-03-01");
     });
   });
 
-  it("should save appropriate values to sessionModel with partial shared_claims object", async () => {
+  it("[TODO DUPLICATED TEST] should save appropriate values to sessionModel with partial shared_claims object", async () => {
     req.session.shared_claims = {
       name: [
         {
@@ -66,9 +66,9 @@ describe("RootController", () => {
     const surname = req.sessionModel.get("surname");
     const dateOfBirth = req.sessionModel.get("dateOfBirth");
 
-    expect(firstName).to.equal("First");
-    expect(surname).to.equal("Last");
-    expect(dateOfBirth).to.equal("1999-03-01");
+    expect(firstName).toEqual("First");
+    expect(surname).toEqual("Last");
+    expect(dateOfBirth).toEqual("1999-03-01");
   });
 
   it("should not update sessionModel if no shared_claims attributes present", async () => {
@@ -82,8 +82,8 @@ describe("RootController", () => {
     const surname = req.sessionModel.get("surname");
     const dateOfBirth = req.sessionModel.get("dateOfBirth");
 
-    expect(firstName).to.equal(undefined);
-    expect(surname).to.equal(undefined);
-    expect(dateOfBirth).to.equal(undefined);
+    expect(firstName).toEqual(undefined);
+    expect(surname).toEqual(undefined);
+    expect(dateOfBirth).toEqual(undefined);
   });
 });
