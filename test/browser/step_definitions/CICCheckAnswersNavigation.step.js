@@ -1,5 +1,5 @@
 import { Given, When, Then } from "@cucumber/cucumber";
-import { expect } from "chai";
+import assert from "node:assert";
 import { CheckDetailsPage } from "../pages/checkDetailsPage.js";
 import { DateOfBirthPage } from "../pages/dateOfBirthPage.js";
 import { NameEntryPage } from "../pages/nameEntryPage.js";
@@ -9,7 +9,7 @@ Given(
   async function () {
     const cdPage = new CheckDetailsPage(await this.page);
 
-    expect(await cdPage.isCurrentPage()).to.be.true;
+    assert.strictEqual(await cdPage.isCurrentPage(), true);
     await this.page.waitForLoadState("networkidle");
   },
 );
@@ -26,14 +26,14 @@ When(
 Then(/^the user is navigated back to the DOB Entry page$/, async function () {
   const doBPage = new DateOfBirthPage(await this.page);
 
-  expect(await doBPage.isCurrentPage()).to.be.true;
+  assert.strictEqual(await doBPage.isCurrentPage(), true);
   await this.page.waitForLoadState("networkidle");
 });
 
 Given(/^the user has navigated to the DoB Entry page$/, async function () {
   const dobPage = new DateOfBirthPage(await this.page);
 
-  expect(await dobPage.isCurrentPage()).to.be.true;
+  assert.strictEqual(await dobPage.isCurrentPage(), true);
   await this.page.waitForLoadState("networkidle");
 });
 
@@ -48,7 +48,7 @@ Then(
   async function () {
     const nameEntry = new NameEntryPage(await this.page);
 
-    expect(await nameEntry.isCurrentPage()).to.be.true;
+    assert.strictEqual(await nameEntry.isCurrentPage(), true);
     await this.page.waitForLoadState("networkidle");
   },
 );

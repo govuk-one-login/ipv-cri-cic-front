@@ -9,7 +9,7 @@ import { aws4Interceptor } from "aws4-axios";
 import { unmarshall } from "@aws-sdk/util-dynamodb";
 import { fromNodeProviderChain } from "@aws-sdk/credential-providers";
 import { XMLParser } from "fast-xml-parser";
-import { expect } from "chai";
+import assert from "node:assert";
 import Ajv from "ajv";
 import AjvFormats from "ajv-formats";
 
@@ -133,7 +133,7 @@ export class TestHarness {
       try {
         const validate = ajv.getSchema(schemaName);
         if (validate) {
-          expect(validate(currentEventBody)).to.be.true;
+          assert.strictEqual(validate(currentEventBody), true);
         } else {
           throw new Error(`Could not find schema ${schemaName}`);
         }

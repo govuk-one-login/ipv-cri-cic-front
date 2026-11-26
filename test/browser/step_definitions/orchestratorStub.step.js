@@ -1,6 +1,6 @@
 import { Given, Then, When } from "@cucumber/cucumber";
 import { randomUUID } from "node:crypto";
-import { expect } from "chai";
+import assert from "node:assert";
 import { OrchestratorStubPage } from "../pages/orchestratorStubPage.js";
 
 Given(
@@ -64,7 +64,7 @@ Then(
   { timeout: 4 * 50000 },
   async function () {
     const stubPage = new OrchestratorStubPage(this.page);
-    expect(await stubPage.returnNumberOfDocuments()).to.equal(7);
+    assert.strictEqual(await stubPage.returnNumberOfDocuments(), 7);
 
     await stubPage.navigateToDocumentSelection();
   },
@@ -75,7 +75,7 @@ Then(
   { timeout: 4 * 50000 },
   async function () {
     const stubPage = new OrchestratorStubPage(this.page);
-    expect(await stubPage.returnNumberOfDocuments()).to.equal(3);
+    assert.strictEqual(await stubPage.returnNumberOfDocuments(), 3);
   },
 );
 
@@ -92,5 +92,5 @@ When(
 
 Then("the user should be shown the F2F handoff page", async function () {
   const stubPage = new OrchestratorStubPage(this.page);
-  expect(await stubPage.isF2FHandoffPage()).to.be.true;
+  assert.strictEqual(await stubPage.isF2FHandoffPage(), true);
 });

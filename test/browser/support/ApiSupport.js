@@ -1,5 +1,5 @@
 import axios from "axios";
-import { expect } from "chai";
+import assert from "node:assert";
 import userData from "../support/cicUserData.json" with { type: "json" };
 
 export class ApiSupport {
@@ -60,21 +60,25 @@ export class ApiSupport {
     const rawHead = jwtArray[0];
     const rawBody = jwtArray[1];
     let decodeRawHead = Buffer.from(rawHead, "base64");
-    expect(JSON.parse(decodeRawHead).alg).to.equal("ES256");
-    expect(JSON.parse(decodeRawHead).typ).to.equal("JWT");
+    assert.strictEqual(JSON.parse(decodeRawHead).alg, "ES256");
+    assert.strictEqual(JSON.parse(decodeRawHead).typ, "JWT");
 
     const decodeRawBody = Buffer.from(rawBody, "base64");
-    expect(
+    assert.strictEqual(
       JSON.parse(decodeRawBody).vc.credentialSubject.name[0].nameParts[0].value,
-    ).to.equal(userData.firstName);
-    expect(
+      userData.firstName,
+    );
+    assert.strictEqual(
       JSON.parse(decodeRawBody).vc.credentialSubject.name[0].nameParts[1].value,
-    ).to.equal(userData.middleName);
-    expect(
+      userData.middleName,
+    );
+    assert.strictEqual(
       JSON.parse(decodeRawBody).vc.credentialSubject.name[0].nameParts[2].value,
-    ).to.equal(userData.lastName);
-    expect(
+      userData.lastName,
+    );
+    assert.strictEqual(
       JSON.parse(decodeRawBody).vc.credentialSubject.birthDate[0].value,
-    ).to.equal(userData.dob);
+      userData.dob,
+    );
   }
 }

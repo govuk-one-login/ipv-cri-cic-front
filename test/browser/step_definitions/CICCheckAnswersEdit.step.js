@@ -1,5 +1,5 @@
 import { Given, When, Then } from "@cucumber/cucumber";
-import { expect } from "chai";
+import assert from "node:assert";
 import { CheckDetailsPage } from "../pages/checkDetailsPage.js";
 import { NameEntryEditPage } from "../pages/nameEntryEditPage.js";
 import { DateOfBirthPage } from "../pages/dateOfBirthPage.js";
@@ -8,7 +8,7 @@ import { DateOfBirthEditPage } from "../pages/dateOfBirthEditPage.js";
 Given(/^the user has navigated to Check my Answers page$/, async function () {
   const cdPage = new CheckDetailsPage(await this.page);
 
-  expect(await cdPage.isCurrentPage()).to.be.true;
+  assert.strictEqual(await cdPage.isCurrentPage(), true);
   await this.page.waitForLoadState("networkidle");
 });
 
@@ -21,7 +21,7 @@ When(/^the name entry edit link is clicked$/, async function () {
 Then(/^the user is navigated back to the name entry page$/, async function () {
   const nameEntryPage = new NameEntryEditPage(await this.page);
 
-  expect(await nameEntryPage.isCurrentPage()).to.be.true;
+  assert.strictEqual(await nameEntryPage.isCurrentPage(), true);
 
   //await nameEntryPage.clearFields();
   await nameEntryPage.enterFirstName();
@@ -39,7 +39,7 @@ Then(
   async function () {
     const cdPage = new CheckDetailsPage(await this.page);
 
-    expect(await cdPage.isCurrentPage()).to.be.true;
+    assert.strictEqual(await cdPage.isCurrentPage(), true);
   },
 );
 
@@ -54,7 +54,7 @@ Then(
   async function () {
     const doBPage = new DateOfBirthPage(await this.page);
 
-    expect(await doBPage.isCurrentPage()).to.be.true;
+    assert.strictEqual(await doBPage.isCurrentPage(), true);
   },
 );
 
@@ -67,7 +67,7 @@ When(/^the DoB edit link is clicked$/, async function () {
 Then(/^the user is navigated back to the DoB page$/, async function () {
   const doBPage = new DateOfBirthEditPage(await this.page);
 
-  expect(await doBPage.isCurrentPage()).to.be.true;
+  assert.strictEqual(await doBPage.isCurrentPage(), true);
 
   await doBPage.dateOfBirth();
 });
@@ -81,13 +81,13 @@ Then(/^the user clicks continue on the DoB page$/, async function () {
 Then(/^the user is navigated back to the previous page/, async function () {
   const doBPage = new DateOfBirthPage(await this.page);
 
-  expect(await doBPage.isCurrentPage()).to.be.true;
+  assert.strictEqual(await doBPage.isCurrentPage(), true);
 });
 
 When(/^the user clicks the Continue or Back button$/, async function () {
   const cdPage = new CheckDetailsPage(await this.page);
 
-  expect(await cdPage.isCurrentPage()).to.be.true;
+  assert.strictEqual(await cdPage.isCurrentPage(), true);
 
   await cdPage.continue();
 });
@@ -104,5 +104,5 @@ Then(/^the appropriate error page is retrieved and shown$/, async function () {
   console.log(">>inlineError: ", inlineError);
 
   console.log(">>error: ", error);
-  // expect(await error).to.equal(inlineError);
+  // assert.strictEqual(await error, inlineError);
 });

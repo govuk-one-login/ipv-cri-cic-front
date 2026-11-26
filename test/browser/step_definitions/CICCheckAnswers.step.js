@@ -1,10 +1,10 @@
 import { Given, When, Then } from "@cucumber/cucumber";
-import { expect } from "chai";
+import assert from "node:assert";
 import { CheckDetailsPage } from "../pages/checkDetailsPage.js";
 
 Given(/^the user has completed the previous CIC screens$/, async function () {
   const cpdPage = new CheckDetailsPage(await this.page);
-  expect(await cpdPage.isCurrentPage()).to.be.true;
+  assert.strictEqual(await cpdPage.isCurrentPage(), true);
   await this.page.waitForLoadState("networkidle");
 });
 
@@ -12,7 +12,7 @@ Given(
   /^the user has completed the previous CIC No Photo ID screens$/,
   async function () {
     const cpdPage = new CheckDetailsPage(await this.page);
-    expect(await cpdPage.isCurrentPageNoPhotoID()).to.be.true;
+    assert.strictEqual(await cpdPage.isCurrentPageNoPhotoID(), true);
     await this.page.waitForLoadState("networkidle");
   },
 );
@@ -21,7 +21,7 @@ Given(
   /^the user has completed the previous CIC Low Confidence screens$/,
   async function () {
     const cpdPage = new CheckDetailsPage(await this.page);
-    expect(await cpdPage.isCurrentPageLowConfidence()).to.be.true;
+    assert.strictEqual(await cpdPage.isCurrentPageLowConfidence(), true);
     await this.page.waitForLoadState("networkidle");
   },
 );
@@ -42,9 +42,9 @@ Then(
   "session details are correctly stored in DB for a {string} journey",
   { timeout: 4 * 50000 },
   async function (journeyType) {
-    expect(this.sessionId).to.not.be.null;
+    assert.notStrictEqual(this.sessionId, null);
     console.log("Session ID:" + this.sessionId);
-    expect(this.authSessionState).to.equal("CIC_AUTH_CODE_ISSUED");
-    expect(this.journey).to.equal(journeyType);
+    assert.strictEqual(this.authSessionState, "CIC_AUTH_CODE_ISSUED");
+    assert.strictEqual(this.journey, journeyType);
   },
 );

@@ -1,5 +1,5 @@
 import { Given, When, Then } from "@cucumber/cucumber";
-import { expect } from "chai";
+import assert from "node:assert";
 import userData from "../support/cicUserData.json" with { type: "json" };
 import { DateOfBirthPage } from "../pages/dateOfBirthPage.js";
 import { CheckDetailsPage } from "../pages/checkDetailsPage.js";
@@ -19,7 +19,7 @@ When(/^the user clicks the DoB continue button$/, async function () {
 Then(/^they are routed to the Check My Answers Screen$/, async function () {
   const cdPage = new CheckDetailsPage(await this.page);
 
-  expect(await cdPage.isCurrentPage()).to.be.true;
+  assert.strictEqual(await cdPage.isCurrentPage(), true);
   await this.page.waitForLoadState("networkidle");
 });
 
@@ -28,7 +28,7 @@ Then(
   async function () {
     const cdPage = new CheckDetailsPage(await this.page);
 
-    expect(await cdPage.isCurrentPageNoPhotoID()).to.be.true;
+    assert.strictEqual(await cdPage.isCurrentPageNoPhotoID(), true);
     await this.page.waitForLoadState("networkidle");
   },
 );
@@ -38,7 +38,7 @@ Then(
   async function () {
     const cdPage = new CheckDetailsPage(await this.page);
 
-    expect(await cdPage.isCurrentPageLowConfidence()).to.be.true;
+    assert.strictEqual(await cdPage.isCurrentPageLowConfidence(), true);
     await this.page.waitForLoadState("networkidle");
   },
 );
@@ -57,12 +57,12 @@ Then(
   async function () {
     const dobPage = new DateOfBirthPage(await this.page);
 
-    expect(await dobPage.isCurrentPage()).to.be.true;
+    assert.strictEqual(await dobPage.isCurrentPage(), true);
 
     const inlineError = "There is a problem";
 
     const error = await dobPage.checkErrorText();
 
-    expect(await error).to.equal(inlineError);
+    assert.strictEqual(await error, inlineError);
   },
 );

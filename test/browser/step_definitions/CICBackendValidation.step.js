@@ -1,5 +1,5 @@
 import { Given, Then, When } from "@cucumber/cucumber";
-import { expect } from "chai";
+import assert from "node:assert";
 import { ApiSupport } from "../support/ApiSupport.js";
 import { TestHarness } from "../support/TestHarness.js";
 
@@ -12,7 +12,7 @@ Given(
       this.authCode,
     );
 
-    expect(authCodeDetails.authorizationCode).to.equal(this.authCode);
+    assert.strictEqual(authCodeDetails.authorizationCode, this.authCode);
     this.sessionId = authCodeDetails.sessionId;
     const session = await testHarness.getSession(this.sessionId);
     this.authSessionState = session.authSessionState;
