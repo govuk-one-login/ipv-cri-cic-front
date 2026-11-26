@@ -1,6 +1,6 @@
-const moment = require("moment");
+import moment from "moment";
 
-function formatDate(date, format, language) {
+export function formatDate(date, format, language) {
   const isValid = moment(date, format, true).isValid();
 
   if (isValid) {
@@ -18,5 +18,3 @@ function formatDate(date, format, language) {
     return "";
   }
 }
-
-module.exports = { formatDate };

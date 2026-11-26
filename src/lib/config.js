@@ -1,6 +1,8 @@
-require("dotenv").config();
+import { config as dotenvConfig } from "dotenv";
 
-module.exports = {
+dotenvConfig();
+
+export const config = {
   PACKAGE_NAME: "di-ipv-cri-cic-front",
   API: {
     BASE_URL:
@@ -32,7 +34,8 @@ module.exports = {
       GA4_SELECT_CONTENT_ENABLED:
         process.env.GA4_SELECT_CONTENT_ENABLED || true,
     },
-    DEVICE_INTELLIGENCE_DOMAIN: process.env.DEVICE_INTELLIGENCE_DOMAIN || "localhost",
+    DEVICE_INTELLIGENCE_DOMAIN:
+      process.env.DEVICE_INTELLIGENCE_DOMAIN || "localhost",
   },
   PORT: process.env.PORT || 5020,
   SESSION_SECRET: process.env.SESSION_SECRET,

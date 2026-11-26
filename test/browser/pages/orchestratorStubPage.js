@@ -1,12 +1,15 @@
-module.exports = class PlaywrightDevPage {
+import KennethDecerquiera from "../support/KennethDecerquiera.json" with { type: "json" };
+import AlexandraElegba from "../support/AlexandraElegba.json" with { type: "json" };
+
+export class OrchestratorStubPage {
   /**
    * @param {import('@playwright/test').Page} page
    */
   constructor(page) {
     this.page = page;
     this.ORCHESTRATOR_STUB_URL = process.env.ORCHESTRATOR_STUB_URL;
-    this.KENNETH_DECERQUIERA = require("../support/KennethDecerquiera.json");
-    this.ALEXANDRA_ELEGBA = require("../support/AlexandraElegba.json");
+    this.KENNETH_DECERQUIERA = KennethDecerquiera;
+    this.ALEXANDRA_ELEGBA = AlexandraElegba;
     this.handoff_path = "/ipv/page/page-face-to-face-handoff";
   }
 
@@ -114,4 +117,4 @@ module.exports = class PlaywrightDevPage {
     const { pathname } = new URL(this.page.url());
     return pathname === this.handoff_path;
   }
-};
+}

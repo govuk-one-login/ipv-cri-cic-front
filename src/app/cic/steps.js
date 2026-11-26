@@ -1,22 +1,22 @@
-const nameEntry = require("./controllers/nameEntry");
-const dobEntry = require("./controllers/dateOfBirth");
-const checkDetails = require("./controllers/checkDetails");
-const root = require("./controllers/root");
-const journeyType = require("./controllers/journeyType");
+import { RootController } from "./controllers/root.js";
+import { JourneyTypeController } from "./controllers/journeyType.js";
+import { NameEntryController } from "./controllers/nameEntry.js";
+import { DateOfBirthController } from "./controllers/dateOfBirth.js";
+import { CheckDetailsController } from "./controllers/checkDetails.js";
 
-module.exports = {
+export const steps = {
   "/": {
     resetJourney: true,
     reset: true,
     entryPoint: true,
     skip: true,
-    controller: root,
+    controller: RootController,
     next: "journey-type",
   },
   "/journey-type": {
     entryPoint: true,
     skip: true,
-    controller: journeyType,
+    controller: JourneyTypeController,
     next: [
       {
         field: "journeyType",
@@ -39,54 +39,54 @@ module.exports = {
     editable: true,
     editBackStep: "confirm-details",
     fields: ["surname", "firstName", "middleName"],
-    controller: nameEntry,
+    controller: NameEntryController,
     next: "enter-date-birth",
   },
   "/enter-name-no-photo-id": {
     editable: true,
     editBackStep: "confirm-details-no-photo-id",
     fields: ["surname", "firstName", "middleName"],
-    controller: nameEntry,
+    controller: NameEntryController,
     next: "enter-date-birth-no-photo-id",
   },
   "/enter-name-hmrc-check": {
     editable: true,
     editBackStep: "confirm-details-hmrc-check",
     fields: ["surname", "firstName", "middleName"],
-    controller: nameEntry,
+    controller: NameEntryController,
     next: "enter-date-birth-hmrc-check",
   },
   "/enter-date-birth": {
     editable: true,
     editBackStep: "confirm-details",
     fields: ["dateOfBirth"],
-    controller: dobEntry,
+    controller: DateOfBirthController,
     next: "confirm-details",
   },
   "/enter-date-birth-no-photo-id": {
     editable: true,
     editBackStep: "confirm-details-no-photo-id",
     fields: ["dateOfBirth"],
-    controller: dobEntry,
+    controller: DateOfBirthController,
     next: "confirm-details-no-photo-id",
   },
   "/enter-date-birth-hmrc-check": {
     editable: true,
     editBackStep: "confirm-details-hmrc-check",
     fields: ["dateOfBirth"],
-    controller: dobEntry,
+    controller: DateOfBirthController,
     next: "confirm-details-hmrc-check",
   },
   "/confirm-details": {
-    controller: checkDetails,
+    controller: CheckDetailsController,
     next: "done",
   },
   "/confirm-details-no-photo-id": {
-    controller: checkDetails,
+    controller: CheckDetailsController,
     next: "done",
   },
   "/confirm-details-hmrc-check": {
-    controller: checkDetails,
+    controller: CheckDetailsController,
     next: "done",
   },
   "/done": {

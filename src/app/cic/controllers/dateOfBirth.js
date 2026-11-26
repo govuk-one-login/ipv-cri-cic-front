@@ -1,11 +1,10 @@
-const BaseController = require("hmpo-form-wizard").Controller;
-const DateControllerMixin = require("@govuk-one-login/frontend-ui").mixins.Date;
+import wizard from "hmpo-form-wizard";
+import { mixins } from "@govuk-one-login/frontend-ui";
 
-const DateController = DateControllerMixin(BaseController);
+const DateController = mixins.Date(wizard.Controller);
 
-class DateOfBirthController extends DateController {
+export class DateOfBirthController extends DateController {
   _padYear(value) {
     return value;
   }
 }
-module.exports = DateOfBirthController;

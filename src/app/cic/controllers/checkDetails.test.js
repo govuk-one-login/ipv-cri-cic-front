@@ -1,11 +1,7 @@
-const BaseController = require("hmpo-form-wizard").Controller;
-const { expect } = require("chai");
-const CheckDetailsController = require("./checkDetails");
-const {
-  API: {
-    PATHS: { SAVE_CICDATA },
-  },
-} = require("../../../lib/config");
+import wizard from "hmpo-form-wizard";
+import { describe, beforeEach, afterEach, it, expect, vi } from "vitest";
+import { config } from "../../../lib/config.js";
+import { CheckDetailsController } from "./checkDetails.js";
 
 describe("CheckDetails controller", () => {
   const checkDetailsController = new CheckDetailsController({ route: "/test" });
@@ -20,35 +16,34 @@ describe("CheckDetails controller", () => {
     next = setup.next;
 
     req.session.tokenId = 123456;
-    sinon.stub(console, "error");
+    vi.spyOn(console, "error");
   });
 
   afterEach(() => {
-    console.error.restore();
+    vi.mocked(console.error).mockRestore();
   });
 
   it("should be an instance of BaseController", () => {
-    expect(checkDetailsController).to.be.an.instanceOf(BaseController);
+    expect(checkDetailsController).to.be.an.instanceOf(wizard.Controller);
   });
 
   describe("#locals", () => {
     let prototypeSpy;
 
     beforeEach(() => {
-      prototypeSpy = sinon.stub(BaseController.prototype, "locals");
-      BaseController.prototype.locals.callThrough();
+      prototypeSpy = vi.spyOn(wizard.Controller.prototype, "locals");
     });
 
     afterEach(() => {
-      prototypeSpy.restore();
+      prototypeSpy.mockRestore();
     });
 
-    context("with error on callback", () => {
+    describe("with error on callback", () => {
       let error;
       let locals;
       let superLocals;
 
-      beforeEach(async () => {
+      beforeEach(() => {
         error = new Error("Random error");
         superLocals = {
           superKey: "superValue",
@@ -58,9 +53,11 @@ describe("CheckDetails controller", () => {
           key: "value",
         };
         res.locals = locals;
-        BaseController.prototype.locals.yields(error, superLocals);
+        prototypeSpy.mockImplementation((req, res, next) => {
+          next(error, superLocals);
+        });
 
-        await checkDetailsController.locals(req, res, next);
+        checkDetailsController.locals(req, res, next);
       });
 
       it("should call callback with error and existing locals", () => {
@@ -70,9 +67,8 @@ describe("CheckDetails controller", () => {
   });
 
   describe("#saveValues", () => {
-    context("on journey save cic data", () => {
+    describe("on journey save cic data", () => {
       it("should call claimedIdentity endpoint", async () => {
-
         const givenNamesVal = req.sessionModel.get("middleName")
           ? req.sessionModel.get("firstName") +
             " " +
@@ -86,13 +82,13 @@ describe("CheckDetails controller", () => {
 
         await checkDetailsController.saveValues(req, res, next);
         expect(next).to.have.been.calledOnce;
-        expect(req.axios.post).to.have.been.calledWithExactly(
-          SAVE_CICDATA,
+        expect(req.axios.post).toHaveBeenCalledWith(
+          config.API.PATHS.SAVE_CICDATA,
           cicData,
           {
             headers: {
-              "txma-audit-encoded":"dummy-txma-header",
-              "x-govuk-signin-session-id":req.session.tokenId,
+              "txma-audit-encoded": "dummy-txma-header",
+              "x-govuk-signin-session-id": req.session.tokenId,
             },
           },
         );
@@ -102,11 +98,10 @@ describe("CheckDetails controller", () => {
         req.session.tokenId = null;
         await checkDetailsController.saveValues(req, res, next);
 
-        sinon.assert.calledWith(
-          console.error,
+        expect(console.error).toHaveBeenCalledWith(
           "Missing sessionID, redirecting to /error",
         );
-        sinon.assert.calledWith(res.redirect, "/error");
+        expect(res.redirect).toHaveBeenCalledWith("/error");
       });
     });
   });

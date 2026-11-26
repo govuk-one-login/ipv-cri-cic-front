@@ -1,18 +1,10 @@
-const { Given, When, Then } = require("@cucumber/cucumber");
-
-const { expect } = require("chai");
-
-const { injectAxe } = require("axe-playwright");
-
-const axe = require('axe-core');
-
-const {
-  NameEntryPage,
-  DateOfBirthPage,
-  EuDrivingLicenceDetailsPageValid,
-} = require("../pages");
-
-const userData = require("../support/cicUserData.json");
+import { Given, When, Then } from "@cucumber/cucumber";
+import assert from "node:assert";
+import { injectAxe } from "axe-playwright";
+import axe from "axe-core";
+import userData from "../support/cicUserData.json" with { type: "json" };
+import { NameEntryPage } from "../pages/nameEntryPage.js";
+import { DateOfBirthPage } from "../pages/dateOfBirthPage.js";
 
 Given(
   /^there has been an entry into the surname and first name fields$/,
@@ -25,19 +17,20 @@ Given(
   },
 );
 
-Given(
-  /^the page should conform to WCAG 2.2 AA guidelines$/,
-  async function () {
-    await injectAxe(this.page);
-    // Run Axe for WCAG 2.2 AA rules
-    const wcagResults = await this.page.evaluate(() => {
-      return axe.run({
-        runOnly: ["wcag2aa"]
-      });
+Given(/^the page should conform to WCAG 2.2 AA guidelines$/, async function () {
+  await injectAxe(this.page);
+  // Run Axe for WCAG 2.2 AA rules
+  const wcagResults = await this.page.evaluate(() => {
+    return axe.run({
+      runOnly: ["wcag2aa"],
     });
-    expect(wcagResults.violations, "WCAG 2.2 AAA violations found").to.be.empty;
-  },
-);
+  });
+  assert.strictEqual(
+    wcagResults.violations.length,
+    0,
+    "WCAG 2.2 AAA violations found",
+  );
+});
 
 When(/^the user clicks the GOV UK support Link$/, async function () {
   const nameEntryPage = new NameEntryPage(await this.page);
@@ -65,8 +58,10 @@ Then(/^the user clicks the character Details Link$/, async function () {
 Then(
   /^they should be redirected to the GOV UK support page$/,
   async function () {
-    expect(await this.supportTab.url()).to.contain(
-      "https://home.account.gov.uk/contact-gov-uk-one-login",
+    assert.ok(
+      (await this.supportTab.url()).includes(
+        "https://home.account.gov.uk/contact-gov-uk-one-login",
+      ),
     );
   },
 );
@@ -76,7 +71,7 @@ Then(
   async function () {
     const dobPage = new DateOfBirthPage(await this.page);
 
-    expect(await dobPage.isCurrentPage()).to.be.true;
+    assert.strictEqual(await dobPage.isCurrentPage(), true);
     await this.page.waitForLoadState("networkidle");
   },
 );
@@ -86,7 +81,7 @@ Then(
   async function () {
     const dobPage = new DateOfBirthPage(await this.page);
 
-    expect(await dobPage.isCurrentPageNoPhotoID()).to.be.true;
+    assert.strictEqual(await dobPage.isCurrentPageNoPhotoID(), true);
     await this.page.waitForLoadState("networkidle");
   },
 );
@@ -96,7 +91,7 @@ Then(
   async function () {
     const dobPage = new DateOfBirthPage(await this.page);
 
-    expect(await dobPage.isCurrentPageLowConfidence()).to.be.true;
+    assert.strictEqual(await dobPage.isCurrentPageLowConfidence(), true);
     await this.page.waitForLoadState("networkidle");
   },
 );
@@ -121,20 +116,20 @@ Then(
   async function () {
     const nameEntryPage = new NameEntryPage(await this.page);
 
-    expect(await nameEntryPage.isCurrentPage()).to.be.true;
+    assert.strictEqual(await nameEntryPage.isCurrentPage(), true);
 
     const inlineError = "There is a problem";
 
     const error = await nameEntryPage.checkErrorText();
 
-    expect(await error).to.equal(inlineError);
+    assert.strictEqual(await error, inlineError);
   },
 );
 
 Given(/^the user has navigated to the Name Entry screen$/, async function () {
   const nameEntryPage = new NameEntryPage(await this.page);
 
-  expect(await nameEntryPage.isCurrentPage()).to.be.true;
+  assert.strictEqual(await nameEntryPage.isCurrentPage(), true);
 });
 
 When(/^the Back link is clicked on the Name Entry screen$/, async function () {
@@ -142,14 +137,3 @@ When(/^the Back link is clicked on the Name Entry screen$/, async function () {
 
   await nameEntryPage.back();
 });
-
-Then(
-  /^the user is navigated back to the screen that they came from$/,
-  async function () {
-    const euDLDetailsPage = new EuDrivingLicenceDetailsPageValid(
-      await this.page,
-    );
-
-    expect(await euDLDetailsPage.isCurrentPage()).to.be.true;
-  },
-);

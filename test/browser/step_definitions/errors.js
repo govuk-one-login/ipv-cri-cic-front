@@ -1,8 +1,6 @@
-const { When, Then } = require("@cucumber/cucumber");
-
-const { expect } = require("chai");
-
-const { ErrorPage } = require("../pages");
+import { When, Then } from "@cucumber/cucumber";
+import assert from "node:assert";
+import { ErrorPage } from "../pages/errorPage.js";
 
 When("there is an immediate error", () => {});
 
@@ -11,5 +9,5 @@ Then("they should see the unrecoverable error page", async function () {
 
   const errorTitle = await errorPage.getErrorTitle();
 
-  expect(errorTitle).to.equal(errorPage.getSomethingWentWrongMessage());
+  assert.strictEqual(errorTitle, errorPage.getSomethingWentWrongMessage());
 });

@@ -1,10 +1,7 @@
-const { Given, Then, When } = require("@cucumber/cucumber");
-
-const { OrchestratorStubPage } = require("../pages");
-
-const { v4 } = require("uuid");
-
-const { expect } = require("chai");
+import { Given, Then, When } from "@cucumber/cucumber";
+import { randomUUID } from "node:crypto";
+import assert from "node:assert";
+import { OrchestratorStubPage } from "../pages/orchestratorStubPage.js";
 
 Given(
   "the user navigates to the Orchestrator Stub Page",
@@ -20,7 +17,7 @@ When(
   { timeout: 4 * 50000 },
   async function () {
     const stubPage = new OrchestratorStubPage(this.page);
-    const uuid = v4();
+    const uuid = randomUUID();
     await stubPage.fullJourneyRoute(uuid);
   },
 );
@@ -67,7 +64,7 @@ Then(
   { timeout: 4 * 50000 },
   async function () {
     const stubPage = new OrchestratorStubPage(this.page);
-    expect(await stubPage.returnNumberOfDocuments()).to.equal(7);
+    assert.strictEqual(await stubPage.returnNumberOfDocuments(), 7);
 
     await stubPage.navigateToDocumentSelection();
   },
@@ -78,7 +75,7 @@ Then(
   { timeout: 4 * 50000 },
   async function () {
     const stubPage = new OrchestratorStubPage(this.page);
-    expect(await stubPage.returnNumberOfDocuments()).to.equal(3);
+    assert.strictEqual(await stubPage.returnNumberOfDocuments(), 3);
   },
 );
 
@@ -95,5 +92,5 @@ When(
 
 Then("the user should be shown the F2F handoff page", async function () {
   const stubPage = new OrchestratorStubPage(this.page);
-  expect(await stubPage.isF2FHandoffPage()).to.be.true;
+  assert.strictEqual(await stubPage.isF2FHandoffPage(), true);
 });

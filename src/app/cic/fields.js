@@ -1,6 +1,6 @@
-const { nameMaxLength } = require("./validators/customValidators");
+import { nameMaxLength } from "./validators/customValidators.js";
 
-module.exports = {
+export const fields = {
   surname: {
     type: "text",
     journeyKey: "surname",

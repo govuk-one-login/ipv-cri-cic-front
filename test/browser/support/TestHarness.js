@@ -1,17 +1,18 @@
-const CIC_CRI_AUTH_CODE_ISSUED_SCHEMA = require("../support/CIC_CRI_AUTH_CODE_ISSUED_SCHEMA.json");
-const CIC_CRI_END_SCHEMA = require("../support/CIC_CRI_END_SCHEMA.json");
-const CIC_CRI_START_BANK_ACCOUNT_SCHEMA = require("../support/CIC_CRI_START_BANK_ACCOUNT_SCHEMA.json");
-const CIC_CRI_START_LOW_CONFIDENCE_SCHEMA = require("../support/CIC_CRI_START_LOW_CONFIDENCE_SCHEMA.json");
-const CIC_CRI_START_SCHEMA = require("../support/CIC_CRI_START_SCHEMA.json");
-const CIC_CRI_VC_ISSUED_SCHEMA = require("../support/CIC_CRI_VC_ISSUED_SCHEMA.json");
-const axios = require("axios");
-const aws4Interceptor = require("aws4-axios").aws4Interceptor;
-const { unmarshall } = require("@aws-sdk/util-dynamodb");
-const { fromNodeProviderChain } = require("@aws-sdk/credential-providers");
-const { XMLParser } = require("fast-xml-parser");
-const { expect } = require("chai");
-const Ajv = require("ajv").default;
-const AjvFormats = require("ajv-formats");
+import CIC_CRI_AUTH_CODE_ISSUED_SCHEMA from "../support/CIC_CRI_AUTH_CODE_ISSUED_SCHEMA.json" with { type: "json" };
+import CIC_CRI_END_SCHEMA from "../support/CIC_CRI_END_SCHEMA.json" with { type: "json" };
+import CIC_CRI_START_BANK_ACCOUNT_SCHEMA from "../support/CIC_CRI_START_BANK_ACCOUNT_SCHEMA.json" with { type: "json" };
+import CIC_CRI_START_LOW_CONFIDENCE_SCHEMA from "../support/CIC_CRI_START_LOW_CONFIDENCE_SCHEMA.json" with { type: "json" };
+import CIC_CRI_START_SCHEMA from "../support/CIC_CRI_START_SCHEMA.json" with { type: "json" };
+import CIC_CRI_VC_ISSUED_SCHEMA from "../support/CIC_CRI_VC_ISSUED_SCHEMA.json" with { type: "json" };
+import axios from "axios";
+import { aws4Interceptor } from "aws4-axios";
+import { unmarshall } from "@aws-sdk/util-dynamodb";
+import { fromNodeProviderChain } from "@aws-sdk/credential-providers";
+import { XMLParser } from "fast-xml-parser";
+import assert from "node:assert";
+import Ajv from "ajv";
+import AjvFormats from "ajv-formats";
+
 const ajv = new Ajv({ strictTuples: false });
 ajv.addSchema(
   CIC_CRI_AUTH_CODE_ISSUED_SCHEMA,
@@ -30,7 +31,7 @@ ajv.addSchema(CIC_CRI_START_SCHEMA, "CIC_CRI_START_SCHEMA");
 ajv.addSchema(CIC_CRI_VC_ISSUED_SCHEMA, "CIC_CRI_VC_ISSUED_SCHEMA");
 AjvFormats(ajv);
 
-module.exports = class TestHarness {
+export class TestHarness {
   constructor() {
     this.HARNESS_API_INSTANCE = axios.create({
       baseURL: process.env["TEST_HARNESS_URL"],
@@ -132,7 +133,7 @@ module.exports = class TestHarness {
       try {
         const validate = ajv.getSchema(schemaName);
         if (validate) {
-          expect(validate(currentEventBody)).to.be.true;
+          assert.strictEqual(validate(currentEventBody), true);
         } else {
           throw new Error(`Could not find schema ${schemaName}`);
         }
@@ -146,4 +147,4 @@ module.exports = class TestHarness {
       );
     }
   }
-};
+}

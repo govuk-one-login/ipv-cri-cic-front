@@ -1,14 +1,12 @@
-const BaseController = require("hmpo-form-wizard").Controller;
-const DateControllerMixin = require("@govuk-one-login/frontend-ui").mixins.Date;
-const { formatDate } = require("../utils");
-const { API } = require("../../../lib/config");
-const {
-  createPersonalDataHeaders,
-} = require("@govuk-one-login/frontend-passthrough-headers");
+import wizard from "hmpo-form-wizard";
+import { mixins } from "@govuk-one-login/frontend-ui";
+import { formatDate } from "../utils.js";
+import { config } from "../../../lib/config.js";
+import { createPersonalDataHeaders } from "@govuk-one-login/frontend-passthrough-headers";
 
-const DateController = DateControllerMixin(BaseController);
+const DateController = mixins.Date(wizard.Controller);
 
-class CheckDetailsController extends DateController {
+export class CheckDetailsController extends DateController {
   locals(req, res, callback) {
     super.locals(req, res, (err, locals) => {
       if (err) {
@@ -60,12 +58,19 @@ class CheckDetailsController extends DateController {
     const tokenId = req.session.tokenId;
 
     if (tokenId) {
-      const resp = await axios.post(`${API.PATHS.SAVE_CICDATA}`, cicData, {
-        headers: {
-          "x-govuk-signin-session-id": tokenId,
-          ...createPersonalDataHeaders(`${API.BASE_URL}${API.PATHS.SAVE_CICDATA}`, req),
+      const resp = await axios.post(
+        `${config.API.PATHS.SAVE_CICDATA}`,
+        cicData,
+        {
+          headers: {
+            "x-govuk-signin-session-id": tokenId,
+            ...createPersonalDataHeaders(
+              `${config.API.BASE_URL}${config.API.PATHS.SAVE_CICDATA}`,
+              req,
+            ),
+          },
         },
-      });
+      );
       return resp.data;
     } else {
       console.error("Missing sessionID, redirecting to /error");
@@ -73,5 +78,3 @@ class CheckDetailsController extends DateController {
     }
   }
 }
-
-module.exports = CheckDetailsController;
